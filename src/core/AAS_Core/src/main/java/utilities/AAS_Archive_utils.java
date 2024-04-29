@@ -6,19 +6,22 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.*;
+import java.util.ArrayList;
 
 public class AAS_Archive_utils {
 
 //    private static final String svcRequests = "/aas_archive/interactions/ManagerToCore.json";
-    private static final String svcRequests = "C:\\Users\\839073\\OneDrive - UPV EHU\\Tesis doctoral\\TesisEkaitzHurtado\\Ideas Ekaitz\\Componente I4.0\\Recursos\\ManagerToCore.json";
-    private static final String svcResponses = "/aas_archive/interactions/CoreToManager.json";
+    private static final String svcRequests = "C:\\Users\\ekait\\OneDrive - UPV EHU\\Tesis doctoral\\TesisEkaitzHurtado\\CodeRepositories\\Component_I4_0\\src\\core\\AAS_Core\\src\\main\\java\\examples\\ManagerToCore.json";
+//    private static final String svcRequests = String.valueOf(Thread.currentThread().getContextClassLoader().getResource("interactions/ManagerToCore.json"));
+//    private static final String svcResponses = "/aas_archive/interactions/CoreToManager.json";
+    private static final String svcResponses = "C:\\Users\\ekait\\OneDrive - UPV EHU\\Tesis doctoral\\TesisEkaitzHurtado\\CodeRepositories\\Component_I4_0\\src\\core\\AAS_Core\\src\\main\\java\\examples\\CoreToManager.json";
 
     // ------------------------
     // Methods related to files
     // ------------------------
     public static JSONObject fileToJSON(String filePath) {
         JSONParser parser = new JSONParser();
-        try (Reader reader = new FileReader(svcRequests)) {
+        try (Reader reader = new FileReader(filePath)) {
             return (JSONObject) parser.parse(reader);
         } catch (IOException | ParseException e) {
             throw new RuntimeException(e);
@@ -28,23 +31,37 @@ public class AAS_Archive_utils {
     public static void updateFile(String filePath, JSONObject content) {
         try (FileWriter file = new FileWriter(filePath)) {
             file.write(content.toJSONString());
+            file.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
     // -----------------------------------
     // Methods related to service requests
     // -----------------------------------
-    public static JSONObject getNextSvcRequest() {
+    public static JSONObject getNextSvcRequest(ArrayList<String> serviceRecord) {
         JSONArray requestsArray = (JSONArray) fileToJSON(svcRequests).get("serviceRequests");
         System.out.println(requestsArray.toString());
 
         if (requestsArray.isEmpty())
             return null;
         else {
-            return (JSONObject) requestsArray.get(0);
+            if (serviceRecord.isEmpty())
+                return (JSONObject) requestsArray.get(0);
+            for (Object o: requestsArray) {
+                JSONObject requestInfo = (JSONObject) o;
+                if (!serviceRecord.contains(String.valueOf(requestInfo.get("interactionID"))))
+                    return requestInfo;
+            }
+            return null;
         }
+    }
+
+    public static boolean checkNewRequests(int currentNumberOfRequests) {
+        JSONArray requestsArray = (JSONArray) fileToJSON(svcRequests).get("serviceRequests");
+        return currentNumberOfRequests < requestsArray.size();
     }
 
     // ------------------------------------
@@ -79,12 +96,30 @@ public class AAS_Archive_utils {
         return null;
     }
 
-    public static JSONObject getSvcCompletedResponse(JSONObject nextRequestJSON, String serviceData) {
-        // TODO
-        return null;
+    public static JSONObject getSvcCompletedResponse(JSONObject requestJSON, String serviceData) {
+        JSONObject completedResponseJSON = new JSONObject();
+        completedResponseJSON.put("interactionID", requestJSON.get("interactionID"));
+        completedResponseJSON.put("serviceID", requestJSON.get("serviceID"));
+        completedResponseJSON.put("serviceType", requestJSON.get("serviceType"));
+        completedResponseJSON.put("serviceStatus", "Completed");
+        if (serviceData != null) {
+            JSONObject serviceDataJSON = new JSONObject();
+            String requestedData = (String) ((JSONObject) requestJSON.get("serviceData")).get("requestedData");
+            serviceDataJSON.put(requestedData, serviceData);
+            serviceDataJSON.put("timestamp", System.currentTimeMillis());   // Add the timestamp
+            completedResponseJSON.put("serviceData", serviceDataJSON);
+        }
+        return completedResponseJSON;
     }
 
     public static void updateSvcCompleteResponse(JSONObject responseFinalJSON) {
-        // TODO
+        System.out.println(fileToJSON(svcResponses).toJSONString());
+        JSONArray responsesArray = (JSONArray) fileToJSON(svcResponses).get("serviceResponses");
+        if (responsesArray == null)
+            responsesArray = new JSONArray();
+        responsesArray.add(responseFinalJSON);
+        JSONObject updatedResponseContent = new JSONObject();
+        updatedResponseContent.put("serviceResponses", responsesArray);
+        updateFile(svcResponses, updatedResponseContent);
     }
 }

@@ -1,0 +1,22 @@
+{"serviceRequests": 
+	[ {
+		"interactionID": 111,
+		"serviceID": "getAssetData",
+		"serviceType": "AssetService",
+		"serviceData": {
+			 "requestedData" : "battery",
+			 "timestamp": 1713886810
+		   }
+	  },
+	  {
+		"interactionID": 112,
+		"serviceID": "getAssetModel",
+		"serviceType": "AssetService",
+		  "serviceData": {
+			  "requestedData" : "model",
+			  "timestamp": 1713886810
+		  }
+	  }
+	]
+}
+
