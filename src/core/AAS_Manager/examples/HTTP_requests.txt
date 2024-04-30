@@ -1,0 +1,1 @@
+curl.exe -i -X POST -H "Content-Type:application/json" -d ' {\"performative\": \"CallForProposal\", \"serviceID\": \"getAssetData\", \"serviceType\": \"AssetService\", \"serviceData\": {\"requestedData\" : \"battery\"}} '  http://localhost:7000/AssetRelatedService/
