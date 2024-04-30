@@ -17,23 +17,37 @@ spec:
       containers:
         - name: aas-core
           image: ekhurtado/aas-core:0.1
-          volumeMounts:
-            - mountPath: /aas_archive/
-              name: aas-archive
-        - name: aas-manager
-          image: ekhurtado/aas-manager:0.1
+          imagePullPolicy: Always
           volumeMounts:
             - name: aas-archive
               mountPath: /aas_archive/
-            - name: component-configmap
-              mountPath: /config
+            - name: component-cm
+              mountPath: /aas_archive/config
+
+        - name: aas-manager
+          image: ekhurtado/aas-manager:0.1
+          imagePullPolicy: Always
+          volumeMounts:
+            - name: aas-archive
+              mountPath: /aas_archive/
+            - name: component-cm
+              mountPath: /aas_archive/config
       restartPolicy: Always
       serviceAccountName: ""
       volumes:
         # The shared directory for holding the files
         - name: aas-archive
           emptyDir: { }
-        - name: component-configmap
+        - name: component-cm
           configMap:
-            name: component-i4-0-test-cm
+            name: component-i4-0-cm
+            items:
+              - key: submodel1.xml
+                path: submodels/submodel1.xml
+              - key: submodel2.xml
+                path: submodels/submodel2.xml
+              - key: component.properties
+                path: component.properties
+              - key: text.txt
+                path: text.txt
 

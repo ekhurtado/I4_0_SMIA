@@ -1,24 +1,32 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: component-i4-0-test-cm
+  name: component-i4-0-cm
+  namespace: default
 data:
-  # kv format
-  key: "value"
-  actualConfigFile: "name.properties"
+  configmap_data.txt: |
+    samplevar: samplevalue
+    processing-app-2: topic-proc-app-2
+    acquisition-app-2: topic-acq-app-2
 
   # TXT file
   text.txt: |
-    content of text.txt
+    esperate que me rio
 
   # XML file
-  submodel.xml: |
+  submodel1.xml: |
     <?xml version="1.0"?>
     <root>
-        <element>content of submodel.xml</element>
+        <element>content of submodel1.xml</element>
     </root>
 
-  # Propierties file
+  submodel2.xml: |
+    <?xml version="1.0"?>
+    <root>
+        <element>content of submodel2.xml</element>
+    </root>
+
+  # Properties file
   component.properties: |
     assetType=physical
     assetID=KukaKR3
