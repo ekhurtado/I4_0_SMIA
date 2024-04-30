@@ -1,0 +1,16 @@
+version: "2"
+
+services:
+
+  aas-core:
+    build:
+      context: ./docker/AAS_Core/
+      dockerfile: Dockerfile_AAS_Core
+    image: ekhurtado/aas-core:0.1
+    container_name: aas-core
+  aas-manager:
+    build:
+      context: ./docker/AAS_Manager/
+      dockerfile: Dockerfile_AAS_Manager
+    image: ekhurtado/aas-manager:0.1
+    container_name: aas-manager

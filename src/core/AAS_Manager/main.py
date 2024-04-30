@@ -59,4 +59,10 @@ def assetRelatedSvcRequests():
 if __name__ == '__main__':
     print("Initializing AAS Manager...")
     interactionID = 0
+
+    # Create the interaction files
+    AAS_Archive_utils.createInteractionFiles()
+
+    # Run application
     app.run(host="0.0.0.0", port=7000)
+

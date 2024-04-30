@@ -21,7 +21,7 @@ test {
 
 jar {
     manifest {
-        attributes "Main-Class": "tests.RunTests"
+        attributes "Main-Class": "src.Main"
     }
 
     from {

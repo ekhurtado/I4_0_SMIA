@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: component-i4-0-test
+  labels:
+    app: component-i4-0-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: component-i4-0-test
+  template:
+    metadata:
+      labels:
+        app: component-i4-0-test
+    spec:
+      containers:
+        - name: aas-core
+          image: ekhurtado/aas-core:0.1
+          volumeMounts:
+            - mountPath: /aas_archive/
+              name: aas-archive
+        - name: aas-manager
+          image: ekhurtado/aas-manager:0.1
+          volumeMounts:
+            - mountPath: /aas_archive/
+              name: aas-archive
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes:
+        # The shared directory for holding the files
+        - emptyDir: { }
+          name: aas-archive

@@ -1,1 +1,4 @@
+PARA WINDOWS:
 curl.exe -i -X POST -H "Content-Type:application/json" -d ' {\"performative\": \"CallForProposal\", \"serviceID\": \"getAssetData\", \"serviceType\": \"AssetService\", \"serviceData\": {\"requestedData\" : \"battery\"}} '  http://localhost:7000/AssetRelatedService/
+PARA LINUX:
+curl -i -X POST -H "Content-Type:application/json" -d ' {"performative": "CallForProposal", "serviceID": "getAssetData", "serviceType": "AssetService", "serviceData": {"requestedData" : "battery"}} '  http://10.42.0.77:7000/AssetRelatedService/

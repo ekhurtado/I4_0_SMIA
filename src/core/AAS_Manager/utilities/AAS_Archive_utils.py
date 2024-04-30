@@ -3,13 +3,24 @@ import calendar
 import json
 import time
 
-svcRequests = "examples/ManagerToCore.json"
-svcResponses = "examples/CoreToManager.json"
+# svcRequests = "examples/ManagerToCore.json"
+# svcResponses = "examples/CoreToManager.json"
+
+svcRequests = "/aas_archive/ManagerToCore.json"
+svcResponses = "/aas_archive/CoreToManager.json"
 
 
 # ------------------------
 # Methods related to files
 # ------------------------
+def createInteractionFiles():
+    with open(svcRequests, 'w') as requestsFile, open(svcResponses, 'w') as responsesFile:
+        requestsFile.write('{"serviceRequests": []}')
+        responsesFile.write('{"serviceResponses": []}')
+
+        requestsFile.close()
+        responsesFile.close()
+
 def fileToJSON(filePath):
     f = open(filePath)
     try:
