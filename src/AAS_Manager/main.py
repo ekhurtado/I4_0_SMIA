@@ -2,7 +2,7 @@ import json
 import os
 
 from flask import Flask, request
-from utilities import AAS_Archive_utils
+from utilities import AAS_Archive_utils, Submodels_utils
 
 interactionID = 0
 
@@ -56,12 +56,22 @@ def assetRelatedSvcRequests():
 
     return "OK"
 
+
+def initializeSystem():
+    # Create the interaction files
+    AAS_Archive_utils.createInteractionFiles()
+
+    # Create configuration files from ConfigMap
+    Submodels_utils.createSubModels()
+
+
 if __name__ == '__main__':
     print("Initializing AAS Manager...")
     interactionID = 0
 
-    # Create the interaction files
-    AAS_Archive_utils.createInteractionFiles()
+    # Before start the AAS Manager, it will execute the required initialization of the system
+    initializeSystem()
+
 
     # Run application
     app.run(host="0.0.0.0", port=7000)

@@ -4,6 +4,8 @@ RUN pip install Flask
 
 RUN pip install requests
 
+RUN pip install lxml
+
 COPY main.py /
 COPY utilities /utilities
 

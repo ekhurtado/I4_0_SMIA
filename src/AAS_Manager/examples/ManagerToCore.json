@@ -1,1 +1,1 @@
-{"serviceRequests": [{"interactionID": 0, "serviceID": "getAssetData", "serviceType": "AssetService", "serviceData": {"requestedData": "battery", "timestamp": 1714471239}}, {"interactionID": 0, "serviceID": "getAssetData", "serviceType": "AssetService", "serviceData": {"requestedData": "battery", "timestamp": 1714471369}}, {"interactionID": 0, "serviceID": "getAssetData", "serviceType": "AssetService", "serviceData": {"requestedData": "battery", "timestamp": 1714471483}}]}
+{"serviceRequests": []}

@@ -42,12 +42,18 @@ spec:
           configMap:
             name: component-i4-0-cm
             items:
-              - key: submodel1.xml
-                path: submodels/submodel1.xml
-              - key: submodel2.xml
-                path: submodels/submodel2.xml
+#              - key: submodel1.xml
+#                path: submodels/submodel1.xml
+#              - key: submodel2.xml
+#                path: submodels/submodel2.xml
               - key: component.properties
                 path: component.properties
+              - key: submodels.properties
+                path: submodels.properties
               - key: text.txt
                 path: text.txt
+#              - key: ManagerToCore.json
+#                path: interactions/ManagerToCore.json
+#              - key: CoreToManager.json
+#                path: interactions/CoreToManager.json
 

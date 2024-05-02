@@ -1,14 +1,14 @@
 # File to save useful methods for accessing the AAS Archive
 import calendar
+import configparser
 import json
 import time
 
 # svcRequests = "examples/ManagerToCore.json"
 # svcResponses = "examples/CoreToManager.json"
 
-svcRequests = "/aas_archive/ManagerToCore.json"
-svcResponses = "/aas_archive/CoreToManager.json"
-
+svcRequests = "/aas_archive/interactions/ManagerToCore.json"
+svcResponses = "/aas_archive/interactions/CoreToManager.json"
 
 # ------------------------
 # Methods related to files

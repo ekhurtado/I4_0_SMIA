@@ -11,7 +11,7 @@ data:
 
   # TXT file
   text.txt: |
-    esperate que me rio
+    content of TXT format file
 
   # XML file
   submodel1.xml: |
@@ -31,3 +31,14 @@ data:
     assetType=physical
     assetID=KukaKR3
     assetNumber=1
+
+  submodels.properties: |
+    [technical-data-submodel]
+    submodel1=technical-data
+    submodel1.aas-id=11
+    submodel1.aas-model=Kuka KR3
+
+    [configuration-submodel]
+    submodel2=configuration
+    submodel2.aas-number=1
+    submodel2.aas-level=edge
