@@ -14,8 +14,8 @@ public class AAS_Archive_utils {
 //    private static final String svcRequests = String.valueOf(Thread.currentThread().getContextClassLoader().getResource("interactions/ManagerToCore.json"));
 //    private static final String svcResponses = "C:\\Users\\ekait\\OneDrive - UPV EHU\\Tesis doctoral\\TesisEkaitzHurtado\\CodeRepositories\\Component_I4_0\\src\\core\\AAS_Core\\src\\main\\java\\examples\\CoreToManager.json";
 
-        private static final String svcRequests = "/aas_archive/config/interactions/ManagerToCore.json";
-        private static final String svcResponses = "/aas_archive/config/interactions/CoreToManager.json";
+        private static final String svcRequests = "/aas_archive/interactions/ManagerToCore.json";
+        private static final String svcResponses = "/aas_archive/interactions/CoreToManager.json";
 
     // ------------------------
     // Methods related to files

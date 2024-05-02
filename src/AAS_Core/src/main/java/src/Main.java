@@ -40,6 +40,7 @@ public class Main {
                     default:
                         System.out.println("Requestes data is not available.");
                 }
+                break;
 
             case "setAssetData":
                 System.out.println("Setting asset data...");
@@ -84,7 +85,7 @@ public class Main {
                 aas_core.serviceRecord.add(String.valueOf(nextRequestJSON.get("interactionID")));
             } else {
                 System.out.println("No request yet.");
-                Thread.sleep(2000); // pausa de 2s
+                Thread.sleep(5000); // waits for 5s
             }
         }
     }

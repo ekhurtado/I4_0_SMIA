@@ -4,8 +4,8 @@ WORKDIR /
 
 COPY AAS_Core-1.0-SNAPSHOT.jar /aas_core.jar
 
-#CMD ["java", "-jar", "aas_core.jar"]
+CMD ["java", "-jar", "aas_core.jar"]
 
 # Command to keep the container alive
-CMD ["tail", "-f", "/dev/null"]
+#CMD ["tail", "-f", "/dev/null"]
 

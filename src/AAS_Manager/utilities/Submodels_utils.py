@@ -19,7 +19,7 @@ submodels_path = "/aas_archive/submodels"
 def createSubModels():
 
     # Create folder to save submodels
-    # os.mkdir(submodels_path)
+    os.mkdir(submodels_path)
 
     # Read submodels configuration
     configSM = configparser.RawConfigParser()

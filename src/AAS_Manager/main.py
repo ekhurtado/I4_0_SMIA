@@ -1,5 +1,6 @@
 import json
 import os
+import time
 
 from flask import Flask, request
 from utilities import AAS_Archive_utils, Submodels_utils
@@ -51,6 +52,9 @@ def assetRelatedSvcRequests():
                     interactionID = interactionID + 1
 
                     return "Service completed! Response: " + str(svcResponse)
+
+                # Waits 2 seconds
+                time.sleep(2)
         case _:
             print("Performative not available.")
 
