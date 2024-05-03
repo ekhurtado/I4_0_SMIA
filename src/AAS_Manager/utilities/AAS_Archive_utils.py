@@ -2,6 +2,7 @@
 import calendar
 import configparser
 import json
+import os
 import time
 
 # svcRequests = "examples/ManagerToCore.json"
@@ -10,16 +11,23 @@ import time
 svcRequests = "/aas_archive/interactions/ManagerToCore.json"
 svcResponses = "/aas_archive/interactions/CoreToManager.json"
 
+
 # ------------------------
 # Methods related to files
 # ------------------------
 def createInteractionFiles():
-    with open(svcRequests, 'w') as requestsFile, open(svcResponses, 'w') as responsesFile:
+
+    # First the folder is created
+    os.mkdir("/aas_archive/interactions")
+
+    # Then the content is added
+    with open(svcRequests, 'x') as requestsFile, open(svcResponses, 'x') as responsesFile:
         requestsFile.write('{"serviceRequests": []}')
         responsesFile.write('{"serviceResponses": []}')
 
         requestsFile.close()
         responsesFile.close()
+
 
 def fileToJSON(filePath):
     f = open(filePath)
