@@ -1,0 +1,1 @@
+{"serviceRequests": [{"interactionID": 0, "serviceID": "getAssetData", "serviceType": "AssetService", "serviceData": {"requestedData": "battery", "timestamp": 1714665825}}]}
