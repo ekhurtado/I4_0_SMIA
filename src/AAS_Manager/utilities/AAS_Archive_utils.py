@@ -6,13 +6,13 @@ import json
 import os
 import time
 
-svcRequests = "examples/ManagerToCore.json"
-svcResponses = "examples/CoreToManager.json"
-logFilePath = "examples/ServiceHistory.log"
+# svcRequests = "examples/ManagerToCore.json"
+# svcResponses = "examples/CoreToManager.json"
+# logFilePath = "examples/ServiceHistory.log"
 
-# svcRequests = "/aas_archive/interactions/ManagerToCore.json"
-# svcResponses = "/aas_archive/interactions/CoreToManager.json"
-# logFilePath = "/aas_archive/log/ServiceHistory.log"
+svcRequests = "/aas_archive/interactions/ManagerToCore.json"
+svcResponses = "/aas_archive/interactions/CoreToManager.json"
+logFilePath = "/aas_archive/log/ServiceHistory.log"
 
 
 # ------------------------
@@ -127,3 +127,4 @@ def saveSvcInfoInLogFile(interactionID):
     # Add the structure in the file
     logFileJSON.append(logStructure)
     updateFile(filePath=logFilePath, content=logFileJSON)
+    print("Service information related to interaction " + str(interactionID) + " added in log file.")

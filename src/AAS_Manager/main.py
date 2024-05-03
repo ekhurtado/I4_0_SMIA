@@ -83,8 +83,7 @@ if __name__ == '__main__':
     print("Initializing AAS Manager...")
     interactionID = 0
 
-    print(time.time())
-    # Before start the AAS Manager, it will execute the required initialization of the system
+    # Before starting the AAS Manager, it will execute the required initialization of the system
     initializeSystem()
 
     # Run application
