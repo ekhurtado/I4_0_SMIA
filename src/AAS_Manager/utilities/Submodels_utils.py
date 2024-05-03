@@ -9,10 +9,6 @@ from lxml import etree
 configMap_path = "/aas_archive/config"
 submodels_path = "/aas_archive/submodels"
 
-# configMap_path = "examples"
-# submodels_path = "submodels"
-
-
 # ------------------------
 # Methods related to files
 # ------------------------

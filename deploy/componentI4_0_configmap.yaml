@@ -4,30 +4,16 @@ metadata:
   name: component-i4-0-cm
   namespace: default
 data:
-  configmap_data.txt: |
-    samplevar: samplevalue
-    processing-app-2: topic-proc-app-2
-    acquisition-app-2: topic-acq-app-2
 
-  # TXT file
-  text.txt: |
-    content of TXT format file
+  # Properties files
+  aas.properties: |
+    logicalID=aas01
+    endpoint=7000
 
-  # XML file
-  submodel1.xml: |
-    <?xml version="1.0"?>
-    <root>
-        <element>content of submodel1.xml</element>
-    </root>
+    services.1=getAssetData
+    services.2=getSubmodelData
 
-  submodel2.xml: |
-    <?xml version="1.0"?>
-    <root>
-        <element>content of submodel2.xml</element>
-    </root>
-
-  # Properties file
-  component.properties: |
+  asset.properties: |
     assetType=physical
     assetID=KukaKR3
     assetNumber=1

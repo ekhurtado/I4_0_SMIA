@@ -1,14 +1,9 @@
 # File to save useful methods for accessing the AAS Archive
 import calendar
-import configparser
 from datetime import datetime
 import json
 import os
 import time
-
-# svcRequests = "examples/ManagerToCore.json"
-# svcResponses = "examples/CoreToManager.json"
-# logFilePath = "examples/ServiceHistory.log"
 
 svcRequests = "/aas_archive/interactions/ManagerToCore.json"
 svcResponses = "/aas_archive/interactions/CoreToManager.json"
