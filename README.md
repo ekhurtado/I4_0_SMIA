@@ -1,6 +1,6 @@
 # I4.0 Standardized Manufacturing Component: I4.0 SMC 
 
-[![Docker badge](https://img.shields.io/docker/pulls/ekhurtado/aas-manager.svg)](https://hub.docker.com/r/ekhurtado/aas-manager/)
+[![Docker badge](https://img.shields.io/docker/pulls/ekhurtado/aas-manager.svg)](https://hub.docker.com/r/ekhurtado/aas-manager/) ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/ekhurtado/Component_I4_0?sort=semver)
 
 ![FA³ST Logo Light](./images/Component_I4_0_logo_positive.png/#gh-light-mode-only "I4.0 SMC logo")
 ![FA³ST Logo Dark](./images/Component_I4_0_logo_negative.png/#gh-dark-mode-only "I4.0 SMC logo")
