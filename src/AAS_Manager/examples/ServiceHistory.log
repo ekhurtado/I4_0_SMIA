@@ -1,0 +1,1 @@
+[{"prueba1": "w", "prueba2": "d"}, {"prueba3": "t", "prueba4": "g"}, {"level": "INFO", "interactionID": 0, "serviceStatus": "Completed", "serviceInfo": {"serviceID": "getAssetData", "serviceType": "AssetService", "requestTimestamp": "2024-05-02 18:03:45", "responseTimestamp": "2024-05-03 11:19:39", "serviceData": {"requestedData": "battery", "dataValue": "66.9790035081239"}}}]

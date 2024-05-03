@@ -107,7 +107,7 @@ public class AAS_Archive_utils {
             JSONObject serviceDataJSON = new JSONObject();
             String requestedData = (String) ((JSONObject) requestJSON.get("serviceData")).get("requestedData");
             serviceDataJSON.put(requestedData, serviceData);
-            serviceDataJSON.put("timestamp", System.currentTimeMillis());   // Add the timestamp
+            serviceDataJSON.put("timestamp", System.currentTimeMillis() / 1000);   // Add the timestamp in seconds
             completedResponseJSON.put("serviceData", serviceDataJSON);
         }
         return completedResponseJSON;

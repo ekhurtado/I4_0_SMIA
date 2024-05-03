@@ -33,24 +33,31 @@ def assetRelatedSvcRequests():
             print("Call for proposal request.")
             global interactionID
 
+            svcInteractionID = interactionID
+
             # Create the valid JSON structure to save in ManagerToCore.json
-            svcRequestJSON = AAS_Archive_utils.createSvcRequestJSON(interactionID=interactionID,
+            svcRequestJSON = AAS_Archive_utils.createSvcRequestJSON(interactionID=svcInteractionID,
                                                                     serviceID=request.json['serviceID'],
                                                                     serviceType=request.json['serviceType'],
                                                                     serviceData=request.json['serviceData'])
             # Save the JSON in ManagerToCore.json
             AAS_Archive_utils.addNewSvcRequest(svcRequestJSON)
 
+            # Increment the interactionID
+            interactionID = interactionID + 1
+
             # Wait until the service is completed
             svcCompleted = False
             while not svcCompleted:
                 print(str(request.json['serviceID']) + "service not completed yet.")
-                svcResponse = AAS_Archive_utils.checkSvcResponse(interactionID=interactionID)
+                svcResponse = AAS_Archive_utils.checkSvcResponse(interactionID=svcInteractionID)
                 if svcResponse is not None:
                     print(svcResponse)
+                    # Set the service as completed
                     svcCompleted = True
-                    interactionID = interactionID + 1
-
+                    # Write the information in the log file
+                    AAS_Archive_utils.saveSvcInfoInLogFile(svcInteractionID)
+                    # Return message to the sender
                     return "Service completed! Response: " + str(svcResponse)
 
                 # Waits 2 seconds
@@ -68,14 +75,17 @@ def initializeSystem():
     # Create configuration files from ConfigMap
     Submodels_utils.createSubModels()
 
+    # Create log file
+    AAS_Archive_utils.createLogFile()
+
 
 if __name__ == '__main__':
     print("Initializing AAS Manager...")
     interactionID = 0
 
+    print(time.time())
     # Before start the AAS Manager, it will execute the required initialization of the system
     initializeSystem()
-
 
     # Run application
     app.run(host="0.0.0.0", port=7000)
