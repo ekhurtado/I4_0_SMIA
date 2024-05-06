@@ -1,0 +1,17 @@
+version: "2"
+
+services:
+
+  agent-ams:
+    build:
+      context: ./docker/
+      dockerfile: Dockerfile_AMS
+    image: ekhurtado/agent-tests:agent-ams
+    container_name: agent-ams
+
+  agent-hello-world:
+    build:
+      context: ./docker/
+      dockerfile: Dockerfile_HelloWorld
+    image: ekhurtado/agent-tests:agent-hello-world
+    container_name: agent-hello-world

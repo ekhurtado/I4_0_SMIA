@@ -1,0 +1,19 @@
+GUI
+---
+java -cp ".\lib\jade.jar" jade.Boot -gui
+
+
+HELLOWORLD
+----------
+java -cp ".\lib\jade.jar;.\out\production\JADE_tests" jade.Boot -container -port 1099 -local-port 1099 helloworld:simpleAgents.HelloWorldAgent
+
+
+SHOPPING EXAMPLE
+----------------
+java -cp ".\lib\jade.jar;.\out\production\JADE_tests" jade.Boot -container -port 1099 -local-port 1099 resource:shoppingExample.ResourceAgent
+java -cp ".\lib\jade.jar;.\out\production\JADE_tests" jade.Boot -container -port 1099 -local-port 1099 buyer:shoppingExample.BuyerAgent
+
+SERVER EXAMPLE
+--------------
+java -cp ".\lib\jade.jar;.\out\production\JADE_tests" jade.Boot -container servidor:serverExample.Servidor
+java -cp ".\lib\jade.jar;.\out\production\JADE_tests" jade.Boot -container cliente:serverExample.Cliente(1)

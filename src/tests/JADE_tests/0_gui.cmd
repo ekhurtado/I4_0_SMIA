@@ -1,0 +1,1 @@
+java -Dlog4j.configurationFile="log4j2.xml" -cp ".\lib\jade.jar" jade.Boot -gui
