@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prosody-xmpp
+  labels:
+    component.service: prosody-xmpp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component.service: prosody-xmpp
+  template:
+    metadata:
+      labels:
+        component.service: prosody-xmpp
+    spec:
+      containers:
+        - name: prosody
+          image: prosody/prosody
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5222
+          volumeMounts:
+            - name: prosody-configmap
+              mountPath: /prosody
+
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes:
+        # The shared directory for holding the files
+        - name: prosody-configmap
+          configMap:
+            name: prosody-cm

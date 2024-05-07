@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prosody-cm
+  namespace: default
+data:
+
+  # Configuration files
+  prosody.cfg.lua: |
+    content...

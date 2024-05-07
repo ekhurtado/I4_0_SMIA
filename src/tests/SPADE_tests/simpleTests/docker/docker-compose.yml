@@ -1,0 +1,11 @@
+version: "2"
+
+services:
+
+  spade-agent-send-recv:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile_send_recv
+    image: ekhurtado/agent-tests:spade-agent-send-recv
+    container_name: spade-agent-send-recv
+
