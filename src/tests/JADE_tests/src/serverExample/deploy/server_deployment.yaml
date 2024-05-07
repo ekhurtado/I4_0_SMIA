@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: agent-test-server
+  labels:
+    app: agent-test-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: agent-test-server
+  template:
+    metadata:
+      labels:
+        app: agent-test-server
+    spec:
+      containers:
+        - name: agent-server
+          image: ekhurtado/agent-tests:agent-server
+          imagePullPolicy: Always
+
+      restartPolicy: Always
+      serviceAccountName: ""
+
