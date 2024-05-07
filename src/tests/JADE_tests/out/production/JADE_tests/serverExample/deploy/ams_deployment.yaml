@@ -1,28 +1,28 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: agent-test-client
+  name: agent-test-ams
   labels:
-    app: agent-test-client
+    app: agent-test-ams
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: agent-test-client
+      app: agent-test-ams
   template:
     metadata:
       labels:
-        app: agent-test-client
+        app: agent-test-ams
     spec:
       containers:
-        - name: agent-client
-          image: ekhurtado/agent-tests:agent-client
+        - name: agent-ams
+          image: ekhurtado/agent-tests:agent-ams
           imagePullPolicy: Always
           env:
-            - name: AMS_NAME
+            - name: CONTAINER_NAME
               value: jade-agent-ams
-            - name: SERVER_NAME
-              value: servidor
+          ports:
+            - containerPort: 1099
 
       restartPolicy: Always
       serviceAccountName: ""

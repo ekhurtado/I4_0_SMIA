@@ -14,6 +14,6 @@ spec:
       port: 1099
       targetPort: 1099
   selector:
-    component.service: jade-agent-ams
+    io.kompose.service: jade-agent-ams
 status:
   loadBalancer: {}

@@ -1,10 +1,13 @@
 FROM openjdk:8-jre-alpine
 
-COPY ../lib /lib
-COPY ../out/production/JADE_tests /classes/JADE_tests
+COPY ./lib /lib
 
-ENV AMS_NAME=jade-ams
+COPY ./out/production/JADE_tests /classes/JADE_tests
 
-ENV SERVER_NAME=server
+ENV AMS_NAME=jade-agent-ams
 
-CMD ["java", "-cp", "/jade.jar:.", "jade.Boot", "-host", "${AMS_NAME}", "-port", "1099", "-container", "cliente:serverExample.Cliente(3)"]
+ENV SERVER_NAME=servidor
+
+WORKDIR /
+
+CMD ["java", "-cp", "/lib/jade.jar:/classes/JADE_tests", "jade.Boot", "-host", "${AMS_NAME}", "-port", "1099", "-container", "cliente:serverExample.Cliente(3)"]

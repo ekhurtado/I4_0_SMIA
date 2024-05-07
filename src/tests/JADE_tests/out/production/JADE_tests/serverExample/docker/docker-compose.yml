@@ -5,9 +5,9 @@ services:
   jade-agent-ams:
     build:
       context: .
-      dockerfile: Dockerfile_ams
+      dockerfile: ./docker/Dockerfile_AMS
     image: ekhurtado/agent-tests:agent-ams
-    container_name: jade1
+    container_name: jade-agent-ams
     environment:
       - CONTAINER_NAME=jade-agent-ams
     ports:
@@ -16,7 +16,7 @@ services:
   jade-agent-server:
     build:
       context: .
-      dockerfile: Dockerfile_server
+      dockerfile: ./docker/Dockerfile_server
     image: ekhurtado/agent-tests:agent-server
     container_name: jade-agent-server
     environment:
@@ -25,7 +25,7 @@ services:
   jade-agent-client:
     build:
       context: .
-      dockerfile: Dockerfile_client
+      dockerfile: ./docker/Dockerfile_client
     image: ekhurtado/agent-tests:agent-client
     container_name: jade-agent-client
     environment:

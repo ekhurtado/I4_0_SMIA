@@ -50,7 +50,7 @@ public class Cliente extends Agent {
             msg.setOntology("Numerical operation");
             msg.setContent(num);
             this.send(msg);
-            System.out.println(agentID + " Mezua bidali dio zerbitzariari");
+            System.out.println(agentID + "agenteak mezua bidali dio zerbitzariari, eduki honekin: " + num);
             System.out.println(agentID + ": Cliente exiting setup");
         }
     }
