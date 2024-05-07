@@ -1,0 +1,8 @@
+FROM openjdk:8-jre-alpine
+
+WORKDIR /
+
+COPY ./lib /lib
+#COPY ../out/production/JADE_tests /classes/JADE_tests
+
+CMD ["java", "-cp", "/lib/jade.jar", "jade.Boot" ,"-container-name", "jade-ams"]

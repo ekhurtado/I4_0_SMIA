@@ -11,6 +11,7 @@ import jade.lang.acl.ACLMessage;
 import serverExample.behaviours.ClientBehaviour;
 
 import java.util.Arrays;
+import java.util.Random;
 
 public class Cliente extends Agent {
     protected void setup() {
@@ -24,7 +25,8 @@ public class Cliente extends Agent {
 
 //        System.out.println(Arrays.toString(this.getArguments()));
 //        String num = this.getArguments()[0].toString();
-        String num = "1"; // assigned the name directly for the tests
+        Random r = new Random();
+        String num = String.valueOf(r.nextInt(100)); // assigned the name directly for the tests
 
         System.out.println(agentID + " parameter: " + num);
         this.serviceRegister(num);
@@ -35,13 +37,22 @@ public class Cliente extends Agent {
 //        String serverName = System.getenv("SERVER_NAME");
         String serverName = "servidor"; // assigned the name directly for the tests
 
-        ACLMessage msg = new ACLMessage(16);
-        msg.addReceiver(new AID(serverName, false));
-        msg.setOntology("Numerical operation");
-        msg.setContent(num);
-        this.send(msg);
-        System.out.println(agentID + " Mezua bidali dio zerbitzariari");
-        System.out.println(agentID + ": Cliente exiting setup");
+        while (true) {
+            try {
+                Thread.sleep(5000L);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            num = String.valueOf(r.nextInt(100)); // assigned the name directly for the tests
+
+            ACLMessage msg = new ACLMessage(16);
+            msg.addReceiver(new AID(serverName, false));
+            msg.setOntology("Numerical operation");
+            msg.setContent(num);
+            this.send(msg);
+            System.out.println(agentID + " Mezua bidali dio zerbitzariari");
+            System.out.println(agentID + ": Cliente exiting setup");
+        }
     }
 
     private void serviceRegister(String num) {

@@ -1,11 +1,11 @@
 FROM openjdk:8-jre-alpine
 
-COPY ./jade.jar /
+COPY ./lib /lib
 
-COPY ./tutorial3zatia /tutorial3zatia
+COPY ./out/production/JADE_tests /classes/JADE_tests
 
-ENV AMS_NAME=jade-ams
+ENV AMS_NAME=jade-agent-ams
 
-ENV SERVER_NAME=server
+ENV SERVER_NAME=servidor
 
-CMD ["java", "-cp", "/jade.jar:.", "jade.Boot", "-host", "${AMS_NAME}", "-port", "1099", "-container", "cliente:serverExample.Cliente(3)"]
+CMD ["java", "-cp", "/lib/jade.jar:.", "jade.Boot", "-host", "${AMS_NAME}", "-port", "1099", "-container", "cliente:serverExample.Cliente(3)"]
