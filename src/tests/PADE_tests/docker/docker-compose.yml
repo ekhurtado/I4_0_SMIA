@@ -1,0 +1,24 @@
+version: "2"
+
+services:
+
+  pade-agent-helloworld:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile_helloworld
+    image: ekhurtado/agent-tests:pade-agent-helloworld
+    container_name: pade-agent-helloworld
+
+  pade-agent-send-recv:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile_send_recv
+    image: ekhurtado/agent-tests:pade-agent-send-recv
+    container_name: pade-agent-send-recv
+
+  pade-agent-own-example1:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile_pade_example1
+    image: ekhurtado/agent-tests:pade-agent-own-example1
+    container_name: pade-agent-own-example1

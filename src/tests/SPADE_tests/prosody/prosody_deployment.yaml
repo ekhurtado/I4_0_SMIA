@@ -22,12 +22,12 @@ spec:
             - containerPort: 5222
           volumeMounts:
             - name: prosody-configmap
-              mountPath: /prosody
+              mountPath: /etc/prosody/prosody.cfg.lua
+              subPath: prosody.cfg.lua
 
       restartPolicy: Always
       serviceAccountName: ""
       volumes:
-        # The shared directory for holding the files
         - name: prosody-configmap
           configMap:
             name: prosody-cm

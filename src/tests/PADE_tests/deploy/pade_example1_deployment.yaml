@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pade-agent-own-example1
+  labels:
+    app: pade-agent-own-example1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pade-agent-own-example1
+  template:
+    metadata:
+      labels:
+        app: pade-agent-own-example1
+    spec:
+      containers:
+        - name: pade-agent-own-example1
+          image: ekhurtado/agent-tests:pade-agent-own-example1
+          imagePullPolicy: Always
+
+      restartPolicy: Always
+      serviceAccountName: ""
+

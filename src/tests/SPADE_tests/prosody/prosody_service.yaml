@@ -7,12 +7,21 @@ metadata:
   creationTimestamp: null
   labels:
     io.kompose.service: prosody-xmpp
-  name: jade-agent-ams
+  name: prosody-xmpp
 spec:
   ports:
     - name: "5222"
       port: 5222
       targetPort: 5222
+    - name: "port-5269"
+      port: 5269
+      targetPort: 5269
+    - name: "port-5280"
+      port: 5280
+      targetPort: 5280
+    - name: "port-5347"
+      port: 5347
+      targetPort: 5347
   selector:
     component.service: prosody-xmpp
 status:

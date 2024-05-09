@@ -1,0 +1,11 @@
+FROM python:3.7
+
+RUN pip install pade
+
+COPY ./pade_own_example1.py /pade_own_example1.py
+
+WORKDIR /
+
+EXPOSE 20000
+
+CMD ["python", "pade_own_example1.py", "20000"]
