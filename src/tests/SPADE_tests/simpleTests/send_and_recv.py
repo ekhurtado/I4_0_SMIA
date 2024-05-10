@@ -1,4 +1,5 @@
 import getpass
+import os
 import time
 
 import spade
@@ -76,12 +77,20 @@ async def main():
     recv_jid = "gcis3@anonym.im"
     passwd = "gcis1234"
 
-    # DATOS DE PROSODY
-    # sender_jid = "sender@ubuntu.min.vm"
-    # recv_jid = "recv@ubuntu.min.vm"
+    # DATOS DE PROSODY K8s
+    sender_jid = "sender@prosody-xmpp"
+    recv_jid = "recv@prosody-xmpp"
+    passwd = "gcis"
+    # sender_jid = "sender@192.168.1.1:30522"
+    # recv_jid = "recv@192.168.1.1:30522"
     # passwd = "gcis"
 
-    time.sleep(10)  # espera de 10s para contenedor Docker
+    # DATOS DE RECOGIDOS DE VARIABLES DE ENTORNO PARA PRUEBAS CON PROSODY K8s
+    # sender_jid = os.environ.get('SENDER_JID')
+    # recv_jid = os.environ.get('RECEIVER_JID')
+    # passwd = "gcis1234"
+
+    # time.sleep(10)  # espera de 10s para contenedor Docker
 
     receiveragent = ReceiverAgent(recv_jid, passwd)
     await receiveragent.start(auto_register=True)

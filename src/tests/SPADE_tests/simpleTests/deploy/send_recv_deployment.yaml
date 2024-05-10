@@ -18,6 +18,11 @@ spec:
         - name: spade-agent-send-recv
           image: ekhurtado/agent-tests:spade-agent-send-recv
           imagePullPolicy: Always
+          env:
+            - name: SENDER_JID
+              value: "sender2@xmpp://prosody-xmpp"
+            - name: RECEIVER_JID
+              value : "recv2@xmpp://prosody-xmpp"
 
       restartPolicy: Always
       serviceAccountName: ""

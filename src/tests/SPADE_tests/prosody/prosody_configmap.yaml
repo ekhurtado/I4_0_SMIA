@@ -102,7 +102,9 @@ data:
     
     -- Disable account creation by default, for security
     -- For more information see https://prosody.im/doc/creating_accounts
-    allow_registration = false
+    -- !!! ADDED TO THE DEFAULT CONFIG FILE !!!
+    -- >  To enable the connection of new SPADE agents
+    allow_registration = true
     
     -- Force clients to use encrypted connections? This option will
     -- prevent clients from authenticating unless they are using encryption.
@@ -201,9 +203,15 @@ data:
     -- Settings under each VirtualHost entry apply *only* to that host.
     
     VirtualHost "localhost"
+
+    VirtualHost "prosody-xmpp"
     
     --VirtualHost "example.com"
     --      certificate = "/path/to/example.crt"
+    
+    -- !!! ADDED TO THE DEFAULT CONFIG FILE !!!
+    -- >  To create a new host fot the connection of SPADE agents
+    --VirtualHost "gcis.ehu"
     
     ------ Components ------
     -- You can specify components to add hosts that provide special services,
@@ -224,6 +232,3 @@ data:
     --Component "gateway.example.com"
     --      component_secret = "password"
     
-    -- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    -- Contenido introducido para pruebas
-    -- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

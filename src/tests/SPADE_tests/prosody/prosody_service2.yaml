@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: /snap/kompose/19/kompose-linux-amd64 convert
+    kompose.version: 1.21.0 (992df58d8)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: prosody-xmpp
+  name: prosody-xmpp
+spec:
+  type: NodePort
+  ports:
+    - name: "5222"
+      port: 5222
+      targetPort: 5222
+      nodePort: 30522
+    - name: "port-5269"
+      port: 5269
+      targetPort: 5269
+      nodePort: 30569
+    - name: "port-5280"
+      port: 5280
+      targetPort: 5280
+      nodePort: 30528
+    - name: "port-5347"
+      port: 5347
+      targetPort: 5347
+      nodePort: 30547
+  selector:
+    component.service: prosody-xmpp
+status:
+  loadBalancer: {}
