@@ -1,0 +1,11 @@
+version: "2"
+
+services:
+
+  prosody-xmpp:
+    build:
+      context: .
+      dockerfile: Dockerfile_prosody
+    image: ekhurtado/agent-tests:prosody-xmpp
+    container_name: prosody-xmpp
+

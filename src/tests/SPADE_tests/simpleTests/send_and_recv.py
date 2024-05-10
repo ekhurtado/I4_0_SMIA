@@ -78,8 +78,8 @@ async def main():
     passwd = "gcis1234"
 
     # DATOS DE PROSODY K8s
-    sender_jid = "sender@prosody-xmpp"
-    recv_jid = "recv@prosody-xmpp"
+    sender_jid = "sender@ubuntu.min.vm"
+    recv_jid = "recv@ubuntu.min.vm"
     passwd = "gcis"
     # sender_jid = "sender@192.168.1.1:30522"
     # recv_jid = "recv@192.168.1.1:30522"

@@ -16,23 +16,19 @@ spec:
     spec:
       containers:
         - name: prosody
-          image: prosody/prosody
+          image: ekhurtado/agent-tests:prosody-xmpp
           imagePullPolicy: Always
           ports:
             - containerPort: 5222
-          volumeMounts:
-            - name: prosody-configmap
-              mountPath: /etc/prosody/prosody.cfg.lua
-              subPath: prosody.cfg.lua
           env:
             - name: DOMAIN
-              value: "example.com"
+              value: "prosody-xmpp"
             - name: LOG_LEVEL
               value: "debug"
+            - name: PROSODY_ADMINS
+              value: "admin@prosody-xmpp,admin2@prosody-xmpp"
+            - name: ALLOW_REGISTRATION
+              value: "true"
 
       restartPolicy: Always
       serviceAccountName: ""
-      volumes:
-        - name: prosody-configmap
-          configMap:
-            name: prosody-cm

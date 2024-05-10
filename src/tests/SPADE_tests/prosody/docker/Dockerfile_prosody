@@ -1,0 +1,13 @@
+FROM ubuntu:22.04
+
+RUN apt update && apt upgrade
+
+RUN apt install -y prosody
+
+RUN mkdir -p /var/run/prosody && chown prosody:prosody /var/run/prosody
+
+COPY prosody.cfg.lua /etc/prosody/prosody.cfg.lua
+
+EXPOSE 80 443 5222 5269 5347 5280 5281
+
+CMD ["prosody", "-F"]
