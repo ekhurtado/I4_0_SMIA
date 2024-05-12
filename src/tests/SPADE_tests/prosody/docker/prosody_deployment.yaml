@@ -29,6 +29,14 @@ spec:
               value: "admin@prosody-xmpp,admin2@prosody-xmpp"
             - name: ALLOW_REGISTRATION
               value: "true"
+            - name: S2S_SECURE_AUTH
+              value: "false"
+            - name: LDAP_SERVER
+              value: "prosody-xmpp"
+            - name: LDAP_BASE
+              value: "dc=prosody-xmpp"
+            - name: LDAP_ROOTDN
+              value: "dc=prosody-xmpp"
 
       restartPolicy: Always
       serviceAccountName: ""
