@@ -1,28 +1,28 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: spade-agent-send-recv
+  name: spade-agent-sender
   labels:
-    app: spade-agent-send-recv
+    app: spade-agent-sender
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: spade-agent-send-recv
+      app: spade-agent-sender
   template:
     metadata:
       labels:
-        app: spade-agent-send-recv
+        app: spade-agent-sender
     spec:
       containers:
-        - name: spade-agent-send-recv
-          image: ekhurtado/agent-tests:spade-agent-send-recv
+        - name: spade-agent-sender
+          image: ekhurtado/agent-tests:spade-agent-sender
           imagePullPolicy: Always
           env:
             - name: SENDER_JID
               value: "sender@ejabberd"
             - name: RECEIVER_JID
-              value : "recv@ejabberd"
+              value: "recv@ejabberd"
 
       restartPolicy: Always
       serviceAccountName: ""

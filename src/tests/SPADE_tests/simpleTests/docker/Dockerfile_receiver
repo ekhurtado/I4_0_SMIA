@@ -1,0 +1,9 @@
+FROM python:3.10-alpine
+
+RUN pip install spade
+
+COPY ./send_and_recv.py /send_and_recv.py
+
+WORKDIR /
+
+CMD ["python", "send_and_recv.py"]

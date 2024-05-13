@@ -78,29 +78,29 @@ async def main():
     passwd = "gcis1234"
 
     # DATOS DE PROSODY K8s
-    sender_jid = "sender@ubuntu.min.vm"
-    recv_jid = "recv@ubuntu.min.vm"
-    passwd = "gcis"
-    # sender_jid = "sender@192.168.1.1:30522"
-    # recv_jid = "recv@192.168.1.1:30522"
+    # sender_jid = "sender@ubuntu.min.vm"
+    # recv_jid = "recv@ubuntu.min.vm"
     # passwd = "gcis"
+    sender_jid = "sender@ejabberd"
+    recv_jid = "recv@ejabberd"
+    passwd = "gcis"
 
     # DATOS DE RECOGIDOS DE VARIABLES DE ENTORNO PARA PRUEBAS CON PROSODY K8s
     # sender_jid = os.environ.get('SENDER_JID')
     # recv_jid = os.environ.get('RECEIVER_JID')
     # passwd = "gcis1234"
 
-    # time.sleep(10)  # espera de 10s para contenedor Docker
+    time.sleep(10)  # espera de 10s para contenedor Docker
 
-    receiveragent = ReceiverAgent(recv_jid, passwd)
-    await receiveragent.start(auto_register=True)
+    # receiveragent = ReceiverAgent(recv_jid, passwd)
+    # await receiveragent.start(auto_register=True)
     print("Receiver started")
 
     senderagent = SenderAgent(recv_jid, sender_jid, passwd)
     await senderagent.start(auto_register=True)
     print("Sender started")
 
-    await spade.wait_until_finished(receiveragent)
+    # await spade.wait_until_finished(receiveragent)
     print("Agents finished")
 
 

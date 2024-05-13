@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ejabberd
+  labels:
+    component.service: ejabberd
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component.service: ejabberd
+  template:
+    metadata:
+      labels:
+        component.service: ejabberd
+    spec:
+      containers:
+        - name: ejabberd
+          image: ghcr.io/processone/ejabberd
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5222
+          volumeMounts:
+            - name: ejabberd-configmap
+              mountPath: /opt/ejabberd/conf/ejabberd.yml
+              subPath: ejabberd.yml
+          env:
+            - name: ERLANG_NODE_ARG
+              value: "admin@localhost"
+            - name: ERLANG_COOKIE
+              value: "dummycookie123"
+            - name: CTL_ON_CREATE
+              value: "! register admin localhost admingcis"
+
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes:
+        - name: ejabberd-configmap
+          configMap:
+            name: ejabberd-cm

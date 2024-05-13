@@ -9,3 +9,17 @@ services:
     image: ekhurtado/agent-tests:spade-agent-send-recv
     container_name: spade-agent-send-recv
 
+  spade-agent-receiver:
+    build:
+      context: .
+      dockerfile: ./receiver/Dockerfile_receiver
+    image: ekhurtado/agent-tests:spade-agent-receiver
+    container_name: spade-agent-receiver
+
+  spade-agent-sender:
+    build:
+      context: .
+      dockerfile: ./sender/Dockerfile_sender
+    image: ekhurtado/agent-tests:spade-agent-sender
+    container_name: spade-agent-sender
+
