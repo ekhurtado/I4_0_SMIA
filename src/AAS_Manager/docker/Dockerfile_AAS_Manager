@@ -6,9 +6,11 @@ RUN pip install requests
 
 RUN pip install lxml
 
-COPY main.py /
-COPY utilities /utilities
+COPY src/aas_manager.py /
+COPY src/utilities /utilities
+
+WORKDIR /
 
 EXPOSE 7000
 
-CMD ["python3", "-u", "main.py"]
+CMD ["python3", "-u", "aas_manager.py"]
