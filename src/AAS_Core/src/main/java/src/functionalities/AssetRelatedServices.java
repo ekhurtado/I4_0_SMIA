@@ -2,7 +2,7 @@ package src.functionalities;
 
 import java.util.Random;
 
-public class AssetServices {
+public class AssetRelatedServices {
 
     public static double getAssetBattery() {
         Random r = new Random();
