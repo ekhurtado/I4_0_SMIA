@@ -96,10 +96,16 @@ public class Main {
 
                         break;
                     case "AASInfrastructureService":
+                        // Update number of requests
+                        aas_core.numberOfAASIsvcRequests += 1;
                         break;
                     case "AASservice":
+                        // Update number of requests
+                        aas_core.numberOfAASsvcRequests += 1;
                         break;
                     case "SubmodelService":
+                        // Update number of requests
+                        aas_core.numberOfSMsvcRequests += 1;
                         break;
                     default:
                         System.out.println("Service not available.");
