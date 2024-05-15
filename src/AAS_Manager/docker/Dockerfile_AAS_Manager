@@ -1,13 +1,16 @@
 FROM python:3.10-alpine
 
-RUN pip install Flask
+#RUN pip install Flask
+#RUN pip install requests
+#RUN pip install lxml
 
-RUN pip install requests
+RUN pip install --upgrade pip
 
-RUN pip install lxml
+COPY requirements.txt .
 
-COPY src/aas_manager.py /
-COPY src/utilities /utilities
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY src /
 
 WORKDIR /
 

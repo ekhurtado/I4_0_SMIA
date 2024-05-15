@@ -2,7 +2,7 @@ FROM openjdk:11
 
 WORKDIR /
 
-COPY AAS_Core-1.0-SNAPSHOT.jar /aas_core.jar
+COPY AAS_Core-0.1.1-SNAPSHOT.jar /aas_core.jar
 
 CMD ["java", "-jar", "aas_core.jar"]
 

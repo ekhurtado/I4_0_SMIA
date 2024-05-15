@@ -16,20 +16,38 @@ spec:
     spec:
       containers:
         - name: aas-manager
-          image: ekhurtado/aas-manager:0.1
+          image: ekhurtado/aas-manager:0.1.1
           imagePullPolicy: Always
           volumeMounts:
             - name: aas-archive
               mountPath: /aas_archive/
+            - name: aas-archive-services
+              mountPath: /aas_archive/services
+              subPath: services
+            - name: aas-archive-submodels
+              mountPath: /aas_archive/submodels
+              subPath: submodels
+            - name: aas-archive-status
+              mountPath: /aas_archive/status
+              subPath: status
             - name: component-cm
               mountPath: /aas_archive/config
 
         - name: aas-core
-          image: ekhurtado/aas-core:0.1
+          image: ekhurtado/aas-core:0.1.1
           imagePullPolicy: Always
           volumeMounts:
             - name: aas-archive
               mountPath: /aas_archive/
+            - name: aas-archive-services
+              mountPath: /aas_archive/services
+              subPath: services
+            - name: aas-archive-submodels
+              mountPath: /aas_archive/submodels
+              subPath: submodels
+            - name: aas-archive-status
+              mountPath: /aas_archive/status
+              subPath: status
             - name: component-cm
               mountPath: /aas_archive/config
       restartPolicy: Always
@@ -38,6 +56,12 @@ spec:
         # The shared directory for holding the files
         - name: aas-archive
           emptyDir: { }
+        # Subvolume related to services
+        - name: aas-archive-services
+        # Subvolume related to status
+        - name: aas-archive-submodels
+        # Subvolume related to status
+        - name: aas-archive-status
         # The configmap with all the configuration
         - name: component-cm
           configMap:

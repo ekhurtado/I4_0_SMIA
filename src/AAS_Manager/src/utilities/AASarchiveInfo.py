@@ -1,9 +1,8 @@
 
-
-class AASarchive:
+class AASarchiveInfo:
     """This class will contain all information about the AAS Archive"""
 
-    # Path to the files of all type of services
+    # Paths to the files of all type of services
     svcFolderPath = '/aas_archive/services'
     assetRelatedSvcPath = '/aas_archive/services/assetRelatedSvc'
     aasInfrastructureSvcPath = '/aas_archive/services/aasInfrastructureSvc'
@@ -30,3 +29,6 @@ class AASarchive:
     subModelFolderPath = '/aas_archive/submodels'
     technicalDataSMFileName = 'Technical_data_SM.xml'
     configurationSMFileName = 'Configuration_SM.xml'
+
+    # Status file
+    statusFilePath = '/aas_archive/status/AAS_Manager.properties'

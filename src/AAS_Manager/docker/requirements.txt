@@ -1,0 +1,10 @@
+# In this file all the necessary libraries to be installed will be added.
+# A specific version will be assigned to avoid unexpected errors.
+# --------------------
+
+# Related to HTTP server
+Flask == 3.0.3
+requests == 2.31.0
+
+# Related to XML
+lxml == 5.2.2
