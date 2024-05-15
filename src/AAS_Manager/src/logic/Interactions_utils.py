@@ -7,6 +7,8 @@ import os
 import time
 
 from utilities.AASarchiveInfo import AASarchiveInfo
+from utilities.AAS_Archive_utils import fileToJSON, updateJSONFile
+
 
 # --------------------------------------------
 # Methods related to requests (by AAS Manager)
@@ -50,7 +52,7 @@ def addNewSvcRequest(newRequestJSON):
     else:
         svcRequestsJSON['serviceRequests'].append(newRequestJSON)
 
-    updateFile(svcRequestsFilePath, svcRequestsJSON)
+    updateJSONFile(svcRequestsFilePath, svcRequestsJSON)
 
 
 def getSvcRequestInfo(interactionID):
@@ -131,7 +133,7 @@ def saveSvcInfoInLogFile(requestedEntity, svcTypeLogFileName, interactionID):
 
     # Add the structure in the file
     logFileJSON.append(logStructure)
-    updateFile(filePath=AASarchiveInfo.svcLogFolderPath + '/' + svcTypeLogFileName, content=logFileJSON)
+    updateJSONFile(filePath=AASarchiveInfo.svcLogFolderPath + '/' + svcTypeLogFileName, content=logFileJSON)
     print("Service information related to interaction " + str(interactionID) + " added in log file.")
 
 

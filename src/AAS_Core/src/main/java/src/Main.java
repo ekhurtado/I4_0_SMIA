@@ -66,6 +66,13 @@ public class Main {
         System.out.println("Initializing AAS Core...");
         Main aas_core = Main.getInstance();
 
+        // First, the AAS Core has to set its initial status
+        AAS_Archive_utils.createStatusFile();
+        // Then, it waits until the AAS Manager is ready
+        while (!Objects.equals(AAS_Archive_utils.getManagerStatus(), "InitializationReady")) {
+            System.out.println("AAS Manager has not yet been initialized.");
+            Thread.sleep(1000); // Waits 1s
+        }
 
         while (true) {
             // Get the new request information
@@ -82,7 +89,7 @@ public class Main {
                         // Prepare the response
                         JSONObject responseFinalJSON = AAS_Archive_utils.createSvcCompletedResponse(nextRequestJSON, serviceData);
                         // Update response JSON
-                        AAS_Archive_utils.updateSvcCompleteResponse(AAS_Archive_Info.assetRelatedSvcPath, responseFinalJSON);
+                        AAS_Archive_utils.updateSvcCompleteResponse(responseFinalJSON);
 
                         // Update number of requests
                         aas_core.numberOfARSvcRequests += 1;

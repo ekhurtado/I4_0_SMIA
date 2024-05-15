@@ -2,7 +2,6 @@
 import time
 
 from logic import Interactions_utils
-from utilities import AAS_Archive_utils
 from utilities.AASarchiveInfo import AASarchiveInfo
 
 def handleAssetRelatedSvc(svcInteractionID, svcData):

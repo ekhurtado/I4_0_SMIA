@@ -6,8 +6,6 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Iterator;
 
 public class AAS_Archive_utils {
 
@@ -17,6 +15,27 @@ public class AAS_Archive_utils {
     // ------------------------
     // Methods related to files
     // ------------------------
+    public static void createStatusFile() {
+        JSONObject statusFileJSON = new JSONObject();
+        statusFileJSON.put("name", "AAS_Core");
+        statusFileJSON.put("status", "Initializing");
+        statusFileJSON.put("timestamp", System.currentTimeMillis() / 1000);
+
+        updateFile(AAS_Archive_Info.coreStatusFilePath, statusFileJSON);
+    }
+
+    public static String getManagerStatus() {
+        JSONParser parser = new JSONParser();
+        try (Reader reader = new FileReader(AAS_Archive_Info.managerStatusFilePath)) {
+            JSONObject statusFileJSON = (JSONObject) parser.parse(reader);
+            return statusFileJSON.get("status").toString();
+        }  catch (FileNotFoundException e) {
+            return null;
+        } catch (IOException | ParseException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public static JSONObject fileToJSON(String filePath) {
         JSONParser parser = new JSONParser();
         try (Reader reader = new FileReader(filePath)) {
@@ -41,24 +60,20 @@ public class AAS_Archive_utils {
     // -----------------------------------
     public static JSONObject getNextSvcRequest() {
         /**
-         * This method gets the next service request that has not be realized. To achieve that it analyzes all service
-         * type folder, and, for each service, check if there is an response for each request, because if there is not,
-         * it means that the request has to be performed. Returns the JSON object of the new request or null if no
-         * request has been made.
+         * This method gets the next service request that has not be realized. To achieve that it analyzes the service
+         * requests of AAS Manager, and check if there is an response for each request in the AAS Core, because if
+         * there is not, it means that the request has to be performed. Returns the JSON object of the new request or
+         * null if no request has been made.
          * @return JSON object with the information of the new service. NULL if it no request has been made.
          */
-        String[] allSvcFolderPaths = new String[]{AAS_Archive_Info.assetRelatedSvcPath, AAS_Archive_Info.aasInfrastructureSvcPath,
-                AAS_Archive_Info.aasServicesPath, AAS_Archive_Info.submodelServicesPath};
 
         // For each service, check if there is an response for each request, because if there is not, it means that the
         // request has to be performed
-        for (String svcFolder: allSvcFolderPaths) {
-            JSONArray requestsArray = (JSONArray) fileToJSON(svcFolder + AAS_Archive_Info.svcRequestFileSubPath).get("serviceRequests");
-            for (Object obj: requestsArray) {
-                JSONObject reqObj = (JSONObject) obj;
-                if (getResponseServiceJSON(svcFolder, (String) reqObj.get("interactionID")) != null)
-                    return reqObj;
-            }
+        JSONArray requestsArray = (JSONArray) fileToJSON(AAS_Archive_Info.managerInteractionsFolderPath + AAS_Archive_Info.svcRequestFileSubPath).get("serviceRequests");
+        for (Object obj: requestsArray) {
+            JSONObject reqObj = (JSONObject) obj;
+            if (getResponseServiceJSON((String) reqObj.get("interactionID")) != null)
+                return reqObj;
         }
         return null;
     }
@@ -66,27 +81,30 @@ public class AAS_Archive_utils {
     // ------------------------------------
     // Methods related to service responses
     // ------------------------------------
-    public static void setResponseServiceState(String svcTypeFolderPath, String interactionID, String newState) {
+    public static void setResponseServiceState(String interactionID, String newState) {
         // Conseguimos el JSON del servicio en el archivo de respuestas
-        JSONObject serviceJSON = getResponseServiceJSON(svcTypeFolderPath, interactionID);
+        JSONObject serviceJSON = getResponseServiceJSON(interactionID);
         if (serviceJSON == null) {
             serviceJSON = new JSONObject();
             serviceJSON.put("interactionID", interactionID);
         }
         serviceJSON.put("serviceStatus", newState);
-        updateSvcResponse(svcTypeFolderPath, serviceJSON);
+        updateSvcResponse(serviceJSON);
     }
 
-    private static void updateSvcResponse(String svcTypeFolderPath, JSONObject serviceJSON) {
-        JSONArray responsesArray = (JSONArray) fileToJSON(svcTypeFolderPath + AAS_Archive_Info.svcResponseFileSubPath).get("serviceResponses");
+    // ---------------------------------------
+    // Methods related to responses (by AAS Core)
+    //----------------------------------------
+    private static void updateSvcResponse(JSONObject serviceJSON) {
+        JSONArray responsesArray = (JSONArray) fileToJSON(AAS_Archive_Info.coreInteractionsFolderPath + AAS_Archive_Info.svcResponseFileSubPath).get("serviceResponses");
         responsesArray.add(serviceJSON);
         JSONObject updatedContent = new JSONObject();
         updatedContent.put("serviceResponses", responsesArray);
-        updateFile(svcTypeFolderPath + AAS_Archive_Info.svcResponseFileSubPath, updatedContent);
+        updateFile(AAS_Archive_Info.coreInteractionsFolderPath + AAS_Archive_Info.svcResponseFileSubPath, updatedContent);
     }
 
-    private static JSONObject getResponseServiceJSON(String svcTypeFolderPath, String interactionID) {
-        JSONArray responsesArray = (JSONArray) fileToJSON(svcTypeFolderPath + AAS_Archive_Info.svcResponseFileSubPath).get("serviceResponses");
+    private static JSONObject getResponseServiceJSON(String interactionID) {
+        JSONArray responsesArray = (JSONArray) fileToJSON(AAS_Archive_Info.coreInteractionsFolderPath + AAS_Archive_Info.svcResponseFileSubPath).get("serviceResponses");
         for (Object o: responsesArray) {
             JSONObject svcJSON = (JSONObject) o;
             if (interactionID.equals((String) svcJSON.get("interactionID")))
@@ -111,8 +129,8 @@ public class AAS_Archive_utils {
         return completedResponseJSON;
     }
 
-    public static void updateSvcCompleteResponse(String svcTypeFolderPath, JSONObject responseFinalJSON) {
-        String svcResponsesFilePath = svcTypeFolderPath + AAS_Archive_Info.svcResponseFileSubPath;
+    public static void updateSvcCompleteResponse(JSONObject responseFinalJSON) {
+        String svcResponsesFilePath = AAS_Archive_Info.coreInteractionsFolderPath + AAS_Archive_Info.svcResponseFileSubPath;
         System.out.println(fileToJSON(svcResponsesFilePath).toJSONString());
         JSONArray responsesArray = (JSONArray) fileToJSON(svcResponsesFilePath).get("serviceResponses");
         if (responsesArray == null)

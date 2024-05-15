@@ -23,11 +23,11 @@ from utilities.AASarchiveInfo import AASarchiveInfo
 # ------------------------
 def createStatusFile():
     """This method creates the status file of the AAS Manager and sets it to "initializing"."""
-    config = configparser.ConfigParser()
-    config['INFORMATION'] = {'name': 'AAS_Manager', 'status': 'Initializing',
-                             'timestamp': str(calendar.timegm(time.gmtime()))}
-    with (open(AASarchiveInfo.statusFilePath, 'x') as statusFile):
-        config.write(statusFile)
+    initialStatusInfo = {'name': 'AAS_Manager', 'status': 'Initializing',
+                             'timestamp': calendar.timegm(time.gmtime())}
+
+    with (open(AASarchiveInfo.managerStatusFilePath, 'x') as statusFile):
+        json.dump(initialStatusInfo, statusFile)
         statusFile.close()
 
 
@@ -84,14 +84,31 @@ def changeStatus(newStatus):
     ----------
     :param newStatus: the new status of the AAS Manager instance.
     """
-    config = configparser.RawConfigParser()
-    config.read(AASarchiveInfo.statusFilePath)
-    config.set('INFORMATION', 'status', newStatus)
-    config.set('INFORMATION', 'timestamp', str(calendar.timegm(time.gmtime())))
+    statusFileJSON = fileToJSON(AASarchiveInfo.managerStatusFilePath)
+    statusFileJSON['status'] = newStatus
+    statusFileJSON['timestamp'] = calendar.timegm(time.gmtime())
+    updateJSONFile(AASarchiveInfo.managerStatusFilePath, statusFileJSON)
 
+
+def getStatus(entity):
+    """This methods gets the status of the requested entity.
+
+    Parameters
+    ----------
+    :param entity: The entity to get the status for."""
+    statusFileJSON = None
+    if entity == "Manager":
+        statusFileJSON = fileToJSON(AASarchiveInfo.managerStatusFilePath)
+    elif entity == "Core":
+        statusFileJSON = fileToJSON(AASarchiveInfo.coreStatusFilePath)
+    return statusFileJSON['status']
 
 def fileToJSON(filePath):
-    """This method gets the content of a JSON file."""
+    """This method gets the content of a JSON file.
+
+    Parameters
+    ----------
+    :param filePath: the path of the JSON file."""
     f = open(filePath)
     try:
         content = json.load(f)
@@ -102,8 +119,14 @@ def fileToJSON(filePath):
     return content
 
 
-def updateFile(filePath, content):
-    """This method updates the content of a JSON file."""
+def updateJSONFile(filePath, content):
+    """This method updates the content of a JSON file.
+
+    Parameters
+    ----------
+    :param filePath: the path to the JSON file.
+    :param content: the content of the JSON file.
+    """
     with open(filePath, "w") as outfile:
         json.dump(content, outfile)
 

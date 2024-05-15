@@ -28,4 +28,5 @@ class AASarchiveInfo:
     configurationSMFileName = 'Configuration_SM.xml'
 
     # Status file
-    statusFilePath = '/aas_archive/status/aas_manager.properties'
+    managerStatusFilePath = '/aas_archive/status/aas_manager.json'
+    coreStatusFilePath = '/aas_archive/status/aas_core.json'
