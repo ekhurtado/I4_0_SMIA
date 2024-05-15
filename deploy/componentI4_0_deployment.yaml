@@ -21,9 +21,9 @@ spec:
           volumeMounts:
             - name: aas-archive
               mountPath: /aas_archive/
-            - name: aas-archive-services
-              mountPath: /aas_archive/services
-              subPath: services
+            - name: aas-archive-interactions
+              mountPath: /aas_archive/interactions
+              subPath: interactions
             - name: aas-archive-submodels
               mountPath: /aas_archive/submodels
               subPath: submodels
@@ -39,9 +39,9 @@ spec:
           volumeMounts:
             - name: aas-archive
               mountPath: /aas_archive/
-            - name: aas-archive-services
-              mountPath: /aas_archive/services
-              subPath: services
+            - name: aas-archive-interactions
+              mountPath: /aas_archive/interactions
+              subPath: interactions
             - name: aas-archive-submodels
               mountPath: /aas_archive/submodels
               subPath: submodels
@@ -56,9 +56,9 @@ spec:
         # The shared directory for holding the files
         - name: aas-archive
           emptyDir: { }
-        # Subvolume related to services
-        - name: aas-archive-services
-        # Subvolume related to status
+        # Subvolume related to interactions
+        - name: aas-archive-interactions
+        # Subvolume related to submodels
         - name: aas-archive-submodels
         # Subvolume related to status
         - name: aas-archive-status

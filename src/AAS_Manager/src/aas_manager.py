@@ -1,6 +1,8 @@
 import time
 
 from flask import Flask, request
+
+from logic import Services_utils
 from utilities import AAS_Archive_utils, Submodels_utils, ConfigMap_utils
 from utilities.AASarchiveInfo import AASarchiveInfo
 
@@ -22,8 +24,8 @@ def main():
     return "OK"
 
 
-@app.route('/AssetRelatedService/', methods=['POST'])
-def assetRelatedSvcRequests():
+@app.route('/Service/', methods=['POST'])
+def serviceRequests():
     """Method for handling requests for Asset Related Services."""
     print(request.data)
     performative = request.json['performative']
@@ -31,183 +33,23 @@ def assetRelatedSvcRequests():
     match performative:
         case "CallForProposal":
             print("Call for proposal request.")
+
             global interactionID
 
-            svcInteractionID = interactionID
-
-            # Create the valid JSON structure to save in svcRequests.json
-            svcRequestJSON = AAS_Archive_utils.createSvcRequestJSON(interactionID=svcInteractionID,
-                                                                    svcID=request.json['serviceID'],
-                                                                    svcType=request.json['serviceType'],
-                                                                    svcData=request.json['serviceData'])
-            # Save the JSON in svcRequests.json
-            AAS_Archive_utils.addNewSvcRequest(AASarchiveInfo.assetRelatedSvcPath, svcRequestJSON)
+            match request.json['serviceType']:
+                case "AssetRelatedService":
+                    Services_utils.handleAssetRelatedSvc(interactionID, request.json)
+                case "AASInfrastructureServices":
+                    Services_utils.handleAASInfrastructureSvc(interactionID, request.json)
+                case "AASservices":
+                    Services_utils.handleAASservices(interactionID, request.json)
+                case "SubmodelServices":
+                    Services_utils.handleSubmodelServices(interactionID, request.json)
+                case _:
+                    print("Service type not available.")
 
             # Increment the interactionID
             interactionID = interactionID + 1
-
-            # Wait until the service is completed
-            # TODO esto cuando se desarrolle el AAS Manager en un agente no se realizara de esta manera. No debera
-            #  haber una espera hasta que se complete el servicio
-            svcCompleted = False
-            while not svcCompleted:
-                print(str(request.json['serviceID']) + "service not completed yet.")
-                svcResponse = AAS_Archive_utils.getSvcResponse(AASarchiveInfo.assetRelatedSvcPath, svcInteractionID)
-                if svcResponse is not None:
-                    print(svcResponse)
-                    # Set the service as completed
-                    svcCompleted = True
-                    # Write the information in the log file
-                    AAS_Archive_utils.saveSvcInfoInLogFile(AASarchiveInfo.assetRelatedSvcPath,
-                                                           AASarchiveInfo.assetRelatedSvcLogFileName, svcInteractionID)
-                    # Return message to the sender
-                    return "Service completed! Response: " + str(svcResponse)
-
-                # Waits 2 seconds
-                time.sleep(2)
-        case _:
-            print("Performative not available.")
-
-    return "OK"
-
-@app.route('/AASInfrastructureService/', methods=['POST'])
-def aasInfrastructureSvcRequests():
-    """Method for handling requests for AAS Infrastructure Services."""
-    print(request.data)
-    performative = request.json['performative']
-
-    match performative:
-        case "CallForProposal":
-            print("Call for proposal request.")
-            global interactionID
-
-            svcInteractionID = interactionID
-
-            # Create the valid JSON structure to save in svcRequests.json
-            svcRequestJSON = AAS_Archive_utils.createSvcRequestJSON(interactionID=svcInteractionID,
-                                                                    svcID=request.json['serviceID'],
-                                                                    svcType=request.json['serviceType'],
-                                                                    svcData=request.json['serviceData'])
-            # Save the JSON in svcRequests.json
-            AAS_Archive_utils.addNewSvcRequest(AASarchiveInfo.aasInfrastructureSvcPath, svcRequestJSON)
-
-            # Increment the interactionID
-            interactionID = interactionID + 1
-
-            # Wait until the service is completed
-            svcCompleted = False
-            while not svcCompleted:
-                print(str(request.json['serviceID']) + "service not completed yet.")
-                svcResponse = AAS_Archive_utils.getSvcResponse(AASarchiveInfo.aasInfrastructureSvcPath, svcInteractionID)
-                if svcResponse is not None:
-                    print(svcResponse)
-                    # Set the service as completed
-                    svcCompleted = True
-                    # Write the information in the log file
-                    AAS_Archive_utils.saveSvcInfoInLogFile(AASarchiveInfo.aasInfrastructureSvcPath,
-                                                           AASarchiveInfo.aasInfrastructureSvcLogFileName, svcInteractionID)
-                    # Return message to the sender
-                    return "Service completed! Response: " + str(svcResponse)
-
-                # Waits 2 seconds
-                time.sleep(2)
-        case _:
-            print("Performative not available.")
-
-    return "OK"
-
-
-@app.route('/AASservice/', methods=['POST'])
-def aasServiceRequests():
-    """Method for handling requests for AAS Services."""
-    print(request.data)
-    performative = request.json['performative']
-
-    match performative:
-        case "CallForProposal":
-            print("Call for proposal request.")
-            global interactionID
-
-            svcInteractionID = interactionID
-
-            # Create the valid JSON structure to save in svcRequests.json
-            svcRequestJSON = AAS_Archive_utils.createSvcRequestJSON(interactionID=svcInteractionID,
-                                                                    svcID=request.json['serviceID'],
-                                                                    svcType=request.json['serviceType'],
-                                                                    svcData=request.json['serviceData'])
-            # Save the JSON in svcRequests.json
-            AAS_Archive_utils.addNewSvcRequest(AASarchiveInfo.aasServicesPath, svcRequestJSON)
-
-            # Increment the interactionID
-            interactionID = interactionID + 1
-
-            # Wait until the service is completed
-            # TODO esto cuando se desarrolle el AAS Manager en un agente no se realizara de esta manera. No debera
-            #  haber una espera hasta que se complete el servicio
-            svcCompleted = False
-            while not svcCompleted:
-                print(str(request.json['serviceID']) + "service not completed yet.")
-                svcResponse = AAS_Archive_utils.getSvcResponse(AASarchiveInfo.aasServicesPath, svcInteractionID)
-                if svcResponse is not None:
-                    print(svcResponse)
-                    # Set the service as completed
-                    svcCompleted = True
-                    # Write the information in the log file
-                    AAS_Archive_utils.saveSvcInfoInLogFile(AASarchiveInfo.aasServicesPath,
-                                                           AASarchiveInfo.aasServicesLogFileName, svcInteractionID)
-                    # Return message to the sender
-                    return "Service completed! Response: " + str(svcResponse)
-
-                # Waits 2 seconds
-                time.sleep(2)
-        case _:
-            print("Performative not available.")
-
-    return "OK"
-
-@app.route('/SubmodelService/', methods=['POST'])
-def submodelSvcRequests():
-    """Method for handling requests for Submodel Services."""
-    print(request.data)
-    performative = request.json['performative']
-
-    match performative:
-        case "CallForProposal":
-            print("Call for proposal request.")
-            global interactionID
-
-            svcInteractionID = interactionID
-
-            # Create the valid JSON structure to save in svcRequests.json
-            svcRequestJSON = AAS_Archive_utils.createSvcRequestJSON(interactionID=svcInteractionID,
-                                                                    svcID=request.json['serviceID'],
-                                                                    svcType=request.json['serviceType'],
-                                                                    svcData=request.json['serviceData'])
-            # Save the JSON in svcRequests.json
-            AAS_Archive_utils.addNewSvcRequest(AASarchiveInfo.submodelServicesPath, svcRequestJSON)
-
-            # Increment the interactionID
-            interactionID = interactionID + 1
-
-            # Wait until the service is completed
-            # TODO esto cuando se desarrolle el AAS Manager en un agente no se realizara de esta manera. No debera
-            #  haber una espera hasta que se complete el servicio
-            svcCompleted = False
-            while not svcCompleted:
-                print(str(request.json['serviceID']) + "service not completed yet.")
-                svcResponse = AAS_Archive_utils.getSvcResponse(AASarchiveInfo.submodelServicesPath, svcInteractionID)
-                if svcResponse is not None:
-                    print(svcResponse)
-                    # Set the service as completed
-                    svcCompleted = True
-                    # Write the information in the log file
-                    AAS_Archive_utils.saveSvcInfoInLogFile(AASarchiveInfo.submodelServicesPath,
-                                                           AASarchiveInfo.submodelServicesLogFileName, svcInteractionID)
-                    # Return message to the sender
-                    return "Service completed! Response: " + str(svcResponse)
-
-                # Waits 2 seconds
-                time.sleep(2)
         case _:
             print("Performative not available.")
 
@@ -226,10 +68,8 @@ def initializeAASarchive():
     # Create log file
     AAS_Archive_utils.createLogFiles()
 
-    # Create submodels folder
-    # Submodels_utils.createSubModelFolder()
-
     print("AAS Archive initialized.")
+
 
 def initializeSubModels():
     """ This method initializes the submodels of the I4.0 Component, obtaining all the information from the ConfigMap
@@ -259,8 +99,7 @@ if __name__ == '__main__':
     initializeSubModels()
 
     # Set that AAS Manager is ready
-    changeStatus
+    AAS_Archive_utils.changeStatus('InitializationReady')
 
     # Run application
     app.run(host="0.0.0.0", port=7000)
-

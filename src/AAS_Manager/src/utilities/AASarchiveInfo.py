@@ -1,17 +1,14 @@
-
 class AASarchiveInfo:
     """This class will contain all information about the AAS Archive"""
 
-    # Paths to the files of all type of services
-    svcFolderPath = '/aas_archive/services'
-    assetRelatedSvcPath = '/aas_archive/services/assetRelatedSvc'
-    aasInfrastructureSvcPath = '/aas_archive/services/aasInfrastructureSvc'
-    aasServicesPath = '/aas_archive/services/aasServices'
-    submodelServicesPath = '/aas_archive/services/submodelServices'
+    # Paths related to interactions between Manager and Core
+    interactionsFolderPath = '/aas_archive/interactions'
+    coreInteractionsFolderPath = '/aas_archive/interactions/core'
+    managerInteractionsFolderPath = '/aas_archive/interactions/manager'
 
     # Subpath of interaction files
-    svcRequestFileSubPath = '/interactions/svcRequests.json'
-    svcResponseFileSubPath = '/interactions/svcResponses.json'
+    svcRequestFileSubPath = '/svcRequests.json'
+    svcResponseFileSubPath = '/svcResponses.json'
 
     # Paths for log files
     logFolderPath = '/aas_archive/log'
@@ -31,4 +28,4 @@ class AASarchiveInfo:
     configurationSMFileName = 'Configuration_SM.xml'
 
     # Status file
-    statusFilePath = '/aas_archive/status/AAS_Manager.properties'
+    statusFilePath = '/aas_archive/status/aas_manager.properties'

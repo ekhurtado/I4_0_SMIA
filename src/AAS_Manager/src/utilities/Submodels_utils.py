@@ -17,6 +17,7 @@ def createSubModelFolder():
     """Create folder to save submodels"""
     os.mkdir(AASarchiveInfo.subModelFolderPath)
 
+
 def createSubModelFiles(subModelNamesList):
     """This method creates all the files associated to the selected submodels."""
     for submodelName in subModelNamesList:
@@ -31,6 +32,7 @@ def createSubModelFiles(subModelNamesList):
             case _:
                 print("Submodel not found")
                 break
+
 
 # -------------------------------------
 # Methods related to specific submodels
@@ -67,5 +69,3 @@ def createConfigurationSM(submodelData):
     # Write the content of submodel in a file
     AAS_Archive_utils.XMLToFile(AASarchiveInfo.subModelFolderPath + '/' + AASarchiveInfo.configurationSMFileName,
                                 etree.tostring(submodel_XML_content))
-
-

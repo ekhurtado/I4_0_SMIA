@@ -1,12 +1,12 @@
 # File to save useful methods for accessing the AAS Archive
 import calendar
-from configparser import ConfigParser
-from datetime import datetime
+import configparser
 import json
 import os
 import time
 
 from utilities.AASarchiveInfo import AASarchiveInfo
+
 
 # svcRequests = "/aas_archive/interactions/ManagerToCore.json"
 # svcResponses = "/aas_archive/interactions/CoreToManager.json"
@@ -23,41 +23,42 @@ from utilities.AASarchiveInfo import AASarchiveInfo
 # ------------------------
 def createStatusFile():
     """This method creates the status file of the AAS Manager and sets it to "initializing"."""
-    config = ConfigParser()
-    config['DEFAULT'] = {'name': 'AAS_Manager', 'status': 'Initializing', 'timestamp': str(calendar.timegm(time.gmtime()))}
+    config = configparser.ConfigParser()
+    config['INFORMATION'] = {'name': 'AAS_Manager', 'status': 'Initializing',
+                             'timestamp': str(calendar.timegm(time.gmtime()))}
     with (open(AASarchiveInfo.statusFilePath, 'x') as statusFile):
         config.write(statusFile)
         statusFile.close()
 
+
 def createInteractionFiles():
     """This method creates the necessary interaction files to exchange information between AAS Core and AAS Manager."""
 
-    # First the service folder is created
-    # os.mkdir(AASarchiveInfo.svcFolderPath)
-
-    # The folders for all type of services is also created
-    os.mkdir(AASarchiveInfo.assetRelatedSvcPath)
-    os.mkdir(AASarchiveInfo.aasInfrastructureSvcPath)
-    os.mkdir(AASarchiveInfo.aasServicesPath)
-    os.mkdir(AASarchiveInfo.submodelServicesPath)
-
-    # Interaction folders should also be created
-    os.mkdir(AASarchiveInfo.assetRelatedSvcPath + '/interactions')
-    os.mkdir(AASarchiveInfo.aasInfrastructureSvcPath + '/interactions')
-    os.mkdir(AASarchiveInfo.aasServicesPath + '/interactions')
-    os.mkdir(AASarchiveInfo.submodelServicesPath + '/interactions')
+    # First interaction folders are created
+    os.mkdir(AASarchiveInfo.coreInteractionsFolderPath)
+    os.mkdir(AASarchiveInfo.managerInteractionsFolderPath)
 
     # Then the interaction files are added in each folder
-    allSvcFolderPaths = [AASarchiveInfo.assetRelatedSvcPath, AASarchiveInfo.aasInfrastructureSvcPath,
-                         AASarchiveInfo.aasServicesPath, AASarchiveInfo.submodelServicesPath]
-    for svcFolder in allSvcFolderPaths:
-        with (open(svcFolder + AASarchiveInfo.svcRequestFileSubPath, 'x') as requestsFile,
-              open(svcFolder + AASarchiveInfo.svcResponseFileSubPath, 'x') as responsesFile):
-            requestsFile.write('{"serviceRequests": []}')
-            responsesFile.write('{"serviceResponses": []}')
+    with (open(AASarchiveInfo.coreInteractionsFolderPath + AASarchiveInfo.svcRequestFileSubPath,
+               'x') as coreRequestsFile,
+          open(AASarchiveInfo.coreInteractionsFolderPath + AASarchiveInfo.svcResponseFileSubPath,
+               'x') as coreResponsesFile,
+          open(AASarchiveInfo.managerInteractionsFolderPath + AASarchiveInfo.svcRequestFileSubPath,
+               'x') as managerRequestsFile,
+          open(AASarchiveInfo.managerInteractionsFolderPath + AASarchiveInfo.svcResponseFileSubPath,
+               'x') as managerResponsesFile):
+        coreRequestsFile.write('{"serviceRequests": []}')
+        coreRequestsFile.close()
 
-            requestsFile.close()
-            responsesFile.close()
+        managerRequestsFile.write('{"serviceRequests": []}')
+        managerRequestsFile.close()
+
+        coreResponsesFile.write('{"serviceResponses": []}')
+        coreResponsesFile.close()
+
+        managerResponsesFile.write('{"serviceResponses": []}')
+        managerResponsesFile.close()
+
 
 def createLogFiles():
     """This method creates the necessary log files to save services information."""
@@ -74,6 +75,19 @@ def createLogFiles():
         with open(AASarchiveInfo.svcLogFolderPath + '/' + logFileName, 'x') as logFile:
             logFile.write('[]')
             logFile.close()
+
+
+def changeStatus(newStatus):
+    """This method updated the status of an AAS Manager instance.
+
+    Parameters
+    ----------
+    :param newStatus: the new status of the AAS Manager instance.
+    """
+    config = configparser.RawConfigParser()
+    config.read(AASarchiveInfo.statusFilePath)
+    config.set('INFORMATION', 'status', newStatus)
+    config.set('INFORMATION', 'timestamp', str(calendar.timegm(time.gmtime())))
 
 
 def fileToJSON(filePath):
@@ -93,135 +107,9 @@ def updateFile(filePath, content):
     with open(filePath, "w") as outfile:
         json.dump(content, outfile)
 
+
 def XMLToFile(filePath, XML_content):
     """This method writes the content of a XML in a file."""
     with open(filePath, 'wb') as sm_file:
         sm_file.write(XML_content)
 
-
-# ---------------------------
-# Methods related to requests
-# ---------------------------
-def createSvcRequestJSON(interactionID, svcID, svcType, svcData):
-    """This method creates a service request JSON object.
-
-    Parameters
-    ----------
-    :param interactionID: Identifier of the interaction.
-    :param svcID: Identifier of the service
-    :param svcType: Type of the service.
-    :param svcData: Data of the service in JSON format.
-
-    Returns
-    -------
-    :return svcRequestJSON: a JSON object with the service request information.
-    """
-    svcRequestJSON = {"interactionID": interactionID,
-                      "serviceID": svcID,
-                      "serviceType": svcType,
-                      "serviceData": svcData
-                      }
-    svcRequestJSON['serviceData']['timestamp'] = calendar.timegm(time.gmtime())
-    return svcRequestJSON
-
-
-def addNewSvcRequest(svcTypeFolderPath, newRequestJSON):
-    """This method adds a new service request to the related service interaction file and updates it in the AAS Archive.
-
-    Parameters
-    ----------
-    :param svcTypeFolderPath: The path of the service type folder.
-    :param newRequestJSON: The service requests content in JSON format.
-    """
-
-    # Get the content of the service requests interaction file
-    svcRequestsFilePath = svcTypeFolderPath + AASarchiveInfo.svcRequestFileSubPath
-    svcRequestsJSON = fileToJSON(svcRequestsFilePath)
-    if svcRequestsJSON is None:
-        svcRequestsJSON = {'serviceRequests': [newRequestJSON]}
-    else:
-        svcRequestsJSON['serviceRequests'].append(newRequestJSON)
-
-    updateFile(svcRequestsFilePath, svcRequestsJSON)
-
-def getSvcRequestInfo(svcTypeFolderPath, interactionID):
-    """This method gets the information of a service request.
-
-    Parameters
-    ----------
-    :param svcTypeFolderPath: The path of the service type folder.
-    :param interactionID: Identifier of the interaction.
-
-    Returns
-    -------
-    :return the information of the service request in JSON format.
-    """
-    svcRequestsJSON = fileToJSON(svcTypeFolderPath + AASarchiveInfo.svcRequestFileSubPath)
-    for i in svcRequestsJSON['serviceRequests']:
-        if i['interactionID'] == interactionID:
-            return i
-    return None
-
-# ----------------------------
-# Methods related to responses
-# ----------------------------
-def getSvcResponse(svcTypeFolderPath, interactionID):
-    """This method gets the information of a service request.
-
-    Parameters
-    ----------
-    :param svcTypeFolderPath: The path of the service type folder.
-    :param interactionID: Identifier of the interaction.
-
-    Returns
-    -------
-    :return the information of the service request in JSON format.
-    """
-    svcResponsesJSON = fileToJSON(svcTypeFolderPath + AASarchiveInfo.svcResponseFileSubPath)
-    for i in svcResponsesJSON['serviceResponses']:
-        if i['interactionID'] == interactionID:
-            return i
-    return None
-
-# ----------------------------
-# Methods related to responses
-# ----------------------------
-def saveSvcInfoInLogFile(svcTypeInteractionPath, svcTypeLogFileName, interactionID):
-    """This method saves the information of a service request in the associated log file.
-
-    Parameters
-    ----------
-    :param svcTypeInteractionPath: The path to the interaction folder of the service.
-    :param svcTypeLogFileName: The log file name of the service type.
-    :param interactionID: Identifier of the interaction.
-    """
-
-    # Get the information about the request and response
-    svcResponseInfo = getSvcResponse(svcTypeInteractionPath, interactionID)
-    svcRequestInfo = getSvcRequestInfo(svcTypeInteractionPath, interactionID)
-
-    # Create the JSON structure
-    logStructure = {
-        'level': 'INFO',
-        'interactionID': interactionID,
-        'serviceStatus': svcResponseInfo['serviceStatus'],
-        'serviceInfo': {
-            'serviceID': svcRequestInfo['serviceID'],
-            'serviceType': svcRequestInfo['serviceType'],
-            'requestTimestamp': str(datetime.fromtimestamp(svcRequestInfo['serviceData']['timestamp'])),
-            'responseTimestamp': str(datetime.fromtimestamp(svcResponseInfo['serviceData']['timestamp']))
-        }
-    }
-    # If some data has been requested, added to the structura
-    requestedData = svcRequestInfo['serviceData']['requestedData']
-    if requestedData is not None:
-        svcDataJSON = {'requestedData': requestedData, 'dataValue': svcResponseInfo['serviceData'][requestedData]}
-        logStructure['serviceInfo']['serviceData'] = svcDataJSON
-
-    # Get the content of LOG file
-    logFileJSON = fileToJSON(AASarchiveInfo.svcLogFolderPath + '/' + svcTypeLogFileName)
-
-    # Add the structure in the file
-    logFileJSON.append(logStructure)
-    updateFile(filePath=AASarchiveInfo.svcLogFolderPath + '/' + svcTypeLogFileName, content=logFileJSON)
-    print("Service information related to interaction " + str(interactionID) + " added in log file.")
