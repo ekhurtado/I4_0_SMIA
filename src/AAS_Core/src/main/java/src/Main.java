@@ -1,20 +1,29 @@
 package src;
 
 import org.json.simple.JSONObject;
-import src.functionalities.AssetServices;
+import src.functionalities.AssetRelatedServices;
+import utilities.AAS_Archive_Info;
 import utilities.AAS_Archive_utils;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Main {
 
     private static Main instance;
 
-    private int numberOfRequests;
+    // Number of each type of request
+    private int numberOfARSvcRequests;  // ARSvc = Asset Related Service
+    private int numberOfAASIsvcRequests;  // AASIsvc = AAS Infrastructure Service
+    private int numberOfAASsvcRequests;  // AASsvc = AAS Service
+    private int numberOfSMsvcRequests;  // SMsvc = Submodel Service
     private ArrayList<String> serviceRecord;
 
     private Main() {
-        numberOfRequests = 0;
+        numberOfARSvcRequests = 0;
+        numberOfAASIsvcRequests = 0;
+        numberOfAASsvcRequests = 0;
+        numberOfSMsvcRequests = 0;
         serviceRecord = new ArrayList<>();
     }
 
@@ -25,17 +34,17 @@ public class Main {
         return instance;
     }
 
-    public String executeFunctionality(String serviceID, JSONObject serviceData) {
+    public String executeARSvcFunctionality(String serviceID, JSONObject serviceData) {
         System.out.println("Executing the functionality asociated to the Asset service: " + serviceID);
         String data = null;
         switch (serviceID) {
             case "getAssetData":
                 switch ((String) serviceData.get("requestedData")) {
                     case "battery":
-                        data = String.valueOf(AssetServices.getAssetBattery());
+                        data = String.valueOf(AssetRelatedServices.getAssetBattery());
                         break;
                     case "specifications":
-                        data = AssetServices.getAssetSpecifications();
+                        data = AssetRelatedServices.getAssetSpecifications();
                         break;
                     default:
                         System.out.println("Requestes data is not available.");
@@ -46,7 +55,7 @@ public class Main {
                 System.out.println("Setting asset data...");
                 break;
             case "getAssetModel":
-                data = AssetServices.getAssetModel();
+                data = AssetRelatedServices.getAssetModel();
                 break;
         }
         return data; // Si la funcionalidad no tiene que devolver nada, devuelve null
@@ -57,31 +66,38 @@ public class Main {
         System.out.println("Initializing AAS Core...");
         Main aas_core = Main.getInstance();
 
+
         while (true) {
-            // Check if a new request has been made
-            boolean newRequest = AAS_Archive_utils.checkNewRequests(aas_core.numberOfRequests);
-            if (newRequest) {
-                // Get the new request information
-                JSONObject nextRequestJSON = AAS_Archive_utils.getNextSvcRequest(aas_core.serviceRecord);
+            // Get the new request information
+            JSONObject nextRequestJSON = AAS_Archive_utils.getNextSvcRequest();
+            if (nextRequestJSON != null) {
                 System.out.println("Service requested.");
 
                 // Perform the request
                 String serviceData = null;
-                switch ((String) nextRequestJSON.get("serviceType")) {
-                    case "AssetService":
-                        serviceData = aas_core.executeFunctionality((String) nextRequestJSON.get("serviceID"), (JSONObject) nextRequestJSON.get("serviceData"));
+                switch ((String) Objects.requireNonNull(nextRequestJSON).get("serviceType")) {
+                    case "AssetRelatedService":
+                        serviceData = aas_core.executeARSvcFunctionality((String) nextRequestJSON.get("serviceID"), (JSONObject) nextRequestJSON.get("serviceData"));
+
+                        // Prepare the response
+                        JSONObject responseFinalJSON = AAS_Archive_utils.createSvcCompletedResponse(nextRequestJSON, serviceData);
+                        // Update response JSON
+                        AAS_Archive_utils.updateSvcCompleteResponse(AAS_Archive_Info.assetRelatedSvcPath, responseFinalJSON);
+
+                        // Update number of requests
+                        aas_core.numberOfARSvcRequests += 1;
+
+                        break;
+                    case "AASInfrastructureService":
+                        break;
+                    case "AASservice":
+                        break;
+                    case "SubmodelService":
                         break;
                     default:
                         System.out.println("Service not available.");
                 }
 
-                // Prepare the response
-                JSONObject responseFinalJSON = AAS_Archive_utils.getSvcCompletedResponse(nextRequestJSON, serviceData);
-                // Update response JSON
-                AAS_Archive_utils.updateSvcCompleteResponse(responseFinalJSON);
-
-                // Update number of requests
-                aas_core.numberOfRequests += 1;
                 aas_core.serviceRecord.add(String.valueOf(nextRequestJSON.get("interactionID")));
             } else {
                 System.out.println("No request yet.");

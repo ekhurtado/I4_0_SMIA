@@ -2,7 +2,7 @@ import time
 
 from flask import Flask, request
 from utilities import AAS_Archive_utils, Submodels_utils, ConfigMap_utils
-from utilities.AASarchive import AASarchive
+from utilities.AASarchiveInfo import AASarchiveInfo
 
 interactionID = 0
 
@@ -41,7 +41,7 @@ def assetRelatedSvcRequests():
                                                                     svcType=request.json['serviceType'],
                                                                     svcData=request.json['serviceData'])
             # Save the JSON in svcRequests.json
-            AAS_Archive_utils.addNewSvcRequest(AASarchive.assetRelatedSvcPath, svcRequestJSON)
+            AAS_Archive_utils.addNewSvcRequest(AASarchiveInfo.assetRelatedSvcPath, svcRequestJSON)
 
             # Increment the interactionID
             interactionID = interactionID + 1
@@ -52,14 +52,14 @@ def assetRelatedSvcRequests():
             svcCompleted = False
             while not svcCompleted:
                 print(str(request.json['serviceID']) + "service not completed yet.")
-                svcResponse = AAS_Archive_utils.getSvcResponse(AASarchive.assetRelatedSvcPath, svcInteractionID)
+                svcResponse = AAS_Archive_utils.getSvcResponse(AASarchiveInfo.assetRelatedSvcPath, svcInteractionID)
                 if svcResponse is not None:
                     print(svcResponse)
                     # Set the service as completed
                     svcCompleted = True
                     # Write the information in the log file
-                    AAS_Archive_utils.saveSvcInfoInLogFile(AASarchive.assetRelatedSvcPath,
-                                                           AASarchive.assetRelatedSvcLogFileName, svcInteractionID)
+                    AAS_Archive_utils.saveSvcInfoInLogFile(AASarchiveInfo.assetRelatedSvcPath,
+                                                           AASarchiveInfo.assetRelatedSvcLogFileName, svcInteractionID)
                     # Return message to the sender
                     return "Service completed! Response: " + str(svcResponse)
 
@@ -89,7 +89,7 @@ def aasInfrastructureSvcRequests():
                                                                     svcType=request.json['serviceType'],
                                                                     svcData=request.json['serviceData'])
             # Save the JSON in svcRequests.json
-            AAS_Archive_utils.addNewSvcRequest(AASarchive.aasInfrastructureSvcPath, svcRequestJSON)
+            AAS_Archive_utils.addNewSvcRequest(AASarchiveInfo.aasInfrastructureSvcPath, svcRequestJSON)
 
             # Increment the interactionID
             interactionID = interactionID + 1
@@ -98,14 +98,14 @@ def aasInfrastructureSvcRequests():
             svcCompleted = False
             while not svcCompleted:
                 print(str(request.json['serviceID']) + "service not completed yet.")
-                svcResponse = AAS_Archive_utils.getSvcResponse(AASarchive.aasInfrastructureSvcPath, svcInteractionID)
+                svcResponse = AAS_Archive_utils.getSvcResponse(AASarchiveInfo.aasInfrastructureSvcPath, svcInteractionID)
                 if svcResponse is not None:
                     print(svcResponse)
                     # Set the service as completed
                     svcCompleted = True
                     # Write the information in the log file
-                    AAS_Archive_utils.saveSvcInfoInLogFile(AASarchive.aasInfrastructureSvcPath,
-                                                           AASarchive.aasInfrastructureSvcLogFileName, svcInteractionID)
+                    AAS_Archive_utils.saveSvcInfoInLogFile(AASarchiveInfo.aasInfrastructureSvcPath,
+                                                           AASarchiveInfo.aasInfrastructureSvcLogFileName, svcInteractionID)
                     # Return message to the sender
                     return "Service completed! Response: " + str(svcResponse)
 
@@ -136,7 +136,7 @@ def aasServiceRequests():
                                                                     svcType=request.json['serviceType'],
                                                                     svcData=request.json['serviceData'])
             # Save the JSON in svcRequests.json
-            AAS_Archive_utils.addNewSvcRequest(AASarchive.aasServicesPath, svcRequestJSON)
+            AAS_Archive_utils.addNewSvcRequest(AASarchiveInfo.aasServicesPath, svcRequestJSON)
 
             # Increment the interactionID
             interactionID = interactionID + 1
@@ -147,14 +147,14 @@ def aasServiceRequests():
             svcCompleted = False
             while not svcCompleted:
                 print(str(request.json['serviceID']) + "service not completed yet.")
-                svcResponse = AAS_Archive_utils.getSvcResponse(AASarchive.aasServicesPath, svcInteractionID)
+                svcResponse = AAS_Archive_utils.getSvcResponse(AASarchiveInfo.aasServicesPath, svcInteractionID)
                 if svcResponse is not None:
                     print(svcResponse)
                     # Set the service as completed
                     svcCompleted = True
                     # Write the information in the log file
-                    AAS_Archive_utils.saveSvcInfoInLogFile(AASarchive.aasServicesPath,
-                                                           AASarchive.aasServicesLogFileName, svcInteractionID)
+                    AAS_Archive_utils.saveSvcInfoInLogFile(AASarchiveInfo.aasServicesPath,
+                                                           AASarchiveInfo.aasServicesLogFileName, svcInteractionID)
                     # Return message to the sender
                     return "Service completed! Response: " + str(svcResponse)
 
@@ -184,7 +184,7 @@ def submodelSvcRequests():
                                                                     svcType=request.json['serviceType'],
                                                                     svcData=request.json['serviceData'])
             # Save the JSON in svcRequests.json
-            AAS_Archive_utils.addNewSvcRequest(AASarchive.submodelServicesPath, svcRequestJSON)
+            AAS_Archive_utils.addNewSvcRequest(AASarchiveInfo.submodelServicesPath, svcRequestJSON)
 
             # Increment the interactionID
             interactionID = interactionID + 1
@@ -195,14 +195,14 @@ def submodelSvcRequests():
             svcCompleted = False
             while not svcCompleted:
                 print(str(request.json['serviceID']) + "service not completed yet.")
-                svcResponse = AAS_Archive_utils.getSvcResponse(AASarchive.submodelServicesPath, svcInteractionID)
+                svcResponse = AAS_Archive_utils.getSvcResponse(AASarchiveInfo.submodelServicesPath, svcInteractionID)
                 if svcResponse is not None:
                     print(svcResponse)
                     # Set the service as completed
                     svcCompleted = True
                     # Write the information in the log file
-                    AAS_Archive_utils.saveSvcInfoInLogFile(AASarchive.submodelServicesPath,
-                                                           AASarchive.submodelServicesLogFileName, svcInteractionID)
+                    AAS_Archive_utils.saveSvcInfoInLogFile(AASarchiveInfo.submodelServicesPath,
+                                                           AASarchiveInfo.submodelServicesLogFileName, svcInteractionID)
                     # Return message to the sender
                     return "Service completed! Response: " + str(svcResponse)
 
@@ -217,6 +217,9 @@ def submodelSvcRequests():
 def initializeAASarchive():
     """ This method initializes the system of the I4.0 Component, performing the necessary actions to let the AAS Archive
      in the initial conditions to start the main program."""
+    # Create the status file
+    AAS_Archive_utils.createStatusFile()
+
     # Create the interaction files
     AAS_Archive_utils.createInteractionFiles()
 
@@ -224,7 +227,9 @@ def initializeAASarchive():
     AAS_Archive_utils.createLogFiles()
 
     # Create submodels folder
-    Submodels_utils.createSubModelFolder()
+    # Submodels_utils.createSubModelFolder()
+
+    print("AAS Archive initialized.")
 
 def initializeSubModels():
     """ This method initializes the submodels of the I4.0 Component, obtaining all the information from the ConfigMap
@@ -247,9 +252,14 @@ if __name__ == '__main__':
     # The interactionID is started at 0
     interactionID = 0
 
+    time.sleep(10)
+
     # Before starting the AAS Manager, it will execute the required initialization of the system
     initializeAASarchive()
     initializeSubModels()
+
+    # Set that AAS Manager is ready
+    changeStatus
 
     # Run application
     app.run(host="0.0.0.0", port=7000)

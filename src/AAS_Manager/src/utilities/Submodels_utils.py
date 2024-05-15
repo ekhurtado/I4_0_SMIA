@@ -4,7 +4,7 @@ import os
 from lxml import etree
 
 from utilities import AAS_Archive_utils, ConfigMap_utils
-from utilities.AASarchive import AASarchive
+from utilities.AASarchiveInfo import AASarchiveInfo
 
 
 # configMap_path = "/aas_archive/config"
@@ -15,7 +15,7 @@ from utilities.AASarchive import AASarchive
 # ------------------------
 def createSubModelFolder():
     """Create folder to save submodels"""
-    os.mkdir(AASarchive.subModelFolderPath)
+    os.mkdir(AASarchiveInfo.subModelFolderPath)
 
 def createSubModelFiles(subModelNamesList):
     """This method creates all the files associated to the selected submodels."""
@@ -48,7 +48,7 @@ def createTechnicalDataSM(submodelData):
         etree.SubElement(technicalData_level, key).text = val
 
     # Write the content of submodel in a file
-    AAS_Archive_utils.XMLToFile(AASarchive.subModelFolderPath + '/' + AASarchive.technicalDataSMFileName,
+    AAS_Archive_utils.XMLToFile(AASarchiveInfo.subModelFolderPath + '/' + AASarchiveInfo.technicalDataSMFileName,
                                 etree.tostring(submodel_XML_content))
 
 
@@ -65,7 +65,7 @@ def createConfigurationSM(submodelData):
         etree.SubElement(configuration_level, key).text = val
 
     # Write the content of submodel in a file
-    AAS_Archive_utils.XMLToFile(AASarchive.subModelFolderPath + '/' + AASarchive.configurationSMFileName,
+    AAS_Archive_utils.XMLToFile(AASarchiveInfo.subModelFolderPath + '/' + AASarchiveInfo.configurationSMFileName,
                                 etree.tostring(submodel_XML_content))
 
 
