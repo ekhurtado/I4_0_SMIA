@@ -195,6 +195,11 @@ data:
     
     VirtualHost "prosody-xmpp"
     
+      ssl = {
+        certificate = "/etc/prosody/certs/prosody-xmpp.crt";
+        key = "/etc/prosody/certs/prosody-xmpp.key";
+      }
+    
     --VirtualHost "example.com"
     --	certificate = "/path/to/example.crt"
     
@@ -221,3 +226,92 @@ data:
     ssl = {
         verify = none;
     }
+
+  # Añadimos tambien el certificado de 'prosody-xmpp'
+  # https://prosody.im/doc/certificates
+  prosody-xmpp.cnf: |
+    [req]
+    distinguished_name = distinguished_name
+    req_extensions = certrequest
+    prompt = no
+    x509_extensions = selfsigned
+
+    [distinguished_name]
+    countryName = ES
+    localityName = The Internet
+    organizationName = UPV/EHU
+    organizationalUnitName = DISA
+    commonName = prosody-xmpp
+    emailAddress = xmpp@prosody-xmpp
+
+    [certrequest]
+    basicConstraints = CA:FALSE
+    extendedKeyUsage = serverAuth,clientAuth
+    keyUsage = digitalSignature,keyEncipherment
+    subjectAltName = @subject_alternative_name
+
+    [subject_alternative_name]
+    DNS.0 = prosody-xmpp
+    otherName.0 = 1.3.6.1.5.5.7.8.7;IA5STRING:_xmpp-client.prosody-xmpp
+    otherName.1 = 1.3.6.1.5.5.7.8.7;IA5STRING:_xmpp-server.prosody-xmpp
+    otherName.2 = 1.3.6.1.5.5.7.8.5;FORMAT:UTF8,UTF8:prosody-xmpp
+
+    [selfsigned]
+    basicConstraints = CA:TRUE
+    subjectAltName = @subject_alternative_name
+
+  prosody-xmpp.crt: |
+    -----BEGIN CERTIFICATE-----
+    MIIEJDCCAwygAwIBAgIUfb5fF+N4OtBR1MXIWy4lXz+RCcIwDQYJKoZIhvcNAQEL
+    BQAwfjELMAkGA1UEBhMCRVMxFTATBgNVBAcMDFRoZSBJbnRlcm5ldDEQMA4GA1UE
+    CgwHVVBWL0VIVTENMAsGA1UECwwERElTQTEVMBMGA1UEAwwMcHJvc29keS14bXBw
+    MSAwHgYJKoZIhvcNAQkBFhF4bXBwQHByb3NvZHkteG1wcDAeFw0yNDA1MTYxNDI4
+    NTFaFw0yNTA1MTYxNDI4NTFaMH4xCzAJBgNVBAYTAkVTMRUwEwYDVQQHDAxUaGUg
+    SW50ZXJuZXQxEDAOBgNVBAoMB1VQVi9FSFUxDTALBgNVBAsMBERJU0ExFTATBgNV
+    BAMMDHByb3NvZHkteG1wcDEgMB4GCSqGSIb3DQEJARYReG1wcEBwcm9zb2R5LXht
+    cHAwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCwEFr96yQRc7AulG57
+    wqdDfuDQUhvdOyPw1IXSz/UDh66tRHPaIFLOepaXk98Hp9uyXfLDTYOEfpEZFreO
+    BL2fC5jYmJPV12xZA2OCYn5pfwPV3CzKsYDB9h6NS7cdUzYxBeQcBp26vI7VPSN+
+    r4kRO8ByEbJHQO6jkJAPfD5TJ9++kmAtKrTzHLPX/ZnEY6BARVnw0fV6aPnLcrzW
+    Q5Im1jCwZj++OdEXq4HcmsM8d4gug0k/E4FvN0pvL/6QAUeNg+jNdY6WHU7gIE3L
+    Ia/DAy+MzWv4mJ6ERErwZ/7ccq3vTUNx3dLTnMDN4LJBjrLt0sPByt6bkmqjM/6b
+    9O6ZAgMBAAGjgZkwgZYwDAYDVR0TBAUwAwEB/zCBhQYDVR0RBH4wfIIMcHJvc29k
+    eS14bXBwoCcGCCsGAQUFBwgHoBsWGV94bXBwLWNsaWVudC5wcm9zb2R5LXhtcHCg
+    JwYIKwYBBQUHCAegGxYZX3htcHAtc2VydmVyLnByb3NvZHkteG1wcKAaBggrBgEF
+    BQcIBaAODAxwcm9zb2R5LXhtcHAwDQYJKoZIhvcNAQELBQADggEBAJmqJDSmQi1a
+    X+26p+S3B/D+pWsvVu9Ouu8phI9uclPIgSvyAbrcGS1EiW2oTwg376+u68jPM0Hs
+    cA3Q5KX9iXpczbRt7z9jOP/wgdH8fdhpLa+ac+SNDzNMpqY8J9VePnBnc35YaNK3
+    xuNYas+TaV+MtkHKBdlmTVv6FgZRaP5e70FH21/QWvxapUdtEWN0CBi2/i6eQJ9K
+    lgm1UlfwplJIqK3lHCvTu/OZUniVv8FcTcCtu5yzZqFk0unLLCiCdWE2gWBp3IIJ
+    CfuiWxunmiMbnv1C4nDyNfj/vm2581qr06zcDQuLQe5ceEJ/23bzJkS0uVsIuIXk
+    UtkYxj3Rclw=
+    -----END CERTIFICATE-----
+
+  prosody-xmpp.key: |
+    -----BEGIN RSA PRIVATE KEY-----
+    MIIEpQIBAAKCAQEAsBBa/eskEXOwLpRue8KnQ37g0FIb3Tsj8NSF0s/1A4eurURz
+    2iBSznqWl5PfB6fbsl3yw02DhH6RGRa3jgS9nwuY2JiT1ddsWQNjgmJ+aX8D1dws
+    yrGAwfYejUu3HVM2MQXkHAaduryO1T0jfq+JETvAchGyR0Duo5CQD3w+UyffvpJg
+    LSq08xyz1/2ZxGOgQEVZ8NH1emj5y3K81kOSJtYwsGY/vjnRF6uB3JrDPHeILoNJ
+    PxOBbzdKby/+kAFHjYPozXWOlh1O4CBNyyGvwwMvjM1r+JiehERK8Gf+3HKt701D
+    cd3S05zAzeCyQY6y7dLDwcrem5JqozP+m/TumQIDAQABAoIBADHmwNN9JQDpSEM7
+    gMEFH8FKoc+JpiojDAHDSpbAqFIyz7h+UVO+m5m4NxyJJcqWsfcxF5BxVNhlwxxY
+    Svguscv1ToH9ZNFUOHpWMosO/YNLI7wmpm9gtfzDlE856ZGfNxnX8Jpc6bG2pckc
+    hgXvHKtMwzPRfjUh20FyxNIOxd9tUmrIeHQJNnMWya42ZYQe45H5IlW7cxyYEQ++
+    3VkbvOJSDk3ccNa8mv5sg675E7akY1AQhS7KrZeh0ozvV1LSEWJum6ETJnZGWZan
+    0V7LJjxqKeSJAvDYpRqv8DdJD1+9m1OC+1gRob0CPXoKDDzvaRAknXNDDW6rkQg6
+    8MVxgjECgYEA1yYiG6ugkvpy79wG+FEqHi+IHE9lJ+Ik0Q2tmgsQ1OuvhypnqyY2
+    pn9nQM0J5xELTEpZPrh2UUSdzm0mD964CCCqXM+NpK4pjx/3cYUfKHlf/inrpmYe
+    8avYUkcYR205fB811BPjvOuF23Yoi5XRo2aVqkRXmjaTrl7UlrlTY+0CgYEA0X5k
+    ZegRdwQEJp8rGjNW81rj6KAQReytpqtw6bydnlE7BflW2CMC2mWqgEWfPSvEFLBq
+    TZIftjurcJYH8bjqeupAgtTIl/ruuHI0BgK4Gv62lHSGLx3NigOH+kVRxlXkdk6+
+    WbN+i/Q+1E3mO+/I8NQFvja6YuXXuQf3edoG990CgYEAoFaZ6rcwNvkQ+TKnux15
+    3v8bV8XPpDaDq4yfCQMgKx3uNTRkCAe1iMW/5Gop7BsmqVdrRTPhcVVKqdFsIT2h
+    NuVpMTu42ra04CY5mU9VViuGX3tMVDkc7Ixd7YtwS6LZyWfVDNU5zsxTeKeJNeWU
+    U0sbVMYT5yivTK79jcpVnE0CgYEAt8/9iYjQ4iuM9NJNwGRxk38ZYAAppyDe0NG2
+    de/AIKxHbJt1PpmhpDz2GCx+Zu7i0gBklYFz/7JlX5jUiZxlaMnnJqRLCUbsdLwH
+    t4plPZJmYuXG4sp0kPc+NTLjaHHuznuS+yPKEkSRaDidndNr7RsrmtVsPuBKophB
+    5RGPcaUCgYEAqHlGGy3TXP9Nial0R+EtJOBarQbPfOcp0JMUdrhKLn9vjJXMMp49
+    09oHWa+ddYLH1tw4l4WnWQ/XmtvK80Ry1FzfdIe3frKN2bGi8kziLZCBFg0FRdL+
+    j+5fLSiOBcnTzz4dXWW/cC9ch03dsu/nZwkOQSGjkHrlt7f1ZySNf8s=
+    -----END RSA PRIVATE KEY-----

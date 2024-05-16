@@ -24,11 +24,20 @@ spec:
             - name: prosody-configmap
               mountPath: /etc/prosody/prosody.cfg.lua
               subPath: prosody.cfg.lua
-          env:
-            - name: DOMAIN
-              value: "example.com"
-            - name: LOG_LEVEL
-              value: "debug"
+            - name: prosody-configmap
+              mountPath: /etc/prosody/certs/prosody-xmpp.cnf
+              subPath: prosody-xmpp.cnf
+            - name: prosody-configmap
+              mountPath: /etc/prosody/certs/prosody-xmpp.crt
+              subPath: prosody-xmpp.crt
+            - name: prosody-configmap
+              mountPath: /etc/prosody/certs/prosody-xmpp.key
+              subPath: prosody-xmpp.key
+#          env:
+#            - name: DOMAIN
+#              value: "example.com"
+#            - name: LOG_LEVEL
+#              value: "debug"
           # Enable necessary features for SPADE agent connection
 #          args:
 #            - "-tls"
