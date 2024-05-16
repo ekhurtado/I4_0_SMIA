@@ -1,9 +1,6 @@
 """This class groups the methods related to the interactions between the Manager and the Core"""
 import calendar
-import configparser
 from datetime import datetime
-import json
-import os
 import time
 
 from utilities.AASarchiveInfo import AASarchiveInfo
@@ -108,7 +105,7 @@ def saveSvcInfoInLogFile(requestedEntity, svcTypeLogFileName, interactionID):
     """
 
     # Get the information about the request and response
-    svcResponseInfo, svcRequestInfo = getSvcInfo(requestedEntity, interactionID)
+    svcRequestInfo, svcResponseInfo = getSvcInfo(requestedEntity, interactionID)
 
     # Create the JSON structure
     logStructure = {

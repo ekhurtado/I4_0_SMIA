@@ -4,7 +4,6 @@ from flask import Flask, request
 
 from logic import Services_utils
 from utilities import AAS_Archive_utils, Submodels_utils, ConfigMap_utils
-from utilities.AASarchiveInfo import AASarchiveInfo
 
 interactionID = 0
 
@@ -100,6 +99,9 @@ if __name__ == '__main__':
 
     # Set that AAS Manager is ready
     AAS_Archive_utils.changeStatus('InitializationReady')
+
+    # Wait until the AAS Core has initialized
+    AAS_Archive_utils.checkCoreInitialization()
 
     # Run application
     app.run(host="0.0.0.0", port=7000)

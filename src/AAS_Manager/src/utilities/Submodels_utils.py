@@ -6,10 +6,6 @@ from lxml import etree
 from utilities import AAS_Archive_utils, ConfigMap_utils
 from utilities.AASarchiveInfo import AASarchiveInfo
 
-
-# configMap_path = "/aas_archive/config"
-# submodels_path = "/aas_archive/submodels"
-
 # ------------------------
 # Methods related to files
 # ------------------------

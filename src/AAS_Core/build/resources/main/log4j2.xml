@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="warn" name="aasCore" monitorInterval="5">
+
+	<!-- Define custom levels before using them for filtering below. -->
+	<CustomLevels>
+		<CustomLevel name="MESSAGE" intLevel="700" />
+		<CustomLevel name="TIMESTAMP" intLevel="800" />
+	</CustomLevels>
+
+
+	<appenders>
+	
+		<console name="console">
+			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{1} %-7M %L - %msg%n" />
+		</console>
+
+		<rollingFile name="rFile" fileName="logs/mwm.log" filePattern="logs/mwm-%d{yyyy-MM-dd}-%i.log">
+			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{1} %-7M %L - %msg%n" />
+			<policies>
+				<sizeBasedTriggeringPolicy size="10 MB" />
+			</policies>
+			<defaultRolloverStrategy max="4" />
+		</rollingFile>
+
+		
+		<rollingFile name="timeStampFile" fileName="logs/timestamp.log" filePattern="logs/timestamp-%d{yyyy-MM-dd}-%i.log">
+			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{1} %-7M %L - %msg%n" />
+			<filters>
+				<thresholdFilter level="message" onMatch="DENY" onMismatch="NEUTRAL" />
+			</filters>
+			<policies>
+				<sizeBasedTriggeringPolicy size="10 MB" />
+			</policies>
+			<defaultRolloverStrategy max="4" />
+		</rollingFile>
+
+	</appenders>
+
+	<loggers>
+
+		<!-- package src -->
+		<logger name="src.Main">					<appenderRef ref="console" level="info"/></logger>
+
+		<!-- package src.functionalities -->
+		<logger name="src.functionalities.AssetRelatedServices">					<appenderRef ref="console" level="info"/></logger>
+
+		<!-- package utilities -->
+		<logger name="utilities.AAS_ArchiveInfo">	<appenderRef ref="console" level="info"/></logger>
+		<logger name="utilities.AAS_ArchiveUtils">	<appenderRef ref="console" level="info"/></logger>
+
+		<root level="timestamp">
+			<appenderRef ref="timeStampFile" level="fatal"/>
+		</root>
+	</loggers>
+</configuration>

@@ -1,9 +1,10 @@
 package src;
 
 import org.json.simple.JSONObject;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import src.functionalities.AssetRelatedServices;
-import utilities.AAS_Archive_Info;
-import utilities.AAS_Archive_utils;
+import utilities.AAS_ArchiveUtils;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -11,6 +12,9 @@ import java.util.Objects;
 public class Main {
 
     private static Main instance;
+
+    // Logger object
+    static final Logger LOGGER = LogManager.getLogger(Main.class.getName());
 
     // Number of each type of request
     private int numberOfARSvcRequests;  // ARSvc = Asset Related Service
@@ -47,7 +51,7 @@ public class Main {
                         data = AssetRelatedServices.getAssetSpecifications();
                         break;
                     default:
-                        System.out.println("Requestes data is not available.");
+                        System.out.println("Request data is not available.");
                 }
                 break;
 
@@ -57,28 +61,38 @@ public class Main {
             case "getAssetModel":
                 data = AssetRelatedServices.getAssetModel();
                 break;
+            default:
+                System.out.println("This service ID is not available.");
+                break;
         }
+        System.out.println("Functionality executed.");
         return data; // Si la funcionalidad no tiene que devolver nada, devuelve null
     }
 
     public static void main(String[] args) throws InterruptedException {
 
         System.out.println("Initializing AAS Core...");
+        LOGGER.info("Initializing AAS Core...");
         Main aas_core = Main.getInstance();
 
         // First, the AAS Core has to set its initial status
-        AAS_Archive_utils.createStatusFile();
+        AAS_ArchiveUtils.createStatusFile();
+
+        // This AAS core does not require an initialization process
+        AAS_ArchiveUtils.changeStatus("InitializationReady");
+
         // Then, it waits until the AAS Manager is ready
-        while (!Objects.equals(AAS_Archive_utils.getManagerStatus(), "InitializationReady")) {
+        while (!Objects.equals(AAS_ArchiveUtils.getManagerStatus(), "InitializationReady")) {
             System.out.println("AAS Manager has not yet been initialized.");
             Thread.sleep(1000); // Waits 1s
         }
 
+        System.out.println("AAS Manager has initialized, so the AAS Core is starting.");
         while (true) {
             // Get the new request information
-            JSONObject nextRequestJSON = AAS_Archive_utils.getNextSvcRequest();
+            JSONObject nextRequestJSON = AAS_ArchiveUtils.getNextSvcRequest();
             if (nextRequestJSON != null) {
-                System.out.println("Service requested.");
+                System.out.println("Service requested by the AAS Manager.");
 
                 // Perform the request
                 String serviceData = null;
@@ -87,13 +101,13 @@ public class Main {
                         serviceData = aas_core.executeARSvcFunctionality((String) nextRequestJSON.get("serviceID"), (JSONObject) nextRequestJSON.get("serviceData"));
 
                         // Prepare the response
-                        JSONObject responseFinalJSON = AAS_Archive_utils.createSvcCompletedResponse(nextRequestJSON, serviceData);
+                        System.out.println("Creating the service response object...");
+                        JSONObject responseFinalJSON = AAS_ArchiveUtils.createSvcCompletedResponse(nextRequestJSON, serviceData);
                         // Update response JSON
-                        AAS_Archive_utils.updateSvcCompleteResponse(responseFinalJSON);
+                        AAS_ArchiveUtils.updateSvcCompleteResponse(responseFinalJSON);
 
                         // Update number of requests
                         aas_core.numberOfARSvcRequests += 1;
-
                         break;
                     case "AASInfrastructureService":
                         // Update number of requests
@@ -111,9 +125,11 @@ public class Main {
                         System.out.println("Service not available.");
                 }
 
+                System.out.println("Requested service completed.");
+
                 aas_core.serviceRecord.add(String.valueOf(nextRequestJSON.get("interactionID")));
             } else {
-                System.out.println("No request yet.");
+                System.out.println("No service request yet.");
                 Thread.sleep(5000); // waits for 5s
             }
         }

@@ -1,22 +1,11 @@
-# File to save useful methods for accessing the AAS Archive
+""" File to save useful methods for accessing the AAS Archive."""
 import calendar
-import configparser
 import json
 import os
 import time
 
 from utilities.AASarchiveInfo import AASarchiveInfo
 
-
-# svcRequests = "/aas_archive/interactions/ManagerToCore.json"
-# svcResponses = "/aas_archive/interactions/CoreToManager.json"
-# logFilePath = "/aas_archive/log/ServiceHistory.log"
-#
-#
-# assetRelatedSvcPath = '/aas_archive/services/assetRelatedSvc'
-# aasInfrastructureSvcPath = '/aas_archive/services/aasInfrastructureSvc'
-# aasServicesPath = '/aas_archive/services/aasServices'
-# submodelServicesPath = '/aas_archive/services/submodelServices'
 
 # ------------------------
 # Methods related to files
@@ -77,6 +66,9 @@ def createLogFiles():
             logFile.close()
 
 
+# -------------------------
+# Methods related to status
+# -------------------------
 def changeStatus(newStatus):
     """This method updated the status of an AAS Manager instance.
 
@@ -103,6 +95,19 @@ def getStatus(entity):
         statusFileJSON = fileToJSON(AASarchiveInfo.coreStatusFilePath)
     return statusFileJSON['status']
 
+def checkCoreInitialization():
+    """This method checks if the core has initialized so the Manager can be started."""
+    coreInitialized = False
+    while coreInitialized is False:
+        if os.path.isfile(AASarchiveInfo.coreStatusFilePath) is True:
+            if fileToJSON(AASarchiveInfo.coreStatusFilePath)['status'] is not "Initializing":
+                coreInitialized = True
+        time.sleep(1)   # waits 1s
+    print('AAS Core has initialized, so the AAS Manager is starting.')
+
+# ------------------------
+# Methods related to JSON
+# ------------------------
 def fileToJSON(filePath):
     """This method gets the content of a JSON file.
 
@@ -131,8 +136,10 @@ def updateJSONFile(filePath, content):
         json.dump(content, outfile)
 
 
+# ------------------------
+# Methods related to XML
+# ------------------------
 def XMLToFile(filePath, XML_content):
     """This method writes the content of a XML in a file."""
     with open(filePath, 'wb') as sm_file:
         sm_file.write(XML_content)
-
