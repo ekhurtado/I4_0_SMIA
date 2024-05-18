@@ -1,9 +1,9 @@
-.. AAS_Manager documentation master file, created by
-   sphinx-quickstart on Thu May 16 13:43:47 2024.
+.. AAS Manager documentation master file, created by
+   sphinx-quickstart on Sat May 18 12:45:15 2024.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to AAS_Manager's documentation!
+Welcome to AAS Manager's documentation!
 =======================================
 
 .. toctree::
@@ -11,6 +11,7 @@ Welcome to AAS_Manager's documentation!
    :caption: Contents:
 
    modules
+
 
 Indices and tables
 ==================
