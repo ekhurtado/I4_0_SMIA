@@ -1,6 +1,6 @@
 # I4.0 Standardized Manufacturing Component: I4.0 SMC 
 
-[![Docker badge](https://img.shields.io/docker/pulls/ekhurtado/aas-manager.svg)](https://hub.docker.com/r/ekhurtado/aas-manager/) ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/ekhurtado/Component_I4_0?sort=semver) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/e87506fff1bb4a438c20e11bb7295f51)](https://app.codacy.com/gh/ekhurtado/Component_I4_0/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)[![Documentation Status](https://readthedocs.org/projects/component-i4-0/badge/?version=latest)](https://component-i4-0.readthedocs.io/en/latest/?badge=latest)
+[![Docker badge](https://img.shields.io/docker/pulls/ekhurtado/aas-manager.svg)](https://hub.docker.com/r/ekhurtado/aas-manager/) ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/ekhurtado/Component_I4_0?sort=semver) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/e87506fff1bb4a438c20e11bb7295f51)](https://app.codacy.com/gh/ekhurtado/Component_I4_0/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade) [![Documentation Status](https://readthedocs.org/projects/component-i4-0/badge/?version=latest)](https://component-i4-0.readthedocs.io/en/latest/?badge=latest)
 
 ![I4.0 SMC Logo Light](./images/Component_I4_0_logo_positive.png/#gh-light-mode-only "I4.0 SMC logo")
 ![I4.0 SMC Logo Dark](./images/Component_I4_0_logo_negative.png/#gh-dark-mode-only "I4.0 SMC logo")
