@@ -1,5 +1,5 @@
-src.logic package
-=================
+logic package
+=============
 
 Submodules
 ----------
@@ -7,13 +7,13 @@ Submodules
 .. toctree::
    :maxdepth: 4
 
-   src.logic.Interactions_utils
-   src.logic.Services_utils
+   logic.Interactions_utils
+   logic.Services_utils
 
 Module contents
 ---------------
 
-.. automodule:: src.logic
+.. automodule:: logic
    :members:
    :undoc-members:
    :show-inheritance:

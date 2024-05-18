@@ -1,7 +1,9 @@
-AAS_Manager
-===========
+src
+===
 
 .. toctree::
    :maxdepth: 4
 
-   src
+   aas_manager
+   logic
+   utilities

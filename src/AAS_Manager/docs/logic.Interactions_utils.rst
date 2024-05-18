@@ -1,7 +1,7 @@
-src.logic.Services\_utils module
+logic.Interactions\_utils module
 ================================
 
-.. automodule:: src.logic.Services_utils
+.. automodule:: logic.Interactions_utils
    :members:
    :undoc-members:
    :show-inheritance:
