@@ -23,7 +23,7 @@ extensions = [
     'sphinx.ext.napoleon',  # To highlight some words
     'sphinx.ext.viewcode',   # To show the source code
     'sphinx.ext.autosectionlabel',   # It allows to refer sections its title (i.e. Parameters in docStrings).
-    'sphinx_rtd_theme'
+    'sphinx_rtd_theme',
 ]
 
 templates_path = ['_templates']
