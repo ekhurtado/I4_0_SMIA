@@ -64,7 +64,8 @@ def create_configuration_sm(submodel_data):
 
     Parameters
     ----------
-    :param submodel_data: information of the submodel in the same format as the submodel properties file content."""
+    :param submodel_data: information of the submodel in the same format as the submodel properties file content.
+    """
 
     # Generate the XML of the submodel
     submodel_xml_content = etree.Element("submodel", name="configuration_submodel")

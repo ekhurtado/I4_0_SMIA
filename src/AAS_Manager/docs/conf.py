@@ -21,16 +21,23 @@ release = '0.1.0'
 extensions = [
     'sphinx.ext.autodoc',   # docString of the .py files
     'sphinx.ext.napoleon',  # To highlight some words
-    'sphinx.ext.viewcode'   # To show the source code
+    'sphinx.ext.viewcode',   # To show the source code
+    'sphinx.ext.autosectionlabel'   # It allows to refer sections its title (i.e. Parameters in docStrings).
 ]
 
 templates_path = ['_templates']
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
+
+# The name of the Pygments (syntax highlighting) style to use.
+pygments_style = 'sphinx'
+
+
 
 
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-html_theme = 'alabaster'
+# html_theme = 'alabaster'
+html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
