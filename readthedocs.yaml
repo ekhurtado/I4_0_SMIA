@@ -10,7 +10,7 @@ python:
   install:
     - requirements: src/AAS_Manager/docs/requirements.txt
     - method: pip
-      path: .
+      path: src/AAS_Manager
 
 sphinx:
   configuration: src/AAS_Manager/docs/conf.py
