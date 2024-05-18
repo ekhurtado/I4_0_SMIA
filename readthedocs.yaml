@@ -6,9 +6,9 @@ build:
   tools:
     python: "3.10"
 
-#python:
-#  install:
-#    - requirements: src/AAS_Manager/docs/requirements.txt
+python:
+  install:
+    - requirements: src/AAS_Manager/docs/requirements.txt
 #    - method: pip
 #      path: src/AAS_Manager/docs
 
