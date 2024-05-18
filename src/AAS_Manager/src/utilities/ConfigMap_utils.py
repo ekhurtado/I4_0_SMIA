@@ -27,12 +27,15 @@ def get_submodel_information(submodel_name):
 
     Parameters
     ----------
-    :param submodel_name: The name of the submodel. To read from the submodel properties file, it is also the name of
+    Args:
+        submodel_name (str): The name of the submodel. To read from the submodel properties file, it is also the name of
     the section.
 
     Returns
     -------
-    :return The submodel information in the same format as the submodel properties file content."""
+    Returns:
+        submodel_info (dict): The submodel information in the same format as the submodel properties file content.
+    """
     # Read submodels configuration
     config_sm = configparser.RawConfigParser()
     config_sm.read(AASarchiveInfo.CONFIG_MAP_PATH + '/' + AASarchiveInfo.CM_SM_PROPERTIES_FILENAME)
