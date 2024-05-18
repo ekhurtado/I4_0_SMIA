@@ -27,14 +27,12 @@ def get_submodel_information(submodel_name):
 
     Parameters
     ----------
-    Args:
-        submodel_name (str): The name of the submodel. To read from the submodel properties file, it is also the name of
-    the section.
+    :parameter submodel_name (str): The name of the submodel. To read from the submodel properties file, it is also the
+    name of the section.
 
     Returns
     -------
-    Returns:
-        submodel_info (dict): The submodel information in the same format as the submodel properties file content.
+    :return The submodel information in the same format as the submodel properties file content.
     """
     # Read submodels configuration
     config_sm = configparser.RawConfigParser()
