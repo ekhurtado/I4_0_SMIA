@@ -23,8 +23,7 @@ def get_submodel_names():
 
 def get_submodel_information(submodel_name):
     """
-    This method returns the submodel information of a specific submodel, from the submodel properties file of the
-    configuration from the ConfigMap.
+
 
     Parameters
     ----------
@@ -37,6 +36,9 @@ def get_submodel_information(submodel_name):
 
     :return The submodel information in the same format as the submodel properties file content.
     :rtype dict
+
+    This method returns the submodel information of a specific submodel, from the submodel properties file of the
+    configuration from the ConfigMap.
     """
     # Read submodels configuration
     config_sm = configparser.RawConfigParser()
