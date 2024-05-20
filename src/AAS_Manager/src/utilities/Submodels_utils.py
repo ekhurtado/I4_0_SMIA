@@ -3,8 +3,9 @@
 import os
 from lxml import etree
 
-from utilities import AAS_Archive_utils, ConfigMap_utils
+from utilities import AAS_Archive_utils
 from utilities.AAS_archive_info import AASarchiveInfo
+from utilities.ConfigMap_utils import ConfigMap_utils
 
 
 # ------------------------

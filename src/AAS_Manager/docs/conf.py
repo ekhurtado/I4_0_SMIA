@@ -23,6 +23,7 @@ extensions = [
     'sphinx.ext.napoleon',  # To highlight some words
     'sphinx.ext.viewcode',   # To show the source code
     'sphinx.ext.autosectionlabel',   # It allows to refer sections its title (i.e. Parameters in docStrings).
+    'sphinx.ext.autosummary',   # It generates function/method/attribute summary lists
     'sphinx_rtd_theme',
 ]
 

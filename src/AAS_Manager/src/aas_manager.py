@@ -2,7 +2,8 @@ import time
 from flask import Flask, request
 
 from logic import Services_utils
-from utilities import AAS_Archive_utils, Submodels_utils, ConfigMap_utils
+from utilities import AAS_Archive_utils, Submodels_utils
+from utilities.ConfigMap_utils import ConfigMap_utils
 
 interaction_id = 0
 
