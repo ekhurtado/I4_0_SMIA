@@ -94,8 +94,6 @@ if __name__ == '__main__':
     # The interactionID is started at 0
     interaction_id = 0
 
-    time.sleep(10)
-
     # Before starting the AAS Manager, it will execute the required initialization of the system
     initialize_aas_archive()
     initialize_submodels()

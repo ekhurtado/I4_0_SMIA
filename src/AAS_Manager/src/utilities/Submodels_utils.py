@@ -16,7 +16,8 @@ def create_submodel_folder():
 
 
 def create_submodel_files(submodel_names_list):
-    """This method creates all the files associated to the selected submodels.
+    """
+    This method creates all the files associated to the selected submodels.
 
     Args:
         submodel_names_list (list(str)): list of submodel names."""

@@ -102,11 +102,10 @@ def get_status(entity):
 
 def check_core_initialization():
     """This method checks if the core has initialized so the Manager can be started."""
-    core_initialized = False
-    while core_initialized is False:
+    while True:
         if os.path.isfile(AASarchiveInfo.CORE_STATUS_FILE_PATH) is True:
             if file_to_json(AASarchiveInfo.CORE_STATUS_FILE_PATH)['status'] != "Initializing":
-                core_initialized = True
+                break
         time.sleep(1)  # waits 1s
     print('AAS Core has initialized, so the AAS Manager is starting.')
 
