@@ -90,7 +90,7 @@ def get_status(entity):
         entity (str): The entity to get the status for.
 
     Returns:
-        json: status in JSON format.
+        dict: status in JSON format.
     """
     status_file_json = None
     if entity == "Manager":

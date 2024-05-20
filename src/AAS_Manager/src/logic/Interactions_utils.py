@@ -1,4 +1,5 @@
-"""This class groups the methods related to the interactions between the Manager and the Core"""
+"""This class groups the methods related to the interactions between the Manager and the Core."""
+
 import calendar
 from datetime import datetime
 import time

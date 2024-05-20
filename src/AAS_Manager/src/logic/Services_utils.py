@@ -1,5 +1,7 @@
-"""This class contains methods related to service management. It contains all type of services proposed in the
-Functional View of RAMI 4.0."""
+"""
+This class contains methods related to service management. It contains all type of services proposed in the
+Functional View of RAMI 4.0.
+"""
 import time
 
 from logic import Interactions_utils
