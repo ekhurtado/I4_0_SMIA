@@ -31,15 +31,13 @@ class ConfigMap_utils:
 
         Parameters
         ----------
-
-        :param submodel_name: The name of the submodel. To read from the submodel properties file, it is also the name of the section.
-        :type submodel_name: str, required
+        submodel_name: str, required
+            The name of the submodel. To read from the submodel properties file, it is also the name of the section.
 
         Returns
         -------
-
-        :return: The submodel information in the same format as the submodel properties file content.
-        :rtype: dict
+        dict
+            The submodel information in the same format as the submodel properties file content.
         """
         # Read submodels configuration
         config_sm = configparser.RawConfigParser()
