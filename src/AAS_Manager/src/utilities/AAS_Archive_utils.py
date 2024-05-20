@@ -70,11 +70,11 @@ def create_log_files():
 # Methods related to status
 # -------------------------
 def change_status(new_status):
-    """This method updated the status of an AAS Manager instance.
+    """
+    This method updated the status of an AAS Manager instance.
 
-    Parameters
-    ----------
-    :param new_status: the new status of the AAS Manager instance.
+    Args:
+        new_status (str): the new status of the AAS Manager instance.
     """
     status_file_json = file_to_json(AASarchiveInfo.MANAGER_STATUS_FILE_PATH)
     status_file_json['status'] = new_status
@@ -83,15 +83,14 @@ def change_status(new_status):
 
 
 def get_status(entity):
-    """This method gets the status of the requested entity.
+    """
+    This method gets the status of the requested entity.
 
-    Parameters
-    ----------
-    :param entity: The entity to get the status for.
+    Args:
+        entity (str): The entity to get the status for.
 
-    Returns
-    -------
-    :return status in JSON format.
+    Returns:
+        json: status in JSON format.
     """
     status_file_json = None
     if entity == "Manager":
@@ -116,15 +115,14 @@ def check_core_initialization():
 # Methods related to JSON
 # ------------------------
 def file_to_json(file_path):
-    """This method gets the content of a JSON file.
+    """
+    This method gets the content of a JSON file.
 
-    Parameters
-    ----------
-    :param file_path: the path of the JSON file.
+    Args:
+        file_path (str): the path of the JSON file.
 
-    Returns
-    -------
-    :return content of the file in JSON format."""
+    Returns:
+        dict: content of the file in JSON format."""
     f = open(file_path)
     try:
         content = json.load(f)
@@ -136,12 +134,12 @@ def file_to_json(file_path):
 
 
 def update_json_file(file_path, content):
-    """This method updates the content of a JSON file.
+    """
+    This method updates the content of a JSON file.
 
-    Parameters
-    ----------
-    :param file_path: the path to the JSON file.
-    :param content: the content of the JSON file.
+    Args:
+        file_path (str): the path to the JSON file.
+        content (dict): the content of the JSON file.
     """
     with open(file_path, "w") as outfile:
         json.dump(content, outfile)
@@ -151,12 +149,12 @@ def update_json_file(file_path, content):
 # Methods related to XML
 # ------------------------
 def xml_to_file(file_path, xml_content):
-    """This method writes the content of an XML in a file.
+    """
+    This method writes the content of an XML in a file.
 
-    Parameters
-    ----------
-    :param file_path: the path to the XML file.
-    :param xml_content: the content of the XML file.
+    Args:
+        file_path (str): the path to the XML file.
+        xml_content (bytes): the content of the XML file.
     """
     with open(file_path, 'wb') as xml_file:
         xml_file.write(xml_content)

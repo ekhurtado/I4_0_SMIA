@@ -11,18 +11,17 @@ from utilities.AAS_Archive_utils import file_to_json, update_json_file
 # Methods related to requests (by AAS Manager)
 # --------------------------------------------
 def create_svc_request_json(interaction_id, svc_id, svc_type, svc_data):
-    """This method creates a service request JSON object.
+    """
+    This method creates a service request JSON object.
 
-    Parameters
-    ----------
-    :param interaction_id: Identifier of the interaction.
-    :param svc_id: Identifier of the service
-    :param svc_type: Type of the service.
-    :param svc_data: Data of the service in JSON format.
+    Args:
+        interaction_id (int): Identifier of the interaction.
+        svc_id (str): Identifier of the service
+        svc_type (str): Type of the service.
+        svc_data (dict): Data of the service in JSON format.
 
-    Returns
-    -------
-    :return svc_request_json: a JSON object with the service request information.
+    Returns:
+        dict: a JSON object with the service request information.
     """
     svc_request_json = {"interactionID": interaction_id,
                         "serviceID": svc_id,
@@ -34,12 +33,12 @@ def create_svc_request_json(interaction_id, svc_id, svc_type, svc_data):
 
 
 def add_new_svc_request(new_request_json):
-    """This method adds a new service request to the related service interaction file of the manager and updates it
+    """
+    This method adds a new service request to the related service interaction file of the manager and updates it
     in the AAS Archive.
 
-    Parameters
-    ----------
-    :param new_request_json: The service requests content in JSON format.
+    Args:
+        new_request_json: The service requests content in JSON format.
     """
 
     # Get the content of the service requests interaction file
@@ -54,15 +53,14 @@ def add_new_svc_request(new_request_json):
 
 
 def get_svc_request_info(interaction_id):
-    """This method gets the information of a service request.
+    """
+    This method gets the information of a service request.
 
-    Parameters
-    ----------
-    :param interaction_id: Identifier of the interaction.
+    Args:
+        interaction_id (int): Identifier of the interaction.
 
-    Returns
-    -------
-    :return the information of the service request in JSON format.
+    Returns:
+        dict: the information of the service request in JSON format.
     """
     svc_requests_json = file_to_json(AASarchiveInfo.MANAGER_INTERACTIONS_FOLDER_PATH +
                                      AASarchiveInfo.SVC_REQUEST_FILE_SUBPATH)
@@ -76,15 +74,14 @@ def get_svc_request_info(interaction_id):
 # Methods related to responses (from AAS Core)
 # --------------------------------------------
 def get_svc_response_info(interaction_id):
-    """This method gets the information of a response from the AAS Core related to a request made by the AAS Manager.
+    """
+    This method gets the information of a response from the AAS Core related to a request made by the AAS Manager.
 
-    Parameters
-    ----------
-    :param interaction_id: Identifier of the interaction.
+    Args:
+        interaction_id (int): Identifier of the interaction.
 
-    Returns
-    -------
-    :return the information of the service request in JSON format.
+    Returns:
+        dict: the information of the service request in JSON format.
     """
     svc_responses_json = file_to_json(
         AASarchiveInfo.CORE_INTERACTIONS_FOLDER_PATH + AASarchiveInfo.SVC_RESPONSE_FILE_SUBPATH)
@@ -98,13 +95,13 @@ def get_svc_response_info(interaction_id):
 # Methods related to responses
 # ----------------------------
 def save_svc_info_in_log_file(requested_entity, svc_type_log_file_name, interaction_id):
-    """This method saves the information of a service request in the associated log file.
+    """
+    This method saves the information of a service request in the associated log file.
 
-    Parameters
-    ----------
-    :param requested_entity: The entity that has requested the service, to know in which interaction files to search.
-    :param svc_type_log_file_name: The log file name of the service type.
-    :param interaction_id: Identifier of the interaction.
+    Args:
+        requested_entity (str): The entity that has requested the service, to know in which interaction files to search.
+        svc_type_log_file_name (str): The log file name of the service type.
+        interaction_id (int): Identifier of the interaction.
     """
 
     # Get the information about the request and response
@@ -141,20 +138,18 @@ def save_svc_info_in_log_file(requested_entity, svc_type_log_file_name, interact
 # Other methods
 # -------------
 def get_svc_info(requested_entity, interaction_id):
-    """This method obtains the information of the service considering the entity that has requested the service. In the
+    """
+    This method obtains the information of the service considering the entity that has requested the service. In the
      entity is Manager it has to search in Manager requests and Core responses, and in the case of being the Core the
      one that has made the request, the opposite.
 
-     Parameters
-     ----------
-     :param requested_entity: The entity that has requested the service, to know in which interaction files to search.
-     :param interaction_id: Identifier of the interaction.
+     Args:
+        requested_entity (str): The entity that has requested the service, to know in which interaction files to search.
+        interaction_id (int): Identifier of the interaction.
 
-     Returns
-     -------
-     :returns
-        - requestInfo: Information of the service request in JSON format
-        - responseInfo: Information of the service response in JSON format.
+     Returns:
+         dict: Information of the service request in JSON format
+         dict: Information of the service response in JSON format.
      """
 
     if requested_entity == "Manager":

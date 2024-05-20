@@ -7,13 +7,13 @@ from utilities.AAS_archive_info import AASarchiveInfo
 
 
 def handle_asset_related_svc(svc_interaction_id, svc_data):
-    """This method handles Asset Related Services. These services are part of I4.0 Application Component (application
+    """
+    This method handles Asset Related Services. These services are part of I4.0 Application Component (application
     relevant).
 
-    Parameters
-    ----------
-    :param svc_interaction_id : the identifier of the interaction.
-    :param svc_data : the information of the data in JSON format.
+    Args:
+        svc_interaction_id (int): the identifier of the interaction.
+        svc_data (dict): the information of the data in JSON format.
     """
     # Create the valid JSON structure to save in svcRequests.json
     svc_request_json = Interactions_utils.create_svc_request_json(interaction_id=svc_interaction_id,
@@ -44,43 +44,43 @@ def handle_asset_related_svc(svc_interaction_id, svc_data):
 
 
 def handle_aas_infrastructure_svc(svc_interaction_id, svc_data):
-    """This method handles AAS Infrastructure Services. These services are part of I4.0 Infrastructure Services
+    """
+    This method handles AAS Infrastructure Services. These services are part of I4.0 Infrastructure Services
     (Systemic relevant). They are necessary to create AASs and make them localizable and are not offered by an AAS, but
     by the platform (computational infrastructure). These include the AAS Create Service (for creating AASs with unique
     identifiers), AAS Registry Services (for registering AASs) and AAS Exposure and Discovery Services (for searching
     for AASs).
 
-    Parameters
-    ----------
-    :param svc_interaction_id : the identifier of the interaction.
-    :param svc_data : the information of the data in JSON format.
+    Args:
+        svc_interaction_id (int): the identifier of the interaction.
+        svc_data (dict): the information of the data in JSON format.
     """
-    pass
+    print(str(svc_interaction_id) + str(svc_data))
 
 
 def handle_aas_services(svc_interaction_id, svc_data):
-    """This method handles AAS Services. These services serve for the management of asset-related information through
+    """
+    This method handles AAS Services. These services serve for the management of asset-related information through
     a set of infrastructure services provided by the AAS itself. These include Submodel Registry Services (to list
     and register submodels), Meta-information Management Services (including Classification Services, to check if the
     interface complies with the specifications; Contextualization Services, to check if they belong together in a
     context to build a common function; and Restriction of Use Services, divided between access control and usage
     control) and Exposure and Discovery Services (to search for submodels or asset related services).
 
-    Parameters
-    ----------
-    :param svc_interaction_id : the identifier of the interaction.
-    :param svc_data : the information of the data in JSON format.
+    Args:
+        svc_interaction_id (int): the identifier of the interaction.
+        svc_data (dict): the information of the data in JSON format.
     """
-    return None
+    print(str(svc_interaction_id) + str(svc_data))
 
 
 def handle_submodel_services(svc_interaction_id, svc_data):
-    """This method handles Submodel Services. These services are part of I4.0 Application Component (application
+    """
+    This method handles Submodel Services. These services are part of I4.0 Application Component (application
     relevant).
 
-    Parameters
-    ----------
-    :param svc_interaction_id : the identifier of the interaction.
-    :param svc_data : the information of the data in JSON format.
+    Args:
+        svc_interaction_id (int): the identifier of the interaction.
+        svc_data (dict): the information of the data in JSON format.
     """
-    return None
+    print(str(svc_interaction_id) + str(svc_data))

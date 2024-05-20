@@ -57,8 +57,10 @@ def service_requests():
 
 
 def initialize_aas_archive():
-    """ This method initializes the system of the I4.0 Component, performing the necessary actions to let the
-    AAS Archive in the initial conditions to start the main program."""
+    """
+    This method initializes the system of the I4.0 Component, performing the necessary actions to let the
+    AAS Archive in the initial conditions to start the main program.
+    """
     # Create the status file
     AAS_Archive_utils.create_status_file()
 
@@ -72,7 +74,8 @@ def initialize_aas_archive():
 
 
 def initialize_submodels():
-    """ This method initializes the submodels of the I4.0 Component, obtaining all the information from the ConfigMap
+    """
+    This method initializes the submodels of the I4.0 Component, obtaining all the information from the ConfigMap
     associated to the component, in order to create the necessary XML submodel files and store them in the AAS Archive.
     """
 
