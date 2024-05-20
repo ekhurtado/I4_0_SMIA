@@ -15,13 +15,13 @@ class ConfigMap_utils:
 
         Returns
         -------
-        :return A list with the sections of the submodel properties file, and therefore, the submodel names."""
+        list(str)
+            A list with the sections of the submodel properties file, and therefore, the submodel names."""
         # Read submodels configuration
         config_sm = configparser.RawConfigParser()
         config_sm.read(AASarchiveInfo.CONFIG_MAP_PATH + '/' + AASarchiveInfo.CM_SM_PROPERTIES_FILENAME)
 
         return config_sm.sections()
-
 
     @staticmethod
     def get_submodel_information(submodel_name):
@@ -29,15 +29,11 @@ class ConfigMap_utils:
         This method returns the submodel information of a specific submodel, from the submodel properties file of the
         configuration from the ConfigMap.
 
-        Parameters
-        ----------
-        submodel_name: str, required
-            The name of the submodel. To read from the submodel properties file, it is also the name of the section.
+        Args:
+            submodel_name  (str, required): The name of the submodel. To read from the submodel properties file, it is also the name of the section.
 
-        Returns
-        -------
-        dict
-            The submodel information in the same format as the submodel properties file content.
+        Returns:
+            dict: The submodel information in the same format as the submodel properties file content.
         """
         # Read submodels configuration
         config_sm = configparser.RawConfigParser()
