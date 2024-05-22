@@ -4,7 +4,7 @@ import json
 import os
 import time
 
-from utilities.AAS_archive_info import AASarchiveInfo
+from utilities.AASarchiveInfo import AASarchiveInfo
 
 
 # ------------------------

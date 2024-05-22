@@ -5,7 +5,7 @@ Functional View of RAMI 4.0.
 import time
 
 from logic import Interactions_utils
-from utilities.AAS_archive_info import AASarchiveInfo
+from utilities.AASarchiveInfo import AASarchiveInfo
 
 
 def handle_asset_related_svc(svc_interaction_id, svc_data):

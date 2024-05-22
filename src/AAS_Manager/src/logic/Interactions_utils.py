@@ -4,7 +4,7 @@ import calendar
 from datetime import datetime
 import time
 
-from utilities.AAS_archive_info import AASarchiveInfo
+from utilities.AASarchiveInfo import AASarchiveInfo
 from utilities.AAS_Archive_utils import file_to_json, update_json_file
 
 
