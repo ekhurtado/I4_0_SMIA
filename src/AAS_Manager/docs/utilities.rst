@@ -8,7 +8,8 @@ Submodules
    :maxdepth: 4
 
    utilities.AAS_Archive_utils
-   utilities.AAS_archive_info
+   utilities.AASarchiveInfo
+   utilities.AASmanagerInfo
    utilities.ConfigMap_utils
    utilities.Submodels_utils
 
