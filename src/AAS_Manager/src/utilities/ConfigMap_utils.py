@@ -4,6 +4,39 @@ import configparser
 
 from utilities.AASarchiveInfo import AASarchiveInfo
 
+# --------------------------------------
+# Methods related to aas information
+# --------------------------------------
+def get_aas_general_property(property_name):
+    """
+    This method returns the property of the AAS set in the ConfigMap by the AAS Controller during the deployment process. This information is stored in "aas.properties" file within "general-information" section.
+
+    Args:
+        property_name (str): The name of the property.
+    Returns:
+        str: The general property of the AAS.
+    """
+    # Read submodels configuration
+    config_sm = configparser.RawConfigParser()
+    config_sm.read(AASarchiveInfo.CONFIG_MAP_PATH + '/' + AASarchiveInfo.CM_AAS_PROPERTIES_FILENAME)
+    return config_sm['general-information'][property_name]
+
+
+# --------------------------------------
+# Methods related to asset information
+# --------------------------------------
+def get_asset_type():
+    """
+    This method returns the asset type of the AAS set in the ConfigMap by the AAS Controller during the deployment process. This information is stored in "asset.properties" file.
+
+    Returns:
+        str: The asset type of the AAS.
+    """
+    # Read submodels configuration
+    config_sm = configparser.RawConfigParser()
+    config_sm.read(AASarchiveInfo.CONFIG_MAP_PATH + '/' + AASarchiveInfo.CM_ASSET_PROPERTIES_FILENAME)
+    return config_sm['DEFAULT']['assetType']
+
 
 # ----------------------------
 # Methods related to submodels

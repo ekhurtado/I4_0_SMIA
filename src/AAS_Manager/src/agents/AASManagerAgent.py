@@ -1,10 +1,13 @@
 from spade.agent import Agent
+import logging
 
 from states.StateRunning import StateRunning
 from states.StateStopping import StateStopping
 from utilities.AASmanagerInfo import AASmanagerInfo
 from behaviours.AASFSMBehaviour import AASFSMBehaviour
 from states.StateBooting import StateBooting
+
+_logger = logging.getLogger(__name__)
 
 class AASManagerAgent(Agent):
     """
@@ -25,4 +28,8 @@ class AASManagerAgent(Agent):
 
         # Añadir comportamiento FSM al agente
         self.add_behaviour(fsm_behaviour)
+        _logger.info(f"{self.jid} setup finished correctly.")
+        _logger.warning(f"{self.jid} setup finished with warning.")
+        _logger.error(f"{self.jid} setup finished with error.")
+        _logger.debug(f"{self.jid} setup finished with debug.")
         print(f"{self.jid} setup finished correctly.")

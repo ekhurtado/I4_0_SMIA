@@ -12,6 +12,7 @@ class AASarchiveInfo:
 
     # Paths for log files
     LOG_FOLDER_PATH = '/aas_archive/log'
+    AAS_MANAGER_LOG_FILENAME = 'aas_manager.log'
     SVC_LOG_FOLDER_PATH = '/aas_archive/log/services'
     ASSET_RELATED_SVC_LOG_FILENAME = 'assetRelatedSvcHistory.log'
     AAS_INFRASTRUCTURE_SVC_LOG_FILENAME = 'aasInfrastructureSvcHistory.log'
@@ -20,6 +21,8 @@ class AASarchiveInfo:
 
     # ConfigMap files
     CONFIG_MAP_PATH = '/aas_archive/config'
+    CM_AAS_PROPERTIES_FILENAME = 'aas.properties'
+    CM_ASSET_PROPERTIES_FILENAME = 'asset.properties'
     CM_SM_PROPERTIES_FILENAME = 'submodels.properties'
 
     # Submodel files

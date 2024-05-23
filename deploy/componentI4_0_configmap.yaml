@@ -7,13 +7,16 @@ data:
 
   # Properties files
   aas.properties: |
+    [general-information]
     logicalID=aas01
     endpoint=7000
-
+    
+    [services-information]
     services.1=getAssetData
     services.2=getSubmodelData
 
   asset.properties: |
+    [DEFAULT]
     assetType=physical
     assetID=KukaKR3
     assetNumber=1
