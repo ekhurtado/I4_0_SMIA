@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>states.StateRunning &#8212; AAS Manager 0.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=12dfc556" />
+    <script src="../../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for states.StateRunning</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">spade.behaviour</span> <span class="kn">import</span> <span class="n">State</span>
+
+<span class="kn">from</span> <span class="nn">behaviours.ACLHandlingBehaviour</span> <span class="kn">import</span> <span class="n">ACLHandlingBehaviour</span>
+<span class="kn">from</span> <span class="nn">utilities.AASmanagerInfo</span> <span class="kn">import</span> <span class="n">AASmanagerInfo</span>
+
+
+<div class="viewcode-block" id="StateRunning">
+<a class="viewcode-back" href="../../states.StateRunning.html#states.StateRunning.StateRunning">[docs]</a>
+<span class="k">class</span> <span class="nc">StateRunning</span><span class="p">(</span><span class="n">State</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This class contains the Running state of the common AAS Manager.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="StateRunning.run">
+<a class="viewcode-back" href="../../states.StateRunning.html#states.StateRunning.StateRunning.run">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This method implements the running state of the common AAS Manager. Here all requests services are handled, both from ACL of another AAS Manager or from the AAS Core.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">---------------------------------------</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;## STATE 2: RUNNING ##  (Initial state)&quot;</span><span class="p">)</span>
+
+        <span class="c1"># On the one hand, a behaviour is required to handle ACL message</span>
+        <span class="n">acl_handling_behav</span> <span class="o">=</span> <span class="n">ACLHandlingBehaviour</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">agent</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">agent</span><span class="o">.</span><span class="n">add_behaviour</span><span class="p">(</span><span class="n">acl_handling_behav</span><span class="p">,</span> <span class="n">AASmanagerInfo</span><span class="o">.</span><span class="n">STANDARD_ACL_TEMPLATE</span><span class="p">)</span>
+
+
+        <span class="c1"># Finished the Boot State the agent can move to the next state</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">agent</span><span class="o">.</span><span class="n">jid</span><span class="si">}</span><span class="s2"> agent has finished it Boot state.&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_next_state</span><span class="p">(</span><span class="n">AASmanagerInfo</span><span class="o">.</span><span class="n">RUNNING_STATE_NAME</span><span class="p">)</span></div>
+</div>
+
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">AAS Manager</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">src</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2024, Ekaitz Hurtado.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

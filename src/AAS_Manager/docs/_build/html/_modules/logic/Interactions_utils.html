@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>logic.Interactions_utils &#8212; AAS Manager 0.1.0 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=12dfc556" />
     <script src="../../_static/documentation_options.js?v=01f34227"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
@@ -30,12 +30,13 @@
           <div class="body" role="main">
             
   <h1>Source code for logic.Interactions_utils</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;This class groups the methods related to the interactions between the Manager and the Core&quot;&quot;&quot;</span>
+<span></span><span class="sd">&quot;&quot;&quot;This class groups the methods related to the interactions between the Manager and the Core.&quot;&quot;&quot;</span>
+
 <span class="kn">import</span> <span class="nn">calendar</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 <span class="kn">import</span> <span class="nn">time</span>
 
-<span class="kn">from</span> <span class="nn">utilities.AAS_archive_info</span> <span class="kn">import</span> <span class="n">AASarchiveInfo</span>
+<span class="kn">from</span> <span class="nn">utilities.AASarchiveInfo</span> <span class="kn">import</span> <span class="n">AASarchiveInfo</span>
 <span class="kn">from</span> <span class="nn">utilities.AAS_Archive_utils</span> <span class="kn">import</span> <span class="n">file_to_json</span><span class="p">,</span> <span class="n">update_json_file</span>
 
 
@@ -45,18 +46,17 @@
 <div class="viewcode-block" id="create_svc_request_json">
 <a class="viewcode-back" href="../../logic.Interactions_utils.html#logic.Interactions_utils.create_svc_request_json">[docs]</a>
 <span class="k">def</span> <span class="nf">create_svc_request_json</span><span class="p">(</span><span class="n">interaction_id</span><span class="p">,</span> <span class="n">svc_id</span><span class="p">,</span> <span class="n">svc_type</span><span class="p">,</span> <span class="n">svc_data</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;This method creates a service request JSON object.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This method creates a service request JSON object.</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    :param interaction_id: Identifier of the interaction.</span>
-<span class="sd">    :param svc_id: Identifier of the service</span>
-<span class="sd">    :param svc_type: Type of the service.</span>
-<span class="sd">    :param svc_data: Data of the service in JSON format.</span>
+<span class="sd">    Args:</span>
+<span class="sd">        interaction_id (int): Identifier of the interaction.</span>
+<span class="sd">        svc_id (str): Identifier of the service</span>
+<span class="sd">        svc_type (str): Type of the service.</span>
+<span class="sd">        svc_data (dict): Data of the service in JSON format.</span>
 
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    :return svc_request_json: a JSON object with the service request information.</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        dict: a JSON object with the service request information.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">svc_request_json</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;interactionID&quot;</span><span class="p">:</span> <span class="n">interaction_id</span><span class="p">,</span>
                         <span class="s2">&quot;serviceID&quot;</span><span class="p">:</span> <span class="n">svc_id</span><span class="p">,</span>
@@ -71,12 +71,12 @@
 <div class="viewcode-block" id="add_new_svc_request">
 <a class="viewcode-back" href="../../logic.Interactions_utils.html#logic.Interactions_utils.add_new_svc_request">[docs]</a>
 <span class="k">def</span> <span class="nf">add_new_svc_request</span><span class="p">(</span><span class="n">new_request_json</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;This method adds a new service request to the related service interaction file of the manager and updates it</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This method adds a new service request to the related service interaction file of the manager and updates it</span>
 <span class="sd">    in the AAS Archive.</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    :param new_request_json: The service requests content in JSON format.</span>
+<span class="sd">    Args:</span>
+<span class="sd">        new_request_json: The service requests content in JSON format.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># Get the content of the service requests interaction file</span>
@@ -94,15 +94,14 @@
 <div class="viewcode-block" id="get_svc_request_info">
 <a class="viewcode-back" href="../../logic.Interactions_utils.html#logic.Interactions_utils.get_svc_request_info">[docs]</a>
 <span class="k">def</span> <span class="nf">get_svc_request_info</span><span class="p">(</span><span class="n">interaction_id</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;This method gets the information of a service request.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This method gets the information of a service request.</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    :param interaction_id: Identifier of the interaction.</span>
+<span class="sd">    Args:</span>
+<span class="sd">        interaction_id (int): Identifier of the interaction.</span>
 
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    :return the information of the service request in JSON format.</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        dict: the information of the service request in JSON format.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">svc_requests_json</span> <span class="o">=</span> <span class="n">file_to_json</span><span class="p">(</span><span class="n">AASarchiveInfo</span><span class="o">.</span><span class="n">MANAGER_INTERACTIONS_FOLDER_PATH</span> <span class="o">+</span>
                                      <span class="n">AASarchiveInfo</span><span class="o">.</span><span class="n">SVC_REQUEST_FILE_SUBPATH</span><span class="p">)</span>
@@ -119,15 +118,14 @@
 <div class="viewcode-block" id="get_svc_response_info">
 <a class="viewcode-back" href="../../logic.Interactions_utils.html#logic.Interactions_utils.get_svc_response_info">[docs]</a>
 <span class="k">def</span> <span class="nf">get_svc_response_info</span><span class="p">(</span><span class="n">interaction_id</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;This method gets the information of a response from the AAS Core related to a request made by the AAS Manager.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This method gets the information of a response from the AAS Core related to a request made by the AAS Manager.</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    :param interaction_id: Identifier of the interaction.</span>
+<span class="sd">    Args:</span>
+<span class="sd">        interaction_id (int): Identifier of the interaction.</span>
 
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    :return the information of the service request in JSON format.</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        dict: the information of the service request in JSON format.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">svc_responses_json</span> <span class="o">=</span> <span class="n">file_to_json</span><span class="p">(</span>
         <span class="n">AASarchiveInfo</span><span class="o">.</span><span class="n">CORE_INTERACTIONS_FOLDER_PATH</span> <span class="o">+</span> <span class="n">AASarchiveInfo</span><span class="o">.</span><span class="n">SVC_RESPONSE_FILE_SUBPATH</span><span class="p">)</span>
@@ -144,13 +142,13 @@
 <div class="viewcode-block" id="save_svc_info_in_log_file">
 <a class="viewcode-back" href="../../logic.Interactions_utils.html#logic.Interactions_utils.save_svc_info_in_log_file">[docs]</a>
 <span class="k">def</span> <span class="nf">save_svc_info_in_log_file</span><span class="p">(</span><span class="n">requested_entity</span><span class="p">,</span> <span class="n">svc_type_log_file_name</span><span class="p">,</span> <span class="n">interaction_id</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;This method saves the information of a service request in the associated log file.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This method saves the information of a service request in the associated log file.</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    :param requested_entity: The entity that has requested the service, to know in which interaction files to search.</span>
-<span class="sd">    :param svc_type_log_file_name: The log file name of the service type.</span>
-<span class="sd">    :param interaction_id: Identifier of the interaction.</span>
+<span class="sd">    Args:</span>
+<span class="sd">        requested_entity (str): The entity that has requested the service, to know in which interaction files to search.</span>
+<span class="sd">        svc_type_log_file_name (str): The log file name of the service type.</span>
+<span class="sd">        interaction_id (int): Identifier of the interaction.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># Get the information about the request and response</span>
@@ -190,20 +188,18 @@
 <div class="viewcode-block" id="get_svc_info">
 <a class="viewcode-back" href="../../logic.Interactions_utils.html#logic.Interactions_utils.get_svc_info">[docs]</a>
 <span class="k">def</span> <span class="nf">get_svc_info</span><span class="p">(</span><span class="n">requested_entity</span><span class="p">,</span> <span class="n">interaction_id</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;This method obtains the information of the service considering the entity that has requested the service. In the</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This method obtains the information of the service considering the entity that has requested the service. In the</span>
 <span class="sd">     entity is Manager it has to search in Manager requests and Core responses, and in the case of being the Core the</span>
 <span class="sd">     one that has made the request, the opposite.</span>
 
-<span class="sd">     Parameters</span>
-<span class="sd">     ----------</span>
-<span class="sd">     :param requested_entity: The entity that has requested the service, to know in which interaction files to search.</span>
-<span class="sd">     :param interaction_id: Identifier of the interaction.</span>
+<span class="sd">     Args:</span>
+<span class="sd">        requested_entity (str): The entity that has requested the service, to know in which interaction files to search.</span>
+<span class="sd">        interaction_id (int): Identifier of the interaction.</span>
 
-<span class="sd">     Returns</span>
-<span class="sd">     -------</span>
-<span class="sd">     :returns</span>
-<span class="sd">        - requestInfo: Information of the service request in JSON format</span>
-<span class="sd">        - responseInfo: Information of the service response in JSON format.</span>
+<span class="sd">     Returns:</span>
+<span class="sd">         dict: Information of the service request in JSON format</span>
+<span class="sd">         dict: Information of the service response in JSON format.</span>
 <span class="sd">     &quot;&quot;&quot;</span>
 
     <span class="k">if</span> <span class="n">requested_entity</span> <span class="o">==</span> <span class="s2">&quot;Manager&quot;</span><span class="p">:</span>

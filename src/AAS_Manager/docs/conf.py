@@ -20,11 +20,11 @@ release = '0.1.0'
 
 extensions = [
     'sphinx.ext.autodoc',   # docString of the .py files
-    'sphinx.ext.napoleon',  # To highlight some words
+    # 'sphinx.ext.napoleon',  # To highlight some words
     'sphinx.ext.viewcode',   # To show the source code
     'sphinx.ext.autosectionlabel',   # It allows to refer sections its title (i.e. Parameters in docStrings).
     'sphinx.ext.autosummary',   # It generates function/method/attribute summary lists
-    'sphinx_rtd_theme',
+    # 'sphinx_rtd_theme',
 ]
 
 templates_path = ['_templates']
@@ -38,7 +38,7 @@ pygments_style = 'sphinx'
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-# html_theme = 'alabaster'
-html_theme = 'sphinx_rtd_theme'   # currently not working
+html_theme = 'alabaster'
+# html_theme = 'sphinx_rtd_theme'   # currently not working
 # html_theme = " 'classic"
 html_static_path = ['_static']

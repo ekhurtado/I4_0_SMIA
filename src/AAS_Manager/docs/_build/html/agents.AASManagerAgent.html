@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>agents.AASManagerAgent module &#8212; AAS Manager 0.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=12dfc556" />
+    <script src="_static/documentation_options.js?v=01f34227"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="behaviours package" href="behaviours.html" />
+    <link rel="prev" title="agents package" href="agents.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-agents.AASManagerAgent">
+<span id="agents-aasmanageragent-module"></span><h1>agents.AASManagerAgent module<a class="headerlink" href="#module-agents.AASManagerAgent" title="Link to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="agents.AASManagerAgent.AASManagerAgent">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">agents.AASManagerAgent.</span></span><span class="sig-name descname"><span class="pre">AASManagerAgent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">jid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verify_security</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/agents/AASManagerAgent.html#AASManagerAgent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#agents.AASManagerAgent.AASManagerAgent" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Agent</span></code></p>
+<p>This is the top level in the hierarchy of SPADE Agents. It extends the own class Agent of SPADE. The AAS Manager Agent will be the generic and from which all other types of AAS Managers will start.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="agents.AASManagerAgent.AASManagerAgent.setup">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">setup</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/agents/AASManagerAgent.html#AASManagerAgent.setup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#agents.AASManagerAgent.AASManagerAgent.setup" title="Link to this definition">¶</a></dt>
+<dd><p>This method performs the common setup of all types of Managers. It defines the Finite State Machine of the general (FSM) AAS Manager Agent.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">AAS Manager</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">src</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="aas_manager.html">aas_manager module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aas_manager_old.html">aas_manager_old module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="agents.html">agents package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="behaviours.html">behaviours package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logic.html">logic package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="states.html">states package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utilities.html">utilities package</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">src</a><ul>
+  <li><a href="agents.html">agents package</a><ul>
+      <li>Previous: <a href="agents.html" title="previous chapter">agents package</a></li>
+      <li>Next: <a href="behaviours.html" title="next chapter">behaviours package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2024, Ekaitz Hurtado.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="_sources/agents.AASManagerAgent.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

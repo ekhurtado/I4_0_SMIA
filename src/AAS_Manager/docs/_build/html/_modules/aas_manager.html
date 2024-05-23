@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>aas_manager &#8212; AAS Manager 0.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=12dfc556" />
+    <script src="../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for aas_manager</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">request</span>
+
+<span class="kn">from</span> <span class="nn">logic</span> <span class="kn">import</span> <span class="n">Services_utils</span>
+<span class="kn">from</span> <span class="nn">utilities</span> <span class="kn">import</span> <span class="n">AAS_Archive_utils</span><span class="p">,</span> <span class="n">ConfigMap_utils</span><span class="p">,</span> <span class="n">Submodels_utils</span>
+
+<span class="n">interaction_id</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="main">
+<a class="viewcode-back" href="../aas_manager.html#aas_manager.main">[docs]</a>
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;GET&#39;</span><span class="p">:</span>
+        <span class="c1"># Handle GET requests</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;GET type request&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">:</span>
+        <span class="c1"># Handle POST requests</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;POST type request&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="s2">&quot;OK&quot;</span></div>
+
+
+
+<div class="viewcode-block" id="service_requests">
+<a class="viewcode-back" href="../aas_manager.html#aas_manager.service_requests">[docs]</a>
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/Service/&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">service_requests</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Method for handling requests for Asset Related Services.&quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">performative</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">json</span><span class="p">[</span><span class="s1">&#39;performative&#39;</span><span class="p">]</span>
+
+    <span class="k">match</span> <span class="n">performative</span><span class="p">:</span>
+        <span class="k">case</span> <span class="s2">&quot;CallForProposal&quot;</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Call for proposal request.&quot;</span><span class="p">)</span>
+
+            <span class="k">global</span> <span class="n">interaction_id</span>
+
+            <span class="k">match</span> <span class="n">request</span><span class="o">.</span><span class="n">json</span><span class="p">[</span><span class="s1">&#39;serviceType&#39;</span><span class="p">]:</span>
+                <span class="k">case</span> <span class="s2">&quot;AssetRelatedService&quot;</span><span class="p">:</span>
+                    <span class="n">Services_utils</span><span class="o">.</span><span class="n">handle_asset_related_svc</span><span class="p">(</span><span class="n">interaction_id</span><span class="p">,</span> <span class="n">request</span><span class="o">.</span><span class="n">json</span><span class="p">)</span>
+                <span class="k">case</span> <span class="s2">&quot;AASInfrastructureServices&quot;</span><span class="p">:</span>
+                    <span class="n">Services_utils</span><span class="o">.</span><span class="n">handle_aas_infrastructure_svc</span><span class="p">(</span><span class="n">interaction_id</span><span class="p">,</span> <span class="n">request</span><span class="o">.</span><span class="n">json</span><span class="p">)</span>
+                <span class="k">case</span> <span class="s2">&quot;AASservices&quot;</span><span class="p">:</span>
+                    <span class="n">Services_utils</span><span class="o">.</span><span class="n">handle_aas_services</span><span class="p">(</span><span class="n">interaction_id</span><span class="p">,</span> <span class="n">request</span><span class="o">.</span><span class="n">json</span><span class="p">)</span>
+                <span class="k">case</span> <span class="s2">&quot;SubmodelServices&quot;</span><span class="p">:</span>
+                    <span class="n">Services_utils</span><span class="o">.</span><span class="n">handle_submodel_services</span><span class="p">(</span><span class="n">interaction_id</span><span class="p">,</span> <span class="n">request</span><span class="o">.</span><span class="n">json</span><span class="p">)</span>
+                <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Service type not available.&quot;</span><span class="p">)</span>
+
+            <span class="c1"># Increment the interactionID</span>
+            <span class="n">interaction_id</span> <span class="o">=</span> <span class="n">interaction_id</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Performative not available.&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="s2">&quot;OK&quot;</span></div>
+
+
+
+<div class="viewcode-block" id="initialize_aas_archive">
+<a class="viewcode-back" href="../aas_manager.html#aas_manager.initialize_aas_archive">[docs]</a>
+<span class="k">def</span> <span class="nf">initialize_aas_archive</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This method initializes the system of the I4.0 Component, performing the necessary actions to let the</span>
+<span class="sd">    AAS Archive in the initial conditions to start the main program.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Create the status file</span>
+    <span class="n">AAS_Archive_utils</span><span class="o">.</span><span class="n">create_status_file</span><span class="p">()</span>
+
+    <span class="c1"># Create the interaction files</span>
+    <span class="n">AAS_Archive_utils</span><span class="o">.</span><span class="n">create_interaction_files</span><span class="p">()</span>
+
+    <span class="c1"># Create log file</span>
+    <span class="n">AAS_Archive_utils</span><span class="o">.</span><span class="n">create_log_files</span><span class="p">()</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;AAS Archive initialized.&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="initialize_submodels">
+<a class="viewcode-back" href="../aas_manager.html#aas_manager.initialize_submodels">[docs]</a>
+<span class="k">def</span> <span class="nf">initialize_submodels</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This method initializes the submodels of the I4.0 Component, obtaining all the information from the ConfigMap</span>
+<span class="sd">    associated to the component, in order to create the necessary XML submodel files and store them in the AAS Archive.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># First, the selected submodels are obtained</span>
+    <span class="n">selected_submodel_names</span> <span class="o">=</span> <span class="n">ConfigMap_utils</span><span class="o">.</span><span class="n">get_submodel_names</span><span class="p">()</span>
+
+    <span class="c1"># TODO: faltaria comprobar entre los submodelos seleccionados cuales son propios de todos los AASs (los que seran</span>
+    <span class="c1">#  los propios del AAS Manager). El usuario podra proponer submodelos y tambien se escribira en el ConfigMap su</span>
+    <span class="c1">#  informacion, pero sera el AAS Core (desarrollado por el usuario) el encargado de generar el XML (como tambien de</span>
+    <span class="c1">#  actualizarlo, leerlo...), ya que es el usuario el que conoce su estructura</span>
+
+    <span class="c1"># Create submodels files for each one</span>
+    <span class="n">Submodels_utils</span><span class="o">.</span><span class="n">create_submodel_files</span><span class="p">(</span><span class="n">selected_submodel_names</span><span class="p">)</span></div>
+
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Initializing AAS Manager...&quot;</span><span class="p">)</span>
+    <span class="c1"># The interactionID is started at 0</span>
+    <span class="n">interaction_id</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1"># Before starting the AAS Manager, it will execute the required initialization of the system</span>
+    <span class="n">initialize_aas_archive</span><span class="p">()</span>
+    <span class="n">initialize_submodels</span><span class="p">()</span>
+
+    <span class="c1"># Set that AAS Manager is ready</span>
+    <span class="n">AAS_Archive_utils</span><span class="o">.</span><span class="n">change_status</span><span class="p">(</span><span class="s1">&#39;InitializationReady&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Wait until the AAS Core has initialized</span>
+    <span class="n">AAS_Archive_utils</span><span class="o">.</span><span class="n">check_core_initialization</span><span class="p">()</span>
+
+    <span class="c1"># Run application</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s2">&quot;0.0.0.0&quot;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">7000</span><span class="p">)</span>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">AAS Manager</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules.html">src</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2024, Ekaitz Hurtado.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

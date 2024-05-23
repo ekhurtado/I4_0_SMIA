@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>logic.Services_utils module &#8212; AAS Manager 0.1.0 documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=12dfc556" />
     <script src="_static/documentation_options.js?v=01f34227"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="utilities package" href="utilities.html" />
+    <link rel="next" title="states package" href="states.html" />
     <link rel="prev" title="logic.Interactions_utils module" href="logic.Interactions_utils.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -44,10 +44,11 @@ Functional View of RAMI 4.0.</p>
 by the platform (computational infrastructure). These include the AAS Create Service (for creating AASs with unique
 identifiers), AAS Registry Services (for registering AASs) and AAS Exposure and Discovery Services (for searching
 for AASs).</p>
-<p>:param :
-:type : param svc_interaction_id : the identifier of the interaction.
-:param :
-:type : param svc_data : the information of the data in JSON format.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>svc_interaction_id (int): the identifier of the interaction.
+svc_data (dict): the information of the data in JSON format.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -59,10 +60,11 @@ and register submodels), Meta-information Management Services (including Classif
 interface complies with the specifications; Contextualization Services, to check if they belong together in a
 context to build a common function; and Restriction of Use Services, divided between access control and usage
 control) and Exposure and Discovery Services (to search for submodels or asset related services).</p>
-<p>:param :
-:type : param svc_interaction_id : the identifier of the interaction.
-:param :
-:type : param svc_data : the information of the data in JSON format.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>svc_interaction_id (int): the identifier of the interaction.
+svc_data (dict): the information of the data in JSON format.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -70,10 +72,11 @@ control) and Exposure and Discovery Services (to search for submodels or asset r
 <span class="sig-prename descclassname"><span class="pre">logic.Services_utils.</span></span><span class="sig-name descname"><span class="pre">handle_asset_related_svc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">svc_interaction_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">svc_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/logic/Services_utils.html#handle_asset_related_svc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#logic.Services_utils.handle_asset_related_svc" title="Link to this definition">¶</a></dt>
 <dd><p>This method handles Asset Related Services. These services are part of I4.0 Application Component (application
 relevant).</p>
-<p>:param :
-:type : param svc_interaction_id : the identifier of the interaction.
-:param :
-:type : param svc_data : the information of the data in JSON format.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>svc_interaction_id (int): the identifier of the interaction.
+svc_data (dict): the information of the data in JSON format.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -81,10 +84,11 @@ relevant).</p>
 <span class="sig-prename descclassname"><span class="pre">logic.Services_utils.</span></span><span class="sig-name descname"><span class="pre">handle_submodel_services</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">svc_interaction_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">svc_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/logic/Services_utils.html#handle_submodel_services"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#logic.Services_utils.handle_submodel_services" title="Link to this definition">¶</a></dt>
 <dd><p>This method handles Submodel Services. These services are part of I4.0 Application Component (application
 relevant).</p>
-<p>:param :
-:type : param svc_interaction_id : the identifier of the interaction.
-:param :
-:type : param svc_data : the information of the data in JSON format.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>svc_interaction_id (int): the identifier of the interaction.
+svc_data (dict): the information of the data in JSON format.</p>
+</dd>
+</dl>
 </dd></dl>
 
 </section>
@@ -110,7 +114,11 @@ relevant).</p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">src</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="aas_manager.html">aas_manager module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aas_manager_old.html">aas_manager_old module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="agents.html">agents package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="behaviours.html">behaviours package</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="logic.html">logic package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="states.html">states package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="utilities.html">utilities package</a></li>
 </ul>
 </li>
@@ -123,7 +131,7 @@ relevant).</p>
   <li><a href="modules.html">src</a><ul>
   <li><a href="logic.html">logic package</a><ul>
       <li>Previous: <a href="logic.Interactions_utils.html" title="previous chapter">logic.Interactions_utils module</a></li>
-      <li>Next: <a href="utilities.html" title="next chapter">utilities package</a></li>
+      <li>Next: <a href="states.html" title="next chapter">states package</a></li>
   </ul></li>
   </ul></li>
   </ul></li>

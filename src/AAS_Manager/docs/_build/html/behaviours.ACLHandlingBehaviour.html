@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>behaviours.ACLHandlingBehaviour module &#8212; AAS Manager 0.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=12dfc556" />
+    <script src="_static/documentation_options.js?v=01f34227"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="behaviours.InitAASarchiveBehaviour module" href="behaviours.InitAASarchiveBehaviour.html" />
+    <link rel="prev" title="behaviours.AASFSMBehaviour module" href="behaviours.AASFSMBehaviour.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-behaviours.ACLHandlingBehaviour">
+<span id="behaviours-aclhandlingbehaviour-module"></span><h1>behaviours.ACLHandlingBehaviour module<a class="headerlink" href="#module-behaviours.ACLHandlingBehaviour" title="Link to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="behaviours.ACLHandlingBehaviour.ACLHandlingBehaviour">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">behaviours.ACLHandlingBehaviour.</span></span><span class="sig-name descname"><span class="pre">ACLHandlingBehaviour</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">agent_object</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/behaviours/ACLHandlingBehaviour.html#ACLHandlingBehaviour"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#behaviours.ACLHandlingBehaviour.ACLHandlingBehaviour" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">CyclicBehaviour</span></code></p>
+<p>This class implements the behaviour that handles all the ACL messages that the AAS Manager will receive from the others standardized AAS Manager in the I4.0 System.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="behaviours.ACLHandlingBehaviour.ACLHandlingBehaviour.on_start">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_start</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/behaviours/ACLHandlingBehaviour.html#ACLHandlingBehaviour.on_start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#behaviours.ACLHandlingBehaviour.ACLHandlingBehaviour.on_start" title="Link to this definition">¶</a></dt>
+<dd><p>This method implements the initialization process of this behaviour. Here the template of the ACL message that will be received by the agent is set.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="behaviours.ACLHandlingBehaviour.ACLHandlingBehaviour.run">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/behaviours/ACLHandlingBehaviour.html#ACLHandlingBehaviour.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#behaviours.ACLHandlingBehaviour.ACLHandlingBehaviour.run" title="Link to this definition">¶</a></dt>
+<dd><p>This method implements the logic of the behaviour.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">AAS Manager</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">src</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="aas_manager.html">aas_manager module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aas_manager_old.html">aas_manager_old module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="agents.html">agents package</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="behaviours.html">behaviours package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logic.html">logic package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="states.html">states package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utilities.html">utilities package</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">src</a><ul>
+  <li><a href="behaviours.html">behaviours package</a><ul>
+      <li>Previous: <a href="behaviours.AASFSMBehaviour.html" title="previous chapter">behaviours.AASFSMBehaviour module</a></li>
+      <li>Next: <a href="behaviours.InitAASarchiveBehaviour.html" title="next chapter">behaviours.InitAASarchiveBehaviour module</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2024, Ekaitz Hurtado.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="_sources/behaviours.ACLHandlingBehaviour.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
