@@ -11,6 +11,7 @@ Submodules
    utilities.AASarchiveInfo
    utilities.AASmanagerInfo
    utilities.ConfigMap_utils
+   utilities.GeneralUtils
    utilities.Submodels_utils
 
 Module contents
