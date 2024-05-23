@@ -1,2 +1,3 @@
 sphinx_rtd_theme==2.0.0
 spade==3.3.2
+Flask==2.3.2
