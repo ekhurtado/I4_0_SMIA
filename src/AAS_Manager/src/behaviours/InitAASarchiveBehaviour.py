@@ -1,5 +1,9 @@
+import logging
 from spade.behaviour import OneShotBehaviour
+
 from utilities import AAS_Archive_utils
+
+_logger = logging.getLogger(__name__)
 
 
 class InitAASarchiveBehaviour(OneShotBehaviour):
@@ -34,4 +38,4 @@ class InitAASarchiveBehaviour(OneShotBehaviour):
         # Create log file
         AAS_Archive_utils.create_log_files()
 
-        print("AAS Archive initialized.")
+        _logger.info("AAS Archive initialized.")

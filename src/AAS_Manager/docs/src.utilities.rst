@@ -1,0 +1,23 @@
+src.utilities package
+=====================
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   src.utilities.AAS_Archive_utils
+   src.utilities.AASarchiveInfo
+   src.utilities.AASmanagerInfo
+   src.utilities.ConfigMap_utils
+   src.utilities.GeneralUtils
+   src.utilities.Submodels_utils
+
+Module contents
+---------------
+
+.. automodule:: src.utilities
+   :members:
+   :undoc-members:
+   :show-inheritance:

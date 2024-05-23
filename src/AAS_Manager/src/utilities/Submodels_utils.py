@@ -1,11 +1,12 @@
 """This class contains utility methods related to submodels."""
-
+import logging
 import os
 from lxml import etree
 
 from utilities import AAS_Archive_utils, ConfigMap_utils
 from utilities.AASarchiveInfo import AASarchiveInfo
 
+_logger = logging.getLogger(__name__)
 
 # ------------------------
 # Methods related to files
@@ -31,7 +32,7 @@ def create_submodel_files(submodel_names_list):
             case "configuration-submodel":
                 create_configuration_sm(submodel_data)
             case _:
-                print("Submodel not found.")
+                _logger.warning("Submodel not found.")
                 break
 
 
@@ -53,7 +54,7 @@ def create_technical_data_sm(submodel_data):
 
     # Add data to XML
     for (key, val) in submodel_data:
-        print(key + ": " + val)
+        # print(key + ": " + val)
         etree.SubElement(technical_data_level, key).text = val
 
     # Write the content of submodel in a file
@@ -77,7 +78,7 @@ def create_configuration_sm(submodel_data):
 
     # Add data to XML
     for (key, val) in submodel_data:
-        print(key + ": " + val)
+        # print(key + ": " + val)
         etree.SubElement(configuration_level, key).text = val
 
     # Write the content of submodel in a file

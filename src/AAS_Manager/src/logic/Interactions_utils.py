@@ -1,11 +1,14 @@
 """This class groups the methods related to the interactions between the Manager and the Core."""
 
 import calendar
+import logging
 from datetime import datetime
 import time
 
 from utilities.AASarchiveInfo import AASarchiveInfo
 from utilities.AAS_Archive_utils import file_to_json, update_json_file
+
+_logger = logging.getLogger(__name__)
 
 
 # --------------------------------------------
@@ -132,7 +135,7 @@ def save_svc_info_in_log_file(requested_entity, svc_type_log_file_name, interact
     # Add the structure in the file
     log_file_json.append(log_structure)
     update_json_file(file_path=AASarchiveInfo.SVC_LOG_FOLDER_PATH + '/' + svc_type_log_file_name, content=log_file_json)
-    print("Service information related to interaction " + str(interaction_id) + " added in log file.")
+    _logger.info("Service information related to interaction " + str(interaction_id) + " added in log file.")
 
 
 # -------------

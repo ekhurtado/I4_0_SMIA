@@ -6,6 +6,8 @@
 import os
 import sys
 
+import src
+
 sys.path.insert(0, os.path.abspath('../src'))
 
 # -- Project information -----------------------------------------------------
@@ -13,8 +15,8 @@ sys.path.insert(0, os.path.abspath('../src'))
 
 project = 'AAS Manager'
 copyright = '2024, Ekaitz Hurtado'
-author = 'Ekaitz Hurtado'
-release = '0.1.0'
+author = src.__author__
+release = src.__version__
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration

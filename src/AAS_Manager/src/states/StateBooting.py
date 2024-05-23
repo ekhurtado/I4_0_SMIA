@@ -1,8 +1,11 @@
+import logging
 from spade.behaviour import State
 
 from behaviours.InitAASarchiveBehaviour import InitAASarchiveBehaviour
 from behaviours.InitSubmodelsBehaviour import InitSubmodelsBehaviour
 from utilities.AASmanagerInfo import AASmanagerInfo
+
+_logger = logging.getLogger(__name__)
 
 
 class StateBooting(State):
@@ -12,10 +15,11 @@ class StateBooting(State):
 
     async def run(self):
         """
-        This method implements the boot state of the common AAS Manager. Here all the required initialization tasks are performed.
+        This method implements the boot state of the common AAS Manager. Here all the required initialization tasks
+        are performed.
         """
-        print("\n---------------------------------------\n")
-        print("## STATE 1: BOOTING ##  (Initial state)")
+
+        _logger.info("## STATE 1: BOOTING ##  (Initial state)")
 
         # First, the interactionId is reset
         self.agent.interaction_id = 0
@@ -33,5 +37,5 @@ class StateBooting(State):
         await init_submodels_behav.join()
 
         # Finished the Boot State the agent can move to the next state
-        print(f"{self.agent.jid} agent has finished it Boot state.")
+        _logger.info(f"{self.agent.jid} agent has finished it Boot state.")
         self.set_next_state(AASmanagerInfo.RUNNING_STATE_NAME)

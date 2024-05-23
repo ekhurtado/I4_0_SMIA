@@ -2,10 +2,13 @@
 This class contains methods related to service management. It contains all type of services proposed in the
 Functional View of RAMI 4.0.
 """
+import logging
 import time
 
 from logic import Interactions_utils
 from utilities.AASarchiveInfo import AASarchiveInfo
+
+_logger = logging.getLogger(__name__)
 
 
 def handle_asset_related_svc(svc_interaction_id, svc_data):
@@ -29,7 +32,7 @@ def handle_asset_related_svc(svc_interaction_id, svc_data):
     # TODO esto cuando se desarrolle el AAS Manager en un agente no se realizara de esta manera. No debera
     #  haber una espera hasta que se complete el servicio
     while True:
-        print(str(svc_data['serviceID']) + "service not completed yet.")
+        _logger.info(str(svc_data['serviceID']) + "service not completed yet.")
         svc_response = Interactions_utils.get_svc_response_info(svc_interaction_id)
         if svc_response is not None:
             print(svc_response)
@@ -57,7 +60,7 @@ def handle_aas_infrastructure_svc(svc_interaction_id, svc_data):
         svc_interaction_id (int): the identifier of the interaction.
         svc_data (dict): the information of the data in JSON format.
     """
-    print(str(svc_interaction_id) + str(svc_data))
+    _logger.info(str(svc_interaction_id) + str(svc_data))
 
 
 def handle_aas_services(svc_interaction_id, svc_data):
@@ -73,7 +76,7 @@ def handle_aas_services(svc_interaction_id, svc_data):
         svc_interaction_id (int): the identifier of the interaction.
         svc_data (dict): the information of the data in JSON format.
     """
-    print(str(svc_interaction_id) + str(svc_data))
+    _logger.info(str(svc_interaction_id) + str(svc_data))
 
 
 def handle_submodel_services(svc_interaction_id, svc_data):
@@ -85,4 +88,4 @@ def handle_submodel_services(svc_interaction_id, svc_data):
         svc_interaction_id (int): the identifier of the interaction.
         svc_data (dict): the information of the data in JSON format.
     """
-    print(str(svc_interaction_id) + str(svc_data))
+    _logger.info(str(svc_interaction_id) + str(svc_data))

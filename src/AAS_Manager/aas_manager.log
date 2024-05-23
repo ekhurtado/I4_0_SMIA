@@ -282,3 +282,37 @@ WARNING:SPADE:Keyboard interrupt received. Stopping SPADE...
 [38;20m2024-05-23 13:49:28,500 [aasmanager001.StanzaStream] [DEBUG] destroying stream state (exc=DestructionRequested('close() called'))[0m
 [38;20m2024-05-23 13:49:28,500 [aasmanager001] [INFO] stopping stream[0m
 [38;20m2024-05-23 13:49:28,509 [SPADE] [DEBUG] Loop closed[0m
+[38;20m2024-05-23 19:20:07,210 [aioxmpp.node] [WARNING] connection failed: [Errno 11001] getaddrinfo failed[0m
+[38;20m2024-05-23 19:20:07,213 [SPADE] [ERROR] Exception in the event loop: failed to connect to XMPP domain 'worker4': multiple errors: [Errno 11001] getaddrinfo failed[0m
+[31;1m2024-05-23 19:21:11,049 [aioxmpp.node] [WARNING] connection failed: [Errno 11001] getaddrinfo failed[0m
+[31;1m2024-05-23 19:21:11,052 [SPADE] [ERROR] Exception in the event loop: failed to connect to XMPP domain 'worker4': multiple errors: [Errno 11001] getaddrinfo failed[0m
+[38;20m2024-05-23 19:21:37,827 [aioxmpp.node] [WARNING] connection failed: [Errno 11001] getaddrinfo failed[0m
+[38;20m2024-05-23 19:21:37,827 [SPADE] [ERROR] Exception in the event loop: failed to connect to XMPP domain 'worker4': multiple errors: [Errno 11001] getaddrinfo failed[0m
+[33;20m2024-05-23 19:21:52,792 [aioxmpp.node] [WARNING] connection failed: [Errno 11001] getaddrinfo failed[0m
+[33;20m2024-05-23 19:21:52,792 [SPADE] [ERROR] Exception in the event loop: failed to connect to XMPP domain 'worker4': multiple errors: [Errno 11001] getaddrinfo failed[0m
+[0m2024-05-23 19:22:14,473 [aioxmpp.node] [WARNING] connection failed: [Errno 11001] getaddrinfo failed[0m
+[0m2024-05-23 19:22:14,477 [SPADE] [ERROR] Exception in the event loop: failed to connect to XMPP domain 'worker4': multiple errors: [Errno 11001] getaddrinfo failed[0m
+[31;20m2024-05-23 19:22:37,449 [aioxmpp.node] [WARNING] connection failed: [Errno 11001] getaddrinfo failed[0m
+[31;20m2024-05-23 19:22:37,452 [SPADE] [ERROR] Exception in the event loop: failed to connect to XMPP domain 'worker4': multiple errors: [Errno 11001] getaddrinfo failed[0m
+[33;20m2024-05-23 19:22:59,246 [aioxmpp.node] [WARNING] connection failed: [Errno 11001] getaddrinfo failed[0m
+[33;20m2024-05-23 19:22:59,249 [SPADE] [ERROR] Exception in the event loop: failed to connect to XMPP domain 'worker4': multiple errors: [Errno 11001] getaddrinfo failed[0m
+[34;20m2024-05-23 19:23:10,734 [aioxmpp.node] [WARNING] connection failed: [Errno 11001] getaddrinfo failed[0m
+[34;20m2024-05-23 19:23:10,736 [SPADE] [ERROR] Exception in the event loop: failed to connect to XMPP domain 'worker4': multiple errors: [Errno 11001] getaddrinfo failed[0m
+[35;20m2024-05-23 19:23:26,401 [aioxmpp.node] [WARNING] connection failed: [Errno 11001] getaddrinfo failed[0m
+[35;20m2024-05-23 19:23:26,404 [SPADE] [ERROR] Exception in the event loop: failed to connect to XMPP domain 'worker4': multiple errors: [Errno 11001] getaddrinfo failed[0m
+[36;20m2024-05-23 19:23:38,834 [aioxmpp.node] [WARNING] connection failed: [Errno 11001] getaddrinfo failed[0m
+[36;20m2024-05-23 19:23:38,834 [SPADE] [ERROR] Exception in the event loop: failed to connect to XMPP domain 'worker4': multiple errors: [Errno 11001] getaddrinfo failed[0m
+[37;20m2024-05-23 19:23:54,520 [aioxmpp.node] [WARNING] connection failed: [Errno 11001] getaddrinfo failed[0m
+[37;20m2024-05-23 19:23:54,524 [SPADE] [ERROR] Exception in the event loop: failed to connect to XMPP domain 'worker4': multiple errors: [Errno 11001] getaddrinfo failed[0m
+[36;20m2024-05-23 19:24:18,249 [aioxmpp.node] [WARNING] connection failed: [Errno 11001] getaddrinfo failed
+[36;20m2024-05-23 19:24:18,253 [SPADE] [ERROR] Exception in the event loop: failed to connect to XMPP domain 'worker4': multiple errors: [Errno 11001] getaddrinfo failed
+[36;20m2024-05-23 19:57:47,412 [aioxmpp.node] [WARNING] connection failed: [Errno 11001] getaddrinfo failed
+[36;20m2024-05-23 19:57:47,417 [SPADE] [ERROR] Exception in the event loop: failed to connect to XMPP domain 'worker4': multiple errors: [Errno 11001] getaddrinfo failed
+[36;20m2024-05-23 20:07:22,797 [asyncio] [DEBUG] Using selector: SelectSelector
+[36;20m2024-05-23 20:07:22,913 [aioxmpp.node] [DEBUG] no SRV records found for worker4, falling back
+[36;20m2024-05-23 20:07:22,913 [aioxmpp.node] [DEBUG] domain worker4: trying to connect to 'worker4':5222 using <aioxmpp.connector.STARTTLSConnector object at 0x0000024DE1B84A90>
+[36;20m2024-05-23 20:07:22,913 [aioxmpp.callbacks] [DEBUG] connecting <bound method XMLStream._deadtime_hard_limit_triggered of <aioxmpp.protocol.XMLStream object at 0x0000024DE1B85510>> with mode <bound method AdHocSignal.STRONG of <class 'aioxmpp.callbacks.AdHocSignal'>>
+[36;20m2024-05-23 20:07:22,913 [aioxmpp.callbacks] [DEBUG] connecting <aioxmpp.callbacks.AdHocSignal object at 0x0000024DE1B859F0> with mode <bound method AdHocSignal.STRONG of <class 'aioxmpp.callbacks.AdHocSignal'>>
+[36;20m2024-05-23 20:07:30,171 [aioxmpp.node] [WARNING] connection failed: [Errno 11001] getaddrinfo failed
+[36;20m2024-05-23 20:07:30,171 [SPADE] [ERROR] Exception in the event loop: failed to connect to XMPP domain 'worker4': multiple errors: [Errno 11001] getaddrinfo failed
+[36;20m2024-05-23 20:07:30,174 [SPADE] [DEBUG] Loop closed

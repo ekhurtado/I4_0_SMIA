@@ -1,12 +1,17 @@
+import logging
+
 from spade.behaviour import OneShotBehaviour
 from utilities import ConfigMap_utils, Submodels_utils
+
+_logger = logging.getLogger(__name__)
 
 
 class InitSubmodelsBehaviour(OneShotBehaviour):
     """
-    This class implements the behaviour responsible for initialize the submodels, performing the necessary actions to let
-    all submodels in the initial conditions to start the main program: obtain all the information from the ConfigMap
-    associated to the component, in order to create the necessary XML submodel files and store them in the AAS Archive.
+    This class implements the behaviour responsible for initialize the submodels, performing the necessary actions to
+    let all submodels in the initial conditions to start the main program: obtain all the information from the
+    ConfigMap associated to the component, in order to create the necessary XML submodel files and store them in the
+    AAS Archive.
     """
 
     def __init__(self, agent_object):
@@ -29,12 +34,12 @@ class InitSubmodelsBehaviour(OneShotBehaviour):
         # First, the selected submodels are obtained
         selected_submodel_names = ConfigMap_utils.get_submodel_names()
 
-        # TODO: faltaria comprobar entre los submodelos seleccionados cuales son propios de todos los AASs (los que seran
-        #  los propios del AAS Manager). El usuario podra proponer submodelos y tambien se escribira en el ConfigMap su
-        #  informacion, pero sera el AAS Core (desarrollado por el usuario) el encargado de generar el XML (como tambien de
-        #  actualizarlo, leerlo...), ya que es el usuario el que conoce su estructura
+        # TODO: faltaria comprobar entre los submodelos seleccionados cuales son propios de todos los AASs (los que
+        #  seran los propios del AAS Manager). El usuario podra proponer submodelos y tambien se escribira en el
+        #  ConfigMap su informacion, pero sera el AAS Core (desarrollado por el usuario) el encargado de generar el
+        #  XML (como tambien de actualizarlo, leerlo...), ya que es el usuario el que conoce su estructura
 
         # Create submodels files for each one
         Submodels_utils.create_submodel_files(selected_submodel_names)
 
-        print("AAS Archive initialized.")
+        _logger.info("Submodels initialized.")

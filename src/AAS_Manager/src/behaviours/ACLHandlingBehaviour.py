@@ -2,10 +2,13 @@ import logging
 
 from spade.behaviour import CyclicBehaviour
 
+_logger = logging.getLogger(__name__)
+
 
 class ACLHandlingBehaviour(CyclicBehaviour):
     """
-    This class implements the behaviour that handles all the ACL messages that the AAS Manager will receive from the others standardized AAS Manager in the I4.0 System.
+    This class implements the behaviour that handles all the ACL messages that the AAS Manager will receive from the
+    others standardized AAS Manager in the I4.0 System.
     """
 
     def __init__(self, agent_object):
@@ -21,24 +24,22 @@ class ACLHandlingBehaviour(CyclicBehaviour):
         # The SPADE agent object is stored as a variable of the behaviour class
         self.myagent = agent_object
 
-
-    async def on_start(self):
-        """
-        This method implements the initialization process of this behaviour. Here the template of the ACL message that will be received by the agent is set.
-        """
-        logging.basicConfig(level=logging.INFO)
-
-
+    # async def on_start(self):
+    #     """
+    #     This method implements the initialization process of this behaviour. Here the template of the ACL message
+    #     that will be received by the agent is set.
+    #     """
+    #     logging.basicConfig(level=logging.INFO)
 
     async def run(self):
         """
         This method implements the logic of the behaviour.
         """
-        print("ACLHandlingBehaviour running...")
+        _logger.info("ACLHandlingBehaviour running...")
 
         # Wait for a message with the standard ACL template to arrive.
         msg = await self.receive()
         if msg:
             # Se configura la información de logging: Imprime líneas con información sobre la conexión
-            print("         + Message received on GWAgent: GW AGENT (RcvBehaviour)")
-            print("                 |___ Message received with content: {}".format(msg.body))
+            _logger.info("         + Message received on GWAgent: GW AGENT (RcvBehaviour)")
+            _logger.info("                 |___ Message received with content: {}".format(msg.body))

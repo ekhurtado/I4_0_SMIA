@@ -1,10 +1,13 @@
 """ File to group useful methods for accessing and managing the AAS Archive."""
 import calendar
 import json
+import logging
 import os
 import time
 
 from utilities.AASarchiveInfo import AASarchiveInfo
+
+_logger = logging.getLogger(__name__)
 
 
 # ------------------------
@@ -107,7 +110,7 @@ def check_core_initialization():
             if file_to_json(AASarchiveInfo.CORE_STATUS_FILE_PATH)['status'] != "Initializing":
                 break
         time.sleep(1)  # waits 1s
-    print('AAS Core has initialized, so the AAS Manager is starting.')
+    _logger.info('AAS Core has initialized, so the AAS Manager is starting.')
 
 
 # ------------------------
@@ -127,7 +130,7 @@ def file_to_json(file_path):
         content = json.load(f)
         f.close()
     except json.JSONDecodeError as e:
-        print("Invalid JSON syntax:", e)
+        _logger.error("Invalid JSON syntax:" + str(e))
         return None
     return content
 
