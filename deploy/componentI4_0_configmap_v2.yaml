@@ -1,0 +1,57 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: component-i4-0-cm
+  namespace: default
+data:
+
+  # Properties files
+  aas.properties: |
+    [DEFAULT]
+    idShort=Test1AssetAdministrationShell
+    assetType=physical  # ESTO ES AÑADIDO POR MI (no esta en el metamodelo de RAMI)
+    
+    # DERIVEDFROM SOLO SI DERIVA DE OTRO AAS
+    [DERIVEDFROM]
+    type=gcis.ehu/aas/1/0/KeyTypes/AssetAdministrationShell
+    value=<id del AAS del que parte>
+
+    [DESCRIPTION]
+    text=Description of the first test of an AAS
+    language=en-us
+    
+    [ADMINISTRATION]
+    version=0
+    revision=1
+    
+    [ASSET_INFORMATION]
+    assetKind=gcis.ehu/aas/1/0/AssetKind/Instance
+    globalAssetId=gcis.ehu/asset/assemblyRobot/KukaKR3
+    specificAssetId=KukaKR3#1
+    
+
+  # PROPERTIES OF THE SUBMODEL Identification
+  submodel1.properties: |
+    [DEFAULT]
+    type=technical-data
+    value=gcis.ehu/Submodels/Assets/TestAsset/Identification
+    idShort=Identification
+    kind=gcis.ehu/aas/1/0/AssetKind/Instance
+
+    [DESCRIPTION]
+    text=Description of the Identification submodel
+    language=en-us
+
+    [SEMANTIC_ID]
+    semanticId.type=gcis.ehu/aas/3/0/KeyTypes/Submodel
+    semanticId.value=gcis.ehu/SubmodelTemplates/AssetIdentification
+    ...
+
+  # PROPERTIES OF THE SUBMODEL BillOfMaterial
+  submodel2.properties: |
+    [DEFAULT]
+    type=technical-data
+    value=gcis.ehu/Submodels/Assets/TestAsset/BillOfMaterial
+    ...
+
+  
