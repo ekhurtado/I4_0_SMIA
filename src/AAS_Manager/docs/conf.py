@@ -20,11 +20,11 @@ release = '0.1.0'
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = [
-    'sphinx.ext.autodoc',   # docString of the .py files
+    'sphinx.ext.autodoc',  # docString of the .py files
     # 'sphinx.ext.napoleon',  # To highlight some words
-    'sphinx.ext.viewcode',   # To show the source code
-    'sphinx.ext.autosectionlabel',   # It allows to refer sections its title (i.e. Parameters in docStrings).
-    'sphinx.ext.autosummary',   # It generates function/method/attribute summary lists
+    'sphinx.ext.viewcode',  # To show the source code
+    'sphinx.ext.autosectionlabel',  # It allows to refer sections its title (i.e. Parameters in docStrings).
+    'sphinx.ext.autosummary',  # It generates function/method/attribute summary lists
     # 'sphinx_rtd_theme',
 ]
 
@@ -34,12 +34,19 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'
 
-
-
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 # html_theme = 'alabaster'
-html_theme = 'sphinx_rtd_theme'   # currently not working
+html_theme = 'sphinx_rtd_theme'
 # html_theme = " 'classic"
 html_static_path = ['_static']
+
+# Configuration of sphinx_rtd_theme HTML theme
+html_theme_options = {
+    "navigation_depth": 2,
+    "collapse_navigation": False,
+    "logo_only": True
+}
+
+html_logo = 'images/Component_I4_0_logo_positive.png'
