@@ -6,10 +6,10 @@ COPY requirements.txt .
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY src /
+COPY sender_agent.py /
 
 WORKDIR /
 
 EXPOSE 7000
 
-CMD ["python3", "-u", "aas_manager.py"]
+CMD ["python3", "-u", "sender_agent.py"]

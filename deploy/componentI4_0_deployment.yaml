@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: aas-manager
-          image: ekhurtado/aas-manager:0.1.1
+          image: ekhurtado/aas-manager:latest
           imagePullPolicy: Always
           volumeMounts:
             - name: aas-archive
@@ -34,7 +34,7 @@ spec:
               mountPath: /aas_archive/config
 
         - name: aas-core
-          image: ekhurtado/aas-core:0.1.1
+          image: ekhurtado/aas-core:latest
           imagePullPolicy: Always
           volumeMounts:
             - name: aas-archive

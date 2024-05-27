@@ -1,8 +1,6 @@
 import logging
 
-from behaviours.CheckPhysicalAssetBehaviour import CheckPhysicalAssetSubmodel, CheckPhysicalAssetBehaviour
-from behaviours.InitAASarchiveBehaviour import InitAASarchiveBehaviour
-from behaviours.InitSubmodelsBehaviour import InitSubmodelsBehaviour
+from behaviours.CheckPhysicalAssetBehaviour import CheckPhysicalAssetBehaviour
 from states.StateBooting import StateBooting
 from utilities.AASmanagerInfo import AASmanagerInfo
 

@@ -82,7 +82,7 @@ public class Main {
         AAS_ArchiveUtils.changeStatus("InitializationReady");
 
         // Then, it waits until the AAS Manager is ready
-        while (!Objects.equals(AAS_ArchiveUtils.getManagerStatus(), "InitializationReady")) {
+        while (Objects.equals(AAS_ArchiveUtils.getManagerStatus(), "Initializing")) {
             System.out.println("AAS Manager has not yet been initialized.");
             Thread.sleep(1000); // Waits 1s
         }

@@ -18,8 +18,8 @@ class AASManagerAgent(Agent):
 
     async def setup(self):
         """
-        This method performs the common setup of all types of Managers. It defines the Finite State Machine of the
-        general (FSM) AAS Manager Agent.
+        This method performs the common setup of all types of Managers. It defines the Finite State Machine (FSM) of
+        the general AAS Manager Agent.
         """
 
         # First, the FSMBehaviour is instantiated
@@ -30,6 +30,10 @@ class AASManagerAgent(Agent):
         fsm_behaviour.add_state(name=AASmanagerInfo.RUNNING_STATE_NAME, state=StateRunning())
         fsm_behaviour.add_state(name=AASmanagerInfo.STOPPING_STATE_NAME, state=StateStopping())
 
-        # Añadir comportamiento FSM al agente
+        # Transitions are defined to determine from which state to which other state you are allowed to move to.
+        fsm_behaviour.add_transition(source=AASmanagerInfo.BOOTING_STATE_NAME, dest=AASmanagerInfo.RUNNING_STATE_NAME)
+        fsm_behaviour.add_transition(source=AASmanagerInfo.RUNNING_STATE_NAME, dest=AASmanagerInfo.STOPPING_STATE_NAME)
+
+        # The FSM behaviour is added to the agent
         self.add_behaviour(fsm_behaviour)
         _logger.info(f"{self.jid} setup finished correctly.")

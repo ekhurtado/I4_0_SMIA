@@ -1,9 +1,7 @@
 import logging
 from spade.behaviour import State
 
-from behaviours.ACLHandlingBehaviour import ACLHandlingBehaviour
 from behaviours.IdleBehaviour import IdleBehaviour
-from utilities.AASmanagerInfo import AASmanagerInfo
 
 _logger = logging.getLogger(__name__)
 

@@ -2,7 +2,7 @@ import logging
 from spade.behaviour import OneShotBehaviour
 
 from logic import Interactions_utils
-from utilities import AAS_Archive_utils, Submodels_utils
+from utilities import Submodels_utils
 from utilities.AASarchiveInfo import AASarchiveInfo
 
 _logger = logging.getLogger(__name__)

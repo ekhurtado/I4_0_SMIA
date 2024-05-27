@@ -16,7 +16,7 @@ class GeneralUtils:
 
         logging.basicConfig(
             level=logging.INFO,
-            format="\x1b[36;20m%(asctime)s [%(name)s] [%(levelname)s] %(message)s",
+            format="\x1b[36;20m%(asctime)s [%(name)s] [%(levelname)s] %(message)s\x1b[0m",
             handlers=[
                 # logging.FileHandler(AASarchiveInfo.LOG_FOLDER_PATH + '/' + AASarchiveInfo.AAS_MANAGER_LOG_FILENAME),
                 logging.FileHandler(AASarchiveInfo.AAS_MANAGER_LOG_FILENAME),  # For testing

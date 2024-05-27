@@ -2,9 +2,13 @@ import logging
 import spade
 
 from agents.AASManagerAgent import AASManagerAgent
+from agents.AASManagerAppAgent import AASManagerAppAgent
+from agents.AASManagerResourceAgent import AASManagerResourceAgent
 from utilities.GeneralUtils import GeneralUtils
 
-XMPP_SERVER = 'worker4'
+# XMPP_SERVER = 'worker4'
+XMPP_SERVER = 'ejabberd'
+
 _logger = logging.getLogger(__name__)
 
 """
@@ -35,11 +39,11 @@ async def main():
         case "physical":
             # TODO falta crear la clase que herede la general para activos físicos
             print("The asset is physical")
-            aas_manager_agent = None
+            aas_manager_agent = AASManagerResourceAgent(agent_jid, passwd)
         case "logical":
             # TODO falta crear la clase que herede la general para activos lógicos
             print("The asset is logical")
-            aas_manager_agent = None
+            aas_manager_agent = AASManagerAppAgent(agent_jid, passwd)
         case _:
             print("A generic AAS Manager")
             # Create the agent object

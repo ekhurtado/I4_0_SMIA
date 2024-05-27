@@ -2,6 +2,7 @@ import logging
 from spade.behaviour import State
 
 from behaviours.ACLHandlingBehaviour import ACLHandlingBehaviour
+from utilities import AAS_Archive_utils
 from utilities.AASmanagerInfo import AASmanagerInfo
 
 _logger = logging.getLogger(__name__)
@@ -20,10 +21,17 @@ class StateRunning(State):
 
         _logger.info("## STATE 2: RUNNING ##  (Initial state)")
 
+        # IAAS Manager is in the Running status
+        AAS_Archive_utils.change_status('Running')
+
         # On the one hand, a behaviour is required to handle ACL message
         acl_handling_behav = ACLHandlingBehaviour(self.agent)
         self.agent.add_behaviour(acl_handling_behav, AASmanagerInfo.STANDARD_ACL_TEMPLATE)
 
-        # Finished the Boot State the agent can move to the next state
-        _logger.info(f"{self.agent.jid} agent has finished it Boot state.")
-        self.set_next_state(AASmanagerInfo.RUNNING_STATE_NAME)
+        # Wait until the behaviour has finished. Is a CyclicBehaviour, so it will not end until an error occurs or, if
+        # desired, it can be terminated manually using "behaviour.kill()".
+        await acl_handling_behav.join()
+
+        # If the Execution Running State has been completed, the agent can move to the next state
+        _logger.info(f"{self.agent.jid} agent has finished it Running state.")
+        self.set_next_state(AASmanagerInfo.STOPPING_STATE_NAME)

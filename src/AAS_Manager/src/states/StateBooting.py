@@ -1,8 +1,10 @@
 import logging
 from spade.behaviour import State
 
+from behaviours.CheckCoreInitializationBehaviour import CheckCoreInitializationBehaviour
 from behaviours.InitAASarchiveBehaviour import InitAASarchiveBehaviour
 from behaviours.InitSubmodelsBehaviour import InitSubmodelsBehaviour
+from utilities import AAS_Archive_utils
 from utilities.AASmanagerInfo import AASmanagerInfo
 
 _logger = logging.getLogger(__name__)
@@ -43,6 +45,14 @@ class StateBooting(State):
         # Wait until the behaviours have finished because the AAS Archive has to be initialized to pass to running state.
         await init_aas_archive_behav.join()
         await init_submodels_behav.join()
+
+        # If the initialization behaviour has completed, AAS Manager is in the InitializationReady status
+        AAS_Archive_utils.change_status('InitializationReady')
+
+        # Wait until the AAS Core has initialized
+        check_core_initialization_behav = CheckCoreInitializationBehaviour(self.agent)
+        self.agent.add_behaviour(check_core_initialization_behav)
+        await check_core_initialization_behav.join()
 
         # Finished the Boot State the agent can move to the next state
         _logger.info(f"{self.agent.jid} agent has finished it Boot state.")
