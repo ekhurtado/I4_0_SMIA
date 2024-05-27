@@ -14,7 +14,7 @@ _logger = logging.getLogger(__name__)
 # --------------------------------------------
 # Methods related to requests (by AAS Manager)
 # --------------------------------------------
-def create_svc_request_json(interaction_id, svc_id, svc_type, svc_data):
+def create_svc_request_json(interaction_id, svc_id, svc_type, svc_data = None):
     """
     This method creates a service request JSON object.
 
@@ -22,16 +22,18 @@ def create_svc_request_json(interaction_id, svc_id, svc_type, svc_data):
         interaction_id (int): Identifier of the interaction.
         svc_id (str): Identifier of the service
         svc_type (str): Type of the service.
-        svc_data (dict): Data of the service in JSON format.
+        svc_data (dict, optional): Data of the service in JSON format.
 
     Returns:
         dict: a JSON object with the service request information.
     """
     svc_request_json = {"interactionID": interaction_id,
                         "serviceID": svc_id,
-                        "serviceType": svc_type,
-                        "serviceData": svc_data
+                        "serviceType": svc_type
                         }
+    if svc_data is not None:
+        svc_request_json['serviceData'] = svc_data
+
     svc_request_json['serviceData']['timestamp'] = calendar.timegm(time.gmtime())
     return svc_request_json
 

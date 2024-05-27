@@ -21,7 +21,8 @@ def create_submodel_files(submodel_names_list):
     This method creates all the files associated to the selected submodels.
 
     Args:
-        submodel_names_list (list(str)): list of submodel names."""
+        submodel_names_list (list(str)): list of submodel names.
+        """
     for submodel_name in submodel_names_list:
         # Get the submodel information from ConfigMap
         submodel_data = ConfigMap_utils.get_submodel_information(submodel_name)
@@ -85,3 +86,22 @@ def create_configuration_sm(submodel_data):
     AAS_Archive_utils.xml_to_file(
         AASarchiveInfo.SUBMODEL_FOLDER_PATH + '/' + AASarchiveInfo.CONFIGURATION_SM_FILENAME,
         etree.tostring(submodel_xml_content))
+
+def check_if_submodel_exists(submodel_name):
+    """
+    This method checks if a submodel exist by its name.
+
+    Args:
+        submodel_name(str): Name of the submodel
+
+    Returns:
+        boolean: True if submodel exists and False if not.
+    """
+
+    # First, if the submodel.properties file exists has to be checked
+    if os.path.isfile(AASarchiveInfo.CONFIG_MAP_PATH + '/' + AASarchiveInfo.CM_SM_PROPERTIES_FILENAME) is False:
+        return False
+    else:
+        # Read each submodel definition files to get the submodel
+        # TODO
+        return True # Under developing

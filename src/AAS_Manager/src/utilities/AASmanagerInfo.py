@@ -8,6 +8,7 @@ class AASmanagerInfo:
     BOOTING_STATE_NAME = 'BOOTING'
     RUNNING_STATE_NAME = 'RUNNING'
     STOPPING_STATE_NAME = 'STOPPING'
+    IDLE_STATE_NAME = 'IDLE'
 
     # Object of the standard template for communication through ACL messages
     # TODO finalizar con el plantilla estandar final decidida para la comunicacion entre agentes

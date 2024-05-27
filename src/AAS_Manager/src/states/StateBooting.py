@@ -19,6 +19,14 @@ class StateBooting(State):
         are performed.
         """
 
+        await self.booting_state_logic()
+        self.set_next_state(AASmanagerInfo.RUNNING_STATE_NAME)
+
+    async def booting_state_logic(self):
+        """
+        This method contains the logic of the boot state of the common AAS Manager. This method can be used by any
+        inherited class.
+        """
         _logger.info("## STATE 1: BOOTING ##  (Initial state)")
 
         # First, the interactionId is reset
@@ -32,10 +40,9 @@ class StateBooting(State):
         init_submodels_behav = InitSubmodelsBehaviour(self.agent)
         self.agent.add_behaviour(init_submodels_behav)
 
-        # Wait until the behaviour has finished because the AAS Archive has to be initialized to pass to running state.
+        # Wait until the behaviours have finished because the AAS Archive has to be initialized to pass to running state.
         await init_aas_archive_behav.join()
         await init_submodels_behav.join()
 
         # Finished the Boot State the agent can move to the next state
         _logger.info(f"{self.agent.jid} agent has finished it Boot state.")
-        self.set_next_state(AASmanagerInfo.RUNNING_STATE_NAME)
