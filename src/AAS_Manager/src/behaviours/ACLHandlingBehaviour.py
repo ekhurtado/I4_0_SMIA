@@ -55,12 +55,20 @@ class ACLHandlingBehaviour(CyclicBehaviour):
                 # TODO esta hecho asi para pruebas, pero hay que pensar el procedimiento a seguir a la hora de gestionar los mensajes ACL
                 case "AssetRelatedService":
                     Services_utils.handle_asset_related_svc(self.agent.interaction_id, msg_json_body)
+                    # Since a new service has been request, the interaction of the agent has to be incremented
+                    self.myagent.interaction_id += 1
                 case "AASInfrastructureServices":
                     Services_utils.handle_aas_infrastructure_svc(self.agent.interaction_id, msg_json_body)
+                    # Since a new service has been request, the interaction of the agent has to be incremented
+                    self.myagent.interaction_id += 1
                 case "AASservices":
                     Services_utils.handle_aas_services(self.agent.interaction_id, msg_json_body)
+                    # Since a new service has been request, the interaction of the agent has to be incremented
+                    self.myagent.interaction_id += 1
                 case "SubmodelServices":
                     Services_utils.handle_submodel_services(self.agent.interaction_id, msg_json_body)
+                    # Since a new service has been request, the interaction of the agent has to be incremented
+                    self.myagent.interaction_id += 1
                 case _:
                     _logger.error("Service type not available.")
         else:

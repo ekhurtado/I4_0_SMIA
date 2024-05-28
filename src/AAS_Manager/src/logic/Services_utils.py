@@ -42,6 +42,7 @@ def handle_asset_related_svc(svc_interaction_id, svc_data):
                                                          AASarchiveInfo.ASSET_RELATED_SVC_LOG_FILENAME,
                                                          svc_interaction_id)
             # Return message to the sender
+            _logger.info("Service completed! Response: " + str(svc_response))
             return "Service completed! Response: " + str(svc_response)
 
         # Waits 2 seconds
