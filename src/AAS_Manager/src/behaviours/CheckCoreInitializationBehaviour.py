@@ -35,7 +35,10 @@ class CheckCoreInitializationBehaviour(CyclicBehaviour):
         """
         # If the file does not exist the behaviour continues to start and check again
         if os.path.isfile(AASarchiveInfo.CORE_STATUS_FILE_PATH) is True:
-            if file_to_json(AASarchiveInfo.CORE_STATUS_FILE_PATH)['status'] != "Initializing":
-                # If the status is not "Initializing" the AAS Core is ready, so the behaviour is finished
-                _logger.info('AAS Core has initialized, so the AAS Manager can be switched to the run state.')
-                self.kill()
+            core_status_json = file_to_json(AASarchiveInfo.CORE_STATUS_FILE_PATH)
+            # If the file exists, but the JSON has not been created properly, the AAS Core is not ready yet.
+            if core_status_json is not None:
+                if core_status_json['status'] != "Initializing":
+                    # If the status is not "Initializing" the AAS Core is ready, so the behaviour is finished
+                    _logger.info('AAS Core has initialized, so the AAS Manager can be switched to the run state.')
+                    self.kill()

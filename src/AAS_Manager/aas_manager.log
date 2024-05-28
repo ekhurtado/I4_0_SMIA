@@ -7696,3 +7696,160 @@ KeyboardInterrupt
 [36;20m2024-05-28 11:16:55,838 [__main__] [WARNING] warning[0m
 [36;20m2024-05-28 11:16:58,274 [aioxmpp.node] [WARNING] connection failed: [Errno 11001] getaddrinfo failed[0m
 [36;20m2024-05-28 11:16:58,275 [SPADE] [ERROR] Exception in the event loop: failed to connect to XMPP domain 'ejabberd': multiple errors: [Errno 11001] getaddrinfo failed[0m
+[36;20m2024-05-28 11:30:11,815 [__main__] [INFO] Initializing AAS Manager program...[0m
+[36;20m2024-05-28 11:30:12,451 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun)[0m
+[36;20m2024-05-28 11:30:12,467 [aasmanager001] [INFO] bound to jid: aasmanager001@worker4/Ad0-UvFN[0m
+[36;20m2024-05-28 11:30:12,508 [spade.Agent] [INFO] Agent aasmanager001@worker4 connected and authenticated.[0m
+[36;20m2024-05-28 11:30:17,655 [agents.AASManagerAgent] [INFO] aasmanager001@worker4 setup finished correctly.[0m
+[36;20m2024-05-28 11:30:17,657 [behaviours.AASFSMBehaviour] [INFO]     ** FSM starting at initial state --> BOOTING[0m
+[36;20m2024-05-28 11:30:17,658 [spade.behaviour] [INFO] FSM running state BOOTING[0m
+[36;20m2024-05-28 11:30:17,659 [states.StateBooting] [INFO] ## STATE 1: BOOTING ##  (Initial state)[0m
+[36;20m2024-05-28 11:30:17,660 [spade.behaviour] [ERROR] Exception running state FSMBehaviour/AASFSMBehaviour: [Errno 2] No such file or directory: '/aas_archive/status/aas_manager.json'[0m
+[36;20m2024-05-28 11:30:17,661 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: [Errno 2] No such file or directory: '/aas_archive/status/aas_manager.json'[0m
+[36;20m2024-05-28 11:30:17,661 [spade.behaviour] [INFO] FSM arrived to a final state (no transitions found). Killing FSM.[0m
+[36;20m2024-05-28 11:30:17,662 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None[0m
+[36;20m2024-05-28 11:30:17,662 [behaviours.AASFSMBehaviour] [INFO]     ** FSM finished at state --> BOOTING[0m
+[36;20m2024-05-28 11:30:17,663 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None[0m
+[36;20m2024-05-28 11:30:17,664 [aasmanager001] [INFO] client shutting down (on request)[0m
+[36;20m2024-05-28 11:30:17,666 [aasmanager001] [INFO] stopping stream[0m
+[36;20m2024-05-28 11:30:17,667 [spade.Agent] [INFO] Client disconnected.[0m
+[36;20m2024-05-28 11:30:17,668 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None[0m
+[36;20m2024-05-28 11:30:18,653 [SPADE] [INFO] Stopping agent aasmanager001@worker4[0m
+[36;20m2024-05-28 11:30:46,978 [__main__] [INFO] Initializing AAS Manager program...[0m
+[36;20m2024-05-28 11:30:47,314 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun)[0m
+[36;20m2024-05-28 11:30:47,331 [aasmanager001] [INFO] bound to jid: aasmanager001@worker4/90XLYfZh[0m
+[36;20m2024-05-28 11:30:47,339 [spade.Agent] [INFO] Agent aasmanager001@worker4 connected and authenticated.[0m
+[36;20m2024-05-28 11:30:47,340 [agents.AASManagerAgent] [INFO] aasmanager001@worker4 setup finished correctly.[0m
+[36;20m2024-05-28 11:30:47,341 [behaviours.AASFSMBehaviour] [INFO]     ** FSM starting at initial state --> BOOTING[0m
+[36;20m2024-05-28 11:30:47,341 [spade.behaviour] [INFO] FSM running state BOOTING[0m
+[36;20m2024-05-28 11:30:47,342 [states.StateBooting] [INFO] ## STATE 1: BOOTING ##  (Initial state)[0m
+[36;20m2024-05-28 11:30:47,343 [spade.behaviour] [ERROR] Exception running state FSMBehaviour/AASFSMBehaviour: [Errno 2] No such file or directory: '/aas_archive/status/aas_manager.json'[0m
+[36;20m2024-05-28 11:30:47,343 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: [Errno 2] No such file or directory: '/aas_archive/status/aas_manager.json'[0m
+[36;20m2024-05-28 11:30:47,343 [spade.behaviour] [INFO] FSM arrived to a final state (no transitions found). Killing FSM.[0m
+[36;20m2024-05-28 11:30:47,343 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None[0m
+[36;20m2024-05-28 11:30:47,344 [behaviours.AASFSMBehaviour] [INFO]     ** FSM finished at state --> BOOTING[0m
+[36;20m2024-05-28 11:30:47,344 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None[0m
+[36;20m2024-05-28 11:30:47,345 [aasmanager001] [INFO] client shutting down (on request)[0m
+[36;20m2024-05-28 11:30:47,347 [aasmanager001] [INFO] stopping stream[0m
+[36;20m2024-05-28 11:30:47,347 [spade.Agent] [INFO] Client disconnected.[0m
+[36;20m2024-05-28 11:30:47,347 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None[0m
+[36;20m2024-05-28 11:30:48,348 [SPADE] [INFO] Stopping agent aasmanager001@worker4[0m
+[36;20m2024-05-28 11:31:00,413 [__main__] [INFO] Initializing AAS Manager program...[0m
+[36;20m2024-05-28 11:31:00,734 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun)[0m
+[36;20m2024-05-28 11:31:00,749 [aasmanager001] [INFO] bound to jid: aasmanager001@worker4/vIl01vfs[0m
+[36;20m2024-05-28 11:31:00,757 [spade.Agent] [INFO] Agent aasmanager001@worker4 connected and authenticated.[0m
+[36;20m2024-05-28 11:31:02,397 [agents.AASManagerAgent] [INFO] aasmanager001@worker4 setup finished correctly.[0m
+[36;20m2024-05-28 11:31:02,398 [behaviours.AASFSMBehaviour] [INFO]     ** FSM starting at initial state --> BOOTING[0m
+[36;20m2024-05-28 11:31:02,398 [spade.behaviour] [INFO] FSM running state BOOTING[0m
+[36;20m2024-05-28 11:31:02,399 [states.StateBooting] [INFO] ## STATE 1: BOOTING ##  (Initial state)[0m
+[36;20m2024-05-28 11:31:02,400 [spade.behaviour] [ERROR] Exception running state FSMBehaviour/AASFSMBehaviour: [Errno 2] No such file or directory: '/aas_archive/status/aas_manager.json'[0m
+[36;20m2024-05-28 11:31:02,400 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: [Errno 2] No such file or directory: '/aas_archive/status/aas_manager.json'[0m
+[36;20m2024-05-28 11:31:02,401 [spade.behaviour] [INFO] FSM arrived to a final state (no transitions found). Killing FSM.[0m
+[36;20m2024-05-28 11:31:02,401 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None[0m
+[36;20m2024-05-28 11:31:02,401 [behaviours.AASFSMBehaviour] [INFO]     ** FSM finished at state --> BOOTING[0m
+[36;20m2024-05-28 11:31:02,402 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None[0m
+[36;20m2024-05-28 11:31:02,402 [aasmanager001] [INFO] client shutting down (on request)[0m
+[36;20m2024-05-28 11:31:02,404 [aasmanager001] [INFO] stopping stream[0m
+[36;20m2024-05-28 11:31:02,405 [spade.Agent] [INFO] Client disconnected.[0m
+[36;20m2024-05-28 11:31:02,405 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None[0m
+[36;20m2024-05-28 11:31:03,390 [SPADE] [INFO] Stopping agent aasmanager001@worker4[0m
+[36;20m2024-05-28 11:31:16,799 [__main__] [INFO] Initializing AAS Manager program...[0m
+[36;20m2024-05-28 11:31:17,113 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun)[0m
+[36;20m2024-05-28 11:31:17,127 [aasmanager001] [INFO] bound to jid: aasmanager001@worker4/q7mVTA8O[0m
+[36;20m2024-05-28 11:31:17,135 [spade.Agent] [INFO] Agent aasmanager001@worker4 connected and authenticated.[0m
+[36;20m2024-05-28 11:31:22,150 [agents.AASManagerAgent] [INFO] aasmanager001@worker4 setup finished correctly.[0m
+[36;20m2024-05-28 11:31:24,218 [behaviours.AASFSMBehaviour] [INFO]     ** FSM starting at initial state --> BOOTING[0m
+[36;20m2024-05-28 11:31:24,219 [spade.behaviour] [INFO] FSM running state BOOTING[0m
+[36;20m2024-05-28 11:31:24,220 [states.StateBooting] [INFO] ## STATE 1: BOOTING ##  (Initial state)[0m
+[36;20m2024-05-28 11:31:24,221 [spade.behaviour] [ERROR] Exception running state FSMBehaviour/AASFSMBehaviour: [Errno 2] No such file or directory: '/aas_archive/status/aas_manager.json'[0m
+[36;20m2024-05-28 11:31:24,222 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: [Errno 2] No such file or directory: '/aas_archive/status/aas_manager.json'[0m
+[36;20m2024-05-28 11:31:24,223 [spade.behaviour] [INFO] FSM arrived to a final state (no transitions found). Killing FSM.[0m
+[36;20m2024-05-28 11:31:24,224 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None[0m
+[36;20m2024-05-28 11:31:24,224 [behaviours.AASFSMBehaviour] [INFO]     ** FSM finished at state --> BOOTING[0m
+[36;20m2024-05-28 11:31:24,227 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None[0m
+[36;20m2024-05-28 11:31:24,228 [aasmanager001] [INFO] client shutting down (on request)[0m
+[36;20m2024-05-28 11:31:24,230 [aasmanager001] [INFO] stopping stream[0m
+[36;20m2024-05-28 11:31:24,231 [spade.Agent] [INFO] Client disconnected.[0m
+[36;20m2024-05-28 11:31:24,231 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None[0m
+[36;20m2024-05-28 11:31:25,217 [SPADE] [INFO] Stopping agent aasmanager001@worker4[0m
+[36;20m2024-05-28 11:31:40,201 [__main__] [INFO] Initializing AAS Manager program...[0m
+[36;20m2024-05-28 11:31:40,543 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun)[0m
+[36;20m2024-05-28 11:31:40,565 [aasmanager001] [INFO] bound to jid: aasmanager001@worker4/Th6LPHmZ[0m
+[36;20m2024-05-28 11:31:40,573 [spade.Agent] [INFO] Agent aasmanager001@worker4 connected and authenticated.[0m
+[36;20m2024-05-28 11:31:42,543 [agents.AASManagerAgent] [INFO] aasmanager001@worker4 setup finished correctly.[0m
+[36;20m2024-05-28 11:31:42,544 [behaviours.AASFSMBehaviour] [INFO]     ** FSM starting at initial state --> BOOTING[0m
+[36;20m2024-05-28 11:31:42,545 [spade.behaviour] [INFO] FSM running state BOOTING[0m
+[36;20m2024-05-28 11:31:44,275 [states.StateBooting] [INFO] ## STATE 1: BOOTING ##  (Initial state)[0m
+[36;20m2024-05-28 11:31:44,984 [spade.behaviour] [ERROR] Exception running state FSMBehaviour/AASFSMBehaviour: [Errno 2] No such file or directory: '/aas_archive/status/aas_manager.json'[0m
+[36;20m2024-05-28 11:31:44,985 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: [Errno 2] No such file or directory: '/aas_archive/status/aas_manager.json'[0m
+[36;20m2024-05-28 11:31:44,986 [spade.behaviour] [INFO] FSM arrived to a final state (no transitions found). Killing FSM.[0m
+[36;20m2024-05-28 11:31:44,986 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None[0m
+[36;20m2024-05-28 11:31:44,987 [behaviours.AASFSMBehaviour] [INFO]     ** FSM finished at state --> BOOTING[0m
+[36;20m2024-05-28 11:31:44,988 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None[0m
+[36;20m2024-05-28 11:31:44,989 [aasmanager001] [INFO] client shutting down (on request)[0m
+[36;20m2024-05-28 11:31:44,991 [aasmanager001] [INFO] stopping stream[0m
+[36;20m2024-05-28 11:31:44,992 [spade.Agent] [INFO] Client disconnected.[0m
+[36;20m2024-05-28 11:31:44,993 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None[0m
+[36;20m2024-05-28 11:31:45,994 [SPADE] [INFO] Stopping agent aasmanager001@worker4[0m
+[36;20m2024-05-28 11:31:57,028 [__main__] [INFO] Initializing AAS Manager program...[0m
+[36;20m2024-05-28 11:31:57,357 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun)[0m
+[36;20m2024-05-28 11:31:57,371 [aasmanager001] [INFO] bound to jid: aasmanager001@worker4/n6V1glv0[0m
+[36;20m2024-05-28 11:31:57,380 [spade.Agent] [INFO] Agent aasmanager001@worker4 connected and authenticated.[0m
+[36;20m2024-05-28 11:32:05,946 [agents.AASManagerAgent] [INFO] aasmanager001@worker4 setup finished correctly.[0m
+[36;20m2024-05-28 11:32:05,948 [behaviours.AASFSMBehaviour] [INFO]     ** FSM starting at initial state --> BOOTING[0m
+[36;20m2024-05-28 11:32:05,948 [spade.behaviour] [INFO] FSM running state BOOTING[0m
+[36;20m2024-05-28 11:32:08,306 [states.StateBooting] [INFO] ## STATE 1: BOOTING ##  (Initial state)[0m
+[36;20m2024-05-28 11:32:19,855 [behaviours.CheckCoreInitializationBehaviour] [INFO] AAS Core has initialized, so the AAS Manager can be switched to the run state.[0m
+[36;20m2024-05-28 11:34:11,025 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE...[0m
+[36;20m2024-05-28 11:34:11,029 [asyncio] [ERROR] Task exception was never retrieved
+future: <Task finished name='Task-17' coro=<CyclicBehaviour._start() done, defined at C:\Python310\lib\site-packages\spade\behaviour.py:126> exception=KeyboardInterrupt()>[0m
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\spade\container.py", line 114, in run_container
+    container.run(main_func)
+  File "C:\Python310\lib\site-packages\spade\container.py", line 108, in run
+    self.loop.run_until_complete(coro)
+  File "C:\Python310\lib\asyncio\base_events.py", line 636, in run_until_complete
+    self.run_forever()
+  File "C:\Python310\lib\asyncio\base_events.py", line 603, in run_forever
+    self._run_once()
+  File "C:\Python310\lib\asyncio\base_events.py", line 1909, in _run_once
+    handle._run()
+  File "C:\Python310\lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 140, in _start
+    await self._step()
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 285, in _step
+    await self._run()
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 274, in _run
+    await self.run()
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\Component_I4_0\src\AAS_Manager\src\behaviours\CheckCoreInitializationBehaviour.py", line 41, in run
+    if core_status_json['status'] != "Initializing":
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\Component_I4_0\src\AAS_Manager\src\behaviours\CheckCoreInitializationBehaviour.py", line 41, in run
+    if core_status_json['status'] != "Initializing":
+  File "_pydevd_bundle\pydevd_cython_win32_310_64.pyx", line 1179, in _pydevd_bundle.pydevd_cython_win32_310_64.SafeCallWrapper.__call__
+  File "_pydevd_bundle\pydevd_cython_win32_310_64.pyx", line 620, in _pydevd_bundle.pydevd_cython_win32_310_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_310_64.pyx", line 1095, in _pydevd_bundle.pydevd_cython_win32_310_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_310_64.pyx", line 1057, in _pydevd_bundle.pydevd_cython_win32_310_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_310_64.pyx", line 317, in _pydevd_bundle.pydevd_cython_win32_310_64.PyDBFrame.do_wait_suspend
+  File "C:\Program Files\JetBrains\PyCharm 2023.2.1\plugins\python\helpers\pydev\pydevd.py", line 1160, in do_wait_suspend
+    self._do_wait_suspend(thread, frame, event, arg, suspend_type, from_this_thread)
+  File "C:\Program Files\JetBrains\PyCharm 2023.2.1\plugins\python\helpers\pydev\pydevd.py", line 1175, in _do_wait_suspend
+    time.sleep(0.01)
+KeyboardInterrupt
+[36;20m2024-05-28 11:34:11,028 [aasmanager001] [ERROR] stream failed: connection timeout (dead time hard limit exceeded)[0m
+[36;20m2024-05-28 11:34:11,094 [aasmanager001] [INFO] stopping stream[0m
+[36;20m2024-05-28 11:34:11,094 [aasmanager001] [INFO] connection error: (ConnectionError) connection timeout (dead time hard limit exceeded)[0m
+[36;20m2024-05-28 11:34:11,095 [spade.behaviour] [INFO] FSM running state BOOTING[0m
+[36;20m2024-05-28 11:34:11,096 [states.StateBooting] [INFO] ## STATE 1: BOOTING ##  (Initial state)[0m
+[36;20m2024-05-28 11:34:11,098 [behaviours.CheckCoreInitializationBehaviour] [INFO] AAS Core has initialized, so the AAS Manager can be switched to the run state.[0m
+[36;20m2024-05-28 11:34:11,098 [spade.behaviour] [INFO] Killing behavior CyclicBehaviour/CheckCoreInitializationBehaviour with exit code: None[0m
+[36;20m2024-05-28 11:34:11,099 [spade.behaviour] [INFO] Killing behavior CyclicBehaviour/CheckCoreInitializationBehaviour with exit code: None[0m
+[36;20m2024-05-28 11:34:11,100 [states.StateBooting] [INFO] aasmanager001@worker4 agent has finished it Boot state.[0m
+[36;20m2024-05-28 11:34:11,100 [spade.behaviour] [INFO] FSM transiting from BOOTING to RUNNING.[0m
+[36;20m2024-05-28 11:34:11,100 [spade.behaviour] [INFO] FSM running state RUNNING[0m
+[36;20m2024-05-28 11:34:11,101 [states.StateRunning] [INFO] ## STATE 2: RUNNING ##  (Initial state)[0m
+[36;20m2024-05-28 11:34:11,102 [spade.behaviour] [ERROR] Exception running state FSMBehaviour/AASFSMBehaviour: [Errno 2] No such file or directory: '/aas_archive/status/aas_manager.json'[0m
+[36;20m2024-05-28 11:34:11,102 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: [Errno 2] No such file or directory: '/aas_archive/status/aas_manager.json'[0m
+[36;20m2024-05-28 11:34:11,103 [spade.behaviour] [INFO] FSM arrived to a final state (no transitions found). Killing FSM.[0m
+[36;20m2024-05-28 11:34:11,103 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None[0m
+[36;20m2024-05-28 11:34:11,104 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None[0m
