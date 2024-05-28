@@ -14,7 +14,7 @@ sys.path.insert(0, os.path.abspath('../src'))
 project = 'AAS Manager'
 copyright = '2024, Ekaitz Hurtado'
 author = 'Ekaitz Hurtado'
-release = '0.1.0'
+release = '0.1.1'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -39,7 +39,6 @@ pygments_style = 'sphinx'
 
 # html_theme = 'alabaster'
 html_theme = 'sphinx_rtd_theme'
-# html_theme = " 'classic"
 html_static_path = ['_static']
 
 # Add the CSS file to use all width of the webpage
