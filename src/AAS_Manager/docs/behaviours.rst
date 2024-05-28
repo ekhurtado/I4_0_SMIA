@@ -9,6 +9,10 @@ Submodules
 
    behaviours.AASFSMBehaviour
    behaviours.ACLHandlingBehaviour
+   behaviours.CheckCoreInitializationBehaviour
+   behaviours.CheckPhysicalAssetBehaviour
+   behaviours.EndBehaviour
+   behaviours.IdleBehaviour
    behaviours.InitAASarchiveBehaviour
    behaviours.InitSubmodelsBehaviour
 

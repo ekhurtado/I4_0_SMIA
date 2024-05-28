@@ -8,6 +8,8 @@ Submodules
    :maxdepth: 4
 
    states.StateBooting
+   states.StateBootingResource
+   states.StateIdle
    states.StateRunning
    states.StateStopping
 
