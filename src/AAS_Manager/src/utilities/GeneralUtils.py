@@ -23,3 +23,10 @@ class GeneralUtils:
                 logging.StreamHandler()
             ]
         )
+
+        # Set red color for error messages
+        errorConsole = logging.StreamHandler()
+        errorConsole.setLevel(logging.ERROR)
+        formatter = logging.Formatter('\x1b[31;20m%(asctime)s [%(name)s] [%(levelname)s] %(message)s\x1b[0m')
+        errorConsole.setFormatter(formatter)
+        logging.getLogger('').addHandler(errorConsole)

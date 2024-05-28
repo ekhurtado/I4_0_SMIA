@@ -7651,3 +7651,48 @@ Traceback (most recent call last):
   File "C:\Program Files\JetBrains\PyCharm 2023.2.1\plugins\python\helpers\pydev\pydevd.py", line 1175, in _do_wait_suspend
     time.sleep(0.01)
 KeyboardInterrupt
+[36;20m2024-05-28 11:08:40,447 [__main__] [INFO] Info...[0m
+[36;20m2024-05-28 11:08:40,448 [__main__] [ERROR] error[0m
+[36;20m2024-05-28 11:08:40,448 [__main__] [WARNING] warning[0m
+[36;20m2024-05-28 11:08:42,937 [aioxmpp.node] [WARNING] connection failed: [Errno 11001] getaddrinfo failed[0m
+[36;20m2024-05-28 11:08:42,938 [SPADE] [ERROR] Exception in the event loop: failed to connect to XMPP domain 'ejabberd': multiple errors: [Errno 11001] getaddrinfo failed[0m
+[36;20m2024-05-28 11:09:55,075 [__main__] [ERROR] error[0m
+[36;20m2024-05-28 11:09:57,539 [SPADE] [ERROR] Exception in the event loop: failed to connect to XMPP domain 'ejabberd': multiple errors: [Errno 11001] getaddrinfo failed[0m
+[36;20m2024-05-28 11:11:48,272 [__main__] [INFO] Info...[0m
+[36;20m2024-05-28 11:11:48,272 [__main__] [ERROR] error[0m
+[36;20m2024-05-28 11:11:48,273 [__main__] [WARNING] warning[0m
+[36;20m2024-05-28 11:11:50,727 [aioxmpp.node] [WARNING] connection failed: [Errno 11001] getaddrinfo failed[0m
+[36;20m2024-05-28 11:11:50,728 [SPADE] [ERROR] Exception in the event loop: failed to connect to XMPP domain 'ejabberd': multiple errors: [Errno 11001] getaddrinfo failed[0m
+[36;20m2024-05-28 11:12:27,916 [__main__] [INFO] Info...[0m
+[36;20m2024-05-28 11:12:27,917 [__main__] [ERROR] error[0m
+[36;20m2024-05-28 11:12:27,917 [__main__] [WARNING] warning[0m
+[36;20m2024-05-28 11:12:30,279 [aioxmpp.node] [WARNING] connection failed: [Errno 11001] getaddrinfo failed[0m
+[36;20m2024-05-28 11:12:30,280 [SPADE] [ERROR] Exception in the event loop: failed to connect to XMPP domain 'ejabberd': multiple errors: [Errno 11001] getaddrinfo failed[0m
+[36;20m2024-05-28 11:13:52,095 [__main__] [INFO] Info...[0m
+[36;20m2024-05-28 11:13:52,096 [__main__] [ERROR] error[0m
+[36;20m2024-05-28 11:13:52,097 [__main__] [WARNING] warning[0m
+[36;20m2024-05-28 11:13:54,587 [aioxmpp.node] [WARNING] connection failed: [Errno 11001] getaddrinfo failed[0m
+[36;20m2024-05-28 11:13:54,588 [SPADE] [ERROR] Exception in the event loop: failed to connect to XMPP domain 'ejabberd': multiple errors: [Errno 11001] getaddrinfo failed[0m
+[36;20m2024-05-28 11:14:08,426 [__main__] [INFO] Info...[0m
+[36;20m2024-05-28 11:14:08,426 [__main__] [ERROR] error[0m
+[36;20m2024-05-28 11:14:08,427 [__main__] [WARNING] warning[0m
+[36;20m2024-05-28 11:14:10,781 [aioxmpp.node] [WARNING] connection failed: [Errno 11001] getaddrinfo failed[0m
+[36;20m2024-05-28 11:14:10,782 [SPADE] [ERROR] Exception in the event loop: failed to connect to XMPP domain 'ejabberd': multiple errors: [Errno 11001] getaddrinfo failed[0m
+[36;20m2024-05-28 11:14:43,882 [__main__] [INFO] Initializing AAS Manager program...[0m
+[36;20m2024-05-28 11:14:43,882 [__main__] [INFO] Info...[0m
+[36;20m2024-05-28 11:14:43,883 [__main__] [ERROR] error[0m
+[36;20m2024-05-28 11:14:43,883 [__main__] [WARNING] warning[0m
+[36;20m2024-05-28 11:14:46,243 [aioxmpp.node] [WARNING] connection failed: [Errno 11001] getaddrinfo failed[0m
+[36;20m2024-05-28 11:14:46,244 [SPADE] [ERROR] Exception in the event loop: failed to connect to XMPP domain 'ejabberd': multiple errors: [Errno 11001] getaddrinfo failed[0m
+2024-05-28 11:16:04,202 [__main__] [INFO] Initializing AAS Manager program...[0m
+2024-05-28 11:16:04,202 [__main__] [INFO] Info...[0m
+2024-05-28 11:16:04,203 [__main__] [ERROR] error[0m
+2024-05-28 11:16:04,203 [__main__] [WARNING] warning[0m
+2024-05-28 11:16:06,555 [aioxmpp.node] [WARNING] connection failed: [Errno 11001] getaddrinfo failed[0m
+2024-05-28 11:16:06,556 [SPADE] [ERROR] Exception in the event loop: failed to connect to XMPP domain 'ejabberd': multiple errors: [Errno 11001] getaddrinfo failed[0m
+[36;20m2024-05-28 11:16:55,837 [__main__] [INFO] Initializing AAS Manager program...[0m
+[36;20m2024-05-28 11:16:55,837 [__main__] [INFO] Info...[0m
+[36;20m2024-05-28 11:16:55,838 [__main__] [ERROR] error[0m
+[36;20m2024-05-28 11:16:55,838 [__main__] [WARNING] warning[0m
+[36;20m2024-05-28 11:16:58,274 [aioxmpp.node] [WARNING] connection failed: [Errno 11001] getaddrinfo failed[0m
+[36;20m2024-05-28 11:16:58,275 [SPADE] [ERROR] Exception in the event loop: failed to connect to XMPP domain 'ejabberd': multiple errors: [Errno 11001] getaddrinfo failed[0m

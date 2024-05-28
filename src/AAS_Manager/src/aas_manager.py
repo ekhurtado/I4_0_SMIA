@@ -57,10 +57,11 @@ async def main():
 
 
 if __name__ == '__main__':
-    _logger.info("Initializing AAS Manager program...")
 
     # Configure logging
     GeneralUtils.configure_logging()
+
+    _logger.info("Initializing AAS Manager program...")
 
     # Run main program with SPADE
     spade.run(main())
