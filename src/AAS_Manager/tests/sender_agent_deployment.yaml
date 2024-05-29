@@ -23,6 +23,8 @@ spec:
               value: aasmanager001@ejabberd
             - name: PERFORMATIVE
               value: CallForProposal
+            - name: ONTOLOGY
+              value: negotiation
             - name: MSG_BODY
               value: '{"performative": "CallForProposal", "serviceID": "getAssetData", "serviceType": "AssetRelatedService", "serviceData": {"requestedData" : "battery"}}'
 

@@ -37,11 +37,9 @@ async def main():
     aas_manager_agent = None
     match aas_type:
         case "physical":
-            # TODO falta crear la clase que herede la general para activos físicos
             print("The asset is physical")
             aas_manager_agent = AASManagerResourceAgent(agent_jid, passwd)
         case "logical":
-            # TODO falta crear la clase que herede la general para activos lógicos
             print("The asset is logical")
             aas_manager_agent = AASManagerAppAgent(agent_jid, passwd)
         case _:
