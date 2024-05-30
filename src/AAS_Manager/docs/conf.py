@@ -70,12 +70,13 @@ html_theme = 'furo'
 # Configuration of Furo HTML theme
 html_logo = "images/Component_I4_0_logo_positive.png"
 html_theme_options = {
-    "light_logo": "images/Component_I4_0_logo_positive.png",
-    "dark_logo": "images/Component_I4_0_logo_positive.png",
+    # "light_logo": "images/Component_I4_0_logo_positive.png",
+    # "dark_logo": "images/Component_I4_0_logo_positive.png",
     "light_css_variables": {
         "color-brand-primary": "#34A1E8",
         "color-brand-content": "#2980B9",
-        "color-admonition-background": "#2980B9",
+        "color-problematic": "236C9C",
+        # "color-admonition-background": "#2980B9",
     },
 }
 pygments_dark_style = "monokai"
