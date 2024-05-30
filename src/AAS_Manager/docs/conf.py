@@ -47,9 +47,9 @@ html_static_path = ['_static']
 html_theme = 'sphinx_rtd_theme'
 
 # Add the CSS file to use all width of the webpage (for sphinx_rtd_theme)
-html_css_files = [
-    'css/custom.css',
-]
+# html_css_files = [
+#     'css/custom.css',
+# ]
 
 # Configuration of sphinx_rtd_theme HTML theme
 html_theme_options = {
