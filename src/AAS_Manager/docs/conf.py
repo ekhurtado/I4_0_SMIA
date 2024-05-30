@@ -75,7 +75,7 @@ html_theme_options = {
     "light_css_variables": {
         "color-brand-primary": "#34A1E8",
         "color-brand-content": "#2980B9",
-        "color-problematic": "cyan",
+        "color-problematic": "DodgerBlue",
         # "color-admonition-background": "#2980B9",
     },
 }
