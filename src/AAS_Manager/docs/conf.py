@@ -68,6 +68,7 @@ html_static_path = ['_static']
 html_theme = 'furo'
 
 # Configuration of Furo HTML theme
+html_logo = "images/Component_I4_0_logo_positive.png"
 html_theme_options = {
     "light_logo": "images/Component_I4_0_logo_positive.png",
     "dark_logo": "images/Component_I4_0_logo_positive.png",
