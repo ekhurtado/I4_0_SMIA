@@ -73,8 +73,9 @@ html_theme_options = {
     "light_logo": "images/Component_I4_0_logo_positive.png",
     "dark_logo": "images/Component_I4_0_logo_positive.png",
     "light_css_variables": {
-        "color-brand-primary": "#34a1e8",
+        "color-brand-primary": "#34A1E8",
         "color-brand-content": "#2980B9",
+        "color-admonition-background": "#2980B9",
     },
 }
 pygments_dark_style = "monokai"
