@@ -37,11 +37,16 @@ pygments_style = 'sphinx'
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-# html_theme = 'alabaster'
-html_theme = 'sphinx_rtd_theme'
+# html_theme = 'alabaster' # default theme
+
 html_static_path = ['_static']
 
-# Add the CSS file to use all width of the webpage
+# -----------------
+# READTHEDOCS THEME
+# ----------------
+html_theme = 'sphinx_rtd_theme'
+
+# Add the CSS file to use all width of the webpage (for sphinx_rtd_theme)
 html_css_files = [
     'css/custom.css',
 ]
@@ -55,3 +60,24 @@ html_theme_options = {
 
 html_logo = 'images/Component_I4_0_logo_positive.png'   # To add the logo
 html_show_sphinx = False    # To not show “Created using Sphinx” in the HTML footer
+
+# ---------
+# FURO THEME
+# ----------
+# Documentation: https://pradyunsg.me/furo/customisation/fonts/
+# html_theme = 'furo'
+#
+# # Configuration of Furo HTML theme
+# html_logo = "images/Component_I4_0_logo_positive.png"
+# html_theme_options = {
+#     # "light_logo": "images/Component_I4_0_logo_positive.png",
+#     # "dark_logo": "images/Component_I4_0_logo_positive.png",
+#     "light_css_variables": {
+#         "color-brand-primary": "#34A1E8",
+#         "color-brand-content": "#2980B9",
+#         "color-problematic": "DodgerBlue",  # other CSS colors: https://www.w3schools.com/cssref/css_colors.php
+#         # "color-admonition-background": "#2980B9",
+#     },
+# }
+# pygments_dark_style = "monokai"
+
