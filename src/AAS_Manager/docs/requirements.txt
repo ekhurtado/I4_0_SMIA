@@ -1,3 +1,4 @@
 sphinx_rtd_theme==2.0.0
 spade==3.3.2
 Flask==2.2.5
+furo==2024.5.6

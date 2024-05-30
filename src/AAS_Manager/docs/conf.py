@@ -38,20 +38,21 @@ pygments_style = 'sphinx'
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 # html_theme = 'alabaster'
-html_theme = 'sphinx_rtd_theme'
+# html_theme = 'sphinx_rtd_theme'
+html_theme = 'furo'
 html_static_path = ['_static']
 
 # Add the CSS file to use all width of the webpage
-html_css_files = [
-    'css/custom.css',
-]
+# html_css_files = [
+#     'css/custom.css',
+# ]
 
 # Configuration of sphinx_rtd_theme HTML theme
-html_theme_options = {
-    "navigation_depth": 2,
-    "collapse_navigation": False,
-    "logo_only": True
-}
-
-html_logo = 'images/Component_I4_0_logo_positive.png'   # To add the logo
-html_show_sphinx = False    # To not show “Created using Sphinx” in the HTML footer
+# html_theme_options = {
+#     "navigation_depth": 2,
+#     "collapse_navigation": False,
+#     "logo_only": True
+# }
+#
+# html_logo = 'images/Component_I4_0_logo_positive.png'   # To add the logo
+# html_show_sphinx = False    # To not show “Created using Sphinx” in the HTML footer
