@@ -8,6 +8,7 @@ from utilities.AASarchiveInfo import AASarchiveInfo
 
 _logger = logging.getLogger(__name__)
 
+
 # ------------------------
 # Methods related to files
 # ------------------------
@@ -87,6 +88,7 @@ def create_configuration_sm(submodel_data):
         AASarchiveInfo.SUBMODEL_FOLDER_PATH + '/' + AASarchiveInfo.CONFIGURATION_SM_FILENAME,
         etree.tostring(submodel_xml_content))
 
+
 def check_if_submodel_exists(submodel_name):
     """
     This method checks if a submodel exist by its name.
@@ -104,4 +106,4 @@ def check_if_submodel_exists(submodel_name):
     else:
         # Read each submodel definition files to get the submodel
         # TODO
-        return True # Under developing
+        return True  # Under developing
