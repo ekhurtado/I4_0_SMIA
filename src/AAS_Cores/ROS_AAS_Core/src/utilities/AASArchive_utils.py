@@ -4,7 +4,7 @@ import json
 import logging
 import time
 
-from utilities.AASarchiveInfo import AASarchiveInfo
+from src.utilities.AASarchiveInfo import AASarchiveInfo
 
 _logger = logging.getLogger(__name__)
 
