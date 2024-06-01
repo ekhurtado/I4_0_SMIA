@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ros-aas-core-test
+  labels:
+    app: ros-aas-core-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ros-aas-core-test
+  template:
+    metadata:
+      labels:
+        app: ros-aas-core-test
+    spec:
+      containers:
+        - name: ros-aas-core
+          image: ekhurtado/aas-core:ros-latest
+          imagePullPolicy: Always
+      restartPolicy: Always
+      serviceAccountName: ""
+
+

@@ -1,0 +1,10 @@
+version: "2"
+
+services:
+
+  ros-aas-core:
+    build:
+      context: .
+      dockerfile: Dockerfile_with_official_ros
+    image: ekhurtado/aas-core:ros-latest
+    container_name: ros-aas-core

@@ -6,11 +6,17 @@ COPY requirements.txt .
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Install ROS: https://emanual.robotis.com/docs/en/platform/turtlebot3/quick-start/#pc-setup
-RUN apt-get update && apt-get upgrade
+# Install ROS: http://wiki.ros.org/noetic/Installation/Ubuntu
+RUN apt update && apt upgrade
+RUN sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+RUN apt install -y curl
+RUN curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
+RUN apt update
+RUN apt install ros-noetic-desktop-full
+RUN source /opt/ros/noetic/setup.bash
 
-COPY src /
+COPY catkin_ws /
 
-WORKDIR /
+WORKDIR /catkin_ws
 
-CMD ["python3", "-u", "main.py"]
+CMD ["rosrun", "turtlebot_main", "main.py"]

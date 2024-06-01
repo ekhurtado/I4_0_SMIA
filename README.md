@@ -11,7 +11,8 @@ The I4.0 Standardized Manufacturing Component (I4.0 SMC) is a proposal for the c
 
 - free & open-source (add license)
 - easily customizable and configurable
-- based on Docker technology
+- containerizable solution
+- Standardized AASs based on SPADE agents.
 
 > [!TIP]
 > For more details on I4.0 Standardized Manufacturing Component see the [:blue_book: **full documentation**](https://component-i4-0.readthedocs.io/en/latest/?badge=latest).
