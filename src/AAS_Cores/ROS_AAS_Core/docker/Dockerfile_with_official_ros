@@ -9,14 +9,17 @@ ENV ROS_DISTRO=noetic
 RUN #mkdir -p $ROS_WS/src
 
 COPY catkin_ws $ROS_WS
-WORKDIR $ROS_WS
+COPY src /
+
+#WORKDIR $ROS_WS
+WORKDIR /
 
 # install ros dependencies packages
 RUN apt update && apt-get install -y \
     ros-noetic-desktop-full \
-    ros-noetic-navigation \
-    ros-noetic-moveit \
-    ros-noetic-gazebo-ros-control \
+#    ros-noetic-navigation \
+#    ros-noetic-moveit \
+#    ros-noetic-gazebo-ros-control \
     && apt-get clean
 
 RUN . "/opt/ros/$ROS_DISTRO/setup.sh" && cd $ROS_WS && catkin_make \
@@ -25,4 +28,5 @@ RUN . "/opt/ros/$ROS_DISTRO/setup.sh" && cd $ROS_WS && catkin_make \
       /ros_entrypoint.sh
 
 # run ros package launch file
-CMD [ "roslaunch", "turtlebot_main", "main.py" ]
+#CMD [ "roslaunch", "turtlebot_main", "main.py" ]
+CMD [ "python", "-u", "main.py"]

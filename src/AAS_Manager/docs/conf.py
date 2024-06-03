@@ -78,7 +78,13 @@ html_theme_options = {
         "color-problematic": "DodgerBlue",  # other CSS colors: https://www.w3schools.com/cssref/css_colors.php
         # "color-admonition-background": "#2980B9",
     },
+    "dark_css_variables": {  # colors for dark theme
+        "color-brand-primary": "#34A1E8",
+        "color-brand-content": "#2980B9",
+        "color-problematic": "DodgerBlue",
+    }
 }
+
 pygments_dark_style = "monokai"
 
 html_show_sphinx = False    # To not show “Created using Sphinx” in the HTML footer
