@@ -5,7 +5,7 @@ from threading import Thread
 import rospy
 from std_msgs.msg import String
 
-from utilities import AASArchive_utils
+# from utilities import AASArchive_utils
 
 # Some variables needed by this AAS Core
 state = 'IDLE'
@@ -19,7 +19,7 @@ pubCoord = None
 def main():
 
     # First, the status file is created
-    AASArchive_utils.create_status_file()
+    # AASArchive_utils.create_status_file()
 
     # Then, the initialization tasks are performed
     initialize_aas_core()
