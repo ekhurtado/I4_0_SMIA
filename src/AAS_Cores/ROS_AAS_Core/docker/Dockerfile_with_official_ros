@@ -1,10 +1,12 @@
 #https://answers.ros.org/question/303171/connection-between-ros-in-docker-with-external-ros-master-another-pc-the-baxter-case/
 FROM ros:noetic-ros-base
 # set enviroment
+
 ENV ROS_MASTER_URI=http://192.168.233.130:11311
-ENV ROS_HOSTNAME=192.168.233.130
-#ENV ROS_IP=<your node "static" IP addresse>
-ENV ROS_WS=/home/catkin_ws
+ENV ROS_MASTER_URI=http://localhost:11311
+#ENV ROS_HOSTNAME=192.168.233.130
+#ENV ROS_IP=192.168.233.130
+#ENV ROS_WS=/home/catkin_ws
 ENV ROS_DISTRO=noetic
 
 RUN #mkdir -p $ROS_WS/src
@@ -16,19 +18,17 @@ COPY src /
 WORKDIR /
 
 # install ros dependencies packages
-#RUN apt update && apt-get install -y \
-#    ros-noetic-desktop-full \
-#    ros-noetic-navigation \
-#    ros-noetic-moveit \
-#    ros-noetic-gazebo-ros-control \
-#    && apt-get clean
 
 #RUN . "/opt/ros/$ROS_DISTRO/setup.sh" && cd $ROS_WS && catkin_make \
 #    && sed --in-place --expression \
 #     '$isource "$ROS_WS/devel/setup.bash"' \
 #      /ros_entrypoint.sh
+RUN echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
 RUN . "/opt/ros/$ROS_DISTRO/setup.sh"
 
 # run ros package launch file
 #CMD [ "roslaunch", "turtlebot_main", "main.py" ]
 CMD [ "python3", "-u", "main.py"]
+
+# Para mantener el contenedor arrancado:
+#CMD [ "tail", "-f", "/dev/null"]

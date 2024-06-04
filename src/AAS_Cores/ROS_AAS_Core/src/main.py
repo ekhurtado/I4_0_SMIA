@@ -1,11 +1,11 @@
+import calendar
+import json
 import logging
 import time
 from threading import Thread
 
 import rospy
 from std_msgs.msg import String
-
-# from utilities import AASArchive_utils
 
 # Some variables needed by this AAS Core
 state = 'IDLE'
@@ -20,6 +20,10 @@ def main():
 
     # First, the status file is created
     # AASArchive_utils.create_status_file()
+    initial_status_info = {'name': 'AAS_Core', 'status': 'Initializing', 'timestamp': calendar.timegm(time.gmtime())}
+    f = open('/aas_archive/status/aas_core.json', 'x')
+    json.dump(initial_status_info, f)
+    f.close()
 
     # Then, the initialization tasks are performed
     initialize_aas_core()
@@ -28,8 +32,11 @@ def initialize_aas_core():
     """This method executes the required tasks to initialize the AAS Core. In this case, create the connection and
     execute a necessary ROS nodes."""
 
+    print("Initializing the AAS Core...")
+
     # A ROS node corresponding to the AAS Core is executed.
     rospy.init_node('AAS_Core', anonymous=True)
+    print("ROS node initiated.")
 
     # Se crean además dos nodos:
     #   1) Un PUBLISHER, que dará la señal de comienzo del servicio por el tópico (coordinateIDLE)
@@ -39,6 +46,8 @@ def initialize_aas_core():
     #   Utiliza para ello el tópico /coordinate
     global pubCoord
     pubCoord = rospy.Publisher('/coordinate', String, queue_size=10)  # Coordinate, queue_size=10)
+
+    print("ROS publishers initiated.")
 
     # Each function will have its own thread of execution
     thread_func1 = Thread(target=handle_data_to_transport(), args=())
@@ -142,7 +151,8 @@ def callback(data):
 
 
 if __name__ == '__main__':
+    print('AAS Core to work with ROS')
     print('AAS Core starting...')
     main()
-    print('AAS Core to work with ROS')
+    print('AAS ending...')
 
