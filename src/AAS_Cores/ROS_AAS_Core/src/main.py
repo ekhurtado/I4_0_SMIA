@@ -1,16 +1,21 @@
 import calendar
 import json
 import logging
+import os
 import time
 from threading import Thread
 
 import rospy
 from std_msgs.msg import String
 
+from utilities import AASArchive_utils
+from utilities.Interactions_utils import get_next_svc_request, delete_svc_request
+
 # Some variables needed by this AAS Core
 state = 'IDLE'
 ready = False
 WIP = False
+interactionID = -1
 
 # ROS nodes
 pub = None
@@ -18,15 +23,26 @@ pubCoord = None
 
 def main():
 
-    # First, the status file is created
-    # AASArchive_utils.create_status_file()
-    initial_status_info = {'name': 'AAS_Core', 'status': 'Initializing', 'timestamp': calendar.timegm(time.gmtime())}
-    f = open('/aas_archive/status/aas_core.json', 'x')
-    json.dump(initial_status_info, f)
-    f.close()
+    initialize_aas_archive()
 
     # Then, the initialization tasks are performed
     initialize_aas_core()
+
+def initialize_aas_archive():
+    """These tasks are in charge of AAS Manager, but for testing, they will be performed by the Core"""
+    os.mkdir('/aas_archive')
+    os.mkdir('/aas_archive/status')
+    os.mkdir('/aas_archive/interactions')
+    # First, the status file is created
+    AASArchive_utils.create_status_file()
+
+    AASArchive_utils.create_interaction_files()
+
+    # initial_status_info = {'name': 'AAS_Core', 'status': 'Initializing', 'timestamp': calendar.timegm(time.gmtime())}
+    # f = open('/aas_archive/status/aas_core.json', 'x')
+    # json.dump(initial_status_info, f)
+    # f.close()
+
 
 def initialize_aas_core():
     """This method executes the required tasks to initialize the AAS Core. In this case, create the connection and
@@ -63,73 +79,87 @@ def handle_data_to_transport():
 
     while True:
         # TODO analizar los mensajes de peticiones del AAS Manager
-        msgReceived = {} # TODO recoger el mensaje de peticion en JSON del interactions/Manager/svcRequests.json
+        msgReceived = get_next_svc_request()
 
-        # TODO, si ha llegado alguna peticion, enviar el comando a trabes del pub y pubCoord
-        global WIP
-        global state
-        if state == "IDLE" and not WIP:
-            # Marcar el flag para indicar trabajo en proceso
-            WIP = True
+        if msgReceived is not None:
+            print("    NOW")
+            print(msgReceived)
 
-            # Si el thread del mensaje recibido es INTRODUCE o DELIVERY
-            if msgReceived['serviceData']['thread'] == "INTRODUCE" or msgReceived['serviceData']['thread'] == "DELIVERY":
-                # Se configura la información de logging: Imprime líneas con información sobre la conexión
-                logging.basicConfig(level=logging.INFO)
+            global interactionID
 
-                global pub
-                global pubCoord
+            # TODO, si ha llegado alguna peticion, enviar el comando a traves del pub y pubCoord
+            global WIP
+            global state
+            if state == "IDLE" and not WIP:
+                # Marcar el flag para indicar trabajo en proceso
+                WIP = True
 
-                print("         + Notify ROS nodes for service   [GO]")
-                # Se le ordena a un publicista que notifique al transporte de que se requiere un servicio
-                pub.publish("GO")
-                # Hacer tiempo mientras el transporte alcanza el estado 'LOCALIZATION'
-                while state == "LOCALIZATION":
-                    pass;
+                # Si el thread del mensaje recibido es INTRODUCE o DELIVERY
+                if msgReceived['serviceData']['thread'] == "INTRODUCE" or msgReceived['serviceData']['thread'] == "DELIVERY":
+                    # Se configura la información de logging: Imprime líneas con información sobre la conexión
+                    logging.basicConfig(level=logging.INFO)
 
-                # Se le ordena a un publicista que publique las coordenadas objetivo
-                # Para este ejemplo, son coordenadas estáticas, que representan la
-                # posición fija e invariable del almacén
-                time.sleep(10)
-                pubCoord.publish("1.43,0.59")
+                    global pub
+                    global pubCoord
 
-                # Hacer tiempo mientras el transporte alcanza el estado 'ACTIVE'
-                while state == "ACTIVE":
-                    pass
+                    print("         + Notify ROS nodes for service   [GO]")
+                    # Se le ordena a un publicista que notifique al transporte de que se requiere un servicio
+                    pub.publish("GO")
+                    # Hacer tiempo mientras el transporte alcanza el estado 'LOCALIZATION'
+                    while state == "LOCALIZATION":
+                        pass;
+                    print("transport in state LOCALIZATION")
 
-                # Hacer tiempo mientras el transporte alcanza el estado 'OPERATIVE'
-                while state == "OPERATIVE":
-                    pass
+                    # Se le ordena a un publicista que publique las coordenadas objetivo
+                    # Para este ejemplo, son coordenadas estáticas, que representan la
+                    # posición fija e invariable del almacén
+                    time.sleep(10)
+                    pubCoord.publish("1.43,0.59")
 
-            if WIP:
-                # Se "apaga" el flag 'WIP'
-                WIP = None
-                # Ahora el turtlebot3 se ha transladado hasta la máquina y vuelve al estado ACTIVE
-                # En este punto realiza dos acciones:
+                    # Hacer tiempo mientras el transporte alcanza el estado 'ACTIVE'
+                    while state == "ACTIVE":
+                        pass
+                    print("transport in state ACTIVE")
 
-                # 1) Avisar a TransportAgent de que el robot ya ha llegado a la máquina.
-                msg2 = {} #TODO escribir la respuesta en svcResponses del Core con body="ALREADY IN WAREHOUSE"
-                msg2.thread = "READY"
+                    # Hacer tiempo mientras el transporte alcanza el estado 'OPERATIVE'
+                    while state == "OPERATIVE":
+                        pass
+                    print("transport in state OPERATIVE")
 
-                # Envía al mensaje a TransportAgent
-                # TODO
-                print(
-                    "         + Message sent to AAS Manager from AAS Core  (interactions/Core/svcResponses.json)")
+                if WIP:
+                    # Se "apaga" el flag 'WIP'
+                    WIP = None
+                    # Ahora el turtlebot3 se ha transladado hasta la máquina y vuelve al estado ACTIVE
+                    # En este punto realiza dos acciones:
 
-                time.sleep(15)
-                # 2) Devolver célula de transporte a su punto de partida
-                print("           |____Returning transport to base!")
+                    # 1) Avisar a TransportAgent de que el robot ya ha llegado a la máquina.
+                    msg2 = {'thread': 'READY'} #TODO escribir la respuesta en svcResponses del Core con body="ALREADY IN WAREHOUSE"
+                    # msg2.thread = "READY"
 
-                #    Coordenadas estáticas, que representan la posición de ORIGEN del turtlebot3
-                pubCoord.publish("-1.65,-0.56")
+                    # Envía al mensaje a TransportAgent
+                    # TODO
+                    print(
+                        "         + Message sent to AAS Manager from AAS Core  (interactions/Core/svcResponses.json)")
 
-                # Hacer tiempo mientras el transporte alcanza el estado 'ACTIVE'
-                while state == "ACTIVE":
-                    pass
-                # Hacer tiempo mientras el transporte alcanza el estado 'OPERATIVE'
-                while state == "OPERATIVE":
-                    pass
+                    time.sleep(15)
+                    # 2) Devolver célula de transporte a su punto de partida
+                    print("           |____Returning transport to base!")
 
+                    #    Coordenadas estáticas, que representan la posición de ORIGEN del turtlebot3
+                    pubCoord.publish("-1.65,-0.56")
+
+                    # Hacer tiempo mientras el transporte alcanza el estado 'ACTIVE'
+                    while state == "ACTIVE":
+                        pass
+                    # Hacer tiempo mientras el transporte alcanza el estado 'OPERATIVE'
+                    while state == "OPERATIVE":
+                        pass
+
+                    # TODO: para pruebas, eliminamos la peticion de servicio, como que ya se ha ofrecido
+                    delete_svc_request(msgReceived)
+        else:
+            print("No service requests yet.")
+            time.sleep(2)
 
 def handle_data_from_transport():
     """This method handles the message and data from the transport. Thus, it obtains the data from the asset with a ROS
@@ -148,7 +178,6 @@ def callback(data):
     global state
     state = str(data.data)
     print("")
-
 
 if __name__ == '__main__':
     print('AAS Core to work with ROS')
