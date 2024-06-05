@@ -1,0 +1,10 @@
+version: "2"
+
+services:
+
+  opc-ua-aas-core:
+    build:
+      context: .
+      dockerfile: Dockerfile_OPC_UA_AAS_Core
+    image: ekhurtado/aas-core:opc-ua-latest
+    container_name: opc-ua-aas-core

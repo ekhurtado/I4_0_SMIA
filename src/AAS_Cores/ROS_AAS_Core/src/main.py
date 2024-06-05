@@ -15,7 +15,6 @@ from utilities.Interactions_utils import get_next_svc_request, delete_svc_reques
 state = 'IDLE'
 ready = False
 WIP = False
-interactionID = -1
 
 # ROS nodes
 pub = None
@@ -84,8 +83,6 @@ def handle_data_to_transport():
         if msgReceived is not None:
             print("    NOW")
             print(msgReceived)
-
-            global interactionID
 
             # TODO, si ha llegado alguna peticion, enviar el comando a traves del pub y pubCoord
             global WIP

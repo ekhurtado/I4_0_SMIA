@@ -10,13 +10,16 @@ def sendDataOPCUA(nServ, targetPos):
     # publicados en la interfaz del servidor OPC UA
     # --------------------------------------------------------------------------------
     # Instanciar cliente
-    client = Client("opc.tcp://192.168.0.101:4840")
+    print("Sending command through OPC UA...")
+    client = Client("opc.tcp://192.168.1.71:4840")
     # Establecer conexión con servidor OPCUA
     client.connect()
 
     # Obtener el servicio y la posición a procesar
     target = int(targetPos)
     serviceType = nServ
+
+    print("The service type is " + str(serviceType) + " and the target " + str(target))
 
     # Instanciar nodos con los que se realizarán las operaciones rw
     node_Reset = client.get_node("ns=4;i=8")
@@ -28,7 +31,7 @@ def sendDataOPCUA(nServ, targetPos):
     # --------- Prod. Normal ------------
     # Escribir tipo de servicio solicitado
     #     * INTRODUCIR ( CogerDejar = 1 )
-    if (serviceType == 'INTRODUCE'):
+    if serviceType == 'INTRODUCE':
         node_CogerDejar.set_value(True)
     else:
         #   * EXTRAER ( CogerDejar = 0 )
@@ -42,6 +45,7 @@ def sendDataOPCUA(nServ, targetPos):
 
     # Si no existen impedimentos para la puesta en marcha
     if ok:
+        print("The service is possible to perform.")
         # Simular pulso de Reset
         node_Reset.set_value(True)
         time.sleep(1)
@@ -72,7 +76,7 @@ def servicePossible(node_AlmacenOcupacion, service, target):
     # Este método permite saber si la operación solicitada puede realizarse
     # o si existe algún problema que no permita su puesta en marcha.
 
-
+        print("Checking if the service is possible...")
         # Obtener matriz de ocupación del almacén
         warehouseOcupation = node_AlmacenOcupacion.get_value()
 
