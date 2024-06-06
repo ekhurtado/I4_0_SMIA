@@ -4,7 +4,8 @@ from threading import Thread
 from opcua import Client
 
 from utilities import AASArchive_utils
-from utilities.Interactions_utils import delete_svc_request, get_next_svc_request
+from utilities.Interactions_utils import delete_svc_request, get_next_svc_request, add_new_svc_response, \
+    create_response_json_object
 from utilities.OPC_UA_utils import sendDataOPCUA
 
 # Some variables needed by this AAS Core
@@ -128,6 +129,11 @@ def handle_data_to_machine():
                         # TODO: para pruebas, eliminamos la peticion de servicio, como que ya se ha ofrecido
                         # delete_svc_request(msgReceived)
                         processed_services.append(msgReceived['interactionID'])
+
+                        # Write the response in svResponses.json of the AAS Core
+                        response_json = create_response_json_object(msgReceived)
+                        add_new_svc_response(response_json)
+
                     else:
                         print("\n+-----------------** ERROR **-------------------+")
                         print("|             Shelf No. " + str(target) + " is EMPTY!!            |")
