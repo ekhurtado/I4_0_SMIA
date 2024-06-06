@@ -15,6 +15,7 @@ from utilities.Interactions_utils import get_next_svc_request, delete_svc_reques
 state = 'IDLE'
 ready = False
 WIP = False
+processed_services = []
 
 # ROS nodes
 pub = None
@@ -27,15 +28,16 @@ def main():
     # Then, the initialization tasks are performed
     initialize_aas_core()
 
+    AASArchive_utils.change_status('InitializationReady')
+
+    # The AAS Core can start running
+    run_aas_core()
+
 def initialize_aas_archive():
     """These tasks are in charge of AAS Manager, but for testing, they will be performed by the Core"""
-    os.mkdir('/aas_archive')
-    os.mkdir('/aas_archive/status')
-    os.mkdir('/aas_archive/interactions')
+
     # First, the status file is created
     AASArchive_utils.create_status_file()
-
-    AASArchive_utils.create_interaction_files()
 
     # initial_status_info = {'name': 'AAS_Core', 'status': 'Initializing', 'timestamp': calendar.timegm(time.gmtime())}
     # f = open('/aas_archive/status/aas_core.json', 'x')
@@ -64,6 +66,11 @@ def initialize_aas_core():
 
     print("ROS publishers initiated.")
 
+
+def run_aas_core():
+    print("AAS Core running...")
+    AASArchive_utils.change_status('Running')
+
     # Each function will have its own thread of execution
     thread_func1 = Thread(target=handle_data_to_transport(), args=())
     thread_func2 = Thread(target=handle_data_from_transport(), args=())
@@ -79,10 +86,14 @@ def handle_data_to_transport():
     while True:
         # TODO analizar los mensajes de peticiones del AAS Manager
         msgReceived = get_next_svc_request()
+        global processed_services
 
-        if msgReceived is not None:
+        print("Processed svc: " + str(processed_services))
+
+        if (msgReceived is not None) and (msgReceived['interactionID'] not in processed_services):
             print("    NOW")
             print(msgReceived)
+            print("InteractionID: " + str(msgReceived['interactionID']))
 
             # TODO, si ha llegado alguna peticion, enviar el comando a traves del pub y pubCoord
             global WIP
@@ -153,7 +164,8 @@ def handle_data_to_transport():
                         pass
 
                     # TODO: para pruebas, eliminamos la peticion de servicio, como que ya se ha ofrecido
-                    delete_svc_request(msgReceived)
+                    # delete_svc_request(msgReceived)
+                    processed_services.append(msgReceived['interactionID'])
         else:
             print("No service requests yet.")
             time.sleep(2)

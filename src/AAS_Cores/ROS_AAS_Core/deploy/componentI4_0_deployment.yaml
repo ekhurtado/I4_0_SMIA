@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: aas-manager
-          image: ekhurtado/aas-manager:0.1.1
+          image: ekhurtado/aas-manager:latest
           imagePullPolicy: Always
           volumeMounts:
             - name: aas-archive

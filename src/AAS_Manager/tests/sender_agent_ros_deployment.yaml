@@ -20,13 +20,13 @@ spec:
           imagePullPolicy: Always
           env:
             - name: RECEIVER_JID
-              value: aasmanager002@ejabberd
+              value: aasmanager001@ejabberd
             - name: PERFORMATIVE
               value: CallForProposal
             - name: ONTOLOGY
               value: SvcRequest
             - name: MSG_BODY
-              value: '{"performative": "CallForProposal", "serviceID": "getAssetData", "serviceType": "AssetRelatedService", "serviceData": {"target": "INTRODUCE:22"}}'
+              value: '{"performative": "CallForProposal", "serviceID": "getAssetData", "serviceType": "AssetRelatedService", "serviceData": {"thread": "INTRODUCE"}}'
 
       restartPolicy: Always
       serviceAccountName: ""

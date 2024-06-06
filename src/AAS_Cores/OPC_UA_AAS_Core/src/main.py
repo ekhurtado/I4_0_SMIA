@@ -67,10 +67,14 @@ def handle_data_to_machine():
         msgReceived = get_next_svc_request()
         global processed_services
 
-        if msgReceived['interactionID'] not in processed_services:
+        print(msgReceived)
+        print("Processed svc: " + str(processed_services))
+
+        if (msgReceived is not None) and (msgReceived['interactionID'] not in processed_services):
 
             global machine_plan
             machine_plan = [msgReceived['serviceData']['target']]
+            print("InteractionID: " + str(msgReceived['interactionID']))
 
             # TODO, si ha llegado alguna peticion, enviar el comando a trabes del pub y pubCoord
             global WIP
@@ -136,6 +140,8 @@ def handle_data_to_machine():
 
 
 
+
+
 def handle_data_from_machine():
     """This method handles the message and data from the transport. Thus, it obtains the data from the asset with a ROS
     Subscriber node and send the necessary interaction command or response to the AAS Manager."""
@@ -148,7 +154,7 @@ def handle_data_from_machine():
 if __name__ == '__main__':
     print('AAS Core to work with OPC UA')
     print('AAS Core starting...')
-    time.sleep(5)   # TODO para pruebas
+    # time.sleep(5)   # TODO para pruebas
     main()
     print('AAS ending...')
 

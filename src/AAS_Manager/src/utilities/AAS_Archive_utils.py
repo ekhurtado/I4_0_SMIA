@@ -14,12 +14,16 @@ _logger = logging.getLogger(__name__)
 # Methods related to files
 # ------------------------
 def create_status_file():
-    """This method creates the status file of the AAS Manager and sets it to "initializing"."""
+    """This method creates the status file of the AAS Manager and sets it to "initializing". If the file exists because
+    the AAS Manager has been restarted without terminating the Pod where it is running, the status file will be
+    rewritten."""
     initial_status_info = {'name': 'AAS_Manager', 'status': 'Initializing', 'timestamp': calendar.timegm(time.gmtime())}
-
-    with (open(AASarchiveInfo.MANAGER_STATUS_FILE_PATH, 'x') as status_file):
-        json.dump(initial_status_info, status_file)
-        status_file.close()
+    try:
+        status_file = open(AASarchiveInfo.MANAGER_STATUS_FILE_PATH, 'x')
+    except FileExistsError as e:
+        status_file = open(AASarchiveInfo.MANAGER_STATUS_FILE_PATH, 'w')
+    json.dump(initial_status_info, status_file)
+    status_file.close()
 
 
 def create_interaction_files():

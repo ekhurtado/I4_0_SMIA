@@ -8,7 +8,7 @@ data:
   # Properties files
   aas.properties: |
     [general-information]
-    logicalID=aas01
+    logicalID=aasmanager002
     endpoint=7000
     
     [services-information]

@@ -20,7 +20,10 @@ def create_status_file():
     # with (open(AASarchiveInfo.CORE_STATUS_FILE_PATH, 'x') as status_file):
     #     json.dump(initial_status_info, status_file)
     #     status_file.close()
-    f = open(AASarchiveInfo.CORE_STATUS_FILE_PATH, 'x')
+    try :
+        f = open(AASarchiveInfo.CORE_STATUS_FILE_PATH, 'x')
+    except FileExistsError as e:
+        f = open(AASarchiveInfo.CORE_STATUS_FILE_PATH, 'w')
     json.dump(initial_status_info, f)
     f.close()
 
@@ -77,3 +80,15 @@ def update_json_file(file_path, content):
     """
     with open(file_path, "w") as outfile:
         json.dump(content, outfile)
+
+def change_status(new_status):
+    """
+    This method updated the status of an AAS Manager instance.
+
+    Args:
+        new_status (str): the new status of the AAS Manager instance.
+    """
+    status_file_json = file_to_json(AASarchiveInfo.CORE_STATUS_FILE_PATH)
+    status_file_json['status'] = new_status
+    status_file_json['timestamp'] = calendar.timegm(time.gmtime())
+    update_json_file(AASarchiveInfo.CORE_STATUS_FILE_PATH, status_file_json)

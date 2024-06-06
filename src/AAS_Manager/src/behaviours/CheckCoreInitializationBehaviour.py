@@ -33,6 +33,7 @@ class CheckCoreInitializationBehaviour(CyclicBehaviour):
         """
         This method implements the logic of the behaviour.
         """
+
         # If the file does not exist the behaviour continues to start and check again
         if os.path.isfile(AASarchiveInfo.CORE_STATUS_FILE_PATH) is True:
             core_status_json = file_to_json(AASarchiveInfo.CORE_STATUS_FILE_PATH)

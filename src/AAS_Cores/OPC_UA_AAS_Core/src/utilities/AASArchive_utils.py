@@ -20,7 +20,10 @@ def create_status_file():
     # with (open(AASarchiveInfo.CORE_STATUS_FILE_PATH, 'x') as status_file):
     #     json.dump(initial_status_info, status_file)
     #     status_file.close()
-    f = open(AASarchiveInfo.CORE_STATUS_FILE_PATH, 'x')
+    try:
+        f = open(AASarchiveInfo.CORE_STATUS_FILE_PATH, 'x')
+    except FileExistsError as e:
+        f = open(AASarchiveInfo.CORE_STATUS_FILE_PATH, 'w')
     json.dump(initial_status_info, f)
     f.close()
 
