@@ -92,7 +92,7 @@ class SvcACLHandlingBehaviour(CyclicBehaviour):
         # TODO esto cuando se desarrolle el AAS Manager en un agente no se realizara de esta manera. No debera
         #  haber una espera hasta que se complete el servicio
         while True:
-            _logger.info(str(svc_data['serviceID']) + "service not completed yet.")
+            _logger.info(str(svc_data['serviceID']) + " service not completed yet.")
             svc_response = Interactions_utils.get_svc_response_info(current_interaction_id)
             if svc_response is not None:
                 print(svc_response)

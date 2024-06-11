@@ -13,7 +13,7 @@ def get_next_svc_request():
     svc_requests_file_path = AASarchiveInfo.MANAGER_INTERACTIONS_FOLDER_PATH + AASarchiveInfo.SVC_REQUEST_FILE_SUBPATH
     svc_requests_json = file_to_json(svc_requests_file_path)
     if len(svc_requests_json['serviceRequests']) != 0:
-        return svc_requests_json['serviceRequests'][0]
+        return svc_requests_json['serviceRequests'][len(svc_requests_json['serviceRequests']) - 1]
     else:
         return None
 

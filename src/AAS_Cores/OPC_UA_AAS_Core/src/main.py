@@ -105,6 +105,13 @@ def handle_data_to_machine():
                     if result == "FINISHED":
                         print("+-----------------------------------------------------+")
                         print("| Package SUCCESSFULLY STORED in AUTOMATED WAREHOUSE  |")
+
+                        processed_services.append(msgReceived['interactionID'])
+
+                        # Write the response in svResponses.json of the AAS Core
+                        response_json = create_response_json_object(msgReceived)
+                        add_new_svc_response(response_json)
+
                     else:
                         print("+-----------------** ERROR **-------------------+")
                         print("| Shelf No. "+ str(target)+" already OCCUPIED!! |")
