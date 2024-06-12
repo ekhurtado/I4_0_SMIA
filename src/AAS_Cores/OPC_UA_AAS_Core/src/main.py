@@ -27,6 +27,7 @@ def main():
     initialize_aas_core()
 
     AASArchive_utils.change_status('InitializationReady')
+    print("AAS Core initialized!")
 
     # The AAS Core can start running
     run_aas_core()
@@ -44,6 +45,24 @@ def initialize_aas_core():
     # Establecer conexión con servidor OPCUA
     client.connect()
     print("OPC UA client connected.")
+
+    # Obtener nodos necesarios
+    node_AuxInit = client.get_node("ns=4;i=9")
+    node_Marcha = client.get_node("ns=4;i=7")
+
+    # ------- Simular arranque de máquina ------- #
+    # Simular pulso de "AuxInit"
+    node_AuxInit.set_value(True)
+    time.sleep(1)
+    node_AuxInit.set_value(False)
+
+    # Simular pulso de "Marcha"
+    node_Marcha.set_value(True)
+    time.sleep(1)
+    node_Marcha.set_value(False)
+    time.sleep(2)
+
+    print("MACHINE READY TO TAKE REQUESTS!")
 
 
 def run_aas_core():
@@ -112,6 +131,8 @@ def handle_data_to_machine():
                         response_json = create_response_json_object(msgReceived)
                         add_new_svc_response(response_json)
 
+                        WIP = False
+
                     else:
                         print("+-----------------** ERROR **-------------------+")
                         print("| Shelf No. "+ str(target)+" already OCCUPIED!! |")
@@ -140,6 +161,8 @@ def handle_data_to_machine():
                         # Write the response in svResponses.json of the AAS Core
                         response_json = create_response_json_object(msgReceived)
                         add_new_svc_response(response_json)
+
+                        WIP = False
 
                     else:
                         print("\n+-----------------** ERROR **-------------------+")
