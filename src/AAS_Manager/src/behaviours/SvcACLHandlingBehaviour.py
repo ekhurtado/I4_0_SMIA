@@ -41,7 +41,7 @@ class SvcACLHandlingBehaviour(CyclicBehaviour):
         """
 
         # Wait for a message with the standard ACL template to arrive.
-        msg = await self.receive(timeout=5) # Timeout set to 5 seconds so as not to continuously execute the behavior.
+        msg = await self.receive(timeout=10) # Timeout set to 10 seconds so as not to continuously execute the behavior.
         if msg:
             # An ACL message has been received by the agent
             _logger.info("         + Message received on AAS Manager Agent (ACLHandlingBehaviour)")
@@ -64,7 +64,7 @@ class SvcACLHandlingBehaviour(CyclicBehaviour):
                 case _:
                     _logger.error("Service type not available.")
         else:
-            _logger.info("         - No message received within 5 seconds on AAS Manager Agent (ACLHandlingBehaviour)")
+            _logger.info("         - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour)")
 
 
     # ------------------------------------------

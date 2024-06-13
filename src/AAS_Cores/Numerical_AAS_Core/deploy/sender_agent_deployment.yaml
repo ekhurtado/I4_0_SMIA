@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sender-agent
+  labels:
+    app: sender-agent
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sender-agent
+  template:
+    metadata:
+      labels:
+        app: sender-agent
+    spec:
+      containers:
+        - name: aas-manager
+          image: ekhurtado/agent-tests:sender-agent
+          imagePullPolicy: Always
+          env:
+            - name: RECEIVER_JID
+              value: aasmanagertest01@ejabberd
+            - name: PERFORMATIVE
+              value: CallForProposal
+            - name: ONTOLOGY
+              value: negotiation
+            - name: MSG_BODY
+              value: '{"performative": "CallForProposal", "serviceID": "getAssetData", "serviceType": "AssetRelatedService", "serviceData": {"requestedData" : "battery"}}'
+
+      restartPolicy: Always
+      serviceAccountName: ""

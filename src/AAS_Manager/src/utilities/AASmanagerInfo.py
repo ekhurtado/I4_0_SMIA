@@ -1,4 +1,8 @@
+from copy import copy
+
 from spade.template import Template
+
+from utilities.GeneralUtils import GeneralUtils
 
 
 class AASmanagerInfo:
@@ -14,29 +18,24 @@ class AASmanagerInfo:
     # Object of the standard template for service requests through ACL messages
     # -------------------------------------------------------------------------
     # TODO finalizar con el plantilla estandar final decidida para la comunicacion entre agentes
-    SVC_STANDARD_ACL_TEMPLATE_ONT = Template()
-    SVC_STANDARD_ACL_TEMPLATE_ONT.set_metadata("ontology", "SvcRequest")
-
-    SVC_STANDARD_ACL_TEMPLATE_INFORM = SVC_STANDARD_ACL_TEMPLATE_ONT
-    SVC_STANDARD_ACL_TEMPLATE_INFORM.set_metadata("performative", "Inform")
-    SVC_STANDARD_ACL_TEMPLATE_CFP = SVC_STANDARD_ACL_TEMPLATE_ONT
-    SVC_STANDARD_ACL_TEMPLATE_CFP.set_metadata("performative", "CallForProposal")
+    svc_standard_acl_template_cfp = GeneralUtils.create_acl_template(performative='CallForProposal',
+                                                                     ontology='SvcRequest')
+    svc_standard_acl_template_inform = GeneralUtils.create_acl_template(performative='Inform',
+                                                                     ontology='SvcRequest')
     # The template for the service requests is the combination of the different possibilities
-    SVC_STANDARD_ACL_TEMPLATE = (SVC_STANDARD_ACL_TEMPLATE_INFORM | SVC_STANDARD_ACL_TEMPLATE_CFP)
+    SVC_STANDARD_ACL_TEMPLATE = (svc_standard_acl_template_cfp | svc_standard_acl_template_inform)
 
 
     # Object of the standard template for service requests through ACL messages
     # -------------------------------------------------------------------------
-    NEG_STANDARD_ACL_TEMPLATE_ONT = Template()  # the basis of the template
-    NEG_STANDARD_ACL_TEMPLATE_ONT.set_metadata("ontology", "negotiation")
+    neg_standard_acl_template_cfp = GeneralUtils.create_acl_template(performative='CallForProposal',
+                                                                     ontology='negotiation')
+    neg_standard_acl_template_propose = GeneralUtils.create_acl_template(performative='Propose',
+                                                                     ontology='negotiation')
+    neg_standard_acl_template_failure = GeneralUtils.create_acl_template(performative='Failure',
+                                                                         ontology='negotiation')
+    neg_standard_acl_template_inform = GeneralUtils.create_acl_template(performative='Inform',
+                                                                         ontology='negotiation')
+    NEG_STANDARD_ACL_TEMPLATE = (neg_standard_acl_template_cfp | neg_standard_acl_template_propose
+                                 | neg_standard_acl_template_failure | neg_standard_acl_template_inform)
 
-    NEG_STANDARD_ACL_TEMPLATE_CFP = NEG_STANDARD_ACL_TEMPLATE_ONT   # template for CFP messages
-    NEG_STANDARD_ACL_TEMPLATE_CFP.set_metadata("performative", "CallForProposal")
-    NEG_STANDARD_ACL_TEMPLATE_PROPOSE = NEG_STANDARD_ACL_TEMPLATE_ONT
-    NEG_STANDARD_ACL_TEMPLATE_PROPOSE.set_metadata("performative", "Propose")
-    NEG_STANDARD_ACL_TEMPLATE_FAILURE = NEG_STANDARD_ACL_TEMPLATE_ONT
-    NEG_STANDARD_ACL_TEMPLATE_FAILURE.set_metadata("performative", "Failure")
-    NEG_STANDARD_ACL_TEMPLATE_INFORM = NEG_STANDARD_ACL_TEMPLATE_ONT
-    NEG_STANDARD_ACL_TEMPLATE_INFORM.set_metadata("performative", "Inform")
-    # The template for the negotiation is the combination of the different possibilities
-    NEG_STANDARD_ACL_TEMPLATE = (NEG_STANDARD_ACL_TEMPLATE_CFP | NEG_STANDARD_ACL_TEMPLATE_PROPOSE | NEG_STANDARD_ACL_TEMPLATE_FAILURE | NEG_STANDARD_ACL_TEMPLATE_INFORM)
