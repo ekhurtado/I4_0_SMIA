@@ -9,7 +9,8 @@ import rospy
 from std_msgs.msg import String
 
 from utilities import AASArchive_utils
-from utilities.Interactions_utils import get_next_svc_request, delete_svc_request
+from utilities.Interactions_utils import get_next_svc_request, delete_svc_request, add_new_svc_response, \
+    create_response_json_object
 
 # Some variables needed by this AAS Core
 state = 'IDLE'
@@ -166,6 +167,11 @@ def handle_data_to_transport():
                     # TODO: para pruebas, eliminamos la peticion de servicio, como que ya se ha ofrecido
                     # delete_svc_request(msgReceived)
                     processed_services.append(msgReceived['interactionID'])
+
+                    # Write the response in svResponses.json of the AAS Core
+                    response_json = create_response_json_object(msgReceived)
+                    add_new_svc_response(response_json)
+
         else:
             print("No service requests yet.")
             time.sleep(2)

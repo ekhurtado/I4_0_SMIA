@@ -93,3 +93,9 @@ def change_status(new_status):
     status_file_json['status'] = new_status
     status_file_json['timestamp'] = calendar.timegm(time.gmtime())
     update_json_file(AASarchiveInfo.CORE_STATUS_FILE_PATH, status_file_json)
+
+
+def printFile(file_path, message):
+    f = open(file_path, "a")
+    f.write(str(message) + "\n")
+    f.close()

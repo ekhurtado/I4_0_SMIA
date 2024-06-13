@@ -1,9 +1,9 @@
-import logging
 import time
 from threading import Thread
 from opcua import Client
 
 from utilities import AASArchive_utils
+from utilities.AASArchive_utils import printFile
 from utilities.Interactions_utils import delete_svc_request, get_next_svc_request, add_new_svc_response, \
     create_response_json_object
 from utilities.OPC_UA_utils import sendDataOPCUA
@@ -89,17 +89,20 @@ def handle_data_to_machine():
 
         print(msgReceived)
         print("Processed svc: " + str(processed_services))
+        printFile('opc_ua_log.txt', msgReceived)
+        printFile('opc_ua_log.txt', str(processed_services))
 
         if (msgReceived is not None) and (msgReceived['interactionID'] not in processed_services):
 
             global machine_plan
             machine_plan = [msgReceived['serviceData']['target']]
             print("InteractionID: " + str(msgReceived['interactionID']))
+            printFile('opc_ua_log.txt', "InteractionID: " + str(msgReceived['interactionID']))
 
             # TODO, si ha llegado alguna peticion, enviar el comando a trabes del pub y pubCoord
             global WIP
 
-            if len(machine_plan) > 0 and not WIP:
+            if len(machine_plan) > 0 and WIP == False:
 
                 # Coge la primera tarea de la lista
                 task = machine_plan[0]
@@ -126,19 +129,21 @@ def handle_data_to_machine():
                         print("| Package SUCCESSFULLY STORED in AUTOMATED WAREHOUSE  |")
 
                         processed_services.append(msgReceived['interactionID'])
+                        printFile('opc_ua_log.txt', 'SERVICE DONE!!!  - id:' + str(msgReceived['interactionID']))
 
                         # Write the response in svResponses.json of the AAS Core
                         response_json = create_response_json_object(msgReceived)
                         add_new_svc_response(response_json)
-
-                        WIP = False
+                        printFile('opc_ua_log.txt', str(response_json))
 
                     else:
                         print("+-----------------** ERROR **-------------------+")
                         print("| Shelf No. "+ str(target)+" already OCCUPIED!! |")
                         print("+-----------------------------------------------+")
-                # Si el servicio es "EXTRACT"
-                else:
+
+                    WIP = False
+
+                else:   # Si el servicio es "EXTRACT"
                     # Se marca como 'ocupado'
                     WIP = True
 
@@ -158,16 +163,21 @@ def handle_data_to_machine():
                         # delete_svc_request(msgReceived)
                         processed_services.append(msgReceived['interactionID'])
 
+                        printFile('opc_ua_log.txt', 'SERVICE DONE!!!  - id:' + str(msgReceived['interactionID']))
+
                         # Write the response in svResponses.json of the AAS Core
                         response_json = create_response_json_object(msgReceived)
                         add_new_svc_response(response_json)
 
-                        WIP = False
+                        printFile('opc_ua_log.txt', str(response_json))
+
 
                     else:
                         print("\n+-----------------** ERROR **-------------------+")
                         print("|             Shelf No. " + str(target) + " is EMPTY!!            |")
                         print("+-----------------------------------------------+")
+
+                    WIP = False
         else:
             print("No service requests yet.")
             time.sleep(2)
@@ -182,8 +192,6 @@ def handle_data_from_machine():
     """This method handles the message and data from the transport. Thus, it obtains the data from the asset with a ROS
     Subscriber node and send the necessary interaction command or response to the AAS Manager."""
 
-    # Crea un nodo SUBSCRIBER, que se quedará a la escucha por el tópico /status
-    # y notificará al agente del estado del transporte
     pass
 
 
