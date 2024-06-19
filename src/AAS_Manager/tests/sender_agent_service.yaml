@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: /snap/kompose/19/kompose-linux-amd64 convert
+    kompose.version: 1.21.0 (992df58d8)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: sender-agent
+  name: sender-agent
+spec:
+  type: NodePort
+  ports:
+  - name: "10000"
+    port: 10000
+    targetPort: 10000
+    nodePort: 31000
+  selector:
+    app: sender-agent
+status:
+  loadBalancer: {}

@@ -44,7 +44,11 @@ class SenderAgent(Agent):
         print("Hello World! I'm sender agent {}".format(str(self.jid)))
         print("SenderAgent started")
         self.b = self.SendBehaviour()
-        self.add_behaviour(self.b)
+        # self.add_behaviour(self.b)
+
+async def hello_controller(request):
+    return {"number": 42}
+
 
 async def main():
 
@@ -54,8 +58,14 @@ async def main():
     passwd = '123'
 
     sender_agent = SenderAgent(agent_jid, passwd)
+
+    # Add customized webpage
+    sender_agent.web.add_get("/hello", hello_controller, "/hello.html")
+    print("Hello HTML added")
+
     # Since the agent object has already been created, the agent will start
     await sender_agent.start()
+    sender_agent.web.start(hostname="0.0.0.0", port="10000")
     # The main thread will be waiting until the agent has finished
     await spade.wait_until_finished(sender_agent)
 

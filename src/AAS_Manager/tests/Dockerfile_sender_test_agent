@@ -6,10 +6,13 @@ COPY requirements.txt .
 
 RUN pip install --no-cache-dir -r requirements.txt
 
+#COPY web_interface.py /
 COPY sender_agent.py /
+COPY hello.html /
 
 WORKDIR /
 
-EXPOSE 7000
+EXPOSE 10000
 
+#CMD ["python3", "-u", "web_interface.py"]
 CMD ["python3", "-u", "sender_agent.py"]

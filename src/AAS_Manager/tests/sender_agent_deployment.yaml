@@ -15,7 +15,7 @@ spec:
         app: sender-agent
     spec:
       containers:
-        - name: aas-manager
+        - name: sender-agent
           image: ekhurtado/agent-tests:sender-agent
           imagePullPolicy: Always
           env:
@@ -27,6 +27,7 @@ spec:
               value: negotiation
             - name: MSG_BODY
               value: '{"performative": "CallForProposal", "serviceID": "getAssetData", "serviceType": "AssetRelatedService", "serviceData": {"requestedData" : "battery"}}'
-
+      nodeSelector:
+        kubernetes.io/hostname: worker1
       restartPolicy: Always
       serviceAccountName: ""

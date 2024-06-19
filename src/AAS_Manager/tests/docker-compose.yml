@@ -8,3 +8,5 @@ services:
       dockerfile: Dockerfile_sender_test_agent
     image: ekhurtado/agent-tests:sender-agent
     container_name: sender-agent
+    ports:
+      - 10000:31000
