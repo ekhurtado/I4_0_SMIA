@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ACL Message Form</title>
+    <!-- Include CSS links -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.2/css/AdminLTE.css"
+        integrity="sha256-PVK9gAcsGOtzyQNV7pVrI3EiYYauwzOsXC/VjtwMXI4=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+        integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.8/css/skins/_all-skins.css" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.2/css/alt/AdminLTE-bootstrap-social.min.css"
+        integrity="sha256-i0jvUu6F0mZkrmoxDnIbXMHzXk16eHsTwPcTxB2ua/Q=" crossorigin="anonymous" />
+    <style>
+        .form-section {
+            padding: 20px;
+            background: #f7f7f7;
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+        .form-section h3 {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body class="sidebar-mini skin-blue">
+    <div class="wrapper">
+        <header class="main-header">
+            <a href="/spade" class="logo">
+                <span class="logo-mini"><b>SPD</b></span>
+                <span class="logo-lg"><b>SPADE</b></span>
+            </a>
+            <nav class="navbar navbar-static-top">
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown user user-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <img src="http://www.gravatar.com/avatar/db1e30074049dad75cdec445a4c4c8cf?d=monsterid" class="user-image" alt="User Image">
+                                <span class="hidden-xs">gcis3</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="user-header">
+                                    <img src="http://www.gravatar.com/avatar/db1e30074049dad75cdec445a4c4c8cf?d=monsterid" class="img-circle" alt="User Image">
+                                    <p>gcis3@anonym.im</p>
+                                </li>
+                                <li class="user-footer">
+                                    <div class="pull-left">
+                                        <a href="#" class="btn btn-default btn-flat">Stop</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <aside class="main-sidebar">
+            <section class="sidebar">
+                <div class="user-panel">
+                    <div class="pull-left image">
+                        <img src="http://www.gravatar.com/avatar/db1e30074049dad75cdec445a4c4c8cf?d=monsterid" class="img-circle" alt="User Image">
+                    </div>
+                    <div class="pull-left info">
+                        <p>gcis3</p>
+                        <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                    </div>
+                </div>
+                <ul class="sidebar-menu" data-widget="tree">
+                    <li class="active">
+                        <a href="/spade"><i class="fa fa-id-card"></i> <span>Dashboard</span></a>
+                    </li>
+                    <li>
+                        <a href="/acl_message"><i class="fa fa-envelope"></i> <span>Send ACL message</span></a>
+                    </li>
+                </ul>
+            </section>
+        </aside>
+        <div class="content-wrapper">
+            <section class="content-header">
+                <h1>Send ACL Message</h1>
+                <ol class="breadcrumb">
+                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                    <li class="active">Send ACL Message</li>
+                </ol>
+            </section>
+            <section class="content">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Message Form</h3>
+                            </div>
+                            <form action="/acl_message/submit" method="POST">
+                                <div class="box-body">
+                                    <div class="form-group">
+                                        <label for="receiver">Receiver JID</label>
+                                        <input type="text" class="form-control" id="receiver" name="receiver" placeholder="Receiver JID" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="server">XMPP Server</label>
+                                        <input type="text" class="form-control" id="server" name="server" placeholder="XMPP Server" value="ejabberd" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="performative">Performative</label>
+                                        <input type="text" class="form-control" id="performative" name="performative" placeholder="Performative" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="ontology">Ontology</label>
+                                        <input type="text" class="form-control" id="ontology" name="ontology" placeholder="Ontology" required>
+                                    </div>
+                                    <div class="form-section">
+                                        <h3>Message Body</h3>
+                                        <div class="form-group">
+                                            <label for="msg-performative">Performative</label>
+                                            <input type="text" class="form-control" id="msg-performative" name="msg-performative" placeholder="Performative" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="serviceID">Service ID</label>
+                                            <input type="text" class="form-control" id="serviceID" name="serviceID" placeholder="Service ID" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="serviceType">Service Type</label>
+                                            <input type="text" class="form-control" id="serviceType" name="serviceType" placeholder="Service Type" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="serviceData">Service Data</label>
+                                            <input type="text" class="form-control" id="serviceData" name="serviceData" placeholder="Service Data: {'key': 'value'}" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="box-footer">
+                                    <button type="submit" class="btn btn-primary">Send Message</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkf1dEFf/7myWk/Ta3Sga8FNcsuM3w8a5FHFsC9J4" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.8/js/adminlte.min.js"></script>
+</body>
+</html>

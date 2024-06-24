@@ -1,7 +1,10 @@
+import codecs
+import json
 import os
 import time
 
 import spade
+from aioxmpp import stream
 from spade.agent import Agent
 from spade.behaviour import OneShotBehaviour
 from spade.message import Message
@@ -46,8 +49,22 @@ class SenderAgent(Agent):
         self.b = self.SendBehaviour()
         # self.add_behaviour(self.b)
 
+    async def post_controller(self, request):
+        print("HA LLEGADO AL POST DEL AGENTE: " + str(self.jid))
+        print(request)
+        data_bytes = b''
+        async for line in request.content:
+            print(line)
+            data_bytes = data_bytes + line
+        data_str = data_bytes.decode('utf-8')
+        print(data_str)
+        return {"number": 42}
+
 async def hello_controller(request):
+    print(request)
     return {"number": 42}
+
+
 
 
 async def main():
@@ -57,15 +74,20 @@ async def main():
     agent_jid = aas_id + '@' + XMPP_SERVER
     passwd = '123'
 
+    agent_jid = "gcis3@anonym.im"
+    passwd = "gcis1234"
     sender_agent = SenderAgent(agent_jid, passwd)
 
     # Add customized webpage
-    sender_agent.web.add_get("/hello", hello_controller, "/hello.html")
+    # sender_agent.web.add_get("/hello", hello_controller, "/hello.html")
+    sender_agent.web.add_get("/acl_message", hello_controller, "/send_acl.html")
+    sender_agent.web.add_post("/acl_message/submit", sender_agent.post_controller, "/send_acl.html")
     print("Hello HTML added")
 
     # Since the agent object has already been created, the agent will start
     await sender_agent.start()
-    sender_agent.web.start(hostname="0.0.0.0", port="10000")
+    sender_agent.web.start(hostname="0.0.0.0", port="10000")    # https://spade-mas.readthedocs.io/en/latest/web.html#
+    sender_agent.web.add_menu_entry("Send ACL message", "/acl_message", "fa fa-envelope")  # https://github.com/javipalanca/spade/blob/master/docs/web.rst#menu-entries
     # The main thread will be waiting until the agent has finished
     await spade.wait_until_finished(sender_agent)
 
