@@ -82,12 +82,17 @@ async def main():
     # sender_agent.web.add_get("/hello", hello_controller, "/hello.html")
     sender_agent.web.add_get("/acl_message", hello_controller, "/send_acl.html")
     sender_agent.web.add_post("/acl_message/submit", sender_agent.post_controller, "/send_acl.html")
+    sender_agent.web.add_get("/editor", hello_controller, "/own_programming_language_editor.html")
+    sender_agent.web.add_post("/editor/submit", sender_agent.post_controller, "/own_programming_language_editor.html")
+    sender_agent.web.add_get("/aas_library", hello_controller, "/aas_library.html")
     print("Hello HTML added")
 
     # Since the agent object has already been created, the agent will start
     await sender_agent.start()
     sender_agent.web.start(hostname="0.0.0.0", port="10000")    # https://spade-mas.readthedocs.io/en/latest/web.html#
     sender_agent.web.add_menu_entry("Send ACL message", "/acl_message", "fa fa-envelope")  # https://github.com/javipalanca/spade/blob/master/docs/web.rst#menu-entries
+    sender_agent.web.add_menu_entry("Programming language editor", "/editor", "fa fa-envelope")
+    sender_agent.web.add_menu_entry("AAS Library", "/aas_library", "fa fa-envelope")
     # The main thread will be waiting until the agent has finished
     await spade.wait_until_finished(sender_agent)
 
