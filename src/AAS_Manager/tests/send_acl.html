@@ -26,6 +26,109 @@
         .form-section h3 {
             margin-top: 0;
         }
+        .form-group label {
+            font-weight: bold;
+        }
+        .hidden {
+            display: none;
+        }
+        .switch-container {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider {
+            background-color: #007bff;
+        }
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+        .toggle-text {
+            margin-left: 10px;
+            display: inline-block;
+            vertical-align: middle;
+            font-weight: normal;
+            font-size: 16px;
+            padding-right: 10px;
+        }
+        .btn-custom {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: background-color 0.3s;
+        }
+        .btn-custom:hover {
+            background-color: #0056b3;
+        }
+        .btn-clear {
+            background-color: #ff6f61;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: background-color 0.3s;
+        }
+        .btn-clear:hover {
+            background-color: #e0534e;
+        }
+        .btn-submit {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: background-color 0.3s;
+        }
+        .btn-submit:hover {
+            background-color: #218838;
+        }
+        textarea {
+            resize: vertical;
+        }
     </style>
 </head>
 <body class="sidebar-mini skin-blue">
@@ -39,18 +142,18 @@
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
                         <li class="dropdown user user-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <img src="http://www.gravatar.com/avatar/db1e30074049dad75cdec445a4c4c8cf?d=monsterid" class="user-image" alt="User Image">
+                            <a href="/spade" class="dropdown-toggle" data-toggle="dropdown">
+                                <img src="https://raw.githubusercontent.com/ekhurtado/Component_I4_0/main/images/Component_I4_0_logo_negative.png" class="user-image" alt="User Image">
                                 <span class="hidden-xs">gcis3</span>
                             </a>
                             <ul class="dropdown-menu">
                                 <li class="user-header">
-                                    <img src="http://www.gravatar.com/avatar/db1e30074049dad75cdec445a4c4c8cf?d=monsterid" class="img-circle" alt="User Image">
+                                    <img src="https://raw.githubusercontent.com/ekhurtado/Component_I4_0/main/images/Component_I4_0_logo_negative.png" class="img-circle" alt="User Image">
                                     <p>gcis3@anonym.im</p>
                                 </li>
                                 <li class="user-footer">
                                     <div class="pull-left">
-                                        <a href="#" class="btn btn-default btn-flat">Stop</a>
+                                        <a href="/spade/stop" class="btn btn-default btn-flat">Stop</a>
                                     </div>
                                 </li>
                             </ul>
@@ -63,25 +166,25 @@
             <section class="sidebar">
                 <div class="user-panel">
                     <div class="pull-left image">
-                        <img src="http://www.gravatar.com/avatar/db1e30074049dad75cdec445a4c4c8cf?d=monsterid" class="img-circle" alt="User Image">
+                        <img src="https://raw.githubusercontent.com/ekhurtado/Component_I4_0/main/images/Component_I4_0_logo_negative.png" class="img-circle" alt="User Image">
                     </div>
                     <div class="pull-left info">
                         <p>gcis3</p>
-                        <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                        <a href="/spade"><i class="fa fa-circle text-success"></i> Online</a>
                     </div>
                 </div>
-                <ul class="sidebar-menu" data-widget="tree">
-                    <li class="active">
+                <ul class="sidebar-menu tree" data-widget="tree">
+                    <li>
                         <a href="/spade"><i class="fa fa-id-card"></i> <span>Dashboard</span></a>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="/acl_message"><i class="fa fa-envelope"></i> <span>Send ACL message</span></a>
                     </li>
                     <li>
-                        <a href="/editor"><i class="fa fa-envelope"></i> <span>Programming language editor</span></a>
+                        <a href="/editor"><i class="fa fa-code"></i> <span>Programming language editor</span></a>
                     </li>
                     <li>
-                        <a href="/aas_library"><i class="fa fa-envelope"></i> <span>AAS Library</span></a>
+                        <a href="/aas_library"><i class="fa fa-book"></i> <span>AAS Library</span></a>
                     </li>
                 </ul>
             </section>
@@ -112,6 +215,10 @@
                                         <input type="text" class="form-control" id="server" name="server" placeholder="XMPP Server" value="ejabberd" required>
                                     </div>
                                     <div class="form-group">
+                                        <label for="thread">Thread</label>
+                                        <input type="text" class="form-control" id="thread" name="thread" placeholder="Thread ID (conversation_id of FIPA-ACL)" required>
+                                    </div>
+                                    <div class="form-group">
                                         <label for="performative">Performative</label>
                                         <input type="text" class="form-control" id="performative" name="performative" placeholder="Performative" required>
                                     </div>
@@ -119,12 +226,23 @@
                                         <label for="ontology">Ontology</label>
                                         <input type="text" class="form-control" id="ontology" name="ontology" placeholder="Ontology" required>
                                     </div>
-                                    <div class="form-section">
-                                        <h3>Message Body</h3>
-                                        <div class="form-group">
-                                            <label for="msg-performative">Performative</label>
-                                            <input type="text" class="form-control" id="msg-performative" name="msg-performative" placeholder="Performative" required>
+                                    <div class="form-group">
+                                        <label>Message body type</label>
+                                        <div class="switch-container">
+                                            <span class="toggle-text" id="toggleTextNormal">Normal</span>
+                                            <label class="switch">
+                                                <input type="checkbox" id="messageTypeSwitch">
+                                                <span class="slider"></span>
+                                            </label>
+                                            <span class="toggle-text" id="toggleText">SMIA 4.0</span>
                                         </div>
+                                    </div>
+                                    <div id="normalMessageSection" class="form-group">
+                                        <h4>Message body without format</h4>
+                                        <textarea class="form-control" id="normalMessage" name="normalMessage" rows="5" placeholder="Add the body of the message..."></textarea>
+                                    </div>
+                                    <div id="aclMessageSection" class="hidden">
+                                        <h4>SMIA 4.0 message format</h4>
                                         <div class="form-group">
                                             <label for="serviceID">Service ID</label>
                                             <input type="text" class="form-control" id="serviceID" name="serviceID" placeholder="Service ID" required>
@@ -140,7 +258,7 @@
                                     </div>
                                 </div>
                                 <div class="box-footer">
-                                    <button type="submit" class="btn btn-primary">Send Message</button>
+                                    <button type="submit" class="btn btn-submit">Send Message</button>
                                 </div>
                             </form>
                         </div>
@@ -149,9 +267,21 @@
             </section>
         </div>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkf1dEFf/7myWk/Ta3Sga8FNcsuM3w8a5FHFsC9J4" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.8/js/adminlte.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.2/js/adminlte.min.js" integrity="sha256-M/+/xbAPBtc0W7JWnReOYF+oPZq4OiOUrlP9qbv7w64=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function () {
+            $('#messageTypeSwitch').change(function () {
+                if (this.checked) {
+                    $('#normalMessageSection').addClass('hidden');
+                    $('#aclMessageSection').removeClass('hidden');
+                } else {
+                    $('#normalMessageSection').removeClass('hidden');
+                    $('#aclMessageSection').addClass('hidden');
+                }
+            });
+        });
+    </script>
 </body>
 </html>

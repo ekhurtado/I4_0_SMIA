@@ -26,25 +26,69 @@
         .form-section h3 {
             margin-top: 0;
         }
-        textarea {
+        .textarea {
             font-size: 14px;
-            width: 100%;
-            height: 700px;
-            box-sizing: border-box;
+            /*width: 100%;*/
+            height: 100px;
+            /*box-sizing: border-box;*/
+            resize: vertical;
         }
         .editor {
             flex: 1;
             margin: 20px 10px;
-            height: 700px;
+            /*height: 700px;*/
         }
         .editor textarea {
             width: 100%;
             height: 100%;
-            /*resize: none;*/
+            min-height: 500px;
             padding: 10px;
             font-size: 16px;
             border: 1px solid #ddd;
             border-radius: 4px;
+            resize: vertical;
+        }
+        .btn-save {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: background-color 0.3s;
+        }
+        .btn-save:hover {
+            background-color: #0056b3;
+        }
+        .btn-clear {
+            background-color: #ff6f61;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: background-color 0.3s;
+        }
+        .btn-clear:hover {
+            background-color: #e0534e;
+        }
+        .btn-submit {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: background-color 0.3s;
+        }
+        .btn-submit:hover {
+            background-color: #218838;
         }
     </style>
 
@@ -97,18 +141,18 @@
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
                         <li class="dropdown user user-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <img src="http://www.gravatar.com/avatar/db1e30074049dad75cdec445a4c4c8cf?d=monsterid" class="user-image" alt="User Image">
+                            <a href="/spade" class="dropdown-toggle" data-toggle="dropdown">
+                                <img src="https://raw.githubusercontent.com/ekhurtado/Component_I4_0/main/images/Component_I4_0_logo_negative.png" class="user-image" alt="User Image">
                                 <span class="hidden-xs">gcis3</span>
                             </a>
                             <ul class="dropdown-menu">
                                 <li class="user-header">
-                                    <img src="http://www.gravatar.com/avatar/db1e30074049dad75cdec445a4c4c8cf?d=monsterid" class="img-circle" alt="User Image">
+                                    <img src="https://raw.githubusercontent.com/ekhurtado/Component_I4_0/main/images/Component_I4_0_logo_negative.png" class="img-circle" alt="User Image">
                                     <p>gcis3@anonym.im</p>
                                 </li>
                                 <li class="user-footer">
                                     <div class="pull-left">
-                                        <a href="#" class="btn btn-default btn-flat">Stop</a>
+                                        <a href="/spade/stop" class="btn btn-default btn-flat">Stop</a>
                                     </div>
                                 </li>
                             </ul>
@@ -121,25 +165,25 @@
             <section class="sidebar">
                 <div class="user-panel">
                     <div class="pull-left image">
-                        <img src="http://www.gravatar.com/avatar/db1e30074049dad75cdec445a4c4c8cf?d=monsterid" class="img-circle" alt="User Image">
+                        <img src="https://raw.githubusercontent.com/ekhurtado/Component_I4_0/main/images/Component_I4_0_logo_negative.png" class="img-circle" alt="User Image">
                     </div>
                     <div class="pull-left info">
                         <p>gcis3</p>
-                        <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                        <a href="/spade"><i class="fa fa-circle text-success"></i> Online</a>
                     </div>
                 </div>
-                <ul class="sidebar-menu" data-widget="tree">
-                    <li class="active">
+                <ul class="sidebar-menu tree" data-widget="tree">
+                    <li>
                         <a href="/spade"><i class="fa fa-id-card"></i> <span>Dashboard</span></a>
                     </li>
                     <li>
                         <a href="/acl_message"><i class="fa fa-envelope"></i> <span>Send ACL message</span></a>
                     </li>
-                    <li>
-                        <a href="/editor"><i class="fa fa-envelope"></i> <span>Programming language editor</span></a>
+                    <li class="active">
+                        <a href="/editor"><i class="fa fa-code"></i> <span>Programming language editor</span></a>
                     </li>
                     <li>
-                        <a href="/aas_library"><i class="fa fa-envelope"></i> <span>AAS Library</span></a>
+                        <a href="/aas_library"><i class="fa fa-book"></i> <span>AAS Library</span></a>
                     </li>
                 </ul>
             </section>
@@ -160,14 +204,14 @@
                                 <h3 class="box-title">Programming Language Editor</h3>
                             </div>
                             <form action="/editor/submit" method="POST">
-                                <div class="editor">
+                                <div class="editor box-body">
                                     <textarea id="textEditor" name="textEditor" placeholder="Start programming here..."></textarea>
                                 </div>
-                                <div class="buttons">
-                                    <button type="button" class="btn btn-primary" id="saveButton">Save</button>
-                                    <button type="button" class="btn btn-warning" id="clearButton">Clear</button>
-                                    <button type="submit" class="btn btn-success" id="createButton">Create</button>
-                                </div>
+                                <div class="box-footer">
+                                    <button type="button" class="btn btn-save" id="saveButton">Save</button>
+                                    <button type="button" class="btn btn-clear" id="clearButton">Clear</button>
+                                    <button type="submit" class="btn btn-submit" id="createButton">Create</button>
+                            </div>
                             </form>
                         </div>
                     </div>
@@ -175,9 +219,9 @@
             </section>
         </div>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkf1dEFf/7myWk/Ta3Sga8FNcsuM3w8a5FHFsC9J4" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.8/js/adminlte.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.2/js/adminlte.min.js" integrity="sha256-M/+/xbAPBtc0W7JWnReOYF+oPZq4OiOUrlP9qbv7w64=" crossorigin="anonymous"></script>
+
 </body>
 </html>

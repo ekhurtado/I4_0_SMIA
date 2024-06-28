@@ -91,8 +91,8 @@ async def main():
     await sender_agent.start()
     sender_agent.web.start(hostname="0.0.0.0", port="10000")    # https://spade-mas.readthedocs.io/en/latest/web.html#
     sender_agent.web.add_menu_entry("Send ACL message", "/acl_message", "fa fa-envelope")  # https://github.com/javipalanca/spade/blob/master/docs/web.rst#menu-entries
-    sender_agent.web.add_menu_entry("Programming language editor", "/editor", "fa fa-envelope")
-    sender_agent.web.add_menu_entry("AAS Library", "/aas_library", "fa fa-envelope")
+    sender_agent.web.add_menu_entry("Programming language editor", "/editor", "fa fa-code")
+    sender_agent.web.add_menu_entry("AAS Library", "/aas_library", "fa fa-book")
     # The main thread will be waiting until the agent has finished
     await spade.wait_until_finished(sender_agent)
 
