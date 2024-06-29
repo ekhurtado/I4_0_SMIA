@@ -81,7 +81,7 @@ async def main():
     # Add customized webpage
     # sender_agent.web.add_get("/hello", hello_controller, "/hello.html")
     sender_agent.web.add_get("/acl_message", hello_controller, "/send_acl.html")
-    sender_agent.web.add_post("/acl_message/submit", sender_agent.post_controller, "/send_acl.html")
+    sender_agent.web.add_post("/acl_message/submit", sender_agent.post_controller, "/send_acl_submit.html")
     sender_agent.web.add_get("/editor", hello_controller, "/own_programming_language_editor.html")
     sender_agent.web.add_post("/editor/submit", sender_agent.post_controller, "/own_programming_language_editor.html")
     sender_agent.web.add_get("/aas_library", hello_controller, "/aas_library.html")

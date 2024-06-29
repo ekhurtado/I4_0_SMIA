@@ -176,62 +176,12 @@
                             <div class="box-header with-border">
                                 <h3 class="box-title">Message Form</h3>
                             </div>
-                            <form id="messageForm" action="/acl_message/submit" method="POST">
-                                <div class="box-body">
-                                    <div class="form-group">
-                                        <label for="receiver">Receiver JID</label>
-                                        <input type="text" class="form-control" id="receiver" name="receiver" placeholder="Receiver JID" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="server">XMPP Server</label>
-                                        <input type="text" class="form-control" id="server" name="server" placeholder="XMPP Server" value="ejabberd" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="thread">Thread</label>
-                                        <input type="text" class="form-control" id="thread" name="thread" placeholder="Thread ID (conversation_id of FIPA-ACL)" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="performative">Performative</label>
-                                        <input type="text" class="form-control" id="performative" name="performative" placeholder="Performative" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="ontology">Ontology</label>
-                                        <input type="text" class="form-control" id="ontology" name="ontology" placeholder="Ontology" required>
-                                    </div>
-                                    <div class="form-group switch-container">
-                                        <label>Message body type</label>
-                                        <span class="toggle-text">Normal</span>
-                                        <label class="switch">
-                                            <input type="hidden" name="messageType" value="normal">
-                                            <input type="checkbox" id="messageTypeSwitch" name="messageType" value="acl">
-                                            <span class="slider"></span>
-                                        </label>
-                                        <span class="toggle-text">SMIA 4.0</span>
-                                    </div>
-                                    <div id="normalMessageSection" class="form-group">
-                                        <h4>Message body without format</h4>
-                                        <textarea class="form-control" id="normalMessage" name="normalMessage" rows="5" placeholder="Add the body of the message..."></textarea>
-                                    </div>
-                                    <div id="aclMessageSection" class="hidden">
-                                        <h4>SMIA 4.0 message format</h4>
-                                        <div class="form-group">
-                                            <label for="serviceID">Service ID</label>
-                                            <input type="text" class="form-control" id="serviceID" name="serviceID" placeholder="Service ID">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="serviceType">Service Type</label>
-                                            <input type="text" class="form-control" id="serviceType" name="serviceType" placeholder="Service Type">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="serviceData">Service Data</label>
-                                            <input type="text" class="form-control" id="serviceData" name="serviceData" placeholder="Service Data: {'key': 'value'}">
-                                        </div>
-                                    </div>
+                            <div class="box-body">
+                                <div class="container">
+                                    <h4 id="responseMessage">Mensaje del Servidor</h4>
+                                    <button class="btn btn-custom" onclick="window.location.href='/acl_message'">Volver al Formulario</button>
                                 </div>
-                                <div class="box-footer">
-                                    <button type="submit" class="btn btn-submit">Send Message</button>
-                                </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -242,19 +192,18 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.2/js/adminlte.min.js" integrity="sha256-M/+/xbAPBtc0W7JWnReOYF+oPZq4OiOUrlP9qbv7w64=" crossorigin="anonymous"></script>
     <script>
-        $(document).ready(function () {
-            $('#messageTypeSwitch').change(function () {
-                if (this.checked) {
-                    $('#normalMessageSection').addClass('hidden');
-                    $('#aclMessageSection').removeClass('hidden');
-                } else {
-                    $('#normalMessageSection').removeClass('hidden');
-                    $('#aclMessageSection').addClass('hidden');
-                }
-            });
+        // Lee los parámetros de la URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const status = urlParams.get('status');
 
-
-        });
+        // Muestra el mensaje correspondiente basado en el estado
+        const responseMessage = document.getElementById('responseMessage');
+        if (status === 'success') {
+            responseMessage.textContent = 'Formulario enviado exitosamente.';
+        } else {
+            responseMessage.textContent = 'Hubo un error al enviar el formulario.';
+        }
+    </script>
     </script>
 </body>
 </html>
