@@ -50,6 +50,8 @@ class SenderAgent(Agent):
         # self.add_behaviour(self.b)
 
     async def post_controller(self, request):
+
+        self.acl_sent = False # se inicializa en False
         print("HA LLEGADO AL POST DEL AGENTE: " + str(self.jid))
         print(request)
         data_bytes = b''
@@ -58,6 +60,9 @@ class SenderAgent(Agent):
             data_bytes = data_bytes + line
         data_str = data_bytes.decode('utf-8')
         print(data_str)
+
+        # FALTA AÑADIR EL CODIGO PARA ENVIAR EL MENSAJE ACL
+        self.acl_sent = True
         return {"number": 42}
 
 async def hello_controller(request):

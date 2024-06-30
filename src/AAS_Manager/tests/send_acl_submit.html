@@ -177,6 +177,9 @@
                                 <h3 class="box-title">Message Form</h3>
                             </div>
                             <div class="box-body">
+                                {% if agent.acl_sent %}
+                                <h4>ACL message successfully sent by {{ agent.jid }}.</h4>
+                                {% endif %}
                                 <div class="container">
                                     <h4 id="responseMessage">Mensaje del Servidor</h4>
                                     <button class="btn btn-custom" onclick="window.location.href='/acl_message'">Volver al Formulario</button>
