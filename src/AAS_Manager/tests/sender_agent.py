@@ -1,5 +1,6 @@
 import codecs
 import json
+from urllib.parse import parse_qs
 import os
 import time
 
@@ -12,68 +13,67 @@ from spade.message import Message
 # XMPP_SERVER = 'worker4'
 XMPP_SERVER = 'ejabberd'
 
+
 class SenderAgent(Agent):
     class SendBehaviour(OneShotBehaviour):
         async def run(self):
             # Prepare the ACL message
-            performative = os.environ.get('PERFORMATIVE')
-            ontology = os.environ.get('ONTOLOGY')
-            body = os.environ.get('MSG_BODY')
-            receiver = os.environ.get('RECEIVER_JID')
+            data_json = {k: v[0] if len(v) == 1 else v for k, v in parse_qs(self.msg_data).items()}
+            print(data_json)
 
-            print("Building the message to send to the agent with JID: " + str(receiver))
+            # Create the Message object
+            print("Building the message to send to the agent with JID: " + str(data_json['receiver']))
+            receiver = data_json['receiver'] + '@' + data_json['server']
+            msg = Message(to=receiver, thread=data_json['thread'])
+            msg.set_metadata('performative', data_json['performative'])
+            msg.set_metadata('ontology', data_json['ontology'])
 
-            msg = Message(to=receiver)
-            if performative is not None:
-                msg.set_metadata('performative', performative)
-                print("The message has the performative: " + str(performative))
-            if ontology is not None:
-                msg.set_metadata('ontology', ontology)
-                print("The message has the ontology: " + str(ontology))
-            print("The message content is: " + str(body))
-            msg.body = body
+            if data_json['messageType'] == 'normal':  # message body with normal format
+                msg.body = data_json['normalMessage']
+            elif len(data_json['messageType']) == 2:
+                body = '{"serviceID": "' + data_json['serviceID'] + \
+                       '", "serviceType": "' + data_json['serviceType'] + \
+                       '", "serviceData": "', data_json['serviceData'] + '"}'
+                msg.body = str(body)
+            print(msg)
 
-            time.sleep(10)  # espera de 10s para que de tiempo a leer la consola
             print("Sending the message...")
             await self.send(msg)
 
             # set exit_code for the behaviour
-            self.exit_code = "Job Finished!"
+            self.agent.acl_sent = True
 
             # stop agent from behaviour
-            await self.agent.stop()
+            # await self.agent.stop()
 
     async def setup(self):
         print("Hello World! I'm sender agent {}".format(str(self.jid)))
         print("SenderAgent started")
-        self.b = self.SendBehaviour()
-        # self.add_behaviour(self.b)
 
     async def post_controller(self, request):
 
-        self.acl_sent = False # se inicializa en False
+        self.acl_sent = False  # se inicializa en False
         print("HA LLEGADO AL POST DEL AGENTE: " + str(self.jid))
         print(request)
         data_bytes = b''
         async for line in request.content:
-            print(line)
             data_bytes = data_bytes + line
         data_str = data_bytes.decode('utf-8')
         print(data_str)
 
-        # FALTA AÑADIR EL CODIGO PARA ENVIAR EL MENSAJE ACL
-        self.acl_sent = True
-        return {"number": 42}
+        self.b = self.SendBehaviour()
+        self.b.msg_data = data_str
+        self.add_behaviour(self.b)
+
+        return "OK"
+
 
 async def hello_controller(request):
     print(request)
     return {"number": 42}
 
 
-
-
 async def main():
-
     aas_id = 'senderagent'  # For testing
     # Build the agent jid and password
     agent_jid = aas_id + '@' + XMPP_SERVER
@@ -94,12 +94,14 @@ async def main():
 
     # Since the agent object has already been created, the agent will start
     await sender_agent.start()
-    sender_agent.web.start(hostname="0.0.0.0", port="10000")    # https://spade-mas.readthedocs.io/en/latest/web.html#
-    sender_agent.web.add_menu_entry("Send ACL message", "/acl_message", "fa fa-envelope")  # https://github.com/javipalanca/spade/blob/master/docs/web.rst#menu-entries
+    sender_agent.web.start(hostname="0.0.0.0", port="10000")  # https://spade-mas.readthedocs.io/en/latest/web.html#
+    sender_agent.web.add_menu_entry("Send ACL message", "/acl_message",
+                                    "fa fa-envelope")  # https://github.com/javipalanca/spade/blob/master/docs/web.rst#menu-entries
     sender_agent.web.add_menu_entry("Programming language editor", "/editor", "fa fa-code")
     sender_agent.web.add_menu_entry("AAS Library", "/aas_library", "fa fa-book")
     # The main thread will be waiting until the agent has finished
     await spade.wait_until_finished(sender_agent)
+
 
 if __name__ == '__main__':
     print("Initializing AAS Manager program...")

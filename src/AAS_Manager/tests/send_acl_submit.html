@@ -177,11 +177,12 @@
                                 <h3 class="box-title">Message Form</h3>
                             </div>
                             <div class="box-body">
-                                {% if agent.acl_sent %}
-                                <h4>ACL message successfully sent by {{ agent.jid }}.</h4>
-                                {% endif %}
                                 <div class="container">
-                                    <h4 id="responseMessage">Mensaje del Servidor</h4>
+                                    {% if agent.acl_sent %}
+                                    <h4>ACL message successfully sent by {{ agent.jid }}.</h4>
+                                    {% else %}
+                                    <h4>Ahora no</h4>
+                                    {% endif %}
                                     <button class="btn btn-custom" onclick="window.location.href='/acl_message'">Volver al Formulario</button>
                                 </div>
                             </div>
@@ -194,19 +195,5 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.2/js/adminlte.min.js" integrity="sha256-M/+/xbAPBtc0W7JWnReOYF+oPZq4OiOUrlP9qbv7w64=" crossorigin="anonymous"></script>
-    <script>
-        // Lee los parámetros de la URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const status = urlParams.get('status');
-
-        // Muestra el mensaje correspondiente basado en el estado
-        const responseMessage = document.getElementById('responseMessage');
-        if (status === 'success') {
-            responseMessage.textContent = 'Formulario enviado exitosamente.';
-        } else {
-            responseMessage.textContent = 'Hubo un error al enviar el formulario.';
-        }
-    </script>
-    </script>
 </body>
 </html>
