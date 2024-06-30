@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>ACL Message Form</title>
+    <title>Negotiation Result</title>
     <!-- Include CSS links -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -149,10 +149,10 @@
                     <li>
                         <a href="/spade"><i class="fa fa-id-card"></i> <span>Dashboard</span></a>
                     </li>
-                    <li class="active">
+                    <li>
                         <a href="/acl_message"><i class="fa fa-envelope"></i> <span>Send ACL message</span></a>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="/negotiation"><i class="fa fa-comments"></i> <span>Negotiation</span></a>
                     </li>
                     <li>
@@ -179,62 +179,14 @@
                             <div class="box-header with-border">
                                 <h3 class="box-title">Message Form</h3>
                             </div>
-                            <form id="messageForm" action="/acl_message/submit" method="POST">
-                                <div class="box-body">
-                                    <div class="form-group">
-                                        <label for="receiver">Receiver JID</label>
-                                        <input type="text" class="form-control" id="receiver" name="receiver" placeholder="Receiver JID" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="server">XMPP Server</label>
-                                        <input type="text" class="form-control" id="server" name="server" placeholder="XMPP Server" value="ejabberd" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="thread">Thread</label>
-                                        <input type="text" class="form-control" id="thread" name="thread" placeholder="Thread ID (conversation_id of FIPA-ACL)" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="performative">Performative</label>
-                                        <input type="text" class="form-control" id="performative" name="performative" placeholder="Performative" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="ontology">Ontology</label>
-                                        <input type="text" class="form-control" id="ontology" name="ontology" placeholder="Ontology" required>
-                                    </div>
-                                    <div class="form-group switch-container">
-                                        <label>Message body type</label>
-                                        <span class="toggle-text">Normal</span>
-                                        <label class="switch">
-                                            <input type="hidden" name="messageType" value="normal">
-                                            <input type="checkbox" id="messageTypeSwitch" name="messageType" value="acl">
-                                            <span class="slider"></span>
-                                        </label>
-                                        <span class="toggle-text">SMIA 4.0</span>
-                                    </div>
-                                    <div id="normalMessageSection" class="form-group">
-                                        <h4>Message body without format</h4>
-                                        <textarea class="form-control" id="normalMessage" name="normalMessage" rows="5" placeholder="Add the body of the message..."></textarea>
-                                    </div>
-                                    <div id="aclMessageSection" class="hidden">
-                                        <h4>SMIA 4.0 message format</h4>
-                                        <div class="form-group">
-                                            <label for="serviceID">Service ID</label>
-                                            <input type="text" class="form-control" id="serviceID" name="serviceID" placeholder="Service ID">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="serviceType">Service Type</label>
-                                            <input type="text" class="form-control" id="serviceType" name="serviceType" placeholder="Service Type">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="serviceData">Service Data</label>
-                                            <input type="text" class="form-control" id="serviceData" name="serviceData" placeholder="Service Data: {'key': 'value'}">
-                                        </div>
-                                    </div>
+                            <div class="box-body">
+                                <div class="container">
+                                    {% if agent.neg_sent %}
+                                    <h4>ACL message successfully sent by {{ agent.jid }}.</h4>
+                                    {% endif %}
+                                    <button class="btn btn-custom" onclick="window.location.href='/acl_message'">Volver al Formulario</button>
                                 </div>
-                                <div class="box-footer">
-                                    <button type="submit" class="btn btn-submit">Send Message</button>
-                                </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -244,20 +196,5 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.2/js/adminlte.min.js" integrity="sha256-M/+/xbAPBtc0W7JWnReOYF+oPZq4OiOUrlP9qbv7w64=" crossorigin="anonymous"></script>
-    <script>
-        $(document).ready(function () {
-            $('#messageTypeSwitch').change(function () {
-                if (this.checked) {
-                    $('#normalMessageSection').addClass('hidden');
-                    $('#aclMessageSection').removeClass('hidden');
-                } else {
-                    $('#normalMessageSection').removeClass('hidden');
-                    $('#aclMessageSection').addClass('hidden');
-                }
-            });
-
-
-        });
-    </script>
 </body>
 </html>

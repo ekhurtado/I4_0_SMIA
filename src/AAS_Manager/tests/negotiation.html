@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>ACL Message Form</title>
+    <title>Negotiation Form</title>
     <!-- Include CSS links -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -149,10 +149,10 @@
                     <li>
                         <a href="/spade"><i class="fa fa-id-card"></i> <span>Dashboard</span></a>
                     </li>
-                    <li class="active">
+                    <li>
                         <a href="/acl_message"><i class="fa fa-envelope"></i> <span>Send ACL message</span></a>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="/negotiation"><i class="fa fa-comments"></i> <span>Negotiation</span></a>
                     </li>
                     <li>
@@ -166,10 +166,10 @@
         </aside>
         <div class="content-wrapper">
             <section class="content-header">
-                <h1>Send ACL Message</h1>
+                <h1>Request negotiation</h1>
                 <ol class="breadcrumb">
                     <li><a href="/spade"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li class="active">Send ACL Message</li>
+                    <li class="active">Negotiation</li>
                 </ol>
             </section>
             <section class="content">
@@ -179,11 +179,11 @@
                             <div class="box-header with-border">
                                 <h3 class="box-title">Message Form</h3>
                             </div>
-                            <form id="messageForm" action="/acl_message/submit" method="POST">
+                            <form id="messageForm" action="/negotiation/submit" method="POST">
                                 <div class="box-body">
                                     <div class="form-group">
-                                        <label for="receiver">Receiver JID</label>
-                                        <input type="text" class="form-control" id="receiver" name="receiver" placeholder="Receiver JID" required>
+                                        <label for="receiver">Receivers JID</label>
+                                        <input type="text" class="form-control" id="receiver" name="receiver" placeholder="Receivers JID (split by ',')" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="server">XMPP Server</label>
@@ -200,6 +200,10 @@
                                     <div class="form-group">
                                         <label for="ontology">Ontology</label>
                                         <input type="text" class="form-control" id="ontology" name="ontology" placeholder="Ontology" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="criteria">Criteria</label>
+                                        <input type="text" class="form-control" id="criteria" name="criteria" placeholder="Criteria" required>
                                     </div>
                                     <div class="form-group switch-container">
                                         <label>Message body type</label>

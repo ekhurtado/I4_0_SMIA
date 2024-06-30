@@ -58,12 +58,12 @@
                         <li class="dropdown user user-menu">
                             <a href="/spade" class="dropdown-toggle" data-toggle="dropdown">
                                 <img src="https://raw.githubusercontent.com/ekhurtado/Component_I4_0/main/images/Component_I4_0_logo_negative.png" class="user-image" alt="User Image">
-                                <span class="hidden-xs">gcis3</span>
+                                <span class="hidden-xs">{{ agent.agent_name }}</span>
                             </a>
                             <ul class="dropdown-menu">
                                 <li class="user-header">
                                     <img src="https://raw.githubusercontent.com/ekhurtado/Component_I4_0/main/images/Component_I4_0_logo_negative.png" class="img-circle" alt="User Image">
-                                    <p>gcis3@anonym.im</p>
+                                    <p>{{ agent.jid }}</p>
                                 </li>
                                 <li class="user-footer">
                                     <div class="pull-left">
@@ -83,7 +83,7 @@
                         <img src="https://raw.githubusercontent.com/ekhurtado/Component_I4_0/main/images/Component_I4_0_logo_negative.png" class="img-circle" alt="User Image">
                     </div>
                     <div class="pull-left info">
-                        <p>gcis3</p>
+                        <p>{{ agent.agent_name }}</p>
                         <a href="/spade"><i class="fa fa-circle text-success"></i> Online</a>
                     </div>
                 </div>
@@ -93,6 +93,9 @@
                     </li>
                     <li>
                         <a href="/acl_message"><i class="fa fa-envelope"></i> <span>Send ACL message</span></a>
+                    </li>
+                    <li>
+                        <a href="/negotiation"><i class="fa fa-comments"></i> <span>Negotiation</span></a>
                     </li>
                     <li>
                         <a href="/editor"><i class="fa fa-code"></i> <span>Programming language editor</span></a>
