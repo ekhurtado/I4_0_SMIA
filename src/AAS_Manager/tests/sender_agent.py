@@ -63,7 +63,7 @@ class SenderAgent(Agent):
                 msg = Message(to=receiver, thread=data_json['thread'])
                 msg.set_metadata('performative', data_json['performative'])
                 msg.set_metadata('ontology', data_json['ontology'])
-                msg.set_metadata('neg_request_jid', self.agent.jid)
+                msg.set_metadata('neg_request_jid', str(self.agent.jid))
                 msg.set_metadata('targets', str(receivers_jid))
 
                 criteria_body = {'criteria', data_json['criteria']}

@@ -1,3 +1,4 @@
+import json
 import sys
 from random import randint
 
@@ -43,17 +44,23 @@ class ReceiverAgent(Agent):
                 print("   with content: {}".format(msg.body))
 
                 # Get the data from the msg
-                targets = msg.get_metadata('targets')
+                targets = eval(msg.get_metadata('targets'))
                 criteria = msg.body
 
-                if len(targets) == 1:
-                    # Sólo hay un target disponible (por lo tanto, es el único y es el winner)
-                    print("     =>>>  THE WINNER OF THE NEGOTIATION IS: " + str(self.agent.jid))
-                    print(" Faltaria contestar al que ha pedido la negociacion")
-                    response_msg = Message(to=msg.get_metadata('neg_request_jid'), body='WINNER')
-                    # await self.send(response_msg)
-                else:
-                    if msg.get_metadata('performative') == 'CFP':
+                if msg.get_metadata('performative') == 'CFP':
+                    if len(targets) == 1:
+                        # Sólo hay un target disponible (por lo tanto, es el único y es el winner)
+                        print("     =>>>  THE WINNER OF THE NEGOTIATION IS: " + str(self.agent.jid))
+                        print(" Faltaria contestar al que ha pedido la negociacion")
+                        response_msg = Message(to=msg.get_metadata('neg_request_jid'), body='WINNER')
+                        # await self.send(response_msg)
+                    else:
+                        # Si hay mas targets, envio a cada uno un mensjae PROPOSE con mi valor del criterio
+
+                        for jid_target in targets:
+                            print("...")
+                            # TODO
+
 
 
                 if criteria == "battery":
