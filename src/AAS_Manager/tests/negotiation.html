@@ -205,35 +205,6 @@
                                         <label for="criteria">Criteria</label>
                                         <input type="text" class="form-control" id="criteria" name="criteria" placeholder="Criteria" required>
                                     </div>
-                                    <div class="form-group switch-container">
-                                        <label>Message body type</label>
-                                        <span class="toggle-text">Normal</span>
-                                        <label class="switch">
-                                            <input type="hidden" name="messageType" value="normal">
-                                            <input type="checkbox" id="messageTypeSwitch" name="messageType" value="acl">
-                                            <span class="slider"></span>
-                                        </label>
-                                        <span class="toggle-text">SMIA 4.0</span>
-                                    </div>
-                                    <div id="normalMessageSection" class="form-group">
-                                        <h4>Message body without format</h4>
-                                        <textarea class="form-control" id="normalMessage" name="normalMessage" rows="5" placeholder="Add the body of the message..."></textarea>
-                                    </div>
-                                    <div id="aclMessageSection" class="hidden">
-                                        <h4>SMIA 4.0 message format</h4>
-                                        <div class="form-group">
-                                            <label for="serviceID">Service ID</label>
-                                            <input type="text" class="form-control" id="serviceID" name="serviceID" placeholder="Service ID">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="serviceType">Service Type</label>
-                                            <input type="text" class="form-control" id="serviceType" name="serviceType" placeholder="Service Type">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="serviceData">Service Data</label>
-                                            <input type="text" class="form-control" id="serviceData" name="serviceData" placeholder="Service Data: {'key': 'value'}">
-                                        </div>
-                                    </div>
                                 </div>
                                 <div class="box-footer">
                                     <button type="submit" class="btn btn-submit">Send Message</button>
@@ -248,20 +219,5 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.2/js/adminlte.min.js" integrity="sha256-M/+/xbAPBtc0W7JWnReOYF+oPZq4OiOUrlP9qbv7w64=" crossorigin="anonymous"></script>
-    <script>
-        $(document).ready(function () {
-            $('#messageTypeSwitch').change(function () {
-                if (this.checked) {
-                    $('#normalMessageSection').addClass('hidden');
-                    $('#aclMessageSection').removeClass('hidden');
-                } else {
-                    $('#normalMessageSection').removeClass('hidden');
-                    $('#aclMessageSection').addClass('hidden');
-                }
-            });
-
-
-        });
-    </script>
 </body>
 </html>

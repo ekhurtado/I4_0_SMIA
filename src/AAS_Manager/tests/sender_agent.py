@@ -53,21 +53,30 @@ class SenderAgent(Agent):
             if ',' in data_json['receiver']:
                 receivers_jid = data_json['receiver'].split(',')
             else:
-                receivers_jid = data_json['receiver']
-            print("Building the message to send to the agent with JID: " + str(data_json['receiver']))
-            receiver = data_json['receiver'] + '@' + data_json['server']
-            msg = Message(to=receiver, thread=data_json['thread'])
-            msg.set_metadata('performative', data_json['performative'])
-            msg.set_metadata('ontology', data_json['ontology'])
-            msg.set_metadata('criteria', data_json['criteria'])
+                receivers_jid = [data_json['receiver']]
 
-            msg.body = data_json['normalMessage']
+            print(receivers_jid)
 
-            print(msg)
+            for jid in receivers_jid:
+                print("Building the negotiation message to send to the agent with JID: " + jid)
+                receiver = jid + '@' + data_json['server']
+                msg = Message(to=receiver, thread=data_json['thread'])
+                msg.set_metadata('performative', data_json['performative'])
+                msg.set_metadata('ontology', data_json['ontology'])
+                msg.set_metadata('neg_request_jid', self.agent.jid)
+                msg.set_metadata('targets', str(receivers_jid))
 
-            print("Sending the message...")
-            await self.send(msg)
-            print("Message sent!")
+                criteria_body = {'criteria', data_json['criteria']}
+
+                msg.body = str(criteria_body)
+
+                print(msg)
+
+                print("Sending the message...")
+                await self.send(msg)
+                print("Message sent!")
+
+            print("All negotiation messages sent!")
 
     async def setup(self):
         print("Hello World! I'm sender agent {}".format(str(self.jid)))
