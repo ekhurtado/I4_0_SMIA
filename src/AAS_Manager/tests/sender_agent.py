@@ -31,10 +31,9 @@ class SenderAgent(Agent):
             if data_json['messageType'] == 'normal':  # message body with normal format
                 msg.body = data_json['normalMessage']
             elif len(data_json['messageType']) == 2:
-                body = '{"serviceID": "' + data_json['serviceID'] + \
+                msg.body = '{"serviceID": "' + data_json['serviceID'] + \
                        '", "serviceType": "' + data_json['serviceType'] + \
-                       '", "serviceData": "', data_json['serviceData'] + '"}'
-                msg.body = str(body)
+                       '", "serviceData": ' + data_json['serviceData'] + '}'
             print(msg)
 
             print("Sending the message...")
@@ -133,22 +132,24 @@ async def main():
     agent_jid = aas_id + '@' + XMPP_SERVER
     passwd = '123'
 
-    agent_jid = "sender_agent@anonym.im"
-    passwd = "gcis1234"
+    # DATOS PARA PRUEBAS CON ANONYM.IM
+    # agent_jid = "sender_agent@anonym.im"
+    # passwd = "gcis1234"
+
     sender_agent = SenderAgent(agent_jid, passwd)
     sender_agent.agent_name = 'sender_agent'
 
     # Add customized webpages
-    sender_agent.web.add_get("/acl_message", hello_controller, "/send_acl.html")
-    sender_agent.web.add_post("/acl_message/submit", sender_agent.acl_post_controller, "/send_acl_submit.html")
+    sender_agent.web.add_get("/acl_message", hello_controller, "/htmls/send_acl.html")
+    sender_agent.web.add_post("/acl_message/submit", sender_agent.acl_post_controller, "/htmls/send_acl_submit.html")
 
-    sender_agent.web.add_get("/negotiation", hello_controller, "/negotiation.html")
-    sender_agent.web.add_post("/negotiation/submit", sender_agent.neg_post_controller, "/negotiation_submit.html")
+    sender_agent.web.add_get("/negotiation", hello_controller, "/htmls/negotiation.html")
+    sender_agent.web.add_post("/negotiation/submit", sender_agent.neg_post_controller, "/htmls/negotiation_submit.html")
 
-    sender_agent.web.add_get("/editor", hello_controller, "/own_programming_language_editor.html")
-    sender_agent.web.add_post("/editor/submit", sender_agent.acl_post_controller, "/own_programming_language_editor.html")
+    sender_agent.web.add_get("/editor", hello_controller, "/htmls/own_programming_language_editor.html")
+    sender_agent.web.add_post("/editor/submit", sender_agent.acl_post_controller, "/htmls/own_programming_language_editor.html")
 
-    sender_agent.web.add_get("/aas_library", hello_controller, "/aas_library.html")
+    sender_agent.web.add_get("/aas_library", hello_controller, "/htmls/aas_library.html")
     print("All HTMLs added.")
 
     # Since the agent object has already been created, the agent will start

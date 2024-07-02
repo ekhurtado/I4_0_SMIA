@@ -9,8 +9,7 @@ import rospy
 from std_msgs.msg import String
 
 from utilities import AASArchive_utils
-from utilities.Interactions_utils import get_next_svc_request, delete_svc_request, add_new_svc_response, \
-    create_response_json_object
+from utilities.Interactions_utils import get_next_svc_request, add_new_svc_response, create_response_json_object
 
 # Some variables needed by this AAS Core
 state = 'IDLE'
@@ -60,6 +59,7 @@ def initialize_aas_core():
     #   1) Un PUBLISHER, que dará la señal de comienzo del servicio por el tópico (coordinateIDLE)
     global pub
     pub = rospy.Publisher('/coordinateIDLE', String, queue_size=10)
+    print(pub)
     #   2) Otro PUBLISHER, que comunicará el destino o coordenada a la que debe desplazarse el transporte.
     #   Utiliza para ello el tópico /coordinate
     global pubCoord
@@ -110,6 +110,9 @@ def handle_data_to_transport():
 
                     global pub
                     global pubCoord
+
+                    print("TIENE EL PUB EL OBJETO ACTUALIZADO???")
+                    print(pub)
 
                     print("         + Notify ROS nodes for service   [GO]")
                     # Se le ordena a un publicista que notifique al transporte de que se requiere un servicio
