@@ -7853,3 +7853,5 @@ KeyboardInterrupt
 [36;20m2024-05-28 11:34:11,103 [spade.behaviour] [INFO] FSM arrived to a final state (no transitions found). Killing FSM.[0m
 [36;20m2024-05-28 11:34:11,103 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None[0m
 [36;20m2024-05-28 11:34:11,104 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None[0m
+[36;20m2024-07-09 17:53:30,010 [__main__] [INFO] Initializing AAS Manager program...[0m
+[36;20m2024-07-09 17:53:30,013 [SPADE] [ERROR] Exception in the event loop: 'general-information'[0m
