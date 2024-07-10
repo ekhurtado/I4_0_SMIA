@@ -1,5 +1,5 @@
-AAS Manager
-===========
+API documentation
+=================
 
 .. toctree::
    :maxdepth: 4
