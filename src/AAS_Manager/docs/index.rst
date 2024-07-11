@@ -11,6 +11,7 @@ Welcome to AAS Manager's documentation!
    :caption: Contents:
 
    modules
+   glossary
    recommended_links
 
 
