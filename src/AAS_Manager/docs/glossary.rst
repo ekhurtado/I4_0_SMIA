@@ -35,3 +35,6 @@ Glossary
 
    Variable
        A storage location identified by a memory address and a symbolic name, which contains some known or unknown quantity of information referred to as a value.
+
+   AAS
+       The Asset Administration Shell or AAS is the standardized digital representation of an asset (adapted from `Plattform I4.0 glossary <https://www.plattform-i40.de/IP/Navigation/EN/Industrie40/Glossary/glossary.html>`_ ).

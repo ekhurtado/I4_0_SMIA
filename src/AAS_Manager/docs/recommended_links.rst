@@ -23,3 +23,5 @@ This page contains various documents of interest, articles related to this proje
    (APIs).
 -  `TODO <https://www.google.com/>`__:
    The articles that will be published with this doctoral thesis, and other related articles or links (videos, data...) are still to be added.
+
+*: Test for link to glossary term :term:`AAS`
