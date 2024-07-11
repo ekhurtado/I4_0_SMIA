@@ -44,6 +44,7 @@ html_static_path = ['_static']
 # -----------------
 # READTHEDOCS THEME
 # ----------------
+<<<<<<< HEAD
 # html_theme = 'sphinx_rtd_theme'
 #
 # # Add the CSS file to use all width of the webpage (for sphinx_rtd_theme)
@@ -60,6 +61,14 @@ html_static_path = ['_static']
 #
 # html_logo = 'images/Component_I4_0_logo_positive.png'   # To add the logo
 # html_show_sphinx = False    # To not show “Created using Sphinx” in the HTML footer
+=======
+html_theme = 'sphinx_rtd_theme'
+
+# Add the CSS file to use all width of the webpage (for sphinx_rtd_theme)
+# html_css_files = [
+#     'css/custom.css',
+# ]
+>>>>>>> bef2e4cd69b773fced98c40691a08b0385784d8c
 
 # ---------
 # FURO THEME
@@ -89,3 +98,26 @@ pygments_dark_style = "monokai"
 
 html_show_sphinx = False    # To not show “Created using Sphinx” in the HTML footer
 
+<<<<<<< HEAD
+=======
+# ---------
+# FURO THEME
+# ----------
+# Documentation: https://pradyunsg.me/furo/customisation/fonts/
+# html_theme = 'furo'
+#
+# # Configuration of Furo HTML theme
+# html_logo = "images/Component_I4_0_logo_positive.png"
+# html_theme_options = {
+#     # "light_logo": "images/Component_I4_0_logo_positive.png",
+#     # "dark_logo": "images/Component_I4_0_logo_positive.png",
+#     "light_css_variables": {
+#         "color-brand-primary": "#34A1E8",
+#         "color-brand-content": "#2980B9",
+#         "color-problematic": "DodgerBlue",  # other CSS colors: https://www.w3schools.com/cssref/css_colors.php
+#         # "color-admonition-background": "#2980B9",
+#     },
+# }
+# pygments_dark_style = "monokai"
+
+>>>>>>> bef2e4cd69b773fced98c40691a08b0385784d8c

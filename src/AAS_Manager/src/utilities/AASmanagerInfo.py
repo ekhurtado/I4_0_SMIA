@@ -25,7 +25,6 @@ class AASmanagerInfo:
     # The template for the service requests is the combination of the different possibilities
     SVC_STANDARD_ACL_TEMPLATE = (svc_standard_acl_template_cfp | svc_standard_acl_template_inform)
 
-
     # Object of the standard template for service requests through ACL messages
     # -------------------------------------------------------------------------
     neg_standard_acl_template_cfp = GeneralUtils.create_acl_template(performative='CallForProposal',
@@ -39,3 +38,17 @@ class AASmanagerInfo:
     NEG_STANDARD_ACL_TEMPLATE = (neg_standard_acl_template_cfp | neg_standard_acl_template_propose
                                  | neg_standard_acl_template_failure | neg_standard_acl_template_inform)
 
+<<<<<<< HEAD
+=======
+    NEG_STANDARD_ACL_TEMPLATE_CFP = NEG_STANDARD_ACL_TEMPLATE_ONT  # template for CFP messages
+    NEG_STANDARD_ACL_TEMPLATE_CFP.set_metadata("performative", "CallForProposal")
+    NEG_STANDARD_ACL_TEMPLATE_PROPOSE = NEG_STANDARD_ACL_TEMPLATE_ONT
+    NEG_STANDARD_ACL_TEMPLATE_PROPOSE.set_metadata("performative", "Propose")
+    NEG_STANDARD_ACL_TEMPLATE_FAILURE = NEG_STANDARD_ACL_TEMPLATE_ONT
+    NEG_STANDARD_ACL_TEMPLATE_FAILURE.set_metadata("performative", "Failure")
+    NEG_STANDARD_ACL_TEMPLATE_INFORM = NEG_STANDARD_ACL_TEMPLATE_ONT
+    NEG_STANDARD_ACL_TEMPLATE_INFORM.set_metadata("performative", "Inform")
+    # The template for the negotiation is the combination of the different possibilities
+    NEG_STANDARD_ACL_TEMPLATE = (
+                NEG_STANDARD_ACL_TEMPLATE_CFP | NEG_STANDARD_ACL_TEMPLATE_PROPOSE | NEG_STANDARD_ACL_TEMPLATE_FAILURE | NEG_STANDARD_ACL_TEMPLATE_INFORM)
+>>>>>>> bef2e4cd69b773fced98c40691a08b0385784d8c

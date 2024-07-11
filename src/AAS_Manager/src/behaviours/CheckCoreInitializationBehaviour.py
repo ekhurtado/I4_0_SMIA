@@ -2,9 +2,6 @@ import logging
 import os
 
 from spade.behaviour import CyclicBehaviour
-
-from logic import Interactions_utils
-from utilities import Submodels_utils
 from utilities.AAS_Archive_utils import file_to_json
 from utilities.AASarchiveInfo import AASarchiveInfo
 

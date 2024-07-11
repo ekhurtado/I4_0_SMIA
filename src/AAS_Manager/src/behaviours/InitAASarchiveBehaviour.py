@@ -8,8 +8,8 @@ _logger = logging.getLogger(__name__)
 
 class InitAASarchiveBehaviour(OneShotBehaviour):
     """
-    This class implements the behaviour responsible for initialize the AAS Archive, performing the necessary actions to let the
-    AAS Archive in the initial conditions to start the main program.
+    This class implements the behaviour responsible for initialize the AAS Archive, performing the necessary actions
+    to let the AAS Archive in the initial conditions to start the main program.
     """
 
     def __init__(self, agent_object):
