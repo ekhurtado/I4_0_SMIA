@@ -26,6 +26,7 @@ extensions = [
     'sphinx.ext.autosectionlabel',  # It allows to refer sections its title (i.e. Parameters in docStrings).
     'sphinx.ext.autosummary',  # It generates function/method/attribute summary lists
     # 'sphinx_rtd_theme',
+    'sphinx_inline_tabs',
 ]
 
 templates_path = ['_templates']
