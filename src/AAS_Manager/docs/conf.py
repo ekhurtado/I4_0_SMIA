@@ -68,6 +68,7 @@ html_static_path = ['_static']
 html_theme = 'furo'
 
 # Configuration of Furo HTML theme
+# All color definitions: https://github.com/pradyunsg/furo/blob/main/src/furo/assets/styles/variables/_colors.scss
 html_logo = "images/Component_I4_0_logo_positive.png"
 html_theme_options = {
     # "light_logo": "images/Component_I4_0_logo_positive.png",
@@ -83,7 +84,9 @@ html_theme_options = {
         "color-brand-primary": "#34A1E8",
         "color-brand-content": "#2980B9",
         "color-problematic": "DodgerBlue",
-        "color-api-background": "#202020",
+        "color-api-background": "#464646",
+        "color-api-name": "#ba1c26",
+        "color-admonition-background": "#c1a63f",
     }
 }
 
