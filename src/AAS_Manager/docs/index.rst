@@ -10,6 +10,7 @@ Welcome to AAS Manager's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   aas_developer_guide
    modules
    glossary
    recommended_links
