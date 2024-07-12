@@ -84,9 +84,9 @@ html_theme_options = {
         "color-brand-primary": "#34A1E8",
         "color-brand-content": "#2980B9",
         "color-problematic": "DodgerBlue",
-        "color-api-background": "#464646",
-        "color-api-name": "#ba1c26",
-        "color-admonition-background": "#c1a63f",
+        "color-api-background": "#383838",
+        "color-api-keyword": "#ba1c26",
+        # "color-admonition-background": "#c1a63f",
     }
 }
 
