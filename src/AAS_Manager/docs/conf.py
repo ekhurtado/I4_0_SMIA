@@ -82,7 +82,7 @@ html_theme_options = {
         "color-brand-primary": "#34A1E8",
         "color-brand-content": "#2980B9",
         "color-problematic": "DodgerBlue",
-        "--color-api-background": "#E7F2FA",
+        "color-api-background": "#E7F2FA",
     }
 }
 
