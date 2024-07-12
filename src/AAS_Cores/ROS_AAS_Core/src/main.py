@@ -1,12 +1,13 @@
+#!/usr/bin/env python
+import rospy
+from std_msgs.msg import String
+
 import calendar
 import json
 import logging
 import os
 import time
 from threading import Thread
-
-import rospy
-from std_msgs.msg import String
 
 from utilities import AASArchive_utils
 from utilities.Interactions_utils import get_next_svc_request, add_new_svc_response, create_response_json_object
@@ -23,6 +24,27 @@ pubCoord = None
 
 def main():
 
+    # time.sleep(2)
+    # print("Probando a publicar en ROS")
+    # rospy.init_node('AAS_Test_Pub', anonymous=True)
+    # print("ROS node initiated.")
+    #
+    # pub = rospy.Publisher("/coordinateIDLE", String, queue_size=10)
+    # pubCoord = rospy.Publisher('/coordinate', String, queue_size=10)  # Coordinate, queue_size=10)
+    # print("ROS publishers initiated.")
+    #
+    # while not rospy.is_shutdown():
+    #     pub.publish("GO")
+    #     print("Published 'GO' in topic '/coordinateIDLE'")
+    #     time.sleep(3)
+    #
+    #     # pubCoord.publish("1.43,0.59")
+    #     pubCoord.publish("-1.65,-0.56")
+    #     print("Published coordinates of warehouse in topic '/coordinate'")
+    #     print("AAS Core send warehouse coordinates")
+    #     print("AAS Core wait while moving to warehouse")
+
+    #############################
     initialize_aas_archive()
 
     # Then, the initialization tasks are performed
@@ -59,7 +81,6 @@ def initialize_aas_core():
     #   1) Un PUBLISHER, que dará la señal de comienzo del servicio por el tópico (coordinateIDLE)
     global pub
     pub = rospy.Publisher('/coordinateIDLE', String, queue_size=10)
-    print(pub)
     #   2) Otro PUBLISHER, que comunicará el destino o coordenada a la que debe desplazarse el transporte.
     #   Utiliza para ello el tópico /coordinate
     global pubCoord
@@ -98,8 +119,6 @@ def handle_data_to_transport():
 
             # TODO, si ha llegado alguna peticion, enviar el comando a traves del pub y pubCoord
             global WIP
-            global state
-            print("State: " + str(state))
             if not WIP:
 
                 print("WIP is false")
@@ -116,6 +135,16 @@ def handle_data_to_transport():
 
                     global pub
                     global pubCoord
+                    global state
+                    print("---> State: " + str(state))
+                    print(pub)
+
+                    if state == "IDLE":
+                        r = rospy.Rate(3)  # 10hz
+                        while not rospy.is_shutdown():
+                            pub.publish("GO")
+                            r.sleep()
+                        time.sleep(1)
 
                     # Se le ordena a un publicista que publique las coordenadas objetivo
                     # Para este ejemplo, son coordenadas estáticas, que representan la
@@ -124,7 +153,8 @@ def handle_data_to_transport():
                     print("AAS Core send warehouse coordinates")
                     print("AAS Core wait while moving to warehouse")
 
-                    while not state == "ACTIVE":
+                    time.sleep(1)
+                    while not state == "ACTIVE":    # wait until the robot has reached the target coordinates
                         time.sleep(1)
 
                     # TODO: para pruebas, eliminamos la peticion de servicio, como que ya se ha ofrecido
@@ -135,36 +165,21 @@ def handle_data_to_transport():
                     response_json = create_response_json_object(msgReceived)
                     add_new_svc_response(response_json)
 
+                    # Once it is in the active state and has reached the target (has completed the service), the robot
+                    # will proceed to return to the home position.
+                    time.sleep(2)
+                    #    Coordenadas estáticas, que representan la posición de ORIGEN del turtlebot3
+                    pubCoord.publish("-1.65,-0.56")
 
-            elif WIP and state == 'ACTIVE':
+                    print("AAS Core send collection/delivery point coordinates")
+                    print("AAS Core wait while moving to collection/delivery point")
 
-                print("WIP is true")
-
-                # Se "apaga" el flag 'WIP'
-                WIP = None
-
-                # Ahora el turtlebot3 se ha transladado hasta la máquina y vuelve al estado ACTIVE
-                # En este punto realiza dos acciones:
-
-                # 1) Avisar a TransportAgent de que el robot ya ha llegado a la máquina.
-                msg2 = {'thread': 'READY'} #TODO escribir la respuesta en svcResponses del Core con body="ALREADY IN WAREHOUSE"
-                # msg2.thread = "READY"
-
-                # Envía al mensaje a TransportAgent
-                # TODO
-                print("         + Message sent to AAS Manager from AAS Core  (interactions/Core/svcResponses.json)")
-                # 2) Devolver célula de transporte a su punto de partida
-                print("           |____Returning transport to base!")
-
-                #    Coordenadas estáticas, que representan la posición de ORIGEN del turtlebot3
-                pubCoord.publish("-1.65,-0.56")
-
-                print("AAS Core send collection/delivery point coordinates")
-                print("AAS Core wait while moving to collection/delivery point")
-
-                # Hacer tiempo mientras el transporte alcanza el estado 'ACTIVE'
-                while not state == "ACTIVE":
                     time.sleep(1)
+                    while not state == "ACTIVE":  # wait until the robot has reached the target coordinates
+                        time.sleep(1)
+
+                    # Se "apaga" el flag 'WIP'
+                    WIP = False
 
         else:
             print("No service requests yet.")

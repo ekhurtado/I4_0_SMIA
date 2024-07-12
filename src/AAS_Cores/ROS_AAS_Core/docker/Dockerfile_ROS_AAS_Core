@@ -5,16 +5,17 @@ FROM ros:noetic-ros-base
 ENV ROS_MASTER_URI=http://192.168.1.62:11311
 ENV ROS_HOSTNAME=192.168.1.62
 #ENV ROS_IP=192.168.233.130
-#ENV ROS_WS=/home/catkin_ws
+ENV ROS_WS=/home/catkin_ws
 ENV ROS_DISTRO=noetic
 
 RUN #mkdir -p $ROS_WS/src
 
 COPY catkin_ws $ROS_WS
+COPY src $ROS_WS/src/turtlebot_main/scripts
 COPY src /
 
-#WORKDIR $ROS_WS
-WORKDIR /
+#WORKDIR /
+WORKDIR $ROS_WS
 
 # install ros dependencies packages
 
@@ -25,8 +26,14 @@ WORKDIR /
 RUN echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
 RUN . "/opt/ros/$ROS_DISTRO/setup.sh"
 
+RUN catkin_make
+
+RUN roscd turtlebot_main
+
+WORKDIR /
+
 # run ros package launch file
-#CMD [ "roslaunch", "turtlebot_main", "main.py" ]
+#CMD [ "rosrun", "turtlebot_main", "main.py" ]
 CMD [ "python3", "-u", "main.py"]
 
 # Para mantener el contenedor arrancado:
