@@ -9,7 +9,7 @@ Code blocks and examples are an essential part of technical project
 documentation. Sphinx provides syntax highlighting for these
 out-of-the-box, through Pygments.
 
-.. tab:: One
+.. tab:: Option 1
 
     .. code::
 
@@ -35,7 +35,7 @@ out-of-the-box, through Pygments.
        There's a lot of power hidden underneath the triple backticks in MyST Markdown,
        as seen in <https://myst-parser.readthedocs.io/en/latest/syntax/roles-and-directives.html>.
 
-.. tab:: Two
+.. tab:: Option 2
 
     .. code::
 
