@@ -77,12 +77,13 @@ html_theme_options = {
         "color-brand-content": "#2980B9",
         "color-problematic": "DodgerBlue",  # other CSS colors: https://www.w3schools.com/cssref/css_colors.php
         # "color-admonition-background": "#2980B9",
+        "color-api-background": "#E7F2FA",
     },
     "dark_css_variables": {  # colors for dark theme
         "color-brand-primary": "#34A1E8",
         "color-brand-content": "#2980B9",
         "color-problematic": "DodgerBlue",
-        "color-api-background": "#E7F2FA",
+        "color-api-background": "#202020",
     }
 }
 
