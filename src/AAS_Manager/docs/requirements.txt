@@ -3,3 +3,4 @@ spade==3.3.2
 Flask==2.2.5
 furo==2024.5.6
 sphinx-inline-tabs==2023.4.21
+sphinx-copybutton==0.5.2

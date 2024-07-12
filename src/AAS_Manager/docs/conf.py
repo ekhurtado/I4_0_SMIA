@@ -27,6 +27,7 @@ extensions = [
     'sphinx.ext.autosummary',  # It generates function/method/attribute summary lists
     # 'sphinx_rtd_theme',
     'sphinx_inline_tabs',
+    'sphinx_copybutton',
 ]
 
 templates_path = ['_templates']
