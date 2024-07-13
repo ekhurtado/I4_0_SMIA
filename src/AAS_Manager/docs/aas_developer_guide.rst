@@ -70,5 +70,5 @@ With the "sphinx-design" extension we can also add dropdowns:
 Event dropdowns with an icon:
 
 .. dropdown:: Dropdown with icon
-    :icon: code-square
+    :octicon:`code-square;1em;sd-text-info`
     Dropdown content
