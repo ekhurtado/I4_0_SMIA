@@ -29,6 +29,7 @@ extensions = [
     'sphinx_inline_tabs',
     'sphinx_copybutton',
     'notfound.extension',
+    'sphinx-design',
 ]
 
 templates_path = ['_templates']
@@ -64,7 +65,7 @@ html_static_path = ['_static']
 # html_logo = 'images/Component_I4_0_logo_positive.png'   # To add the logo
 # html_show_sphinx = False    # To not show “Created using Sphinx” in the HTML footer
 
-# ---------
+# ----------
 # FURO THEME
 # ----------
 # Documentation: https://pradyunsg.me/furo/customisation/fonts/

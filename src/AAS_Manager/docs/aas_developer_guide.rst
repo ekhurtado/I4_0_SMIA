@@ -60,3 +60,16 @@ out-of-the-box, through Pygments.
 
 There's a lot more forms of "blocks" in reStructuredText that can be used, as
 seen in https://docutils.sourceforge.io/docs/ref/rst/restructuredtext.html#literal-blocks.
+
+With the "sphinx-design" extension we can also add dropdowns:
+
+:::{dropdown} Dropdown title
+Dropdown content
+:::
+
+Event dropdowns with an icon:
+
+:::{dropdown} Dropdown with icon
+:icon: code-square
+Dropdown content
+:::
