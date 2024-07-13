@@ -28,6 +28,7 @@ extensions = [
     # 'sphinx_rtd_theme',
     'sphinx_inline_tabs',
     'sphinx_copybutton',
+    'notfound.extension',
 ]
 
 templates_path = ['_templates']
