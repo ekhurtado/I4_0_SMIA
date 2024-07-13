@@ -29,7 +29,7 @@ extensions = [
     'sphinx_inline_tabs',
     'sphinx_copybutton',
     'notfound.extension',
-    'sphinx-design',
+    'sphinx_design',
 ]
 
 templates_path = ['_templates']
