@@ -64,6 +64,7 @@ seen in https://docutils.sourceforge.io/docs/ref/rst/restructuredtext.html#liter
 With the "sphinx-design" extension we can also add dropdowns:
 
 .. dropdown:: Dropdown title
+
     Dropdown content
 
 
@@ -71,4 +72,5 @@ Event dropdowns with an icon:
 
 .. dropdown:: Dropdown with icon
     :octicon:`code-square;1em;sd-text-info`
+
     Dropdown content
