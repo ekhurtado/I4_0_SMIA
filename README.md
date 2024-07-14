@@ -32,4 +32,4 @@ The I4.0 Standardized Microservice-based Industrial Agent (I4.0 SMIA) is a propo
 
 ## License
 
-Add license.
+GNU General Public License v3.0. See `LICENSE` for more information.
