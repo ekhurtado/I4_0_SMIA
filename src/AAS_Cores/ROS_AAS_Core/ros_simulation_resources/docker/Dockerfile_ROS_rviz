@@ -1,0 +1,34 @@
+FROM ros:noetic-ros-base
+
+RUN echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
+RUN . "/opt/ros/$ROS_DISTRO/setup.sh"
+
+RUN chmod +x /opt/ros/noetic/setup.bash
+RUN /opt/ros/noetic/setup.bash
+
+WORKDIR /catkin_ws
+
+RUN mkdir -p /catkin_ws/src
+RUN . "/opt/ros/$ROS_DISTRO/setup.sh" && catkin_make
+
+COPY catkin_ws/src /catkin_ws/src/
+
+RUN apt-get update && apt-get install -y \
+    ros-noetic-tf
+#    ros-noetic-turtlebot3-msgs \
+#    ros-noetic-gazebo-ros \
+#    ros-noetic-xacro \
+#    ros-noetic-turtlebot3-description
+
+RUN rosdep update
+
+ENV ROS_PACKAGE_PATH=/catkin_ws/src:/opt/ros/noetic/share
+
+RUN roscd turtlebot_main
+
+EXPOSE 11311
+
+
+# Para mantener el contenedor arrancado:
+#CMD ["./scripts/initGazebo.sh"]
+CMD [ "tail", "-f", "/dev/null"]

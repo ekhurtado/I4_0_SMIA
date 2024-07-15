@@ -50,6 +50,17 @@ spec:
               subPath: status
             - name: component-cm
               mountPath: /aas_archive/config
+          env:
+            - name: ROS_MASTER_URI
+              value: "http://192.168.1.2:11311"
+#            - name: ROS_HOSTNAME
+#              valueFrom:
+#                fieldRef:
+#                  fieldPath: status.podIP
+            - name: ROS_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
       restartPolicy: Always
       serviceAccountName: ""
       volumes:

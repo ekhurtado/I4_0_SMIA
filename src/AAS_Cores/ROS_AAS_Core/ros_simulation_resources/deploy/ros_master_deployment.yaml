@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ros-master
+  labels:
+    app: ros-master
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ros-master
+  template:
+    metadata:
+      labels:
+        app: ros-master
+    spec:
+      containers:
+        - name: ros-master
+          image: ekhurtado/ros-tests:ros-master
+          imagePullPolicy: Always
+          env:
+            - name: ROS_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+            - name: ROS_MASTER_URI
+              value: "http://$(ROS_IP):11311"
+            - name: ROS_HOSTNAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+      nodeSelector:
+        kubernetes.io/hostname: worker1
+      restartPolicy: Always
+      serviceAccountName: ""
+

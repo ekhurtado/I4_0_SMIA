@@ -1,0 +1,21 @@
+FROM ros:noetic-ros-base
+
+RUN echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
+RUN . "/opt/ros/$ROS_DISTRO/setup.sh"
+
+RUN chmod +x /opt/ros/noetic/setup.bash
+RUN /opt/ros/noetic/setup.bash
+
+WORKDIR /catkin_ws
+
+RUN mkdir -p /catkin_ws/src
+RUN . "/opt/ros/$ROS_DISTRO/setup.sh" && catkin_make
+
+EXPOSE 11311
+
+RUN chmod +x /opt/ros/noetic/setup.bash
+RUN /opt/ros/noetic/setup.bash
+
+# Para mantener el contenedor arrancado:
+CMD [ "roscore"]
+#CMD [ "tail", "-f", "/dev/null"]

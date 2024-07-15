@@ -1,0 +1,24 @@
+version: "2"
+
+services:
+
+  ros-master:
+    build:
+      context: .
+      dockerfile: Dockerfile_ROS_master
+    image: ekhurtado/ros-tests:ros-master
+    container_name: ros-master
+
+  ros-gazebo:
+    build:
+      context: .
+      dockerfile: Dockerfile_ROS_gazebo
+    image: ekhurtado/ros-tests:ros-gazebo
+    container_name: ros-gazebo
+
+  ros-rviz:
+    build:
+      context: .
+      dockerfile: Dockerfile_ROS_rviz
+    image: ekhurtado/ros-tests:ros-rviz
+    container_name: ros-rviz

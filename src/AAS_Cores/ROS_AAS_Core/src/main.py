@@ -24,28 +24,27 @@ pubCoord = None
 
 def main():
 
-    # time.sleep(2)
-    # print("Probando a publicar en ROS")
-    # rospy.init_node('AAS_Test_Pub', anonymous=True)
-    # print("ROS node initiated.")
-    #
-    # pub = rospy.Publisher("/coordinateIDLE", String, queue_size=10)
+    # rospy.init_node('PruebaROS2', anonymous=True)
+    # # Se crean además dos nodos:
+    # #   1) Un PUBLISHER, que dará la señal de comienzo del servicio por el tópico (coordinateIDLE)
+    # pub = rospy.Publisher('/coordinateIDLE', String, queue_size=10)
+    # #   2) Otro PUBLISHER, que comunicará el destino o coordenada a la que debe desplazarse el transporte.
+    # #   Utiliza para ello el tópico /coordinate
     # pubCoord = rospy.Publisher('/coordinate', String, queue_size=10)  # Coordinate, queue_size=10)
-    # print("ROS publishers initiated.")
-    #
-    # while not rospy.is_shutdown():
-    #     pub.publish("GO")
-    #     print("Published 'GO' in topic '/coordinateIDLE'")
-    #     time.sleep(3)
-    #
-    #     # pubCoord.publish("1.43,0.59")
-    #     pubCoord.publish("-1.65,-0.56")
-    #     print("Published coordinates of warehouse in topic '/coordinate'")
-    #     print("AAS Core send warehouse coordinates")
-    #     print("AAS Core wait while moving to warehouse")
+    # time.sleep(2)
+    # pub.publish("GO")
+    # time.sleep(4)
+    # # Se le ordena a un publicista que publique las coordenadas objetivo
+    # # Para este ejemplo, son coordenadas estáticas, que representan la
+    # # posición fija e invariable del almacén
+    # pubCoord.publish("1.43,0.59")
+    # # pubCoord.publish("-1.65,-0.56")
+    # print(" send warehouse coordinates")
+    # print("wait while moving to warehouse")
+    # print("FINALIZADA PRUEBA A MANO")
 
     #############################
-    initialize_aas_archive()
+    # initialize_aas_archive()
 
     # Then, the initialization tasks are performed
     initialize_aas_core()
@@ -140,10 +139,11 @@ def handle_data_to_transport():
                     print(pub)
 
                     if state == "IDLE":
-                        r = rospy.Rate(3)  # 10hz
-                        while not rospy.is_shutdown():
-                            pub.publish("GO")
-                            r.sleep()
+                    #     r = rospy.Rate(3)  # 10hz
+                    #     while not rospy.is_shutdown():
+                    #         pub.publish("GO")
+                    #         r.sleep()
+                        pub.publish("GO")
                         time.sleep(1)
 
                     # Se le ordena a un publicista que publique las coordenadas objetivo
