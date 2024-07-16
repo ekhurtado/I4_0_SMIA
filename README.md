@@ -17,6 +17,16 @@ The I4.0 Standardized Microservice-based Industrial Agent (I4.0 SMIA) is a propo
 > [!TIP]
 > For more details on I4.0 Standardized Microservice-based Industrial Agent see the [:blue_book: **full documentation**](https://component-i4-0.readthedocs.io/en/latest/?badge=latest).
 
+## Project structure
+
+The repository of the I4.0 SMIA project is structured as follows:
+
+- [additional_tools](https://github.com/ekhurtado/Component_I4_0/tree/main/additional_tools): additional tools developed related to the I4.0 SMIA (i.e. a SPADE agent with a graphical interface that allows sending FIPA-ACL messages in a user-friendly way).
+- [deploy](https://github.com/ekhurtado/Component_I4_0/tree/main/deploy): all the necessary resources for the deployment of the solution. As the execution platform is Kubernetes, these files are in YAML format.
+- [src](https://github.com/ekhurtado/Component_I4_0/tree/main/src): the entire source code of the I4.0 SMIA. It is divided into two main subfolders:
+  - [AAS_Cores](https://github.com/ekhurtado/Component_I4_0/tree/main/src/AAS_Cores): the code developed for the AAS Cores of the different use cases.
+  - [AAS_Manager](https://github.com/ekhurtado/Component_I4_0/tree/main/src/AAS_Manager): the source code for the standardized AAS Manager.
+
 ## Usage
 
 > [!IMPORTANT]

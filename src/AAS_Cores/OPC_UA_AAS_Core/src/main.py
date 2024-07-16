@@ -71,8 +71,8 @@ def run_aas_core():
     AASArchive_utils.change_status('Running')
 
     # Each function will have its own thread of execution
-    thread_func1 = Thread(target=handle_data_to_machine(), args=())
-    thread_func2 = Thread(target=handle_data_from_machine(), args=())
+    thread_func1 = Thread(target=handle_data_to_machine, args=())
+    thread_func2 = Thread(target=handle_data_from_machine, args=())
 
     thread_func1.start()
     thread_func2.start()
