@@ -2,18 +2,20 @@
 
 """
 import calendar
+import random
 import time
 
 from utilities.AASArchive_utils import file_to_json, update_json_file
 from utilities.AASarchiveInfo import AASarchiveInfo
 
+internal_interaction_id = 0
 
 def get_next_svc_request():
     print("Obtaining the next service request from AAS Manager.")
     svc_requests_file_path = AASarchiveInfo.MANAGER_INTERACTIONS_FOLDER_PATH + AASarchiveInfo.SVC_REQUEST_FILE_SUBPATH
     svc_requests_json = file_to_json(svc_requests_file_path)
     if len(svc_requests_json['serviceRequests']) != 0:
-        return svc_requests_json['serviceRequests'][0]
+        return svc_requests_json['serviceRequests'][len(svc_requests_json['serviceRequests']) - 1]
     else:
         return None
 
@@ -60,3 +62,17 @@ def add_new_svc_response(new_response_json):
         svc_requests_json['serviceResponses'].append(new_response_json)
 
     update_json_file(svc_requests_file_path, svc_requests_json)
+
+
+def make_gateway_request(ros_topic, ros_msg):
+    global  internal_interaction_id
+    gw_request_obj = {'interactionID': internal_interaction_id,
+                                'ros_topic': ros_topic,
+                                'ros_msg': ros_msg
+                      }
+    internal_interaction_id += 1
+    gw_requests_file_path = '/ros_aas_core_archive/requests.json'
+    gw_requests_json = file_to_json(gw_requests_file_path)
+    gw_requests_json['requests'].append(gw_request_obj)
+    update_json_file('/ros_aas_core_archive/requests.json', gw_requests_json)
+

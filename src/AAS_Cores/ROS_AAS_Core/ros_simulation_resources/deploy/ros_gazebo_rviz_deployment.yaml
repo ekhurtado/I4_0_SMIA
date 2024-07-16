@@ -1,30 +1,29 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ros-rviz
+  name: ros-gazebo-rviz
   labels:
-    app: ros-rviz
+    app: ros-gazebo-rviz
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ros-rviz
+      app: ros-gazebo-rviz
   template:
     metadata:
       labels:
-        app: ros-rviz
+        app: ros-gazebo-rviz
     spec:
       containers:
-        - name: ros-rviz
-          image: ekhurtado/ros-tests:ros-gazebo-rviz
+        - name: ros-gazebo
+          image: ekhurtado/ros-tests:ros-gazebo
           imagePullPolicy: Always
-#          volumeMounts:
-#            - mountPath: /tmp/.X11-unix
-#              name: ros-rviz-visual-claim
-#              readOnly: true
+          volumeMounts:
+            - name: aas-core-archive
+              mountPath: /root/.ros/log/
           env:
-            - name: DISPLAY
-              value: :1
+            #            - name: ROS_PACKAGE_PATH
+            #              value: /catkin_ws/src:/opt/ros/noetic/share
             - name: ROS_IP
               valueFrom:
                 fieldRef:
@@ -35,13 +34,35 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: status.podIP
-#      volumes:
-#        - name: ros-rviz-visual-claim
-#          persistentVolumeClaim:
-#            claimName: ros-rviz-visual-claim
-#            readOnly: true
+
+        - name: ros-rviz
+          image: ekhurtado/ros-tests:ros-rviz
+          imagePullPolicy: Always
+          volumeMounts:
+            - name: aas-core-archive
+              mountPath: /root/.ros/log/
+            - mountPath: /tmp/.X11-unix:/tmp/.X11-unix:ro
+              name: ros-rviz-visual-claim
+              readOnly: true
+          env:
+            - name: ROS_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+            - name: ROS_MASTER_URI
+              value: "http://$(ROS_IP):11311"
+#            - name: ROS_HOSTNAME
+#              valueFrom:
+#                fieldRef:
+#                  fieldPath: status.podIP
+            - name: DISPLAY
+              value: :0
       nodeSelector:
         kubernetes.io/hostname: master
       restartPolicy: Always
       serviceAccountName: ""
+      volumes:
+        # The shared directory for holding the files
+        - name: aas-core-archive
+        - name: ros-rviz-visual-claim
 

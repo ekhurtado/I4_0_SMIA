@@ -38,7 +38,7 @@ WORKDIR /
 
 # run ros package launch file
 #CMD [ "rosrun", "turtlebot_main", "main.py" ]
-#CMD [ "python3", "-u", "main.py"]
+CMD [ "python3", "-u", "main.py"]
 
 # Para mantener el contenedor arrancado:
-CMD [ "tail", "-f", "/dev/null"]
+#CMD [ "tail", "-f", "/dev/null"]

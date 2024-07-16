@@ -2,15 +2,14 @@
 import rospy
 from std_msgs.msg import String
 
-import calendar
-import json
 import logging
-import os
 import time
 from threading import Thread
 
 from utilities import AASArchive_utils
-from utilities.Interactions_utils import get_next_svc_request, add_new_svc_response, create_response_json_object
+from utilities.AASArchive_utils import update_json_file, file_to_json
+from utilities.Interactions_utils import get_next_svc_request, add_new_svc_response, create_response_json_object, \
+    make_gateway_request
 
 # Some variables needed by this AAS Core
 state = 'IDLE'
@@ -44,7 +43,7 @@ def main():
     # print("FINALIZADA PRUEBA A MANO")
 
     #############################
-    # initialize_aas_archive()
+    initialize_aas_archive()
 
     # Then, the initialization tasks are performed
     initialize_aas_core()
@@ -93,8 +92,8 @@ def run_aas_core():
     AASArchive_utils.change_status('Running')
 
     # Each function will have its own thread of execution
-    thread_func1 = Thread(target=handle_data_to_transport(), args=())
-    thread_func2 = Thread(target=handle_data_from_transport(), args=())
+    thread_func1 = Thread(target=handle_data_to_transport, args=())
+    thread_func2 = Thread(target=handle_data_from_transport, args=())
 
     thread_func1.start()
     thread_func2.start()
@@ -146,12 +145,19 @@ def handle_data_to_transport():
                         pub.publish("GO")
                         time.sleep(1)
 
+                        # PRUEBA CON GATEWAY
+                        make_gateway_request('/coordinateIDLE', 'GO')
+
+
                     # Se le ordena a un publicista que publique las coordenadas objetivo
                     # Para este ejemplo, son coordenadas estáticas, que representan la
                     # posición fija e invariable del almacén
                     pubCoord.publish("1.43,0.59")
                     print("AAS Core send warehouse coordinates")
                     print("AAS Core wait while moving to warehouse")
+
+                    # PRUEBA CON GATEWAY
+                    make_gateway_request('/coordinate', '1.43,0.59')
 
                     time.sleep(1)
                     while not state == "ACTIVE":    # wait until the robot has reached the target coordinates
@@ -170,6 +176,9 @@ def handle_data_to_transport():
                     time.sleep(2)
                     #    Coordenadas estáticas, que representan la posición de ORIGEN del turtlebot3
                     pubCoord.publish("-1.65,-0.56")
+
+                    # PRUEBA CON GATEWAY
+                    make_gateway_request('/coordinate', '-1.65,-0.56')
 
                     print("AAS Core send collection/delivery point coordinates")
                     print("AAS Core wait while moving to collection/delivery point")
@@ -191,8 +200,15 @@ def handle_data_from_transport():
 
     # Crea un nodo SUBSCRIBER, que se quedará a la escucha por el tópico /status
     # y notificará al agente del estado del transporte
-    rospy.Subscriber('/status', String, callback)
+    # rospy.Subscriber('/status', String, callback)
 
+    # PRUEBA GATEWAY
+    while True:
+        time.sleep(1)
+        status_json = file_to_json('/ros_aas_core_archive/status.json')
+        global state
+        state = status_json['status']
+        print("Current state in file: " + state)
 
 def callback(data):
     # Este método se ejecutará cada vez que se publiquen datos por el tópico /status

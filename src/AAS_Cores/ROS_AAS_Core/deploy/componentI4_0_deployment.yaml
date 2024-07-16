@@ -50,9 +50,11 @@ spec:
               subPath: status
             - name: component-cm
               mountPath: /aas_archive/config
+            - name: ros-aas-core-archive
+              mountPath: /ros_aas_core_archive
           env:
             - name: ROS_MASTER_URI
-              value: "http://192.168.1.2:11311"
+              value: "http://192.168.1.62:11311"
 #            - name: ROS_HOSTNAME
 #              valueFrom:
 #                fieldRef:
@@ -61,6 +63,8 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: status.podIP
+      nodeSelector:
+        kubernetes.io/hostname: worker1
       restartPolicy: Always
       serviceAccountName: ""
       volumes:
@@ -77,4 +81,7 @@ spec:
         - name: component-cm
           configMap:
             name: component-i4-0-cm
+        - name: ros-aas-core-archive
+          persistentVolumeClaim:
+            claimName: ros-aas-core-archive-claim
 
