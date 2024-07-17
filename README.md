@@ -14,7 +14,6 @@ The I4.0 Standardized Microservice-based Industrial Agent (I4.0 SMIA) is a propo
 - containerized solution
 - Standardized AASs based on SPADE agents.
 
-
 > [!TIP]
 > For more details on I4.0 Standardized Microservice-based Industrial Agent see the [:blue_book: **full documentation**](https://component-i4-0.readthedocs.io/en/latest/?badge=latest).
 
