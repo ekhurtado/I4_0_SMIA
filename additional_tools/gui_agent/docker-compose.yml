@@ -2,11 +2,11 @@ version: "2"
 
 services:
 
-  sender-agent:
+  gui-agent:
     build:
       context: .
-      dockerfile: Dockerfile_sender_test_agent
-    image: ekhurtado/agent-tests:sender-agent
-    container_name: sender-agent
+      dockerfile: Dockerfile_gui_agent
+    image: ekhurtado/i4-0-smia-tools:gui-agent
+    container_name: gui-agent
     ports:
       - 10000:31000

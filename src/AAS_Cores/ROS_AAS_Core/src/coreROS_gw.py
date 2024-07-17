@@ -106,4 +106,4 @@ if __name__ == '__main__':
     print('Gateway to link the AAS Core and ROS simulation resourcees')
     print('Gateway starting...')
     main()
-    print('Gateway ending...')
+    # print('Gateway ending...')

@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sender-agent
+  name: gui-agent
   labels:
-    app: sender-agent
+    app: gui-agent
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: sender-agent
+      app: gui-agent
   template:
     metadata:
       labels:
-        app: sender-agent
+        app: gui-agent
     spec:
       containers:
-        - name: sender-agent
-          image: ekhurtado/agent-tests:sender-agent
+        - name: gui-agent
+          image: ekhurtado/i4-0-smia-tools:gui-agent
           imagePullPolicy: Always
           env:
             - name: RECEIVER_JID

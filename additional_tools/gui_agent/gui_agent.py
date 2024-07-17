@@ -1,11 +1,6 @@
-import codecs
-import json
 from urllib.parse import parse_qs
-import os
-import time
 
 import spade
-from aioxmpp import stream
 from spade.agent import Agent
 from spade.behaviour import OneShotBehaviour
 from spade.message import Message
@@ -14,7 +9,7 @@ from spade.message import Message
 XMPP_SERVER = 'ejabberd'
 
 
-class SenderAgent(Agent):
+class GUIAgent(Agent):
     class SendBehaviour(OneShotBehaviour):
         async def run(self):
             # Prepare the ACL message
@@ -76,7 +71,7 @@ class SenderAgent(Agent):
 
     async def setup(self):
         print("Hello World! I'm sender agent {}".format(str(self.jid)))
-        print("SenderAgent started")
+        print("GUIAgent started")
         self.acl_sent = False  # se inicializa en False
         self.neg_sent = False  # se inicializa en False
 
@@ -127,45 +122,45 @@ async def hello_controller(request):
 
 
 async def main():
-    aas_id = 'senderagent'  # For testing
+    aas_id = 'guiagent'  # For testing
     # Build the agent jid and password
     agent_jid = aas_id + '@' + XMPP_SERVER
     passwd = '123'
 
     # DATOS PARA PRUEBAS CON ANONYM.IM
-    # agent_jid = "sender_agent@anonym.im"
+    # agent_jid = "gui_agent@anonym.im"
     # passwd = "gcis1234"
 
-    sender_agent = SenderAgent(agent_jid, passwd)
-    sender_agent.agent_name = 'sender_agent'
+    gui_agent = GUIAgent(agent_jid, passwd)
+    gui_agent.agent_name = 'gui_agent'
 
     # Add customized webpages
-    sender_agent.web.add_get("/acl_message", hello_controller, "/htmls/send_acl.html")
-    sender_agent.web.add_post("/acl_message/submit", sender_agent.acl_post_controller, "/htmls/send_acl_submit.html")
+    gui_agent.web.add_get("/acl_message", hello_controller, "/htmls/send_acl.html")
+    gui_agent.web.add_post("/acl_message/submit", gui_agent.acl_post_controller, "/htmls/send_acl_submit.html")
 
-    sender_agent.web.add_get("/negotiation", hello_controller, "/htmls/negotiation.html")
-    sender_agent.web.add_post("/negotiation/submit", sender_agent.neg_post_controller, "/htmls/negotiation_submit.html")
+    gui_agent.web.add_get("/negotiation", hello_controller, "/htmls/negotiation.html")
+    gui_agent.web.add_post("/negotiation/submit", gui_agent.neg_post_controller, "/htmls/negotiation_submit.html")
 
-    sender_agent.web.add_get("/editor", hello_controller, "/htmls/own_programming_language_editor.html")
-    sender_agent.web.add_post("/editor/submit", sender_agent.acl_post_controller, "/htmls/own_programming_language_editor.html")
+    gui_agent.web.add_get("/editor", hello_controller, "/htmls/own_programming_language_editor.html")
+    gui_agent.web.add_post("/editor/submit", gui_agent.acl_post_controller, "/htmls/own_programming_language_editor.html")
 
-    sender_agent.web.add_get("/aas_library", hello_controller, "/htmls/aas_library.html")
+    gui_agent.web.add_get("/aas_library", hello_controller, "/htmls/aas_library.html")
     print("All HTMLs added.")
 
     # Since the agent object has already been created, the agent will start
-    await sender_agent.start()
-    sender_agent.web.start(hostname="0.0.0.0", port="10000")  # https://spade-mas.readthedocs.io/en/latest/web.html#
-    sender_agent.web.add_menu_entry("Send ACL message", "/acl_message",
+    await gui_agent.start()
+    gui_agent.web.start(hostname="0.0.0.0", port="10000")  # https://spade-mas.readthedocs.io/en/latest/web.html#
+    gui_agent.web.add_menu_entry("Send ACL message", "/acl_message",
                                     "fa fa-envelope")  # https://github.com/javipalanca/spade/blob/master/docs/web.rst#menu-entries
-    sender_agent.web.add_menu_entry("Negotiation", "/negotiation", "fa fa-comments")
-    sender_agent.web.add_menu_entry("Programming language editor", "/editor", "fa fa-code")
-    sender_agent.web.add_menu_entry("AAS Library", "/aas_library", "fa fa-book")
+    gui_agent.web.add_menu_entry("Negotiation", "/negotiation", "fa fa-comments")
+    gui_agent.web.add_menu_entry("Programming language editor", "/editor", "fa fa-code")
+    gui_agent.web.add_menu_entry("AAS Library", "/aas_library", "fa fa-book")
     # The main thread will be waiting until the agent has finished
-    await spade.wait_until_finished(sender_agent)
+    await spade.wait_until_finished(gui_agent)
 
 
 if __name__ == '__main__':
-    print("Initializing AAS Manager program...")
+    print("Initializing GUI SPADE agent program...")
 
     # Run main program with SPADE
     spade.run(main())

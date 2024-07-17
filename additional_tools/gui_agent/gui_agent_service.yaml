@@ -6,8 +6,8 @@ metadata:
     kompose.version: 1.21.0 (992df58d8)
   creationTimestamp: null
   labels:
-    io.kompose.service: sender-agent
-  name: sender-agent
+    io.kompose.service: gui-agent
+  name: gui-agent
 spec:
   type: NodePort
   ports:
@@ -16,6 +16,6 @@ spec:
     targetPort: 10000
     nodePort: 31000
   selector:
-    app: sender-agent
+    app: gui-agent
 status:
   loadBalancer: {}

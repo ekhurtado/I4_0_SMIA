@@ -17,5 +17,5 @@ RUN chmod +x /opt/ros/noetic/setup.bash
 RUN /opt/ros/noetic/setup.bash
 
 # Para mantener el contenedor arrancado:
-CMD [ "roscore"]
-#CMD [ "tail", "-f", "/dev/null"]
+#CMD [ "roscore"]
+CMD [ "tail", "-f", "/dev/null"]

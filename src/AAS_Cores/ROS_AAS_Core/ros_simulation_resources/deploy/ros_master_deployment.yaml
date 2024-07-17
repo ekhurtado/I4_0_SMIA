@@ -14,6 +14,7 @@ spec:
       labels:
         app: ros-master
     spec:
+#      hostNetwork: true  # If the ROS subscriber node is on the host machine network, this is required
       containers:
         - name: ros-master
           image: ekhurtado/ros-tests:ros-master

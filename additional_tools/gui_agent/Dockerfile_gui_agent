@@ -13,4 +13,4 @@ WORKDIR /
 
 EXPOSE 10000
 
-CMD ["python3", "-u", "sender_agent.py"]
+CMD ["python3", "-u", "gui_agent.py"]
