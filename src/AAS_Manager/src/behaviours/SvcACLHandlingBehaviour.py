@@ -43,6 +43,16 @@ class SvcACLHandlingBehaviour(CyclicBehaviour):
         # Wait for a message with the standard ACL template to arrive.
         msg = await self.receive(timeout=10) # Timeout set to 10 seconds so as not to continuously execute the behavior.
         if msg:
+            # TODO modificar el concepto de como gestionar los servicios. En este behaviour (llamemosle a partir de ahora
+            #  SvcRequestsHanldingBehaviour) se gestionarán todas las peticiones de servicios via ACL, pero no gestionará
+            #  cada servicio individualmente. Por cada servicio añadira otro behaviour al agente (llamemosle
+            #  'SvcHandlingBehaviour') y este sí será el encargado de gestionar ese servicio en concreto. De esta forma,
+            #  conseguimos que los servicios se gestionen "en paralelo" (aunque no es 100% paralelo según van llegando
+            #  peticiones de servicios se van generando behaviours, así que se van gestionando todos a la vez). Gracias
+            #  a esta forma cada behaviour individual es capaz de gestionar mas facilmente su servicio (analizar si
+            #  tarda mucho en realizarse, guardar en el log cuando finalice toda la informacion que la tendra en su
+            #  propia clase, etc.). Cada behaviour individual será el que se eliminará del agente en cuanto el servicio
+            #  se haya completado (self.kill())
             # An ACL message has been received by the agent
             _logger.info("         + Message received on AAS Manager Agent (ACLHandlingBehaviour)")
             _logger.info("                 |___ Message received with content: {}".format(msg.body))

@@ -6,7 +6,7 @@ COPY requirements.txt .
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY sender_agent.py /
+COPY gui_agent.py /
 COPY htmls /htmls
 
 WORKDIR /
