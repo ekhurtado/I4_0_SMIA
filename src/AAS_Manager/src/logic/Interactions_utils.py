@@ -126,9 +126,10 @@ def save_svc_info_in_log_file(requested_entity, svc_type_log_file_name, interact
         }
     }
     # If some data has been requested, added to the structura
-    requested_data = svc_request_info['serviceData']['requestedData']
-    if requested_data is not None:
-        svc_data_json = {'requestedData': requested_data, 'dataValue': svc_response_info['serviceData'][requested_data]}
+    if 'requestedData' in svc_request_info['serviceData'].keys():
+        requested_data_name = svc_request_info['serviceData']['requestedData']
+        svc_data_json = {'requestedData': requested_data_name,
+                         'dataValue': svc_response_info['serviceData'][requested_data_name]}
         log_structure['serviceInfo']['serviceData'] = svc_data_json
 
     # Get the content of LOG file

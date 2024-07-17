@@ -1,0 +1,28 @@
+#FROM ros:noetic
+FROM ros:noetic-ros-base
+
+# Install required packages
+RUN apt-get update && apt-get install -y \
+    python3-pip \
+    python3-rosdep \
+    python3-catkin-tools \
+    ros-noetic-rosbridge-suite \
+    && rm -rf /var/lib/apt/lists/*
+
+# Initialize rosdep
+RUN rosdep update
+
+# Create and set the working directory
+WORKDIR /
+
+# Copy your ROS package and script into the Docker image
+COPY pruebaROS.py /
+
+# Set up environment
+ENV ROS_MASTER_URI=http://192.168.1.62:11311
+
+# Install any Python dependencies
+RUN pip3 install --no-cache-dir rospkg
+
+CMD ["python3", "-u", "pruebaROS.py"]
+#CMD [ "tail", "-f", "/dev/null"]

@@ -5,7 +5,6 @@ from spade.behaviour import CyclicBehaviour
 
 _logger = logging.getLogger(__name__)
 
-
 # TODO analizar clase NegotiatingBehaviour de Alejandro para ver como manejaba las negociaciones entre agentes
 
 
@@ -28,11 +27,13 @@ class NegotiatingBehaviour(CyclicBehaviour):
         # The SPADE agent object is stored as a variable of the behaviour class
         self.myagent = agent_object
 
+
     async def on_start(self):
         """
         This method implements the initialization process of this behaviour.
         """
         _logger.info("NegotiationBehaviour starting...")
+
 
     async def run(self):
         """
@@ -40,7 +41,7 @@ class NegotiatingBehaviour(CyclicBehaviour):
         """
 
         # Wait for a message with the standard ACL template for negotiating to arrive.
-        msg = await self.receive(timeout=5)  # Timeout set to 5 seconds so as not to continuously execute the behavior.
+        msg = await self.receive(timeout=10) # Timeout set to 10 seconds so as not to continuously execute the behavior.
         if msg:
             # An ACL message has been received by the agent
             _logger.info("         + Message received on AAS Manager Agent (NegotiatingBehaviour)")
@@ -48,12 +49,10 @@ class NegotiatingBehaviour(CyclicBehaviour):
 
             # The msg body will be parsed to a JSON object
             msg_json_body = json.loads(msg.body)
-            print(msg_json_body)
 
             # Depending on the performative of the message, the agent will have to perform some actions or others
             match msg.get_metadata('performative'):
-                # TODO esta hecho asi para pruebas, pero hay que pensar el procedimiento a seguir a la hora de
-                #  gestionar los mensajes ACL
+                # TODO esta hecho asi para pruebas, pero hay que pensar el procedimiento a seguir a la hora de gestionar los mensajes ACL
                 case "CallForProposal":
                     _logger.info("The agent has received a request to participate in a negotiation: CFP")
                     # TODO analizar como lo ha hecho Alejandro para desarrollarlo mas
@@ -70,4 +69,4 @@ class NegotiatingBehaviour(CyclicBehaviour):
                 case _:
                     _logger.error("ACL performative type not available.")
         else:
-            _logger.info("         - No message received within 5 seconds on AAS Manager Agent (NegotiatingBehaviour)")
+            _logger.info("         - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour)")

@@ -1,0 +1,16 @@
+FROM python:3.10-alpine
+
+RUN pip install --upgrade pip
+
+COPY requirements.txt .
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY gui_agent.py /
+COPY htmls /htmls
+
+WORKDIR /
+
+EXPOSE 10000
+
+CMD ["python3", "-u", "gui_agent.py"]

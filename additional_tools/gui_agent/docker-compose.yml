@@ -1,0 +1,12 @@
+version: "2"
+
+services:
+
+  gui-agent:
+    build:
+      context: .
+      dockerfile: Dockerfile_gui_agent
+    image: ekhurtado/i4-0-smia-tools:gui-agent
+    container_name: gui-agent
+    ports:
+      - 10000:31000

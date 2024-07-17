@@ -4,7 +4,7 @@ import time
 
 from spade.behaviour import CyclicBehaviour
 
-from logic import Interactions_utils
+from logic import Services_utils, Interactions_utils
 from utilities.AASarchiveInfo import AASarchiveInfo
 
 _logger = logging.getLogger(__name__)
@@ -41,8 +41,18 @@ class SvcACLHandlingBehaviour(CyclicBehaviour):
         """
 
         # Wait for a message with the standard ACL template to arrive.
-        msg = await self.receive(timeout=5)  # Timeout set to 5 seconds so as not to continuously execute the behavior.
+        msg = await self.receive(timeout=10) # Timeout set to 10 seconds so as not to continuously execute the behavior.
         if msg:
+            # TODO modificar el concepto de como gestionar los servicios. En este behaviour (llamemosle a partir de ahora
+            #  SvcRequestsHanldingBehaviour) se gestionarán todas las peticiones de servicios via ACL, pero no gestionará
+            #  cada servicio individualmente. Por cada servicio añadira otro behaviour al agente (llamemosle
+            #  'SvcHandlingBehaviour') y este sí será el encargado de gestionar ese servicio en concreto. De esta forma,
+            #  conseguimos que los servicios se gestionen "en paralelo" (aunque no es 100% paralelo según van llegando
+            #  peticiones de servicios se van generando behaviours, así que se van gestionando todos a la vez). Gracias
+            #  a esta forma cada behaviour individual es capaz de gestionar mas facilmente su servicio (analizar si
+            #  tarda mucho en realizarse, guardar en el log cuando finalice toda la informacion que la tendra en su
+            #  propia clase, etc.). Cada behaviour individual será el que se eliminará del agente en cuanto el servicio
+            #  se haya completado (self.kill())
             # An ACL message has been received by the agent
             _logger.info("         + Message received on AAS Manager Agent (ACLHandlingBehaviour)")
             _logger.info("                 |___ Message received with content: {}".format(msg.body))
@@ -52,8 +62,7 @@ class SvcACLHandlingBehaviour(CyclicBehaviour):
 
             # As the performative is set to CallForProposals, the service type will be analyzed directly
             match msg_json_body['serviceType']:
-                # TODO esta hecho asi para pruebas, pero hay que pensar el procedimiento a seguir a la hora de
-                #  gestionar los mensajes ACL
+                # TODO esta hecho asi para pruebas, pero hay que pensar el procedimiento a seguir a la hora de gestionar los mensajes ACL
                 case "AssetRelatedService":
                     self.handle_asset_related_svc(msg_json_body)
                 case "AASInfrastructureServices":
@@ -65,7 +74,8 @@ class SvcACLHandlingBehaviour(CyclicBehaviour):
                 case _:
                     _logger.error("Service type not available.")
         else:
-            _logger.info("         - No message received within 5 seconds on AAS Manager Agent (ACLHandlingBehaviour)")
+            _logger.info("         - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour)")
+
 
     # ------------------------------------------
     # Methods to handle of all types of services
@@ -92,7 +102,7 @@ class SvcACLHandlingBehaviour(CyclicBehaviour):
         # TODO esto cuando se desarrolle el AAS Manager en un agente no se realizara de esta manera. No debera
         #  haber una espera hasta que se complete el servicio
         while True:
-            _logger.info(str(svc_data['serviceID']) + "service not completed yet.")
+            _logger.info(str(svc_data['serviceID']) + " service not completed yet.")
             svc_response = Interactions_utils.get_svc_response_info(current_interaction_id)
             if svc_response is not None:
                 print(svc_response)
@@ -106,18 +116,21 @@ class SvcACLHandlingBehaviour(CyclicBehaviour):
                 break
             time.sleep(2)
 
+
     def handle_aas_infrastructure_svc(self, svc_data):
         """
-        This method handles AAS Infrastructure Services. These services are part of I4.0 Infrastructure Services (
-        Systemic relevant). They are necessary to create AASs and make them localizable and are not offered by an
-        AAS, but by the platform (computational infrastructure). These include the AAS Create Service (for creating
-        AASs with unique identifiers), AAS Registry Services (for registering AASs) and AAS Exposure and Discovery
-        Services (for searching for AASs).
+        This method handles AAS Infrastructure Services. These services are part of I4.0 Infrastructure Services
+        (Systemic relevant). They are necessary to create AASs and make them localizable and are not offered by an AAS, but
+        by the platform (computational infrastructure). These include the AAS Create Service (for creating AASs with unique
+        identifiers), AAS Registry Services (for registering AASs) and AAS Exposure and Discovery Services (for searching
+        for AASs).
 
         Args:
+            svc_interaction_id (int): the identifier of the interaction.
             svc_data (dict): the information of the data in JSON format.
         """
         _logger.info(str(self.agent.interaction_id) + str(svc_data))
+
 
     def handle_aas_services(self, svc_data):
         """
@@ -129,9 +142,11 @@ class SvcACLHandlingBehaviour(CyclicBehaviour):
         control) and Exposure and Discovery Services (to search for submodels or asset related services).
 
         Args:
+            svc_interaction_id (int): the identifier of the interaction.
             svc_data (dict): the information of the data in JSON format.
         """
         _logger.info(str(self.agent.interaction_id) + str(svc_data))
+
 
     def handle_submodel_services(self, svc_data):
         """
@@ -139,6 +154,7 @@ class SvcACLHandlingBehaviour(CyclicBehaviour):
         relevant).
 
         Args:
+            svc_interaction_id (int): the identifier of the interaction.
             svc_data (dict): the information of the data in JSON format.
         """
         _logger.info(str(self.agent.interaction_id) + str(svc_data))

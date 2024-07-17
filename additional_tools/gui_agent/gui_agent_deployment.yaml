@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gui-agent
+  labels:
+    app: gui-agent
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gui-agent
+  template:
+    metadata:
+      labels:
+        app: gui-agent
+    spec:
+      containers:
+        - name: gui-agent
+          image: ekhurtado/i4-0-smia-tools:gui-agent
+          imagePullPolicy: Always
+          env:
+            - name: RECEIVER_JID
+              value: aasmanager001@ejabberd
+            - name: PERFORMATIVE
+              value: CallForProposal
+            - name: ONTOLOGY
+              value: negotiation
+            - name: MSG_BODY
+              value: '{"performative": "CallForProposal", "serviceID": "getAssetData", "serviceType": "AssetRelatedService", "serviceData": {"requestedData" : "battery"}}'
+      nodeSelector:
+        kubernetes.io/hostname: worker1
+      restartPolicy: Always
+      serviceAccountName: ""

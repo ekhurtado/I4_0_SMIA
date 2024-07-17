@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sender-agent
+  labels:
+    app: sender-agent
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sender-agent
+  template:
+    metadata:
+      labels:
+        app: sender-agent
+    spec:
+      containers:
+        - name: aas-manager
+          image: ekhurtado/agent-tests:sender-agent
+          imagePullPolicy: Always
+          env:
+            - name: RECEIVER_JID
+              value: aasmanager002@ejabberd
+            - name: PERFORMATIVE
+              value: CallForProposal
+            - name: ONTOLOGY
+              value: SvcRequest
+            - name: MSG_BODY
+              value: '{"performative": "CallForProposal", "serviceID": "executeAction", "serviceType": "AssetRelatedService", "serviceData": {"target": "INTRODUCE:22"}}'
+
+      restartPolicy: Always
+      serviceAccountName: ""

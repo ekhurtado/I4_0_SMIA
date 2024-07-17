@@ -4,6 +4,7 @@ import spade
 from agents.AASManagerAgent import AASManagerAgent
 from agents.AASManagerAppAgent import AASManagerAppAgent
 from agents.AASManagerResourceAgent import AASManagerResourceAgent
+from utilities import ConfigMap_utils
 from utilities.GeneralUtils import GeneralUtils
 
 # XMPP_SERVER = 'worker4'
@@ -19,11 +20,12 @@ This is the launch file of the AASManager, which runs the logic of the program.
 async def main():
     """
     This is the main method of the AAS Manager, where the agent will be created and started. Depending on the type of
-    asset to be represented, the associated SPADE agent type will be created.
+    asset to be represented, the associated SPADE agent type will be created. The AAS is defined in the glossary:
+    :term:`AAS`.
     """
     # The AAS_ID will be set in the associated ConfigMap, within the general-information of the AAS
-    # aas_id = ConfigMap_utils.get_aas_general_property('logicalID')
-    aas_id = 'aasmanager001'  # For testing
+    aas_id = ConfigMap_utils.get_aas_general_property('logicalID')
+    # aas_id = 'aasmanager001'  # For testing
 
     # Get the type of the asset
     # aas_type = ConfigMap_utils.get_asset_type()

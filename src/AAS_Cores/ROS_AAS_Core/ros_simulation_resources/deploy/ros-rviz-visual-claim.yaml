@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: ros-rviz-visual-claim
+  name: ros-rviz-visual-claim
+spec:
+  storageClassName: x11-unix
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi
+status: {}
+

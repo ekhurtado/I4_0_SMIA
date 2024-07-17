@@ -50,9 +50,11 @@ class StateBooting(State):
         AAS_Archive_utils.change_status('InitializationReady')
 
         # Wait until the AAS Core has initialized
+        _logger.info('AAS Manager is waiting until its AAS Core has initialized.')
         check_core_initialization_behav = CheckCoreInitializationBehaviour(self.agent)
         self.agent.add_behaviour(check_core_initialization_behav)
         await check_core_initialization_behav.join()
+        _logger.info('AAS Core has initialized.')
 
         # Finished the Boot State the agent can move to the next state
         _logger.info(f"{self.agent.jid} agent has finished it Boot state.")

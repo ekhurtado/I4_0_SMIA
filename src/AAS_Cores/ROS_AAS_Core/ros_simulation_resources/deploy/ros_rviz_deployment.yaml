@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ros-rviz
+  labels:
+    app: ros-rviz
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ros-rviz
+  template:
+    metadata:
+      labels:
+        app: ros-rviz
+    spec:
+      containers:
+        - name: ros-rviz
+          image: ekhurtado/ros-tests:ros-rviz
+          imagePullPolicy: Always
+          volumeMounts:
+            - mountPath: /tmp/.X11-unix
+              name: ros-rviz-visual-claim
+              readOnly: true
+          env:
+            - name: DISPLAY
+              value: :1
+            - name: ROS_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+            - name: ROS_MASTER_URI
+              value: "http://192.168.1.2:31311"
+            - name: ROS_HOSTNAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+      volumes:
+        - name: ros-rviz-visual-claim
+          persistentVolumeClaim:
+            claimName: ros-rviz-visual-claim
+            readOnly: true
+      nodeSelector:
+        kubernetes.io/hostname: master
+      restartPolicy: Always
+      serviceAccountName: ""
+
