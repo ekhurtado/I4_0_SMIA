@@ -4,6 +4,7 @@ This module contains the class for the implementation of the Asset Administratio
 from enum import Enum
 
 from aas_definition_reader.aas_class_structure import common
+from aas_definition_reader.aas_class_structure.submodel import Submodel
 
 
 class AssetInformation:
@@ -17,13 +18,13 @@ class AssetInformation:
 
     class SpecificAssetId:
         def __init__(self):
-            self.name= None
+            self.name = None
             self.value = None
             self.external_subject_id: common.KeyTypes.Reference
 
     class Resource:
         def __init__(self):
-            self.path= None
+            self.path = None
             self.content_type = None
 
     def __init__(self):
@@ -32,13 +33,15 @@ class AssetInformation:
         self.global_asset_id: common.KeyTypes.Reference
         self.default_thumbnail: AssetInformation.Resource
 
+
 class AssetAdministrationShell(common.Identifiable, common.HasDataSpecification):
     """
     TODO Rellenarlo
     """
+
     def __init__(self, asset_information: AssetInformation, id: common.KeyTypes.Identifier, id_short, display_name,
-                 category, description, parent, administration, submodel, derived_from, embedded_data_specifications,
-                 extension):
+                 category, description, parent, administration, submodel: set[Submodel], derived_from,
+                 embedded_data_specifications, extension):
         super().__init__()
         self.id: common.KeyTypes.Identifier = id
         self.asset_information: AssetInformation = asset_information
@@ -50,9 +53,8 @@ class AssetAdministrationShell(common.Identifiable, common.HasDataSpecification)
         self.administration = administration
         self.derived_from = derived_from
         self.submodel = set() if submodel is None else submodel
-        self.embedded_data_specifications = list(embedded_data_specifications)
+        self.embedded_data_specifications = set(embedded_data_specifications)
         self.extension = extension
-
 
     def cascade_print(self):
         """
@@ -67,3 +69,4 @@ class AssetAdministrationShell(common.Identifiable, common.HasDataSpecification)
         # y cuando llame al print de assetInformation le enviara un 1, este al printear specificAssetId 3, y asi
         # consecutivamente). Con ese nivel de profundidad podremos printear la informacion de forma clara y ordenada,
         # p.e: con nivel 0 nada, con nivel 1 añadir "\_" al principio, con nivel 2 , "\__", y asi consecutivamente...
+

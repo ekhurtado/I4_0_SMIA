@@ -19,15 +19,19 @@ class KeyTypes:
     # Global types
     Reference = str
     Identifier = str
+    NameType = str
+
 
 class HasExtensions(metaclass=abc.ABCMeta):
     """
     #TODO Rellenarlo
     """
+
     @abc.abstractmethod
     def __init__(self) -> None:
         super().__init__()
         self.extension: []
+
 
 class Extension:
     """
@@ -39,6 +43,7 @@ class Extension:
         self.name = name
         self.value_type = value_type
         self.value = value
+
 
 class Referable(HasExtensions, metaclass=abc.ABCMeta):
     """
@@ -53,7 +58,6 @@ class Referable(HasExtensions, metaclass=abc.ABCMeta):
         PARAMETER = 1
         VARIABLE = 2
         NONE = None
-
 
     @abc.abstractmethod
     def __init__(self):
@@ -95,7 +99,8 @@ class HasKind(metaclass=abc.ABCMeta):
     @abc.abstractmethod
     def __init__(self):
         super().__init__()
-        self.kind : HasKind.ModelingKind
+        self.kind: HasKind.ModelingKind
+
 
 class HasSemantics(metaclass=abc.ABCMeta):
     """
@@ -108,6 +113,7 @@ class HasSemantics(metaclass=abc.ABCMeta):
         self.semantic_id: KeyTypes.Reference
         self.supplemental_semantic_id: List[KeyTypes.Reference]
 
+
 class Qualifiable(metaclass=abc.ABCMeta):
     """
     #TODO Rellenarlo
@@ -118,23 +124,26 @@ class Qualifiable(metaclass=abc.ABCMeta):
         super().__init__()
         self.qualifier: List[Qualifier]
 
+
 class Qualifier(HasSemantics):
     """
     #TODO Rellenarlo
     """
+
     class QualifierKind(Enum):
         VALUE_QUALIFIER = 0
         CONCEPT_QUALIFIER = 1
         TEMPLATE_QUALIFIER = 2
 
-    def __init__(self, kind: QualifierKind = QualifierKind.CONCEPT_QUALIFIER, type = None,
-                 value_type = None, value = None, value_id: KeyTypes.Reference = None):
+    def __init__(self, kind: QualifierKind = QualifierKind.CONCEPT_QUALIFIER, type=None,
+                 value_type=None, value=None, value_id: KeyTypes.Reference = None):
         super().__init__()
         self.kind: Qualifier.QualifierKind = kind
         self.type = type
         self.value_type = value_type
         self.value = value
         self.value_id: KeyTypes.Reference = value_id
+
 
 class HasDataSpecification(metaclass=abc.ABCMeta):
     """
