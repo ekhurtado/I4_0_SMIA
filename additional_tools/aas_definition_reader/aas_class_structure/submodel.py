@@ -49,38 +49,123 @@ class Submodel(Identifiable, HasKind, HasSemantics, Qualifiable, HasDataSpecific
 
 # Submodel types
 # --------------
-class DataElement():
-    #TODO
+class DataElement(SubmodelElement, metaclass=abc.ABCMeta):
+    @abc.abstractmethod
+    def __init__(self,
+                 id_short: KeyTypes.NameType,
+                 display_name = None,
+                 category: KeyTypes.NameType = None,
+                 description = None,
+                 parent = None,
+                 semantic_id: KeyTypes.Reference = None,
+                 qualifier = (),
+                 extension = (),
+                 supplemental_semantic_id = (),
+                 embedded_data_specifications = ()):
+        super().__init__(id_short, display_name, category, description, parent, semantic_id, qualifier, extension,
+                         supplemental_semantic_id, embedded_data_specifications)
 
-class Property():
-    #TODO
+class Property(DataElement):
+    @abc.abstractmethod
+    def __init__(self,
+                 id_short: KeyTypes.NameType,
+                 value_type,
+                 value = None,
+                 value_id: KeyTypes.Reference = None,
+                 display_name=None,
+                 category: KeyTypes.NameType = None,
+                 description=None,
+                 parent=None,
+                 semantic_id: KeyTypes.Reference = None,
+                 qualifier=(),
+                 extension=(),
+                 supplemental_semantic_id=(),
+                 embedded_data_specifications=()):
+        super().__init__(id_short, display_name, category, description, parent, semantic_id, qualifier, extension,
+                         supplemental_semantic_id, embedded_data_specifications)
+        self.value_type = value_type
+        self._value = value
+        self.value_id: KeyTypes.Reference = value_id
 
-class Range():
-    #TODO
+class Range(DataElement):
+    @abc.abstractmethod
+    def __init__(self,
+                 id_short: KeyTypes.NameType,
+                 value_type,
+                 _min = None,
+                 _max = None,
+                 display_name=None,
+                 category: KeyTypes.NameType = None,
+                 description=None,
+                 parent=None,
+                 semantic_id: KeyTypes.Reference = None,
+                 qualifier=(),
+                 extension=(),
+                 supplemental_semantic_id=(),
+                 embedded_data_specifications=()):
+        super().__init__(id_short, display_name, category, description, parent, semantic_id, qualifier, extension,
+                         supplemental_semantic_id, embedded_data_specifications)
+        self.value_type = value_type
+        self.min = _min
+        self.max = _max
 
 
-class Blob():
-    #TODO
+class Blob(DataElement):
+    @abc.abstractmethod
+    def __init__(self,
+                 id_short: KeyTypes.NameType,
+                 value_type,
+                 content_type: KeyTypes.ContentType = None,
+                 display_name=None,
+                 category: KeyTypes.NameType = None,
+                 description=None,
+                 parent=None,
+                 semantic_id: KeyTypes.Reference = None,
+                 qualifier=(),
+                 extension=(),
+                 supplemental_semantic_id=(),
+                 embedded_data_specifications=()):
+        super().__init__(id_short, display_name, category, description, parent, semantic_id, qualifier, extension,
+                         supplemental_semantic_id, embedded_data_specifications)
+        self.value_type = value_type
+        self.content_type: KeyTypes.ContentType = content_type
 
 
-class File():
-    #TODO
+class File(DataElement):
+    @abc.abstractmethod
+    def __init__(self,
+                 id_short: KeyTypes.NameType,
+                 _value: KeyTypes.PathType = None,
+                 content_type: KeyTypes.ContentType = None,
+                 display_name=None,
+                 category: KeyTypes.NameType = None,
+                 description=None,
+                 parent=None,
+                 semantic_id: KeyTypes.Reference = None,
+                 qualifier=(),
+                 extension=(),
+                 supplemental_semantic_id=(),
+                 embedded_data_specifications=()):
+        super().__init__(id_short, display_name, category, description, parent, semantic_id, qualifier, extension,
+                         supplemental_semantic_id, embedded_data_specifications)
+        self.value: KeyTypes.PathType = _value
+        self.content_type: KeyTypes.ContentType = content_type
 
 
-class ReferenceElement():
+class ReferenceElement(DataElement):
     # TODO
 
 
-class SubmodelElementCollection():
+class SubmodelElementList(DataElement):
     # TODO
 
 
-class SubmodelElementCollection():
+class SubmodelElementCollection(DataElement):
     # TODO
 
-class Entity():
+class Entity(DataElement):
     # TODO
 
-class Operation():
+class Operation(DataElement):
     # TODO
 

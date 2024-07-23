@@ -20,6 +20,8 @@ class KeyTypes:
     Reference = str
     Identifier = str
     NameType = str
+    PathType = str
+    ContentType = str
 
 
 class HasExtensions(metaclass=abc.ABCMeta):
