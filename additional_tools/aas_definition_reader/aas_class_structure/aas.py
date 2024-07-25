@@ -1,7 +1,7 @@
 """
 This module contains the class for the implementation of the Asset Administration Shell.
 """
-from enum import Enum
+from enum import Enum, unique
 
 from aas_definition_reader.aas_class_structure import common
 from aas_definition_reader.aas_class_structure.submodel import Submodel
@@ -9,41 +9,64 @@ from aas_definition_reader.aas_class_structure.submodel import Submodel
 
 class AssetInformation:
     """
-    TODO Rellenarlo
+    This class collects the meta-information of the asset being represented. The asset can be either a type or an
+    instance. The asset has a globally unique identifier and, if needed, an additional domain-specific identifier.
     """
 
+    @unique
     class AssetKind(Enum):
         TYPE = 0
         INSTANCE = 1
 
-    class SpecificAssetId:
+    @unique
+    class AssetType(Enum):
+        """
+        This class is an own proposal to distinguish between logical and physical assets.
+        """
+        PHYSICAL = 0
+        LOGICAL = 1
+
+    class SpecificAssetId(common.HasSemantics):
+        """
+        This class describes a supplementary identification attribute, which may not necessarily be globally unique.
+        """
         def __init__(self):
             self.name = None
             self.value = None
             self.external_subject_id: common.KeyTypes.Reference
 
     class Resource:
+        """This class represents an address to a file, either in absolute or relative path."""
         def __init__(self):
             self.path = None
             self.content_type = None
 
-    def __init__(self):
-        self.asset_kind: AssetInformation.AssetKind
-        self.specific_asset_id: AssetInformation.SpecificAssetId
-        self.global_asset_id: common.KeyTypes.Reference
-        self.default_thumbnail: AssetInformation.Resource
+    def __init__(self,
+                 asset_kind: AssetKind = None,
+                 specific_asset_id: set[SpecificAssetId] = (),
+                 global_asset_id: common.KeyTypes.Reference = None,
+                 default_thumbnail: Resource = None,
+                 asset_type: AssetType = None,
+                 ):
+        self.asset_kind: AssetInformation.AssetKind = asset_kind
+        self.specific_asset_id: set[AssetInformation.SpecificAssetId] = specific_asset_id
+        self.global_asset_id: common.KeyTypes.Reference = global_asset_id
+        self.default_thumbnail: AssetInformation.Resource = default_thumbnail
+        self.asset_type: AssetInformation.AssetType = asset_type
 
 
 class AssetAdministrationShell(common.Identifiable, common.HasDataSpecification):
     """
-    TODO Rellenarlo
+    An AAS is uniquely identifiable because it inherits from :param: Identifiable. As it inherits from both :param:
+    Identifiable (and this in turn from :param: Referable) and :param: HasDataSpecification, all these inherited
+    variables are added in the constructor of the AAS.
     """
 
-    def __init__(self, asset_information: AssetInformation, id: common.KeyTypes.Identifier, id_short, display_name,
+    def __init__(self, asset_information: AssetInformation, id_: common.KeyTypes.Identifier, id_short, display_name,
                  category, description, parent, administration, submodel: set[Submodel], derived_from,
                  embedded_data_specifications, extension):
         super().__init__()
-        self.id: common.KeyTypes.Identifier = id
+        self.id: common.KeyTypes.Identifier = id_
         self.asset_information: AssetInformation = asset_information
         self.id_short = id_short
         self.display_name = display_name
