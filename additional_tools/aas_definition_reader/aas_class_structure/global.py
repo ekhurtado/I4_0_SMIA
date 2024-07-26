@@ -3,10 +3,9 @@ This module implements the global structures of the AAS meta-model, including th
 """
 from enum import unique, Enum
 
-from aas_definition_reader.aas_class_structure import common
-from aas_definition_reader.aas_class_structure.aas import AssetAdministrationShell
-from aas_definition_reader.aas_class_structure.submodel import Submodel
-
+from . import common
+from aas import AssetAdministrationShell
+from submodel import Submodel
 
 class ConceptDescription(common.Identifiable, common.HasDataSpecification):
     def __init__(self,

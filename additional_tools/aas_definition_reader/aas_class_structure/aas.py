@@ -3,8 +3,8 @@ This module contains the class for the implementation of the Asset Administratio
 """
 from enum import Enum, unique
 
-from aas_definition_reader.aas_class_structure import common
-from aas_definition_reader.aas_class_structure.submodel import Submodel
+from . import common
+from .submodel import Submodel
 
 
 class AssetInformation:
@@ -17,6 +17,7 @@ class AssetInformation:
     class AssetKind(Enum):
         TYPE = 0
         INSTANCE = 1
+        NOT_APPLICABLE = 2
 
     @unique
     class AssetType(Enum):
@@ -26,15 +27,6 @@ class AssetInformation:
         PHYSICAL = 0
         LOGICAL = 1
 
-    class SpecificAssetId(common.HasSemantics):
-        """
-        This class describes a supplementary identification attribute, which may not necessarily be globally unique.
-        """
-        def __init__(self):
-            self.name = None
-            self.value = None
-            self.external_subject_id: common.KeyTypes.Reference
-
     class Resource:
         """This class represents an address to a file, either in absolute or relative path."""
         def __init__(self):
@@ -43,13 +35,13 @@ class AssetInformation:
 
     def __init__(self,
                  asset_kind: AssetKind = None,
-                 specific_asset_id: set[SpecificAssetId] = (),
+                 specific_asset_id: set[common.SpecificAssetId] = (),
                  global_asset_id: common.KeyTypes.Reference = None,
                  default_thumbnail: Resource = None,
                  asset_type: AssetType = None,
                  ):
         self.asset_kind: AssetInformation.AssetKind = asset_kind
-        self.specific_asset_id: set[AssetInformation.SpecificAssetId] = specific_asset_id
+        self.specific_asset_id: set[common.SpecificAssetId] = specific_asset_id
         self.global_asset_id: common.KeyTypes.Reference = global_asset_id
         self.default_thumbnail: AssetInformation.Resource = default_thumbnail
         self.asset_type: AssetInformation.AssetType = asset_type
