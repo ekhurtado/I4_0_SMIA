@@ -3,7 +3,8 @@
     <aas:assetAdministrationShells>
         <aas:assetAdministrationShell>
             <aas:id>https://acplt.org/Simple_AAS</aas:id>
-            <aas:assetInformation><aas:assetKind>Instance</aas:assetKind>
+            <aas:assetInformation>
+                <aas:assetKind>Instance</aas:assetKind>
                 <aas:globalAssetId>test</aas:globalAssetId>
             </aas:assetInformation>
             <aas:submodels>

@@ -5,9 +5,6 @@ enumerations for any higher level class to inherit from them.
 import abc
 from enum import Enum, unique
 
-from aas_definition_reader.aas_class_structure.aas import AssetAdministrationShell
-from aas_definition_reader.aas_class_structure.submodel import Submodel
-
 
 class KeyTypes:
     # AasIdentifiables starting from 0
@@ -120,14 +117,14 @@ class Referable(HasExtensions, metaclass=abc.ABCMeta):
         CONSTANT = 0
         PARAMETER = 1
         VARIABLE = 2
-        NONE = None
+        NOT_APPLICABLE = None
 
     @abc.abstractmethod
     def __init__(self):
         super().__init__()
         self.id_short = None
         self.display_name = None
-        self.category: Referable.ReferableCategoryTypes = Referable.ReferableCategoryTypes.NONE
+        self.category: Referable.ReferableCategoryTypes = Referable.ReferableCategoryTypes.NOT_APPLICABLE
         self.description = None
         self.checksum = None
 
@@ -191,3 +188,14 @@ class Qualifier(HasSemantics):
         self.value_id: KeyTypes.Reference = value_id
 
 
+# --------------------------
+# Specific attribute classes
+# --------------------------
+class SpecificAssetId(HasSemantics):
+    """
+    This class describes a supplementary identification attribute, which may not necessarily be globally unique.
+    """
+    def __init__(self):
+        self.name = None
+        self.value = None
+        self.external_subject_id: KeyTypes.Reference

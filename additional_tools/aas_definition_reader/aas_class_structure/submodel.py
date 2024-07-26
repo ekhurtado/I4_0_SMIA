@@ -4,8 +4,7 @@ This module contains the class for the implementation of the Submodel and relate
 import abc
 from enum import unique, Enum
 
-from aas_definition_reader.aas_class_structure import common
-from aas_definition_reader.aas_class_structure.aas import AssetInformation
+from . import common
 
 
 class SubmodelElement(common.Referable, common.HasKind, common.Qualifiable, common.HasSemantics,
@@ -60,9 +59,36 @@ class Submodel(common.Identifiable, common.HasKind, common.HasSemantics, common.
     are instances.
     """
 
-    def __init__(self, sm_elements: set[SubmodelElement] = None):
+    def __init__(self,
+                 id_: common.KeyTypes.Identifier,
+                 submodel_element: set[SubmodelElement] = (),
+                 id_short: common.KeyTypes.NameType = None,
+                 display_name = None,
+                 category: common.KeyTypes.NameType = None,
+                 description = None,
+                 parent = None,
+                 administration: common.Identifiable.AdministrativeInformation = None,
+                 semantic_id: common.KeyTypes.Reference = None,
+                 qualifier: set[common.Qualifier] = (),
+                 kind: common.HasKind.ModelingKind = None,
+                 extension: set[common.Extension] = (),
+                 supplemental_semantic_id: set[common.KeyTypes.Reference] = (),
+                 embedded_data_specifications = ()):
         super().__init__()
-        self.sm_elements: set[SubmodelElement] = sm_elements
+        self.id: common.KeyTypes.Identifier = id_
+        self.submodel_element: set[SubmodelElement] = submodel_element
+        self.id_short: common.KeyTypes.NameType = id_short
+        self.display_name = display_name
+        self.category = category
+        self.description = description
+        self.parent = parent
+        self.administration: common.Identifiable.AdministrativeInformation = administration
+        self.semantic_id: common.KeyTypes.Reference = semantic_id
+        self.qualifier: set[common.Qualifier] = qualifier
+        self._kind: common.HasKind.ModelingKind = kind
+        self.extension: set[common.Extension] = extension
+        self.supplemental_semantic_id: set[common.KeyTypes.Reference] = supplemental_semantic_id
+        self.embedded_data_specifications = embedded_data_specifications
 
 
 # ----------------------
@@ -297,7 +323,7 @@ class Entity(SubmodelElement):
                  entity_type: EntityType,
                  statement: set[SubmodelElement] = None,
                  global_asset_id: common.KeyTypes.Reference = None,
-                 specific_asset_id: AssetInformation.SpecificAssetId = None,
+                 specific_asset_id: common.SpecificAssetId = None,
                  display_name=None,
                  category: common.KeyTypes.NameType = None,
                  description=None,
@@ -312,7 +338,7 @@ class Entity(SubmodelElement):
         self.statement: set[SubmodelElement] = statement
         self.entity_type: Entity.EntityType = entity_type
         self.global_asset_id: common.KeyTypes.Reference = global_asset_id
-        self.specific_asset_id: AssetInformation.SpecificAssetId = specific_asset_id
+        self.specific_asset_id: common.SpecificAssetId = specific_asset_id
 
 
 class Operation(SubmodelElement):
