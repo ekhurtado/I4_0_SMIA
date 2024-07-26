@@ -124,7 +124,7 @@ class DataElement(SubmodelElement, metaclass=abc.ABCMeta):
 # -------------------
 class Property(DataElement):
     """It is a Data Element that has a unique value. """
-    @abc.abstractmethod
+
     def __init__(self,
                  id_short: common.KeyTypes.NameType,
                  value_type,
@@ -142,18 +142,18 @@ class Property(DataElement):
         super().__init__(id_short, display_name, category, description, parent, semantic_id, qualifier, extension,
                          supplemental_semantic_id, embedded_data_specifications)
         self.value_type = value_type
-        self._value = value
+        self.value = value
         self.value_id: common.KeyTypes.Reference = value_id
 
 
 class Range(DataElement):
     """It is a Data Element that defines a range with a minimum and maximum. """
-    @abc.abstractmethod
+
     def __init__(self,
                  id_short: common.KeyTypes.NameType,
                  value_type,
-                 _min=None,
-                 _max=None,
+                 min_=None,
+                 max_=None,
                  display_name=None,
                  category: common.KeyTypes.NameType = None,
                  description=None,
@@ -166,12 +166,14 @@ class Range(DataElement):
         super().__init__(id_short, display_name, category, description, parent, semantic_id, qualifier, extension,
                          supplemental_semantic_id, embedded_data_specifications)
         self.value_type = value_type
-        self.min = _min
-        self.max = _max
+        self.min = min_
+        self.max = max_
 
 
 class Blob(DataElement):
-    @abc.abstractmethod
+    """
+    # TODO
+    """
     def __init__(self,
                  id_short: common.KeyTypes.NameType,
                  value_type: common.KeyTypes.BlobType,
@@ -196,10 +198,10 @@ class File(DataElement):
     It is a Data Element that represents an address to a file. The value is a URI that can represent an absolute or
     relative path.
     """
-    @abc.abstractmethod
+
     def __init__(self,
                  id_short: common.KeyTypes.NameType,
-                 _value: common.KeyTypes.PathType = None,
+                 value_: common.KeyTypes.PathType = None,
                  content_type: common.KeyTypes.ContentType = None,
                  display_name=None,
                  category: common.KeyTypes.NameType = None,
@@ -212,7 +214,7 @@ class File(DataElement):
                  embedded_data_specifications=()):
         super().__init__(id_short, display_name, category, description, parent, semantic_id, qualifier, extension,
                          supplemental_semantic_id, embedded_data_specifications)
-        self.value: common.KeyTypes.PathType = _value
+        self.value: common.KeyTypes.PathType = value_
         self.content_type: common.KeyTypes.ContentType = content_type
 
 
@@ -221,10 +223,10 @@ class ReferenceElement(DataElement):
     It is a Data Element that defines a logical reference to another element within the same or another AAS or a
     reference to an external object or entity. Its single value attribute contains the global reference to that element.
     """
-    @abc.abstractmethod
+
     def __init__(self,
                  id_short: common.KeyTypes.NameType,
-                 _value: common.KeyTypes.Reference = None,
+                 value_: common.KeyTypes.Reference = None,
                  display_name=None,
                  category: common.KeyTypes.NameType = None,
                  description=None,
@@ -236,7 +238,7 @@ class ReferenceElement(DataElement):
                  embedded_data_specifications=()):
         super().__init__(id_short, display_name, category, description, parent, semantic_id, qualifier, extension,
                          supplemental_semantic_id, embedded_data_specifications)
-        self.value: common.KeyTypes.Reference = _value
+        self.value: common.KeyTypes.Reference = value_
 
 
 # ----------------------

@@ -133,6 +133,9 @@ def read_xml_definition(aas_xml_definition_str):
         print(asset_information_obj)
         print(sm_reference_dict)
         print(sm_obj_list)
+        print("CASCADE PRINTING:")
+        print("\__ AAS information: ")
+        print("         id: " + str(None))
 
 
 if __name__ == "__main__":

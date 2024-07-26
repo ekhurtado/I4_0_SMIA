@@ -29,6 +29,7 @@ class AssetInformation:
 
     class Resource:
         """This class represents an address to a file, either in absolute or relative path."""
+
         def __init__(self):
             self.path = None
             self.content_type = None
@@ -84,4 +85,18 @@ class AssetAdministrationShell(common.Identifiable, common.HasDataSpecification)
         # y cuando llame al print de assetInformation le enviara un 1, este al printear specificAssetId 3, y asi
         # consecutivamente). Con ese nivel de profundidad podremos printear la informacion de forma clara y ordenada,
         # p.e: con nivel 0 nada, con nivel 1 añadir "\_" al principio, con nivel 2 , "\__", y asi consecutivamente...
-
+        # TODO
+        print("\_ AAS information: ")
+        print("         id: " + str(self.id))
+        self.asset_information.cascade_print()
+        print("         id_short: " + str(self.id_short))
+        print("         display_name: " + str(self.display_name))
+        print("         category: " + str(self.category))
+        print("         description: " + str(self.description))
+        print("         parent: " + str(self.parent))
+        print("         administration: " + str(self.administration))
+        print("         derived_from: " + str(self.derived_from))
+        for submodel in self.submodel:
+            submodel.cascade_print()
+        print("         embedded_data_specifications: " + str(self.embedded_data_specifications))
+        print("         extension: " + str(self.extension))

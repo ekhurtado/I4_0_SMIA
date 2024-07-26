@@ -25,10 +25,11 @@
             <aas:kind>Instance</aas:kind>
             <aas:submodelElements>
                 <aas:property><aas:idShort>ExampleProperty</aas:idShort>
-                    <aas:semanticId
-                    ><aas:type>ExternalReference</aas:type>
+                    <aas:semanticId>
+                        <aas:type>ExternalReference</aas:type>
                         <aas:keys>
-                            <aas:key><aas:type>GlobalReference</aas:type>
+                            <aas:key>
+                                <aas:type>GlobalReference</aas:type>
                                 <aas:value>http://acplt.org/Properties/SimpleProperty</aas:value>
                             </aas:key>
                         </aas:keys>
