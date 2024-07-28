@@ -7,6 +7,43 @@ from . import utils
 from aas_class_structure import aas, submodel
 
 
+def deserialize_aas(xml_elem, xml_ns, asset_info, sm_list):
+    """
+    # TODO
+    :param xml_elem:
+    :param xml_ns:
+    :param asset_info:
+    :param sm_list:
+    :return:
+    """
+
+    aas_id_short = utils.get_xml_elem_text(xml_elem, "idShort", xml_ns)
+    aas_id = utils.get_xml_elem_text(xml_elem, "id", xml_ns)
+    aas_description = utils.get_elem_description(xml_elem, xml_ns)
+    aas_administration = utils.get_elem_administration(xml_elem, xml_ns)
+    aas_derived_from = utils.get_elem_reference_text(xml_elem, "derivedFrom", xml_ns)
+    aas_display_name = aas_id_short  # TODO (for now same as idShort)
+    aas_category = utils.get_xml_elem_text(xml_elem, "category", xml_ns)
+    aas_embedded_data_specification = utils.get_elem_reference_text(xml_elem, "embeddedDataSpecification", xml_ns)
+    aas_extension = None # TODO
+
+    # TODO DUDA: Miramos las referencias de submodelos dentro de la lista de submodelos generales definidos en el
+    #  modelo de AAS?
+
+    return aas.AssetAdministrationShell(id_=aas_id,
+                                        asset_information=asset_info,
+                                        id_short=aas_id_short,
+                                        display_name=aas_display_name,
+                                        category=aas_category,
+                                        description=aas_description,
+                                        administration=aas_administration,
+                                        derived_from=aas_derived_from,
+                                        submodel=sm_list,
+                                        embedded_data_specifications=aas_embedded_data_specification,
+                                        extension=aas_extension
+                                        )
+
+
 def deserialize_asset_information(xml_elem, xml_ns):
     """
     TODO
@@ -15,14 +52,19 @@ def deserialize_asset_information(xml_elem, xml_ns):
     :return:
     """
 
-    asset_kind_name = xml_elem.find(xml_ns + "assetKind", xml_elem.nsmap).text
+    asset_kind_name = utils.get_xml_elem_text(xml_elem, "assetKind", xml_ns)
     asset_kind = utils.get_text_mapped_name(asset_kind_name, utils.ASSET_KIND_DICT)
-
-    global_asset_id = xml_elem.find(xml_ns + "globalAssetId", xml_elem.nsmap).text
+    global_asset_id = utils.get_xml_elem_text(xml_elem, "globalAssetId", xml_ns)
+    asset_type_name = utils.get_xml_elem_text(xml_elem, "assetType", xml_ns)
+    asset_type = utils.get_text_mapped_name(asset_type_name, utils.ASSET_TYPE_DICT)
 
     # TODO
 
-    return aas.AssetInformation(asset_kind=asset_kind, global_asset_id=global_asset_id)
+    return aas.AssetInformation(asset_kind=asset_kind,
+                                global_asset_id=global_asset_id,
+                                asset_type=asset_type,
+                                # TODO
+                                )
 
 
 def deserialize_submodel(xml_elem, xml_ns):
@@ -33,7 +75,8 @@ def deserialize_submodel(xml_elem, xml_ns):
     :return:
     """
     sm_id = utils.get_xml_elem_text(xml_elem, "id", xml_ns)
-    sm_kind = utils.get_xml_elem_text(xml_elem, "kind", xml_ns)
+    sm_kind_name = utils.get_xml_elem_text(xml_elem, "kind", xml_ns)
+    sm_kind = utils.get_text_mapped_name(sm_kind_name, utils.MODELING_KIND_DICT)
     sm_id_short = utils.get_xml_elem_text(xml_elem, "idShort", xml_ns)
 
     sm_description = utils.get_elem_description(xml_elem, xml_ns)

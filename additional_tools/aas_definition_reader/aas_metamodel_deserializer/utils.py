@@ -12,9 +12,20 @@ ASSET_KIND_DICT = {
     'NotApplicable': AssetInformation.AssetKind.NOT_APPLICABLE
 }
 
+ASSET_TYPE_DICT = {
+    'Physical': AssetInformation.AssetType.PHYSICAL,
+    'Logical': AssetInformation.AssetType.LOGICAL,
+    'NotApplicable': AssetInformation.AssetType.NOT_APPLICABLE
+}
+
 ENTITY_TYPE_DICT = {
     'CoManagedEntity': submodel.Entity.EntityType.CO_MANAGED_ENTITY,
     'SelfManagedEntity': submodel.Entity.EntityType.SELF_MANAGED_ENTITY
+}
+
+MODELING_KIND_DICT = {
+    'Template': common.HasKind.ModelingKind.TEMPLATE,
+    'Instance': common.HasKind.ModelingKind.INSTANCE,
 }
 
 
@@ -27,7 +38,9 @@ def get_text_mapped_name(text_name, dictionary):
     :param dictionary:
     :return:
     """
-    if text_name not in dictionary:
+    if text_name is None:
+        return dictionary['NotApplicable']
+    elif text_name not in dictionary:
         raise ValueError(f" has invalid text: {text_name}")
     return dictionary[text_name]
 
@@ -68,7 +81,7 @@ def get_elem_administration(xml_elem, xml_ns):
     return sm_administration
 
 
-def get_elem_reference_text(xml_elem, tag,xml_ns):
+def get_elem_reference_text(xml_elem, tag, xml_ns):
     semantic_id_elem = xml_elem.find(xml_ns + tag, xml_elem.nsmap)
     if semantic_id_elem is not None:
         keys_elem = semantic_id_elem.find(xml_ns + "keys", semantic_id_elem.nsmap)

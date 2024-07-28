@@ -26,7 +26,6 @@ class SubmodelElement(common.Referable, common.HasKind, common.Qualifiable, comm
                  display_name,
                  category: common.KeyTypes.NameType = None,
                  description=None,
-                 parent=None,
                  semantic_id: common.KeyTypes.Reference = None,
                  qualifier: common.Qualifier = None,
                  extension: common.Extension = None,
@@ -37,12 +36,31 @@ class SubmodelElement(common.Referable, common.HasKind, common.Qualifiable, comm
         self.display_name = display_name
         self.category: common.KeyTypes.Reference = category
         self.description = description
-        self.parent = parent
         self.semantic_id: common.KeyTypes.Reference = semantic_id
         self.qualifier: common.Qualifier = qualifier
         self.extension: common.Extension = extension
         self.supplemental_semantic_id: set[common.KeyTypes.Reference] = set(supplemental_semantic_id)
-        self.embedded_data_specifications = set(embedded_data_specifications)
+        self.embedded_data_specifications = embedded_data_specifications
+
+    def cascade_print(self, depth_level):
+        """
+        # TODO
+        :param depth_level:
+        :return:
+        """
+        depth_string = "    " * depth_level
+        print(depth_string + "\_ Submodel element:")
+        print(depth_string + "    id_short: " + str(self.id_short))
+        print(depth_string + "    display_name: " + str(self.display_name))
+        print(depth_string + "    category: " + str(self.category))
+        print(depth_string + "    description: " + str(self.description))
+        print(depth_string + "    semantic_id: " + str(self.semantic_id))
+        if self.qualifier is not None:
+            self.qualifier.cascade_print(depth_level=depth_level + 1)
+        else:
+            print(depth_string + "    qualifier: None")
+        print(depth_string + "    supplemental_semantic_id: " + str(self.supplemental_semantic_id))
+        print(depth_string + "    embedded_data_specifications: " + str(self.embedded_data_specifications))
 
 
 class Submodel(common.Identifiable, common.HasKind, common.HasSemantics, common.Qualifiable,
@@ -63,17 +81,16 @@ class Submodel(common.Identifiable, common.HasKind, common.HasSemantics, common.
                  id_: common.KeyTypes.Identifier,
                  submodel_element: set[SubmodelElement] = (),
                  id_short: common.KeyTypes.NameType = None,
-                 display_name = None,
+                 display_name=None,
                  category: common.KeyTypes.NameType = None,
-                 description = None,
-                 parent = None,
+                 description=None,
                  administration: common.Identifiable.AdministrativeInformation = None,
                  semantic_id: common.KeyTypes.Reference = None,
                  qualifier: set[common.Qualifier] = (),
                  kind: common.HasKind.ModelingKind = None,
                  extension: set[common.Extension] = (),
                  supplemental_semantic_id: set[common.KeyTypes.Reference] = (),
-                 embedded_data_specifications = ()):
+                 embedded_data_specifications=()):
         super().__init__()
         self.id: common.KeyTypes.Identifier = id_
         self.submodel_element: set[SubmodelElement] = submodel_element
@@ -81,14 +98,44 @@ class Submodel(common.Identifiable, common.HasKind, common.HasSemantics, common.
         self.display_name = display_name
         self.category = category
         self.description = description
-        self.parent = parent
         self.administration: common.Identifiable.AdministrativeInformation = administration
         self.semantic_id: common.KeyTypes.Reference = semantic_id
         self.qualifier: set[common.Qualifier] = qualifier
-        self._kind: common.HasKind.ModelingKind = kind
+        self.kind: common.HasKind.ModelingKind = kind
         self.extension: set[common.Extension] = extension
         self.supplemental_semantic_id: set[common.KeyTypes.Reference] = supplemental_semantic_id
         self.embedded_data_specifications = embedded_data_specifications
+
+    def cascade_print(self, depth_level):
+        """
+        # TODO
+        :param depth_level:
+        :return:
+        """
+        depth_string = "    " * depth_level
+        print(depth_string + "\_ Submodel: ")
+        print(depth_string + "    id: " + str(self.id))
+        print(depth_string + "    \_ Submodel elements:")
+        for sm_element in self.submodel_element:
+            sm_element.cascade_print(depth_level + 2)
+        print(depth_string + "    id_short: " + str(self.id_short))
+        print(depth_string + "    display_name: " + str(self.display_name))
+        print(depth_string + "    category: " + str(self.category))
+        print(depth_string + "    description: " + str(self.description))
+        if self.administration is not None:
+            self.administration.cascade_print(depth_level=depth_level + 1)
+        else:
+            print(depth_string + "    administration: None")
+        print("             semantic_id: " + str(self.semantic_id))
+        if self.qualifier is not None:
+            for qualifier in self.qualifier:
+                qualifier.cascade_print(depth_level=depth_level + 1)
+        else:
+            print(depth_string + "    qualifier: None")
+        print("             kind: " + str(self.kind.name))
+        print("             extension: " + str(self.extension))
+        print("             supplemental_semantic_id: " + str(self.supplemental_semantic_id))
+        print("             embedded_data_specifications: " + str(self.embedded_data_specifications))
 
 
 # ----------------------
@@ -103,6 +150,7 @@ class DataElement(SubmodelElement, metaclass=abc.ABCMeta):
     Since the attributes are added in the global constructor of SubmodelElement, use is made of the method inherited
     from the constructor.
     """
+
     @abc.abstractmethod
     def __init__(self,
                  id_short: common.KeyTypes.NameType,
@@ -115,7 +163,7 @@ class DataElement(SubmodelElement, metaclass=abc.ABCMeta):
                  extension: common.Extension = (),
                  supplemental_semantic_id: set[common.KeyTypes.Reference] = (),
                  embedded_data_specifications=()):
-        super().__init__(id_short, display_name, category, description, parent, semantic_id, qualifier, extension,
+        super().__init__(id_short, display_name, category, description, semantic_id, qualifier, extension,
                          supplemental_semantic_id, embedded_data_specifications)
 
 
@@ -144,6 +192,31 @@ class Property(DataElement):
         self.value_type = value_type
         self.value = value
         self.value_id: common.KeyTypes.Reference = value_id
+
+    def cascade_print(self, depth_level):
+        """
+        The method of the inherited class is overwritten.
+        # TODO
+        :param depth_level:
+        :return:
+        """
+        depth_string = "    " * depth_level
+        print(depth_string + "\_ Property:")
+        print(depth_string + "    id_short: " + str(self.id_short))
+        print(depth_string + "    value_type: " + str(self.value_type))
+        print(depth_string + "    value: " + str(self.value))
+        print(depth_string + "    value_id: " + str(self.value_id))
+        print(depth_string + "    display_name: " + str(self.display_name))
+        print(depth_string + "    category: " + str(self.category))
+        print(depth_string + "    description: " + str(self.description))
+        print(depth_string + "    semantic_id: " + str(self.semantic_id))
+        if self.qualifier is not None:
+            self.qualifier.cascade_print(depth_level=depth_level + 1)
+        else:
+            print(depth_string + "    qualifier: None")
+        print(depth_string + "    supplemental_semantic_id: " + str(self.supplemental_semantic_id))
+        print(depth_string + "    embedded_data_specifications: " + str(self.embedded_data_specifications))
+
 
 
 class Range(DataElement):
@@ -174,6 +247,7 @@ class Blob(DataElement):
     """
     # TODO
     """
+
     def __init__(self,
                  id_short: common.KeyTypes.NameType,
                  value_type: common.KeyTypes.BlobType,
@@ -256,6 +330,7 @@ class SubmodelElementList(SubmodelElement):
       - valueTypeListElement: data type of the Submodel Elements.
       - value: the Submodel Elements that are part of the list
     """
+
     def __init__(self,
                  id_short: common.KeyTypes.NameType,
                  order_relevant: bool = True,
@@ -287,6 +362,7 @@ class SubmodelElementCollection(SubmodelElement):
     the collection must have clearly defined semantics. A property of a structure can be any Submodel Element with a
     value. That is, it is used to group Submodel Elements that are related to each other.
     """
+
     def __init__(self,
                  id_short: common.KeyTypes.NameType,
                  value_: set[SubmodelElement] = None,
@@ -315,6 +391,7 @@ class Entity(SubmodelElement):
       - globalAssetId: globally unique identifier of the asset it represents.
       - specificAssetId: specific identifier of the asset (it is a supplementary identifier, e.g. serial number).
     """
+
     @unique
     class EntityType(Enum):
         CO_MANAGED_ENTITY = 0
@@ -335,7 +412,7 @@ class Entity(SubmodelElement):
                  extension: common.Extension = (),
                  supplemental_semantic_id: set[common.KeyTypes.Reference] = (),
                  embedded_data_specifications=()):
-        super().__init__(id_short, display_name, category, description, parent, semantic_id, qualifier, extension,
+        super().__init__(id_short, display_name, category, description, semantic_id, qualifier, extension,
                          supplemental_semantic_id, embedded_data_specifications)
         self.statement: set[SubmodelElement] = statement
         self.entity_type: Entity.EntityType = entity_type
@@ -348,6 +425,7 @@ class Operation(SubmodelElement):
     It is a Submodel Element that has input and output variables. Its attributes have a value that is a Submodel Element
      that describes the argument or the result of the operation.
     """
+
     class OperationVariable:
         def __init__(self, value_: SubmodelElement):
             self.value: SubmodelElement = value_
@@ -366,7 +444,7 @@ class Operation(SubmodelElement):
                  extension: common.Extension = (),
                  supplemental_semantic_id: set[common.KeyTypes.Reference] = (),
                  embedded_data_specifications=()):
-        super().__init__(id_short, display_name, category, description, parent, semantic_id, qualifier, extension,
+        super().__init__(id_short, display_name, category, description, semantic_id, qualifier, extension,
                          supplemental_semantic_id, embedded_data_specifications)
         self.input_variable: set[Operation.OperationVariable] = input_variable
         self.output_variable: set[Operation.OperationVariable] = output_variable
@@ -380,6 +458,7 @@ class RelationshipElement(SubmodelElement):
       - first: first element, which has the role of the subject
       - second: second element, which has the role of the object
     """
+
     def __init__(self,
                  id_short: common.KeyTypes.NameType,
                  first: common.KeyTypes.Reference = None,
@@ -393,7 +472,7 @@ class RelationshipElement(SubmodelElement):
                  extension: common.Extension = (),
                  supplemental_semantic_id: set[common.KeyTypes.Reference] = (),
                  embedded_data_specifications=()):
-        super().__init__(id_short, display_name, category, description, parent, semantic_id, qualifier, extension,
+        super().__init__(id_short, display_name, category, description, semantic_id, qualifier, extension,
                          supplemental_semantic_id, embedded_data_specifications)
         self.first: common.KeyTypes.Reference = first
         self.second: common.KeyTypes.Reference = second

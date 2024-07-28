@@ -3,8 +3,7 @@ from tkinter.filedialog import askopenfilename
 
 from lxml import etree
 
-from aas_metamodel_deserializer.deserialization import deserialize_asset_information, deserialize_submodel, \
-    get_submodel_references
+from aas_metamodel_deserializer import deserialization
 
 # TODO arreglar error con circular import (mirar en internet o chat-gpt)
 
@@ -105,37 +104,28 @@ def read_xml_definition(aas_xml_definition_str):
     else:
         # En este caso ya podemos empezar a leer el XML
         print("XML definition is valid. Starting reading...")
-        print(aas_xml_env_definition.tag)
         # AAS related global information
         aas_list_elem = aas_xml_env_definition.find(xml_ns + "assetAdministrationShells", aas_xml_env_definition.nsmap)
         aas_elem = aas_list_elem.find(xml_ns + "assetAdministrationShell", aas_list_elem.nsmap)
-
-        print(aas_list_elem.tag)
-        print(aas_elem.tag)
-        print(aas_elem.attrib)
         aas_id_elem = aas_elem.find(xml_ns + "id", aas_elem.nsmap)
-        print(aas_id_elem.tag)
-        print(aas_id_elem.text)
         asset_information_elem = aas_elem.find(xml_ns + "assetInformation", aas_elem.nsmap)
-        asset_information_obj = deserialize_asset_information(asset_information_elem, xml_ns)
+        asset_information_obj = deserialization.deserialize_asset_information(asset_information_elem, xml_ns)
 
         # Submodel related reference information
         sm_reference_list_elem = aas_elem.find(xml_ns + "submodels", aas_elem.nsmap)
-        sm_reference_dict = get_submodel_references(sm_reference_list_elem, xml_ns)
+        sm_reference_dict = deserialization.get_submodel_references(sm_reference_list_elem, xml_ns)
 
         # Submodel related information
         sm_list_elem = aas_xml_env_definition.find(xml_ns + "submodels", aas_xml_env_definition.nsmap)
         sm_obj_list = set()
         for sm_elem in sm_list_elem:
-            sm_obj = deserialize_submodel(sm_elem, xml_ns)
+            sm_obj = deserialization.deserialize_submodel(sm_elem, xml_ns)
             sm_obj_list.add(sm_obj)
 
-        print(asset_information_obj)
-        print(sm_reference_dict)
-        print(sm_obj_list)
+        aas_obj = deserialization.deserialize_aas(aas_id_elem, xml_ns, asset_information_obj, sm_obj_list)
+
         print("CASCADE PRINTING:")
-        print("\__ AAS information: ")
-        print("         id: " + str(None))
+        aas_obj.cascade_print()
 
 
 if __name__ == "__main__":

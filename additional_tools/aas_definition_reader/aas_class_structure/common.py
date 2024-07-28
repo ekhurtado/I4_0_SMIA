@@ -51,7 +51,7 @@ class HasKind(metaclass=abc.ABCMeta):
 
     @unique
     class ModelingKind(Enum):
-        TYPE = 0
+        TEMPLATE = 0
         INSTANCE = 1
 
     @abc.abstractmethod
@@ -141,6 +141,17 @@ class Identifiable(Referable, metaclass=abc.ABCMeta):
             self.revision: KeyTypes.RevisionType = revision
             self.version: KeyTypes.VersionType = version
 
+        def cascade_print(self, depth_level):
+            """
+            # TODO
+            :param depth_level:
+            :return:
+            """
+            depth_string = "    " * depth_level
+            print(depth_string + "\_ Administrative Information:")
+            print(depth_string + "     revision: " + str(self.revision))
+            print(depth_string + "     version: " + str(self.version))
+
     @abc.abstractmethod
     def __init__(self):
         super().__init__()
@@ -186,6 +197,20 @@ class Qualifier(HasSemantics):
         self.value_type = value_type
         self.value = value
         self.value_id: KeyTypes.Reference = value_id
+
+    def cascade_print(self, depth_level):
+        """
+        # TODO
+        :param depth_level:
+        :return:
+        """
+        depth_string = "    " * depth_level
+        print(depth_string + "\_ Qualifier:")
+        print(depth_string + "     kind: " + str(self.kind.name))
+        print(depth_string + "     type: " + str(self.type))
+        print(depth_string + "     value_type: " + str(self.value_type))
+        print(depth_string + "     value: " + str(self.value))
+        print(depth_string + "     value_id: " + str(self.value_id))
 
 
 # --------------------------

@@ -26,6 +26,7 @@ class AssetInformation:
         """
         PHYSICAL = 0
         LOGICAL = 1
+        NOT_APPLICABLE = 2
 
     class Resource:
         """This class represents an address to a file, either in absolute or relative path."""
@@ -47,6 +48,20 @@ class AssetInformation:
         self.default_thumbnail: AssetInformation.Resource = default_thumbnail
         self.asset_type: AssetInformation.AssetType = asset_type
 
+    def cascade_print(self, depth_level):
+        """
+        # TODO
+        :param depth_level:
+        :return:
+        """
+        depth_string = "    " * depth_level
+        print(depth_string + "\_ Asset information: ")
+        print(depth_string + "    asset_kind: " + str(self.asset_kind.name))
+        print(depth_string + "    specific_asset_id: " + str(self.specific_asset_id))
+        print(depth_string + "    global_asset_id: " + str(self.global_asset_id))
+        print(depth_string + "    default_thumbnail: " + str(self.default_thumbnail))
+        print(depth_string + "    asset_type: " + str(self.asset_type.name))
+
 
 class AssetAdministrationShell(common.Identifiable, common.HasDataSpecification):
     """
@@ -55,9 +70,18 @@ class AssetAdministrationShell(common.Identifiable, common.HasDataSpecification)
     variables are added in the constructor of the AAS.
     """
 
-    def __init__(self, asset_information: AssetInformation, id_: common.KeyTypes.Identifier, id_short, display_name,
-                 category, description, parent, administration, submodel: set[Submodel], derived_from,
-                 embedded_data_specifications, extension):
+    def __init__(self,
+                 asset_information: AssetInformation,
+                 id_: common.KeyTypes.Identifier,
+                 id_short,
+                 display_name,
+                 category,
+                 description,
+                 administration,
+                 submodel: set[Submodel],
+                 derived_from,
+                 embedded_data_specifications,
+                 extension):
         super().__init__()
         self.id: common.KeyTypes.Identifier = id_
         self.asset_information: AssetInformation = asset_information
@@ -65,17 +89,15 @@ class AssetAdministrationShell(common.Identifiable, common.HasDataSpecification)
         self.display_name = display_name
         self.category = category
         self.description = description
-        self.parent = parent
         self.administration = administration
         self.derived_from = derived_from
         self.submodel = set() if submodel is None else submodel
-        self.embedded_data_specifications = set(embedded_data_specifications)
+        self.embedded_data_specifications = embedded_data_specifications
         self.extension = extension
 
     def cascade_print(self):
         """
         TODO Rellenarlo
-        :return:
         """
         # TODO: este metodo servirá para printear toda la informacion que tenga el AAS. Para ello, se realizara en
         #  cascada, es decir, como el AAS es el elemento principal, y los demas cuelgan de el, todos tendran este metodo
@@ -87,16 +109,16 @@ class AssetAdministrationShell(common.Identifiable, common.HasDataSpecification)
         # p.e: con nivel 0 nada, con nivel 1 añadir "\_" al principio, con nivel 2 , "\__", y asi consecutivamente...
         # TODO
         print("\_ AAS information: ")
-        print("         id: " + str(self.id))
-        self.asset_information.cascade_print()
-        print("         id_short: " + str(self.id_short))
-        print("         display_name: " + str(self.display_name))
-        print("         category: " + str(self.category))
-        print("         description: " + str(self.description))
-        print("         parent: " + str(self.parent))
-        print("         administration: " + str(self.administration))
-        print("         derived_from: " + str(self.derived_from))
+        print("    id: " + str(self.id))
+        self.asset_information.cascade_print(depth_level=1)
+        print("    id_short: " + str(self.id_short))
+        print("    display_name: " + str(self.display_name))
+        print("    category: " + str(self.category))
+        print("    description: " + str(self.description))
+        print("    administration: " + str(self.administration))
+        print("    derived_from: " + str(self.derived_from))
+        print("    \_ Submodels:")
         for submodel in self.submodel:
-            submodel.cascade_print()
-        print("         embedded_data_specifications: " + str(self.embedded_data_specifications))
-        print("         extension: " + str(self.extension))
+            submodel.cascade_print(depth_level=2)
+        print("        embedded_data_specifications: " + str(self.embedded_data_specifications))
+        print("        extension: " + str(self.extension))

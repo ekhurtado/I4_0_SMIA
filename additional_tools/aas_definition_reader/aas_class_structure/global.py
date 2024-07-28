@@ -7,6 +7,7 @@ from . import common
 from aas import AssetAdministrationShell
 from submodel import Submodel
 
+
 class ConceptDescription(common.Identifiable, common.HasDataSpecification):
     def __init__(self,
                  id_: common.KeyTypes.Identifier,
