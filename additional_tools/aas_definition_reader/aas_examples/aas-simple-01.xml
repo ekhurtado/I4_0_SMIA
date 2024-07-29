@@ -24,7 +24,8 @@
             <aas:id>https://acplt.org/Simple_Submodel</aas:id>
             <aas:kind>Instance</aas:kind>
             <aas:submodelElements>
-                <aas:property><aas:idShort>ExampleProperty</aas:idShort>
+                <aas:property>
+                    <aas:idShort>ExampleProperty</aas:idShort>
                     <aas:semanticId>
                         <aas:type>ExternalReference</aas:type>
                         <aas:keys>

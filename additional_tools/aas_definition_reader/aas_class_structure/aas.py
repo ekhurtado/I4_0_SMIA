@@ -77,7 +77,7 @@ class AssetAdministrationShell(common.Identifiable, common.HasDataSpecification)
                  display_name,
                  category,
                  description,
-                 administration,
+                 administration: common.Identifiable.AdministrativeInformation,
                  submodel: set[Submodel],
                  derived_from,
                  embedded_data_specifications,
@@ -89,7 +89,7 @@ class AssetAdministrationShell(common.Identifiable, common.HasDataSpecification)
         self.display_name = display_name
         self.category = category
         self.description = description
-        self.administration = administration
+        self.administration: common.Identifiable.AdministrativeInformation = administration
         self.derived_from = derived_from
         self.submodel = set() if submodel is None else submodel
         self.embedded_data_specifications = embedded_data_specifications
@@ -115,7 +115,8 @@ class AssetAdministrationShell(common.Identifiable, common.HasDataSpecification)
         print("    display_name: " + str(self.display_name))
         print("    category: " + str(self.category))
         print("    description: " + str(self.description))
-        print("    administration: " + str(self.administration))
+        if self.administration is not None:
+            self.administration.cascade_print(depth_level=1)
         print("    derived_from: " + str(self.derived_from))
         print("    \_ Submodels:")
         for submodel in self.submodel:

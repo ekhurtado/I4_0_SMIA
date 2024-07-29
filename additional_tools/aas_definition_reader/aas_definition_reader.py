@@ -107,13 +107,14 @@ def read_xml_definition(aas_xml_definition_str):
         # AAS related global information
         aas_list_elem = aas_xml_env_definition.find(xml_ns + "assetAdministrationShells", aas_xml_env_definition.nsmap)
         aas_elem = aas_list_elem.find(xml_ns + "assetAdministrationShell", aas_list_elem.nsmap)
-        aas_id_elem = aas_elem.find(xml_ns + "id", aas_elem.nsmap)
+
         asset_information_elem = aas_elem.find(xml_ns + "assetInformation", aas_elem.nsmap)
         asset_information_obj = deserialization.deserialize_asset_information(asset_information_elem, xml_ns)
 
         # Submodel related reference information
         sm_reference_list_elem = aas_elem.find(xml_ns + "submodels", aas_elem.nsmap)
-        sm_reference_dict = deserialization.get_submodel_references(sm_reference_list_elem, xml_ns)
+        if sm_reference_list_elem is not None:
+            sm_reference_dict = deserialization.get_submodel_references(sm_reference_list_elem, xml_ns)
 
         # Submodel related information
         sm_list_elem = aas_xml_env_definition.find(xml_ns + "submodels", aas_xml_env_definition.nsmap)
@@ -122,7 +123,7 @@ def read_xml_definition(aas_xml_definition_str):
             sm_obj = deserialization.deserialize_submodel(sm_elem, xml_ns)
             sm_obj_list.add(sm_obj)
 
-        aas_obj = deserialization.deserialize_aas(aas_id_elem, xml_ns, asset_information_obj, sm_obj_list)
+        aas_obj = deserialization.deserialize_aas(aas_elem, xml_ns, asset_information_obj, sm_obj_list)
 
         print("CASCADE PRINTING:")
         aas_obj.cascade_print()

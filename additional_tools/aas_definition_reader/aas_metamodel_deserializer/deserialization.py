@@ -25,7 +25,7 @@ def deserialize_aas(xml_elem, xml_ns, asset_info, sm_list):
     aas_display_name = aas_id_short  # TODO (for now same as idShort)
     aas_category = utils.get_xml_elem_text(xml_elem, "category", xml_ns)
     aas_embedded_data_specification = utils.get_elem_reference_text(xml_elem, "embeddedDataSpecification", xml_ns)
-    aas_extension = None # TODO
+    aas_extension = None  # TODO
 
     # TODO DUDA: Miramos las referencias de submodelos dentro de la lista de submodelos generales definidos en el
     #  modelo de AAS?
@@ -88,7 +88,8 @@ def deserialize_submodel(xml_elem, xml_ns):
     if sm_element_list is not None:
         for sm_elem in sm_element_list:
             sm_elem_obj = deserialize_submodel_element(sm_elem, xml_ns)
-            sm_elements.add(sm_elem_obj)
+            if sm_elem_obj is not None:
+                sm_elements.add(sm_elem_obj)
 
     return submodel.Submodel(id_=sm_id,
                              submodel_element=sm_elements,
@@ -110,7 +111,7 @@ def deserialize_submodel_element(xml_elem, xml_ns):
     # First, we get the attributes that all Submodel Elements share
     sm_id_short = utils.get_xml_elem_text(xml_elem, "idShort", xml_ns)
     display_name_elem = sm_id_short  # TODO (for now same as idShort)
-    sm_description = utils.get_elem_description(xml_elem, xml_ns)
+    description = utils.get_elem_description(xml_elem, xml_ns)
     semantic_id = utils.get_elem_reference_text(xml_elem, "semanticId", xml_ns)
     qualifiers = utils.get_elem_qualifiers(xml_elem, xml_ns)
 
@@ -129,22 +130,22 @@ def deserialize_submodel_element(xml_elem, xml_ns):
                                      value=value,
                                      value_id=value_id,
                                      display_name=display_name_elem,
-                                     description=sm_description,
+                                     description=description,
                                      semantic_id=semantic_id,
                                      qualifier=qualifiers,
                                      # TODO (no estan todos)
                                      )
         case "range":
             value_type = utils.get_xml_elem_text(xml_elem, "valueType", xml_ns)
-            min_ = utils.get_xml_elem_text(xml_elem, "valueType", xml_ns)
-            max_ = utils.get_xml_elem_text(xml_elem, "value", xml_ns)
+            min_ = utils.get_xml_elem_text(xml_elem, "min", xml_ns)
+            max_ = utils.get_xml_elem_text(xml_elem, "max", xml_ns)
 
             return submodel.Range(id_short=sm_id_short,
                                   value_type=value_type,
                                   min_=min_,
                                   max_=max_,
                                   display_name=display_name_elem,
-                                  description=sm_description,
+                                  description=description,
                                   semantic_id=semantic_id,
                                   qualifier=qualifiers,
                                   # TODO (no estan todos)
@@ -157,7 +158,7 @@ def deserialize_submodel_element(xml_elem, xml_ns):
                                  value_type=value_type,
                                  content_type=content_type,
                                  display_name=display_name_elem,
-                                 description=sm_description,
+                                 description=description,
                                  semantic_id=semantic_id,
                                  qualifier=qualifiers,
                                  # TODO (no estan todos)
@@ -170,7 +171,7 @@ def deserialize_submodel_element(xml_elem, xml_ns):
                                  value_=value,
                                  content_type=content_type,
                                  display_name=display_name_elem,
-                                 description=sm_description,
+                                 description=description,
                                  semantic_id=semantic_id,
                                  qualifier=qualifiers,
                                  # TODO (no estan todos)
@@ -181,17 +182,62 @@ def deserialize_submodel_element(xml_elem, xml_ns):
             return submodel.ReferenceElement(id_short=sm_id_short,
                                              value_=value,
                                              display_name=display_name_elem,
-                                             description=sm_description,
+                                             description=description,
                                              semantic_id=semantic_id,
                                              qualifier=qualifiers,
                                              # TODO (no estan todos)
                                              )
         case "submodelElementList":
-            # TODO
-            pass
+            category = utils.get_xml_elem_text(xml_elem, "category", xml_ns)
+            semantic_id_list_elem = utils.get_elem_reference_text(xml_elem, "semanticIdListElement", xml_ns)
+            order_relevant_elem = utils.get_xml_elem_text(xml_elem, "orderRelevant", xml_ns)
+            order_relevant = order_relevant_elem in ("true", "1")
+            type_value_element = utils.get_xml_elem_text(xml_elem, "typeValueListElement", xml_ns)
+            value_type_element = utils.get_xml_elem_text(xml_elem, "valueTypeListElement", xml_ns)
+
+            # Get all the elements from the list
+            value_elem = xml_elem.find(xml_ns + "value", xml_elem.nsmap)
+            all_value_elems: set[submodel.SubmodelElement] = set()
+            for sm_elem_list_value in value_elem:
+                sm_elem_obj = deserialize_submodel_element(sm_elem_list_value, xml_ns)
+                if sm_elem_obj is not None:  # TODO revisarlo (no se leen todos los tipos de SM Elements)
+                    all_value_elems.add(sm_elem_obj)
+
+            return submodel.SubmodelElementList(id_short=sm_id_short,
+                                                order_relevant=order_relevant,
+                                                semantic_id_list_element=semantic_id_list_elem,
+                                                type_value_list_element=type_value_element,
+                                                value_type_list_element=value_type_element,
+                                                value_=all_value_elems,
+                                                display_name=display_name_elem,
+                                                category=category,
+                                                description=description,
+                                                semantic_id=semantic_id,
+                                                qualifier=qualifiers,
+                                                # TODO (no estan todos)
+                                                )
+
         case "submodelElementCollection":
-            # TODO
-            pass
+            category = utils.get_xml_elem_text(xml_elem, "category", xml_ns)
+
+            # Get all the elements from the list
+            value_elem = xml_elem.find(xml_ns + "value", xml_elem.nsmap)
+            all_value_elems: set[submodel.SubmodelElement] = set()
+            if value_elem is not None:
+                for sm_elem_list_value in value_elem:
+                    sm_elem_obj = deserialize_submodel_element(sm_elem_list_value, xml_ns)
+                    if sm_elem_obj is not None:  # TODO revisarlo (no se leen todos los tipos de SM Elements)
+                        all_value_elems.add(sm_elem_obj)
+
+            return submodel.SubmodelElementCollection(id_short=sm_id_short,
+                                                      value_=all_value_elems,
+                                                      display_name=display_name_elem,
+                                                      category=category,
+                                                      description=description,
+                                                      semantic_id=semantic_id,
+                                                      qualifier=qualifiers,
+                                                      # TODO (no estan todos)
+                                                      )
         case "entity":
             entity_type_name = utils.get_xml_elem_text(xml_elem, "entityType", xml_ns)
             entity_type = utils.get_text_mapped_name(entity_type_name, utils.ENTITY_TYPE_DICT)
@@ -207,7 +253,7 @@ def deserialize_submodel_element(xml_elem, xml_ns):
                                    specific_asset_id=specific_asset_id,
 
                                    display_name=display_name_elem,
-                                   description=sm_description,
+                                   description=description,
                                    semantic_id=semantic_id,
                                    qualifier=qualifiers,
                                    # TODO (no estan todos)
@@ -222,7 +268,7 @@ def deserialize_submodel_element(xml_elem, xml_ns):
                                       output_variable=output_variable,
                                       inoutput_variable=inoutput_variable,
                                       display_name=display_name_elem,
-                                      description=sm_description,
+                                      description=description,
                                       semantic_id=semantic_id,
                                       qualifier=qualifiers,
                                       # TODO (no estan todos)
@@ -235,11 +281,13 @@ def deserialize_submodel_element(xml_elem, xml_ns):
                                                 first=first,
                                                 second=second,
                                                 display_name=display_name_elem,
-                                                description=sm_description,
+                                                description=description,
                                                 semantic_id=semantic_id,
                                                 qualifier=qualifiers,
                                                 # TODO (no estan todos)
                                                 )
+        case _:
+            return None
 
 
 def get_submodel_references(xml_elem, xml_ns):

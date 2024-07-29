@@ -50,6 +50,15 @@ class SubmodelElement(common.Referable, common.HasKind, common.Qualifiable, comm
         """
         depth_string = "    " * depth_level
         print(depth_string + "\_ Submodel element:")
+        self.print_sm_element_common_variables(depth_level)
+
+    def print_sm_element_common_variables(self, depth_level):
+        """
+        # TODO
+        :param depth_level:
+        :return:
+        """
+        depth_string = "    " * depth_level
         print(depth_string + "    id_short: " + str(self.id_short))
         print(depth_string + "    display_name: " + str(self.display_name))
         print(depth_string + "    category: " + str(self.category))
@@ -126,16 +135,16 @@ class Submodel(common.Identifiable, common.HasKind, common.HasSemantics, common.
             self.administration.cascade_print(depth_level=depth_level + 1)
         else:
             print(depth_string + "    administration: None")
-        print("             semantic_id: " + str(self.semantic_id))
+        print(depth_string + "    semantic_id: " + str(self.semantic_id))
         if self.qualifier is not None:
             for qualifier in self.qualifier:
                 qualifier.cascade_print(depth_level=depth_level + 1)
         else:
             print(depth_string + "    qualifier: None")
-        print("             kind: " + str(self.kind.name))
-        print("             extension: " + str(self.extension))
-        print("             supplemental_semantic_id: " + str(self.supplemental_semantic_id))
-        print("             embedded_data_specifications: " + str(self.embedded_data_specifications))
+        print(depth_string + "    kind: " + str(self.kind.name))
+        print(depth_string + "    extension: " + str(self.extension))
+        print(depth_string + "    supplemental_semantic_id: " + str(self.supplemental_semantic_id))
+        print(depth_string + "    embedded_data_specifications: " + str(self.embedded_data_specifications))
 
 
 # ----------------------
@@ -165,6 +174,16 @@ class DataElement(SubmodelElement, metaclass=abc.ABCMeta):
                  embedded_data_specifications=()):
         super().__init__(id_short, display_name, category, description, semantic_id, qualifier, extension,
                          supplemental_semantic_id, embedded_data_specifications)
+
+    def cascade_print(self, depth_level):
+        """
+        # TODO
+        :param depth_level:
+        :return:
+        """
+        depth_string = "    " * depth_level
+        print(depth_string + "\_ Data element:")
+        super().print_sm_element_common_variables(depth_level)
 
 
 # -------------------
@@ -202,21 +221,10 @@ class Property(DataElement):
         """
         depth_string = "    " * depth_level
         print(depth_string + "\_ Property:")
-        print(depth_string + "    id_short: " + str(self.id_short))
         print(depth_string + "    value_type: " + str(self.value_type))
         print(depth_string + "    value: " + str(self.value))
         print(depth_string + "    value_id: " + str(self.value_id))
-        print(depth_string + "    display_name: " + str(self.display_name))
-        print(depth_string + "    category: " + str(self.category))
-        print(depth_string + "    description: " + str(self.description))
-        print(depth_string + "    semantic_id: " + str(self.semantic_id))
-        if self.qualifier is not None:
-            self.qualifier.cascade_print(depth_level=depth_level + 1)
-        else:
-            print(depth_string + "    qualifier: None")
-        print(depth_string + "    supplemental_semantic_id: " + str(self.supplemental_semantic_id))
-        print(depth_string + "    embedded_data_specifications: " + str(self.embedded_data_specifications))
-
+        super().print_sm_element_common_variables(depth_level)
 
 
 class Range(DataElement):
@@ -242,6 +250,20 @@ class Range(DataElement):
         self.min = min_
         self.max = max_
 
+    def cascade_print(self, depth_level):
+        """
+        The method of the inherited class is overwritten.
+        # TODO
+        :param depth_level:
+        :return:
+        """
+        depth_string = "    " * depth_level
+        print(depth_string + "\_ Range:")
+        print(depth_string + "    value_type: " + str(self.value_type))
+        print(depth_string + "    min: " + str(self.min))
+        print(depth_string + "    max: " + str(self.max))
+        super().print_sm_element_common_variables(depth_level)
+
 
 class Blob(DataElement):
     """
@@ -265,6 +287,19 @@ class Blob(DataElement):
                          supplemental_semantic_id, embedded_data_specifications)
         self.value_type: common.KeyTypes.BlobType = value_type
         self.content_type: common.KeyTypes.ContentType = content_type
+
+    def cascade_print(self, depth_level):
+        """
+        The method of the inherited class is overwritten.
+        # TODO
+        :param depth_level:
+        :return:
+        """
+        depth_string = "    " * depth_level
+        print(depth_string + "\_ Blob:")
+        print(depth_string + "    value_type: " + str(self.value_type))
+        print(depth_string + "    content_type: " + str(self.content_type))
+        super().print_sm_element_common_variables(depth_level)
 
 
 class File(DataElement):
@@ -291,6 +326,19 @@ class File(DataElement):
         self.value: common.KeyTypes.PathType = value_
         self.content_type: common.KeyTypes.ContentType = content_type
 
+    def cascade_print(self, depth_level):
+        """
+        The method of the inherited class is overwritten.
+        # TODO
+        :param depth_level:
+        :return:
+        """
+        depth_string = "    " * depth_level
+        print(depth_string + "\_ File:")
+        print(depth_string + "    value: " + str(self.value))
+        print(depth_string + "    content_type: " + str(self.content_type))
+        super().print_sm_element_common_variables(depth_level)
+
 
 class ReferenceElement(DataElement):
     """
@@ -313,6 +361,19 @@ class ReferenceElement(DataElement):
         super().__init__(id_short, display_name, category, description, parent, semantic_id, qualifier, extension,
                          supplemental_semantic_id, embedded_data_specifications)
         self.value: common.KeyTypes.Reference = value_
+
+    def cascade_print(self, depth_level):
+        """
+        The method of the inherited class is overwritten.
+        # TODO
+        :param depth_level:
+        :return:
+        """
+        depth_string = "    " * depth_level
+        print(depth_string + "\_ Reference element:")
+        print(depth_string + "    value: " + str(self.value))
+        super().print_sm_element_common_variables(depth_level)
+
 
 
 # ----------------------
@@ -341,19 +402,35 @@ class SubmodelElementList(SubmodelElement):
                  display_name=None,
                  category: common.KeyTypes.NameType = None,
                  description=None,
-                 parent=None,
                  semantic_id: common.KeyTypes.Reference = None,
                  qualifier: common.Qualifier = (),
                  extension: common.Extension = (),
                  supplemental_semantic_id: set[common.KeyTypes.Reference] = (),
                  embedded_data_specifications=()):
-        super().__init__(id_short, display_name, category, description, parent, semantic_id, qualifier, extension,
+        super().__init__(id_short, display_name, category, description, semantic_id, qualifier, extension,
                          supplemental_semantic_id, embedded_data_specifications)
         self.order_relevant = order_relevant
         self.semantic_id_list_element = semantic_id_list_element
         self.type_value_list_element = type_value_list_element
         self.value_type_list_element = value_type_list_element
         self.value = value_
+
+    def cascade_print(self, depth_level):
+        """
+        # TODO
+        :param depth_level:
+        :return:
+        """
+        depth_string = "    " * depth_level
+        print(depth_string + "\_ Submodel element list:")
+        print(depth_string + "    order_relevant: " + str(self.order_relevant))
+        print(depth_string + "    semantic_id_list_element: " + str(self.semantic_id_list_element))
+        print(depth_string + "    type_value_list_element: " + str(self.type_value_list_element))
+        print(depth_string + "    value_type_list_element: " + str(self.value_type_list_element))
+        print(depth_string + "    values list: ")
+        for sm_element in self.value:
+            sm_element.cascade_print(depth_level + 2)
+        super().print_sm_element_common_variables(depth_level)
 
 
 class SubmodelElementCollection(SubmodelElement):
@@ -369,15 +446,27 @@ class SubmodelElementCollection(SubmodelElement):
                  display_name=None,
                  category: common.KeyTypes.NameType = None,
                  description=None,
-                 parent=None,
                  semantic_id: common.KeyTypes.Reference = None,
                  qualifier: common.Qualifier = (),
                  extension: common.Extension = (),
                  supplemental_semantic_id: set[common.KeyTypes.Reference] = (),
                  embedded_data_specifications=()):
-        super().__init__(id_short, display_name, category, description, parent, semantic_id, qualifier, extension,
+        super().__init__(id_short, display_name, category, description, semantic_id, qualifier, extension,
                          supplemental_semantic_id, embedded_data_specifications)
         self.value = value_
+
+    def cascade_print(self, depth_level):
+        """
+        # TODO
+        :param depth_level:
+        :return:
+        """
+        depth_string = "    " * depth_level
+        print(depth_string + "\_ Submodel element list:")
+        print(depth_string + "    values list: ")
+        for sm_element in self.value:
+            sm_element.cascade_print(depth_level + 2)
+        super().print_sm_element_common_variables(depth_level)
 
 
 class Entity(SubmodelElement):
@@ -406,7 +495,6 @@ class Entity(SubmodelElement):
                  display_name=None,
                  category: common.KeyTypes.NameType = None,
                  description=None,
-                 parent=None,
                  semantic_id: common.KeyTypes.Reference = None,
                  qualifier: common.Qualifier = (),
                  extension: common.Extension = (),
@@ -418,6 +506,28 @@ class Entity(SubmodelElement):
         self.entity_type: Entity.EntityType = entity_type
         self.global_asset_id: common.KeyTypes.Reference = global_asset_id
         self.specific_asset_id: common.SpecificAssetId = specific_asset_id
+
+    def cascade_print(self, depth_level):
+        """
+        # TODO
+        :param depth_level:
+        :return:
+        """
+        depth_string = "    " * depth_level
+        print(depth_string + "\_ Entity:")
+        print(depth_string + "    entity_type: " + str(self.entity_type.name))
+        if self.statement is not None:
+            print(depth_string + "    statement: ")
+            for statement_elem in self.statement:
+                statement_elem.cascade_print(depth_level + 2)
+        else:
+            print(depth_string + "    statement: None")
+        print(depth_string + "    global_asset_id: " + str(self.global_asset_id))
+        if self.specific_asset_id is not None:
+            print(depth_string + "    specific_asset_id: " + str(self.specific_asset_id.name))
+        else:
+            print(depth_string + "    specific_asset_id: None")
+        super().print_sm_element_common_variables(depth_level)
 
 
 class Operation(SubmodelElement):
@@ -438,7 +548,6 @@ class Operation(SubmodelElement):
                  display_name=None,
                  category: common.KeyTypes.NameType = None,
                  description=None,
-                 parent=None,
                  semantic_id: common.KeyTypes.Reference = None,
                  qualifier: common.Qualifier = (),
                  extension: common.Extension = (),
@@ -449,6 +558,34 @@ class Operation(SubmodelElement):
         self.input_variable: set[Operation.OperationVariable] = input_variable
         self.output_variable: set[Operation.OperationVariable] = output_variable
         self.inoutput_variable: set[Operation.OperationVariable] = inoutput_variable
+
+    def cascade_print(self, depth_level):
+        """
+        # TODO
+        :param depth_level:
+        :return:
+        """
+        depth_string = "    " * depth_level
+        print(depth_string + "\_ Operation:")
+        if self.input_variable is not None:
+            print(depth_string + "    input_variables: ")
+            for input_var in self.input_variable:
+                input_var.value.cascade_print(depth_level + 2)
+        else:
+            print(depth_string + "    input_variable: None")
+        if self.output_variable is not None:
+            print(depth_string + "    output_variable: ")
+            for output_var in self.output_variable:
+                output_var.value.cascade_print(depth_level + 2)
+        else:
+            print(depth_string + "    output_variable: None")
+        if self.inoutput_variable is not None:
+            print(depth_string + "    inoutput_variable: ")
+            for inoutput_var in self.inoutput_variable:
+                inoutput_var.value.cascade_print(depth_level + 2)
+        else:
+            print(depth_string + "    inoutput_variable: None")
+        super().print_sm_element_common_variables(depth_level)
 
 
 class RelationshipElement(SubmodelElement):
@@ -466,7 +603,6 @@ class RelationshipElement(SubmodelElement):
                  display_name=None,
                  category: common.KeyTypes.NameType = None,
                  description=None,
-                 parent=None,
                  semantic_id: common.KeyTypes.Reference = None,
                  qualifier: common.Qualifier = (),
                  extension: common.Extension = (),
@@ -476,3 +612,15 @@ class RelationshipElement(SubmodelElement):
                          supplemental_semantic_id, embedded_data_specifications)
         self.first: common.KeyTypes.Reference = first
         self.second: common.KeyTypes.Reference = second
+
+    def cascade_print(self, depth_level):
+        """
+        # TODO
+        :param depth_level:
+        :return:
+        """
+        depth_string = "    " * depth_level
+        print(depth_string + "\_ Relationship element:")
+        print(depth_string + "    first: " + str(self.first))
+        print(depth_string + "    second: " + str(self.second))
+        super().print_sm_element_common_variables(depth_level)
