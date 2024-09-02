@@ -143,9 +143,9 @@ class Identifiable(Referable, metaclass=abc.ABCMeta):
 
         def cascade_print(self, depth_level):
             """
-            # TODO
-            :param depth_level:
-            :return:
+            This method is developed on each element of the AAS meta-model to print its specific information. In this
+            case, this method prints the administrative information of an identifiable element.
+            :param depth_level: this attribute sets the depth level to print correctly on the console.
             """
             depth_string = "    " * depth_level
             print(depth_string + "\_ Administrative Information:")
@@ -200,9 +200,9 @@ class Qualifier(HasSemantics):
 
     def cascade_print(self, depth_level):
         """
-        # TODO
-        :param depth_level:
-        :return:
+        This method is developed on each element of the AAS meta-model to print its specific information. In this
+        case, this method prints the information of the qualifier.
+        :param depth_level: this attribute sets the depth level to print correctly on the console.
         """
         depth_string = "    " * depth_level
         print(depth_string + "\_ Qualifier:")

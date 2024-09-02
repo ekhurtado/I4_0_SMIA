@@ -33,10 +33,11 @@ MODELING_KIND_DICT = {
 # -----------------------------------
 def get_text_mapped_name(text_name, dictionary):
     """
-    TODO
-    :param text_name:
-    :param dictionary:
-    :return:
+    This method returns the value of a dictionary using the key, taking into account that the key can be None or not in
+    the dictionary.
+    :param text_name: key to find in the dictionary.
+    :param dictionary: dictionary object.
+    :return: the value of the object within the dictionary related to the key.
     """
     if text_name is None:
         return dictionary['NotApplicable']
@@ -49,17 +50,23 @@ def get_text_mapped_name(text_name, dictionary):
 # ------------------------------
 def get_xml_elem_text(xml_elem, tag, xml_ns):
     """
-    # TODO
-    :param xml_elem:
-    :param tag:
-    :param xml_ns:
-    :return:
+    This method obtains the XML element text, taking into account that it may not be found.
+    :param xml_elem: XML element of the lxml library.
+    :param tag: the tag to found the element.
+    :param xml_ns: the namespace of the XML definition.
+    :return: the text of the XML element, and None in case it has not been found.
     """
     found_element = xml_elem.find(xml_ns + tag, xml_elem.nsmap)
     return found_element.text if found_element is not None else None
 
 
 def get_elem_description(xml_elem, xml_ns):
+    """
+    This method gets the description of an XML element that follows the AAS meta-model.
+    :param xml_elem: XML element of the lxml library.
+    :param xml_ns: the namespace of the XML definition.
+    :return: the description in the form of a string of the xml element.
+    """
     sm_description_elem = xml_elem.find(xml_ns + "description", xml_elem.nsmap)
     if sm_description_elem is not None:
         sm_description = get_xml_elem_text(sm_description_elem.find(xml_ns + "langStringTextType", xml_elem.nsmap),
@@ -70,6 +77,12 @@ def get_elem_description(xml_elem, xml_ns):
 
 
 def get_elem_administration(xml_elem, xml_ns):
+    """
+    This method gets the administration element of an XML element that follows the AAS meta-model.
+    :param xml_elem: XML element of the lxml library.
+    :param xml_ns: the namespace of the XML definition.
+    :return: the administrative information in the form of a Python object following the AAS meta-model.
+    """
     sm_admin_elem = xml_elem.find(xml_ns + "administration", xml_elem.nsmap)
     if sm_admin_elem is not None:
         sm_admin_version = get_xml_elem_text(sm_admin_elem, "version", xml_ns)
@@ -82,6 +95,13 @@ def get_elem_administration(xml_elem, xml_ns):
 
 
 def get_elem_reference_text(xml_elem, tag, xml_ns):
+    """
+    TODO
+    :param xml_elem:
+    :param tag:
+    :param xml_ns:
+    :return:
+    """
     semantic_id_elem = xml_elem.find(xml_ns + tag, xml_elem.nsmap)
     if semantic_id_elem is not None:
         keys_elem = semantic_id_elem.find(xml_ns + "keys", semantic_id_elem.nsmap)

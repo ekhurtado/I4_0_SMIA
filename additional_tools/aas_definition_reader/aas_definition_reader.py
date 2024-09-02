@@ -5,8 +5,6 @@ from lxml import etree
 
 from aas_metamodel_deserializer import deserialization
 
-# TODO arreglar error con circular import (mirar en internet o chat-gpt)
-
 xsd_path = 'AAS_metamodel.xsd'
 
 

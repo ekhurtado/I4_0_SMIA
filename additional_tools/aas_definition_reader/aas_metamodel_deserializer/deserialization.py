@@ -9,12 +9,13 @@ from aas_class_structure import aas, submodel
 
 def deserialize_aas(xml_elem, xml_ns, asset_info, sm_list):
     """
-    # TODO
-    :param xml_elem:
-    :param xml_ns:
-    :param asset_info:
-    :param sm_list:
-    :return:
+    This method deserializes an AAS element of an XML definition into an AAS Python object. This object, and those
+    within it, are developed following the AAS meta-model, as well as the XML definition.
+    :param xml_elem: the xml element of the lxml library.
+    :param xml_ns: the namespace of the XML definition.
+    :param asset_info: the asset information Python object.
+    :param sm_list: the list of submodels as Python objects.
+    :return: the AAS in the form of a Python object.
     """
 
     aas_id_short = utils.get_xml_elem_text(xml_elem, "idShort", xml_ns)
@@ -46,10 +47,11 @@ def deserialize_aas(xml_elem, xml_ns, asset_info, sm_list):
 
 def deserialize_asset_information(xml_elem, xml_ns):
     """
-    TODO
-    :param xml_elem:
-    :param xml_ns:
-    :return:
+    This method deserializes an asset information element of an XML definition into an AAS Python object. This object,
+    is developed following the AAS meta-model, as well as the XML definition.
+    :param xml_elem: the xml element of lxml library.
+    :param xml_ns: the namespace of the XML definition.
+    :return: the asset information in the form of a Python object.
     """
 
     asset_kind_name = utils.get_xml_elem_text(xml_elem, "assetKind", xml_ns)
@@ -69,10 +71,11 @@ def deserialize_asset_information(xml_elem, xml_ns):
 
 def deserialize_submodel(xml_elem, xml_ns):
     """
-    TODO
-    :param xml_elem:
-    :param xml_ns:
-    :return:
+    This method deserializes a Submodel element of an XML definition into an AAS Python object. This object, and those
+    within it, are developed following the AAS meta-model, as well as the XML definition.
+    :param xml_elem: the xml element of lxml library.
+    :param xml_ns: the namespace of the XML definition.
+    :return: the Submodel in the form of a Python object.
     """
     sm_id = utils.get_xml_elem_text(xml_elem, "id", xml_ns)
     sm_kind_name = utils.get_xml_elem_text(xml_elem, "kind", xml_ns)
@@ -103,10 +106,11 @@ def deserialize_submodel(xml_elem, xml_ns):
 
 def deserialize_submodel_element(xml_elem, xml_ns):
     """
-    TODO
-    :param xml_elem:
-    :param xml_ns:
-    :return:
+    This method deserializes a Submodel Element of an XML definition into an AAS Python object. This object, and those
+    within it, are developed following the AAS meta-model, as well as the XML definition.
+    :param xml_elem: the xml element of lxml library.
+    :param xml_ns: the namespace of the XML definition.
+    :return: the Submodel Element in the form of a Python object.
     """
     # First, we get the attributes that all Submodel Elements share
     sm_id_short = utils.get_xml_elem_text(xml_elem, "idShort", xml_ns)
@@ -292,10 +296,10 @@ def deserialize_submodel_element(xml_elem, xml_ns):
 
 def get_submodel_references(xml_elem, xml_ns):
     """
-    TODO
-    :param xml_elem:
-    :param xml_ns:
-    :return:
+    This method gets the Submodel references, as established in the AAS meta-model.
+    :param xml_elem: the xml element of lxml library.
+    :param xml_ns: the namespace of the XML definition.
+    :return: the references to the submodels.
     """
     sm_references_dict = []
     for ref_elem in xml_elem:

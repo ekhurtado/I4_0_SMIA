@@ -50,9 +50,9 @@ class AssetInformation:
 
     def cascade_print(self, depth_level):
         """
-        # TODO
-        :param depth_level:
-        :return:
+        This method is developed on each element of the AAS meta-model to print its specific information. In this
+        case, this method prints the information of the asset.
+        :param depth_level: this attribute sets the depth level to print correctly on the console.
         """
         depth_string = "    " * depth_level
         print(depth_string + "\_ Asset information: ")
@@ -97,17 +97,15 @@ class AssetAdministrationShell(common.Identifiable, common.HasDataSpecification)
 
     def cascade_print(self):
         """
-        TODO Rellenarlo
+        This method is developed on each element of the AAS meta-model to print its specific information. In this
+        case, this method prints the information of the AAS. SSince the AAS is the main element, this method does not
+        have a depth level, something that the cascading methods within the other elements do have, which is initially
+        set by this first cascading print.
+
+        For each attribute of the AAS the information is printed directly or, in the case where the attribute is an AAS
+        meta-model element, its cascade print method is called.
         """
-        # TODO: este metodo servirá para printear toda la informacion que tenga el AAS. Para ello, se realizara en
-        #  cascada, es decir, como el AAS es el elemento principal, y los demas cuelgan de el, todos tendran este metodo
-        #  print. El metodo basicamente printeara toda la información de esa clase. Si es un string, lo mostrara
-        #  directamente, si es un objeto, llamara a su metodo print para que muestre la informacion de dentro.
-        # Al llamar al metodo por debajo, se le añadira un numero, el cual sera el nivel de profundidad (el AAS sera el 0,
-        # y cuando llame al print de assetInformation le enviara un 1, este al printear specificAssetId 3, y asi
-        # consecutivamente). Con ese nivel de profundidad podremos printear la informacion de forma clara y ordenada,
-        # p.e: con nivel 0 nada, con nivel 1 añadir "\_" al principio, con nivel 2 , "\__", y asi consecutivamente...
-        # TODO
+
         print("\_ AAS information: ")
         print("    id: " + str(self.id))
         self.asset_information.cascade_print(depth_level=1)

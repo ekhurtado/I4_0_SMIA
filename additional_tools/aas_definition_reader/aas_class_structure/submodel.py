@@ -44,9 +44,9 @@ class SubmodelElement(common.Referable, common.HasKind, common.Qualifiable, comm
 
     def cascade_print(self, depth_level):
         """
-        # TODO
-        :param depth_level:
-        :return:
+        This method is developed on each element of the AAS meta-model to print its specific information. In this
+        case, this method prints the information of the Submodel Element.
+        :param depth_level: this attribute sets the depth level to print correctly on the console.
         """
         depth_string = "    " * depth_level
         print(depth_string + "\_ Submodel element:")
@@ -54,9 +54,10 @@ class SubmodelElement(common.Referable, common.HasKind, common.Qualifiable, comm
 
     def print_sm_element_common_variables(self, depth_level):
         """
-        # TODO
-        :param depth_level:
-        :return:
+        This method prints only information of the Submodel Element, i.e. its attributes. By printing only the
+        attributes data, this method can be used by any type of submodel element to print the common information shared
+        by all these types of elements (DataElement, Property...).
+        :param depth_level: this attribute sets the depth level to print correctly on the console.
         """
         depth_string = "    " * depth_level
         print(depth_string + "    id_short: " + str(self.id_short))
@@ -117,9 +118,9 @@ class Submodel(common.Identifiable, common.HasKind, common.HasSemantics, common.
 
     def cascade_print(self, depth_level):
         """
-        # TODO
-        :param depth_level:
-        :return:
+        This method is developed on each element of the AAS meta-model to print its specific information. In this
+        case, this method prints the information of the Submodel.
+        :param depth_level: this attribute sets the depth level to print correctly on the console.
         """
         depth_string = "    " * depth_level
         print(depth_string + "\_ Submodel: ")
@@ -177,9 +178,10 @@ class DataElement(SubmodelElement, metaclass=abc.ABCMeta):
 
     def cascade_print(self, depth_level):
         """
-        # TODO
-        :param depth_level:
-        :return:
+        This method is developed on each element of the AAS meta-model to print its specific information. In this
+        case, this method prints the information of the Data Element. Since DataElement is a SubmodelElement, it uses
+        the ``print_sm_element_common_variables`` method of the inherited class to print the common attribute data.
+        :param depth_level: this attribute sets the depth level to print correctly on the console.
         """
         depth_string = "    " * depth_level
         print(depth_string + "\_ Data element:")
@@ -214,10 +216,10 @@ class Property(DataElement):
 
     def cascade_print(self, depth_level):
         """
-        The method of the inherited class is overwritten.
-        # TODO
-        :param depth_level:
-        :return:
+        This method is developed on each element of the AAS meta-model to print its specific information. In this
+        case, this method prints the information of the Property. Since Property is a SubmodelElement, it uses
+        the ``print_sm_element_common_variables`` method of the inherited class to print the common attribute data.
+        :param depth_level: this attribute sets the depth level to print correctly on the console.
         """
         depth_string = "    " * depth_level
         print(depth_string + "\_ Property:")
@@ -252,10 +254,11 @@ class Range(DataElement):
 
     def cascade_print(self, depth_level):
         """
-        The method of the inherited class is overwritten.
-        # TODO
-        :param depth_level:
-        :return:
+        This method is developed on each element of the AAS meta-model to print its specific information. In this
+        case, this method prints the information of the Range element. Since Range is a DataElement, and, hence, a
+        SubmodelElement, it uses the ``print_sm_element_common_variables`` method of the inherited class to print the
+        common attribute data.
+        :param depth_level: this attribute sets the depth level to print correctly on the console.
         """
         depth_string = "    " * depth_level
         print(depth_string + "\_ Range:")
@@ -267,7 +270,7 @@ class Range(DataElement):
 
 class Blob(DataElement):
     """
-    # TODO
+    A Blob, or a Binary Large Object, a data element that represents a file that is contained with its source code.
     """
 
     def __init__(self,
@@ -290,10 +293,11 @@ class Blob(DataElement):
 
     def cascade_print(self, depth_level):
         """
-        The method of the inherited class is overwritten.
-        # TODO
-        :param depth_level:
-        :return:
+        This method is developed on each element of the AAS meta-model to print its specific information. In this
+        case, this method prints the information of the Blob element. Since Blob is a DataElement, and, hence, a
+        SubmodelElement, it uses the ``print_sm_element_common_variables`` method of the inherited class to print the
+        common attribute data.
+        :param depth_level: this attribute sets the depth level to print correctly on the console.
         """
         depth_string = "    " * depth_level
         print(depth_string + "\_ Blob:")
@@ -328,10 +332,11 @@ class File(DataElement):
 
     def cascade_print(self, depth_level):
         """
-        The method of the inherited class is overwritten.
-        # TODO
-        :param depth_level:
-        :return:
+        This method is developed on each element of the AAS meta-model to print its specific information. In this
+        case, this method prints the information of the File element. Since File is a DataElement, and, hence, a
+        SubmodelElement, it uses the ``print_sm_element_common_variables`` method of the inherited class to print the
+        common attribute data.
+        :param depth_level: this attribute sets the depth level to print correctly on the console.
         """
         depth_string = "    " * depth_level
         print(depth_string + "\_ File:")
@@ -364,10 +369,11 @@ class ReferenceElement(DataElement):
 
     def cascade_print(self, depth_level):
         """
-        The method of the inherited class is overwritten.
-        # TODO
-        :param depth_level:
-        :return:
+        This method is developed on each element of the AAS meta-model to print its specific information. In this
+        case, this method prints the information of the Reference Element. Since ReferenceElement is a DataElement, and,
+        hence, a SubmodelElement, it uses the ``print_sm_element_common_variables`` method of the inherited class to
+        print the common attribute data.
+        :param depth_level: this attribute sets the depth level to print correctly on the console.
         """
         depth_string = "    " * depth_level
         print(depth_string + "\_ Reference element:")
@@ -417,9 +423,11 @@ class SubmodelElementList(SubmodelElement):
 
     def cascade_print(self, depth_level):
         """
-        # TODO
-        :param depth_level:
-        :return:
+        This method is developed on each element of the AAS meta-model to print its specific information. In this
+        case, this method prints the information of the Submodel Element List. Since SubmodelElementList is a
+        SubmodelElement, it uses the ``print_sm_element_common_variables`` method of the inherited class to print the
+        common attribute data.
+        :param depth_level: this attribute sets the depth level to print correctly on the console.
         """
         depth_string = "    " * depth_level
         print(depth_string + "\_ Submodel element list:")
@@ -457,9 +465,11 @@ class SubmodelElementCollection(SubmodelElement):
 
     def cascade_print(self, depth_level):
         """
-        # TODO
-        :param depth_level:
-        :return:
+        This method is developed on each element of the AAS meta-model to print its specific information. In this
+        case, this method prints the information of the Submodel Element Collection. Since SubmodelElementCollection is
+        a SubmodelElement, it uses the ``print_sm_element_common_variables`` method of the inherited class to print the
+        common attribute data.
+        :param depth_level: this attribute sets the depth level to print correctly on the console.
         """
         depth_string = "    " * depth_level
         print(depth_string + "\_ Submodel element list:")
@@ -509,9 +519,10 @@ class Entity(SubmodelElement):
 
     def cascade_print(self, depth_level):
         """
-        # TODO
-        :param depth_level:
-        :return:
+        This method is developed on each element of the AAS meta-model to print its specific information. In this
+        case, this method prints the information of the Entity. Since Entity is a SubmodelElement, it uses
+        the ``print_sm_element_common_variables`` method of the inherited class to print the common attribute data.
+        :param depth_level: this attribute sets the depth level to print correctly on the console.
         """
         depth_string = "    " * depth_level
         print(depth_string + "\_ Entity:")
@@ -561,9 +572,10 @@ class Operation(SubmodelElement):
 
     def cascade_print(self, depth_level):
         """
-        # TODO
-        :param depth_level:
-        :return:
+        This method is developed on each element of the AAS meta-model to print its specific information. In this
+        case, this method prints the information of the Operation. Since Operation is a SubmodelElement, it uses
+        the ``print_sm_element_common_variables`` method of the inherited class to print the common attribute data.
+        :param depth_level: this attribute sets the depth level to print correctly on the console.
         """
         depth_string = "    " * depth_level
         print(depth_string + "\_ Operation:")
@@ -615,9 +627,11 @@ class RelationshipElement(SubmodelElement):
 
     def cascade_print(self, depth_level):
         """
-        # TODO
-        :param depth_level:
-        :return:
+        This method is developed on each element of the AAS meta-model to print its specific information. In this
+        case, this method prints the information of the Relationship Element. Since RelationshipElement is a
+        SubmodelElement, it uses the ``print_sm_element_common_variables`` method of the inherited class to print the
+        common attribute data.
+        :param depth_level: this attribute sets the depth level to print correctly on the console.
         """
         depth_string = "    " * depth_level
         print(depth_string + "\_ Relationship element:")
