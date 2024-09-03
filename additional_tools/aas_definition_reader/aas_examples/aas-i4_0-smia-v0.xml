@@ -228,4 +228,56 @@
             </aas:submodelElements>
         </aas:submodel>
     </aas:submodels>
+    <aas:conceptDescriptions>
+        <aas:conceptDescription>
+      <aas:category>PARAMETER</aas:category>
+      <aas:idShort>cdIndustrialAgentID</aas:idShort>
+      <aas:description>
+        <aas:langStringTextType>
+          <aas:language>en</aas:language>
+          <aas:text>the identification of the industrial agent within the multi-agent system</aas:text>
+        </aas:langStringTextType>
+      </aas:description>
+      <aas:id>urn:ehu:gcis:conceptdescription:cdindustrialigentid:v1:1</aas:id>
+      <aas:embeddedDataSpecifications>
+        <aas:embeddedDataSpecification>
+          <aas:dataSpecification>
+            <aas:type>ExternalReference</aas:type>
+            <aas:keys>
+              <aas:key>
+                <aas:type>GlobalReference</aas:type>
+                <aas:value>urn:ehu:gcis:conceptdescription:cdindustrialigentid:v1:1</aas:value>
+              </aas:key>
+            </aas:keys>
+          </aas:dataSpecification>
+          <aas:dataSpecificationContent>
+            <aas:dataSpecificationIec61360>
+              <aas:preferredName>
+                <aas:langStringPreferredNameTypeIec61360>
+                  <aas:language>en</aas:language>
+                  <aas:text>cdIndustrialAgentID</aas:text>
+                </aas:langStringPreferredNameTypeIec61360>
+              </aas:preferredName>
+              <aas:shortName>
+                <aas:langStringShortNameTypeIec61360>
+                  <aas:language>en</aas:language>
+                  <aas:text>cdIndustrialAgentID</aas:text>
+                </aas:langStringShortNameTypeIec61360>
+              </aas:shortName>
+              <aas:definition>
+                <aas:langStringDefinitionTypeIec61360>
+                  <aas:language>en</aas:language>
+                  <aas:text>the identification of the industrial agent within the multi-agent system</aas:text>
+                </aas:langStringDefinitionTypeIec61360>
+                <aas:langStringDefinitionTypeIec61360>
+                  <aas:language>es</aas:language>
+                  <aas:text>la identificación del agente industrial dentro del sistema multi-agente</aas:text>
+                </aas:langStringDefinitionTypeIec61360>
+              </aas:definition>
+            </aas:dataSpecificationIec61360>
+          </aas:dataSpecificationContent>
+        </aas:embeddedDataSpecification>
+      </aas:embeddedDataSpecifications>
+    </aas:conceptDescription>
+    </aas:conceptDescriptions>
 </aas:environment>

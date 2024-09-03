@@ -38,3 +38,10 @@ Glossary
 
    AAS
        The Asset Administration Shell or AAS is the standardized digital representation of an asset (adapted from `Plattform I4.0 glossary <https://www.plattform-i40.de/IP/Navigation/EN/Industrie40/Glossary/glossary.html>`_ ).
+
+   AAS Manager
+       The AAS Manager is the common part of the AAS for all AAS types. It is responsible for managing the AAS and representing it in the I4.0 System and it is implemented as a :term:`Industrial Agent`. This agent will be part of a :term:`Multi-Agent System` composed of other AASs, each with their corresponding AAS Managers. The AAS Manager is provided by the platform in this approach, so the user only has to parameterise it.
+
+   AAS Core
+       The AAS Core is the specific part of the AAS that is closely related to the asset which the AAS is representing. The assets can be either logical or physical. The AAS Core is developed by the user for each case.
+
