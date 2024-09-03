@@ -107,6 +107,7 @@
     </aas:assetAdministrationShells>
     <aas:submodels>
         <aas:submodel>
+            <aas:idShort>TestIdentificationSubmodel</aas:idShort>
             <aas:id>urn:ehu:gcis:identification:v1:1#001</aas:id>   <!-- TODO -->
             <aas:kind>Instance</aas:kind>
             <aas:submodelElements>

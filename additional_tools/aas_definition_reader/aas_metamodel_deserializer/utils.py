@@ -67,6 +67,7 @@ def get_elem_description(xml_elem, xml_ns):
     :param xml_ns: the namespace of the XML definition.
     :return: the description in the form of a string of the xml element.
     """
+    #TODO de momento lee la primera descripcion, pero si existen varias (en diferentes idiomas), hay que ver como solucionarlo. Quizas buscar siempre la descripcion en ingles, y si no existe, recoger la primera
     sm_description_elem = xml_elem.find(xml_ns + "description", xml_elem.nsmap)
     if sm_description_elem is not None:
         sm_description = get_xml_elem_text(sm_description_elem.find(xml_ns + "langStringTextType", xml_elem.nsmap),
