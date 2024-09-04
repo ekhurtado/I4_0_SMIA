@@ -59,8 +59,6 @@ Topics in Kafka are the fundamental unit of data organisation in Kafka, and can 
 
 This approach proposes to set a topic for each AAS, and this topic will be as follows:
 
-.. admonition::
-
     * Topic name: *AAS_id*
 
       * Partition 0: related to the AAS Manager. The AAS Manager will publish its service requests to this partition, and read the responses, so that
