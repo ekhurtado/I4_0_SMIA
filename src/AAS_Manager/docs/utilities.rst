@@ -12,6 +12,7 @@ Submodules
    utilities.AASmanagerInfo
    utilities.ConfigMap_utils
    utilities.GeneralUtils
+   utilities.KafkaInfo
    utilities.Submodels_utils
 
 Module contents

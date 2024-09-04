@@ -8,6 +8,8 @@ Submodules
    :maxdepth: 4
 
    agents.AASManagerAgent
+   agents.AASManagerAppAgent
+   agents.AASManagerResourceAgent
 
 Module contents
 ---------------
