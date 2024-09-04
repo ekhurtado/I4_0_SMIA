@@ -12,6 +12,10 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+// TODO tests to be able to work with JSON objects in Kafka
+//import org.springframework.kafka.support.serializer.JsonDeserializer;
+
+
 import java.io.*;
 import java.util.Collections;
 import java.util.Properties;
@@ -28,6 +32,8 @@ public class InteractionsUtils {
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, KafkaInfo.KAFKA_SERVER_IP + ":9092");
         props.put(ConsumerConfig.CLIENT_ID_CONFIG, "i4-0-smia-core");
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+        // TODO tests to be able to work with JSON objects in Kafka
+//        props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, JsonSerializer.class.getName());
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
 
         KafkaConsumer<String, String> kafkaConsumerPartitionManager = new KafkaConsumer<>(props);
@@ -42,6 +48,8 @@ public class InteractionsUtils {
         props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, KafkaInfo.KAFKA_SERVER_IP + ":9092");
         props.put(ProducerConfig.CLIENT_ID_CONFIG, "i4-0-smia-core");
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+        // TODO tests to be able to work with JSON objects in Kafka
+//        props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class.getName());
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
 
         KafkaProducer<String, String> kafkaProducerPartitionCore = new KafkaProducer<>(props);
