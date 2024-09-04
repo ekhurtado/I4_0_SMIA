@@ -129,6 +129,39 @@ Thus, one task during the development of the AAS Core source code is to specify 
         finally:
             await kafka_producer.stop()
 
+.. important::
+
+   As can be seen with the serializer/deserializer used, the interaction messages between the AAS Manager and the AAS Core are in UTF-8 format. This should be considered during publishing and subscribing to Kafka topics, as the AAS Manager (provided by I4.0 SMIA) works this way.
+
+
+General structure of the AAS Core source code
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The source code of the AAS Core can be developed in the way that the developer considers more efficient. However, this AAS developer guide tend to offer some tips that may be interesting.
+
+.. tip:: Tip 1: Use multiple threads
+
+   If the asset that the AAS is representing is of a physical type, it is common for it to receive messages from the asset, so the program will at some point have to be waiting for messages from different sources: the physical asset controller and the AAS Manager.
+
+   To not block the main thread of the program, this guide advises to create parallel threads for each communication channel. In this case, if the AAS Core needs to communicate with AAS Manager and with the asset, two threads should be defined (an example is in the following dropdown).
+
+   .. dropdown:: Example of multiple threads in Python
+       :octicon:`code-square;1em;sd-text-info`
+
+       .. code:: python
+
+            from threading import Thread
+
+           def main():
+                thread_aas_manager = Thread(target=aas_manager_method, args=())
+                thread_asset = Thread(target=asset_method, args=())
+
+                thread_aas_manager.start()
+                thread_asset.start()
+
+           if __name__ == '__main__':
+                main()
+
 
 Some tests with code blocks
 ---------------------------
