@@ -11,3 +11,6 @@ lxml == 4.9.0
 
 # Related to multi-agent system
 spade == 3.3.2
+
+# Related to AAS Manager-Core interactions (Kafka)
+aiokafka == 0.10.0
