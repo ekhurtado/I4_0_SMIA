@@ -5,7 +5,7 @@
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="logic.Services_utils module" href="logic.Services_utils.html" /><link rel="prev" title="logic package" href="logic.html" />
 
-    <link rel="shortcut icon" href="_static/I4_0_SMIA_favicon.svg"/><!-- Generated with Sphinx 7.4.7 and Furo 2024.05.06 -->
+    <link rel="shortcut icon" href="_static/I4_0_SMIA_favicon.svg"/><!-- Generated with Sphinx 7.3.7 and Furo 2024.05.06 -->
         <title>logic.Interactions_utils module - I4.0 SMIA 0.1.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=387cc868" />
@@ -206,7 +206,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
         <div class="visually-hidden">Toggle table of contents sidebar</div>
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
@@ -313,14 +313,125 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
             <div class="visually-hidden">Toggle table of contents sidebar</div>
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <section id="logic-interactions-utils-module">
-<h1>logic.Interactions_utils module<a class="headerlink" href="#logic-interactions-utils-module" title="Link to this heading">¶</a></h1>
+          <section id="module-logic.Interactions_utils">
+<span id="logic-interactions-utils-module"></span><h1>logic.Interactions_utils module<a class="headerlink" href="#module-logic.Interactions_utils" title="Link to this heading">¶</a></h1>
+<p>This class groups the methods related to the interactions between the Manager and the Core.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="logic.Interactions_utils.add_new_svc_request">
+<span class="sig-prename descclassname"><span class="pre">logic.Interactions_utils.</span></span><span class="sig-name descname"><span class="pre">add_new_svc_request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_request_json</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/logic/Interactions_utils.html#add_new_svc_request"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#logic.Interactions_utils.add_new_svc_request" title="Link to this definition">¶</a></dt>
+<dd><p>This method adds a new service request to the related service interaction file of the manager and updates it
+in the AAS Archive.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>new_request_json: The service requests content in JSON format.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="logic.Interactions_utils.create_interaction_kafka_consumer">
+<span class="sig-prename descclassname"><span class="pre">logic.Interactions_utils.</span></span><span class="sig-name descname"><span class="pre">create_interaction_kafka_consumer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/logic/Interactions_utils.html#create_interaction_kafka_consumer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#logic.Interactions_utils.create_interaction_kafka_consumer" title="Link to this definition">¶</a></dt>
+<dd><p>This method creates the Kafka consumer for subscribing to AAS Core partition in the topic of the AAS.
+Args:</p>
+<blockquote>
+<div><p>client_id (str): the id of the client of the Kafka consumer.</p>
+</div></blockquote>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>AIOKafkaConsumer: the object of the Kafka consumer.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="logic.Interactions_utils.create_svc_request_json">
+<span class="sig-prename descclassname"><span class="pre">logic.Interactions_utils.</span></span><span class="sig-name descname"><span class="pre">create_svc_request_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interaction_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">svc_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">svc_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">svc_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/logic/Interactions_utils.html#create_svc_request_json"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#logic.Interactions_utils.create_svc_request_json" title="Link to this definition">¶</a></dt>
+<dd><p>This method creates a service request JSON object.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>interaction_id (int): Identifier of the interaction.
+svc_id (str): Identifier of the service
+svc_type (str): Type of the service.
+svc_data (dict, optional): Data of the service in JSON format.</p>
+</dd>
+<dt>Returns:</dt><dd><p>dict: a JSON object with the service request information.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="logic.Interactions_utils.get_svc_info">
+<span class="sig-prename descclassname"><span class="pre">logic.Interactions_utils.</span></span><span class="sig-name descname"><span class="pre">get_svc_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">requested_entity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interaction_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/logic/Interactions_utils.html#get_svc_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#logic.Interactions_utils.get_svc_info" title="Link to this definition">¶</a></dt>
+<dd><dl>
+<dt>This method obtains the information of the service considering the entity that has requested the service. In the</dt><dd><p>entity is Manager it has to search in Manager requests and Core responses, and in the case of being the Core the
+one that has made the request, the opposite.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>requested_entity (str): The entity that has requested the service, to know in which interaction files to search.
+interaction_id (int): Identifier of the interaction.</p>
+</dd>
+<dt>Returns:</dt><dd><p>dict: Information of the service request in JSON format
+dict: Information of the service response in JSON format.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="logic.Interactions_utils.get_svc_request_info">
+<span class="sig-prename descclassname"><span class="pre">logic.Interactions_utils.</span></span><span class="sig-name descname"><span class="pre">get_svc_request_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interaction_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/logic/Interactions_utils.html#get_svc_request_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#logic.Interactions_utils.get_svc_request_info" title="Link to this definition">¶</a></dt>
+<dd><p>This method gets the information of a service request.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>interaction_id (int): Identifier of the interaction.</p>
+</dd>
+<dt>Returns:</dt><dd><p>dict: the information of the service request in JSON format.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="logic.Interactions_utils.get_svc_response_info">
+<span class="sig-prename descclassname"><span class="pre">logic.Interactions_utils.</span></span><span class="sig-name descname"><span class="pre">get_svc_response_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interaction_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/logic/Interactions_utils.html#get_svc_response_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#logic.Interactions_utils.get_svc_response_info" title="Link to this definition">¶</a></dt>
+<dd><p>This method gets the information of a response from the AAS Core related to a request made by the AAS Manager.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>interaction_id (int): Identifier of the interaction.</p>
+</dd>
+<dt>Returns:</dt><dd><p>dict: the information of the service request in JSON format.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="logic.Interactions_utils.save_svc_info_in_log_file">
+<span class="sig-prename descclassname"><span class="pre">logic.Interactions_utils.</span></span><span class="sig-name descname"><span class="pre">save_svc_info_in_log_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">requested_entity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">svc_type_log_file_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interaction_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/logic/Interactions_utils.html#save_svc_info_in_log_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#logic.Interactions_utils.save_svc_info_in_log_file" title="Link to this definition">¶</a></dt>
+<dd><p>This method saves the information of a service request in the associated log file.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>requested_entity (str): The entity that has requested the service, to know in which interaction files to search.
+svc_type_log_file_name (str): The log file name of the service type.
+interaction_id (int): Identifier of the interaction.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="logic.Interactions_utils.send_interaction_msg_to_core">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">logic.Interactions_utils.</span></span><span class="sig-name descname"><span class="pre">send_interaction_msg_to_core</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">msg_key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">msg_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/logic/Interactions_utils.html#send_interaction_msg_to_core"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#logic.Interactions_utils.send_interaction_msg_to_core" title="Link to this definition">¶</a></dt>
+<dd><p>This method sends a Kafka interaction message to the AAS Core.
+Args:</p>
+<blockquote>
+<div><p>client_id (str): the id of the client of the Kafka producer.
+msg_key (str): the key of the Kafka message.
+msg_data: the data of the Kafka message.</p>
+</div></blockquote>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>str: shipment status</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 
         </article>
@@ -365,8 +476,34 @@
         
       </footer>
     </div>
-    <aside class="toc-drawer no-toc">
+    <aside class="toc-drawer">
       
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">logic.Interactions_utils module</a><ul>
+<li><a class="reference internal" href="#logic.Interactions_utils.add_new_svc_request"><code class="docutils literal notranslate"><span class="pre">add_new_svc_request()</span></code></a></li>
+<li><a class="reference internal" href="#logic.Interactions_utils.create_interaction_kafka_consumer"><code class="docutils literal notranslate"><span class="pre">create_interaction_kafka_consumer()</span></code></a></li>
+<li><a class="reference internal" href="#logic.Interactions_utils.create_svc_request_json"><code class="docutils literal notranslate"><span class="pre">create_svc_request_json()</span></code></a></li>
+<li><a class="reference internal" href="#logic.Interactions_utils.get_svc_info"><code class="docutils literal notranslate"><span class="pre">get_svc_info()</span></code></a></li>
+<li><a class="reference internal" href="#logic.Interactions_utils.get_svc_request_info"><code class="docutils literal notranslate"><span class="pre">get_svc_request_info()</span></code></a></li>
+<li><a class="reference internal" href="#logic.Interactions_utils.get_svc_response_info"><code class="docutils literal notranslate"><span class="pre">get_svc_response_info()</span></code></a></li>
+<li><a class="reference internal" href="#logic.Interactions_utils.save_svc_info_in_log_file"><code class="docutils literal notranslate"><span class="pre">save_svc_info_in_log_file()</span></code></a></li>
+<li><a class="reference internal" href="#logic.Interactions_utils.send_interaction_msg_to_core"><code class="docutils literal notranslate"><span class="pre">send_interaction_msg_to_core()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
       
       
     </aside>

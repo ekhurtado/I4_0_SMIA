@@ -5,7 +5,7 @@
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="states.StateBootingResource module" href="states.StateBootingResource.html" /><link rel="prev" title="states package" href="states.html" />
 
-    <link rel="shortcut icon" href="_static/I4_0_SMIA_favicon.svg"/><!-- Generated with Sphinx 7.4.7 and Furo 2024.05.06 -->
+    <link rel="shortcut icon" href="_static/I4_0_SMIA_favicon.svg"/><!-- Generated with Sphinx 7.3.7 and Furo 2024.05.06 -->
         <title>states.StateBooting module - I4.0 SMIA 0.1.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=387cc868" />
@@ -206,7 +206,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
         <div class="visually-hidden">Toggle table of contents sidebar</div>
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
@@ -313,14 +313,35 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
             <div class="visually-hidden">Toggle table of contents sidebar</div>
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <section id="states-statebooting-module">
-<h1>states.StateBooting module<a class="headerlink" href="#states-statebooting-module" title="Link to this heading">¶</a></h1>
+          <section id="module-states.StateBooting">
+<span id="states-statebooting-module"></span><h1>states.StateBooting module<a class="headerlink" href="#module-states.StateBooting" title="Link to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="states.StateBooting.StateBooting">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">states.StateBooting.</span></span><span class="sig-name descname"><span class="pre">StateBooting</span></span><a class="reference internal" href="_modules/states/StateBooting.html#StateBooting"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#states.StateBooting.StateBooting" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">State</span></code></p>
+<p>This class contains the Boot state of the common AAS Manager.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="states.StateBooting.StateBooting.booting_state_logic">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">booting_state_logic</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/states/StateBooting.html#StateBooting.booting_state_logic"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#states.StateBooting.StateBooting.booting_state_logic" title="Link to this definition">¶</a></dt>
+<dd><p>This method contains the logic of the boot state of the common AAS Manager. This method can be used by any
+inherited class.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="states.StateBooting.StateBooting.run">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/states/StateBooting.html#StateBooting.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#states.StateBooting.StateBooting.run" title="Link to this definition">¶</a></dt>
+<dd><p>This method implements the boot state of the common AAS Manager. Here all the required initialization tasks
+are performed.</p>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 
         </article>
@@ -365,8 +386,31 @@
         
       </footer>
     </div>
-    <aside class="toc-drawer no-toc">
+    <aside class="toc-drawer">
       
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">states.StateBooting module</a><ul>
+<li><a class="reference internal" href="#states.StateBooting.StateBooting"><code class="docutils literal notranslate"><span class="pre">StateBooting</span></code></a><ul>
+<li><a class="reference internal" href="#states.StateBooting.StateBooting.booting_state_logic"><code class="docutils literal notranslate"><span class="pre">StateBooting.booting_state_logic()</span></code></a></li>
+<li><a class="reference internal" href="#states.StateBooting.StateBooting.run"><code class="docutils literal notranslate"><span class="pre">StateBooting.run()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
       
       
     </aside>

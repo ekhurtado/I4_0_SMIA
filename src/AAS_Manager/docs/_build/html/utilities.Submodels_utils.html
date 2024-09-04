@@ -5,7 +5,7 @@
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Glossary" href="glossary.html" /><link rel="prev" title="utilities.KafkaInfo module" href="utilities.KafkaInfo.html" />
 
-    <link rel="shortcut icon" href="_static/I4_0_SMIA_favicon.svg"/><!-- Generated with Sphinx 7.4.7 and Furo 2024.05.06 -->
+    <link rel="shortcut icon" href="_static/I4_0_SMIA_favicon.svg"/><!-- Generated with Sphinx 7.3.7 and Furo 2024.05.06 -->
         <title>utilities.Submodels_utils module - I4.0 SMIA 0.1.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=387cc868" />
@@ -206,7 +206,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
         <div class="visually-hidden">Toggle table of contents sidebar</div>
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
@@ -313,14 +313,65 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
             <div class="visually-hidden">Toggle table of contents sidebar</div>
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <section id="utilities-submodels-utils-module">
-<h1>utilities.Submodels_utils module<a class="headerlink" href="#utilities-submodels-utils-module" title="Link to this heading">¶</a></h1>
+          <section id="module-utilities.Submodels_utils">
+<span id="utilities-submodels-utils-module"></span><h1>utilities.Submodels_utils module<a class="headerlink" href="#module-utilities.Submodels_utils" title="Link to this heading">¶</a></h1>
+<p>This class contains utility methods related to submodels.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="utilities.Submodels_utils.check_if_submodel_exists">
+<span class="sig-prename descclassname"><span class="pre">utilities.Submodels_utils.</span></span><span class="sig-name descname"><span class="pre">check_if_submodel_exists</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">submodel_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/Submodels_utils.html#check_if_submodel_exists"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.Submodels_utils.check_if_submodel_exists" title="Link to this definition">¶</a></dt>
+<dd><p>This method checks if a submodel exist by its name.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>submodel_name(str): Name of the submodel</p>
+</dd>
+<dt>Returns:</dt><dd><p>boolean: True if submodel exists and False if not.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utilities.Submodels_utils.create_configuration_sm">
+<span class="sig-prename descclassname"><span class="pre">utilities.Submodels_utils.</span></span><span class="sig-name descname"><span class="pre">create_configuration_sm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">submodel_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/Submodels_utils.html#create_configuration_sm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.Submodels_utils.create_configuration_sm" title="Link to this definition">¶</a></dt>
+<dd><p>This method creates the ‘Configuration’ submodel XML file.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>submodel_data (dict): information of the submodel in the same format as the submodel properties file
+content.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utilities.Submodels_utils.create_submodel_files">
+<span class="sig-prename descclassname"><span class="pre">utilities.Submodels_utils.</span></span><span class="sig-name descname"><span class="pre">create_submodel_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">submodel_names_list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/Submodels_utils.html#create_submodel_files"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.Submodels_utils.create_submodel_files" title="Link to this definition">¶</a></dt>
+<dd><p>This method creates all the files associated to the selected submodels.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>submodel_names_list (list(str)): list of submodel names.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utilities.Submodels_utils.create_submodel_folder">
+<span class="sig-prename descclassname"><span class="pre">utilities.Submodels_utils.</span></span><span class="sig-name descname"><span class="pre">create_submodel_folder</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/Submodels_utils.html#create_submodel_folder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.Submodels_utils.create_submodel_folder" title="Link to this definition">¶</a></dt>
+<dd><p>Create folder to save submodels.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utilities.Submodels_utils.create_technical_data_sm">
+<span class="sig-prename descclassname"><span class="pre">utilities.Submodels_utils.</span></span><span class="sig-name descname"><span class="pre">create_technical_data_sm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">submodel_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/Submodels_utils.html#create_technical_data_sm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.Submodels_utils.create_technical_data_sm" title="Link to this definition">¶</a></dt>
+<dd><p>This method creates the ‘Technical Data’ submodel XML file.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>submodel_data (dict): information of the submodel in the same format as the submodel properties file
+content.</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 
         </article>
@@ -365,8 +416,31 @@
         
       </footer>
     </div>
-    <aside class="toc-drawer no-toc">
+    <aside class="toc-drawer">
       
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">utilities.Submodels_utils module</a><ul>
+<li><a class="reference internal" href="#utilities.Submodels_utils.check_if_submodel_exists"><code class="docutils literal notranslate"><span class="pre">check_if_submodel_exists()</span></code></a></li>
+<li><a class="reference internal" href="#utilities.Submodels_utils.create_configuration_sm"><code class="docutils literal notranslate"><span class="pre">create_configuration_sm()</span></code></a></li>
+<li><a class="reference internal" href="#utilities.Submodels_utils.create_submodel_files"><code class="docutils literal notranslate"><span class="pre">create_submodel_files()</span></code></a></li>
+<li><a class="reference internal" href="#utilities.Submodels_utils.create_submodel_folder"><code class="docutils literal notranslate"><span class="pre">create_submodel_folder()</span></code></a></li>
+<li><a class="reference internal" href="#utilities.Submodels_utils.create_technical_data_sm"><code class="docutils literal notranslate"><span class="pre">create_technical_data_sm()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
       
       
     </aside>

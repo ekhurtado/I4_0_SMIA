@@ -5,7 +5,7 @@
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="utilities.KafkaInfo module" href="utilities.KafkaInfo.html" /><link rel="prev" title="utilities.ConfigMap_utils module" href="utilities.ConfigMap_utils.html" />
 
-    <link rel="shortcut icon" href="_static/I4_0_SMIA_favicon.svg"/><!-- Generated with Sphinx 7.4.7 and Furo 2024.05.06 -->
+    <link rel="shortcut icon" href="_static/I4_0_SMIA_favicon.svg"/><!-- Generated with Sphinx 7.3.7 and Furo 2024.05.06 -->
         <title>utilities.GeneralUtils module - I4.0 SMIA 0.1.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=387cc868" />
@@ -206,7 +206,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
         <div class="visually-hidden">Toggle table of contents sidebar</div>
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
@@ -313,14 +313,40 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
             <div class="visually-hidden">Toggle table of contents sidebar</div>
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <section id="utilities-generalutils-module">
-<h1>utilities.GeneralUtils module<a class="headerlink" href="#utilities-generalutils-module" title="Link to this heading">¶</a></h1>
+          <section id="module-utilities.GeneralUtils">
+<span id="utilities-generalutils-module"></span><h1>utilities.GeneralUtils module<a class="headerlink" href="#module-utilities.GeneralUtils" title="Link to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="utilities.GeneralUtils.GeneralUtils">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">utilities.GeneralUtils.</span></span><span class="sig-name descname"><span class="pre">GeneralUtils</span></span><a class="reference internal" href="_modules/utilities/GeneralUtils.html#GeneralUtils"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.GeneralUtils.GeneralUtils" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This class contains some general utils to ben used by any module.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="utilities.GeneralUtils.GeneralUtils.configure_logging">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">configure_logging</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/GeneralUtils.html#GeneralUtils.configure_logging"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.GeneralUtils.GeneralUtils.configure_logging" title="Link to this definition">¶</a></dt>
+<dd><p>This method configures the logging to be used by all modules.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="utilities.GeneralUtils.GeneralUtils.create_acl_template">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_acl_template</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">performative</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ontology</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/GeneralUtils.html#GeneralUtils.create_acl_template"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.GeneralUtils.GeneralUtils.create_acl_template" title="Link to this definition">¶</a></dt>
+<dd><p>This method creates a template aligned with FIPA-ACL standard.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>performative(str): The performative of the template.
+ontology(str): The ontology of the template.</p>
+</dd>
+<dt>Returns:</dt><dd><p>Template: a SPADE template object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 
         </article>
@@ -365,8 +391,31 @@
         
       </footer>
     </div>
-    <aside class="toc-drawer no-toc">
+    <aside class="toc-drawer">
       
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">utilities.GeneralUtils module</a><ul>
+<li><a class="reference internal" href="#utilities.GeneralUtils.GeneralUtils"><code class="docutils literal notranslate"><span class="pre">GeneralUtils</span></code></a><ul>
+<li><a class="reference internal" href="#utilities.GeneralUtils.GeneralUtils.configure_logging"><code class="docutils literal notranslate"><span class="pre">GeneralUtils.configure_logging()</span></code></a></li>
+<li><a class="reference internal" href="#utilities.GeneralUtils.GeneralUtils.create_acl_template"><code class="docutils literal notranslate"><span class="pre">GeneralUtils.create_acl_template()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
       
       
     </aside>
