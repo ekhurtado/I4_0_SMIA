@@ -59,17 +59,18 @@ Topics in Kafka are the fundamental unit of data organisation in Kafka, and can 
 
 This approach proposes to set a topic for each AAS, and this topic will be as follows:
 
-* Topic name: *AAS_id*
+.. admonition::
+    * Topic name: *AAS_id*
 
-  * Partition 0: related to the AAS Manager. The AAS Manager will publish its service requests to this partition, and read the responses, so that
+      * Partition 0: related to the AAS Manager. The AAS Manager will publish its service requests to this partition, and read the responses, so that
 
-    * the AAS Manager is a publisher
-    * the AAS Core is a subscriber
+        * the AAS Manager is a publisher
+        * the AAS Core is a subscriber
 
-  * Partition 1: related to the AAS Core. In this case, the AAS Core will publish its service requests to this partition, and read the responses, so that
+      * Partition 1: related to the AAS Core. In this case, the AAS Core will publish its service requests to this partition, and read the responses, so that
 
-    * the AAS Manager is a subscriber
-    * the AAS Core is a publisher
+        * the AAS Manager is a subscriber
+        * the AAS Core is a publisher
 
 This information has to been taken into account for the development of the AAS Core.
 
