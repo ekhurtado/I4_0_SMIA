@@ -63,7 +63,8 @@ class SvcACLHandlingBehaviour(CyclicBehaviour):
 
             # As the performative is set to CallForProposals, the service type will be analyzed directly
             match msg_json_body['serviceType']:
-                # TODO esta hecho asi para pruebas, pero hay que pensar el procedimiento a seguir a la hora de gestionar los mensajes ACL
+                # TODO esta hecho asi para pruebas, pero hay que pensar el procedimiento a seguir a la hora de
+                #  gestionar los mensajes ACL
                 case "AssetRelatedService":
                     self.handle_asset_related_svc(msg_json_body)
                 case "AASInfrastructureServices":
@@ -88,33 +89,67 @@ class SvcACLHandlingBehaviour(CyclicBehaviour):
         Args:
             svc_data (dict): the information of the data in JSON format.
         """
+        # First of all, the service request will be made to the AAS Core
+
         # Create the valid JSON structure to save in svcRequests.json
         svc_request_json = Interactions_utils.create_svc_request_json(interaction_id=self.agent.interaction_id,
                                                                       svc_id=svc_data['serviceID'],
                                                                       svc_type=svc_data['serviceType'],
                                                                       svc_data=svc_data['serviceData'])
-        # Save the JSON in svcRequests.json
-        Interactions_utils.add_new_svc_request(svc_request_json)
+        # TODO this code is for the interaction through JSON (it has to be removed)
+        # # Save the JSON in svcRequests.json
+        # Interactions_utils.add_new_svc_request(svc_request_json)
+
+        # TODO test if it is working with Kafka
+        request_result = Interactions_utils.send_interaction_msg_to_core(client_id='i4-0-smia-manager',
+                                                                         msg_key='manager-service-request',
+                                                                         msg_data=svc_request_json)
+        if request_result is not "OK":
+            _logger.error("The AAS Manager-Core interaction is not working: " + str(request_result))
+
         current_interaction_id = self.agent.interaction_id
         self.agent.interaction_id += 1  # increment the interaction id as new requests has been made
 
         # Wait until the service is completed
         # TODO esto cuando se desarrolle el AAS Manager en un agente no se realizara de esta manera. No debera
         #  haber una espera hasta que se complete el servicio
-        while True:
-            _logger.info(str(svc_data['serviceID']) + " service not completed yet.")
-            svc_response = Interactions_utils.get_svc_response_info(current_interaction_id)
-            if svc_response is not None:
-                print(svc_response)
-                # Set the service as completed
-                # Write the information in the log file
-                Interactions_utils.save_svc_info_in_log_file('Manager',
-                                                             AASarchiveInfo.ASSET_RELATED_SVC_LOG_FILENAME,
-                                                             current_interaction_id)
-                # Return message to the sender
-                _logger.info("Service completed! Response: " + str(svc_response))
-                break
-            time.sleep(2)
+        # TODO this code is for the interaction through JSON (it has to be removed)
+        # while True:
+        #     _logger.info(str(svc_data['serviceID']) + " service not completed yet.")
+        #     svc_response = Interactions_utils.get_svc_response_info(current_interaction_id)
+        #     if svc_response is not None:
+        #         print(svc_response)
+        #         # Set the service as completed
+        #         # Write the information in the log file
+        #         Interactions_utils.save_svc_info_in_log_file('Manager',
+        #                                                      AASarchiveInfo.ASSET_RELATED_SVC_LOG_FILENAME,
+        #                                                      current_interaction_id)
+        #         # Return message to the sender
+        #         _logger.info("Service completed! Response: " + str(svc_response))
+        #         break
+        #     time.sleep(2)
+
+        # TODO esto no tiene que ir aqui, es solo para pruebas con Kafka: en estado running se deben crear tanto
+        #  behaviours para gestionar mensajes ACL como para mensajes de Kafka
+        kafka_consumer_core_partition = Interactions_utils.create_interaction_kafka_consumer('i4-0-smia-manager')
+        kafka_consumer_core_partition.start()
+        _logger.info("Listening for AAS Core messages awaiting service response information...")
+
+        try:
+            async for msg in kafka_consumer_core_partition:
+                _logger.info("New AAS Core message!")
+                _logger.info("   |__ msg: " + str(msg))
+
+                # We get the key (as it is in bytes, we transform it into string) and the body of Kafka's message
+                msg_key = msg.key.decode("utf-8")
+                msg_json_value = msg.value
+
+                if msg_key == 'core-service-response':
+                    _logger.info("The service with id " + str(current_interaction_id) + " has been answered from the "
+                                 "AAS Core to the AAS Manager. Data of the response: " + str(msg_json_value))
+        finally:
+            _logger.info("Finalizing Kafka Consumer...")
+            kafka_consumer_core_partition.stop()
 
     def handle_aas_infrastructure_svc(self, svc_data):
         """

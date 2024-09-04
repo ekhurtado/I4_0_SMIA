@@ -4,6 +4,7 @@ from spade.behaviour import State
 from behaviours.CheckCoreInitializationBehaviour import CheckCoreInitializationBehaviour
 from behaviours.InitAASarchiveBehaviour import InitAASarchiveBehaviour
 from behaviours.InitSubmodelsBehaviour import InitSubmodelsBehaviour
+from logic import Interactions_utils
 from utilities import AAS_Archive_utils
 from utilities.AASmanagerInfo import AASmanagerInfo
 
@@ -42,12 +43,19 @@ class StateBooting(State):
         init_submodels_behav = InitSubmodelsBehaviour(self.agent)
         self.agent.add_behaviour(init_submodels_behav)
 
-        # Wait until the behaviours have finished because the AAS Archive has to be initialized to pass to running state.
+        # Wait until the behaviours have finished because the AAS Archive has to be initialized to pass to running state
         await init_aas_archive_behav.join()
         await init_submodels_behav.join()
 
         # If the initialization behaviour has completed, AAS Manager is in the InitializationReady status
         AAS_Archive_utils.change_status('InitializationReady')
+        # Change of status must be notified to the AAS core
+        result = await Interactions_utils.send_interaction_msg_to_core(client_id='i4-0-smia-manager',
+                                                                       msg_key='manager-status',
+                                                                       msg_data={'status': 'InitializationReady'})
+
+        if result is not "OK":
+            _logger.error("The AAS Manager-Core interaction is not working: " + str(result))
 
         # Wait until the AAS Core has initialized
         _logger.info('AAS Manager is waiting until its AAS Core has initialized.')

@@ -6,6 +6,7 @@ from agents.AASManagerAppAgent import AASManagerAppAgent
 from agents.AASManagerResourceAgent import AASManagerResourceAgent
 from utilities import ConfigMap_utils
 from utilities.GeneralUtils import GeneralUtils
+from utilities.KafkaInfo import KafkaInfo
 
 # XMPP_SERVER = 'worker4'
 XMPP_SERVER = 'ejabberd'
@@ -26,6 +27,9 @@ async def main():
     # The AAS_ID will be set in the associated ConfigMap, within the general-information of the AAS
     aas_id = ConfigMap_utils.get_aas_general_property('logicalID')
     # aas_id = 'aasmanager001'  # For testing
+
+    # The AAS ID will be also the topic of Kafka, for AAS Manager-Core interactions
+    KafkaInfo.KAFKA_TOPIC = aas_id
 
     # Get the type of the asset
     # aas_type = ConfigMap_utils.get_asset_type()

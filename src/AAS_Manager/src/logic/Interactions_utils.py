@@ -1,12 +1,16 @@
 """This class groups the methods related to the interactions between the Manager and the Core."""
 
 import calendar
+import json
 import logging
 from datetime import datetime
 import time
 
+from aiokafka import AIOKafkaProducer, AIOKafkaConsumer, TopicPartition
+
 from utilities.AASarchiveInfo import AASarchiveInfo
 from utilities.AAS_Archive_utils import file_to_json, update_json_file
+from utilities.KafkaInfo import KafkaInfo
 
 _logger = logging.getLogger(__name__)
 
@@ -14,7 +18,7 @@ _logger = logging.getLogger(__name__)
 # --------------------------------------------
 # Methods related to requests (by AAS Manager)
 # --------------------------------------------
-def create_svc_request_json(interaction_id, svc_id, svc_type, svc_data = None):
+def create_svc_request_json(interaction_id, svc_id, svc_type, svc_data=None):
     """
     This method creates a service request JSON object.
 
@@ -139,6 +143,56 @@ def save_svc_info_in_log_file(requested_entity, svc_type_log_file_name, interact
     log_file_json.append(log_structure)
     update_json_file(file_path=AASarchiveInfo.SVC_LOG_FOLDER_PATH + '/' + svc_type_log_file_name, content=log_file_json)
     _logger.info("Service information related to interaction " + str(interaction_id) + " added in log file.")
+
+
+# ------------------------
+# Methods related to Kafka
+# ------------------------
+def create_interaction_kafka_consumer(client_id):
+    """
+    This method creates the Kafka consumer for subscribing to AAS Core partition in the topic of the AAS.
+    Args:
+        client_id (str): the id of the client of the Kafka consumer.
+
+    Returns:
+        AIOKafkaConsumer: the object of the Kafka consumer.
+    """
+    # TODO pensar si tambien se podria quitar el client_id (siempre es el AAS Manager)
+    kafka_consumer_core_partition = AIOKafkaConsumer(bootstrap_servers=[KafkaInfo.KAFKA_SERVER_IP + ':9092'],
+                                                     client_id=client_id,
+                                                     value_deserializer=lambda x: json.loads(x.decode('utf-8')),
+                                                     )
+    kafka_consumer_core_partition.assign([TopicPartition(KafkaInfo.KAFKA_TOPIC, KafkaInfo.CORE_TOPIC_PARTITION)])
+
+    return kafka_consumer_core_partition
+
+
+async def send_interaction_msg_to_core(client_id, msg_key, msg_data):
+    """
+    This method sends a Kafka interaction message to the AAS Core.
+    Args:
+        client_id (str): the id of the client of the Kafka producer.
+        msg_key (str): the key of the Kafka message.
+        msg_data: the data of the Kafka message.
+
+    Returns:
+        str: shipment status
+    """
+    # First, the Kafka producer is created
+    kafka_producer = AIOKafkaProducer(bootstrap_servers=[KafkaInfo.KAFKA_SERVER_IP + ':9092'],
+                                      client_id=client_id,
+                                      value_serializer=lambda x: json.dumps(x).encode('utf-8'),
+                                      key_serializer=str.encode
+                                      )
+    await kafka_producer.start()
+    try:
+        await kafka_producer.send_and_wait(KafkaInfo.KAFKA_TOPIC, value=msg_data,
+                                           key=msg_key,
+                                           partition=KafkaInfo.CORE_TOPIC_PARTITION)
+    finally:
+        # Wait for all pending messages to be delivered or expire.
+        await kafka_producer.stop()
+        return "OK"
 
 
 # -------------
