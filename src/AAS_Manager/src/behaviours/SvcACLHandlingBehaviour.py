@@ -41,7 +41,8 @@ class SvcACLHandlingBehaviour(CyclicBehaviour):
         """
 
         # Wait for a message with the standard ACL template to arrive.
-        msg = await self.receive(timeout=10) # Timeout set to 10 seconds so as not to continuously execute the behavior.
+        msg = await self.receive(
+            timeout=10)  # Timeout set to 10 seconds so as not to continuously execute the behavior.
         if msg:
             # TODO modificar el concepto de como gestionar los servicios. En este behaviour (llamemosle a partir de ahora
             #  SvcRequestsHanldingBehaviour) se gestionarán todas las peticiones de servicios via ACL, pero no gestionará
@@ -75,7 +76,6 @@ class SvcACLHandlingBehaviour(CyclicBehaviour):
                     _logger.error("Service type not available.")
         else:
             _logger.info("         - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour)")
-
 
     # ------------------------------------------
     # Methods to handle of all types of services
@@ -116,7 +116,6 @@ class SvcACLHandlingBehaviour(CyclicBehaviour):
                 break
             time.sleep(2)
 
-
     def handle_aas_infrastructure_svc(self, svc_data):
         """
         This method handles AAS Infrastructure Services. These services are part of I4.0 Infrastructure Services
@@ -130,7 +129,6 @@ class SvcACLHandlingBehaviour(CyclicBehaviour):
             svc_data (dict): the information of the data in JSON format.
         """
         _logger.info(str(self.agent.interaction_id) + str(svc_data))
-
 
     def handle_aas_services(self, svc_data):
         """
@@ -146,7 +144,6 @@ class SvcACLHandlingBehaviour(CyclicBehaviour):
             svc_data (dict): the information of the data in JSON format.
         """
         _logger.info(str(self.agent.interaction_id) + str(svc_data))
-
 
     def handle_submodel_services(self, svc_data):
         """

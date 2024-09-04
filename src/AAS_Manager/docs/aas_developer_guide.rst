@@ -34,12 +34,100 @@ The definition of the AAS must follow the official AAS meta-model, presented by 
         </aas:conceptDescriptions>
     </aas:environment>
 
-TODO: TO BE FINALISED
+TODO: TO BE FINALISED (waiting for the final proposal of the AAS definition)
 
 Development of the AAS Core
 ---------------------------
 
 The AAS Core is the specific part of the AAS, and it is developed by the user, so this guide will especially detail how the interaction between the Manager and the Core works and some tips for the development of the AAS Core source code.
+
+During the development of the AAS Core there are some important points that should be considered:
+
+* The type of the asset (logical or physical). In case it is physical, what is its communication capacity.
+* How the interaction with the AAS Manager works. The interaction between Manager and Core is established by this approach, which will be detailed in this section.
+* The AAS Core has to handle multiple service requests that can be received simultaneously.
+* The AAS Core will be containerized.
+
+Let's start with the AAS Manager-Core interactions.
+
+AAS Manager-Core interactions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This approach uses Kafka as the message brokering channel, because it allows the communication between two entities that are in separate Docker containers. `Apache Kafka <https://kafka.apache.org/>`_ is an open source distributed event streaming platform. As the interactions between the AAS Manager and Core will be asynchronous, it can closely resemble an event-based communication, these events being requests for services.
+
+Topics in Kafka are the fundamental unit of data organisation in Kafka, and can have one or more producers and zero or more consumers. Each topic is divided into one or more partitions. Each partition is an ordered and immutable sequence of messages. Partitions allow parallel distribution of data and improve performance and scalability. Each partition has a unique offset number that identifies each message within it. Kafka manages all topics and partitions and guarantees that any consumer of a given topic-partition will always read events from that partition in exactly the same order in which they were written. To support fault tolerance, topics must have a replication factor greater than one (usually set to between 2 and 3).
+
+This approach proposes to set a topic for each AAS, and this topic will be as follows:
+
+* Topic name: *AAS_id*
+
+  * Partition 0: related to the AAS Manager. The AAS Manager will publish its service requests to this partition, and read the responses, so that
+
+    * the AAS Manager is a publisher
+    * the AAS Core is a subscriber
+
+  * Partition 1: related to the AAS Core. In this case, the AAS Core will publish its service requests to this partition, and read the responses, so that
+
+    * the AAS Manager is a subscriber
+    * the AAS Core is a publisher
+
+This information has to been taken into account for the development of the AAS Core.
+
+Implementation of the AAS Manager-Core interactions
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Thus, one task during the development of the AAS Core source code is to specify the subscriber and the publisher in the topic of the AAS using the official Kafka libraries. The developer can use any programming language, so in this case, only Kafka Python libraries are shown. Depending on the programming model selected to structure the code (synchronous or asynchronous), the related Python library has to be selected. In this example, both are presented.
+
+.. tab:: Synchronous (kafka)
+
+    .. code:: python
+
+        from kafka import KafkaConsumer, TopicPartition, KafkaProducer
+
+        # KAFKA CONSUMER (to receive service request from AAS Manager or read the responses of Core's requests)
+        kafka_consumer_partition_core = KafkaConsumer( bootstrap_servers=[KAFKA_SERVER_IP + ':9092'],
+                                              client_id='component-i40-core',
+                                              value_deserializer=lambda x: json.loads(x.decode('utf-8')),
+                                              )
+        kafka_consumer_partition_core.assign([TopicPartition(kafka_topic_name, 0)])
+
+        # KAFKA PRODUCER (to send service requests to AAS Manager)
+        kafka_producer = KafkaProducer(bootstrap_servers=[KAFKA_SERVER_IP + ':9092'],
+                                           client_id='component-i40-core',
+                                           value_serializer=lambda x: json.dumps(x).encode('utf-8'),
+                                           key_serializer=str.encode
+                                           )
+
+        result = kafka_producer.send(KAFKA_TOPIC, value=svc_request_json, key='core-service-request',
+                                         partition=1)
+
+.. tab:: Asynchronous (aiokafka)
+
+    .. code:: python
+
+        from aiokafka import AIOKafkaConsumer, TopicPartition, AIOKafkaProducer
+
+        # KAFKA CONSUMER (to receive service request from AAS Manager or read the responses of Core's requests)
+        kafka_consumer_partition_core = AIOKafkaConsumer( bootstrap_servers=[KAFKA_SERVER_IP + ':9092'],
+                                              client_id='component-i40-core',
+                                              value_deserializer=lambda x: json.loads(x.decode('utf-8')),
+                                              )
+        kafka_consumer_partition_core.assign([TopicPartition(kafka_topic_name, 0)])
+
+        # KAFKA PRODUCER (to send service requests to AAS Manager)
+        kafka_producer = AIOKafkaProducer(bootstrap_servers=[KAFKA_SERVER_IP + ':9092'],
+                                           client_id='component-i40-core',
+                                           value_serializer=lambda x: json.dumps(x).encode('utf-8'),
+                                           key_serializer=str.encode
+                                           )
+
+        await kafka_producer.start()
+        try:
+            await kafka_producer.send_and_wait(KAFKA_TOPIC, value=msg_data,
+                                               key='core-service-request',
+                                               partition=1)
+        finally:
+            await kafka_producer.stop()
 
 
 Some tests with code blocks
@@ -121,5 +209,3 @@ Event dropdowns with an icon:
 
 Test for a subsection
 ~~~~~~~~~~~~~~~~~~~~~
-
-TODO
