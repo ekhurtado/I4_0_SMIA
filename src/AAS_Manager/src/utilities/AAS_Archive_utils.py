@@ -73,6 +73,49 @@ def create_log_files():
             log_file.close()
 
 
+def get_log_file_by_service_type(svc_type):
+    """
+    This method obtains the path to the log file associated to the type of the service.
+    Args:
+        svc_type (str): type of the service.
+
+    Returns:
+        str: path to the log file
+    """
+    log_file_path = None
+    match svc_type:
+        case "AssetRelatedService":
+            log_file_path = AASarchiveInfo.SVC_LOG_FOLDER_PATH + '/' + AASarchiveInfo.ASSET_RELATED_SVC_LOG_FILENAME
+        case "AASInfrastructureServices":
+            log_file_path = AASarchiveInfo.SVC_LOG_FOLDER_PATH + '/' + AASarchiveInfo.AAS_INFRASTRUCTURE_SVC_LOG_FILENAME
+        case "AASservices":
+            log_file_path = AASarchiveInfo.SVC_LOG_FOLDER_PATH + '/' + AASarchiveInfo.AAS_SERVICES_LOG_FILENAME
+        case "SubmodelServices":
+            log_file_path = AASarchiveInfo.SVC_LOG_FOLDER_PATH + '/' + AASarchiveInfo.SUBMODEL_SERVICES_LOG_FILENAME
+        case _:
+            _logger.error("Service type not available.")
+    return log_file_path
+
+
+def save_svc_log_info(svc_info, svc_type):
+    """
+    This method saves the information about a realized service in the log file associated to the type of the service.
+
+    Args:
+        svc_info (dict): the information of the service in JSON format.
+        svc_type (str): type of the service.
+    """
+    # First, the required paths are obtained
+    log_file_path = get_log_file_by_service_type(svc_type)
+
+    # Then, the new information is added
+    log_file_json = file_to_json(log_file_path)
+    log_file_json.append(svc_info)
+
+    # Finally, the file is updated
+    update_json_file(log_file_path, log_file_json)
+
+
 # -------------------------
 # Methods related to status
 # -------------------------

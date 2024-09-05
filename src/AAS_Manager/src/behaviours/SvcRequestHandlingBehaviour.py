@@ -85,7 +85,7 @@ class SvcRequestHandlingBehaviour(OneShotBehaviour):
         """
         # In this type of services an interaction request have to be made to the AAS Core
         # First, the valid JSON structure of the request is generated
-        svc_request_json = Interactions_utils.create_svc_request_json(interaction_id=self.agent.interaction_id,
+        interaction_request_json = Interactions_utils.create_svc_request_json(interaction_id=self.myagent.interaction_id,
                                                                       svc_id=self.svc_req_info['serviceID'],
                                                                       svc_type=self.svc_req_info['serviceType'],
                                                                       svc_data=self.svc_req_info['serviceData'])
@@ -93,17 +93,24 @@ class SvcRequestHandlingBehaviour(OneShotBehaviour):
         # Then, the interaction message is sent to the AAS Core
         request_result = await Interactions_utils.send_interaction_msg_to_core(client_id='i4-0-smia-manager',
                                                                          msg_key='manager-service-request',
-                                                                         msg_data=svc_request_json)
+                                                                         msg_data=interaction_request_json)
         if request_result is not "OK":
             _logger.error("The AAS Manager-Core interaction is not working: " + str(request_result))
         else:
-            _logger.aclinfo("The service with interaction id [" +str(self.agent.interaction_id)+
+            _logger.interactioninfo("The service with interaction id [" +str(self.myagent.interaction_id)+
                          "] to the AAS Core has been requested")
-            self.agent.interaction_id += 1  # increment the interaction id as new requests has been made
 
-            # In this case, the
 
-    async def handle_aas_infrastructure_svc(self, svc_data):
+            # In this case, the service request is completed, since it needs the cooperation of the AAS Core. When the
+            # response arrives, another behaviour is responsible for checking whether the service has been fully
+            # performed
+            # The information about the interaction request is also stored in the global variables of the agent
+            self.myagent.interaction_requests[self.myagent.interaction_id] = interaction_request_json
+
+            # Finally, it has to increment the interaction id as new requests has been made
+            self.myagent.interaction_id += 1
+
+    async def handle_aas_infrastructure_svc(self):
         """
         This method handles AAS Infrastructure Services. These services are part of I4.0 Infrastructure Services
         (Systemic relevant). They are necessary to create AASs and make them localizable and are not offered by an AAS, but
@@ -111,13 +118,10 @@ class SvcRequestHandlingBehaviour(OneShotBehaviour):
         identifiers), AAS Registry Services (for registering AASs) and AAS Exposure and Discovery Services (for searching
         for AASs).
 
-        Args:
-            svc_interaction_id (int): the identifier of the interaction.
-            svc_data (dict): the information of the data in JSON format.
         """
-        _logger.info(str(self.agent.interaction_id) + str(svc_data))
+        _logger.info(str(self.myagent.interaction_id) + str(self.svc_req_info))
 
-    async def handle_aas_services(self, svc_data):
+    async def handle_aas_services(self):
         """
         This method handles AAS Services. These services serve for the management of asset-related information through
         a set of infrastructure services provided by the AAS itself. These include Submodel Registry Services (to list
@@ -126,19 +130,16 @@ class SvcRequestHandlingBehaviour(OneShotBehaviour):
         context to build a common function; and Restriction of Use Services, divided between access control and usage
         control) and Exposure and Discovery Services (to search for submodels or asset related services).
 
-        Args:
-            svc_interaction_id (int): the identifier of the interaction.
-            svc_data (dict): the information of the data in JSON format.
         """
-        _logger.info(str(self.agent.interaction_id) + str(svc_data))
+        _logger.info(str(self.myagent.interaction_id) + str(self.svc_req_info))
 
-    async def handle_submodel_services(self, svc_data):
+    async def handle_submodel_services(self):
         """
         This method handles Submodel Services. These services are part of I4.0 Application Component (application
         relevant).
 
-        Args:
-            svc_interaction_id (int): the identifier of the interaction.
-            svc_data (dict): the information of the data in JSON format.
         """
-        _logger.info(str(self.agent.interaction_id) + str(svc_data))
+        # TODO, en este caso tendra que comprobar que submodelo esta asociado a la peticion de servicio. Si el submodelo
+        #  es propio del AAS Manager, podra acceder directamente y, por tanto, este behaviour sera capaz de realizar el
+        #  servicio completamente. Si es un submodelo del AAS Core, tendra que solicitarselo
+        _logger.info(str(self.myagent.interaction_id) + str(self.svc_req_info))

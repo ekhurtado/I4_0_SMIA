@@ -4,6 +4,7 @@ import time
 
 from spade.behaviour import CyclicBehaviour
 
+from behaviours.SvcResponseHandlingBehaviour import SvcResponseHandlingBehaviour
 from logic import Services_utils, Interactions_utils
 from utilities.AASarchiveInfo import AASarchiveInfo
 
@@ -65,6 +66,10 @@ class InteractionHandlingBehaviour(CyclicBehaviour):
                         _logger.interactioninfo("The service with id " + str(msg_json_value['interactionID']) +
                                      " has been answered from the AAS Core to the AAS Manager. Data of the response: "
                                      + str(msg_json_value))
+                        # A new behaviour is added to the SPADE agent to handle this specific service request
+                        svc_resp_handling_behav = SvcResponseHandlingBehaviour(self.agent, msg_json_value)
+                        self.myagent.add_behaviour(svc_resp_handling_behav)
+
         finally:
             _logger.info("Finalizing Kafka Consumer...")
             await kafka_consumer_core_partition.stop()

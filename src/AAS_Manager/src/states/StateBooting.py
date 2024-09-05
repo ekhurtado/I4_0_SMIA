@@ -32,12 +32,17 @@ class StateBooting(State):
         """
         _logger.info("## STATE 1: BOOTING ##  (Initial state)")
 
-        # First, the interactionId is reset
-        self.agent.interaction_id = 0
+        # Objects for storing the information related to ACL services are initialized
+        self.agent.acl_messages_id = 0 # It is reset
+        self.agent.acl_svc_requests = {}
+        self.agent.acl_svc_responses = {}
 
-        # The objects to store 
+        # Objects for storing the information related to AAS Manager-Core interactions are initialized
+        self.agent.interaction_id = 0 # The interactionId is reset
+        self.agent.interaction_requests = {}
+        self.agent.interaction_responses = {}
 
-        # Then the AAS Archive is initialized. To do so, the associated behaviour is added to the agent
+        # The AAS Archive is initialized. To do so, the associated behaviour is added to the agent
         init_aas_archive_behav = InitAASarchiveBehaviour(self.agent)
         self.agent.add_behaviour(init_aas_archive_behav)
 
