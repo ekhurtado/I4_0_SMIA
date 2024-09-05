@@ -35,6 +35,8 @@ class StateBooting(State):
         # First, the interactionId is reset
         self.agent.interaction_id = 0
 
+        # The objects to store 
+
         # Then the AAS Archive is initialized. To do so, the associated behaviour is added to the agent
         init_aas_archive_behav = InitAASarchiveBehaviour(self.agent)
         self.agent.add_behaviour(init_aas_archive_behav)

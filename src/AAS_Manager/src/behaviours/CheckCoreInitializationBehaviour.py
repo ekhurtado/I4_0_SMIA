@@ -56,15 +56,16 @@ class CheckCoreInitializationBehaviour(CyclicBehaviour):
         _logger.info("Listening for AAS Core messages in topic " + KafkaInfo.KAFKA_TOPIC + " awaiting status "
                                                                                            "information...")
 
-        await kafka_consumer_core_partition.seek_to_beginning() # Since the status message may arrive before the consumer is created (because the AAS Core has been started before the AAS Manager) the messages have to be read from the beginning.
+        # Since the status message may arrive before the consumer is created (because the AAS Core has been started
+        # before the AAS Manager) the messages have to be read from the beginning.
+        await kafka_consumer_core_partition.seek_to_beginning()
 
-        partitions = kafka_consumer_core_partition.assignment()
-        topic_partitions = [TopicPartition(tp.topic, tp.partition) for tp in partitions]
-        committed_offsets = await kafka_consumer_core_partition.committed(topic_partitions[0])
-
-        print(topic_partitions[0])
-        print("PRUEBA CONSEGUIR OFFSET")
-        print(committed_offsets)
+        # partitions = kafka_consumer_core_partition.assignment()
+        # topic_partitions = [TopicPartition(tp.topic, tp.partition) for tp in partitions]
+        # committed_offsets = await kafka_consumer_core_partition.committed(topic_partitions[0])
+        # print(topic_partitions[0])
+        # print("PRUEBA CONSEGUIR OFFSET")
+        # print(committed_offsets)
 
         try:
             async for msg in kafka_consumer_core_partition:

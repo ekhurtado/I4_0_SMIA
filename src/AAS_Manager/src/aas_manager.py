@@ -64,7 +64,6 @@ if __name__ == '__main__':
 
     # Configure logging
     GeneralUtils.configure_logging()
-
     _logger.info("Initializing AAS Manager program...")
 
     # Run main program with SPADE

@@ -13,25 +13,58 @@ class GeneralUtils:
     @staticmethod
     def configure_logging():
         """
-        This method configures the logging to be used by all modules.
+        This method configures the logging to be used by all modules. It specifies different colors to improve the
+        readability of the console and adds new levels to the printouts related to ACL and interaction messages.
         """
 
-        logging.basicConfig(
-            level=logging.INFO,
-            format="\x1b[36;20m%(asctime)s [%(name)s] [%(levelname)s] %(message)s\x1b[0m",
-            handlers=[
-                # logging.FileHandler(AASarchiveInfo.LOG_FOLDER_PATH + '/' + AASarchiveInfo.AAS_MANAGER_LOG_FILENAME),
-                logging.FileHandler(AASarchiveInfo.AAS_MANAGER_LOG_FILENAME),  # For testing
-                logging.StreamHandler()
-            ]
-        )
+        interaction_level_num = 35
+        logging.addLevelName(interaction_level_num, "INTERACTIONINFO")
 
-        # Set red color for error messages
-        errorConsole = logging.StreamHandler()
-        errorConsole.setLevel(logging.ERROR)
-        formatter = logging.Formatter('\x1b[31;20m%(asctime)s [%(name)s] [%(levelname)s] %(message)s line:%(lineno)d\x1b[0m')
-        errorConsole.setFormatter(formatter)
-        logging.getLogger('').addHandler(errorConsole)
+        fipa_acl_level_num = 36
+        logging.addLevelName(fipa_acl_level_num, "ACLINFO")
+
+        def interactioninfo(self, message, *args, **kwargs):
+            if self.isEnabledFor(interaction_level_num):
+                self._log(interaction_level_num, message, args, **kwargs)
+
+        logging.Logger.interactioninfo = interactioninfo
+
+        def aclinfo(self, message, *args, **kwargs):
+            if self.isEnabledFor(fipa_acl_level_num):
+                self._log(fipa_acl_level_num, message, args, **kwargs)
+
+        logging.Logger.aclinfo = aclinfo
+
+        handler = logging.StreamHandler()
+        formatter = GeneralUtils.ColoredFormatter('%(levelname)s: %(message)s')
+        handler.setFormatter(formatter)
+        logging.getLogger('').addHandler(handler)
+        logging.getLogger('').setLevel(logging.INFO)  # Set the default logging level
+
+    class ColoredFormatter(logging.Formatter):
+        """
+        This class contains the format of all the levels of the logging, including the color of each of them.
+        """
+        FORMAT_SIMPLE = "%(asctime)s [%(name)s] [%(levelname)s] %(message)s"
+        FORMAT_COMPLEX = "%(asctime)s [%(name)s] [%(levelname)s] %(message)s line:%(lineno)d"
+        RESET = '\x1b[0m'
+
+        COLORS = {
+            logging.DEBUG: '\x1b[94m' + FORMAT_SIMPLE + RESET,  # Blue
+            logging.INFO: '\x1b[39;20m' + FORMAT_SIMPLE + RESET,  # White
+            logging.WARNING: '\x1b[93m' + FORMAT_COMPLEX + RESET,  # Yellow
+            logging.ERROR: '\x1b[91m' + FORMAT_COMPLEX + RESET,  # Red
+            logging.CRITICAL: '\x1b[41m' + FORMAT_COMPLEX + RESET,  # White on Red
+            35: '\x1b[38;2;255;150;20m' + FORMAT_SIMPLE + RESET,  # Purple (for the interaction level)
+            36: '\x1b[38;2;0;255;255m' + FORMAT_SIMPLE + RESET  # Cyan (for the FIP-ACL level)
+        }
+
+        def format(self, record):
+            log_fmt = self.COLORS.get(record.levelno)
+            formatter = logging.Formatter(log_fmt)
+            return formatter.format(record)
+
+
 
 
     @staticmethod

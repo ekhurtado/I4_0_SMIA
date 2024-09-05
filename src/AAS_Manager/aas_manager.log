@@ -7855,3 +7855,47 @@ KeyboardInterrupt
 [36;20m2024-05-28 11:34:11,104 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None[0m
 [36;20m2024-07-09 17:53:30,010 [__main__] [INFO] Initializing AAS Manager program...[0m
 [36;20m2024-07-09 17:53:30,013 [SPADE] [ERROR] Exception in the event loop: 'general-information'[0m
+[36;20m2024-09-05 16:15:27,067 [__main__] [INFO] Initializing AAS Manager program...[0m
+[36;20m2024-09-05 16:15:27,072 [SPADE] [ERROR] Exception in the event loop: 'general-information'[0m
+[36;20m2024-09-05 16:18:55,458 [__main__] [INFO] Initializing AAS Manager program...[0m
+[36;20m2024-09-05 16:18:55,461 [SPADE] [ERROR] Exception in the event loop: 'general-information'[0m
+[36;20m2024-09-05 16:19:15,352 [__main__] [INFO] Initializing AAS Manager program...[0m
+[36;20m2024-09-05 16:19:15,355 [SPADE] [ERROR] Exception in the event loop: 'general-information'[0m
+[36;20m2024-09-05 16:19:46,996 [__main__] [INFO] Initializing AAS Manager program...[0m
+[36;20m2024-09-05 16:21:43,104 [__main__] [INFO] Initializing AAS Manager program...[0m
+[36;20m2024-09-05 16:21:43,105 [__main__] [CUSTOM] PRUEBA[0m
+[36;20m2024-09-05 16:21:43,105 [__main__] [INFO] Initializing AAS Manager program...[0m
+[36;20m2024-09-05 16:21:43,108 [SPADE] [ERROR] Exception in the event loop: 'general-information'[0m
+[36;20m2024-09-05 16:23:51,802 [__main__] [INFO] Initializing AAS Manager program...[0m
+[36;20m2024-09-05 16:25:01,105 [__main__] [INFO] Initializing AAS Manager program...[0m
+[36;20m2024-09-05 16:25:11,115 [__main__] [INFO] Initializing AAS Manager program...[0m
+[36;20m2024-09-05 16:25:11,116 [__main__] [INTERACTION] PRUEBA[0m
+[36;20m2024-09-05 16:25:11,116 [__main__] [INFO] Initializing AAS Manager program...[0m
+[36;20m2024-09-05 16:25:11,119 [SPADE] [ERROR] Exception in the event loop: 'general-information'[0m
+[36;20m2024-09-05 16:27:51,271 [__main__] [INFO] Initializing AAS Manager program...[0m
+[36;20m2024-09-05 16:27:51,271 [__main__] [INTERACTION] PRUEBA[0m
+[36;20m2024-09-05 16:27:51,271 [__main__] [INFO] Initializing AAS Manager program...[0m
+[36;20m2024-09-05 16:27:51,274 [SPADE] [ERROR] Exception in the event loop: 'general-information'[0m
+[36;20m2024-09-05 16:28:02,919 [__main__] [INFO] Initializing AAS Manager program...[0m
+[36;20m2024-09-05 16:28:02,919 [__main__] [INTERACTION] PRUEBA[0m
+[36;20m2024-09-05 16:28:02,920 [__main__] [INFO] Initializing AAS Manager program...[0m
+[36;20m2024-09-05 16:28:02,923 [SPADE] [ERROR] Exception in the event loop: 'general-information'[0m
+[36;20m2024-09-05 16:28:22,549 [__main__] [INFO] Initializing AAS Manager program...[0m
+[36;20m2024-09-05 16:28:22,550 [__main__] [INFO] Initializing AAS Manager program...[0m
+[36;20m2024-09-05 16:28:22,552 [SPADE] [ERROR] Exception in the event loop: 'general-information'[0m
+[36;20m2024-09-05 16:28:34,425 [__main__] [INFO] Initializing AAS Manager program...[0m
+[36;20m2024-09-05 16:28:34,425 [__main__] [INTERACTION] PRUEBA[0m
+[36;20m2024-09-05 16:28:34,426 [__main__] [INFO] Initializing AAS Manager program...[0m
+[36;20m2024-09-05 16:28:34,428 [SPADE] [ERROR] Exception in the event loop: 'general-information'[0m
+[36;20m2024-09-05 16:28:43,144 [__main__] [INFO] Initializing AAS Manager program...[0m
+[36;20m2024-09-05 16:28:43,145 [__main__] [INTERACTION] PRUEBA[0m
+[36;20m2024-09-05 16:28:43,145 [__main__] [INFO] Initializing AAS Manager program...[0m
+[36;20m2024-09-05 16:28:43,147 [SPADE] [ERROR] Exception in the event loop: 'general-information'[0m
+[36;20m2024-09-05 16:28:52,540 [__main__] [INFO] Initializing AAS Manager program...[0m
+[36;20m2024-09-05 16:28:52,540 [__main__] [INTERACTION] PRUEBA[0m
+[36;20m2024-09-05 16:28:52,540 [__main__] [INFO] Initializing AAS Manager program...[0m
+[36;20m2024-09-05 16:28:52,543 [SPADE] [ERROR] Exception in the event loop: 'general-information'[0m
+[36;20m2024-09-05 16:29:06,400 [__main__] [INFO] Initializing AAS Manager program...[0m
+[36;20m2024-09-05 16:29:16,073 [__main__] [INFO] Initializing AAS Manager program...[0m
+[36;20m2024-09-05 16:29:16,074 [__main__] [INFO] Initializing AAS Manager program...[0m
+[36;20m2024-09-05 16:29:16,076 [SPADE] [ERROR] Exception in the event loop: 'general-information'[0m

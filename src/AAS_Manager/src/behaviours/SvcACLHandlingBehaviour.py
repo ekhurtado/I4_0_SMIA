@@ -4,6 +4,7 @@ import time
 
 from spade.behaviour import CyclicBehaviour
 
+from behaviours.SvcRequestHandlingBehaviour import SvcRequestHandlingBehaviour
 from logic import Services_utils, Interactions_utils
 from utilities.AASarchiveInfo import AASarchiveInfo
 
@@ -54,27 +55,34 @@ class SvcACLHandlingBehaviour(CyclicBehaviour):
             #  tarda mucho en realizarse, guardar en el log cuando finalice toda la informacion que la tendra en su
             #  propia clase, etc.). Cada behaviour individual será el que se eliminará del agente en cuanto el servicio
             #  se haya completado (self.kill())
+
+            # TODO ACTUALIZACION: de momento se va a seguir esta idea, y por cada peticion de servicio se va a crear un
+            #  behaviour (SvcRequestHandlingBehaviour). Este se creará tanto con peticiones via ACL como peticiones via
+            #  Interaction (solicitadas por el AAS Core), ya que en ambos casos es una solicitud de un servicio al AAS
+            #  Manager. Este dentro del behaviour decidirá los pasos a seguir para llevar a cabo ese servicio (solicitar
+            #  algo por interaccion, o por ACL a otro Manager...). Para respuestas a peticiones de servicio se generará
+            #  otro behaviour diferente
+
             # An ACL message has been received by the agent
-            _logger.info("         + Message received on AAS Manager Agent (ACLHandlingBehaviour)")
-            _logger.info("                 |___ Message received with content: {}".format(msg.body))
+            _logger.aclinfo("         + Message received on AAS Manager Agent (ACLHandlingBehaviour)")
+            _logger.aclinfo("                 |___ Message received with content: {}".format(msg.body))
 
             # The msg body will be parsed to a JSON object
             msg_json_body = json.loads(msg.body)
 
-            # As the performative is set to CallForProposals, the service type will be analyzed directly
-            match msg_json_body['serviceType']:
-                # TODO esta hecho asi para pruebas, pero hay que pensar el procedimiento a seguir a la hora de
-                #  gestionar los mensajes ACL
-                case "AssetRelatedService":
-                    await self.handle_asset_related_svc(msg_json_body)
-                case "AASInfrastructureServices":
-                    await self.handle_aas_infrastructure_svc(msg_json_body)
-                case "AASservices":
-                    await self.handle_aas_services(msg_json_body)
-                case "SubmodelServices":
-                    await self.handle_submodel_services(msg_json_body)
-                case _:
-                    _logger.error("Service type not available.")
+            # TODO por ACL entiendo que también pueden llegar respuestas de servicios, no solo solicitudes,
+            #  asi que habria que modificar esto
+            service_category = msg_json_body['serviceData']['serviceCategory']
+
+            if service_category == 'service-request':
+                # A new service request is added to the global dictionary of ACL requests of the agent
+                self.myagent.
+
+                # A new behaviour is added to the SPADE agent to handle this specific service request
+                svc_req_handling_behav = SvcRequestHandlingBehaviour(self.agent, msg_json_body)
+                self.myagent.add_behaviour(svc_req_handling_behav)
+
+
         else:
             _logger.info("         - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour)")
 
@@ -106,9 +114,10 @@ class SvcACLHandlingBehaviour(CyclicBehaviour):
                                                                          msg_data=svc_request_json)
         if request_result is not "OK":
             _logger.error("The AAS Manager-Core interaction is not working: " + str(request_result))
-
-        current_interaction_id = self.agent.interaction_id
-        self.agent.interaction_id += 1  # increment the interaction id as new requests has been made
+        else:
+            _logger.aclinfo("The service with interaction id [" +str(self.agent.interaction_id)+
+                         "] to the AAS Core has been requested")
+            self.agent.interaction_id += 1  # increment the interaction id as new requests has been made
 
         # Wait until the service is completed
         # TODO esto cuando se desarrolle el AAS Manager en un agente no se realizara de esta manera. No debera
@@ -128,28 +137,6 @@ class SvcACLHandlingBehaviour(CyclicBehaviour):
         #         _logger.info("Service completed! Response: " + str(svc_response))
         #         break
         #     time.sleep(2)
-
-        # TODO esto no tiene que ir aqui, es solo para pruebas con Kafka: en estado running se deben crear tanto
-        #  behaviours para gestionar mensajes ACL como para mensajes de Kafka
-        kafka_consumer_core_partition = Interactions_utils.create_interaction_kafka_consumer('i4-0-smia-manager')
-        await kafka_consumer_core_partition.start()
-        _logger.info("Listening for AAS Core messages awaiting service response information...")
-
-        try:
-            async for msg in kafka_consumer_core_partition:
-                _logger.info("New AAS Core message!")
-                _logger.info("   |__ msg: " + str(msg))
-
-                # We get the key (as it is in bytes, we transform it into string) and the body of Kafka's message
-                msg_key = msg.key.decode("utf-8")
-                msg_json_value = msg.value
-
-                if msg_key == 'core-service-response':
-                    _logger.info("The service with id " + str(current_interaction_id) + " has been answered from the "
-                                 "AAS Core to the AAS Manager. Data of the response: " + str(msg_json_value))
-        finally:
-            _logger.info("Finalizing Kafka Consumer...")
-            await kafka_consumer_core_partition.stop()
 
     async def handle_aas_infrastructure_svc(self, svc_data):
         """
