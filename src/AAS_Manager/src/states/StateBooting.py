@@ -56,6 +56,8 @@ class StateBooting(State):
 
         if result is not "OK":
             _logger.error("The AAS Manager-Core interaction is not working: " + str(result))
+        else:
+            _logger.info("The AAS Manager has notified the AAS Core that its initialization has been completed.")
 
         # Wait until the AAS Core has initialized
         _logger.info('AAS Manager is waiting until its AAS Core has initialized.')

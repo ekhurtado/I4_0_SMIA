@@ -157,10 +157,12 @@ def create_interaction_kafka_consumer(client_id):
     Returns:
         AIOKafkaConsumer: the object of the Kafka consumer.
     """
-    # TODO pensar si tambien se podria quitar el client_id (siempre es el AAS Manager)
+
     kafka_consumer_core_partition = AIOKafkaConsumer(bootstrap_servers=[KafkaInfo.KAFKA_SERVER_IP + ':9092'],
                                                      client_id=client_id,
                                                      value_deserializer=lambda x: json.loads(x.decode('utf-8')),
+                                                     enable_auto_commit=True,
+                                                     group_id='i4-0-smia-managers'
                                                      )
     kafka_consumer_core_partition.assign([TopicPartition(KafkaInfo.KAFKA_TOPIC, KafkaInfo.CORE_TOPIC_PARTITION)])
 
@@ -169,7 +171,8 @@ def create_interaction_kafka_consumer(client_id):
 
 async def send_interaction_msg_to_core(client_id, msg_key, msg_data):
     """
-    This method sends a Kafka interaction message to the AAS Core.
+    This method sends a Kafka interaction message to the AAS Core. To this end, the AAS Manager publish messages in its
+    partition, where the AAS Core will be listening.
     Args:
         client_id (str): the id of the client of the Kafka producer.
         msg_key (str): the key of the Kafka message.
@@ -182,13 +185,16 @@ async def send_interaction_msg_to_core(client_id, msg_key, msg_data):
     kafka_producer = AIOKafkaProducer(bootstrap_servers=[KafkaInfo.KAFKA_SERVER_IP + ':9092'],
                                       client_id=client_id,
                                       value_serializer=lambda x: json.dumps(x).encode('utf-8'),
-                                      key_serializer=str.encode
+                                      key_serializer=str.encode,
                                       )
     await kafka_producer.start()
     try:
+        # The AAS Manager only publish messages in its partition, where the AAS Core will be listening.
         await kafka_producer.send_and_wait(KafkaInfo.KAFKA_TOPIC, value=msg_data,
                                            key=msg_key,
-                                           partition=KafkaInfo.CORE_TOPIC_PARTITION)
+                                           partition=KafkaInfo.MANAGER_TOPIC_PARTITION)
+        _logger.info("AAS Manager successfully published an interaction message: key [" +msg_key+ "],"
+                     " data [" +str(msg_data)+ "]")
     finally:
         # Wait for all pending messages to be delivered or expire.
         await kafka_producer.stop()

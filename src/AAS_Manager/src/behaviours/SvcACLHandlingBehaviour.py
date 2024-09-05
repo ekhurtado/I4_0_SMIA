@@ -66,13 +66,13 @@ class SvcACLHandlingBehaviour(CyclicBehaviour):
                 # TODO esta hecho asi para pruebas, pero hay que pensar el procedimiento a seguir a la hora de
                 #  gestionar los mensajes ACL
                 case "AssetRelatedService":
-                    self.handle_asset_related_svc(msg_json_body)
+                    await self.handle_asset_related_svc(msg_json_body)
                 case "AASInfrastructureServices":
-                    self.handle_aas_infrastructure_svc(msg_json_body)
+                    await self.handle_aas_infrastructure_svc(msg_json_body)
                 case "AASservices":
-                    self.handle_aas_services(msg_json_body)
+                    await self.handle_aas_services(msg_json_body)
                 case "SubmodelServices":
-                    self.handle_submodel_services(msg_json_body)
+                    await self.handle_submodel_services(msg_json_body)
                 case _:
                     _logger.error("Service type not available.")
         else:
@@ -81,7 +81,7 @@ class SvcACLHandlingBehaviour(CyclicBehaviour):
     # ------------------------------------------
     # Methods to handle of all types of services
     # ------------------------------------------
-    def handle_asset_related_svc(self, svc_data):
+    async def handle_asset_related_svc(self, svc_data):
         """
         This method handles Asset Related Services. These services are part of I4.0 Application Component (application
         relevant).
@@ -101,7 +101,7 @@ class SvcACLHandlingBehaviour(CyclicBehaviour):
         # Interactions_utils.add_new_svc_request(svc_request_json)
 
         # TODO test if it is working with Kafka
-        request_result = Interactions_utils.send_interaction_msg_to_core(client_id='i4-0-smia-manager',
+        request_result = await Interactions_utils.send_interaction_msg_to_core(client_id='i4-0-smia-manager',
                                                                          msg_key='manager-service-request',
                                                                          msg_data=svc_request_json)
         if request_result is not "OK":
@@ -132,7 +132,7 @@ class SvcACLHandlingBehaviour(CyclicBehaviour):
         # TODO esto no tiene que ir aqui, es solo para pruebas con Kafka: en estado running se deben crear tanto
         #  behaviours para gestionar mensajes ACL como para mensajes de Kafka
         kafka_consumer_core_partition = Interactions_utils.create_interaction_kafka_consumer('i4-0-smia-manager')
-        kafka_consumer_core_partition.start()
+        await kafka_consumer_core_partition.start()
         _logger.info("Listening for AAS Core messages awaiting service response information...")
 
         try:
@@ -149,9 +149,9 @@ class SvcACLHandlingBehaviour(CyclicBehaviour):
                                  "AAS Core to the AAS Manager. Data of the response: " + str(msg_json_value))
         finally:
             _logger.info("Finalizing Kafka Consumer...")
-            kafka_consumer_core_partition.stop()
+            await kafka_consumer_core_partition.stop()
 
-    def handle_aas_infrastructure_svc(self, svc_data):
+    async def handle_aas_infrastructure_svc(self, svc_data):
         """
         This method handles AAS Infrastructure Services. These services are part of I4.0 Infrastructure Services
         (Systemic relevant). They are necessary to create AASs and make them localizable and are not offered by an AAS, but
@@ -165,7 +165,7 @@ class SvcACLHandlingBehaviour(CyclicBehaviour):
         """
         _logger.info(str(self.agent.interaction_id) + str(svc_data))
 
-    def handle_aas_services(self, svc_data):
+    async def handle_aas_services(self, svc_data):
         """
         This method handles AAS Services. These services serve for the management of asset-related information through
         a set of infrastructure services provided by the AAS itself. These include Submodel Registry Services (to list
@@ -180,7 +180,7 @@ class SvcACLHandlingBehaviour(CyclicBehaviour):
         """
         _logger.info(str(self.agent.interaction_id) + str(svc_data))
 
-    def handle_submodel_services(self, svc_data):
+    async def handle_submodel_services(self, svc_data):
         """
         This method handles Submodel Services. These services are part of I4.0 Application Component (application
         relevant).

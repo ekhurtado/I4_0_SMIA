@@ -7,13 +7,11 @@ import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.TopicPartition;
 import org.apache.kafka.common.serialization.StringDeserializer;
+import org.apache.kafka.common.serialization.StringSerializer;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-
-// TODO tests to be able to work with JSON objects in Kafka
-//import org.springframework.kafka.support.serializer.JsonDeserializer;
 
 
 import java.io.*;
@@ -31,10 +29,11 @@ public class InteractionsUtils {
         Properties props = new Properties();
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, KafkaInfo.KAFKA_SERVER_IP + ":9092");
         props.put(ConsumerConfig.CLIENT_ID_CONFIG, "i4-0-smia-core");
+        props.put(ConsumerConfig.GROUP_ID_CONFIG, "i4-0-smia-cores");
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
-        // TODO tests to be able to work with JSON objects in Kafka
-//        props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, JsonSerializer.class.getName());
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+        props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");  // Start reading at the earliest offset
+        props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "true");
 
         KafkaConsumer<String, String> kafkaConsumerPartitionManager = new KafkaConsumer<>(props);
         kafkaConsumerPartitionManager.assign(Collections.singletonList(
@@ -47,16 +46,17 @@ public class InteractionsUtils {
         Properties props = new Properties();
         props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, KafkaInfo.KAFKA_SERVER_IP + ":9092");
         props.put(ProducerConfig.CLIENT_ID_CONFIG, "i4-0-smia-core");
-        props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
-        // TODO tests to be able to work with JSON objects in Kafka
-//        props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class.getName());
-        props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+        props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
+        props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
 
         KafkaProducer<String, String> kafkaProducerPartitionCore = new KafkaProducer<>(props);
+        System.out.println("Kafka Producer created");
+
         ProducerRecord<String, String> record = new ProducerRecord<>(KafkaInfo.KAFKA_TOPIC,
                 KafkaInfo.CORE_TOPIC_PARTITION, msg_key, msg_data.toString());
         kafkaProducerPartitionCore.send(record);
         kafkaProducerPartitionCore.flush();
+        System.out.println("Kafka message sent!");
 
         return "OK";
     }

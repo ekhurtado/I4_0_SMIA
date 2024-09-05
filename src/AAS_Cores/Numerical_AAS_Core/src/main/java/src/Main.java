@@ -5,6 +5,8 @@ import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.json.simple.JSONObject;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import src.functionalities.AssetRelatedServices;
 import utilities.AAS_ArchiveUtils;
 import utilities.InteractionsUtils;
@@ -22,6 +24,8 @@ public class Main {
     // Logger object
     static final Logger LOGGER = LogManager.getLogger(Main.class.getName());
 
+    private String aasManagerStatus;
+
     // Number of each type of request
     private int numberOfARSvcRequests;  // ARSvc = Asset Related Service
     private int numberOfAASIsvcRequests;  // AASIsvc = AAS Infrastructure Service
@@ -35,6 +39,7 @@ public class Main {
         numberOfAASsvcRequests = 0;
         numberOfSMsvcRequests = 0;
         serviceRecord = new ArrayList<>();
+        aasManagerStatus = "Unknown";
     }
 
     public static Main getInstance() {
@@ -88,6 +93,7 @@ public class Main {
         // This AAS core does not require an initialization process
 //        AAS_ArchiveUtils.changeStatus("InitializationReady");
         // TODO test if it is working with Kafka
+        System.out.println("Sending message through Kafka...");
         JSONObject msg_data = new JSONObject();
         msg_data.put("status", "InitializationReady");
         String result = InteractionsUtils.sendInteractionMsgToManager("core-status", msg_data);
@@ -152,7 +158,7 @@ public class Main {
 
         // TODO test if it is working with Kafka
         KafkaConsumer kafkaConsumerPartitionManager = InteractionsUtils.createInteractionKafkaConsumer();
-        kafkaConsumerPartitionManager.subscribe(Collections.singletonList(KafkaInfo.KAFKA_TOPIC));
+//        kafkaConsumerPartitionManager.subscribe(Collections.singletonList(KafkaInfo.KAFKA_TOPIC));
 
         while (true) {
             final ConsumerRecords<String, String> consumerRecords =
@@ -162,56 +168,80 @@ public class Main {
             System.out.println(consumerRecords.toString());
 
             consumerRecords.forEach(record -> {
-            	System.out.println("Mensaje recibido:");
-            	System.out.println(record.toString());
+                System.out.println("Mensaje recibido:");
+//                System.out.println(record.toString());
 
-                System.out.printf("Consumer Record:(%d, %s, %d, %d)\n",
-                        record.key(), record.value(),
-                        record.partition(), record.offset());
+                System.out.println("KEY: " + record.key());
+                System.out.println("VALUE: " + record.value());
+//                System.out.println("PARTITION:" + record.partition());
+//                System.out.println("OFFSET:" + record.offset());
+//
+//                System.out.printf("Consumer Record:(%s, %s, %d, %d)\n",
+//                        record.key(), record.value(),
+//                        record.partition(), record.offset());
 
-                // TODO get the request JSON
-                JSONObject nextRequestJSON = new JSONObject();
+                // The next service request information if JSON format is in the value of the message
+                System.out.println("Intentando pasar de string a JSON...");
+                JSONObject nextRequestJSON;
+                try {
+                    JSONParser jsonParser = new JSONParser();
+                    nextRequestJSON = (JSONObject) jsonParser.parse(record.value());
+                } catch (ParseException e) {
+                    throw new RuntimeException(e);
+                }
+                System.out.println(nextRequestJSON.toString());
+//                System.out.println(nextRequestJSON.toJSONString());
+//                System.out.println(nextRequestJSON.get("dato1"));
 
-                // TODO get the service type, id...
-                String serviceType = "";
-                String serviceID = "";
-                JSONObject serviceData = new JSONObject();
-                switch (serviceType) {
-                    case "AssetRelatedService":
-                        String serviceResponseData = aas_core.executeARSvcFunctionality(serviceID, (JSONObject) serviceData);
+                // If the message received is about the status of the AAS Manager, the information in the AAS Core will
+                // be updated.
+                if (nextRequestJSON.containsKey("status")) {
+                    System.out.println("New status of the AAS Manager: " + nextRequestJSON.get("status"));
+                    aas_core.aasManagerStatus = (String) nextRequestJSON.get("status");
+                } else {
 
-                        // Prepare the response
-                        System.out.println("Creating the service response object...");
-                        JSONObject responseFinalJSON = AAS_ArchiveUtils.createSvcCompletedResponse(nextRequestJSON, serviceResponseData);
-                        // Update response JSON
-                        // TODO this code is for the interaction through JSON (it has to be removed)
+                    // Only if the AAS Manager is ready the AAS Core will work
+                    if (!aas_core.aasManagerStatus.equals("Initializing") && !aas_core.aasManagerStatus.equals("idle")) {
+
+                        switch ((String) Objects.requireNonNull(nextRequestJSON).get("serviceType")) {
+                            case "AssetRelatedService":
+                                String serviceResponseData = aas_core.executeARSvcFunctionality((String) nextRequestJSON.get("serviceID"), (JSONObject) nextRequestJSON.get("serviceData"));
+
+                                // Prepare the response
+                                System.out.println("Creating the service response object...");
+                                JSONObject responseFinalJSON = AAS_ArchiveUtils.createSvcCompletedResponse(nextRequestJSON, serviceResponseData);
+                                // Update response JSON
+                                // TODO this code is for the interaction through JSON (it has to be removed)
 //                        AAS_ArchiveUtils.updateSvcCompleteResponse(responseFinalJSON);
 
-                        // TODO test if it is working with Kafka
-                        InteractionsUtils.sendInteractionMsgToManager("core-service-response", responseFinalJSON);
+                                // TODO test if it is working with Kafka
+                                System.out.println("Response JSON: " + responseFinalJSON.toJSONString());
+                                InteractionsUtils.sendInteractionMsgToManager("core-service-response", responseFinalJSON);
 
-                        // Update number of requests
-                        aas_core.numberOfARSvcRequests += 1;
-                        break;
-                    case "AASInfrastructureService":
-                        // Update number of requests
-                        aas_core.numberOfAASIsvcRequests += 1;
-                        break;
-                    case "AASservice":
-                        // Update number of requests
-                        aas_core.numberOfAASsvcRequests += 1;
-                        break;
-                    case "SubmodelService":
-                        // Update number of requests
-                        aas_core.numberOfSMsvcRequests += 1;
-                        break;
-                    default:
-                        System.out.println("Service not available.");
+                                // Update number of requests
+                                aas_core.numberOfARSvcRequests += 1;
+                                break;
+                            case "AASInfrastructureService":
+                                // Update number of requests
+                                aas_core.numberOfAASIsvcRequests += 1;
+                                break;
+                            case "AASservice":
+                                // Update number of requests
+                                aas_core.numberOfAASsvcRequests += 1;
+                                break;
+                            case "SubmodelService":
+                                // Update number of requests
+                                aas_core.numberOfSMsvcRequests += 1;
+                                break;
+                            default:
+                                System.out.println("Service not available.");
+                        }
+
+                        System.out.println("Requested service completed.");
+
+//                  aas_core.serviceRecord.add(String.valueOf(nextRequestJSON.get("interactionID")));
+                    }
                 }
-
-                System.out.println("Requested service completed.");
-
-//                aas_core.serviceRecord.add(String.valueOf(nextRequestJSON.get("interactionID")));
             });
 
             kafkaConsumerPartitionManager.commitAsync();

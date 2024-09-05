@@ -2,8 +2,11 @@ FROM python:3.10-alpine
 
 RUN pip install --upgrade pip
 
-COPY requirements.txt .
+# aiokafka library requires installing these packages
+RUN apk add --no-cache gcc gpgme-dev libc-dev
 
+# All required Python packages are installed
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY src /
