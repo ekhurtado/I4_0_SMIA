@@ -17,12 +17,13 @@ class SvcRequestHandlingBehaviour(OneShotBehaviour):
     OneShotBehaviour because it handles an individual service request and then kills itself.
     """
 
-    def __init__(self, agent_object, svc_req_info):
+    def __init__(self, agent_object, svc_interaction_type, svc_req_data):
         """
         The constructor method is rewritten to add the object of the agent
         Args:
             agent_object (spade.Agent): the SPADE agent object of the AAS Manager agent.
-            svc_req_info (dict): the information about the service request
+            svc_interaction_type (str): the type of the service request
+            svc_req_data: the information about the service request
         """
 
         # The constructor of the inherited class is executed.

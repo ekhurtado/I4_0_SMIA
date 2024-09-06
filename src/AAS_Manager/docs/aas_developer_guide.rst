@@ -236,5 +236,6 @@ FALTAN COMENTAR VARIAS COSAS:
 * Al comienzo es posible que se arranquen en diferente momento, asi que el primer consumidor hay que configurarlo para que reciba mensajes desde el comiento (offset a 'earliest')
 * El Core solo puede solicitar servicios al Manager si este se encuentra en estado Running
 * Como leer el ConfigMap para obtener informacion como el topico de Kafka, la definicion del AAS en XML...
+* Importancia del thread e interactionID (como leerlos si recibimos una peticion de servicio del Manager y como generarlos si el AAS Core tiene que comenzar una conversacion, es decir, ser el primero en solicitar un servicio)
 
 

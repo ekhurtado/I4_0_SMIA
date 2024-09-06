@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Programming Language editor</title>
+    <title>ACL Message Result</title>
     <!-- Include CSS links -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -26,55 +26,63 @@
         .form-section h3 {
             margin-top: 0;
         }
-        .textarea {
-            font-size: 14px;
-            /*width: 100%;*/
-            height: 100px;
-            /*box-sizing: border-box;*/
-            resize: vertical;
+        .form-group label {
+            font-weight: bold;
         }
-        .editor {
-            flex: 1;
-            margin: 20px 10px;
-            /*height: 700px;*/
+        .hidden {
+            display: none;
         }
-        .editor textarea {
-            width: 100%;
-            height: 100%;
-            min-height: 500px;
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            resize: vertical;
+        .switch-container {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
         }
-        .btn-save {
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider {
             background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            padding: 10px 20px;
+        }
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+        .toggle-text {
+            margin-left: 10px;
+            display: inline-block;
+            vertical-align: middle;
+            font-weight: normal;
             font-size: 16px;
-            font-weight: bold;
-            text-transform: uppercase;
-            transition: background-color 0.3s;
-        }
-        .btn-save:hover {
-            background-color: #0056b3;
-        }
-        .btn-clear {
-            background-color: #ff6f61;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            padding: 10px 20px;
-            font-size: 16px;
-            font-weight: bold;
-            text-transform: uppercase;
-            transition: background-color 0.3s;
-        }
-        .btn-clear:hover {
-            background-color: #e0534e;
+            padding-right: 10px;
         }
         .btn-submit {
             background-color: #28a745;
@@ -90,45 +98,10 @@
         .btn-submit:hover {
             background-color: #218838;
         }
+        textarea {
+            resize: vertical;
+        }
     </style>
-
-
-
-    <script>
-        document.addEventListener('DOMContentLoaded', (event) => {
-            const textarea = document.getElementById('textEditor');
-            const savedContent = localStorage.getItem('textEditorContent');
-            if (savedContent) {
-                textarea.value = savedContent;
-            }
-
-            textarea.addEventListener('keydown', function (e) {
-                if (e.key === 'Tab') {
-                    e.preventDefault();
-                    const start = this.selectionStart;
-                    const end = this.selectionEnd;
-
-                    // Set textarea value to: text before caret + tab + text after caret
-                    this.value = this.value.substring(0, start) + "\t" + this.value.substring(end);
-
-                    // Put caret at right position again
-                    this.selectionStart = this.selectionEnd = start + 1;
-                }
-            });
-
-            $('#saveButton').click(function () {
-                const content = $('#textEditor').val();
-                alert('Content Saved: ' + content);
-                // Here you can add your logic to save the content
-                localStorage.setItem('textEditorContent', content);
-            });
-
-            $('#clearButton').click(function () {
-                $('#textEditor').val('');
-                localStorage.removeItem('textEditorContent');
-            });
-        });
-    </script>
 </head>
 <body class="sidebar-mini skin-blue">
     <div class="wrapper">
@@ -176,13 +149,13 @@
                     <li>
                         <a href="/spade"><i class="fa fa-id-card"></i> <span>Dashboard</span></a>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="/acl_message"><i class="fa fa-envelope"></i> <span>Send ACL message</span></a>
                     </li>
                     <li>
                         <a href="/negotiation"><i class="fa fa-comments"></i> <span>Negotiation</span></a>
                     </li>
-                    <li class="active">
+                    <li>
                         <a href="/editor"><i class="fa fa-code"></i> <span>Programming language editor</span></a>
                     </li>
                     <li>
@@ -193,10 +166,10 @@
         </aside>
         <div class="content-wrapper">
             <section class="content-header">
-                <h1>Send ACL Message</h1>
+                <h1>Received ACL Messages</h1>
                 <ol class="breadcrumb">
                     <li><a href="/spade"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li class="active">Programming Language Editor</li>
+                    <li class="active">Received ACL Messages</li>
                 </ol>
             </section>
             <section class="content">
@@ -204,18 +177,15 @@
                     <div class="col-md-8 col-md-offset-2">
                         <div class="box box-primary">
                             <div class="box-header with-border">
-                                <h3 class="box-title">Programming Language Editor</h3>
+                                <h3 class="box-title">Message Result</h3>
                             </div>
-                            <form action="/editor/submit" method="POST">
-                                <div class="editor box-body">
-                                    <textarea id="textEditor" name="textEditor" placeholder="Start programming here..."></textarea>
-                                </div>
-                                <div class="box-footer">
-                                    <button type="button" class="btn btn-save" id="saveButton">Save</button>
-                                    <button type="button" class="btn btn-clear" id="clearButton">Clear</button>
-                                    <button type="submit" class="btn btn-submit" id="createButton">Create</button>
-                            </div>
-                            </form>
+                            <h3>SPADE Agent Messages</h3>
+                            <div id="messages"></div>
+                            <ol>
+                            {% for msg in agent.acl_msg_log %}
+                                <li> {{ msg }} </li>
+                            {% endfor %}
+                            </ol>
                         </div>
                     </div>
                 </div>
@@ -225,6 +195,5 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.2/js/adminlte.min.js" integrity="sha256-M/+/xbAPBtc0W7JWnReOYF+oPZq4OiOUrlP9qbv7w64=" crossorigin="anonymous"></script>
-
 </body>
 </html>

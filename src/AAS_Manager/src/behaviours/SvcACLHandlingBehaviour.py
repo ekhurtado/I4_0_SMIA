@@ -79,11 +79,12 @@ class SvcACLHandlingBehaviour(CyclicBehaviour):
                 if self.myagent.acl_messages_id in self.myagent.acl_svc_requests:
                     _logger.error("A request has been made for an ACL service that already exists.")
                 else:
-                    self.myagent.acl_svc_requests[self.myagent.acl_messages_id] = msg_json_body
-                    self.myagent.acl_messages_id += 1 # Increment the number of received messages
+                    # The thread is the identifier of the conversation
+                    self.myagent.acl_svc_requests[msg.thread] = msg_json_body
 
                     # A new behaviour is added to the SPADE agent to handle this specific service request
-                    svc_req_handling_behav = SvcRequestHandlingBehaviour(self.agent, msg_json_body)
+                    svc_req_handling_behav = SvcRequestHandlingBehaviour(self.agent,
+                                                                         'Inter AAS interaction', msg)
                     self.myagent.add_behaviour(svc_req_handling_behav)
 
 

@@ -1,8 +1,9 @@
+import json
 from urllib.parse import parse_qs
 
 import spade
 from spade.agent import Agent
-from spade.behaviour import OneShotBehaviour
+from spade.behaviour import OneShotBehaviour, CyclicBehaviour
 from spade.message import Message
 
 # XMPP_SERVER = 'worker4'
@@ -28,7 +29,9 @@ class GUIAgent(Agent):
             elif len(data_json['messageType']) == 2:
                 msg.body = '{"serviceID": "' + data_json['serviceID'] + \
                        '", "serviceType": "' + data_json['serviceType'] + \
-                       '", "serviceData": ' + data_json['serviceData'] + '}'
+                       '", "serviceData": {' + \
+                                '"serviceCategory": "' + data_json['serviceCategory'] + \
+                                '", "serviceParams": ' + data_json['serviceParams'] + '}'
             print(msg)
 
             print("Sending the message...")
@@ -69,11 +72,25 @@ class GUIAgent(Agent):
 
             print("All negotiation messages sent!")
 
+    class ReceiverBehaviour(CyclicBehaviour):
+        async def run(self):
+            msg = await self.receive(timeout=10)  # Wait for a message for 10 seconds
+            if msg:
+                self.agent.acl_msg_log.append(str(msg.body))
+                print(f"Message received: {msg.body}")
+            else:
+                print("No msg")
+
+
     async def setup(self):
         print("Hello World! I'm sender agent {}".format(str(self.jid)))
         print("GUIAgent started")
         self.acl_sent = False  # se inicializa en False
         self.neg_sent = False  # se inicializa en False
+        self.acl_msg_log = []   # se inicializa el array de mensajes ACL
+
+        receiver_behav = self.ReceiverBehaviour()
+        self.add_behaviour(receiver_behav)
 
     async def acl_post_controller(self, request):
 
@@ -115,7 +132,6 @@ class GUIAgent(Agent):
 
         return {"status": "OK"}
 
-
 async def hello_controller(request):
     print(request)
     return {"status": "OK"}
@@ -138,6 +154,8 @@ async def main():
     gui_agent.web.add_get("/acl_message", hello_controller, "/htmls/send_acl.html")
     gui_agent.web.add_post("/acl_message/submit", gui_agent.acl_post_controller, "/htmls/send_acl_submit.html")
 
+    gui_agent.web.add_get("/receive_acl_msgs", hello_controller, "/htmls/receive_acl.html")
+
     gui_agent.web.add_get("/negotiation", hello_controller, "/htmls/negotiation.html")
     gui_agent.web.add_post("/negotiation/submit", gui_agent.neg_post_controller, "/htmls/negotiation_submit.html")
 
@@ -145,6 +163,7 @@ async def main():
     gui_agent.web.add_post("/editor/submit", gui_agent.acl_post_controller, "/htmls/own_programming_language_editor.html")
 
     gui_agent.web.add_get("/aas_library", hello_controller, "/htmls/aas_library.html")
+
     print("All HTMLs added.")
 
     # Since the agent object has already been created, the agent will start
@@ -152,6 +171,7 @@ async def main():
     gui_agent.web.start(hostname="0.0.0.0", port="10000")  # https://spade-mas.readthedocs.io/en/latest/web.html#
     gui_agent.web.add_menu_entry("Send ACL message", "/acl_message",
                                     "fa fa-envelope")  # https://github.com/javipalanca/spade/blob/master/docs/web.rst#menu-entries
+    gui_agent.web.add_menu_entry("Received ACL messages", "/receive_acl_msgs", "fa fa-inbox")
     gui_agent.web.add_menu_entry("Negotiation", "/negotiation", "fa fa-comments")
     gui_agent.web.add_menu_entry("Programming language editor", "/editor", "fa fa-code")
     gui_agent.web.add_menu_entry("AAS Library", "/aas_library", "fa fa-book")
