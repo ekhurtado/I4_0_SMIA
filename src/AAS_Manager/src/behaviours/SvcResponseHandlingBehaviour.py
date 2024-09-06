@@ -3,8 +3,9 @@ import logging
 import time
 
 from spade.behaviour import CyclicBehaviour, OneShotBehaviour
+from spade.message import Message
 
-from logic import Services_utils, Interactions_utils
+from logic import Services_utils, IntraAASInteractions_utils, InterAASInteractions_utils
 from utilities import AAS_Archive_utils
 from utilities.AASarchiveInfo import AASarchiveInfo
 
@@ -18,12 +19,14 @@ class SvcResponseHandlingBehaviour(OneShotBehaviour):
     OneShotBehaviour because it handles an individual service response and then kills itself.
     """
 
-    def __init__(self, agent_object, svc_resp_info):
+    def __init__(self, agent_object, svc_resp_interaction_type, svc_resp_data):
         """
         The constructor method is rewritten to add the object of the agent
         Args:
             agent_object (spade.Agent): the SPADE agent object of the AAS Manager agent.
-            svc_resp_info (dict): the information about the service response
+            svc_resp_interaction_type (str): the type of the service response interaction (:term:`Inter AAS Interaction`
+            or :term:`Intra AAS Interaction`)
+            svc_resp_data (dict): all the information about the service response
         """
 
         # The constructor of the inherited class is executed.
@@ -31,7 +34,8 @@ class SvcResponseHandlingBehaviour(OneShotBehaviour):
 
         # The SPADE agent object is stored as a variable of the behaviour class
         self.myagent = agent_object
-        self.svc_resp_info = svc_resp_info
+        self.svc_resp_interaction_type = svc_resp_interaction_type
+        self.svc_resp_data = svc_resp_data
 
     async def on_start(self):
         """
@@ -55,7 +59,7 @@ class SvcResponseHandlingBehaviour(OneShotBehaviour):
         #   ese thread tienen su respuesta
 
         # First, the service type of the request is obtained
-        match self.svc_resp_info['serviceType']:
+        match self.svc_resp_data['serviceType']:
             case "AssetRelatedService":
                 await self.handle_asset_related_svc()
             case "AASInfrastructureServices":
@@ -76,24 +80,47 @@ class SvcResponseHandlingBehaviour(OneShotBehaviour):
         This method handles Asset Related Services. These services are part of I4.0 Application Component (application
         relevant).
         """
-        # If a response of this type has arrived, it means that a previous interaction request has been made to the
-        # AAS Core, so the first step is to match the response and its request information
-        svc_interaction_id = self.svc_resp_info['interactionID']
-        if svc_interaction_id not in self.myagent.interaction_requests:
-            _logger.error("The interaction message response with id " +svc_interaction_id+
-                          " has not its request information")
-            return
+        # TODO este tipo de servicios supongo que siempre se solicitaran via Kafka, pero aun asi pongo el if
+        if self.svc_resp_interaction_type == 'Intra AAS interaction':
 
-        # Since the request has been performed, it is removed from the global dictionary
-        svc_req_info = self.myagent.interaction_requests.pop(svc_interaction_id, None)
+            # If a response of this type has arrived, it means that a previous interaction request has been made to the
+            # AAS Core, so the first step is to match the response and its request information
+            svc_interaction_id = self.svc_resp_data['interactionID']
+            if svc_interaction_id not in self.myagent.interaction_requests:
+                _logger.error("The interaction message response with id " +svc_interaction_id+
+                              " has not its request information")
+                return
 
-        # The information if stored in the global dictionary for the responses
-        self.myagent.interaction_responses[svc_interaction_id] = self.svc_resp_info
+            # Since the request has been performed, it is removed from the global dictionary
+            svc_req_info = self.myagent.interaction_requests.pop(svc_interaction_id, None)
 
-        # Finally, it is also stored in the log of the AAS archive
-        AAS_Archive_utils.save_svc_log_info(self.svc_resp_info, 'AssetRelatedService')
-        _logger.info("Information of service with id " + str(svc_interaction_id)+ " has saved correctly in the log of the AAS Archive")
+            # The information if stored in the global dictionary for the responses
+            self.myagent.interaction_responses[svc_interaction_id] = self.svc_resp_data
 
+            # It is also stored in the log of the AAS archive
+            AAS_Archive_utils.save_svc_log_info(self.svc_resp_data, 'AssetRelatedService')
+            _logger.info("Information of service with id " + str(svc_interaction_id)+ " has saved correctly in the log of the AAS Archive")
+
+            # It has to be checked if this service is part of a previous service request (part of a complex
+            # conversation). For this purpose, the attribute 'thread' will be used.
+            inter_aas_req = InterAASInteractions_utils.get_inter_aas_request_by_thread(self.myagent, self.svc_resp_data['thread'])
+            if inter_aas_req is not None:
+                # In this case, there is a previous Inter AAS service request, so the response must be sent through
+                # FIPA-ACL to the requesting AAS.
+                inter_aas_response = InterAASInteractions_utils.create_inter_aas_response_object(inter_aas_req,
+                                                                                                 self.svc_resp_data)
+
+                msg = Message(to=inter_aas_req['receiver'], thread=inter_aas_req['thread'])
+                msg.set_metadata('performative', inter_aas_req['performative'])
+                msg.set_metadata('ontology', inter_aas_req['ontology'])
+
+                msg.body = inter_aas_response  # TODO Pensar si iria tambien en metadatos o todo en el body
+
+                await self.send(msg)
+
+        elif self.svc_resp_interaction_type == 'Inter AAS interaction':
+            # TODO pensar como se gestionaria este caso
+            print("Asset Related Service requested through Inter AAS interaction")
 
     async def handle_aas_infrastructure_svc(self):
         """

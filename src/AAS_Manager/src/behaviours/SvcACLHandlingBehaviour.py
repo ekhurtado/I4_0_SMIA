@@ -2,10 +2,11 @@ import json
 import logging
 import time
 
+import spade.message
 from spade.behaviour import CyclicBehaviour
 
 from behaviours.SvcRequestHandlingBehaviour import SvcRequestHandlingBehaviour
-from logic import Services_utils, Interactions_utils
+from logic import Services_utils, IntraAASInteractions_utils
 from utilities.AASarchiveInfo import AASarchiveInfo
 
 _logger = logging.getLogger(__name__)
@@ -82,9 +83,12 @@ class SvcACLHandlingBehaviour(CyclicBehaviour):
                     # The thread is the identifier of the conversation
                     self.myagent.acl_svc_requests[msg.thread] = msg_json_body
 
+                    svc_req_data = Services_utils.create_svc_req_data_from_acl_msg(msg)
+
                     # A new behaviour is added to the SPADE agent to handle this specific service request
                     svc_req_handling_behav = SvcRequestHandlingBehaviour(self.agent,
-                                                                         'Inter AAS interaction', msg)
+                                                                         'Inter AAS interaction',
+                                                                         svc_req_data)
                     self.myagent.add_behaviour(svc_req_handling_behav)
 
 

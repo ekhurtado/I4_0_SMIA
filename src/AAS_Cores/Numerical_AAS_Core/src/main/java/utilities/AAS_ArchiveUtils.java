@@ -117,19 +117,23 @@ public class AAS_ArchiveUtils {
         return null;
     }
 
-    public static JSONObject createSvcCompletedResponse(JSONObject requestJSON, String serviceData) {
+    public static JSONObject createSvcCompletedResponse(JSONObject requestJSON, String serviceRequestedData) {
         JSONObject completedResponseJSON = new JSONObject();
         completedResponseJSON.put("interactionID", requestJSON.get("interactionID"));
+        completedResponseJSON.put("thread", requestJSON.get("thread"));
         completedResponseJSON.put("serviceID", requestJSON.get("serviceID"));
         completedResponseJSON.put("serviceType", requestJSON.get("serviceType"));
-        completedResponseJSON.put("serviceStatus", "Completed");
-        if (serviceData != null) {
-            JSONObject serviceDataJSON = new JSONObject();
-            String requestedData = (String) ((JSONObject) requestJSON.get("serviceData")).get("requestedData");
-            serviceDataJSON.put(requestedData, serviceData);
-            serviceDataJSON.put("timestamp", System.currentTimeMillis() / 1000);   // Add the timestamp in seconds
-            completedResponseJSON.put("serviceData", serviceDataJSON);
+
+        JSONObject serviceDataJSON = new JSONObject();
+        serviceDataJSON.put("serviceStatus", "Completed");
+        serviceDataJSON.put("serviceCategory", "service-response");
+        serviceDataJSON.put("timestamp", System.currentTimeMillis() / 1000);   // Add the timestamp in seconds
+
+        if (serviceRequestedData != null) {
+            String requestedDataName = (String) ((JSONObject) ((JSONObject) requestJSON.get("serviceData")).get("serviceParams")).get("requestedData");
+            serviceDataJSON.put(requestedDataName, serviceRequestedData);
         }
+        completedResponseJSON.put("serviceData", serviceDataJSON);
         return completedResponseJSON;
     }
 

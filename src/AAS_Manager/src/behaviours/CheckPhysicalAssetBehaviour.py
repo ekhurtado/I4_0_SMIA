@@ -1,7 +1,7 @@
 import logging
 from spade.behaviour import OneShotBehaviour
 
-from logic import Interactions_utils
+from logic import IntraAASInteractions_utils
 from utilities import Submodels_utils
 from utilities.AASarchiveInfo import AASarchiveInfo
 
@@ -41,15 +41,15 @@ class CheckPhysicalAssetBehaviour(OneShotBehaviour):
         # Besides, it is necessary to check whether the connection to the asset is established. To do that, a message
         # to the AAS Core has to be sent.
         # Create the valid JSON structure to save in svcRequests.json
-        current_interaction_id = self.myagent.interaction_id
-        svc_request_json = Interactions_utils.create_svc_request_json(interaction_id=current_interaction_id,
-                                                                      svc_id='checkAssetConnection',
-                                                                      svc_type='AssetRelatedService')
+        current_interaction_id_num = self.myagent.interaction_id_num
+        svc_request_json = Interactions_utils.create_svc_request_interaction_json(interaction_id=self.agent.interaction_id,
+                                                                                  svc_id='checkAssetConnection',
+                                                                                  svc_type='AssetRelatedService')
         # Save the JSON in svcRequests.json
         Interactions_utils.add_new_svc_request(svc_request_json)
 
         # Since a new service has been request, the interaction of the agent has to be incremented
-        self.myagent.interaction_id += 1
+        self.myagent.interaction_id_num += 1
 
         # Check i
         # Wait until the service is completed

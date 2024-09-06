@@ -5,7 +5,7 @@ import os
 from aiokafka import AIOKafkaConsumer, TopicPartition
 from spade.behaviour import CyclicBehaviour
 
-from logic import Interactions_utils
+from logic import IntraAASInteractions_utils
 from utilities.AAS_Archive_utils import file_to_json
 from utilities.AASarchiveInfo import AASarchiveInfo
 from utilities.KafkaInfo import KafkaInfo

@@ -4,7 +4,7 @@ import time
 
 from spade.behaviour import CyclicBehaviour, OneShotBehaviour
 
-from logic import Services_utils, Interactions_utils
+from logic import Services_utils, IntraAASInteractions_utils
 from utilities.AASarchiveInfo import AASarchiveInfo
 
 _logger = logging.getLogger(__name__)
@@ -17,13 +17,14 @@ class SvcRequestHandlingBehaviour(OneShotBehaviour):
     OneShotBehaviour because it handles an individual service request and then kills itself.
     """
 
-    def __init__(self, agent_object, svc_interaction_type, svc_req_data):
+    def __init__(self, agent_object, svc_req_interaction_type, svc_req_data):
         """
         The constructor method is rewritten to add the object of the agent
         Args:
             agent_object (spade.Agent): the SPADE agent object of the AAS Manager agent.
-            svc_interaction_type (str): the type of the service request
-            svc_req_data: the information about the service request
+            svc_req_interaction_type (str): the type of the service request interaction (:term:`Inter AAS Interaction`
+            or :term:`Intra AAS Interaction`)
+            svc_req_data (dict): all the information about the service request
         """
 
         # The constructor of the inherited class is executed.
@@ -31,7 +32,9 @@ class SvcRequestHandlingBehaviour(OneShotBehaviour):
 
         # The SPADE agent object is stored as a variable of the behaviour class
         self.myagent = agent_object
-        self.svc_req_info = svc_req_info
+        self.svc_req_interaction_type = svc_req_interaction_type
+        self.svc_req_data = svc_req_data
+
 
     async def on_start(self):
         """
@@ -63,7 +66,7 @@ class SvcRequestHandlingBehaviour(OneShotBehaviour):
         #  otro behaviour diferente
 
         # First, the service type of the request is obtained
-        match self.svc_req_info['serviceType']:
+        match self.svc_req_data['serviceType']:
             case "AssetRelatedService":
                 await self.handle_asset_related_svc()
             case "AASInfrastructureServices":
@@ -84,32 +87,36 @@ class SvcRequestHandlingBehaviour(OneShotBehaviour):
         This method handles Asset Related Services. These services are part of I4.0 Application Component (application
         relevant).
         """
-        # In this type of services an interaction request have to be made to the AAS Core
-        # First, the valid JSON structure of the request is generated
-        interaction_request_json = Interactions_utils.create_svc_request_json(interaction_id=self.myagent.interaction_id,
-                                                                      svc_id=self.svc_req_info['serviceID'],
-                                                                      svc_type=self.svc_req_info['serviceType'],
-                                                                      svc_data=self.svc_req_info['serviceData'])
+        # TODO este tipo de servicios supongo que siempre se solicitaran via ACL, pero aun asi pongo el if
+        if self.svc_req_interaction_type == 'Inter AAS interaction':
+            # In this type of services an interaction request have to be made to the AAS Core
+            # First, the valid JSON structure of the request is generated
+            interaction_request_json = Interactions_utils.create_svc_request_interaction_json(
+                interaction_id=self.myagent.get_interaction_id(),
+                request_data=self.svc_req_data)
 
-        # Then, the interaction message is sent to the AAS Core
-        request_result = await Interactions_utils.send_interaction_msg_to_core(client_id='i4-0-smia-manager',
-                                                                         msg_key='manager-service-request',
-                                                                         msg_data=interaction_request_json)
-        if request_result is not "OK":
-            _logger.error("The AAS Manager-Core interaction is not working: " + str(request_result))
-        else:
-            _logger.interactioninfo("The service with interaction id [" +str(self.myagent.interaction_id)+
-                         "] to the AAS Core has been requested")
+            # Then, the interaction message is sent to the AAS Core
+            request_result = await Interactions_utils.send_interaction_msg_to_core(client_id='i4-0-smia-manager',
+                                                                             msg_key='manager-service-request',
+                                                                             msg_data=interaction_request_json)
+            if request_result is not "OK":
+                _logger.error("The AAS Manager-Core interaction is not working: " + str(request_result))
+            else:
+                _logger.interactioninfo("The service with interaction id [" +self.myagent.interaction_id+
+                             "] to the AAS Core has been requested")
 
 
-            # In this case, the service request is completed, since it needs the cooperation of the AAS Core. When the
-            # response arrives, another behaviour is responsible for checking whether the service has been fully
-            # performed
-            # The information about the interaction request is also stored in the global variables of the agent
-            self.myagent.interaction_requests[self.myagent.interaction_id] = interaction_request_json
+                # In this case, the service request is completed, since it needs the cooperation of the AAS Core. When the
+                # response arrives, another behaviour is responsible for checking whether the service has been fully
+                # performed
+                # The information about the interaction request is also stored in the global variables of the agent
+                self.myagent.interaction_requests[self.myagent.get_interaction_id()] = interaction_request_json
 
-            # Finally, it has to increment the interaction id as new requests has been made
-            self.myagent.interaction_id += 1
+                # Finally, it has to increment the interaction id as new requests has been made
+                self.myagent.interaction_id_num += 1
+        elif self.svc_req_interaction_type == 'Intra AAS interaction':
+            # TODO pensar como se gestionaria este caso
+            print("Asset Related Service requested through Intra AAS interaction")
 
     async def handle_aas_infrastructure_svc(self):
         """

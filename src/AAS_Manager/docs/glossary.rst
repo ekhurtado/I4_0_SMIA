@@ -45,3 +45,9 @@ Glossary
    AAS Core
        The AAS Core is the specific part of the AAS that is closely related to the asset which the AAS is representing. The assets can be either logical or physical. The AAS Core is developed by the user for each case.
 
+   Inter AAS Interaction
+       Interaction type that takes place between I4.0 Components, i.e. between AASs (and therefore between AAS Managers). These interactions will follow FIPA-ACL, i.e. an AAS can request a service from another AAS.
+
+   Intra AAS Interaction
+       Interaction within each I4.0 Component, that is, between the AAS Manager and the AAS Core. This interaction will occur when one of the two has to perform a task that it is not capable of by itself, so it will have to request it to the other entity. I.e. the AAS Manager can request a service from its associated AAS Core.
+

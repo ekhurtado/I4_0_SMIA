@@ -31,7 +31,7 @@ class GUIAgent(Agent):
                        '", "serviceType": "' + data_json['serviceType'] + \
                        '", "serviceData": {' + \
                                 '"serviceCategory": "' + data_json['serviceCategory'] + \
-                                '", "serviceParams": ' + data_json['serviceParams'] + '}'
+                                '", "serviceParams": ' + data_json['serviceParams'] + '}}'
             print(msg)
 
             print("Sending the message...")

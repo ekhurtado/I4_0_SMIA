@@ -5,7 +5,7 @@ import time
 from spade.behaviour import CyclicBehaviour
 
 from behaviours.SvcResponseHandlingBehaviour import SvcResponseHandlingBehaviour
-from logic import Services_utils, Interactions_utils
+from logic import Services_utils, IntraAASInteractions_utils
 from utilities.AASarchiveInfo import AASarchiveInfo
 
 _logger = logging.getLogger(__name__)
@@ -67,7 +67,9 @@ class InteractionHandlingBehaviour(CyclicBehaviour):
                                      " has been answered from the AAS Core to the AAS Manager. Data of the response: "
                                      + str(msg_json_value))
                         # A new behaviour is added to the SPADE agent to handle this specific service request
-                        svc_resp_handling_behav = SvcResponseHandlingBehaviour(self.agent, msg_json_value)
+                        svc_resp_handling_behav = SvcResponseHandlingBehaviour(self.agent,
+                                                                               'Intra AAS interaction',
+                                                                               msg_json_value)
                         self.myagent.add_behaviour(svc_resp_handling_behav)
 
         finally:

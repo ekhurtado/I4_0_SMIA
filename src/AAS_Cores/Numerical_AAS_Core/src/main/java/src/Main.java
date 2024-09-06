@@ -52,9 +52,10 @@ public class Main {
     public String executeARSvcFunctionality(String serviceID, JSONObject serviceData) {
         System.out.println("Executing the functionality asociated to the Asset service: " + serviceID);
         String data = null;
+        JSONObject serviceParams = (JSONObject) serviceData.get("serviceParams");
         switch (serviceID) {
             case "getAssetData":
-                switch ((String) serviceData.get("requestedData")) {
+                switch ((String) serviceParams.get("requestedData")) {
                     case "battery":
                         data = String.valueOf(AssetRelatedServices.getAssetBattery());
                         break;
@@ -102,59 +103,7 @@ public class Main {
         }
 
         // Then, it waits until the AAS Manager is ready
-        // TODO this code is for the interaction through JSON (it has to be removed)
-//        while (Objects.equals(AAS_ArchiveUtils.getManagerStatus(), "Initializing")) {
-//            System.out.println("AAS Manager has not yet been initialized.");
-//            Thread.sleep(1000); // Waits 1s
-//        }
 
-
-        System.out.println("AAS Manager has initialized, so the AAS Core is starting.");
-//        while (true) {
-//            // Get the new request information
-//            JSONObject nextRequestJSON = AAS_ArchiveUtils.getNextSvcRequest();
-//            if (nextRequestJSON != null) {
-//                System.out.println("Service requested by the AAS Manager.");
-//
-//                // Perform the request
-//                String serviceData = null;
-//                switch ((String) Objects.requireNonNull(nextRequestJSON).get("serviceType")) {
-//                    case "AssetRelatedService":
-//                        serviceData = aas_core.executeARSvcFunctionality((String) nextRequestJSON.get("serviceID"), (JSONObject) nextRequestJSON.get("serviceData"));
-//
-//                        // Prepare the response
-//                        System.out.println("Creating the service response object...");
-//                        JSONObject responseFinalJSON = AAS_ArchiveUtils.createSvcCompletedResponse(nextRequestJSON, serviceData);
-//                        // Update response JSON
-//                        AAS_ArchiveUtils.updateSvcCompleteResponse(responseFinalJSON);
-//
-//                        // Update number of requests
-//                        aas_core.numberOfARSvcRequests += 1;
-//                        break;
-//                    case "AASInfrastructureService":
-//                        // Update number of requests
-//                        aas_core.numberOfAASIsvcRequests += 1;
-//                        break;
-//                    case "AASservice":
-//                        // Update number of requests
-//                        aas_core.numberOfAASsvcRequests += 1;
-//                        break;
-//                    case "SubmodelService":
-//                        // Update number of requests
-//                        aas_core.numberOfSMsvcRequests += 1;
-//                        break;
-//                    default:
-//                        System.out.println("Service not available.");
-//                }
-//
-//                System.out.println("Requested service completed.");
-//
-//                aas_core.serviceRecord.add(String.valueOf(nextRequestJSON.get("interactionID")));
-//            } else {
-//                System.out.println("No service request yet.");
-//                Thread.sleep(5000); // waits for 5s
-//            }
-//        }
 
         // TODO test if it is working with Kafka
         KafkaConsumer kafkaConsumerPartitionManager = InteractionsUtils.createInteractionKafkaConsumer();
@@ -198,6 +147,9 @@ public class Main {
                 if (nextRequestJSON.containsKey("status")) {
                     System.out.println("New status of the AAS Manager: " + nextRequestJSON.get("status"));
                     aas_core.aasManagerStatus = (String) nextRequestJSON.get("status");
+                    if (!aas_core.aasManagerStatus.equals("Initializing"))
+                        System.out.println("AAS Manager has initialized, so the AAS Core can go to running state.");
+
                 } else {
 
                     // Only if the AAS Manager is ready the AAS Core will work

@@ -4,7 +4,7 @@ from spade.behaviour import State
 from behaviours.CheckCoreInitializationBehaviour import CheckCoreInitializationBehaviour
 from behaviours.InitAASarchiveBehaviour import InitAASarchiveBehaviour
 from behaviours.InitSubmodelsBehaviour import InitSubmodelsBehaviour
-from logic import Interactions_utils
+from logic import IntraAASInteractions_utils
 from utilities import AAS_Archive_utils
 from utilities.AASmanagerInfo import AASmanagerInfo
 
@@ -38,7 +38,8 @@ class StateBooting(State):
         self.agent.acl_svc_responses = {}
 
         # Objects for storing the information related to AAS Manager-Core interactions are initialized
-        self.agent.interaction_id = 0 # The interactionId is reset
+        self.agent.interaction_id_num = 0 # The interactionId number is reset
+        self.agent.interaction_id = 'manager-' + str(self.agent.interaction_id_num) # The complete interactionId
         self.agent.interaction_requests = {}
         self.agent.interaction_responses = {}
 
