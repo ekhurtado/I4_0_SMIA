@@ -359,13 +359,13 @@
         <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;## STATE 1: BOOTING ##  (Initial state)&quot;</span><span class="p">)</span>
 
         <span class="c1"># Objects for storing the information related to ACL services are initialized</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">agent</span><span class="o">.</span><span class="n">acl_messages_id</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># It is reset</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">agent</span><span class="o">.</span><span class="n">acl_messages_id</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># It is reset</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">agent</span><span class="o">.</span><span class="n">acl_svc_requests</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">agent</span><span class="o">.</span><span class="n">acl_svc_responses</span> <span class="o">=</span> <span class="p">{}</span>
 
         <span class="c1"># Objects for storing the information related to AAS Manager-Core interactions are initialized</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">agent</span><span class="o">.</span><span class="n">interaction_id_num</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># The interactionId number is reset</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">agent</span><span class="o">.</span><span class="n">interaction_id</span> <span class="o">=</span> <span class="s1">&#39;manager-&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">agent</span><span class="o">.</span><span class="n">interaction_id_num</span><span class="p">)</span> <span class="c1"># The complete interactionId</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">agent</span><span class="o">.</span><span class="n">interaction_id_num</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># The interactionId number is reset</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">agent</span><span class="o">.</span><span class="n">interaction_id</span> <span class="o">=</span> <span class="s1">&#39;manager-&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">agent</span><span class="o">.</span><span class="n">interaction_id_num</span><span class="p">)</span>  <span class="c1"># The complete interactionId</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">agent</span><span class="o">.</span><span class="n">interaction_requests</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">agent</span><span class="o">.</span><span class="n">interaction_responses</span> <span class="o">=</span> <span class="p">{}</span>
 
@@ -385,8 +385,9 @@
         <span class="n">AAS_Archive_utils</span><span class="o">.</span><span class="n">change_status</span><span class="p">(</span><span class="s1">&#39;InitializationReady&#39;</span><span class="p">)</span>
         <span class="c1"># Change of status must be notified to the AAS core</span>
         <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">IntraAASInteractions_utils</span><span class="o">.</span><span class="n">send_interaction_msg_to_core</span><span class="p">(</span><span class="n">client_id</span><span class="o">=</span><span class="s1">&#39;i4-0-smia-manager&#39;</span><span class="p">,</span>
-                                                                       <span class="n">msg_key</span><span class="o">=</span><span class="s1">&#39;manager-status&#39;</span><span class="p">,</span>
-                                                                       <span class="n">msg_data</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="s1">&#39;InitializationReady&#39;</span><span class="p">})</span>
+                                                                               <span class="n">msg_key</span><span class="o">=</span><span class="s1">&#39;manager-status&#39;</span><span class="p">,</span>
+                                                                               <span class="n">msg_data</span><span class="o">=</span><span class="p">{</span>
+                                                                                   <span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="s1">&#39;InitializationReady&#39;</span><span class="p">})</span>
 
         <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="ow">not</span> <span class="s2">&quot;OK&quot;</span><span class="p">:</span>
             <span class="n">_logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;The AAS Manager-Core interaction is not working: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>

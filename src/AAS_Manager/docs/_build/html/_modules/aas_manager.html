@@ -384,6 +384,15 @@
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
 
+    <span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;id1&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;thread&#39;</span><span class="p">:</span> <span class="s1">&#39;aa1&#39;</span><span class="p">,</span> <span class="s1">&#39;serviceID&#39;</span><span class="p">:</span> <span class="s1">&#39;svc1&#39;</span><span class="p">},</span>
+         <span class="s1">&#39;id2&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;thread&#39;</span><span class="p">:</span> <span class="s1">&#39;aa2&#39;</span><span class="p">,</span> <span class="s1">&#39;serviceID&#39;</span><span class="p">:</span> <span class="s1">&#39;svc2&#39;</span><span class="p">},</span>
+         <span class="s1">&#39;id3&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;thread&#39;</span><span class="p">:</span> <span class="s1">&#39;aa3&#39;</span><span class="p">,</span> <span class="s1">&#39;serviceID&#39;</span><span class="p">:</span> <span class="s1">&#39;svc3&#39;</span><span class="p">}</span>
+         <span class="p">}</span>
+
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">b</span> <span class="ow">in</span> <span class="n">a</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">b</span><span class="p">[</span><span class="s1">&#39;thread&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;aa1&#39;</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ESTE SI: &quot;</span> <span class="o">+</span> <span class="n">i</span><span class="p">)</span>
+
     <span class="c1"># Configure logging</span>
     <span class="n">GeneralUtils</span><span class="o">.</span><span class="n">configure_logging</span><span class="p">()</span>
     <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Initializing AAS Manager program...&quot;</span><span class="p">)</span>

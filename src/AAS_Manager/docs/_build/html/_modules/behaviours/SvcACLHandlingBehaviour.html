@@ -336,6 +336,10 @@
 <span class="sd">    others standardized AAS Manager in the I4.0 System.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
+    <span class="c1"># TODO pensar cambiarle el nombre, tanto a esta clase como a InteractionHandlingBehaviour, y pasarlas a tipo de</span>
+    <span class="c1">#  interaccion, es decir: InteractionHandlingBehaviour -&gt; IntraAASInteractionsHandlingBehaviour y</span>
+    <span class="c1">#  SvcACLHandlingBehaviour -&gt; InterAASInteractionsHandlingBehaviour</span>
+
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">agent_object</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The constructor method is rewritten to add the object of the agent</span>
@@ -355,7 +359,7 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This method implements the initialization process of this behaviour.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;ACLHandlingBehaviour starting...&quot;</span><span class="p">)</span></div>
+        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;SvcACLHandlingBehaviour starting...&quot;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="SvcACLHandlingBehaviour.run">
@@ -400,11 +404,11 @@
 
             <span class="k">if</span> <span class="n">service_category</span> <span class="o">==</span> <span class="s1">&#39;service-request&#39;</span><span class="p">:</span>
                 <span class="c1"># A new service request is added to the global dictionary of ACL requests of the agent</span>
-                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">acl_messages_id</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">acl_svc_requests</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">get_acl_svc_request</span><span class="p">(</span><span class="n">thread</span><span class="o">=</span><span class="n">msg</span><span class="o">.</span><span class="n">thread</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                     <span class="n">_logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;A request has been made for an ACL service that already exists.&quot;</span><span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="c1"># The thread is the identifier of the conversation</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">acl_svc_requests</span><span class="p">[</span><span class="n">msg</span><span class="o">.</span><span class="n">thread</span><span class="p">]</span> <span class="o">=</span> <span class="n">msg_json_body</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">save_new_acl_svc_request</span><span class="p">(</span><span class="n">thread</span><span class="o">=</span><span class="n">msg</span><span class="o">.</span><span class="n">thread</span><span class="p">,</span> <span class="n">request_data</span><span class="o">=</span><span class="n">msg_json_body</span><span class="p">)</span>
 
                     <span class="n">svc_req_data</span> <span class="o">=</span> <span class="n">Services_utils</span><span class="o">.</span><span class="n">create_svc_req_data_from_acl_msg</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
 

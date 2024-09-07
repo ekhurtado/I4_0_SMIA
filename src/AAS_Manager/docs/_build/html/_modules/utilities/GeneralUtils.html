@@ -319,6 +319,7 @@
           <h1>Source code for utilities.GeneralUtils</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">logging</span>
 
+<span class="kn">from</span> <span class="nn">spade.message</span> <span class="kn">import</span> <span class="n">Message</span>
 <span class="kn">from</span> <span class="nn">spade.template</span> <span class="kn">import</span> <span class="n">Template</span>
 
 
@@ -410,6 +411,31 @@
         <span class="n">custom_template</span><span class="o">.</span><span class="n">set_metadata</span><span class="p">(</span><span class="s1">&#39;performative&#39;</span><span class="p">,</span> <span class="n">performative</span><span class="p">)</span>
         <span class="n">custom_template</span><span class="o">.</span><span class="n">set_metadata</span><span class="p">(</span><span class="s1">&#39;ontology&#39;</span><span class="p">,</span> <span class="n">ontology</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">custom_template</span></div>
+
+
+<div class="viewcode-block" id="GeneralUtils.create_acl_msg">
+<a class="viewcode-back" href="../../utilities.GeneralUtils.html#utilities.GeneralUtils.GeneralUtils.create_acl_msg">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">create_acl_msg</span><span class="p">(</span><span class="n">receiver</span><span class="p">,</span> <span class="n">thread</span><span class="p">,</span> <span class="n">performative</span><span class="p">,</span> <span class="n">ontology</span><span class="p">,</span> <span class="n">body</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This method creates an FIPA-ACL message.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            receiver (str): The SPADE agent receiver of the ACL message.</span>
+<span class="sd">            thread (str): The thread of the ACL message.:</span>
+<span class="sd">            performative (str): The performative of the ACL message.</span>
+<span class="sd">            ontology (str): The ontology of the ACL message.</span>
+<span class="sd">            body: The body of the ACL message.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            spade.message.Message: SPADE message object FIPA-ACL-compliant.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="n">Message</span><span class="p">(</span><span class="n">to</span><span class="o">=</span><span class="n">receiver</span><span class="p">,</span> <span class="n">thread</span><span class="o">=</span><span class="n">thread</span><span class="p">)</span>
+        <span class="n">msg</span><span class="o">.</span><span class="n">set_metadata</span><span class="p">(</span><span class="s1">&#39;performative&#39;</span><span class="p">,</span> <span class="n">performative</span><span class="p">)</span>
+        <span class="n">msg</span><span class="o">.</span><span class="n">set_metadata</span><span class="p">(</span><span class="s1">&#39;ontology&#39;</span><span class="p">,</span> <span class="n">ontology</span><span class="p">)</span>
+
+        <span class="n">msg</span><span class="o">.</span><span class="n">body</span> <span class="o">=</span> <span class="n">body</span>  <span class="c1"># TODO Pensar si iria tambien en metadatos o todo en el body</span>
+        <span class="k">return</span> <span class="n">msg</span></div>
 </div>
 
 </pre></div>

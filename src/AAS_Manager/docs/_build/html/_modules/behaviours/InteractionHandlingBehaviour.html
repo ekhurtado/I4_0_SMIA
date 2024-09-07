@@ -322,6 +322,7 @@
 <span class="kn">from</span> <span class="nn">spade.behaviour</span> <span class="kn">import</span> <span class="n">CyclicBehaviour</span>
 
 <span class="kn">from</span> <span class="nn">behaviours.SvcResponseHandlingBehaviour</span> <span class="kn">import</span> <span class="n">SvcResponseHandlingBehaviour</span>
+<span class="kn">from</span> <span class="nn">logic</span> <span class="kn">import</span> <span class="n">IntraAASInteractions_utils</span>
 
 <span class="n">_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
@@ -333,6 +334,10 @@
 <span class="sd">    This class implements the behaviour that handles all the interaction messages that the AAS Manager will receive</span>
 <span class="sd">    from the AAS Core.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># TODO pensar cambiarle el nombre, tanto a esta clase como a SvcACLHandlingBehaviour, y pasarlas a tipo de</span>
+    <span class="c1">#  interaccion, es decir: InteractionHandlingBehaviour -&gt; IntraAASInteractionsHandlingBehaviour y</span>
+    <span class="c1">#  SvcACLHandlingBehaviour -&gt; InterAASInteractionsHandlingBehaviour</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">agent_object</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -363,7 +368,8 @@
 <span class="sd">        This method implements the logic of the behaviour.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># First of all, the Kafka consumer is created, who will receive the messages.</span>
-        <span class="n">kafka_consumer_core_partition</span> <span class="o">=</span> <span class="n">Interactions_utils</span><span class="o">.</span><span class="n">create_interaction_kafka_consumer</span><span class="p">(</span><span class="s1">&#39;i4-0-smia-manager&#39;</span><span class="p">)</span>
+        <span class="n">kafka_consumer_core_partition</span> <span class="o">=</span> <span class="n">IntraAASInteractions_utils</span><span class="o">.</span><span class="n">create_interaction_kafka_consumer</span><span class="p">(</span>
+            <span class="s1">&#39;i4-0-smia-manager&#39;</span><span class="p">)</span>
         <span class="k">await</span> <span class="n">kafka_consumer_core_partition</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
 
         <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;The AAS Manager is listening for interaction messages from the AAS Core...&quot;</span><span class="p">)</span>
@@ -386,8 +392,8 @@
                     <span class="k">case</span> <span class="s1">&#39;core-service-response&#39;</span><span class="p">:</span>
                         <span class="n">_logger</span><span class="o">.</span><span class="n">interactioninfo</span><span class="p">(</span><span class="s2">&quot;The AAS Manager has received a service response from the AAS Core.&quot;</span><span class="p">)</span>
                         <span class="n">_logger</span><span class="o">.</span><span class="n">interactioninfo</span><span class="p">(</span><span class="s2">&quot;The service with id &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">msg_json_value</span><span class="p">[</span><span class="s1">&#39;interactionID&#39;</span><span class="p">])</span> <span class="o">+</span>
-                                     <span class="s2">&quot; has been answered from the AAS Core to the AAS Manager. Data of the response: &quot;</span>
-                                     <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">msg_json_value</span><span class="p">))</span>
+                                                <span class="s2">&quot;has been answered from the AAS Core to the AAS Manager. Data of the &quot;</span>
+                                                <span class="s2">&quot;response: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">msg_json_value</span><span class="p">))</span>
                         <span class="c1"># A new behaviour is added to the SPADE agent to handle this specific service request</span>
                         <span class="n">svc_resp_handling_behav</span> <span class="o">=</span> <span class="n">SvcResponseHandlingBehaviour</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">agent</span><span class="p">,</span>
                                                                                <span class="s1">&#39;Intra AAS interaction&#39;</span><span class="p">,</span>
@@ -398,7 +404,6 @@
             <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Finalizing Kafka Consumer...&quot;</span><span class="p">)</span>
             <span class="k">await</span> <span class="n">kafka_consumer_core_partition</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span></div>
 </div>
-
 
 </pre></div>
         </article>

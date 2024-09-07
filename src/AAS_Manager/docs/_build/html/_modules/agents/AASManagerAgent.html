@@ -317,7 +317,9 @@
         </div>
         <article role="main" id="furo-main-content">
           <h1>Source code for agents.AASManagerAgent</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">spade.agent</span> <span class="kn">import</span> <span class="n">Agent</span>
+<span></span><span class="kn">import</span> <span class="nn">asyncio</span>
+
+<span class="kn">from</span> <span class="nn">spade.agent</span> <span class="kn">import</span> <span class="n">Agent</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 
 <span class="kn">from</span> <span class="nn">states.StateRunning</span> <span class="kn">import</span> <span class="n">StateRunning</span>
@@ -340,7 +342,20 @@
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">jid</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">password</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">verify_security</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">jid</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">verify_security</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">interaction_id_num</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># The interactionId number is set to 0</span>
+        <span class="c1"># Objects for storing the information related to ACL services are initialized</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">acl_messages_id</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># It is reset</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">acl_svc_requests</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">acl_svc_responses</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="c1"># Objects for storing the information related to AAS Manager-Core interactions are initialized</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">interaction_id_num</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># The interactionId number is reset</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">interaction_id</span> <span class="o">=</span> <span class="s1">&#39;manager-&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">agent</span><span class="o">.</span><span class="n">interaction_id_num</span><span class="p">)</span>  <span class="c1"># The complete interactionId</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">interaction_requests</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">interaction_responses</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="c1"># The Lock object is used to manage the access to global agent attributes (request and response dictionaries,</span>
+        <span class="c1"># interaction id number...)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lock</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Lock</span><span class="p">()</span>
 
 <div class="viewcode-block" id="AASManagerAgent.setup">
 <a class="viewcode-back" href="../../agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.setup">[docs]</a>
@@ -367,16 +382,154 @@
         <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">jid</span><span class="si">}</span><span class="s2"> setup finished correctly.&quot;</span><span class="p">)</span></div>
 
 
+    <span class="c1"># ----------------------------------------------</span>
+    <span class="c1"># Methods related to shared objects of the agent</span>
+    <span class="c1"># ----------------------------------------------</span>
 <div class="viewcode-block" id="AASManagerAgent.get_interaction_id">
 <a class="viewcode-back" href="../../agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.get_interaction_id">[docs]</a>
-    <span class="k">def</span> <span class="nf">get_interaction_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_interaction_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This method returns the identifier of the AAS Intra interactions of the AAS Manager.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            str: identifier of the interaction id.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="s1">&#39;manager-&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">interaction_id_num</span><span class="p">)</span></div>
+        <span class="k">async</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">lock</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s1">&#39;manager-&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">interaction_id_num</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="AASManagerAgent.increase_interaction_id_num">
+<a class="viewcode-back" href="../../agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.increase_interaction_id_num">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">increase_interaction_id_num</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This method increases the interaction id number for the AAS Intra interactions between the AAS Manager and the</span>
+<span class="sd">        AAS Core.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">async</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">lock</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">interaction_id_num</span> <span class="o">+=</span> <span class="mi">1</span></div>
+
+
+<div class="viewcode-block" id="AASManagerAgent.save_new_acl_svc_request">
+<a class="viewcode-back" href="../../agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.save_new_acl_svc_request">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">save_new_acl_svc_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">thread</span><span class="p">,</span> <span class="n">request_data</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This method adds a new ACL Service Request to the global acl service requests dictionary of the AAS Manager.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            thread (str): thread of the ACL Service Request.</span>
+<span class="sd">            request_data (dict): all the information of the ACL Service Request in JSON format.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">async</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">lock</span><span class="p">:</span>  <span class="c1"># safe access to a shared object of the agent</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">acl_svc_requests</span><span class="p">[</span><span class="n">thread</span><span class="p">]</span> <span class="o">=</span> <span class="n">request_data</span></div>
+
+
+<div class="viewcode-block" id="AASManagerAgent.save_acl_svc_response">
+<a class="viewcode-back" href="../../agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.save_acl_svc_response">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">save_acl_svc_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">thread</span><span class="p">,</span> <span class="n">response_data</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This method adds a specific Inter AAS interaction response to the global responses dictionary of the AAS Manager</span>
+<span class="sd">        for this type of interaction.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            thread (str): thread of the ACL Service response.</span>
+<span class="sd">            response_data (dict): all the information of the ACL Service response in JSON format.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">async</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">lock</span><span class="p">:</span>  <span class="c1"># safe access to a shared object of the agent</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">acl_svc_responses</span><span class="p">[</span><span class="n">thread</span><span class="p">]</span> <span class="o">=</span> <span class="n">response_data</span></div>
+
+
+<div class="viewcode-block" id="AASManagerAgent.remove_acl_svc_request">
+<a class="viewcode-back" href="../../agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.remove_acl_svc_request">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">remove_acl_svc_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">thread</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This method removes an ACL Service Request from the global acl service requests dictionary of the AAS Manager.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            thread (str): thread of the ACL Service Request.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">async</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">lock</span><span class="p">:</span>  <span class="c1"># safe access to a shared object of the agent</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">acl_svc_requests</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">thread</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="AASManagerAgent.get_acl_svc_request">
+<a class="viewcode-back" href="../../agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.get_acl_svc_request">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_acl_svc_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">thread</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This method gets the information of an ACL Service Request from the global acl service requests dictionary of</span>
+<span class="sd">        the AAS Manager using the thread.</span>
+<span class="sd">        Args:</span>
+<span class="sd">            thread (str): thread of the ACL Service Request.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: all information of the ACL Service Request in JSON format (null if the thread does not exist).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">async</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">lock</span><span class="p">:</span>  <span class="c1"># safe access to a shared object of the agent</span>
+            <span class="k">if</span> <span class="n">thread</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">acl_svc_requests</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">acl_svc_requests</span><span class="p">[</span><span class="n">thread</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">None</span></div>
+
+
+<div class="viewcode-block" id="AASManagerAgent.save_new_interaction_request">
+<a class="viewcode-back" href="../../agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.save_new_interaction_request">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">save_new_interaction_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request_data</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This method adds a new Intra AAS interaction Request to the global requests dictionary of the AAS Manager for</span>
+<span class="sd">        this type of interaction.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            request_data (dict): all the information of the ACL Service Request in JSON format.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">async</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">lock</span><span class="p">:</span>  <span class="c1"># safe access to a shared object of the agent</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">interaction_requests</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">get_interaction_id</span><span class="p">()]</span> <span class="o">=</span> <span class="n">request_data</span></div>
+
+
+<div class="viewcode-block" id="AASManagerAgent.save_interaction_response">
+<a class="viewcode-back" href="../../agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.save_interaction_response">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">save_interaction_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interaction_id</span><span class="p">,</span> <span class="n">response_data</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This method adds a specific Intra AAS interaction response to the global responses dictionary of the AAS Manager</span>
+<span class="sd">        for this type of interaction.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            interaction_id (str): identifier of the Intra AAS interaction response.</span>
+<span class="sd">            response_data (dict): all the information of the ACL Service response in JSON format.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">async</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">lock</span><span class="p">:</span>  <span class="c1"># safe access to a shared object of the agent</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">interaction_responses</span><span class="p">[</span><span class="n">interaction_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">response_data</span></div>
+
+
+<div class="viewcode-block" id="AASManagerAgent.remove_interaction_request">
+<a class="viewcode-back" href="../../agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.remove_interaction_request">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">remove_interaction_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interaction_id</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This method removes an Intra AAS interaction Request from the global requests dictionary of the AAS Manager for</span>
+<span class="sd">        this type of interaction.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            interaction_id (str): interaction identifier of the Intra AAS interaction Request.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">async</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">lock</span><span class="p">:</span>  <span class="c1"># safe access to a shared object of the agent</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">interaction_requests</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">interaction_id</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="AASManagerAgent.get_interaction_request">
+<a class="viewcode-back" href="../../agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.get_interaction_request">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_interaction_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interaction_id</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This method gets the information of an Intra AAS Interaction Request from the global acl service requests</span>
+<span class="sd">        dictionary of the AAS Manager using the interaction identifier.</span>
+<span class="sd">        Args:</span>
+<span class="sd">            interaction_id (str): interaction identifier of the Intra AAS interaction Request.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: all information of the Intra AAS Interaction Request in JSON format (null if the thread does not exist).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">async</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">lock</span><span class="p">:</span>  <span class="c1"># safe access to a shared object of the agent</span>
+            <span class="k">if</span> <span class="n">interaction_id</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">interaction_requests</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">interaction_requests</span><span class="p">[</span><span class="n">interaction_id</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">None</span></div>
 </div>
 
 </pre></div>

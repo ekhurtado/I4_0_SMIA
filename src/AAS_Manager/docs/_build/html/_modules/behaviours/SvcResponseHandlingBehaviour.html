@@ -324,6 +324,7 @@
 
 <span class="kn">from</span> <span class="nn">logic</span> <span class="kn">import</span> <span class="n">InterAASInteractions_utils</span>
 <span class="kn">from</span> <span class="nn">utilities</span> <span class="kn">import</span> <span class="n">AAS_Archive_utils</span>
+<span class="kn">from</span> <span class="nn">utilities.GeneralUtils</span> <span class="kn">import</span> <span class="n">GeneralUtils</span>
 
 <span class="n">_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
@@ -395,7 +396,6 @@
                 <span class="n">_logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Service type not available.&quot;</span><span class="p">)</span></div>
 
 
-
     <span class="c1"># ------------------------------------------</span>
     <span class="c1"># Methods to handle of all types of services</span>
     <span class="c1"># ------------------------------------------</span>
@@ -412,37 +412,44 @@
             <span class="c1"># If a response of this type has arrived, it means that a previous interaction request has been made to the</span>
             <span class="c1"># AAS Core, so the first step is to match the response and its request information</span>
             <span class="n">svc_interaction_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">svc_resp_data</span><span class="p">[</span><span class="s1">&#39;interactionID&#39;</span><span class="p">]</span>
-            <span class="k">if</span> <span class="n">svc_interaction_id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">interaction_requests</span><span class="p">:</span>
-                <span class="n">_logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;The interaction message response with id &quot;</span> <span class="o">+</span><span class="n">svc_interaction_id</span><span class="o">+</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">get_interaction_request</span><span class="p">(</span><span class="n">interaction_id</span><span class="o">=</span><span class="n">svc_interaction_id</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">_logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;The interaction message response with id &quot;</span> <span class="o">+</span> <span class="n">svc_interaction_id</span> <span class="o">+</span>
                               <span class="s2">&quot; has not its request information&quot;</span><span class="p">)</span>
                 <span class="k">return</span>
 
             <span class="c1"># Since the request has been performed, it is removed from the global dictionary</span>
-            <span class="n">svc_req_info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">interaction_requests</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">svc_interaction_id</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">remove_interaction_request</span><span class="p">(</span><span class="n">interaction_id</span><span class="o">=</span><span class="n">svc_interaction_id</span><span class="p">)</span>
 
             <span class="c1"># The information if stored in the global dictionary for the responses</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">interaction_responses</span><span class="p">[</span><span class="n">svc_interaction_id</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">svc_resp_data</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">save_interaction_response</span><span class="p">(</span><span class="n">interaction_id</span><span class="o">=</span><span class="n">svc_interaction_id</span><span class="p">,</span> <span class="n">response_data</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">svc_resp_data</span><span class="p">)</span>
 
             <span class="c1"># It is also stored in the log of the AAS archive</span>
             <span class="n">AAS_Archive_utils</span><span class="o">.</span><span class="n">save_svc_log_info</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">svc_resp_data</span><span class="p">,</span> <span class="s1">&#39;AssetRelatedService&#39;</span><span class="p">)</span>
-            <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Information of service with id &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">svc_interaction_id</span><span class="p">)</span><span class="o">+</span> <span class="s2">&quot; has saved correctly in the log of the AAS Archive&quot;</span><span class="p">)</span>
+            <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Information of service with id &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span>
+                <span class="n">svc_interaction_id</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; has saved correctly in the log of the AAS Archive&quot;</span><span class="p">)</span>
 
             <span class="c1"># It has to be checked if this service is part of a previous service request (part of a complex</span>
             <span class="c1"># conversation). For this purpose, the attribute &#39;thread&#39; will be used.</span>
-            <span class="n">inter_aas_req</span> <span class="o">=</span> <span class="n">InterAASInteractions_utils</span><span class="o">.</span><span class="n">get_inter_aas_request_by_thread</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">svc_resp_data</span><span class="p">[</span><span class="s1">&#39;thread&#39;</span><span class="p">])</span>
+            <span class="n">inter_aas_req</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">get_acl_svc_request</span><span class="p">(</span><span class="n">thread</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">svc_resp_data</span><span class="p">[</span><span class="s1">&#39;thread&#39;</span><span class="p">])</span>
             <span class="k">if</span> <span class="n">inter_aas_req</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="c1"># In this case, there is a previous Inter AAS service request, so the response must be sent through</span>
                 <span class="c1"># FIPA-ACL to the requesting AAS.</span>
                 <span class="n">inter_aas_response</span> <span class="o">=</span> <span class="n">InterAASInteractions_utils</span><span class="o">.</span><span class="n">create_inter_aas_response_object</span><span class="p">(</span><span class="n">inter_aas_req</span><span class="p">,</span>
                                                                                                  <span class="bp">self</span><span class="o">.</span><span class="n">svc_resp_data</span><span class="p">)</span>
 
-                <span class="n">msg</span> <span class="o">=</span> <span class="n">Message</span><span class="p">(</span><span class="n">to</span><span class="o">=</span><span class="n">inter_aas_req</span><span class="p">[</span><span class="s1">&#39;receiver&#39;</span><span class="p">],</span> <span class="n">thread</span><span class="o">=</span><span class="n">inter_aas_req</span><span class="p">[</span><span class="s1">&#39;thread&#39;</span><span class="p">])</span>
-                <span class="n">msg</span><span class="o">.</span><span class="n">set_metadata</span><span class="p">(</span><span class="s1">&#39;performative&#39;</span><span class="p">,</span> <span class="n">inter_aas_req</span><span class="p">[</span><span class="s1">&#39;performative&#39;</span><span class="p">])</span>
-                <span class="n">msg</span><span class="o">.</span><span class="n">set_metadata</span><span class="p">(</span><span class="s1">&#39;ontology&#39;</span><span class="p">,</span> <span class="n">inter_aas_req</span><span class="p">[</span><span class="s1">&#39;ontology&#39;</span><span class="p">])</span>
+                <span class="n">acl_msg</span> <span class="o">=</span> <span class="n">GeneralUtils</span><span class="o">.</span><span class="n">create_acl_msg</span><span class="p">(</span><span class="n">receiver</span><span class="o">=</span><span class="n">inter_aas_req</span><span class="p">[</span><span class="s1">&#39;receiver&#39;</span><span class="p">],</span>
+                                                      <span class="n">thread</span><span class="o">=</span><span class="n">inter_aas_req</span><span class="p">[</span><span class="s1">&#39;thread&#39;</span><span class="p">],</span>
+                                                      <span class="n">performative</span><span class="o">=</span><span class="n">inter_aas_req</span><span class="p">[</span><span class="s1">&#39;performative&#39;</span><span class="p">],</span>
+                                                      <span class="n">ontology</span><span class="o">=</span><span class="n">inter_aas_req</span><span class="p">[</span><span class="s1">&#39;ontology&#39;</span><span class="p">],</span>
+                                                      <span class="n">body</span><span class="o">=</span><span class="n">inter_aas_response</span><span class="p">)</span>
+                <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">acl_msg</span><span class="p">)</span>
 
-                <span class="n">msg</span><span class="o">.</span><span class="n">body</span> <span class="o">=</span> <span class="n">inter_aas_response</span>  <span class="c1"># TODO Pensar si iria tambien en metadatos o todo en el body</span>
+                <span class="c1"># Since the Inter AAS interaction request has also been made, it is removed from the global dictionary</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">remove_acl_svc_request</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">svc_resp_data</span><span class="p">[</span><span class="s1">&#39;thread&#39;</span><span class="p">])</span>
 
-                <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                <span class="c1"># The information if stored in the global dictionary for the Inter AAS interaction responses</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">save_acl_svc_response</span><span class="p">(</span><span class="n">thread</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">svc_resp_data</span><span class="p">[</span><span class="s1">&#39;thread&#39;</span><span class="p">],</span>
+                                                   <span class="n">response_data</span><span class="o">=</span><span class="n">inter_aas_response</span><span class="p">)</span>
 
         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">svc_resp_interaction_type</span> <span class="o">==</span> <span class="s1">&#39;Inter AAS interaction&#39;</span><span class="p">:</span>
             <span class="c1"># TODO pensar como se gestionaria este caso</span>
@@ -460,7 +467,7 @@
 <span class="sd">        for AASs).</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">interaction_id</span><span class="p">)</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">svc_resp_data</span><span class="p">))</span></div>
+        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">get_interaction_id</span><span class="p">())</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">svc_resp_data</span><span class="p">))</span></div>
 
 
 <div class="viewcode-block" id="SvcResponseHandlingBehaviour.handle_aas_services">
@@ -475,7 +482,7 @@
 <span class="sd">        control) and Exposure and Discovery Services (to search for submodels or asset related services).</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">interaction_id</span><span class="p">)</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">svc_resp_data</span><span class="p">))</span></div>
+        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">get_interaction_id</span><span class="p">())</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">svc_resp_data</span><span class="p">))</span></div>
 
 
 <div class="viewcode-block" id="SvcResponseHandlingBehaviour.handle_submodel_services">
@@ -489,7 +496,7 @@
         <span class="c1"># TODO, en este caso tendra que comprobar que submodelo esta asociado a la peticion de servicio. Si el submodelo</span>
         <span class="c1">#  es propio del AAS Manager, podra acceder directamente y, por tanto, este behaviour sera capaz de realizar el</span>
         <span class="c1">#  servicio completamente. Si es un submodelo del AAS Core, tendra que solicitarselo</span>
-        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">interaction_id</span><span class="p">)</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">svc_resp_data</span><span class="p">))</span></div>
+        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">get_interaction_id</span><span class="p">())</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">svc_resp_data</span><span class="p">))</span></div>
 </div>
 
 </pre></div>

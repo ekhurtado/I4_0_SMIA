@@ -360,20 +360,20 @@
             <span class="n">_logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;The submodel asset identification does not exist.&quot;</span><span class="p">)</span>
         <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;The submodel &#39;Asset identification&#39; of the asset exists.&quot;</span><span class="p">)</span>
 
-
         <span class="c1"># Besides, it is necessary to check whether the connection to the asset is established. To do that, a message</span>
         <span class="c1"># to the AAS Core has to be sent.</span>
         <span class="c1"># Create the valid JSON structure to save in svcRequests.json</span>
         <span class="n">current_interaction_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">get_interaction_id</span><span class="p">()</span>
         <span class="c1"># TODO comprobarlo, no se realiza bien la peticion de servicio Intra AAS interaction</span>
-        <span class="n">svc_request_json</span> <span class="o">=</span> <span class="n">IntraAASInteractions_utils</span><span class="o">.</span><span class="n">create_svc_request_interaction_json</span><span class="p">(</span><span class="n">interaction_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">agent</span><span class="o">.</span><span class="n">get_interaction_id</span><span class="p">(),</span>
-                                                                                  <span class="n">svc_id</span><span class="o">=</span><span class="s1">&#39;checkAssetConnection&#39;</span><span class="p">,</span>
-                                                                                  <span class="n">svc_type</span><span class="o">=</span><span class="s1">&#39;AssetRelatedService&#39;</span><span class="p">)</span>
+        <span class="n">svc_request_json</span> <span class="o">=</span> <span class="n">IntraAASInteractions_utils</span><span class="o">.</span><span class="n">create_svc_request_interaction_json</span><span class="p">(</span>
+            <span class="n">interaction_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">agent</span><span class="o">.</span><span class="n">get_interaction_id</span><span class="p">(),</span>
+            <span class="n">svc_id</span><span class="o">=</span><span class="s1">&#39;checkAssetConnection&#39;</span><span class="p">,</span>
+            <span class="n">svc_type</span><span class="o">=</span><span class="s1">&#39;AssetRelatedService&#39;</span><span class="p">)</span>
         <span class="c1"># Save the JSON in svcRequests.json</span>
         <span class="n">IntraAASInteractions_utils</span><span class="o">.</span><span class="n">add_new_svc_request</span><span class="p">(</span><span class="n">svc_request_json</span><span class="p">)</span>
 
         <span class="c1"># Since a new service has been request, the interaction of the agent has to be incremented</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">interaction_id_num</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">increase_interaction_id_num</span><span class="p">()</span>
 
         <span class="c1"># Check i</span>
         <span class="c1"># Wait until the service is completed</span>
@@ -386,8 +386,8 @@
                 <span class="c1"># Set the service as completed</span>
                 <span class="c1"># Write the information in the log file</span>
                 <span class="n">IntraAASInteractions_utils</span><span class="o">.</span><span class="n">save_svc_info_in_log_file</span><span class="p">(</span><span class="s1">&#39;Manager&#39;</span><span class="p">,</span>
-                                                             <span class="n">AASarchiveInfo</span><span class="o">.</span><span class="n">ASSET_RELATED_SVC_LOG_FILENAME</span><span class="p">,</span>
-                                                             <span class="n">current_interaction_id</span><span class="p">)</span>
+                                                                     <span class="n">AASarchiveInfo</span><span class="o">.</span><span class="n">ASSET_RELATED_SVC_LOG_FILENAME</span><span class="p">,</span>
+                                                                     <span class="n">current_interaction_id</span><span class="p">)</span>
                 <span class="c1"># Return message to the sender</span>
                 <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Service completed! Response: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">svc_response</span><span class="p">))</span>
                 <span class="k">break</span>

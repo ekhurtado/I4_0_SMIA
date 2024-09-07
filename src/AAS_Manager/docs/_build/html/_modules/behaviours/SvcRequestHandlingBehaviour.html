@@ -429,17 +429,18 @@
             <span class="k">if</span> <span class="n">request_result</span> <span class="ow">is</span> <span class="ow">not</span> <span class="s2">&quot;OK&quot;</span><span class="p">:</span>
                 <span class="n">_logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;The AAS Manager-Core interaction is not working: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">request_result</span><span class="p">))</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">_logger</span><span class="o">.</span><span class="n">interactioninfo</span><span class="p">(</span><span class="s2">&quot;The service with interaction id [&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">interaction_id</span> <span class="o">+</span>
+                <span class="n">_logger</span><span class="o">.</span><span class="n">interactioninfo</span><span class="p">(</span><span class="s2">&quot;The service with interaction id [&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">get_interaction_id</span><span class="p">()</span> <span class="o">+</span>
                                         <span class="s2">&quot;] to the AAS Core has been requested&quot;</span><span class="p">)</span>
 
-                <span class="c1"># In this case, the service request is completed, since it needs the cooperation of the AAS Core. When the</span>
-                <span class="c1"># response arrives, another behaviour is responsible for checking whether the service has been fully</span>
-                <span class="c1"># performed</span>
+                <span class="c1"># In this case, the service request is completed, since it needs the cooperation of the AAS Core.</span>
+                <span class="c1"># When the response arrives, another behaviour is responsible for checking whether the service has been</span>
+                <span class="c1"># fully performed</span>
                 <span class="c1"># The information about the interaction request is also stored in the global variables of the agent</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">interaction_requests</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">get_interaction_id</span><span class="p">()]</span> <span class="o">=</span> <span class="n">interaction_request_json</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">save_new_interaction_request</span><span class="p">(</span><span class="n">request_data</span><span class="o">=</span><span class="n">interaction_request_json</span><span class="p">)</span>
 
                 <span class="c1"># Finally, it has to increment the interaction id as new requests has been made</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">interaction_id_num</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">increase_interaction_id_num</span><span class="p">()</span>
+
         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">svc_req_interaction_type</span> <span class="o">==</span> <span class="s1">&#39;Intra AAS interaction&#39;</span><span class="p">:</span>
             <span class="c1"># TODO pensar como se gestionaria este caso</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Asset Related Service requested through Intra AAS interaction&quot;</span><span class="p">)</span></div>
@@ -456,7 +457,7 @@
 <span class="sd">        for AASs).</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">get_interaction_id</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">svc_req_data</span><span class="p">))</span></div>
+        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">get_interaction_id</span><span class="p">()</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">svc_req_data</span><span class="p">))</span></div>
 
 
 <div class="viewcode-block" id="SvcRequestHandlingBehaviour.handle_aas_services">
@@ -471,7 +472,7 @@
 <span class="sd">        control) and Exposure and Discovery Services (to search for submodels or asset related services).</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">get_interaction_id</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">svc_req_data</span><span class="p">))</span></div>
+        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">get_interaction_id</span><span class="p">()</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">svc_req_data</span><span class="p">))</span></div>
 
 
 <div class="viewcode-block" id="SvcRequestHandlingBehaviour.handle_submodel_services">
@@ -485,7 +486,7 @@
         <span class="c1"># TODO, en este caso tendra que comprobar que submodelo esta asociado a la peticion de servicio. Si el submodelo</span>
         <span class="c1">#  es propio del AAS Manager, podra acceder directamente y, por tanto, este behaviour sera capaz de realizar el</span>
         <span class="c1">#  servicio completamente. Si es un submodelo del AAS Core, tendra que solicitarselo</span>
-        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">get_interaction_id</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">svc_req_data</span><span class="p">))</span></div>
+        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">get_interaction_id</span><span class="p">()</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">svc_req_data</span><span class="p">))</span></div>
 </div>
 
 </pre></div>

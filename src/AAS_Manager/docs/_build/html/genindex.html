@@ -230,7 +230,7 @@
   <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="aas_developer_guide.html">AAS Developer Guide</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="modules.html">src</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of src</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="modules.html">API documentation</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of API documentation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="aas_manager.html">aas_manager module</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="agents.html">agents package</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of agents package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="agents.AASManagerAgent.html">agents.AASManagerAgent module</a></li>
@@ -538,6 +538,8 @@
 </li>
         <li><a href="utilities.KafkaInfo.html#utilities.KafkaInfo.KafkaInfo.CORE_TOPIC_PARTITION">CORE_TOPIC_PARTITION (utilities.KafkaInfo.KafkaInfo attribute)</a>
 </li>
+        <li><a href="utilities.GeneralUtils.html#utilities.GeneralUtils.GeneralUtils.create_acl_msg">create_acl_msg() (utilities.GeneralUtils.GeneralUtils static method)</a>
+</li>
         <li><a href="utilities.GeneralUtils.html#utilities.GeneralUtils.GeneralUtils.create_acl_template">create_acl_template() (utilities.GeneralUtils.GeneralUtils static method)</a>
 </li>
         <li><a href="utilities.Submodels_utils.html#utilities.Submodels_utils.create_configuration_sm">create_configuration_sm() (in module utilities.Submodels_utils)</a>
@@ -606,11 +608,13 @@
 </li>
         <li><a href="utilities.ConfigMap_utils.html#utilities.ConfigMap_utils.get_aas_general_property">get_aas_general_property() (in module utilities.ConfigMap_utils)</a>
 </li>
+        <li><a href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.get_acl_svc_request">get_acl_svc_request() (agents.AASManagerAgent.AASManagerAgent method)</a>
+</li>
         <li><a href="utilities.ConfigMap_utils.html#utilities.ConfigMap_utils.get_asset_type">get_asset_type() (in module utilities.ConfigMap_utils)</a>
 </li>
-        <li><a href="logic.InterAASInteractions_utils.html#logic.InterAASInteractions_utils.get_inter_aas_request_by_thread">get_inter_aas_request_by_thread() (in module logic.InterAASInteractions_utils)</a>
-</li>
         <li><a href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.get_interaction_id">get_interaction_id() (agents.AASManagerAgent.AASManagerAgent method)</a>
+</li>
+        <li><a href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.get_interaction_request">get_interaction_request() (agents.AASManagerAgent.AASManagerAgent method)</a>
 </li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
@@ -696,12 +700,14 @@
 </li>
         <li><a href="behaviours.IdleBehaviour.html#behaviours.IdleBehaviour.IdleBehaviour">IdleBehaviour (class in behaviours.IdleBehaviour)</a>
 </li>
-        <li><a href="glossary.html#term-Industrial-Agent"><strong>Industrial Agent</strong></a>
+        <li><a href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.increase_interaction_id_num">increase_interaction_id_num() (agents.AASManagerAgent.AASManagerAgent method)</a>
 </li>
-        <li><a href="behaviours.InitAASarchiveBehaviour.html#behaviours.InitAASarchiveBehaviour.InitAASarchiveBehaviour">InitAASarchiveBehaviour (class in behaviours.InitAASarchiveBehaviour)</a>
+        <li><a href="glossary.html#term-Industrial-Agent"><strong>Industrial Agent</strong></a>
 </li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="behaviours.InitAASarchiveBehaviour.html#behaviours.InitAASarchiveBehaviour.InitAASarchiveBehaviour">InitAASarchiveBehaviour (class in behaviours.InitAASarchiveBehaviour)</a>
+</li>
         <li><a href="behaviours.InitSubmodelsBehaviour.html#behaviours.InitSubmodelsBehaviour.InitSubmodelsBehaviour">InitSubmodelsBehaviour (class in behaviours.InitSubmodelsBehaviour)</a>
 </li>
         <li><a href="glossary.html#term-Inter-AAS-Interaction"><strong>Inter AAS Interaction</strong></a>
@@ -923,6 +929,10 @@
   <h2>R</h2>
   <table style="width: 100%" class="indextable genindextable"><tr>
     <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.remove_acl_svc_request">remove_acl_svc_request() (agents.AASManagerAgent.AASManagerAgent method)</a>
+</li>
+        <li><a href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.remove_interaction_request">remove_interaction_request() (agents.AASManagerAgent.AASManagerAgent method)</a>
+</li>
         <li><a href="utilities.GeneralUtils.html#utilities.GeneralUtils.GeneralUtils.ColoredFormatter.RESET">RESET (utilities.GeneralUtils.GeneralUtils.ColoredFormatter attribute)</a>
 </li>
         <li><a href="behaviours.CheckCoreInitializationBehaviour.html#behaviours.CheckCoreInitializationBehaviour.CheckCoreInitializationBehaviour.run">run() (behaviours.CheckCoreInitializationBehaviour.CheckCoreInitializationBehaviour method)</a>
@@ -971,6 +981,14 @@
   <h2>S</h2>
   <table style="width: 100%" class="indextable genindextable"><tr>
     <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.save_acl_svc_response">save_acl_svc_response() (agents.AASManagerAgent.AASManagerAgent method)</a>
+</li>
+        <li><a href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.save_interaction_response">save_interaction_response() (agents.AASManagerAgent.AASManagerAgent method)</a>
+</li>
+        <li><a href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.save_new_acl_svc_request">save_new_acl_svc_request() (agents.AASManagerAgent.AASManagerAgent method)</a>
+</li>
+        <li><a href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.save_new_interaction_request">save_new_interaction_request() (agents.AASManagerAgent.AASManagerAgent method)</a>
+</li>
         <li><a href="logic.IntraAASInteractions_utils.html#logic.IntraAASInteractions_utils.save_svc_info_in_log_file">save_svc_info_in_log_file() (in module logic.IntraAASInteractions_utils)</a>
 </li>
         <li><a href="utilities.AAS_Archive_utils.html#utilities.AAS_Archive_utils.save_svc_log_info">save_svc_log_info() (in module utilities.AAS_Archive_utils)</a>
@@ -1014,6 +1032,8 @@
           <li><a href="states.StateBootingResource.html#module-states.StateBootingResource">module</a>
 </li>
         </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
         <li>
     states.StateIdle
 
@@ -1021,8 +1041,6 @@
           <li><a href="states.StateIdle.html#module-states.StateIdle">module</a>
 </li>
         </ul></li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
         <li>
     states.StateRunning
 

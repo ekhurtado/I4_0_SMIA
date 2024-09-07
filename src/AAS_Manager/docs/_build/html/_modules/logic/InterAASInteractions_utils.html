@@ -318,30 +318,12 @@
         <article role="main" id="furo-main-content">
           <h1>Source code for logic.InterAASInteractions_utils</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;This class groups the methods related to the Inter AAS interactions between I4.0 SMIA entities.&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">calendar</span>
 <span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">time</span>
 
 <span class="n">_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
-
-<div class="viewcode-block" id="get_inter_aas_request_by_thread">
-<a class="viewcode-back" href="../../logic.InterAASInteractions_utils.html#logic.InterAASInteractions_utils.get_inter_aas_request_by_thread">[docs]</a>
-<span class="k">def</span> <span class="nf">get_inter_aas_request_by_thread</span><span class="p">(</span><span class="n">agent</span><span class="p">,</span> <span class="n">thread</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    This method creates the dictionary with all the required data of the service request from an ACL message.</span>
-
-<span class="sd">    :param agent: The SPADE agent</span>
-<span class="sd">    :param thread: The ACL message thread</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        agent (spade.agent.Agent): the AAS Manager SPADE agent object</span>
-<span class="sd">        thread (str): thread of the conversation</span>
-
-<span class="sd">    Returns:</span>
-<span class="sd">        dict: dictionary with all the information about the service request that matches with the given thread</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="nb">print</span><span class="p">()</span></div>
-
-    <span class="c1"># todo</span>
 
 <div class="viewcode-block" id="create_inter_aas_response_object">
 <a class="viewcode-back" href="../../logic.InterAASInteractions_utils.html#logic.InterAASInteractions_utils.create_inter_aas_response_object">[docs]</a>
@@ -357,9 +339,21 @@
 <span class="sd">    Returns:</span>
 <span class="sd">        dict: Inter AAS response object in JSON format</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="nb">print</span><span class="p">()</span></div>
+    <span class="c1"># TODO comprobar que esta bien</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;performative&#39;</span><span class="p">:</span> <span class="n">inter_aas_request</span><span class="p">[</span><span class="s1">&#39;performative&#39;</span><span class="p">],</span>
+            <span class="s1">&#39;ontology&#39;</span><span class="p">:</span> <span class="n">inter_aas_request</span><span class="p">[</span><span class="s1">&#39;ontology&#39;</span><span class="p">],</span>
+            <span class="s1">&#39;thread&#39;</span><span class="p">:</span> <span class="n">inter_aas_request</span><span class="p">[</span><span class="s1">&#39;thread&#39;</span><span class="p">],</span>
+            <span class="s1">&#39;serviceType&#39;</span><span class="p">:</span> <span class="n">inter_aas_request</span><span class="p">[</span><span class="s1">&#39;serviceType&#39;</span><span class="p">],</span>
+            <span class="s1">&#39;serviceID&#39;</span><span class="p">:</span> <span class="n">inter_aas_request</span><span class="p">[</span><span class="s1">&#39;serviceID&#39;</span><span class="p">],</span>
+            <span class="s1">&#39;serviceData&#39;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s1">&#39;serviceCategory&#39;</span><span class="p">:</span> <span class="s1">&#39;service-response&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;timestamp&#39;</span><span class="p">:</span> <span class="n">calendar</span><span class="o">.</span><span class="n">timegm</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">gmtime</span><span class="p">()),</span>
+                <span class="s1">&#39;serviceStatus&#39;</span><span class="p">:</span> <span class="n">intra_aas_response</span><span class="p">[</span><span class="s1">&#39;serviceData&#39;</span><span class="p">][</span><span class="s1">&#39;serviceStatus&#39;</span><span class="p">],</span>  <span class="c1"># The status of the Intra AAS</span>
+                                                                                      <span class="c1"># Interaction is obtained</span>
+                <span class="s1">&#39;serviceParams&#39;</span><span class="p">:</span> <span class="n">intra_aas_response</span><span class="p">[</span><span class="s1">&#39;serviceData&#39;</span><span class="p">][</span><span class="s1">&#39;serviceParams&#39;</span><span class="p">]</span>
+            <span class="p">}</span>
+    <span class="p">}</span></div>
 
-    <span class="c1"># todo</span>
 
 </pre></div>
         </article>
