@@ -58,7 +58,7 @@ class StateBooting(State):
         # If the initialization behaviour has completed, AAS Manager is in the InitializationReady status
         AAS_Archive_utils.change_status('InitializationReady')
         # Change of status must be notified to the AAS core
-        result = await Interactions_utils.send_interaction_msg_to_core(client_id='i4-0-smia-manager',
+        result = await IntraAASInteractions_utils.send_interaction_msg_to_core(client_id='i4-0-smia-manager',
                                                                        msg_key='manager-status',
                                                                        msg_data={'status': 'InitializationReady'})
 

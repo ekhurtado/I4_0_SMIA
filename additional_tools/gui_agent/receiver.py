@@ -359,7 +359,7 @@ class ReceiverAgent(Agent):
         t4 = Template()
         t4.set_metadata("performative", "REJECT")
         t4.set_metadata("ontology", "negotiation")
-        neg = self.NegBehav()
+        # neg = self.NegBehav()
         # self.add_behaviour(neg, t1 | t2 | t3 | t4)
 
         # Negotiation behaviour v2.0 (get from Oskar's code)

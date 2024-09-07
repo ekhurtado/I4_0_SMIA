@@ -1,8 +1,6 @@
 from spade.agent import Agent
 import logging
 
-from spade.message import Message
-
 from states.StateRunning import StateRunning
 from states.StateStopping import StateStopping
 from utilities.AASmanagerInfo import AASmanagerInfo
@@ -21,7 +19,7 @@ class AASManagerAgent(Agent):
     def __init__(self, jid: str, password: str, verify_security: bool = False):
         super().__init__(jid, password, verify_security)
 
-        self.interaction_id_num = 0 # The interactionId number is set to 0
+        self.interaction_id_num = 0  # The interactionId number is set to 0
 
     async def setup(self):
         """
@@ -45,7 +43,6 @@ class AASManagerAgent(Agent):
         self.add_behaviour(fsm_behaviour)
         _logger.info(f"{self.jid} setup finished correctly.")
 
-
     def get_interaction_id(self):
         """
         This method returns the identifier of the AAS Intra interactions of the AAS Manager.
@@ -54,4 +51,3 @@ class AASManagerAgent(Agent):
             str: identifier of the interaction id.
         """
         return 'manager-' + str(self.interaction_id_num)
-

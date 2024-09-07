@@ -23,6 +23,7 @@ def create_status_file():
     try:
         f = open(AASarchiveInfo.CORE_STATUS_FILE_PATH, 'x')
     except FileExistsError as e:
+        _logger.error(e)
         f = open(AASarchiveInfo.CORE_STATUS_FILE_PATH, 'w')
     json.dump(initial_status_info, f)
     f.close()

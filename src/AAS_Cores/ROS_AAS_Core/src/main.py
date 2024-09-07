@@ -7,7 +7,7 @@ import time
 from threading import Thread
 
 from utilities import AASArchive_utils
-from utilities.AASArchive_utils import update_json_file, file_to_json
+from utilities.AASArchive_utils import file_to_json
 from utilities.Interactions_utils import get_next_svc_request, add_new_svc_response, create_response_json_object, \
     make_gateway_request
 

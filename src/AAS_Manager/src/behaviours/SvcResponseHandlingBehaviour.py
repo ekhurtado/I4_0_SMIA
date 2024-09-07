@@ -1,13 +1,10 @@
-import json
 import logging
-import time
 
-from spade.behaviour import CyclicBehaviour, OneShotBehaviour
+from spade.behaviour import OneShotBehaviour
 from spade.message import Message
 
-from logic import Services_utils, IntraAASInteractions_utils, InterAASInteractions_utils
+from logic import InterAASInteractions_utils
 from utilities import AAS_Archive_utils
-from utilities.AASarchiveInfo import AASarchiveInfo
 
 _logger = logging.getLogger(__name__)
 
@@ -131,7 +128,7 @@ class SvcResponseHandlingBehaviour(OneShotBehaviour):
         for AASs).
 
         """
-        _logger.info(str(self.myagent.interaction_id) + str(self.svc_resp_info))
+        _logger.info(str(self.myagent.interaction_id) + str(self.svc_resp_data))
 
     async def handle_aas_services(self):
         """
@@ -143,7 +140,7 @@ class SvcResponseHandlingBehaviour(OneShotBehaviour):
         control) and Exposure and Discovery Services (to search for submodels or asset related services).
 
         """
-        _logger.info(str(self.myagent.interaction_id) + str(self.svc_resp_info))
+        _logger.info(str(self.myagent.interaction_id) + str(self.svc_resp_data))
 
     async def handle_submodel_services(self):
         """
@@ -154,4 +151,4 @@ class SvcResponseHandlingBehaviour(OneShotBehaviour):
         # TODO, en este caso tendra que comprobar que submodelo esta asociado a la peticion de servicio. Si el submodelo
         #  es propio del AAS Manager, podra acceder directamente y, por tanto, este behaviour sera capaz de realizar el
         #  servicio completamente. Si es un submodelo del AAS Core, tendra que solicitarselo
-        _logger.info(str(self.myagent.interaction_id) + str(self.svc_resp_info))
+        _logger.info(str(self.myagent.interaction_id) + str(self.svc_resp_data))

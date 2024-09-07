@@ -2,8 +2,6 @@ import logging
 
 from spade.template import Template
 
-from utilities.AASarchiveInfo import AASarchiveInfo
-
 
 class GeneralUtils:
     """
@@ -64,9 +62,6 @@ class GeneralUtils:
             formatter = logging.Formatter(log_fmt)
             return formatter.format(record)
 
-
-
-
     @staticmethod
     def create_acl_template(performative, ontology):
         """
@@ -82,4 +77,4 @@ class GeneralUtils:
         custom_template = Template()
         custom_template.set_metadata('performative', performative)
         custom_template.set_metadata('ontology', ontology)
-        return  custom_template
+        return custom_template

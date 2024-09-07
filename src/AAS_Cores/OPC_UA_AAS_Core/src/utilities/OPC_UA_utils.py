@@ -72,18 +72,19 @@ def sendDataOPCUA(nServ, targetPos):
         # Devolver señal de ERROR
         return "ERROR"
 
+
 def servicePossible(node_AlmacenOcupacion, service, target):
     # Este método permite saber si la operación solicitada puede realizarse
     # o si existe algún problema que no permita su puesta en marcha.
 
-        print("Checking if the service is possible...")
-        # Obtener matriz de ocupación del almacén
-        warehouseOcupation = node_AlmacenOcupacion.get_value()
+    print("Checking if the service is possible...")
+    # Obtener matriz de ocupación del almacén
+    warehouseOcupation = node_AlmacenOcupacion.get_value()
 
-        # Si se quiere INTRODUCIR Y la posición está ocupada
-        if service == 'INTRODUCE' and warehouseOcupation[target - 1] == True:
-            return False
-        # Si se quiere EXTRAER Y la posición está vacía
-        if service == 'EXTRACT' and warehouseOcupation[target - 1] == False:
-            return False
-        return True
+    # Si se quiere INTRODUCIR Y la posición está ocupada
+    if service == 'INTRODUCE' and warehouseOcupation[target - 1] == True:
+        return False
+    # Si se quiere EXTRAER Y la posición está vacía
+    if service == 'EXTRACT' and warehouseOcupation[target - 1] == False:
+        return False
+    return True

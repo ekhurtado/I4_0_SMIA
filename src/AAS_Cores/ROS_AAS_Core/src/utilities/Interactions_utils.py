@@ -2,7 +2,6 @@
 
 """
 import calendar
-import random
 import time
 
 from utilities.AASArchive_utils import file_to_json, update_json_file

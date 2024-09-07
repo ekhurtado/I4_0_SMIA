@@ -1,4 +1,3 @@
-import json
 from urllib.parse import parse_qs
 
 import spade
@@ -28,10 +27,10 @@ class GUIAgent(Agent):
                 msg.body = data_json['normalMessage']
             elif len(data_json['messageType']) == 2:
                 msg.body = '{"serviceID": "' + data_json['serviceID'] + \
-                       '", "serviceType": "' + data_json['serviceType'] + \
-                       '", "serviceData": {' + \
-                                '"serviceCategory": "' + data_json['serviceCategory'] + \
-                                '", "serviceParams": ' + data_json['serviceParams'] + '}}'
+                           '", "serviceType": "' + data_json['serviceType'] + \
+                           '", "serviceData": {' + \
+                           '"serviceCategory": "' + data_json['serviceCategory'] + \
+                           '", "serviceParams": ' + data_json['serviceParams'] + '}}'
             print(msg)
 
             print("Sending the message...")
@@ -81,13 +80,12 @@ class GUIAgent(Agent):
             else:
                 print("No msg")
 
-
     async def setup(self):
         print("Hello World! I'm sender agent {}".format(str(self.jid)))
         print("GUIAgent started")
         self.acl_sent = False  # se inicializa en False
         self.neg_sent = False  # se inicializa en False
-        self.acl_msg_log = []   # se inicializa el array de mensajes ACL
+        self.acl_msg_log = []  # se inicializa el array de mensajes ACL
 
         receiver_behav = self.ReceiverBehaviour()
         self.add_behaviour(receiver_behav)
@@ -132,6 +130,7 @@ class GUIAgent(Agent):
 
         return {"status": "OK"}
 
+
 async def hello_controller(request):
     print(request)
     return {"status": "OK"}
@@ -160,7 +159,8 @@ async def main():
     gui_agent.web.add_post("/negotiation/submit", gui_agent.neg_post_controller, "/htmls/negotiation_submit.html")
 
     gui_agent.web.add_get("/editor", hello_controller, "/htmls/own_programming_language_editor.html")
-    gui_agent.web.add_post("/editor/submit", gui_agent.acl_post_controller, "/htmls/own_programming_language_editor.html")
+    gui_agent.web.add_post("/editor/submit", gui_agent.acl_post_controller,
+                           "/htmls/own_programming_language_editor.html")
 
     gui_agent.web.add_get("/aas_library", hello_controller, "/htmls/aas_library.html")
 
@@ -170,7 +170,7 @@ async def main():
     await gui_agent.start()
     gui_agent.web.start(hostname="0.0.0.0", port="10000")  # https://spade-mas.readthedocs.io/en/latest/web.html#
     gui_agent.web.add_menu_entry("Send ACL message", "/acl_message",
-                                    "fa fa-envelope")  # https://github.com/javipalanca/spade/blob/master/docs/web.rst#menu-entries
+                                 "fa fa-envelope")  # https://github.com/javipalanca/spade/blob/master/docs/web.rst#menu-entries
     gui_agent.web.add_menu_entry("Received ACL messages", "/receive_acl_msgs", "fa fa-inbox")
     gui_agent.web.add_menu_entry("Negotiation", "/negotiation", "fa fa-comments")
     gui_agent.web.add_menu_entry("Programming language editor", "/editor", "fa fa-code")

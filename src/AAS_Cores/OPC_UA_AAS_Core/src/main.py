@@ -4,7 +4,7 @@ from opcua import Client
 
 from utilities import AASArchive_utils
 from utilities.AASArchive_utils import printFile
-from utilities.Interactions_utils import delete_svc_request, get_next_svc_request, add_new_svc_response, \
+from utilities.Interactions_utils import get_next_svc_request, add_new_svc_response, \
     create_response_json_object
 from utilities.OPC_UA_utils import sendDataOPCUA
 

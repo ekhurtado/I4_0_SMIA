@@ -1,13 +1,7 @@
-import json
 import logging
-import os
-
-from aiokafka import AIOKafkaConsumer, TopicPartition
 from spade.behaviour import CyclicBehaviour
 
 from logic import IntraAASInteractions_utils
-from utilities.AAS_Archive_utils import file_to_json
-from utilities.AASarchiveInfo import AASarchiveInfo
 from utilities.KafkaInfo import KafkaInfo
 
 _logger = logging.getLogger(__name__)
@@ -51,7 +45,7 @@ class CheckCoreInitializationBehaviour(CyclicBehaviour):
 
         #  To check the state of the AAS Core, the AAS Manager will get the
         #  information subscribing to the AAS topic of Kafka, in this case to the partition related to the AAS Core
-        kafka_consumer_core_partition = Interactions_utils.create_interaction_kafka_consumer('i4-0-smia-manager')
+        kafka_consumer_core_partition = IntraAASInteractions_utils.create_interaction_kafka_consumer('i4-0-smia-manager')
         await kafka_consumer_core_partition.start()
         _logger.info("Listening for AAS Core messages in topic " + KafkaInfo.KAFKA_TOPIC + " awaiting status "
                                                                                            "information...")

@@ -113,6 +113,8 @@ def read_xml_definition(aas_xml_definition_str):
         sm_reference_list_elem = aas_elem.find(xml_ns + "submodels", aas_elem.nsmap)
         if sm_reference_list_elem is not None:
             sm_reference_dict = deserialization.get_submodel_references(sm_reference_list_elem, xml_ns)
+            print("Submodels info")
+            print(sm_reference_dict)
 
         # Submodel related information
         sm_list_elem = aas_xml_env_definition.find(xml_ns + "submodels", aas_xml_env_definition.nsmap)

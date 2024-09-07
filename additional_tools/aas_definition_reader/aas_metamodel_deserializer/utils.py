@@ -1,6 +1,4 @@
 """This module contains utils objects and method to AAS metamodel deserialization."""
-from typing import Dict
-
 from aas_class_structure import common,submodel
 from aas_class_structure.aas import AssetInformation
 

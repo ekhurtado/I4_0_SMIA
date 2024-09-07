@@ -1,5 +1,4 @@
 """This class groups the methods related to the Inter AAS interactions between I4.0 SMIA entities."""
-import json
 import logging
 
 _logger = logging.getLogger(__name__)

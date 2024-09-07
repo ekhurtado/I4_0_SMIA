@@ -41,12 +41,13 @@ class CheckPhysicalAssetBehaviour(OneShotBehaviour):
         # Besides, it is necessary to check whether the connection to the asset is established. To do that, a message
         # to the AAS Core has to be sent.
         # Create the valid JSON structure to save in svcRequests.json
-        current_interaction_id_num = self.myagent.interaction_id_num
-        svc_request_json = Interactions_utils.create_svc_request_interaction_json(interaction_id=self.agent.interaction_id,
+        current_interaction_id = self.myagent.get_interaction_id()
+        # TODO comprobarlo, no se realiza bien la peticion de servicio Intra AAS interaction
+        svc_request_json = IntraAASInteractions_utils.create_svc_request_interaction_json(interaction_id=self.agent.get_interaction_id(),
                                                                                   svc_id='checkAssetConnection',
                                                                                   svc_type='AssetRelatedService')
         # Save the JSON in svcRequests.json
-        Interactions_utils.add_new_svc_request(svc_request_json)
+        IntraAASInteractions_utils.add_new_svc_request(svc_request_json)
 
         # Since a new service has been request, the interaction of the agent has to be incremented
         self.myagent.interaction_id_num += 1
@@ -56,12 +57,12 @@ class CheckPhysicalAssetBehaviour(OneShotBehaviour):
         # TODO cambiarlo. No debe haber una espera hasta que se complete el servicio de esta manera
         while True:
             _logger.info("checkAssetConnection service not completed yet.")
-            svc_response = Interactions_utils.get_svc_response_info(current_interaction_id)
+            svc_response = IntraAASInteractions_utils.get_svc_response_info(current_interaction_id)
             if svc_response is not None:
                 print(svc_response)
                 # Set the service as completed
                 # Write the information in the log file
-                Interactions_utils.save_svc_info_in_log_file('Manager',
+                IntraAASInteractions_utils.save_svc_info_in_log_file('Manager',
                                                              AASarchiveInfo.ASSET_RELATED_SVC_LOG_FILENAME,
                                                              current_interaction_id)
                 # Return message to the sender
