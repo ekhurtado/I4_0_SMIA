@@ -33,13 +33,13 @@ class StateBooting(State):
         _logger.info("## STATE 1: BOOTING ##  (Initial state)")
 
         # Objects for storing the information related to ACL services are initialized
-        self.agent.acl_messages_id = 0 # It is reset
+        self.agent.acl_messages_id = 0  # It is reset
         self.agent.acl_svc_requests = {}
         self.agent.acl_svc_responses = {}
 
         # Objects for storing the information related to AAS Manager-Core interactions are initialized
-        self.agent.interaction_id_num = 0 # The interactionId number is reset
-        self.agent.interaction_id = 'manager-' + str(self.agent.interaction_id_num) # The complete interactionId
+        self.agent.interaction_id_num = 0  # The interactionId number is reset
+        self.agent.interaction_id = 'manager-' + str(self.agent.interaction_id_num)  # The complete interactionId
         self.agent.interaction_requests = {}
         self.agent.interaction_responses = {}
 
@@ -59,8 +59,9 @@ class StateBooting(State):
         AAS_Archive_utils.change_status('InitializationReady')
         # Change of status must be notified to the AAS core
         result = await IntraAASInteractions_utils.send_interaction_msg_to_core(client_id='i4-0-smia-manager',
-                                                                       msg_key='manager-status',
-                                                                       msg_data={'status': 'InitializationReady'})
+                                                                               msg_key='manager-status',
+                                                                               msg_data={
+                                                                                   'status': 'InitializationReady'})
 
         if result is not "OK":
             _logger.error("The AAS Manager-Core interaction is not working: " + str(result))

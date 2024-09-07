@@ -83,16 +83,16 @@ class SvcResponseHandlingBehaviour(OneShotBehaviour):
             # If a response of this type has arrived, it means that a previous interaction request has been made to the
             # AAS Core, so the first step is to match the response and its request information
             svc_interaction_id = self.svc_resp_data['interactionID']
-            if svc_interaction_id not in self.myagent.interaction_requests:
+            if self.myagent.get_interaction_request(interaction_id=svc_interaction_id) is None:
                 _logger.error("The interaction message response with id " + svc_interaction_id +
                               " has not its request information")
                 return
 
             # Since the request has been performed, it is removed from the global dictionary
-            self.myagent.interaction_requests.pop(svc_interaction_id, None)
+            self.myagent.remove_interaction_request(interaction_id=svc_interaction_id)
 
             # The information if stored in the global dictionary for the responses
-            self.myagent.interaction_responses[svc_interaction_id] = self.svc_resp_data
+            self.myagent.save_interaction_response(interaction_id=svc_interaction_id, response_data=self.svc_resp_data)
 
             # It is also stored in the log of the AAS archive
             AAS_Archive_utils.save_svc_log_info(self.svc_resp_data, 'AssetRelatedService')
@@ -101,7 +101,7 @@ class SvcResponseHandlingBehaviour(OneShotBehaviour):
 
             # It has to be checked if this service is part of a previous service request (part of a complex
             # conversation). For this purpose, the attribute 'thread' will be used.
-            inter_aas_req = self.myagent.acl_svc_requests[self.svc_resp_data['thread']]
+            inter_aas_req = self.myagent.get_acl_svc_request(thread=self.svc_resp_data['thread'])
             if inter_aas_req is not None:
                 # In this case, there is a previous Inter AAS service request, so the response must be sent through
                 # FIPA-ACL to the requesting AAS.
@@ -116,10 +116,11 @@ class SvcResponseHandlingBehaviour(OneShotBehaviour):
                 await self.send(acl_msg)
 
                 # Since the Inter AAS interaction request has also been made, it is removed from the global dictionary
-                self.myagent.acl_svc_requests.pop(self.svc_resp_data['thread'], None)
+                self.myagent.remove_acl_svc_request(self.svc_resp_data['thread'])
 
                 # The information if stored in the global dictionary for the Inter AAS interaction responses
-                self.myagent.acl_svc_responses[self.svc_resp_data['thread']] = inter_aas_response
+                self.myagent.save_acl_svc_response(thread=self.svc_resp_data['thread'],
+                                                   response_data=inter_aas_response)
 
         elif self.svc_resp_interaction_type == 'Inter AAS interaction':
             # TODO pensar como se gestionaria este caso
@@ -134,7 +135,7 @@ class SvcResponseHandlingBehaviour(OneShotBehaviour):
         for AASs).
 
         """
-        _logger.info(str(self.myagent.interaction_id) + str(self.svc_resp_data))
+        _logger.info(str(self.myagent.get_interaction_id()) + str(self.svc_resp_data))
 
     async def handle_aas_services(self):
         """
@@ -146,7 +147,7 @@ class SvcResponseHandlingBehaviour(OneShotBehaviour):
         control) and Exposure and Discovery Services (to search for submodels or asset related services).
 
         """
-        _logger.info(str(self.myagent.interaction_id) + str(self.svc_resp_data))
+        _logger.info(str(self.myagent.get_interaction_id()) + str(self.svc_resp_data))
 
     async def handle_submodel_services(self):
         """
@@ -157,4 +158,4 @@ class SvcResponseHandlingBehaviour(OneShotBehaviour):
         # TODO, en este caso tendra que comprobar que submodelo esta asociado a la peticion de servicio. Si el submodelo
         #  es propio del AAS Manager, podra acceder directamente y, por tanto, este behaviour sera capaz de realizar el
         #  servicio completamente. Si es un submodelo del AAS Core, tendra que solicitarselo
-        _logger.info(str(self.myagent.interaction_id) + str(self.svc_resp_data))
+        _logger.info(str(self.myagent.get_interaction_id()) + str(self.svc_resp_data))

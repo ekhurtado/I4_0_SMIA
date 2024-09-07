@@ -193,8 +193,8 @@ async def send_interaction_msg_to_core(client_id, msg_key, msg_data):
         await kafka_producer.send_and_wait(KafkaInfo.KAFKA_TOPIC, value=msg_data,
                                            key=msg_key,
                                            partition=KafkaInfo.MANAGER_TOPIC_PARTITION)
-        _logger.info("AAS Manager successfully published an interaction message: key [" +msg_key+ "],"
-                     " data [" +str(msg_data)+ "]")
+        _logger.info("AAS Manager successfully published an interaction message: key [" + msg_key + "],"
+                     " data [" + str(msg_data) + "]")
     finally:
         # Wait for all pending messages to be delivered or expire.
         await kafka_producer.stop()

@@ -15,6 +15,10 @@ class SvcACLHandlingBehaviour(CyclicBehaviour):
     others standardized AAS Manager in the I4.0 System.
     """
 
+    # TODO pensar cambiarle el nombre, tanto a esta clase como a InteractionHandlingBehaviour, y pasarlas a tipo de
+    #  interaccion, es decir: InteractionHandlingBehaviour -> IntraAASInteractionsHandlingBehaviour y
+    #  SvcACLHandlingBehaviour -> InterAASInteractionsHandlingBehaviour
+
     def __init__(self, agent_object):
         """
         The constructor method is rewritten to add the object of the agent
@@ -32,7 +36,7 @@ class SvcACLHandlingBehaviour(CyclicBehaviour):
         """
         This method implements the initialization process of this behaviour.
         """
-        _logger.info("ACLHandlingBehaviour starting...")
+        _logger.info("SvcACLHandlingBehaviour starting...")
 
     async def run(self):
         """
@@ -74,11 +78,11 @@ class SvcACLHandlingBehaviour(CyclicBehaviour):
 
             if service_category == 'service-request':
                 # A new service request is added to the global dictionary of ACL requests of the agent
-                if self.myagent.acl_messages_id in self.myagent.acl_svc_requests:
+                if self.myagent.get_acl_svc_request(thread=msg.thread) is not None:
                     _logger.error("A request has been made for an ACL service that already exists.")
                 else:
                     # The thread is the identifier of the conversation
-                    self.myagent.acl_svc_requests[msg.thread] = msg_json_body
+                    self.myagent.save_new_acl_svc_request(thread=msg.thread, request_data=msg_json_body)
 
                     svc_req_data = Services_utils.create_svc_req_data_from_acl_msg(msg)
 

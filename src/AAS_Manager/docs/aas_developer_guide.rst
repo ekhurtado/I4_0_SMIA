@@ -130,20 +130,19 @@ Thus, one task during the development of the AAS Core source code is to specify 
 
         # KAFKA CONSUMER (to receive service request from AAS Manager or read the responses of Core's requests)
         kafka_consumer_partition_core = KafkaConsumer( bootstrap_servers=[KAFKA_SERVER_IP + ':9092'],
-                                              client_id='component-i40-core',
+                                              client_id='i4-0-smia-core',
                                               value_deserializer=lambda x: json.loads(x.decode('utf-8')),
                                               )
         kafka_consumer_partition_core.assign([TopicPartition(kafka_topic_name, 0)])
 
         # KAFKA PRODUCER (to send service requests to AAS Manager)
         kafka_producer = KafkaProducer(bootstrap_servers=[KAFKA_SERVER_IP + ':9092'],
-                                           client_id='component-i40-core',
+                                           client_id='i4-0-smia-core',
                                            value_serializer=lambda x: json.dumps(x).encode('utf-8'),
                                            key_serializer=str.encode
                                            )
 
-        result = kafka_producer.send(KAFKA_TOPIC, value=svc_request_json, key='core-service-request',
-                                         partition=1)
+        result = kafka_producer.send(KAFKA_TOPIC, value=svc_request_json, key='core-service-request', partition=1)
 
 .. tab:: Asynchronous (aiokafka)
 
@@ -153,14 +152,14 @@ Thus, one task during the development of the AAS Core source code is to specify 
 
         # KAFKA CONSUMER (to receive service request from AAS Manager or read the responses of Core's requests)
         kafka_consumer_partition_core = AIOKafkaConsumer( bootstrap_servers=[KAFKA_SERVER_IP + ':9092'],
-                                              client_id='component-i40-core',
+                                              client_id='i4-0-smia-core',
                                               value_deserializer=lambda x: json.loads(x.decode('utf-8')),
                                               )
         kafka_consumer_partition_core.assign([TopicPartition(kafka_topic_name, 0)])
 
         # KAFKA PRODUCER (to send service requests to AAS Manager)
         kafka_producer = AIOKafkaProducer(bootstrap_servers=[KAFKA_SERVER_IP + ':9092'],
-                                           client_id='component-i40-core',
+                                           client_id='i4-0-smia-core',
                                            value_serializer=lambda x: json.dumps(x).encode('utf-8'),
                                            key_serializer=str.encode
                                            )
@@ -237,5 +236,5 @@ FALTAN COMENTAR VARIAS COSAS:
 * El Core solo puede solicitar servicios al Manager si este se encuentra en estado Running
 * Como leer el ConfigMap para obtener informacion como el topico de Kafka, la definicion del AAS en XML...
 * Importancia del thread e interactionID (como leerlos si recibimos una peticion de servicio del Manager y como generarlos si el AAS Core tiene que comenzar una conversacion, es decir, ser el primero en solicitar un servicio)
-
+* Como hay que publicar los mensajes en Kakfa para la interacciones (p.e. en el key poner 'core-service-request' o 'core-service-response', el topico y particion bien, etc.)
 

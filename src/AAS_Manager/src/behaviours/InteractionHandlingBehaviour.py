@@ -3,6 +3,7 @@ import logging
 from spade.behaviour import CyclicBehaviour
 
 from behaviours.SvcResponseHandlingBehaviour import SvcResponseHandlingBehaviour
+from logic import IntraAASInteractions_utils
 
 _logger = logging.getLogger(__name__)
 
@@ -12,6 +13,10 @@ class InteractionHandlingBehaviour(CyclicBehaviour):
     This class implements the behaviour that handles all the interaction messages that the AAS Manager will receive
     from the AAS Core.
     """
+
+    # TODO pensar cambiarle el nombre, tanto a esta clase como a SvcACLHandlingBehaviour, y pasarlas a tipo de
+    #  interaccion, es decir: InteractionHandlingBehaviour -> IntraAASInteractionsHandlingBehaviour y
+    #  SvcACLHandlingBehaviour -> InterAASInteractionsHandlingBehaviour
 
     def __init__(self, agent_object):
         """
@@ -37,7 +42,8 @@ class InteractionHandlingBehaviour(CyclicBehaviour):
         This method implements the logic of the behaviour.
         """
         # First of all, the Kafka consumer is created, who will receive the messages.
-        kafka_consumer_core_partition = Interactions_utils.create_interaction_kafka_consumer('i4-0-smia-manager')
+        kafka_consumer_core_partition = IntraAASInteractions_utils.create_interaction_kafka_consumer(
+            'i4-0-smia-manager')
         await kafka_consumer_core_partition.start()
 
         _logger.info("The AAS Manager is listening for interaction messages from the AAS Core...")
@@ -60,8 +66,8 @@ class InteractionHandlingBehaviour(CyclicBehaviour):
                     case 'core-service-response':
                         _logger.interactioninfo("The AAS Manager has received a service response from the AAS Core.")
                         _logger.interactioninfo("The service with id " + str(msg_json_value['interactionID']) +
-                                     " has been answered from the AAS Core to the AAS Manager. Data of the response: "
-                                     + str(msg_json_value))
+                                                "has been answered from the AAS Core to the AAS Manager. Data of the "
+                                                "response: " + str(msg_json_value))
                         # A new behaviour is added to the SPADE agent to handle this specific service request
                         svc_resp_handling_behav = SvcResponseHandlingBehaviour(self.agent,
                                                                                'Intra AAS interaction',
@@ -71,4 +77,3 @@ class InteractionHandlingBehaviour(CyclicBehaviour):
         finally:
             _logger.info("Finalizing Kafka Consumer...")
             await kafka_consumer_core_partition.stop()
-
