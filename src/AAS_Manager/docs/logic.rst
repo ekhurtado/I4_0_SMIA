@@ -7,7 +7,8 @@ Submodules
 .. toctree::
    :maxdepth: 4
 
-   logic.Interactions_utils
+   logic.InterAASInteractions_utils
+   logic.IntraAASInteractions_utils
    logic.Services_utils
 
 Module contents
