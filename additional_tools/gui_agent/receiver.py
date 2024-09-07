@@ -4,7 +4,7 @@ import psutil
 
 import spade
 from spade.agent import Agent
-from spade.behaviour import CyclicBehaviour
+from spade.behaviour import CyclicBehaviour, OneShotBehaviour
 from spade.message import Message
 from spade.template import Template
 
@@ -324,6 +324,27 @@ class ReceiverAgent(Agent):
             # Para finalizar la negociacion se elimina este behaviour del agente
             self.kill(exit_code=10)
 
+    class SendBehaviour(OneShotBehaviour):
+        async def run(self):
+            # Create the Message object
+            print("Building the message to send to the agent with JID: gui_agent")
+            receiver = 'gui_agent' + '@' + XMPP_SERVER
+            msg = Message(to=receiver, thread='pruebaMsg')
+            msg.set_metadata('performative', 'CallForProposal')
+            msg.set_metadata('ontology', 'SvcRequest')
+
+            msg.body = '{"serviceID": "getAssetData' + \
+                       '", "serviceType": "AssetRelatedService' + \
+                       '", "serviceData": {' + \
+                       '"serviceCategory": "service-request' + \
+                       '", "timestamp": "100212569682' + \
+                       '", "serviceParams": {"requestedData": "battery"}' + '}}'
+            print(msg)
+
+            print("Sending the message... ")
+            await self.send(msg)
+            print("Message sent!")
+
     async def setup(self):
         print("ReceiverAgent started")
 
@@ -369,6 +390,9 @@ class ReceiverAgent(Agent):
         neg_behav = self.NegBehav_v2()
         self.add_behaviour(neg_behav, t)
 
+        # Behaviour that sends ACL messages for tests
+        send_behav = self.SendBehaviour()
+        self.add_behaviour(send_behav)
 
 async def main():
     recv_jid = sys.argv[1] + "@" + XMPP_SERVER

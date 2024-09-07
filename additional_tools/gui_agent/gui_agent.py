@@ -1,3 +1,4 @@
+import json
 from urllib.parse import parse_qs
 
 import spade
@@ -45,7 +46,6 @@ class GUIAgent(Agent):
 
             # Create the Message object
             # TODO mirar como se envian las negociaciones
-            receivers_jid = None
             if ',' in data_json['receiver']:
                 receivers_jid = data_json['receiver'].split(',')
             else:
@@ -75,10 +75,13 @@ class GUIAgent(Agent):
         async def run(self):
             msg = await self.receive(timeout=10)  # Wait for a message for 10 seconds
             if msg:
-                self.agent.acl_msg_log.append(str(msg.body))
+                msg_body_json = json.loads(msg.body)
+                msg_body_json['sender'] = msg.sender
+                msg_body_json['thread'] = msg.thread
+                self.agent.acl_msg_log.append(msg_body_json)
                 print(f"Message received: {msg.body}")
-            else:
-                print("No msg")
+            # else:
+            #     print("No msg")
 
     async def setup(self):
         print("Hello World! I'm sender agent {}".format(str(self.jid)))
@@ -143,8 +146,8 @@ async def main():
     passwd = '123'
 
     # DATOS PARA PRUEBAS CON ANONYM.IM
-    # agent_jid = "gui_agent@anonym.im"
-    # passwd = "gcis1234"
+    agent_jid = "gui_agent@anonym.im"
+    passwd = "gcis1234"
 
     gui_agent = GUIAgent(agent_jid, passwd)
     gui_agent.agent_name = 'gui_agent'
