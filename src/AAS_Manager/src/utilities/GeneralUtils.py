@@ -1,5 +1,6 @@
 import logging
 
+from spade.message import Message
 from spade.template import Template
 
 
@@ -78,3 +79,25 @@ class GeneralUtils:
         custom_template.set_metadata('performative', performative)
         custom_template.set_metadata('ontology', ontology)
         return custom_template
+
+    @staticmethod
+    def create_acl_msg(receiver, thread, performative, ontology, body):
+        """
+        This method creates an FIPA-ACL message.
+
+        Args:
+            receiver (str): The SPADE agent receiver of the ACL message.
+            thread (str): The thread of the ACL message.:
+            performative (str): The performative of the ACL message.
+            ontology (str): The ontology of the ACL message.
+            body: The body of the ACL message.
+
+        Returns:
+            spade.message.Message: SPADE message object FIPA-ACL-compliant.
+        """
+        msg = Message(to=receiver, thread=thread)
+        msg.set_metadata('performative', performative)
+        msg.set_metadata('ontology', ontology)
+
+        msg.body = body  # TODO Pensar si iria tambien en metadatos o todo en el body
+        return msg

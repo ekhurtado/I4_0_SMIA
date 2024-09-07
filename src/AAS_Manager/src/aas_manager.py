@@ -62,6 +62,15 @@ async def main():
 
 if __name__ == '__main__':
 
+    a = {'id1': {'thread': 'aa1', 'serviceID': 'svc1'},
+         'id2': {'thread': 'aa2', 'serviceID': 'svc2'},
+         'id3': {'thread': 'aa3', 'serviceID': 'svc3'}
+         }
+
+    for i,b in a.items():
+        if b['thread'] == 'aa1':
+            print("ESTE SI: " + i)
+
     # Configure logging
     GeneralUtils.configure_logging()
     _logger.info("Initializing AAS Manager program...")

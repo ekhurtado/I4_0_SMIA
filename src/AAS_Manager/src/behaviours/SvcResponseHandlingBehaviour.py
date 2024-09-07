@@ -5,6 +5,7 @@ from spade.message import Message
 
 from logic import InterAASInteractions_utils
 from utilities import AAS_Archive_utils
+from utilities.GeneralUtils import GeneralUtils
 
 _logger = logging.getLogger(__name__)
 
@@ -68,7 +69,6 @@ class SvcResponseHandlingBehaviour(OneShotBehaviour):
             case _:
                 _logger.error("Service type not available.")
 
-
     # ------------------------------------------
     # Methods to handle of all types of services
     # ------------------------------------------
@@ -84,36 +84,42 @@ class SvcResponseHandlingBehaviour(OneShotBehaviour):
             # AAS Core, so the first step is to match the response and its request information
             svc_interaction_id = self.svc_resp_data['interactionID']
             if svc_interaction_id not in self.myagent.interaction_requests:
-                _logger.error("The interaction message response with id " +svc_interaction_id+
+                _logger.error("The interaction message response with id " + svc_interaction_id +
                               " has not its request information")
                 return
 
             # Since the request has been performed, it is removed from the global dictionary
-            svc_req_info = self.myagent.interaction_requests.pop(svc_interaction_id, None)
+            self.myagent.interaction_requests.pop(svc_interaction_id, None)
 
             # The information if stored in the global dictionary for the responses
             self.myagent.interaction_responses[svc_interaction_id] = self.svc_resp_data
 
             # It is also stored in the log of the AAS archive
             AAS_Archive_utils.save_svc_log_info(self.svc_resp_data, 'AssetRelatedService')
-            _logger.info("Information of service with id " + str(svc_interaction_id)+ " has saved correctly in the log of the AAS Archive")
+            _logger.info("Information of service with id " + str(
+                svc_interaction_id) + " has saved correctly in the log of the AAS Archive")
 
             # It has to be checked if this service is part of a previous service request (part of a complex
             # conversation). For this purpose, the attribute 'thread' will be used.
-            inter_aas_req = InterAASInteractions_utils.get_inter_aas_request_by_thread(self.myagent, self.svc_resp_data['thread'])
+            inter_aas_req = self.myagent.acl_svc_requests[self.svc_resp_data['thread']]
             if inter_aas_req is not None:
                 # In this case, there is a previous Inter AAS service request, so the response must be sent through
                 # FIPA-ACL to the requesting AAS.
                 inter_aas_response = InterAASInteractions_utils.create_inter_aas_response_object(inter_aas_req,
                                                                                                  self.svc_resp_data)
 
-                msg = Message(to=inter_aas_req['receiver'], thread=inter_aas_req['thread'])
-                msg.set_metadata('performative', inter_aas_req['performative'])
-                msg.set_metadata('ontology', inter_aas_req['ontology'])
+                acl_msg = GeneralUtils.create_acl_msg(receiver=inter_aas_req['receiver'],
+                                                      thread=inter_aas_req['thread'],
+                                                      performative=inter_aas_req['performative'],
+                                                      ontology=inter_aas_req['ontology'],
+                                                      body=inter_aas_response)
+                await self.send(acl_msg)
 
-                msg.body = inter_aas_response  # TODO Pensar si iria tambien en metadatos o todo en el body
+                # Since the Inter AAS interaction request has also been made, it is removed from the global dictionary
+                self.myagent.acl_svc_requests.pop(self.svc_resp_data['thread'], None)
 
-                await self.send(msg)
+                # The information if stored in the global dictionary for the Inter AAS interaction responses
+                self.myagent.acl_svc_responses[self.svc_resp_data['thread']] = inter_aas_response
 
         elif self.svc_resp_interaction_type == 'Inter AAS interaction':
             # TODO pensar como se gestionaria este caso

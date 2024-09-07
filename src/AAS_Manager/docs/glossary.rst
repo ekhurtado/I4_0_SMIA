@@ -37,7 +37,7 @@ Glossary
        A storage location identified by a memory address and a symbolic name, which contains some known or unknown quantity of information referred to as a value.
 
    AAS
-       The Asset Administration Shell or AAS is the standardized digital representation of an asset (adapted from `Plattform I4.0 glossary <https://www.plattform-i40.de/IP/Navigation/EN/Industrie40/Glossary/glossary.html>`_ ).
+       The Asset Administration Shell or AAS is the standardized digital representation of an asset (adapted from `Plattform I4.0 glossary <https://www.plattform-i40.de/IP/Navigation/EN/Industrie40/Glossary/glossary.html>`_).
 
    AAS Manager
        The AAS Manager is the common part of the AAS for all AAS types. It is responsible for managing the AAS and representing it in the I4.0 System and it is implemented as a :term:`Industrial Agent`. This agent will be part of a :term:`Multi-Agent System` composed of other AASs, each with their corresponding AAS Managers. The AAS Manager is provided by the platform in this approach, so the user only has to parameterise it.
@@ -52,7 +52,7 @@ Glossary
        Interaction within each I4.0 Component, that is, between the AAS Manager and the AAS Core. This interaction will occur when one of the two has to perform a task that it is not capable of by itself, so it will have to request it to the other entity. I.e. the AAS Manager can request a service from its associated AAS Core.
 
    Industrial Agent
-       An industrial agent is defined as a key enabler for industrial applications, focusing on core functionalities relevant to the application while often neglecting security and privacy aspects, especially in the context of cyber-physical systems and their utilization in industrial environments (see `ScienceDirect <https://www.sciencedirect.com/topics/computer-science/industrial-agent>`_ ).
+       An industrial agent is defined as a key enabler for industrial applications, focusing on core functionalities relevant to the application while often neglecting security and privacy aspects, especially in the context of cyber-physical systems and their utilization in industrial environments (see `ScienceDirect <https://www.sciencedirect.com/topics/computer-science/industrial-agent>`_).
 
    Multi-Agent System
         A multi-agent system (MAS) is a computerized system composed of multiple interacting intelligent agents, capable of perceiving their environment and taking decisions based on it. Typically agents refers to software agents, but could equally well be robots, humans or human teams. The work toward a common goal that goes beyond their individual goals, increasing the adaptability and robustness.

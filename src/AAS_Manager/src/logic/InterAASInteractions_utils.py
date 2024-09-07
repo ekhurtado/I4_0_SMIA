@@ -1,22 +1,9 @@
 """This class groups the methods related to the Inter AAS interactions between I4.0 SMIA entities."""
+import calendar
 import logging
+import time
 
 _logger = logging.getLogger(__name__)
-
-
-def get_inter_aas_request_by_thread(agent, thread):
-    """
-    This method creates the dictionary with all the required data of the service request from an ACL message.
-
-    Args:
-        agent (spade.agent.Agent): the AAS Manager SPADE agent object
-        thread (str): thread of the conversation
-
-    Returns:
-        dict: dictionary with all the information about the service request that matches with the given thread
-    """
-    print()
-    # todo
 
 
 def create_inter_aas_response_object(inter_aas_request, intra_aas_response):
@@ -31,5 +18,18 @@ def create_inter_aas_response_object(inter_aas_request, intra_aas_response):
     Returns:
         dict: Inter AAS response object in JSON format
     """
-    print()
-    # todo
+    # TODO comprobar que esta bien
+    return {'performative': inter_aas_request['performative'],
+            'ontology': inter_aas_request['ontology'],
+            'thread': inter_aas_request['thread'],
+            'serviceType': inter_aas_request['serviceType'],
+            'serviceID': inter_aas_request['serviceID'],
+            'serviceData': {
+                'serviceCategory': 'service-response',
+                'timestamp': calendar.timegm(time.gmtime()),
+                'serviceStatus': intra_aas_response['serviceData']['serviceStatus'],  # The status of the Intra AAS
+                                                                                      # Interaction is obtained
+                'serviceParams': intra_aas_response['serviceData']['serviceParams']
+            }
+    }
+
