@@ -14,8 +14,11 @@ Submodules
    behaviours.IdleBehaviour
    behaviours.InitAASarchiveBehaviour
    behaviours.InitSubmodelsBehaviour
+   behaviours.InteractionHandlingBehaviour
    behaviours.NegotiatingBehaviour
    behaviours.SvcACLHandlingBehaviour
+   behaviours.SvcRequestHandlingBehaviour
+   behaviours.SvcResponseHandlingBehaviour
 
 Module contents
 ---------------

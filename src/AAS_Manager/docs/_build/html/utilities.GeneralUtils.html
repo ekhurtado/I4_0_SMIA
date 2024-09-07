@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="utilities.KafkaInfo module" href="utilities.KafkaInfo.html" /><link rel="prev" title="utilities.ConfigMap_utils module" href="utilities.ConfigMap_utils.html" />
 
     <link rel="shortcut icon" href="_static/I4_0_SMIA_favicon.svg"/><!-- Generated with Sphinx 7.3.7 and Furo 2024.05.06 -->
-        <title>utilities.GeneralUtils module - I4.0 SMIA 0.1.2 documentation</title>
+        <title>utilities.GeneralUtils module - I4.0 SMIA 0.1.3 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=387cc868" />
     <link rel="stylesheet" type="text/css" href="_static/tabs.css?v=4c969af8" />
@@ -194,7 +194,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="index.html"><div class="brand">I4.0 SMIA 0.1.2 documentation</div></a>
+      <a href="index.html"><div class="brand">I4.0 SMIA 0.1.3 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -221,7 +221,7 @@
     <img class="sidebar-logo" src="_static/I4_0_SMIA_logo_rtd.png" alt="Logo"/>
   </div>
   
-  <span class="sidebar-brand-text">I4.0 SMIA 0.1.2 documentation</span>
+  <span class="sidebar-brand-text">I4.0 SMIA 0.1.3 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -232,7 +232,7 @@
   <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="aas_developer_guide.html">AAS Developer Guide</a></li>
-<li class="toctree-l1 current has-children"><a class="reference internal" href="modules.html">API documentation</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of API documentation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="modules.html">src</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of src</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="aas_manager.html">aas_manager module</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="agents.html">agents package</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of agents package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="agents.AASManagerAgent.html">agents.AASManagerAgent module</a></li>
@@ -248,12 +248,16 @@
 <li class="toctree-l3"><a class="reference internal" href="behaviours.IdleBehaviour.html">behaviours.IdleBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.InitAASarchiveBehaviour.html">behaviours.InitAASarchiveBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.InitSubmodelsBehaviour.html">behaviours.InitSubmodelsBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.InteractionHandlingBehaviour.html">behaviours.InteractionHandlingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.NegotiatingBehaviour.html">behaviours.NegotiatingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.SvcACLHandlingBehaviour.html">behaviours.SvcACLHandlingBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.SvcRequestHandlingBehaviour.html">behaviours.SvcRequestHandlingBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.SvcResponseHandlingBehaviour.html">behaviours.SvcResponseHandlingBehaviour module</a></li>
 </ul>
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="logic.html">logic package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of logic package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="logic.Interactions_utils.html">logic.Interactions_utils module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logic.InterAASInteractions_utils.html">logic.InterAASInteractions_utils module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logic.IntraAASInteractions_utils.html">logic.IntraAASInteractions_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logic.Services_utils.html">logic.Services_utils module</a></li>
 </ul>
 </li>
@@ -326,21 +330,70 @@
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">utilities.GeneralUtils.</span></span><span class="sig-name descname"><span class="pre">GeneralUtils</span></span><a class="reference internal" href="_modules/utilities/GeneralUtils.html#GeneralUtils"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.GeneralUtils.GeneralUtils" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>This class contains some general utils to ben used by any module.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="utilities.GeneralUtils.GeneralUtils.ColoredFormatter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ColoredFormatter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datefmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'%'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">defaults</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/GeneralUtils.html#GeneralUtils.ColoredFormatter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.GeneralUtils.GeneralUtils.ColoredFormatter" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Formatter</span></code></p>
+<p>This class contains the format of all the levels of the logging, including the color of each of them.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="utilities.GeneralUtils.GeneralUtils.ColoredFormatter.COLORS">
+<span class="sig-name descname"><span class="pre">COLORS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{10:</span> <span class="pre">'\x1b[94m%(asctime)s</span> <span class="pre">[%(name)s]</span> <span class="pre">[%(levelname)s]</span> <span class="pre">%(message)s\x1b[0m',</span> <span class="pre">20:</span> <span class="pre">'\x1b[39;20m%(asctime)s</span> <span class="pre">[%(name)s]</span> <span class="pre">[%(levelname)s]</span> <span class="pre">%(message)s\x1b[0m',</span> <span class="pre">30:</span> <span class="pre">'\x1b[93m%(asctime)s</span> <span class="pre">[%(name)s]</span> <span class="pre">[%(levelname)s]</span> <span class="pre">%(message)s</span> <span class="pre">line:%(lineno)d\x1b[0m',</span> <span class="pre">35:</span> <span class="pre">'\x1b[38;2;255;150;20m%(asctime)s</span> <span class="pre">[%(name)s]</span> <span class="pre">[%(levelname)s]</span> <span class="pre">%(message)s\x1b[0m',</span> <span class="pre">36:</span> <span class="pre">'\x1b[38;2;0;255;255m%(asctime)s</span> <span class="pre">[%(name)s]</span> <span class="pre">[%(levelname)s]</span> <span class="pre">%(message)s\x1b[0m',</span> <span class="pre">40:</span> <span class="pre">'\x1b[91m%(asctime)s</span> <span class="pre">[%(name)s]</span> <span class="pre">[%(levelname)s]</span> <span class="pre">%(message)s</span> <span class="pre">line:%(lineno)d\x1b[0m',</span> <span class="pre">50:</span> <span class="pre">'\x1b[41m%(asctime)s</span> <span class="pre">[%(name)s]</span> <span class="pre">[%(levelname)s]</span> <span class="pre">%(message)s</span> <span class="pre">line:%(lineno)d\x1b[0m'}</span></em><a class="headerlink" href="#utilities.GeneralUtils.GeneralUtils.ColoredFormatter.COLORS" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="utilities.GeneralUtils.GeneralUtils.ColoredFormatter.FORMAT_COMPLEX">
+<span class="sig-name descname"><span class="pre">FORMAT_COMPLEX</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'%(asctime)s</span> <span class="pre">[%(name)s]</span> <span class="pre">[%(levelname)s]</span> <span class="pre">%(message)s</span> <span class="pre">line:%(lineno)d'</span></em><a class="headerlink" href="#utilities.GeneralUtils.GeneralUtils.ColoredFormatter.FORMAT_COMPLEX" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="utilities.GeneralUtils.GeneralUtils.ColoredFormatter.FORMAT_SIMPLE">
+<span class="sig-name descname"><span class="pre">FORMAT_SIMPLE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'%(asctime)s</span> <span class="pre">[%(name)s]</span> <span class="pre">[%(levelname)s]</span> <span class="pre">%(message)s'</span></em><a class="headerlink" href="#utilities.GeneralUtils.GeneralUtils.ColoredFormatter.FORMAT_SIMPLE" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="utilities.GeneralUtils.GeneralUtils.ColoredFormatter.RESET">
+<span class="sig-name descname"><span class="pre">RESET</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\x1b[0m'</span></em><a class="headerlink" href="#utilities.GeneralUtils.GeneralUtils.ColoredFormatter.RESET" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="utilities.GeneralUtils.GeneralUtils.ColoredFormatter.format">
+<span class="sig-name descname"><span class="pre">format</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/GeneralUtils.html#GeneralUtils.ColoredFormatter.format"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.GeneralUtils.GeneralUtils.ColoredFormatter.format" title="Link to this definition">¶</a></dt>
+<dd><p>Format the specified record as text.</p>
+<p>The record’s attribute dictionary is used as the operand to a
+string formatting operation which yields the returned string.
+Before formatting the dictionary, a couple of preparatory steps
+are carried out. The message attribute of the record is computed
+using LogRecord.getMessage(). If the formatting string uses the
+time (as determined by a call to usesTime(), formatTime() is
+called to format the event time. If there is exception information,
+it is formatted using formatException() and appended to the message.</p>
+</dd></dl>
+
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="utilities.GeneralUtils.GeneralUtils.configure_logging">
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">configure_logging</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/GeneralUtils.html#GeneralUtils.configure_logging"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.GeneralUtils.GeneralUtils.configure_logging" title="Link to this definition">¶</a></dt>
-<dd><p>This method configures the logging to be used by all modules.</p>
+<dd><p>This method configures the logging to be used by all modules. It specifies different colors to improve the
+readability of the console and adds new levels to the printouts related to ACL and interaction messages.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="utilities.GeneralUtils.GeneralUtils.create_acl_template">
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_acl_template</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">performative</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ontology</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/GeneralUtils.html#GeneralUtils.create_acl_template"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.GeneralUtils.GeneralUtils.create_acl_template" title="Link to this definition">¶</a></dt>
 <dd><p>This method creates a template aligned with FIPA-ACL standard.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>performative(str): The performative of the template.
-ontology(str): The ontology of the template.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>performative</strong> (<em>str</em>) – The performative of the template.</p></li>
+<li><p><strong>ontology</strong> (<em>str</em>) – The ontology of the template.</p></li>
+</ul>
 </dd>
-<dt>Returns:</dt><dd><p>Template: a SPADE template object.</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a SPADE template object.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Template</p>
 </dd>
 </dl>
 </dd></dl>
@@ -405,6 +458,14 @@ ontology(str): The ontology of the template.</p>
             <ul>
 <li><a class="reference internal" href="#">utilities.GeneralUtils module</a><ul>
 <li><a class="reference internal" href="#utilities.GeneralUtils.GeneralUtils"><code class="docutils literal notranslate"><span class="pre">GeneralUtils</span></code></a><ul>
+<li><a class="reference internal" href="#utilities.GeneralUtils.GeneralUtils.ColoredFormatter"><code class="docutils literal notranslate"><span class="pre">GeneralUtils.ColoredFormatter</span></code></a><ul>
+<li><a class="reference internal" href="#utilities.GeneralUtils.GeneralUtils.ColoredFormatter.COLORS"><code class="docutils literal notranslate"><span class="pre">GeneralUtils.ColoredFormatter.COLORS</span></code></a></li>
+<li><a class="reference internal" href="#utilities.GeneralUtils.GeneralUtils.ColoredFormatter.FORMAT_COMPLEX"><code class="docutils literal notranslate"><span class="pre">GeneralUtils.ColoredFormatter.FORMAT_COMPLEX</span></code></a></li>
+<li><a class="reference internal" href="#utilities.GeneralUtils.GeneralUtils.ColoredFormatter.FORMAT_SIMPLE"><code class="docutils literal notranslate"><span class="pre">GeneralUtils.ColoredFormatter.FORMAT_SIMPLE</span></code></a></li>
+<li><a class="reference internal" href="#utilities.GeneralUtils.GeneralUtils.ColoredFormatter.RESET"><code class="docutils literal notranslate"><span class="pre">GeneralUtils.ColoredFormatter.RESET</span></code></a></li>
+<li><a class="reference internal" href="#utilities.GeneralUtils.GeneralUtils.ColoredFormatter.format"><code class="docutils literal notranslate"><span class="pre">GeneralUtils.ColoredFormatter.format()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#utilities.GeneralUtils.GeneralUtils.configure_logging"><code class="docutils literal notranslate"><span class="pre">GeneralUtils.configure_logging()</span></code></a></li>
 <li><a class="reference internal" href="#utilities.GeneralUtils.GeneralUtils.create_acl_template"><code class="docutils literal notranslate"><span class="pre">GeneralUtils.create_acl_template()</span></code></a></li>
 </ul>
@@ -420,7 +481,7 @@ ontology(str): The ontology of the template.</p>
       
     </aside>
   </div>
-</div><script src="_static/documentation_options.js?v=92734c54"></script>
+</div><script src="_static/documentation_options.js?v=360bc84d"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/scripts/furo.js?v=4e2eecee"></script>

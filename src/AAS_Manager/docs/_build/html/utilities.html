@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="utilities.AAS_Archive_utils module" href="utilities.AAS_Archive_utils.html" /><link rel="prev" title="states.StateStopping module" href="states.StateStopping.html" />
 
     <link rel="shortcut icon" href="_static/I4_0_SMIA_favicon.svg"/><!-- Generated with Sphinx 7.3.7 and Furo 2024.05.06 -->
-        <title>utilities package - I4.0 SMIA 0.1.2 documentation</title>
+        <title>utilities package - I4.0 SMIA 0.1.3 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=387cc868" />
     <link rel="stylesheet" type="text/css" href="_static/tabs.css?v=4c969af8" />
@@ -194,7 +194,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="index.html"><div class="brand">I4.0 SMIA 0.1.2 documentation</div></a>
+      <a href="index.html"><div class="brand">I4.0 SMIA 0.1.3 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -221,7 +221,7 @@
     <img class="sidebar-logo" src="_static/I4_0_SMIA_logo_rtd.png" alt="Logo"/>
   </div>
   
-  <span class="sidebar-brand-text">I4.0 SMIA 0.1.2 documentation</span>
+  <span class="sidebar-brand-text">I4.0 SMIA 0.1.3 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -232,7 +232,7 @@
   <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="aas_developer_guide.html">AAS Developer Guide</a></li>
-<li class="toctree-l1 current has-children"><a class="reference internal" href="modules.html">API documentation</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of API documentation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="modules.html">src</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of src</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="aas_manager.html">aas_manager module</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="agents.html">agents package</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of agents package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="agents.AASManagerAgent.html">agents.AASManagerAgent module</a></li>
@@ -248,12 +248,16 @@
 <li class="toctree-l3"><a class="reference internal" href="behaviours.IdleBehaviour.html">behaviours.IdleBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.InitAASarchiveBehaviour.html">behaviours.InitAASarchiveBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.InitSubmodelsBehaviour.html">behaviours.InitSubmodelsBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.InteractionHandlingBehaviour.html">behaviours.InteractionHandlingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.NegotiatingBehaviour.html">behaviours.NegotiatingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.SvcACLHandlingBehaviour.html">behaviours.SvcACLHandlingBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.SvcRequestHandlingBehaviour.html">behaviours.SvcRequestHandlingBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.SvcResponseHandlingBehaviour.html">behaviours.SvcResponseHandlingBehaviour module</a></li>
 </ul>
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="logic.html">logic package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of logic package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="logic.Interactions_utils.html">logic.Interactions_utils module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logic.InterAASInteractions_utils.html">logic.InterAASInteractions_utils module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logic.IntraAASInteractions_utils.html">logic.IntraAASInteractions_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logic.Services_utils.html">logic.Services_utils module</a></li>
 </ul>
 </li>
@@ -332,7 +336,9 @@
 <li class="toctree-l2"><a class="reference internal" href="utilities.AAS_Archive_utils.html#utilities.AAS_Archive_utils.create_log_files"><code class="docutils literal notranslate"><span class="pre">create_log_files()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="utilities.AAS_Archive_utils.html#utilities.AAS_Archive_utils.create_status_file"><code class="docutils literal notranslate"><span class="pre">create_status_file()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="utilities.AAS_Archive_utils.html#utilities.AAS_Archive_utils.file_to_json"><code class="docutils literal notranslate"><span class="pre">file_to_json()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="utilities.AAS_Archive_utils.html#utilities.AAS_Archive_utils.get_log_file_by_service_type"><code class="docutils literal notranslate"><span class="pre">get_log_file_by_service_type()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="utilities.AAS_Archive_utils.html#utilities.AAS_Archive_utils.get_status"><code class="docutils literal notranslate"><span class="pre">get_status()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="utilities.AAS_Archive_utils.html#utilities.AAS_Archive_utils.save_svc_log_info"><code class="docutils literal notranslate"><span class="pre">save_svc_log_info()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="utilities.AAS_Archive_utils.html#utilities.AAS_Archive_utils.update_json_file"><code class="docutils literal notranslate"><span class="pre">update_json_file()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="utilities.AAS_Archive_utils.html#utilities.AAS_Archive_utils.xml_to_file"><code class="docutils literal notranslate"><span class="pre">xml_to_file()</span></code></a></li>
 </ul>
@@ -391,6 +397,14 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="utilities.GeneralUtils.html">utilities.GeneralUtils module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="utilities.GeneralUtils.html#utilities.GeneralUtils.GeneralUtils"><code class="docutils literal notranslate"><span class="pre">GeneralUtils</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="utilities.GeneralUtils.html#utilities.GeneralUtils.GeneralUtils.ColoredFormatter"><code class="docutils literal notranslate"><span class="pre">GeneralUtils.ColoredFormatter</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="utilities.GeneralUtils.html#utilities.GeneralUtils.GeneralUtils.ColoredFormatter.COLORS"><code class="docutils literal notranslate"><span class="pre">GeneralUtils.ColoredFormatter.COLORS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="utilities.GeneralUtils.html#utilities.GeneralUtils.GeneralUtils.ColoredFormatter.FORMAT_COMPLEX"><code class="docutils literal notranslate"><span class="pre">GeneralUtils.ColoredFormatter.FORMAT_COMPLEX</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="utilities.GeneralUtils.html#utilities.GeneralUtils.GeneralUtils.ColoredFormatter.FORMAT_SIMPLE"><code class="docutils literal notranslate"><span class="pre">GeneralUtils.ColoredFormatter.FORMAT_SIMPLE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="utilities.GeneralUtils.html#utilities.GeneralUtils.GeneralUtils.ColoredFormatter.RESET"><code class="docutils literal notranslate"><span class="pre">GeneralUtils.ColoredFormatter.RESET</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="utilities.GeneralUtils.html#utilities.GeneralUtils.GeneralUtils.ColoredFormatter.format"><code class="docutils literal notranslate"><span class="pre">GeneralUtils.ColoredFormatter.format()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="utilities.GeneralUtils.html#utilities.GeneralUtils.GeneralUtils.configure_logging"><code class="docutils literal notranslate"><span class="pre">GeneralUtils.configure_logging()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="utilities.GeneralUtils.html#utilities.GeneralUtils.GeneralUtils.create_acl_template"><code class="docutils literal notranslate"><span class="pre">GeneralUtils.create_acl_template()</span></code></a></li>
 </ul>
@@ -493,7 +507,7 @@ Archive, Submodel and ConfigMap.</p>
       
     </aside>
   </div>
-</div><script src="_static/documentation_options.js?v=92734c54"></script>
+</div><script src="_static/documentation_options.js?v=360bc84d"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/scripts/furo.js?v=4e2eecee"></script>

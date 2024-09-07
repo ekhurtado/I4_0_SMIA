@@ -21,7 +21,7 @@ release = '0.1.3'
 
 extensions = [
     'sphinx.ext.autodoc',  # docString of the .py files
-    # 'sphinx.ext.napoleon',  # To highlight some words
+    'sphinx.ext.napoleon',  # To highlight some words
     'sphinx.ext.viewcode',  # To show the source code
     'sphinx.ext.autosectionlabel',  # It allows to refer sections its title (i.e. Parameters in docStrings).
     'sphinx.ext.autosummary',  # It generates function/method/attribute summary lists

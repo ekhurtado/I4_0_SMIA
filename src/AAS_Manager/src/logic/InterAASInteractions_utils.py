@@ -18,10 +18,12 @@ def get_inter_aas_request_by_thread(agent, thread):
     print()
     # todo
 
+
 def create_inter_aas_response_object(inter_aas_request, intra_aas_response):
     """
     This method creates the Inter AAS interaction response object using the initial Inter AAS interaction request and
     the Intra AAS interaction response needed to perform the initial service request.
+
     Args:
         inter_aas_request (dict): all the information about the Inter AAS interaction request
         intra_aas_response (dict): all the information about the Intra AAS interaction response
@@ -31,4 +33,3 @@ def create_inter_aas_response_object(inter_aas_request, intra_aas_response):
     """
     print()
     # todo
-

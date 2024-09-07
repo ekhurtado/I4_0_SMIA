@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Recommended Documents/Links" href="recommended_links.html" /><link rel="prev" title="utilities.Submodels_utils module" href="utilities.Submodels_utils.html" />
 
     <link rel="shortcut icon" href="_static/I4_0_SMIA_favicon.svg"/><!-- Generated with Sphinx 7.3.7 and Furo 2024.05.06 -->
-        <title>Glossary - I4.0 SMIA 0.1.2 documentation</title>
+        <title>Glossary - I4.0 SMIA 0.1.3 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=387cc868" />
     <link rel="stylesheet" type="text/css" href="_static/tabs.css?v=4c969af8" />
@@ -194,7 +194,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="index.html"><div class="brand">I4.0 SMIA 0.1.2 documentation</div></a>
+      <a href="index.html"><div class="brand">I4.0 SMIA 0.1.3 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -221,7 +221,7 @@
     <img class="sidebar-logo" src="_static/I4_0_SMIA_logo_rtd.png" alt="Logo"/>
   </div>
   
-  <span class="sidebar-brand-text">I4.0 SMIA 0.1.2 documentation</span>
+  <span class="sidebar-brand-text">I4.0 SMIA 0.1.3 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -232,7 +232,7 @@
   <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="aas_developer_guide.html">AAS Developer Guide</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="modules.html">API documentation</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of API documentation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="modules.html">src</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of src</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="aas_manager.html">aas_manager module</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="agents.html">agents package</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of agents package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="agents.AASManagerAgent.html">agents.AASManagerAgent module</a></li>
@@ -248,12 +248,16 @@
 <li class="toctree-l3"><a class="reference internal" href="behaviours.IdleBehaviour.html">behaviours.IdleBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.InitAASarchiveBehaviour.html">behaviours.InitAASarchiveBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.InitSubmodelsBehaviour.html">behaviours.InitSubmodelsBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.InteractionHandlingBehaviour.html">behaviours.InteractionHandlingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.NegotiatingBehaviour.html">behaviours.NegotiatingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.SvcACLHandlingBehaviour.html">behaviours.SvcACLHandlingBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.SvcRequestHandlingBehaviour.html">behaviours.SvcRequestHandlingBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.SvcResponseHandlingBehaviour.html">behaviours.SvcResponseHandlingBehaviour module</a></li>
 </ul>
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="logic.html">logic package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of logic package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="logic.Interactions_utils.html">logic.Interactions_utils module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logic.InterAASInteractions_utils.html">logic.InterAASInteractions_utils module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logic.IntraAASInteractions_utils.html">logic.IntraAASInteractions_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logic.Services_utils.html">logic.Services_utils module</a></li>
 </ul>
 </li>
@@ -326,7 +330,7 @@
 </dd>
 <dt id="term-AAS-Core">AAS Core<a class="headerlink" href="#term-AAS-Core" title="Link to this term">¶</a></dt><dd><p>The AAS Core is the specific part of the AAS that is closely related to the asset which the AAS is representing. The assets can be either logical or physical. The AAS Core is developed by the user for each case.</p>
 </dd>
-<dt id="term-AAS-Manager">AAS Manager<a class="headerlink" href="#term-AAS-Manager" title="Link to this term">¶</a></dt><dd><p>The AAS Manager is the common part of the AAS for all AAS types. It is responsible for managing the AAS and representing it in the I4.0 System and it is implemented as a <span class="xref std std-term">Industrial Agent</span>. This agent will be part of a <span class="xref std std-term">Multi-Agent System</span> composed of other AASs, each with their corresponding AAS Managers. The AAS Manager is provided by the platform in this approach, so the user only has to parameterise it.</p>
+<dt id="term-AAS-Manager">AAS Manager<a class="headerlink" href="#term-AAS-Manager" title="Link to this term">¶</a></dt><dd><p>The AAS Manager is the common part of the AAS for all AAS types. It is responsible for managing the AAS and representing it in the I4.0 System and it is implemented as a <a class="reference internal" href="#term-Industrial-Agent"><span class="xref std std-term">Industrial Agent</span></a>. This agent will be part of a <a class="reference internal" href="#term-Multi-Agent-System"><span class="xref std std-term">Multi-Agent System</span></a> composed of other AASs, each with their corresponding AAS Managers. The AAS Manager is provided by the platform in this approach, so the user only has to parameterise it.</p>
 </dd>
 <dt id="term-API">API<a class="headerlink" href="#term-API" title="Link to this term">¶</a></dt><dd><p>Application Programming Interface. A set of routines, protocols, and tools for building software applications.</p>
 </dd>
@@ -336,7 +340,15 @@
 </dd>
 <dt id="term-IDE">IDE<a class="headerlink" href="#term-IDE" title="Link to this term">¶</a></dt><dd><p>Integrated Development Environment. A software suite that consolidates the basic tools developers need to write and test software.</p>
 </dd>
+<dt id="term-Industrial-Agent">Industrial Agent<a class="headerlink" href="#term-Industrial-Agent" title="Link to this term">¶</a></dt><dd><p>An industrial agent is defined as a key enabler for industrial applications, focusing on core functionalities relevant to the application while often neglecting security and privacy aspects, especially in the context of cyber-physical systems and their utilization in industrial environments (see <a class="reference external" href="https://www.sciencedirect.com/topics/computer-science/industrial-agent">ScienceDirect</a> ).</p>
+</dd>
+<dt id="term-Inter-AAS-Interaction">Inter AAS Interaction<a class="headerlink" href="#term-Inter-AAS-Interaction" title="Link to this term">¶</a></dt><dd><p>Interaction type that takes place between I4.0 Components, i.e. between AASs (and therefore between AAS Managers). These interactions will follow FIPA-ACL, i.e. an AAS can request a service from another AAS.</p>
+</dd>
+<dt id="term-Intra-AAS-Interaction">Intra AAS Interaction<a class="headerlink" href="#term-Intra-AAS-Interaction" title="Link to this term">¶</a></dt><dd><p>Interaction within each I4.0 Component, that is, between the AAS Manager and the AAS Core. This interaction will occur when one of the two has to perform a task that it is not capable of by itself, so it will have to request it to the other entity. I.e. the AAS Manager can request a service from its associated AAS Core.</p>
+</dd>
 <dt id="term-Method">Method<a class="headerlink" href="#term-Method" title="Link to this term">¶</a></dt><dd><p>A function that is associated with an object and has access to the object’s data.</p>
+</dd>
+<dt id="term-Multi-Agent-System">Multi-Agent System<a class="headerlink" href="#term-Multi-Agent-System" title="Link to this term">¶</a></dt><dd><p>A multi-agent system (MAS) is a computerized system composed of multiple interacting intelligent agents, capable of perceiving their environment and taking decisions based on it. Typically agents refers to software agents, but could equally well be robots, humans or human teams. The work toward a common goal that goes beyond their individual goals, increasing the adaptability and robustness.</p>
 </dd>
 <dt id="term-Object">Object<a class="headerlink" href="#term-Object" title="Link to this term">¶</a></dt><dd><p>An instance of a class. Objects can contain data and code that manipulates the data.</p>
 </dd>
@@ -399,7 +411,7 @@
       
     </aside>
   </div>
-</div><script src="_static/documentation_options.js?v=92734c54"></script>
+</div><script src="_static/documentation_options.js?v=360bc84d"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/scripts/furo.js?v=4e2eecee"></script>

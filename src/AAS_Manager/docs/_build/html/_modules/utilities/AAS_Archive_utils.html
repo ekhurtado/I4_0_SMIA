@@ -4,8 +4,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" />
 
-    <link rel="shortcut icon" href="../../_static/I4_0_SMIA_favicon.svg"/><!-- Generated with Sphinx 7.4.7 and Furo 2024.05.06 -->
-        <title>utilities.AAS_Archive_utils - I4.0 SMIA 0.1.2 documentation</title>
+    <link rel="shortcut icon" href="../../_static/I4_0_SMIA_favicon.svg"/><!-- Generated with Sphinx 7.3.7 and Furo 2024.05.06 -->
+        <title>utilities.AAS_Archive_utils - I4.0 SMIA 0.1.3 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=387cc868" />
     <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=4c969af8" />
@@ -193,7 +193,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../index.html"><div class="brand">I4.0 SMIA 0.1.2 documentation</div></a>
+      <a href="../../index.html"><div class="brand">I4.0 SMIA 0.1.3 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -220,7 +220,7 @@
     <img class="sidebar-logo" src="../../_static/I4_0_SMIA_logo_rtd.png" alt="Logo"/>
   </div>
   
-  <span class="sidebar-brand-text">I4.0 SMIA 0.1.2 documentation</span>
+  <span class="sidebar-brand-text">I4.0 SMIA 0.1.3 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -247,12 +247,16 @@
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.IdleBehaviour.html">behaviours.IdleBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.InitAASarchiveBehaviour.html">behaviours.InitAASarchiveBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.InitSubmodelsBehaviour.html">behaviours.InitSubmodelsBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../behaviours.InteractionHandlingBehaviour.html">behaviours.InteractionHandlingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.NegotiatingBehaviour.html">behaviours.NegotiatingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.SvcACLHandlingBehaviour.html">behaviours.SvcACLHandlingBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../behaviours.SvcRequestHandlingBehaviour.html">behaviours.SvcRequestHandlingBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../behaviours.SvcResponseHandlingBehaviour.html">behaviours.SvcResponseHandlingBehaviour module</a></li>
 </ul>
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../../logic.html">logic package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of logic package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../logic.Interactions_utils.html">logic.Interactions_utils module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../logic.InterAASInteractions_utils.html">logic.InterAASInteractions_utils module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../logic.IntraAASInteractions_utils.html">logic.IntraAASInteractions_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../logic.Services_utils.html">logic.Services_utils module</a></li>
 </ul>
 </li>
@@ -397,6 +401,55 @@
 
 
 
+<div class="viewcode-block" id="get_log_file_by_service_type">
+<a class="viewcode-back" href="../../utilities.AAS_Archive_utils.html#utilities.AAS_Archive_utils.get_log_file_by_service_type">[docs]</a>
+<span class="k">def</span> <span class="nf">get_log_file_by_service_type</span><span class="p">(</span><span class="n">svc_type</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This method obtains the path to the log file associated to the type of the service.</span>
+<span class="sd">    Args:</span>
+<span class="sd">        svc_type (str): type of the service.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: path to the log file</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">log_file_path</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">match</span> <span class="n">svc_type</span><span class="p">:</span>
+        <span class="k">case</span> <span class="s2">&quot;AssetRelatedService&quot;</span><span class="p">:</span>
+            <span class="n">log_file_path</span> <span class="o">=</span> <span class="n">AASarchiveInfo</span><span class="o">.</span><span class="n">SVC_LOG_FOLDER_PATH</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">AASarchiveInfo</span><span class="o">.</span><span class="n">ASSET_RELATED_SVC_LOG_FILENAME</span>
+        <span class="k">case</span> <span class="s2">&quot;AASInfrastructureServices&quot;</span><span class="p">:</span>
+            <span class="n">log_file_path</span> <span class="o">=</span> <span class="n">AASarchiveInfo</span><span class="o">.</span><span class="n">SVC_LOG_FOLDER_PATH</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">AASarchiveInfo</span><span class="o">.</span><span class="n">AAS_INFRASTRUCTURE_SVC_LOG_FILENAME</span>
+        <span class="k">case</span> <span class="s2">&quot;AASservices&quot;</span><span class="p">:</span>
+            <span class="n">log_file_path</span> <span class="o">=</span> <span class="n">AASarchiveInfo</span><span class="o">.</span><span class="n">SVC_LOG_FOLDER_PATH</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">AASarchiveInfo</span><span class="o">.</span><span class="n">AAS_SERVICES_LOG_FILENAME</span>
+        <span class="k">case</span> <span class="s2">&quot;SubmodelServices&quot;</span><span class="p">:</span>
+            <span class="n">log_file_path</span> <span class="o">=</span> <span class="n">AASarchiveInfo</span><span class="o">.</span><span class="n">SVC_LOG_FOLDER_PATH</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">AASarchiveInfo</span><span class="o">.</span><span class="n">SUBMODEL_SERVICES_LOG_FILENAME</span>
+        <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">:</span>
+            <span class="n">_logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Service type not available.&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">log_file_path</span></div>
+
+
+
+<div class="viewcode-block" id="save_svc_log_info">
+<a class="viewcode-back" href="../../utilities.AAS_Archive_utils.html#utilities.AAS_Archive_utils.save_svc_log_info">[docs]</a>
+<span class="k">def</span> <span class="nf">save_svc_log_info</span><span class="p">(</span><span class="n">svc_info</span><span class="p">,</span> <span class="n">svc_type</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This method saves the information about a realized service in the log file associated to the type of the service.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        svc_info (dict): the information of the service in JSON format.</span>
+<span class="sd">        svc_type (str): type of the service.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># First, the required paths are obtained</span>
+    <span class="n">log_file_path</span> <span class="o">=</span> <span class="n">get_log_file_by_service_type</span><span class="p">(</span><span class="n">svc_type</span><span class="p">)</span>
+
+    <span class="c1"># Then, the new information is added</span>
+    <span class="n">log_file_json</span> <span class="o">=</span> <span class="n">file_to_json</span><span class="p">(</span><span class="n">log_file_path</span><span class="p">)</span>
+    <span class="n">log_file_json</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">svc_info</span><span class="p">)</span>
+
+    <span class="c1"># Finally, the file is updated</span>
+    <span class="n">update_json_file</span><span class="p">(</span><span class="n">log_file_path</span><span class="p">,</span> <span class="n">log_file_json</span><span class="p">)</span></div>
+
+
+
 <span class="c1"># -------------------------</span>
 <span class="c1"># Methods related to status</span>
 <span class="c1"># -------------------------</span>
@@ -537,7 +590,7 @@
       
     </aside>
   </div>
-</div><script src="../../_static/documentation_options.js?v=92734c54"></script>
+</div><script src="../../_static/documentation_options.js?v=360bc84d"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/scripts/furo.js?v=4e2eecee"></script>

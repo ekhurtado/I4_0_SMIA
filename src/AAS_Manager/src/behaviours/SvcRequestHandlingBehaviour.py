@@ -10,13 +10,15 @@ _logger = logging.getLogger(__name__)
 class SvcRequestHandlingBehaviour(OneShotBehaviour):
     """
     This class implements the behaviour that handles all the service requests that the AAS Manager has received. This
-    request can arrive from an FIPA-ACL message or from the AAS Core as an interaction message. This is a
-    OneShotBehaviour because it handles an individual service request and then kills itself.
+    request can arrive from an FIPA-ACL message as a :term:`Inter AAS Interaction` or from the AAS Core as an
+    :term:`Intra AAS Interaction` message. This is a OneShotBehaviour because it handles an individual service request
+    and then kills itself.
     """
 
     def __init__(self, agent_object, svc_req_interaction_type, svc_req_data):
         """
-        The constructor method is rewritten to add the object of the agent
+        The constructor method is rewritten to add the object of the agent.
+
         Args:
             agent_object (spade.Agent): the SPADE agent object of the AAS Manager agent.
             svc_req_interaction_type (str): the type of the service request interaction (:term:`Inter AAS Interaction`

@@ -172,6 +172,7 @@ async def send_interaction_msg_to_core(client_id, msg_key, msg_data):
     """
     This method sends a Kafka interaction message to the AAS Core. To this end, the AAS Manager publish messages in its
     partition, where the AAS Core will be listening.
+
     Args:
         client_id (str): the id of the client of the Kafka producer.
         msg_key (str): the key of the Kafka message.
@@ -206,17 +207,17 @@ async def send_interaction_msg_to_core(client_id, msg_key, msg_data):
 def get_svc_info(requested_entity, interaction_id):
     """
     This method obtains the information of the service considering the entity that has requested the service. In the
-     entity is Manager it has to search in Manager requests and Core responses, and in the case of being the Core the
-     one that has made the request, the opposite.
+    entity is Manager it has to search in Manager requests and Core responses, and in the case of being the Core the
+    one that has made the request, the opposite.
 
-     Args:
+    Args:
         requested_entity (str): The entity that has requested the service, to know in which interaction files to search.
         interaction_id (int): Identifier of the interaction.
 
-     Returns:
+    Returns:
          dict: Information of the service request in JSON format
          dict: Information of the service response in JSON format.
-     """
+    """
 
     if requested_entity == "Manager":
         return get_svc_request_info(interaction_id), get_svc_response_info(interaction_id)

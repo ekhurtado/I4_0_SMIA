@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="utilities.AASarchiveInfo module" href="utilities.AASarchiveInfo.html" /><link rel="prev" title="utilities package" href="utilities.html" />
 
     <link rel="shortcut icon" href="_static/I4_0_SMIA_favicon.svg"/><!-- Generated with Sphinx 7.3.7 and Furo 2024.05.06 -->
-        <title>utilities.AAS_Archive_utils module - I4.0 SMIA 0.1.2 documentation</title>
+        <title>utilities.AAS_Archive_utils module - I4.0 SMIA 0.1.3 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=387cc868" />
     <link rel="stylesheet" type="text/css" href="_static/tabs.css?v=4c969af8" />
@@ -194,7 +194,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="index.html"><div class="brand">I4.0 SMIA 0.1.2 documentation</div></a>
+      <a href="index.html"><div class="brand">I4.0 SMIA 0.1.3 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -221,7 +221,7 @@
     <img class="sidebar-logo" src="_static/I4_0_SMIA_logo_rtd.png" alt="Logo"/>
   </div>
   
-  <span class="sidebar-brand-text">I4.0 SMIA 0.1.2 documentation</span>
+  <span class="sidebar-brand-text">I4.0 SMIA 0.1.3 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -232,7 +232,7 @@
   <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="aas_developer_guide.html">AAS Developer Guide</a></li>
-<li class="toctree-l1 current has-children"><a class="reference internal" href="modules.html">API documentation</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of API documentation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="modules.html">src</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of src</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="aas_manager.html">aas_manager module</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="agents.html">agents package</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of agents package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="agents.AASManagerAgent.html">agents.AASManagerAgent module</a></li>
@@ -248,12 +248,16 @@
 <li class="toctree-l3"><a class="reference internal" href="behaviours.IdleBehaviour.html">behaviours.IdleBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.InitAASarchiveBehaviour.html">behaviours.InitAASarchiveBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.InitSubmodelsBehaviour.html">behaviours.InitSubmodelsBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.InteractionHandlingBehaviour.html">behaviours.InteractionHandlingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.NegotiatingBehaviour.html">behaviours.NegotiatingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.SvcACLHandlingBehaviour.html">behaviours.SvcACLHandlingBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.SvcRequestHandlingBehaviour.html">behaviours.SvcRequestHandlingBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.SvcResponseHandlingBehaviour.html">behaviours.SvcResponseHandlingBehaviour module</a></li>
 </ul>
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="logic.html">logic package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of logic package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="logic.Interactions_utils.html">logic.Interactions_utils module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logic.InterAASInteractions_utils.html">logic.InterAASInteractions_utils module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logic.IntraAASInteractions_utils.html">logic.IntraAASInteractions_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logic.Services_utils.html">logic.Services_utils module</a></li>
 </ul>
 </li>
@@ -326,8 +330,9 @@
 <dt class="sig sig-object py" id="utilities.AAS_Archive_utils.change_status">
 <span class="sig-prename descclassname"><span class="pre">utilities.AAS_Archive_utils.</span></span><span class="sig-name descname"><span class="pre">change_status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_status</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/AAS_Archive_utils.html#change_status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.AAS_Archive_utils.change_status" title="Link to this definition">¶</a></dt>
 <dd><p>This method updated the status of an AAS Manager instance.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>new_status (str): the new status of the AAS Manager instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>new_status</strong> (<em>str</em>) – the new status of the AAS Manager instance.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -362,10 +367,31 @@ rewritten.</p>
 <dt class="sig sig-object py" id="utilities.AAS_Archive_utils.file_to_json">
 <span class="sig-prename descclassname"><span class="pre">utilities.AAS_Archive_utils.</span></span><span class="sig-name descname"><span class="pre">file_to_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/AAS_Archive_utils.html#file_to_json"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.AAS_Archive_utils.file_to_json" title="Link to this definition">¶</a></dt>
 <dd><p>This method gets the content of a JSON file.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>file_path (str): the path of the JSON file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>file_path</strong> (<em>str</em>) – the path of the JSON file.</p>
 </dd>
-<dt>Returns:</dt><dd><p>dict: content of the file in JSON format.</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>content of the file in JSON format.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utilities.AAS_Archive_utils.get_log_file_by_service_type">
+<span class="sig-prename descclassname"><span class="pre">utilities.AAS_Archive_utils.</span></span><span class="sig-name descname"><span class="pre">get_log_file_by_service_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">svc_type</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/AAS_Archive_utils.html#get_log_file_by_service_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.AAS_Archive_utils.get_log_file_by_service_type" title="Link to this definition">¶</a></dt>
+<dd><p>This method obtains the path to the log file associated to the type of the service.
+:param svc_type: type of the service.
+:type svc_type: str</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>path to the log file</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
 </dd>
 </dl>
 </dd></dl>
@@ -374,10 +400,29 @@ rewritten.</p>
 <dt class="sig sig-object py" id="utilities.AAS_Archive_utils.get_status">
 <span class="sig-prename descclassname"><span class="pre">utilities.AAS_Archive_utils.</span></span><span class="sig-name descname"><span class="pre">get_status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">entity</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/AAS_Archive_utils.html#get_status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.AAS_Archive_utils.get_status" title="Link to this definition">¶</a></dt>
 <dd><p>This method gets the status of the requested entity.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>entity (str): The entity to get the status for.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>entity</strong> (<em>str</em>) – The entity to get the status for.</p>
 </dd>
-<dt>Returns:</dt><dd><p>dict: status in JSON format.</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>status in JSON format.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utilities.AAS_Archive_utils.save_svc_log_info">
+<span class="sig-prename descclassname"><span class="pre">utilities.AAS_Archive_utils.</span></span><span class="sig-name descname"><span class="pre">save_svc_log_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">svc_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">svc_type</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/AAS_Archive_utils.html#save_svc_log_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.AAS_Archive_utils.save_svc_log_info" title="Link to this definition">¶</a></dt>
+<dd><p>This method saves the information about a realized service in the log file associated to the type of the service.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>svc_info</strong> (<em>dict</em>) – the information of the service in JSON format.</p></li>
+<li><p><strong>svc_type</strong> (<em>str</em>) – type of the service.</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -386,9 +431,12 @@ rewritten.</p>
 <dt class="sig sig-object py" id="utilities.AAS_Archive_utils.update_json_file">
 <span class="sig-prename descclassname"><span class="pre">utilities.AAS_Archive_utils.</span></span><span class="sig-name descname"><span class="pre">update_json_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">content</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/AAS_Archive_utils.html#update_json_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.AAS_Archive_utils.update_json_file" title="Link to this definition">¶</a></dt>
 <dd><p>This method updates the content of a JSON file.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>file_path (str): the path to the JSON file.
-content (dict): the content of the JSON file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>file_path</strong> (<em>str</em>) – the path to the JSON file.</p></li>
+<li><p><strong>content</strong> (<em>dict</em>) – the content of the JSON file.</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -397,9 +445,12 @@ content (dict): the content of the JSON file.</p>
 <dt class="sig sig-object py" id="utilities.AAS_Archive_utils.xml_to_file">
 <span class="sig-prename descclassname"><span class="pre">utilities.AAS_Archive_utils.</span></span><span class="sig-name descname"><span class="pre">xml_to_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xml_content</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/AAS_Archive_utils.html#xml_to_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.AAS_Archive_utils.xml_to_file" title="Link to this definition">¶</a></dt>
 <dd><p>This method writes the content of an XML in a file.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>file_path (str): the path to the XML file.
-xml_content (bytes): the content of the XML file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>file_path</strong> (<em>str</em>) – the path to the XML file.</p></li>
+<li><p><strong>xml_content</strong> (<em>bytes</em>) – the content of the XML file.</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -467,7 +518,9 @@ xml_content (bytes): the content of the XML file.</p>
 <li><a class="reference internal" href="#utilities.AAS_Archive_utils.create_log_files"><code class="docutils literal notranslate"><span class="pre">create_log_files()</span></code></a></li>
 <li><a class="reference internal" href="#utilities.AAS_Archive_utils.create_status_file"><code class="docutils literal notranslate"><span class="pre">create_status_file()</span></code></a></li>
 <li><a class="reference internal" href="#utilities.AAS_Archive_utils.file_to_json"><code class="docutils literal notranslate"><span class="pre">file_to_json()</span></code></a></li>
+<li><a class="reference internal" href="#utilities.AAS_Archive_utils.get_log_file_by_service_type"><code class="docutils literal notranslate"><span class="pre">get_log_file_by_service_type()</span></code></a></li>
 <li><a class="reference internal" href="#utilities.AAS_Archive_utils.get_status"><code class="docutils literal notranslate"><span class="pre">get_status()</span></code></a></li>
+<li><a class="reference internal" href="#utilities.AAS_Archive_utils.save_svc_log_info"><code class="docutils literal notranslate"><span class="pre">save_svc_log_info()</span></code></a></li>
 <li><a class="reference internal" href="#utilities.AAS_Archive_utils.update_json_file"><code class="docutils literal notranslate"><span class="pre">update_json_file()</span></code></a></li>
 <li><a class="reference internal" href="#utilities.AAS_Archive_utils.xml_to_file"><code class="docutils literal notranslate"><span class="pre">xml_to_file()</span></code></a></li>
 </ul>
@@ -481,7 +534,7 @@ xml_content (bytes): the content of the XML file.</p>
       
     </aside>
   </div>
-</div><script src="_static/documentation_options.js?v=92734c54"></script>
+</div><script src="_static/documentation_options.js?v=360bc84d"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/scripts/furo.js?v=4e2eecee"></script>
