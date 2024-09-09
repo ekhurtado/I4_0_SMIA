@@ -78,11 +78,20 @@ class SvcACLHandlingBehaviour(CyclicBehaviour):
 
             if service_category == 'service-request':
                 # A new service request is added to the global dictionary of ACL requests of the agent
-                if self.myagent.get_acl_svc_request(thread=msg.thread) is not None:
+                if await self.myagent.get_acl_svc_request(thread=msg.thread) is not None:
                     _logger.error("A request has been made for an ACL service that already exists.")
                 else:
-                    # The thread is the identifier of the conversation
-                    self.myagent.save_new_acl_svc_request(thread=msg.thread, request_data=msg_json_body)
+                    # The thread is the identifier of the conversation, so all the information will be saved using it
+                    msg_json_body['performative'] = msg.get_metadata('performative')
+                    msg_json_body['ontology'] = msg.get_metadata('ontology')
+
+                    if '/' in str(msg.sender):  # XMPP server can add a random string to differentiate the agent JID
+                        msg_json_body['sender'] = str(msg.sender).split('/')[0]
+                    else:
+                        msg_json_body['sender'] = str(msg.sender)
+                    await self.myagent.save_new_acl_svc_request(thread=msg.thread, request_data=msg_json_body)
+                    _logger.aclinfo("acl_svc_requests shared object updated by " + str(self.__class__.__name__)
+                        + " responsible for thread [" + msg.thread + "]. Action: request data added")
 
                     svc_req_data = Services_utils.create_svc_req_data_from_acl_msg(msg)
 

@@ -146,8 +146,8 @@ async def main():
     passwd = '123'
 
     # DATOS PARA PRUEBAS CON ANONYM.IM
-    agent_jid = "gui_agent@anonym.im"
-    passwd = "gcis1234"
+    # agent_jid = "gui_agent@anonym.im"
+    # passwd = "gcis1234"
 
     gui_agent = GUIAgent(agent_jid, passwd)
     gui_agent.agent_name = 'gui_agent'

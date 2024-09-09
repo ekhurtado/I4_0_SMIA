@@ -21,7 +21,7 @@ def create_inter_aas_response_object(inter_aas_request, intra_aas_response):
     # TODO comprobar que esta bien
     return {'performative': inter_aas_request['performative'],
             'ontology': inter_aas_request['ontology'],
-            'thread': inter_aas_request['thread'],
+            'thread': intra_aas_response['thread'],
             'serviceType': inter_aas_request['serviceType'],
             'serviceID': inter_aas_request['serviceID'],
             'serviceData': {

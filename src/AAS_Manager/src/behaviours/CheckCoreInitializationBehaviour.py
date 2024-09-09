@@ -29,20 +29,6 @@ class CheckCoreInitializationBehaviour(CyclicBehaviour):
         """
         This method implements the logic of the behaviour.
         """
-
-        # TODO this code is for the interaction through JSON (it has to be removed)
-        # # If the file does not exist the behaviour continues to start and check again
-        # if os.path.isfile(AASarchiveInfo.CORE_STATUS_FILE_PATH) is True:
-        #     core_status_json = file_to_json(AASarchiveInfo.CORE_STATUS_FILE_PATH)
-        #     # If the file exists, but the JSON has not been created properly, the AAS Core is not ready yet.
-        #     if core_status_json is not None:
-        #         if core_status_json['status'] != "Initializing":
-        #             # If the status is not "Initializing" the AAS Core is ready, so the behaviour is finished
-        #             _logger.info('AAS Core has initialized, so the AAS Manager can be switched to the run state.')
-        #             self.kill()
-
-        # TODO check if it is working with Kafka
-
         #  To check the state of the AAS Core, the AAS Manager will get the
         #  information subscribing to the AAS topic of Kafka, in this case to the partition related to the AAS Core
         kafka_consumer_core_partition = IntraAASInteractions_utils.create_interaction_kafka_consumer('i4-0-smia-manager')
@@ -71,7 +57,7 @@ class CheckCoreInitializationBehaviour(CyclicBehaviour):
                 msg_json_value = msg.value
 
                 if msg_key == 'core-status':
-                    print("The AAS Core status information has been received.")
+                    _logger.info("The AAS Core status information has been received.")
                     if msg_json_value['status'] != "Initializing":
                         # If the status is not "Initializing" the AAS Core is ready, so the behaviour is finished
                         _logger.info('AAS Core has initialized, so the AAS Manager can be switched to the run state.')

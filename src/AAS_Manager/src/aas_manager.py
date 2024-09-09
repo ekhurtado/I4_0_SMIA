@@ -43,13 +43,13 @@ async def main():
     aas_manager_agent = None
     match aas_type:
         case "physical":
-            print("The asset is physical")
+            _logger.info("The asset is physical")
             aas_manager_agent = AASManagerResourceAgent(agent_jid, passwd)
         case "logical":
-            print("The asset is logical")
+            _logger.info("The asset is logical")
             aas_manager_agent = AASManagerAppAgent(agent_jid, passwd)
         case _:
-            print("A generic AAS Manager")
+            _logger.info("The asset is not defined, so it is a generic AAS Manager")
             # Create the agent object
             aas_manager_agent = AASManagerAgent(agent_jid, passwd)
 
@@ -61,15 +61,6 @@ async def main():
 
 
 if __name__ == '__main__':
-
-    a = {'id1': {'thread': 'aa1', 'serviceID': 'svc1'},
-         'id2': {'thread': 'aa2', 'serviceID': 'svc2'},
-         'id3': {'thread': 'aa3', 'serviceID': 'svc3'}
-         }
-
-    for i,b in a.items():
-        if b['thread'] == 'aa1':
-            print("ESTE SI: " + i)
 
     # Configure logging
     GeneralUtils.configure_logging()

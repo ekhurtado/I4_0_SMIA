@@ -131,7 +131,9 @@ public class AAS_ArchiveUtils {
 
         if (serviceRequestedData != null) {
             String requestedDataName = (String) ((JSONObject) ((JSONObject) requestJSON.get("serviceData")).get("serviceParams")).get("requestedData");
-            serviceDataJSON.put(requestedDataName, serviceRequestedData);
+            JSONObject requestedDataJSON = new JSONObject();
+            requestedDataJSON.put(requestedDataName, serviceRequestedData);
+            serviceDataJSON.put("serviceParams", requestedDataJSON);
         }
         completedResponseJSON.put("serviceData", serviceDataJSON);
         return completedResponseJSON;

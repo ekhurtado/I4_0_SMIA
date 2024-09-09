@@ -28,7 +28,7 @@ class AASManagerAgent(Agent):
 
         # Objects for storing the information related to AAS Manager-Core interactions are initialized
         self.interaction_id_num = 0  # The interactionId number is reset
-        self.interaction_id = 'manager-' + str(self.agent.interaction_id_num)  # The complete interactionId
+        self.interaction_id = 'manager-' + str(self.interaction_id_num)  # The complete interactionId
         self.interaction_requests = {}
         self.interaction_responses = {}
 
@@ -134,10 +134,22 @@ class AASManagerAgent(Agent):
         this type of interaction.
 
         Args:
-            request_data (dict): all the information of the ACL Service Request in JSON format.
+            request_data (dict): all the information of the Intra AAS interaction Request in JSON format.
         """
         async with self.lock:  # safe access to a shared object of the agent
-            self.interaction_requests[self.get_interaction_id()] = request_data
+            self.interaction_requests[await self.get_interaction_id()] = request_data
+
+    async def save_interaction_request(self, interaction_id, request_data):
+        """
+        This method adds a specific Intra AAS interaction Request to the global requests dictionary of the AAS Manager
+        for this type of interaction using a specific interaction id.
+
+        Args:
+            interaction_id (str): interaction identifier of the Intra AAS interaction request.
+            request_data (dict): all the information of the Intra AAS interaction Request in JSON format.
+        """
+        async with self.lock:  # safe access to a shared object of the agent
+            self.interaction_requests[interaction_id] = request_data
 
     async def save_interaction_response(self, interaction_id, response_data):
         """

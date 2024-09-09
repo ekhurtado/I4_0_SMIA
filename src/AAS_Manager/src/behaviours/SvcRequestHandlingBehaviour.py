@@ -88,8 +88,9 @@ class SvcRequestHandlingBehaviour(OneShotBehaviour):
         if self.svc_req_interaction_type == 'Inter AAS interaction':
             # In this type of services an interaction request have to be made to the AAS Core
             # First, the valid JSON structure of the request is generated
+            current_interaction_id = await self.myagent.get_interaction_id()
             interaction_request_json = IntraAASInteractions_utils.create_svc_request_interaction_json(
-                interaction_id=self.myagent.get_interaction_id(),
+                interaction_id=current_interaction_id,
                 request_data=self.svc_req_data)
 
             # Then, the interaction message is sent to the AAS Core
@@ -97,20 +98,27 @@ class SvcRequestHandlingBehaviour(OneShotBehaviour):
                 client_id='i4-0-smia-manager',
                 msg_key='manager-service-request',
                 msg_data=interaction_request_json)
-            if request_result is not "OK":
+            if request_result != "OK":
                 _logger.error("The AAS Manager-Core interaction is not working: " + str(request_result))
             else:
-                _logger.interactioninfo("The service with interaction id [" + self.myagent.get_interaction_id() +
+                _logger.interactioninfo("The service with interaction id [" + await self.myagent.get_interaction_id() +
                                         "] to the AAS Core has been requested")
 
                 # In this case, the service request is completed, since it needs the cooperation of the AAS Core.
                 # When the response arrives, another behaviour is responsible for checking whether the service has been
                 # fully performed
                 # The information about the interaction request is also stored in the global variables of the agent
-                self.myagent.save_new_interaction_request(request_data=interaction_request_json)
+                await self.myagent.save_interaction_request(interaction_id=current_interaction_id,
+                                                            request_data=interaction_request_json)
+
+                _logger.interactioninfo("interaction_requests shared object updated by " + str(self.__class__.__name__)
+                     + " responsible for interaction [" + current_interaction_id + "]. Action: request data added")
 
                 # Finally, it has to increment the interaction id as new requests has been made
-                self.myagent.increase_interaction_id_num()
+                await self.myagent.increase_interaction_id_num()
+                _logger.interactioninfo("interaction_id shared object updated by " + str(self.__class__.__name__)
+                                        + " responsible for interaction [" + current_interaction_id +
+                                        "]. Action: interaction_id increased")
 
         elif self.svc_req_interaction_type == 'Intra AAS interaction':
             # TODO pensar como se gestionaria este caso
@@ -125,7 +133,7 @@ class SvcRequestHandlingBehaviour(OneShotBehaviour):
         for AASs).
 
         """
-        _logger.info(self.myagent.get_interaction_id() + str(self.svc_req_data))
+        _logger.info(await self.myagent.get_interaction_id() + str(self.svc_req_data))
 
     async def handle_aas_services(self):
         """
@@ -137,7 +145,7 @@ class SvcRequestHandlingBehaviour(OneShotBehaviour):
         control) and Exposure and Discovery Services (to search for submodels or asset related services).
 
         """
-        _logger.info(self.myagent.get_interaction_id() + str(self.svc_req_data))
+        _logger.info(await self.myagent.get_interaction_id() + str(self.svc_req_data))
 
     async def handle_submodel_services(self):
         """
@@ -148,4 +156,4 @@ class SvcRequestHandlingBehaviour(OneShotBehaviour):
         # TODO, en este caso tendra que comprobar que submodelo esta asociado a la peticion de servicio. Si el submodelo
         #  es propio del AAS Manager, podra acceder directamente y, por tanto, este behaviour sera capaz de realizar el
         #  servicio completamente. Si es un submodelo del AAS Core, tendra que solicitarselo
-        _logger.info(self.myagent.get_interaction_id() + str(self.svc_req_data))
+        _logger.info(await self.myagent.get_interaction_id() + str(self.svc_req_data))

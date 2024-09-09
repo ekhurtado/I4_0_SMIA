@@ -66,7 +66,7 @@ class InteractionHandlingBehaviour(CyclicBehaviour):
                     case 'core-service-response':
                         _logger.interactioninfo("The AAS Manager has received a service response from the AAS Core.")
                         _logger.interactioninfo("The service with id " + str(msg_json_value['interactionID']) +
-                                                "has been answered from the AAS Core to the AAS Manager. Data of the "
+                                                " has been answered from the AAS Core to the AAS Manager. Data of the "
                                                 "response: " + str(msg_json_value))
                         # A new behaviour is added to the SPADE agent to handle this specific service request
                         svc_resp_handling_behav = SvcResponseHandlingBehaviour(self.agent,
