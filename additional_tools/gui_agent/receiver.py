@@ -230,7 +230,7 @@ class ReceiverAgent(Agent):
             self.targets = negotiation_info['targets']
             self.neg_criteria = negotiation_info['neg_criteria']
             self.neg_value = negotiation_info['neg_value']
-            self.targets_processed = []
+            self.targets_processed = []  # TODO pensar si cambiarlo a un set para evitar valores repetidos
 
         async def on_start(self):
             print("[" + str(self.agent.jid) + "]" + " [RUNNING THE HANDLE NEGOTIATION BEHAVIOUR]")
