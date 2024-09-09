@@ -6,6 +6,7 @@ import logging
 import time
 from threading import Thread
 
+from aas_core import AASCore
 from utilities import AASArchive_utils, Interactions_utils
 from utilities.AASArchive_utils import file_to_json
 from utilities.Interactions_utils import get_next_svc_request, add_new_svc_response, create_response_json_object, \
@@ -45,22 +46,20 @@ def main():
     # print("FINALIZADA PRUEBA A MANO")
 
     #############################
+
+    # Create the AAS Core object
+    aas_core = AASCore()
     # initialize_aas_archive()
+    aas_core.send_status_change_to_manager('Initializing')
 
     # Then, the initialization tasks are performed
-    initialize_aas_core()
+    aas_core.initialize_aas_core()
 
     # AASArchive_utils.change_status('InitializationReady')   #  Previous
-    result = Interactions_utils.send_interaction_msg_to_manager(client_id='i4-0-smia-core',
-                                                                msg_key='core-status',
-                                                                msg_data={'status': 'InitializationReady'})
-    if result != "OK":
-        print("The AAS Manager-Core interaction is not working: " + str(result))
-    else:
-        print("The AAS Core has notified the AAS Manager that its initialization has been completed.")
+    aas_core.send_status_change_to_manager('InitializationReady')
 
     # The AAS Core can start running
-    run_aas_core()
+    aas_core.run_aas_core()
 
 def initialize_aas_archive():
     """These tasks are in charge of AAS Manager, but for testing, they will be performed by the Core"""
@@ -74,26 +73,26 @@ def initialize_aas_archive():
     # f.close()
 
 
-def initialize_aas_core():
-    """This method executes the required tasks to initialize the AAS Core. In this case, create the connection and
-    execute a necessary ROS nodes."""
-
-    print("Initializing the AAS Core...")
-
-    # A ROS node corresponding to the AAS Core is executed.
-    rospy.init_node('AAS_Core', anonymous=True)
-    print("ROS node initiated.")
-
-    # Se crean además dos nodos:
-    #   1) Un PUBLISHER, que dará la señal de comienzo del servicio por el tópico (coordinateIDLE)
-    global pub
-    pub = rospy.Publisher('/coordinateIDLE', String, queue_size=10)
-    #   2) Otro PUBLISHER, que comunicará el destino o coordenada a la que debe desplazarse el transporte.
-    #   Utiliza para ello el tópico /coordinate
-    global pubCoord
-    pubCoord = rospy.Publisher('/coordinate', String, queue_size=10)  # Coordinate, queue_size=10)
-
-    print("ROS publishers initiated.")
+# def initialize_aas_core():
+#     """This method executes the required tasks to initialize the AAS Core. In this case, create the connection and
+#     execute a necessary ROS nodes."""
+#
+#     print("Initializing the AAS Core...")
+#
+#     # A ROS node corresponding to the AAS Core is executed.
+#     rospy.init_node('AAS_Core', anonymous=True)
+#     print("ROS node initiated.")
+#
+#     # Se crean además dos nodos:
+#     #   1) Un PUBLISHER, que dará la señal de comienzo del servicio por el tópico (coordinateIDLE)
+#     global pub
+#     pub = rospy.Publisher('/coordinateIDLE', String, queue_size=10)
+#     #   2) Otro PUBLISHER, que comunicará el destino o coordenada a la que debe desplazarse el transporte.
+#     #   Utiliza para ello el tópico /coordinate
+#     global pubCoord
+#     pubCoord = rospy.Publisher('/coordinate', String, queue_size=10)  # Coordinate, queue_size=10)
+#
+#     print("ROS publishers initiated.")
 
 
 def run_aas_core():
@@ -240,94 +239,6 @@ def handle_data_to_transport():
         else:
             print("Option not available")
 
-
-        # global processed_services
-        #
-        # print("Processed svc: " + str(processed_services))
-        #
-        # if (msgReceived is not None) and (msgReceived['interactionID'] not in processed_services):
-        #     print("    NOW")
-        #     print(msgReceived)
-        #     print("InteractionID: " + str(msgReceived['interactionID']))
-        #
-        #     # TODO, si ha llegado alguna peticion, enviar el comando a traves del pub y pubCoord
-        #     global WIP
-        #     if not WIP:
-        #
-        #         print("WIP is false")
-        #
-        #         # Si el thread del mensaje recibido es INTRODUCE o DELIVERY
-        #         if msgReceived['serviceData']['thread'] == "COLLECTION" or msgReceived['serviceData']['thread'] == "DELIVERY":
-        #             # Se configura la información de logging: Imprime líneas con información sobre la conexión
-        #             logging.basicConfig(level=logging.INFO)
-        #
-        #             print("Service received")
-        #
-        #             # Marcar el flag para indicar trabajo en proceso
-        #             WIP = True
-        #
-        #             global pub
-        #             global pubCoord
-        #             global state
-        #             print("---> State: " + str(state))
-        #             print(pub)
-        #
-        #             if state == "IDLE":
-        #             #     r = rospy.Rate(3)  # 10hz
-        #             #     while not rospy.is_shutdown():
-        #             #         pub.publish("GO")
-        #             #         r.sleep()
-        #                 pub.publish("GO")
-        #                 time.sleep(1)
-        #
-        #                 # PRUEBA CON GATEWAY
-        #                 make_gateway_request('/coordinateIDLE', 'GO')
-        #
-        #
-        #             # Se le ordena a un publicista que publique las coordenadas objetivo
-        #             # Para este ejemplo, son coordenadas estáticas, que representan la
-        #             # posición fija e invariable del almacén
-        #             pubCoord.publish("1.43,0.59")
-        #             print("AAS Core send warehouse coordinates")
-        #             print("AAS Core wait while moving to warehouse")
-        #
-        #             # PRUEBA CON GATEWAY
-        #             make_gateway_request('/coordinate', '1.43,0.59')
-        #
-        #             time.sleep(1)
-        #             while not state == "ACTIVE":    # wait until the robot has reached the target coordinates
-        #                 time.sleep(1)
-        #
-        #             # TODO: para pruebas, eliminamos la peticion de servicio, como que ya se ha ofrecido
-        #             # delete_svc_request(msgReceived)
-        #             processed_services.append(msgReceived['interactionID'])
-        #
-        #             # Write the response in svResponses.json of the AAS Core
-        #             response_json = create_response_json_object(msgReceived)
-        #             add_new_svc_response(response_json)
-        #
-        #             # Once it is in the active state and has reached the target (has completed the service), the robot
-        #             # will proceed to return to the home position.
-        #             time.sleep(2)
-        #             #    Coordenadas estáticas, que representan la posición de ORIGEN del turtlebot3
-        #             pubCoord.publish("-1.65,-0.56")
-        #
-        #             # PRUEBA CON GATEWAY
-        #             make_gateway_request('/coordinate', '-1.65,-0.56')
-        #
-        #             print("AAS Core send collection/delivery point coordinates")
-        #             print("AAS Core wait while moving to collection/delivery point")
-        #
-        #             time.sleep(1)
-        #             while not state == "ACTIVE":  # wait until the robot has reached the target coordinates
-        #                 time.sleep(1)
-        #
-        #             # Se "apaga" el flag 'WIP'
-        #             WIP = False
-        #
-        # else:
-        #     print("No service requests yet.")
-        #     time.sleep(2)
 
 def handle_data_from_transport():
     """This method handles the message and data from the transport. Thus, it obtains the data from the asset with a ROS

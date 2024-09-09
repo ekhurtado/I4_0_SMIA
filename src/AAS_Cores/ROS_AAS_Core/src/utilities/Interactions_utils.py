@@ -120,6 +120,7 @@ def send_interaction_msg_to_manager(client_id, msg_key, msg_data):
     print("Kafka producer has sent the message. Producer closing...")
     kafka_producer.close()
 
+
 def create_interaction_kafka_consumer(client_id):
     """
     This method creates the Kafka consumer for subscribing to AAS Manager partition in the topic of the AAS.
