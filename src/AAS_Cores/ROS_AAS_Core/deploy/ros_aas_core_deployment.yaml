@@ -18,7 +18,53 @@ spec:
         - name: ros-aas-core
           image: ekhurtado/aas-core:ros-latest
           imagePullPolicy: Always
+          volumeMounts:
+            - name: aas-archive
+              mountPath: /aas_archive/
+            - name: aas-archive-interactions
+              mountPath: /aas_archive/interactions
+              subPath: interactions
+            - name: aas-archive-submodels
+              mountPath: /aas_archive/submodels
+              subPath: submodels
+            - name: aas-archive-status
+              mountPath: /aas_archive/status
+              subPath: status
+            - name: component-cm
+              mountPath: /aas_archive/config
+            - name: ros-aas-core-archive
+              mountPath: /ros_aas_core_archive
+          env:
+            - name: ROS_MASTER_URI
+              value: "http://192.168.1.62:11311"
+            #            - name: ROS_HOSTNAME
+            #              valueFrom:
+            #                fieldRef:
+            #                  fieldPath: status.podIP
+            - name: ROS_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+      nodeSelector:
+        kubernetes.io/hostname: worker1
       restartPolicy: Always
       serviceAccountName: ""
+      volumes:
+        # The shared directory for holding the files
+        - name: aas-archive
+          emptyDir: { }
+        # Subvolume related to interactions
+        - name: aas-archive-interactions
+        # Subvolume related to submodels
+        - name: aas-archive-submodels
+        # Subvolume related to status
+        - name: aas-archive-status
+        # The configmap with all the configuration
+        - name: component-cm
+          configMap:
+            name: component-i4-0-cm
+        - name: ros-aas-core-archive
+          persistentVolumeClaim:
+            claimName: ros-aas-core-archive-claim
 
 

@@ -17,9 +17,6 @@ def create_status_file():
     """This method creates the status file of the AAS Manager and sets it to "initializing"."""
     initial_status_info = {'name': 'AAS_Core', 'status': 'Initializing', 'timestamp': calendar.timegm(time.gmtime())}
 
-    # with (open(AASarchiveInfo.CORE_STATUS_FILE_PATH, 'x') as status_file):
-    #     json.dump(initial_status_info, status_file)
-    #     status_file.close()
     try :
         f = open(AASarchiveInfo.CORE_STATUS_FILE_PATH, 'x')
     except FileExistsError as e:

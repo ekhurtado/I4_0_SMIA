@@ -170,8 +170,8 @@ def create_interaction_kafka_consumer(client_id):
 
 async def send_interaction_msg_to_core(client_id, msg_key, msg_data):
     """
-    This method sends a Kafka interaction message to the AAS Core. To this end, the AAS Manager publish messages in its
-    partition, where the AAS Core will be listening.
+    This method sends a Kafka interaction message to the AAS Core. To this end, the AAS Manager will publish messages
+    in its partition, where the AAS Core will be listening.
 
     Args:
         client_id (str): the id of the client of the Kafka producer.

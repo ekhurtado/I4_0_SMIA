@@ -6,16 +6,18 @@ import logging
 import time
 from threading import Thread
 
-from utilities import AASArchive_utils
+from utilities import AASArchive_utils, Interactions_utils
 from utilities.AASArchive_utils import file_to_json
 from utilities.Interactions_utils import get_next_svc_request, add_new_svc_response, create_response_json_object, \
     make_gateway_request
+from utilities.KafkaInfo import KafkaInfo
 
 # Some variables needed by this AAS Core
 state = 'IDLE'
 ready = False
 WIP = False
-processed_services = []
+processed_services = {}
+manager_status = None
 
 # ROS nodes
 pub = None
@@ -43,12 +45,19 @@ def main():
     # print("FINALIZADA PRUEBA A MANO")
 
     #############################
-    initialize_aas_archive()
+    # initialize_aas_archive()
 
     # Then, the initialization tasks are performed
     initialize_aas_core()
 
-    AASArchive_utils.change_status('InitializationReady')
+    # AASArchive_utils.change_status('InitializationReady')   #  Previous
+    result = Interactions_utils.send_interaction_msg_to_manager(client_id='i4-0-smia-core',
+                                                                msg_key='core-status',
+                                                                msg_data={'status': 'InitializationReady'})
+    if result != "OK":
+        print("The AAS Manager-Core interaction is not working: " + str(result))
+    else:
+        print("The AAS Core has notified the AAS Manager that its initialization has been completed.")
 
     # The AAS Core can start running
     run_aas_core()
@@ -89,7 +98,14 @@ def initialize_aas_core():
 
 def run_aas_core():
     print("AAS Core running...")
-    AASArchive_utils.change_status('Running')
+    # AASArchive_utils.change_status('Running')
+    result = Interactions_utils.send_interaction_msg_to_manager(client_id='i4-0-smia-core',
+                                                                msg_key='core-status',
+                                                                msg_data={'status': 'Running'})
+    if result != "OK":
+        print("The AAS Manager-Core interaction is not working: " + str(result))
+    else:
+        print("The AAS Core has notified the AAS Manager that it is in running state.")
 
     # Each function will have its own thread of execution
     thread_func1 = Thread(target=handle_data_to_transport, args=())
@@ -103,96 +119,215 @@ def handle_data_to_transport():
     """This method handles the message and data to the transport. Thus, it obtains the interaction requests by the AAS
     Manager and send to necessary command to the asset."""
 
-    while True:
-        # TODO analizar los mensajes de peticiones del AAS Manager
-        msgReceived = get_next_svc_request()
-        global processed_services
+    kafka_consumer_manager_partition = Interactions_utils.create_interaction_kafka_consumer(
+        'i4-0-smia-manager')
 
-        print("Processed svc: " + str(processed_services))
+    print("Listening for manager messages in topic " + KafkaInfo.KAFKA_TOPIC)
+    for msg in kafka_consumer_manager_partition:
+    # while True:
+    #     # TODO analizar los mensajes de peticiones del AAS Manager
+    #     msgReceived = get_next_svc_request()
+        print("El consumidor del manager (partition 0) de Kafka ha recibido algo!")
+        print("   |__ msg: " + str(msg))
 
-        if (msgReceived is not None) and (msgReceived['interactionID'] not in processed_services):
-            print("    NOW")
-            print(msgReceived)
-            print("InteractionID: " + str(msgReceived['interactionID']))
+        msg_key = msg.key.decode("utf-8")
+        msg_json_value = msg.value
 
-            # TODO, si ha llegado alguna peticion, enviar el comando a traves del pub y pubCoord
-            global WIP
-            if not WIP:
+        global manager_status
+        if msg_key == 'manager-status':
+            print("The AAS Core has received an update of the AAS Manager status.")
+            manager_status = msg_json_value['status']
+            if manager_status != 'Initializing':
+                print("AAS Manager has initialized, so the AAS Core can go to running state.")
+        if msg_key == 'manager-service-request':
+            if manager_status != 'Initializing' and manager_status != 'idle':
+                # Only if the AAS Manager is ready the AAS Core will work
+                global processed_services
+                if msg_json_value['interactionID'] in processed_services:
+                    print("The request with interaction_id [" + msg_json_value['interactionID'] +
+                          "] has already been performed")
+                    break
+                else:
+                    if msg_json_value['serviceType'] == "AssetRelatedService":
+                        print("The AAS Core has received a asset related service request")
+                        # TODO, si ha llegado alguna peticion, enviar el comando a traves del pub y pubCoord
+                        global WIP
+                        if not WIP:
+                            if msg_json_value['serviceID'] == "collection" or \
+                                    msg_json_value['serviceID'] == "delivery":
+                                # TODO pensar como se llamaria al metodo (Ane y Maite lo hicieron con el thread
+                                #  del mensaje ACL, yo lo he hecho con el serviceID)
+                                # Se configura la información de logging: Imprime líneas con información
+                                # sobre la conexión
+                                logging.basicConfig(level=logging.INFO)
 
-                print("WIP is false")
+                                # Marcar el flag para indicar trabajo en proceso
+                                WIP = True
 
-                # Si el thread del mensaje recibido es INTRODUCE o DELIVERY
-                if msgReceived['serviceData']['thread'] == "COLLECTION" or msgReceived['serviceData']['thread'] == "DELIVERY":
-                    # Se configura la información de logging: Imprime líneas con información sobre la conexión
-                    logging.basicConfig(level=logging.INFO)
+                                global pub
+                                global pubCoord
+                                global state
+                                print("---> State: " + str(state))
+                                print(pub)
 
-                    print("Service received")
+                                if state == "IDLE":
+                                    pub.publish("GO")
+                                    time.sleep(1)
 
-                    # Marcar el flag para indicar trabajo en proceso
-                    WIP = True
+                                    # PRUEBA CON GATEWAY
+                                    make_gateway_request('/coordinateIDLE', 'GO')
 
-                    global pub
-                    global pubCoord
-                    global state
-                    print("---> State: " + str(state))
-                    print(pub)
+                                # Se le ordena a un publicista que publique las coordenadas objetivo
+                                # Para este ejemplo, son coordenadas estáticas, que representan la
+                                # posición fija e invariable del almacén
+                                pubCoord.publish("1.43,0.59")
+                                print("AAS Core send warehouse coordinates")
+                                print("AAS Core wait while moving to warehouse")
 
-                    if state == "IDLE":
-                    #     r = rospy.Rate(3)  # 10hz
-                    #     while not rospy.is_shutdown():
-                    #         pub.publish("GO")
-                    #         r.sleep()
-                        pub.publish("GO")
-                        time.sleep(1)
+                                # PRUEBA CON GATEWAY
+                                make_gateway_request('/coordinate', '1.43,0.59')
 
-                        # PRUEBA CON GATEWAY
-                        make_gateway_request('/coordinateIDLE', 'GO')
+                                time.sleep(1)
+                                while not state == "ACTIVE":  # wait until the robot has reached the target coordinates
+                                    time.sleep(1)
 
+                                # TODO: para pruebas, eliminamos la peticion de servicio, como que ya se ha ofrecido
+                                # delete_svc_request(msgReceived)
+                                processed_services[msg_json_value['interactionID']] = msg_json_value
+                                # processed_services.append(msg_json_value['interactionID'])
 
-                    # Se le ordena a un publicista que publique las coordenadas objetivo
-                    # Para este ejemplo, son coordenadas estáticas, que representan la
-                    # posición fija e invariable del almacén
-                    pubCoord.publish("1.43,0.59")
-                    print("AAS Core send warehouse coordinates")
-                    print("AAS Core wait while moving to warehouse")
+                                # Write the response in svResponses.json of the AAS Core
+                                response_json = create_response_json_object(msg_json_value)
+                                # add_new_svc_response(response_json)
+                                result = Interactions_utils.send_interaction_msg_to_manager(
+                                    client_id='i4-0-smia-core',
+                                    msg_key='core-service-response',
+                                    msg_data=response_json)
+                                if result != "OK":
+                                    print("The AAS Manager-Core interaction is not working: " + str(result))
+                                else:
+                                    print(
+                                        "The AAS Core has notified the AAS Manager that the service has been"
+                                        " completed.")
 
-                    # PRUEBA CON GATEWAY
-                    make_gateway_request('/coordinate', '1.43,0.59')
+                                # Once it is in the active state and has reached the target (has completed the service), the robot
+                                # will proceed to return to the home position.
+                                time.sleep(2)
+                                #    Coordenadas estáticas, que representan la posición de ORIGEN del turtlebot3
+                                pubCoord.publish("-1.65,-0.56")
 
-                    time.sleep(1)
-                    while not state == "ACTIVE":    # wait until the robot has reached the target coordinates
-                        time.sleep(1)
+                                # PRUEBA CON GATEWAY
+                                make_gateway_request('/coordinate', '-1.65,-0.56')
 
-                    # TODO: para pruebas, eliminamos la peticion de servicio, como que ya se ha ofrecido
-                    # delete_svc_request(msgReceived)
-                    processed_services.append(msgReceived['interactionID'])
+                                print("AAS Core send collection/delivery point coordinates")
+                                print("AAS Core wait while moving to collection/delivery point")
 
-                    # Write the response in svResponses.json of the AAS Core
-                    response_json = create_response_json_object(msgReceived)
-                    add_new_svc_response(response_json)
+                                time.sleep(1)
+                                while not state == "ACTIVE":  # wait until the robot has reached the target coordinates
+                                    time.sleep(1)
 
-                    # Once it is in the active state and has reached the target (has completed the service), the robot
-                    # will proceed to return to the home position.
-                    time.sleep(2)
-                    #    Coordenadas estáticas, que representan la posición de ORIGEN del turtlebot3
-                    pubCoord.publish("-1.65,-0.56")
+                                # Se "apaga" el flag 'WIP'
+                                WIP = False
 
-                    # PRUEBA CON GATEWAY
-                    make_gateway_request('/coordinate', '-1.65,-0.56')
+                    elif msg_json_value['serviceType'] == "SubmodelService":
+                        print("The AAS Core has received a submodel service request")
+                    else:
+                        print("Service type not available")
 
-                    print("AAS Core send collection/delivery point coordinates")
-                    print("AAS Core wait while moving to collection/delivery point")
-
-                    time.sleep(1)
-                    while not state == "ACTIVE":  # wait until the robot has reached the target coordinates
-                        time.sleep(1)
-
-                    # Se "apaga" el flag 'WIP'
-                    WIP = False
-
+        if msg_key == 'manager-service-response':
+            print("The AAS Core has received a response from the AAS Manager")
+            # TODO
         else:
-            print("No service requests yet.")
-            time.sleep(2)
+            print("Option not available")
+
+
+        # global processed_services
+        #
+        # print("Processed svc: " + str(processed_services))
+        #
+        # if (msgReceived is not None) and (msgReceived['interactionID'] not in processed_services):
+        #     print("    NOW")
+        #     print(msgReceived)
+        #     print("InteractionID: " + str(msgReceived['interactionID']))
+        #
+        #     # TODO, si ha llegado alguna peticion, enviar el comando a traves del pub y pubCoord
+        #     global WIP
+        #     if not WIP:
+        #
+        #         print("WIP is false")
+        #
+        #         # Si el thread del mensaje recibido es INTRODUCE o DELIVERY
+        #         if msgReceived['serviceData']['thread'] == "COLLECTION" or msgReceived['serviceData']['thread'] == "DELIVERY":
+        #             # Se configura la información de logging: Imprime líneas con información sobre la conexión
+        #             logging.basicConfig(level=logging.INFO)
+        #
+        #             print("Service received")
+        #
+        #             # Marcar el flag para indicar trabajo en proceso
+        #             WIP = True
+        #
+        #             global pub
+        #             global pubCoord
+        #             global state
+        #             print("---> State: " + str(state))
+        #             print(pub)
+        #
+        #             if state == "IDLE":
+        #             #     r = rospy.Rate(3)  # 10hz
+        #             #     while not rospy.is_shutdown():
+        #             #         pub.publish("GO")
+        #             #         r.sleep()
+        #                 pub.publish("GO")
+        #                 time.sleep(1)
+        #
+        #                 # PRUEBA CON GATEWAY
+        #                 make_gateway_request('/coordinateIDLE', 'GO')
+        #
+        #
+        #             # Se le ordena a un publicista que publique las coordenadas objetivo
+        #             # Para este ejemplo, son coordenadas estáticas, que representan la
+        #             # posición fija e invariable del almacén
+        #             pubCoord.publish("1.43,0.59")
+        #             print("AAS Core send warehouse coordinates")
+        #             print("AAS Core wait while moving to warehouse")
+        #
+        #             # PRUEBA CON GATEWAY
+        #             make_gateway_request('/coordinate', '1.43,0.59')
+        #
+        #             time.sleep(1)
+        #             while not state == "ACTIVE":    # wait until the robot has reached the target coordinates
+        #                 time.sleep(1)
+        #
+        #             # TODO: para pruebas, eliminamos la peticion de servicio, como que ya se ha ofrecido
+        #             # delete_svc_request(msgReceived)
+        #             processed_services.append(msgReceived['interactionID'])
+        #
+        #             # Write the response in svResponses.json of the AAS Core
+        #             response_json = create_response_json_object(msgReceived)
+        #             add_new_svc_response(response_json)
+        #
+        #             # Once it is in the active state and has reached the target (has completed the service), the robot
+        #             # will proceed to return to the home position.
+        #             time.sleep(2)
+        #             #    Coordenadas estáticas, que representan la posición de ORIGEN del turtlebot3
+        #             pubCoord.publish("-1.65,-0.56")
+        #
+        #             # PRUEBA CON GATEWAY
+        #             make_gateway_request('/coordinate', '-1.65,-0.56')
+        #
+        #             print("AAS Core send collection/delivery point coordinates")
+        #             print("AAS Core wait while moving to collection/delivery point")
+        #
+        #             time.sleep(1)
+        #             while not state == "ACTIVE":  # wait until the robot has reached the target coordinates
+        #                 time.sleep(1)
+        #
+        #             # Se "apaga" el flag 'WIP'
+        #             WIP = False
+        #
+        # else:
+        #     print("No service requests yet.")
+        #     time.sleep(2)
 
 def handle_data_from_transport():
     """This method handles the message and data from the transport. Thus, it obtains the data from the asset with a ROS
@@ -204,7 +339,7 @@ def handle_data_from_transport():
 
     # PRUEBA GATEWAY
     while True:
-        time.sleep(1)
+        time.sleep(2)
         status_json = file_to_json('/ros_aas_core_archive/status.json')
         global state
         state = status_json['status']

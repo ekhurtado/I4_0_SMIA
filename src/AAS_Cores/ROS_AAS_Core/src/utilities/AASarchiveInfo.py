@@ -17,5 +17,6 @@ class AASarchiveInfo:
     CM_SM_PROPERTIES_FILENAME = 'submodels.properties'
 
     # Status file
+    STATUS_FOLDER_PATH = '/aas_archive/status'
     MANAGER_STATUS_FILE_PATH = '/aas_archive/status/aas_manager.json'
     CORE_STATUS_FILE_PATH = '/aas_archive/status/aas_core.json'

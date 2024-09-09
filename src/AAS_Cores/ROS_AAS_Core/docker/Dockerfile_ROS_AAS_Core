@@ -1,10 +1,8 @@
 #https://answers.ros.org/question/303171/connection-between-ros-in-docker-with-external-ros-master-another-pc-the-baxter-case/
 FROM ros:noetic-ros-base
-# set enviroment
 
+# set enviroment
 ENV ROS_MASTER_URI=http://192.168.1.62:11311
-#ENV ROS_HOSTNAME=192.168.1.62
-#ENV ROS_IP=192.168.1.62
 ENV ROS_WS=/home/catkin_ws
 ENV ROS_DISTRO=noetic
 
@@ -16,28 +14,23 @@ COPY src /
 
 COPY pruebaROS.py /
 
-#WORKDIR /
 WORKDIR $ROS_WS
 
 # install ros dependencies packages
-
-#RUN . "/opt/ros/$ROS_DISTRO/setup.sh" && cd $ROS_WS && catkin_make \
-#    && sed --in-place --expression \
-#     '$isource "$ROS_WS/devel/setup.bash"' \
-#      /ros_entrypoint.sh
 RUN echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
 RUN . "/opt/ros/$ROS_DISTRO/setup.sh"
 
 RUN chmod +x /opt/ros/noetic/setup.bash
 RUN /opt/ros/noetic/setup.bash
 
-#RUN catkin_make
-#RUN roscd turtlebot_main
+# install python packages
+COPY requirements.txt .
+RUN apt-get update
+RUN apt-get install -y python3-pip
+RUN pip install --no-cache-dir -r requirements.txt
 
 WORKDIR /
 
-# run ros package launch file
-#CMD [ "rosrun", "turtlebot_main", "main.py" ]
 CMD [ "python3", "-u", "main.py"]
 
 # Para mantener el contenedor arrancado:

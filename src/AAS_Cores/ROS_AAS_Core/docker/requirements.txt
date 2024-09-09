@@ -1,3 +1,4 @@
 # In this file all the necessary libraries to be installed will be added.
 # A specific version will be assigned to avoid unexpected errors.
 # --------------------
+kafka-python-ng==2.2.2

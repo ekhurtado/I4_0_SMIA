@@ -63,7 +63,7 @@ class StateBooting(State):
                                                                                msg_data={
                                                                                    'status': 'InitializationReady'})
 
-        if result is not "OK":
+        if result != "OK":
             _logger.error("The AAS Manager-Core interaction is not working: " + str(result))
         else:
             _logger.info("The AAS Manager has notified the AAS Core that its initialization has been completed.")
