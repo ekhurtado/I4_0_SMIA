@@ -18,6 +18,13 @@ class AASManagerAgent(Agent):
     Agent will be the generic and from which all other types of AAS Managers will start.
     """
 
+    acl_svc_requests = {}   # Dictionary to save FIPA-ACL service requests
+    acl_svc_responses = {}   # Dictionary to save FIPA-ACL service responses
+
+    interaction_id_num = 0  # Identifier for Intra AAS interaction, created by the AAS Manager
+    interaction_requests = {}  # Dictionary to save Intra AAS interaction requests
+    interaction_responses = {}  # Dictionary to save Intra AAS interaction responses
+
     def __init__(self, jid: str, password: str, verify_security: bool = False):
         super().__init__(jid, password, verify_security)
 

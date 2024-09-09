@@ -27,11 +27,17 @@ class GUIAgent(Agent):
             if data_json['messageType'] == 'normal':  # message body with normal format
                 msg.body = data_json['normalMessage']
             elif len(data_json['messageType']) == 2:
-                msg.body = '{"serviceID": "' + data_json['serviceID'] + \
-                           '", "serviceType": "' + data_json['serviceType'] + \
-                           '", "serviceData": {' + \
-                           '"serviceCategory": "' + data_json['serviceCategory'] + \
-                           '", "serviceParams": ' + data_json['serviceParams'] + '}}'
+                msg_body_json = {'serviceID': data_json['serviceID'],
+                                 'serviceType': data_json['serviceType'],
+                                 'serviceData': {
+                                     'serviceCategory': data_json['serviceCategory']
+                                 }
+                                 }
+                if 'serviceParams' in data_json:
+                    msg_body_json['serviceData']['serviceParams'] = json.loads(data_json['serviceParams'])
+                # '", "serviceParams": ' + data_json['serviceParams'] + '}}
+                print(json.dumps(msg_body_json))
+                msg.body = json.dumps(msg_body_json)
             print(msg)
 
             print("Sending the message...")

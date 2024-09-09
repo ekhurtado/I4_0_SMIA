@@ -18,8 +18,8 @@ def create_inter_aas_response_object(inter_aas_request, intra_aas_response):
     Returns:
         dict: Inter AAS response object in JSON format
     """
-    # TODO comprobar que esta bien
-    return {'performative': inter_aas_request['performative'],
+
+    response_json = {'performative': inter_aas_request['performative'],
             'ontology': inter_aas_request['ontology'],
             'thread': intra_aas_response['thread'],
             'serviceType': inter_aas_request['serviceType'],
@@ -29,7 +29,9 @@ def create_inter_aas_response_object(inter_aas_request, intra_aas_response):
                 'timestamp': calendar.timegm(time.gmtime()),
                 'serviceStatus': intra_aas_response['serviceData']['serviceStatus'],  # The status of the Intra AAS
                                                                                       # Interaction is obtained
-                'serviceParams': intra_aas_response['serviceData']['serviceParams']
             }
     }
+    if 'serviceParams' in intra_aas_response['serviceData']:
+        response_json['serviceData']['serviceParams'] = intra_aas_response['serviceData']['serviceParams']
+    return  response_json
 
