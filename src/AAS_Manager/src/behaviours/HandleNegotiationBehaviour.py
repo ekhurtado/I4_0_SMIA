@@ -159,7 +159,7 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
             performative=self.template.metadata['performative'],
             ontology=self.template.metadata['ontology'],
             thread=self.thread,
-            serviceData=intra_aas_svc_data)
+            service_data=intra_aas_svc_data)
 
         # A new behaviour is added to the SPADE agent to handle this specific service request
         intra_aas_neg_req_handling_behav = HandleSvcRequestBehaviour(self.agent,

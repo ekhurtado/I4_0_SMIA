@@ -12,6 +12,7 @@ from utilities.AASmanagerInfo import AASmanagerInfo
 
 _logger = logging.getLogger(__name__)
 
+
 def create_neg_propose_msg(thread, targets, neg_requester_jid, neg_criteria, neg_value):
     """
     This method creates the FIPA-ACL propose message that will be sent to all participants in a negotiation to check
@@ -32,7 +33,7 @@ def create_neg_propose_msg(thread, targets, neg_requester_jid, neg_criteria, neg
 
     neg_propose_json = {
         'serviceID': 'proposeNegotiation',
-        'serviceType': 'AssetRelatedService',   # TODO cambiarlo si se decide que es de otro tipo
+        'serviceType': 'AssetRelatedService',  # TODO cambiarlo si se decide que es de otro tipo
         'serviceData': {
             'serviceCategory': 'service-request',
             'timestamp': calendar.timegm(time.gmtime()),
@@ -46,6 +47,7 @@ def create_neg_propose_msg(thread, targets, neg_requester_jid, neg_criteria, neg
     }
     propose_msg.body = json.dumps(neg_propose_json)
     return propose_msg
+
 
 def create_neg_response_msg(receiver, thread, serviceID, serviceType, winner):
     """
@@ -102,7 +104,7 @@ def create_neg_json_to_store(neg_requester_jid, participants, neg_criteria, is_w
     }
 
 
-def create_intra_aas_neg_req_data(performative, ontology, thread, serviceData):
+def create_intra_aas_neg_req_data(performative, ontology, thread, service_data):
     """
     This method creates the dictionary with all the required data for an Intra AAS interaction request.
 
@@ -110,7 +112,7 @@ def create_intra_aas_neg_req_data(performative, ontology, thread, serviceData):
         performative (str): performative of the FIPA-ACL message.
         ontology (str): ontology of the FIPA-ACL message.
         thread (str): thread of the FIPA-ACL message.
-        serviceData (dict): all the data of the service for the Intra AAS interaction request.
+        service_data (dict): all the data of the service for the Intra AAS interaction request.
 
     Returns:
         dict: dictionary with all the information about the Intra AAS interaction request
@@ -121,7 +123,7 @@ def create_intra_aas_neg_req_data(performative, ontology, thread, serviceData):
         'thread': thread,
         'serviceID': 'getNegotiationValue',
         'serviceType': 'AssetRelatedInformation',
-        'serviceData': serviceData
+        'serviceData': service_data
     }
     return intra_ass_req_data_json
 

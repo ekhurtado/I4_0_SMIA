@@ -26,7 +26,7 @@ extensions = [
     'sphinx.ext.autosectionlabel',  # It allows to refer sections its title (i.e. Parameters in docStrings).
     'sphinx.ext.autosummary',  # It generates function/method/attribute summary lists
     # 'sphinx_rtd_theme',
-    'sphinx_inline_tabs',
+    'sphinx_inline_tabs',   # Add inline tabbed content to your Sphinx documentation (.. tab::)
     'sphinx_copybutton',
     'notfound.extension',
     'sphinx_design',
@@ -97,4 +97,6 @@ html_theme_options = {
 pygments_dark_style = "monokai"
 
 html_show_sphinx = False    # To not show “Created using Sphinx” in the HTML footer
+
+autodoc_member_order = 'bysource'   # To not sort Sphinx output in alphabetical order (API documentation)
 
