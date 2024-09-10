@@ -1,4 +1,7 @@
+import calendar
+import json
 import sys
+import time
 from random import randint
 import psutil
 
@@ -17,6 +20,12 @@ class ReceiverAgent(Agent):
         async def run(self):
             # self.presence.set_available()
             print("RecvBehav running")
+
+            for behav in self.agent.behaviours:
+                behav_class_name = str(behav.__class__.__name__)
+                if behav_class_name == 'HandleNegBehav':
+                    behav.neg_value = 99999999
+                    print(behav)
 
             msg = await self.receive(timeout=5)  # wait for a message for 10 seconds
             if msg:
@@ -150,6 +159,7 @@ class ReceiverAgent(Agent):
             if self.presence.is_available():
                 print("[" + str(self.agent.jid) + "]" + " [RUNNING THE NEGOTIATION BEHAVIOUR]")
 
+
         async def run(self):
             print("NegBehav_v2 running")
             msg = await self.receive(timeout=5)  # wait for a message for 10 seconds
@@ -159,7 +169,9 @@ class ReceiverAgent(Agent):
                 print("   with content: {}".format(msg.body))
 
                 # Get the data from the msg
-                targets_list = eval(msg.get_metadata('targets'))
+                # targets_list = eval(msg.get_metadata('targets'))
+                msg_body_json = json.loads(msg.body)
+                targets_list = eval(msg_body_json['serviceData']['serviceParams']['targets'])   # With msg structure of I4.0 SMIA
 
                 # Si el servidor XMPP le ha puesto un random para diferenciar al agente, lo quitamos (lo introduce
                 # despues de '/')
@@ -174,27 +186,60 @@ class ReceiverAgent(Agent):
                     print("En este caso es el unico agente que es parte de esta negociacion, asi que es el ganador")
                     print("     =>>>  THE WINNER OF THE NEGOTIATION IS: " + str(self.agent.jid))
                     print(" Faltaria contestar al que ha pedido la negociacion")
-                    response_msg = Message(to=msg.get_metadata('neg_request_jid'), thread=msg.thread, body='WINNER')
+                    # response_msg = Message(to=msg.get_metadata('neg_request_jid'), thread=msg.thread, body='WINNER')
+                    response_msg = Message(to=str(msg.sender),
+                                           thread=msg.thread) # With msg structure of I4.0 SMIA
                     response_msg.set_metadata('performative', 'INFORM')
                     response_msg.set_metadata('ontology', 'negotiation')
-                    # await self.send(response_msg) # TODO AL AÑADIRLO EN EL AAS_MANAGER QUITAR EL COMENTARIO
+
+
+                    # TODO With msg structure of I4.0 SMIA
+                    svc_response_json = {
+                        'serviceID': msg_body_json['serviceID'],
+                        'serviceType': msg_body_json['serviceType'],
+                        'serviceData': {
+                            'serviceCategory': 'service-response',
+                            'serviceStatus': 'Completed',
+                            'timestamp': calendar.timegm(time.gmtime()),
+                            'serviceParams': {
+                                'winner': str(self.agent.jid)
+                            }
+                        }
+                    }
+                    response_msg.body = json.dumps(svc_response_json)
+                    await self.send(response_msg) # TODO AL AÑADIRLO EN EL AAS_MANAGER QUITAR EL COMENTARIO
 
                     # Actualizo la informacion de esta negociacion para informar de que el agente es el ganador
                     # Las negociaciones se diferencian por el thread
-                    self.agent.negotiations_data[msg.thread] = {'winner': self.agent.jid,
-                                                                'participants': msg.get_metadata('targets')}
+                    # self.agent.negotiations_data[msg.thread] = {'winner': self.agent.jid,
+                    #                                             'participants': msg.get_metadata('targets')}
+                    # TODO With msg structure of I4.0 SMIA
+                    self.agent.negotiations_data[msg.thread] = {'winner': str(self.agent.jid),
+                                                                'participants': msg_body_json['serviceData']['serviceParams']['targets']}
                 else:
                     # Si hay mas targets, se añade un comportamiento de gestion de esta negociacion en concreto,
                     # que se encargara de enviar a cada uno un mensaje PROPOSE con mi valor del criterio,
                     # recibir respuestas, etc.
 
                     # Creo el objeto con la informacion de la negociacion para luego almacenarlo en el comportamiento
+                    # negotiation_info = {
+                    #     'thread': msg.thread,
+                    #     'neg_requester_jid': msg.get_metadata('neg_requester_jid'),
+                    #     'targets': msg.get_metadata('targets'),
+                    #     'neg_criteria': msg.body,
+                    #     'neg_value': await self.get_value_with_criteria(msg.body)  # El valor del criterio se genera
+                    #     # justo antes de comenzar a gestionar la negociacion (para a la hora de enviar el PROPOSE y
+                    #     # recibir lo de los demas sea el mismo valor)
+                    # }
+
+                    # TODO With msg structure of I4.0 SMIA
+                    neg_criteria = msg_body_json['serviceData']['serviceParams']['criteria']
                     negotiation_info = {
                         'thread': msg.thread,
-                        'neg_requester_jid': msg.get_metadata('neg_requester_jid'),
-                        'targets': msg.get_metadata('targets'),
-                        'neg_criteria': msg.body,
-                        'neg_value': await self.get_value_with_criteria(msg.body)  # El valor del criterio se genera
+                        'neg_requester_jid': str(msg.sender),
+                        'targets': msg_body_json['serviceData']['serviceParams']['targets'],
+                        'neg_criteria': neg_criteria,
+                        'neg_value': await self.get_value_with_criteria(neg_criteria)  # El valor del criterio se genera
                         # justo antes de comenzar a gestionar la negociacion (para a la hora de enviar el PROPOSE y
                         # recibir lo de los demas sea el mismo valor)
                     }
@@ -230,7 +275,8 @@ class ReceiverAgent(Agent):
             self.targets = negotiation_info['targets']
             self.neg_criteria = negotiation_info['neg_criteria']
             self.neg_value = negotiation_info['neg_value']
-            self.targets_processed = []  # TODO pensar si cambiarlo a un set para evitar valores repetidos
+            # self.targets_processed = []
+            self.targets_processed = set()  # TODO pensar si cambiarlo a un set para evitar valores repetidos
 
         async def on_start(self):
             print("[" + str(self.agent.jid) + "]" + " [RUNNING THE HANDLE NEGOTIATION BEHAVIOUR]")
@@ -239,12 +285,28 @@ class ReceiverAgent(Agent):
             # propio a los demas participantes de la negociacion. Al ser el primer paso, se realizara en el metodo on_start
 
             # Genero el mensaje PROPOSE
-            propose_msg = Message(thread=self.thread, body=self.neg_criteria + ',' + str(self.neg_value))
+            # propose_msg = Message(thread=self.thread, body=self.neg_criteria + ',' + str(self.neg_value))
+            propose_msg = Message(thread=self.thread)
             propose_msg.set_metadata('performative', 'PROPOSE')
             propose_msg.set_metadata('ontology', 'negotiation')
-            propose_msg.set_metadata('targets', self.targets)
-            propose_msg.set_metadata('neg_requester_jid', self.neg_requester_jid)
-            propose_msg.thread = self.thread
+            # propose_msg.set_metadata('targets', self.targets)
+            # propose_msg.set_metadata('neg_requester_jid', self.neg_requester_jid)
+            # TODO With msg structure of I4.0 SMIA
+            propose_msg_body_json = {
+                'serviceID': 'proposeNegotiation',
+                'serviceType': 'AssetRelatedService',
+                'serviceData': {
+                    'serviceCategory': 'service-request',
+                    'timestamp': calendar.timegm(time.gmtime()),
+                    'serviceParams': {
+                        'targets': self.targets,
+                        'neg_requester_jid': self.neg_requester_jid,
+                        'criteria': self.neg_criteria,
+                        'neg_value': str(self.neg_value)
+                    }
+                }
+            }
+            propose_msg.body = json.dumps(propose_msg_body_json)
 
             targets_list = eval(self.targets)
             for jid_target in targets_list:
@@ -273,8 +335,14 @@ class ReceiverAgent(Agent):
                     self.agent.jid))
                 print("El agente " + str(self.agent.jid) + " ha recibido una propuesta de " + str(msg.sender))
                 # Se obtiene el criterio de esta negociacion
-                criteria = msg.body.split(',')[0]
-                sender_agent_neg_value = msg.body.split(',')[1]
+                # criteria = msg.body.split(',')[0]
+                # sender_agent_neg_value = msg.body.split(',')[1]
+                # TODO With msg structure of I4.0 SMIA
+                msg_body_json = json.loads(msg.body)
+                criteria = msg_body_json['serviceData']['serviceParams']['criteria']
+                sender_agent_neg_value = msg_body_json['serviceData']['serviceParams']['neg_value']
+
+
 
                 print("El valor del agente " + str(self.agent.jid) + " es " + str(self.neg_value))
                 print("El valor del agente sender " + str(msg.sender) + " es " + sender_agent_neg_value)
@@ -288,17 +356,35 @@ class ReceiverAgent(Agent):
                     # empata negocicación pero no es quien fija desempate
                     await self.exit_negotiation(is_winner=False)
                     return None  # killing a behaviour does not cancel its current run loop
-                if str(msg.sender) not in self.targets_processed:
-                    # Solo añado si no se ha procesado antes, para evitar errores con mensajes duplicados
-                    self.targets_processed.append(str(msg.sender))
+                # if str(msg.sender) not in self.targets_processed:
+                #     # Solo añado si no se ha procesado antes, para evitar errores con mensajes duplicados
+                #     self.targets_processed.append(str(msg.sender))
+                self.targets_processed.add(str(msg.sender))
                 if len(self.targets_processed) == len(eval(self.targets)) - 1:
                     # En este caso ya se han recibido todos los mensajes, por lo que el valor del agente es el mejor
                     print("     =>>>  THE WINNER OF THE NEGOTIATION IS: " + str(self.agent.jid))
                     print(" Faltaria contestar al que ha pedido la negociacion")
-                    response_msg = Message(to=msg.get_metadata('neg_request_jid'), thread=msg.thread, body='WINNER')
+                    # response_msg = Message(to=msg.get_metadata('neg_request_jid'), thread=msg.thread, body='WINNER')
+                    response_msg = Message(to=msg_body_json['serviceData']['serviceParams']['neg_requester_jid'],
+                                           thread=msg.thread)
                     response_msg.set_metadata('performative', 'INFORM')
                     response_msg.set_metadata('ontology', 'negotiation')
-                    # await self.send(response_msg) # TODO AL AÑADIRLO EN EL AAS_MANAGER QUITAR EL COMENTARIO
+
+                    # TODO With msg structure of I4.0 SMIA
+                    svc_response_json = {
+                        'serviceID': 'startNegotiation',
+                        'serviceType': msg_body_json['serviceType'],
+                        'serviceData': {
+                            'serviceCategory': 'service-response',
+                            'serviceStatus': 'Completed',
+                            'timestamp': calendar.timegm(time.gmtime()),
+                            'serviceParams': {
+                                'winner': str(self.agent.jid)
+                            }
+                        }
+                    }
+                    response_msg.body = json.dumps(svc_response_json)
+                    await self.send(response_msg)  # TODO AL AÑADIRLO EN EL AAS_MANAGER QUITAR EL COMENTARIO
 
                     # Una vez tenemos ganador, se puede dar por finalizada la negociacion, por lo que eliminamos el
                     # behaviour del agente

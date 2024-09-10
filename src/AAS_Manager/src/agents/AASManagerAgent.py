@@ -23,10 +23,18 @@ class AASManagerAgent(Agent):
     interaction_id_num = 0  #: Identifier for Intra AAS interaction, created by the AAS Manager
     interaction_requests = {}  #: Dictionary to save Intra AAS interaction requests
     interaction_responses = {}  #: Dictionary to save Intra AAS interaction responses
+    negotiations_data = {}  #: Dictionary to save negotiations related information
+    lock = None  #: Asyncio Lock object for secure access to shared AAS Manager objects
 
     def __init__(self, jid: str, password: str, verify_security: bool = False):
         super().__init__(jid, password, verify_security)
 
+        self.initialize_aas_manager_attributes()
+
+    def initialize_aas_manager_attributes(self):
+        """
+        This method initializes all the attributes of the AAS Manager
+        """
         # Objects for storing the information related to ACL services are initialized
         self.acl_messages_id = 0  # It is reset
         self.acl_svc_requests = {}
@@ -37,6 +45,9 @@ class AASManagerAgent(Agent):
         self.interaction_id = 'manager-' + str(self.interaction_id_num)  # The complete interactionId
         self.interaction_requests = {}
         self.interaction_responses = {}
+
+        # Object for storing the information related to negotiations is initialized
+        self.negotiations_data = {}
 
         # The Lock object is used to manage the access to global agent attributes (request and response dictionaries,
         # interaction id number...)
@@ -195,3 +206,15 @@ class AASManagerAgent(Agent):
                 return self.interaction_requests[interaction_id]
             else:
                 return None
+
+    async def save_negotiation_data(self, thread, neg_data):
+        """
+        This method saves the information of a specific negotiation in which the AAS Manager has participated. The data
+        is stored in the global object for all negotiations of the AAS Manager.
+
+        Args:
+            thread (str): thread of the negotiation
+            neg_data (dict): all the information of the specific negotiation
+        """
+        async with self.lock:  # safe access to a shared object of the agent
+            self.negotiations_data[thread] = neg_data

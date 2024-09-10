@@ -10,6 +10,7 @@ from aiokafka import AIOKafkaProducer, AIOKafkaConsumer, TopicPartition
 
 from utilities.AASarchiveInfo import AASarchiveInfo
 from utilities.AAS_Archive_utils import file_to_json, update_json_file
+from utilities.GeneralUtils import GeneralUtils
 from utilities.KafkaInfo import KafkaInfo
 
 _logger = logging.getLogger(__name__)
@@ -37,7 +38,7 @@ def create_svc_request_interaction_json(interaction_id, request_data):
                         "serviceData": request_data['serviceData']
                         }
 
-    svc_request_json['serviceData']['timestamp'] = calendar.timegm(time.gmtime())
+    svc_request_json['serviceData']['timestamp'] = GeneralUtils.get_current_timestamp()
     return svc_request_json
 
 

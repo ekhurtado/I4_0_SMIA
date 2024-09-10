@@ -1,4 +1,6 @@
+import calendar
 import logging
+import time
 
 from spade.message import Message
 from spade.template import Template
@@ -73,7 +75,7 @@ class GeneralUtils:
             ontology(str): The ontology of the template.
 
         Returns:
-            Template: a SPADE template object.
+            spade.template.Template: a SPADE template object.
         """
         custom_template = Template()
         custom_template.set_metadata('performative', performative)
@@ -101,3 +103,13 @@ class GeneralUtils:
 
         msg.body = body  # TODO Pensar si iria tambien en metadatos o todo en el body
         return msg
+
+    @staticmethod
+    def get_current_timestamp():
+        """
+        This method returns the current timestamp of the AAS Manager.
+
+        Returns:
+            int: current timestamp in milliseconds
+        """
+        return calendar.timegm(time.gmtime())

@@ -4,7 +4,7 @@ import logging
 from spade.behaviour import CyclicBehaviour
 
 from behaviours.SvcRequestHandlingBehaviour import SvcRequestHandlingBehaviour
-from logic import Services_utils
+from logic import InterAASInteractions_utils
 
 _logger = logging.getLogger(__name__)
 
@@ -93,7 +93,7 @@ class SvcACLHandlingBehaviour(CyclicBehaviour):
                     _logger.aclinfo("acl_svc_requests shared object updated by " + str(self.__class__.__name__)
                         + " responsible for thread [" + msg.thread + "]. Action: request data added")
 
-                    svc_req_data = Services_utils.create_svc_req_data_from_acl_msg(msg)
+                    svc_req_data = InterAASInteractions_utils.create_svc_req_data_from_acl_msg(msg)
 
                     # A new behaviour is added to the SPADE agent to handle this specific service request
                     svc_req_handling_behav = SvcRequestHandlingBehaviour(self.agent,

@@ -111,6 +111,8 @@ class SvcResponseHandlingBehaviour(OneShotBehaviour):
             if inter_aas_req is not None:
                 # In this case, there is a previous Inter AAS service request, so the response must be sent through
                 # FIPA-ACL to the requesting AAS.
+                # TODO mirar si es parte de una negociacion, en cuyo caso tendria que buscar entre los behaviours del
+                #  agente y cambiar el valor del neg_value (no enviar un ACL)
                 inter_aas_response = InterAASInteractions_utils.create_inter_aas_response_object(inter_aas_req,
                                                                                                  self.svc_resp_data)
 

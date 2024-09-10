@@ -1,4 +1,6 @@
+import calendar
 import json
+import time
 from urllib.parse import parse_qs
 
 import spade
@@ -45,6 +47,7 @@ class GUIAgent(Agent):
             print("Message sent!")
 
     class NegBehaviour(OneShotBehaviour):
+
         async def run(self):
             # Prepare the ACL message
             data_json = {k: v[0] if len(v) == 1 else v for k, v in parse_qs(self.msg_data).items()}
@@ -65,9 +68,25 @@ class GUIAgent(Agent):
                 msg = Message(to=receiver, thread=data_json['thread'])
                 msg.set_metadata('performative', data_json['performative'])
                 msg.set_metadata('ontology', data_json['ontology'])
-                msg.set_metadata('neg_requester_jid', str(self.agent.jid))
-                msg.set_metadata('targets', str(receivers_jid))
-                msg.body = data_json['criteria']
+                # msg.set_metadata('neg_requester_jid', str(self.agent.jid))
+                # msg.set_metadata('targets', str(receivers_jid))
+                # msg.body = data_json['criteria']
+
+                # TODO Msg structure of I4.0 SMIA
+                msg_body_json = {
+                    'serviceID': 'startNegotiation',
+                    'serviceType': 'AssetRelatedService',   # TODO pensar que tipo de servicio es el de negociacion
+                    'serviceData': {
+                        'serviceCategory': 'service-request',
+                        'timestamp': calendar.timegm(time.gmtime()),
+                        'serviceParams': {
+                            'neg_requester_jid': str(self.agent.jid),
+                            'criteria': data_json['criteria'],
+                            'targets': str(receivers_jid)
+                        }
+                    }
+                }
+                msg.body = json.dumps(msg_body_json)
 
                 print(msg)
 
@@ -78,6 +97,7 @@ class GUIAgent(Agent):
             print("All negotiation messages sent!")
 
     class ReceiverBehaviour(CyclicBehaviour):
+
         async def run(self):
             msg = await self.receive(timeout=10)  # Wait for a message for 10 seconds
             if msg:
@@ -152,8 +172,8 @@ async def main():
     passwd = '123'
 
     # DATOS PARA PRUEBAS CON ANONYM.IM
-    # agent_jid = "gui_agent@anonym.im"
-    # passwd = "gcis1234"
+    agent_jid = "gui_agent@anonym.im"
+    passwd = "gcis1234"
 
     gui_agent = GUIAgent(agent_jid, passwd)
     gui_agent.agent_name = 'gui_agent'

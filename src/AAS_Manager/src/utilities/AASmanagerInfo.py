@@ -24,14 +24,14 @@ class AASmanagerInfo:
 
     # Object of the standard template for service requests through ACL messages
     # -------------------------------------------------------------------------
-    neg_standard_acl_template_cfp = GeneralUtils.create_acl_template(performative='CallForProposal',
+    NEG_STANDARD_ACL_TEMPLATE_CFP = GeneralUtils.create_acl_template(performative='CallForProposal',
                                                                      ontology='negotiation')
-    neg_standard_acl_template_propose = GeneralUtils.create_acl_template(performative='Propose',
+    NEG_STANDARD_ACL_TEMPLATE_PROPOSE = GeneralUtils.create_acl_template(performative='Propose',
                                                                      ontology='negotiation')
-    neg_standard_acl_template_failure = GeneralUtils.create_acl_template(performative='Failure',
+    NEG_STANDARD_ACL_TEMPLATE_FAILURE = GeneralUtils.create_acl_template(performative='Failure',
                                                                          ontology='negotiation')
-    neg_standard_acl_template_inform = GeneralUtils.create_acl_template(performative='Inform',
+    NEG_STANDARD_ACL_TEMPLATE_INFORM = GeneralUtils.create_acl_template(performative='Inform',
                                                                          ontology='negotiation')
-    NEG_STANDARD_ACL_TEMPLATE = (neg_standard_acl_template_cfp | neg_standard_acl_template_propose
-                                 | neg_standard_acl_template_failure | neg_standard_acl_template_inform)
+    NEG_STANDARD_ACL_TEMPLATE = (NEG_STANDARD_ACL_TEMPLATE_CFP | NEG_STANDARD_ACL_TEMPLATE_PROPOSE
+                                 | NEG_STANDARD_ACL_TEMPLATE_FAILURE | NEG_STANDARD_ACL_TEMPLATE_INFORM)
 

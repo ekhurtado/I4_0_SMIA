@@ -1,10 +1,31 @@
 """This class groups the methods related to the Inter AAS interactions between I4.0 SMIA entities."""
-import calendar
+import json
 import logging
-import time
+
+from utilities.GeneralUtils import GeneralUtils
 
 _logger = logging.getLogger(__name__)
 
+def create_svc_req_data_from_acl_msg(acl_msg):
+    """
+    This method creates the dictionary with all the required data of the service request from an ACL message.
+
+    Args:
+        acl_msg (spade.message.Message): ACL message where to get the information
+
+    Returns:
+        dict: dictionary with all the information about the service request
+    """
+    svc_req_data_json = {
+        'performative': acl_msg.get_metadata('performative'),
+        'ontology': acl_msg.get_metadata('ontology'),
+        'thread': acl_msg.thread,
+        'sender': acl_msg.sender,
+        'receiver': acl_msg.to,
+    }
+    # The body of the ACL message contains the rest of the information
+    svc_req_data_json.update(json.loads(acl_msg.body))
+    return svc_req_data_json
 
 def create_inter_aas_response_object(inter_aas_request, intra_aas_response):
     """
@@ -26,7 +47,7 @@ def create_inter_aas_response_object(inter_aas_request, intra_aas_response):
             'serviceID': inter_aas_request['serviceID'],
             'serviceData': {
                 'serviceCategory': 'service-response',
-                'timestamp': calendar.timegm(time.gmtime()),
+                'timestamp': GeneralUtils.get_current_timestamp(),
                 'serviceStatus': intra_aas_response['serviceData']['serviceStatus'],  # The status of the Intra AAS
                                                                                       # Interaction is obtained
             }
