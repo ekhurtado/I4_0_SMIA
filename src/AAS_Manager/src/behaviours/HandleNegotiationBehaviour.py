@@ -4,7 +4,7 @@ import logging
 
 from spade.behaviour import CyclicBehaviour
 
-from behaviours.SvcRequestHandlingBehaviour import SvcRequestHandlingBehaviour
+from behaviours.HandleSvcRequestBehaviour import HandleSvcRequestBehaviour
 from logic import Negotiation_utils
 from utilities.GeneralUtils import GeneralUtils
 
@@ -162,9 +162,9 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
             serviceData=intra_aas_svc_data)
 
         # A new behaviour is added to the SPADE agent to handle this specific service request
-        intra_aas_neg_req_handling_behav = SvcRequestHandlingBehaviour(self.agent,
-                                                                       'Inter AAS interaction',
-                                                                       intra_aas_req_data)
+        intra_aas_neg_req_handling_behav = HandleSvcRequestBehaviour(self.agent,
+                                                                     'Inter AAS interaction',
+                                                                     intra_aas_req_data)
         self.myagent.add_behaviour(intra_aas_neg_req_handling_behav)
 
         # In this case, as the Intra AAS interactions are asynchronous, the behaviour will wait until the request is

@@ -11,7 +11,7 @@ from utilities.GeneralUtils import GeneralUtils
 _logger = logging.getLogger(__name__)
 
 
-class SvcResponseHandlingBehaviour(OneShotBehaviour):
+class HandleSvcResponseBehaviour(OneShotBehaviour):
     """
     This class implements the behaviour that handles all the service responses that the AAS Manager has received. This
     response can arrive from an FIPA-ACL message or from the AAS Core as an interaction message. This is a
@@ -40,7 +40,7 @@ class SvcResponseHandlingBehaviour(OneShotBehaviour):
         """
         This method implements the initialization process of this behaviour.
         """
-        _logger.info("SvcResponseHandlingBehaviour starting...")
+        _logger.info("HandleSvcResponseBehaviour starting...")
 
     async def run(self):
         """

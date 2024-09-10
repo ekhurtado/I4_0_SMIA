@@ -7,7 +7,7 @@ from logic import IntraAASInteractions_utils
 _logger = logging.getLogger(__name__)
 
 
-class SvcRequestHandlingBehaviour(OneShotBehaviour):
+class HandleSvcRequestBehaviour(OneShotBehaviour):
     """
     This class implements the behaviour that handles all the service requests that the AAS Manager has received. This
     request can arrive from an FIPA-ACL message as a :term:`Inter AAS Interaction` or from the AAS Core as an
@@ -38,7 +38,7 @@ class SvcRequestHandlingBehaviour(OneShotBehaviour):
         """
         This method implements the initialization process of this behaviour.
         """
-        _logger.info("SvcRequestHandlingBehaviour starting...")
+        _logger.info("HandleSvcRequestBehaviour starting...")
 
     async def run(self):
         """

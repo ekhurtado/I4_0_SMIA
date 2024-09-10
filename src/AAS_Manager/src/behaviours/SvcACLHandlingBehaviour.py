@@ -3,7 +3,7 @@ import logging
 
 from spade.behaviour import CyclicBehaviour
 
-from behaviours.SvcRequestHandlingBehaviour import SvcRequestHandlingBehaviour
+from behaviours.HandleSvcRequestBehaviour import HandleSvcRequestBehaviour
 from logic import InterAASInteractions_utils
 
 _logger = logging.getLogger(__name__)
@@ -91,17 +91,16 @@ class SvcACLHandlingBehaviour(CyclicBehaviour):
                         msg_json_body['sender'] = str(msg.sender)
                     await self.myagent.save_new_acl_svc_request(thread=msg.thread, request_data=msg_json_body)
                     _logger.aclinfo("acl_svc_requests shared object updated by " + str(self.__class__.__name__)
-                        + " responsible for thread [" + msg.thread + "]. Action: request data added")
+                                    + " responsible for thread [" + msg.thread + "]. Action: request data added")
 
                     svc_req_data = InterAASInteractions_utils.create_svc_req_data_from_acl_msg(msg)
 
                     # A new behaviour is added to the SPADE agent to handle this specific service request
-                    svc_req_handling_behav = SvcRequestHandlingBehaviour(self.agent,
-                                                                         'Inter AAS interaction',
-                                                                         svc_req_data)
+                    svc_req_handling_behav = HandleSvcRequestBehaviour(self.agent,
+                                                                       'Inter AAS interaction',
+                                                                       svc_req_data)
                     self.myagent.add_behaviour(svc_req_handling_behav)
 
 
         else:
             _logger.info("         - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour)")
-
