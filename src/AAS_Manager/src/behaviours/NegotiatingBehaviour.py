@@ -44,7 +44,8 @@ class NegotiatingBehaviour(CyclicBehaviour):
         """
 
         # Wait for a message with the standard ACL template for negotiating to arrive.
-        msg = await self.receive(timeout=10)  # Timeout set to 10 seconds so as not to continuously execute the behavior.
+        msg = await self.receive(
+            timeout=10)  # Timeout set to 10 seconds so as not to continuously execute the behavior.
         if msg:
             # An ACL message has been received by the agent
             _logger.aclinfo("         + Message received on AAS Manager Agent (NegotiatingBehaviour)")
@@ -59,7 +60,7 @@ class NegotiatingBehaviour(CyclicBehaviour):
                 #  gestionar los mensajes ACL
                 case "CallForProposal":
                     _logger.aclinfo("The agent has received a request to start a negotiation (CFP) with thread ["
-                                 + msg.thread + "]")
+                                    + msg.thread + "]")
                     # First, some useful information is obtained from the msg
                     targets_list = eval(msg_json_body['serviceData']['serviceParams']['targets'])
 
@@ -72,23 +73,23 @@ class NegotiatingBehaviour(CyclicBehaviour):
                         # There is only one target available (therefore, it is the only one, so it is the winner)
                         _logger.info("The AAS has won the negotiation with thread [" + msg.thread + "]")
 
-
                         # As the winner, it will reply to the sender with the result of the negotiation
-                        acl_response_msg = Negotiation_utils.create_neg_response_msg(receiver=neg_requester_jid,
-                                                                                     thread=msg.thread,
-                                                                                     serviceID=msg_json_body['serviceID'],
-                                                                                     serviceType=msg_json_body['serviceType'],
-                                                                                     winner=str(self.myagent.jid)
-                                                                                     )
+                        acl_response_msg = Negotiation_utils.create_neg_response_msg(
+                            receiver=neg_requester_jid,
+                            thread=msg.thread,
+                            serviceID=msg_json_body['serviceID'],
+                            serviceType=msg_json_body['serviceType'],
+                            winner=str(self.myagent.jid))
                         await self.send(acl_response_msg)
                         _logger.aclinfo("ACL response sent for the result of the negotiation request with thread ["
                                         + msg.thread + "]")
 
                         # Finally, the data is stored in the AAS Manager
-                        neg_data_json = Negotiation_utils.create_neg_json_to_store(neg_requester_jid=neg_requester_jid,
-                                                                                   participants=msg_json_body['serviceData']['serviceParams']['targets'],
-                                                                                   neg_criteria=msg_json_body['serviceData']['serviceParams']['criteria'],
-                                                                                   is_winner=True)
+                        neg_data_json = Negotiation_utils.create_neg_json_to_store(
+                            neg_requester_jid=neg_requester_jid,
+                            participants=msg_json_body['serviceData']['serviceParams']['targets'],
+                            neg_criteria=msg_json_body['serviceData']['serviceParams']['criteria'],
+                            is_winner=True)
                         self.myagent.save_negotiation_data(thread=msg.thread, neg_data=neg_data_json)
 
                     else:
@@ -122,4 +123,3 @@ class NegotiatingBehaviour(CyclicBehaviour):
                     _logger.error("ACL performative type not available.")
         else:
             _logger.info("         - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour)")
-

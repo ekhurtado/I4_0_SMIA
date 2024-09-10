@@ -1,3 +1,4 @@
+import asyncio
 import calendar
 import json
 import sys
@@ -15,17 +16,30 @@ XMPP_SERVER = 'anonym.im'
 
 
 class ReceiverAgent(Agent):
+    class SleepingBehaviour(CyclicBehaviour):
+        async def on_start(self):
+            print("SleepingBehaviour starting...")
+            self.neg_value = None
+            self.event = asyncio.Event()
+
+        async def run(self):
+            print("SleepingBehaviour running...")
+            print("---> Neg value before waits: " + str(self.neg_value))
+            await self.event.wait()  # Wait until the neg value is added in the behaviour
+            self.event.clear()  # neg value added
+            print("---> Neg value after waits: " + str(self.neg_value))
+
     class RecvBehav(CyclicBehaviour):
 
         async def run(self):
             # self.presence.set_available()
             print("RecvBehav running")
 
-            for behav in self.agent.behaviours:
-                behav_class_name = str(behav.__class__.__name__)
-                if behav_class_name == 'HandleNegBehav':
-                    behav.neg_value = 99999999
-                    print(behav)
+            # for behav in self.agent.behaviours:
+            #     behav_class_name = str(behav.__class__.__name__)
+            #     if behav_class_name == 'HandleNegBehav':
+            #         behav.neg_value = 99999999
+            #         print(behav)
 
             msg = await self.receive(timeout=5)  # wait for a message for 10 seconds
             if msg:
@@ -159,7 +173,6 @@ class ReceiverAgent(Agent):
             if self.presence.is_available():
                 print("[" + str(self.agent.jid) + "]" + " [RUNNING THE NEGOTIATION BEHAVIOUR]")
 
-
         async def run(self):
             print("NegBehav_v2 running")
             msg = await self.receive(timeout=5)  # wait for a message for 10 seconds
@@ -171,7 +184,8 @@ class ReceiverAgent(Agent):
                 # Get the data from the msg
                 # targets_list = eval(msg.get_metadata('targets'))
                 msg_body_json = json.loads(msg.body)
-                targets_list = eval(msg_body_json['serviceData']['serviceParams']['targets'])   # With msg structure of I4.0 SMIA
+                targets_list = eval(
+                    msg_body_json['serviceData']['serviceParams']['targets'])  # With msg structure of I4.0 SMIA
 
                 # Si el servidor XMPP le ha puesto un random para diferenciar al agente, lo quitamos (lo introduce
                 # despues de '/')
@@ -188,10 +202,9 @@ class ReceiverAgent(Agent):
                     print(" Faltaria contestar al que ha pedido la negociacion")
                     # response_msg = Message(to=msg.get_metadata('neg_request_jid'), thread=msg.thread, body='WINNER')
                     response_msg = Message(to=str(msg.sender),
-                                           thread=msg.thread) # With msg structure of I4.0 SMIA
+                                           thread=msg.thread)  # With msg structure of I4.0 SMIA
                     response_msg.set_metadata('performative', 'INFORM')
                     response_msg.set_metadata('ontology', 'negotiation')
-
 
                     # TODO With msg structure of I4.0 SMIA
                     svc_response_json = {
@@ -207,7 +220,7 @@ class ReceiverAgent(Agent):
                         }
                     }
                     response_msg.body = json.dumps(svc_response_json)
-                    await self.send(response_msg) # TODO AL AÑADIRLO EN EL AAS_MANAGER QUITAR EL COMENTARIO
+                    await self.send(response_msg)  # TODO AL AÑADIRLO EN EL AAS_MANAGER QUITAR EL COMENTARIO
 
                     # Actualizo la informacion de esta negociacion para informar de que el agente es el ganador
                     # Las negociaciones se diferencian por el thread
@@ -215,7 +228,9 @@ class ReceiverAgent(Agent):
                     #                                             'participants': msg.get_metadata('targets')}
                     # TODO With msg structure of I4.0 SMIA
                     self.agent.negotiations_data[msg.thread] = {'winner': str(self.agent.jid),
-                                                                'participants': msg_body_json['serviceData']['serviceParams']['targets']}
+                                                                'participants':
+                                                                    msg_body_json['serviceData']['serviceParams'][
+                                                                        'targets']}
                 else:
                     # Si hay mas targets, se añade un comportamiento de gestion de esta negociacion en concreto,
                     # que se encargara de enviar a cada uno un mensaje PROPOSE con mi valor del criterio,
@@ -342,8 +357,6 @@ class ReceiverAgent(Agent):
                 criteria = msg_body_json['serviceData']['serviceParams']['criteria']
                 sender_agent_neg_value = msg_body_json['serviceData']['serviceParams']['neg_value']
 
-
-
                 print("El valor del agente " + str(self.agent.jid) + " es " + str(self.neg_value))
                 print("El valor del agente sender " + str(msg.sender) + " es " + sender_agent_neg_value)
 
@@ -406,6 +419,13 @@ class ReceiverAgent(Agent):
                 'neg_criteria': self.neg_criteria,
                 'is_winner': str(is_winner),
             }
+
+            # TODO prueba para añadir variable en behaviour a la espera para que continue su ejecucion
+            for behav in self.agent.behaviours:
+                behav_class_name = str(behav.__class__.__name__)
+                if behav_class_name == 'SleepingBehaviour':
+                    behav.neg_value = self.neg_value
+                    behav.event.set()
 
             # Para finalizar la negociacion se elimina este behaviour del agente
             self.kill(exit_code=10)
@@ -479,6 +499,11 @@ class ReceiverAgent(Agent):
         # Behaviour that sends ACL messages for tests
         send_behav = self.SendBehaviour()
         self.add_behaviour(send_behav)
+
+        # Behavior that waits for one of its attributes to change
+        sleeping_behav = self.SleepingBehaviour()
+        self.add_behaviour(sleeping_behav)
+
 
 async def main():
     recv_jid = sys.argv[1] + "@" + XMPP_SERVER

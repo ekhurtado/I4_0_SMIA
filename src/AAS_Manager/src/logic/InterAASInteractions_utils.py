@@ -6,6 +6,7 @@ from utilities.GeneralUtils import GeneralUtils
 
 _logger = logging.getLogger(__name__)
 
+
 def create_svc_req_data_from_acl_msg(acl_msg):
     """
     This method creates the dictionary with all the required data of the service request from an ACL message.
@@ -27,6 +28,7 @@ def create_svc_req_data_from_acl_msg(acl_msg):
     svc_req_data_json.update(json.loads(acl_msg.body))
     return svc_req_data_json
 
+
 def create_inter_aas_response_object(inter_aas_request, intra_aas_response):
     """
     This method creates the Inter AAS interaction response object using the initial Inter AAS interaction request and
@@ -41,18 +43,17 @@ def create_inter_aas_response_object(inter_aas_request, intra_aas_response):
     """
 
     response_json = {'performative': inter_aas_request['performative'],
-            'ontology': inter_aas_request['ontology'],
-            'thread': intra_aas_response['thread'],
-            'serviceType': inter_aas_request['serviceType'],
-            'serviceID': inter_aas_request['serviceID'],
-            'serviceData': {
-                'serviceCategory': 'service-response',
-                'timestamp': GeneralUtils.get_current_timestamp(),
-                'serviceStatus': intra_aas_response['serviceData']['serviceStatus'],  # The status of the Intra AAS
-                                                                                      # Interaction is obtained
-            }
-    }
+                     'ontology': inter_aas_request['ontology'],
+                     'thread': intra_aas_response['thread'],
+                     'serviceType': inter_aas_request['serviceType'],
+                     'serviceID': inter_aas_request['serviceID'],
+                     'serviceData': {
+                         'serviceCategory': 'service-response',
+                         'timestamp': GeneralUtils.get_current_timestamp(),
+                         'serviceStatus': intra_aas_response['serviceData']['serviceStatus'],  # The status of the
+                                                                                # Intra AAS Interaction is obtained
+                     }
+                     }
     if 'serviceParams' in intra_aas_response['serviceData']:
         response_json['serviceData']['serviceParams'] = intra_aas_response['serviceData']['serviceParams']
-    return  response_json
-
+    return response_json

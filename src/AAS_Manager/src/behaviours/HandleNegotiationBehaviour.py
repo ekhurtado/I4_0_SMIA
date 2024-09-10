@@ -1,3 +1,4 @@
+import asyncio
 import json
 import logging
 
@@ -24,7 +25,7 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
     neg_criteria = None  #: criteria of the negotiation
     neg_value = None  #: value of the negotiation
     targets_processed = set()  #: targets that their values have been processed
-
+    neg_value_event = None
 
     def __init__(self, agent_object, negotiation_info):
         """
@@ -45,6 +46,10 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
         self.neg_criteria = negotiation_info['neg_criteria']
         self.targets_processed = set()  # TODO pensar si cambiarlo a un set para evitar valores repetidos
 
+        # This event object will allow waiting for the negotiation value if it is necessary to request it from an
+        # external entity (such as the AAS Core)
+        self.neg_value_event = asyncio.Event()
+
     async def on_start(self):
         """
         This method implements the initialization process of this behaviour.
@@ -56,7 +61,7 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
         #  obtain the value you have to make an Intra AAS interaction request, the behaviour will not be able to start
         #  managing the negotiation until you get the answer to that request (together with the requested value).
         # TODO buscar una forma de dormir el behaviour hasta que neg_value deje de ser None
-        self.neg_value = await self.get_neg_value_with_criteria(self.neg_criteria)
+        await self.get_neg_value_with_criteria(self.neg_criteria)
 
         # Once the negotiation value is reached, the negotiation management can begin. The first step is to send the
         # PROPOSE message with your own value to the other participants in the negotiation.
@@ -72,8 +77,7 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
                 acl_propose_msg.to = jid_target
                 await self.send(acl_propose_msg)
                 _logger.aclinfo("ACL PROPOSE negotiation message sent to " + jid_target +
-                                " on negotiation with thread [" +self.thread+ "]")
-
+                                " on negotiation with thread [" + self.thread + "]")
 
     async def run(self):
         """
@@ -81,16 +85,17 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
         """
 
         # Wait for a message with the standard ACL template for negotiating to arrive.
-        msg = await self.receive(timeout=10)  # Timeout set to 10 seconds so as not to continuously execute the behavior.
+        msg = await self.receive(
+            timeout=10)  # Timeout set to 10 seconds so as not to continuously execute the behavior.
         if msg:
             # An ACL message has been received by the agent
             _logger.aclinfo("         + PROPOSE Message received on AAS Manager Agent (HandleNegotiationBehaviour "
-                            "in charge of the negotiation with thread [" +self.thread+ "])")
+                            "in charge of the negotiation with thread [" + self.thread + "])")
             _logger.aclinfo("                 |___ Message received with content: {}".format(msg.body))
 
             # The msg body will be parsed to a JSON object
             msg_json_body = json.loads(msg.body)
-            
+
             # The negotiation information is obtained from the message
             criteria = msg_json_body['serviceData']['serviceParams']['criteria']
             sender_agent_neg_value = msg_json_body['serviceData']['serviceParams']['neg_value']
@@ -115,7 +120,8 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
                 acl_response_msg = Negotiation_utils.create_neg_response_msg(receiver=self.neg_requester_jid,
                                                                              thread=self.thread,
                                                                              serviceID='startNegotiation',
-                                                                             serviceType='AssetRelatedService', # TODO ojo si decidimos que es de otro tipo
+                                                                             serviceType='AssetRelatedService',
+                                                                             # TODO ojo si decidimos que es de otro tipo
                                                                              winner=str(self.myagent.jid)
                                                                              )
                 await self.send(acl_response_msg)
@@ -127,7 +133,6 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
 
         else:
             _logger.info("         - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour)")
-
 
     async def get_neg_value_with_criteria(self, criteria):
         """
@@ -150,10 +155,11 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
                 'criteria': self.neg_criteria
             }
         }
-        intra_aas_req_data = Negotiation_utils.create_intra_aas_neg_req_data(performative=self.template.metadata['performative'],
-                                                                                  ontology=self.template.metadata['ontology'],
-                                                                                  thread=self.thread,
-                                                                                  serviceData=intra_aas_svc_data)
+        intra_aas_req_data = Negotiation_utils.create_intra_aas_neg_req_data(
+            performative=self.template.metadata['performative'],
+            ontology=self.template.metadata['ontology'],
+            thread=self.thread,
+            serviceData=intra_aas_svc_data)
 
         # A new behaviour is added to the SPADE agent to handle this specific service request
         intra_aas_neg_req_handling_behav = SvcRequestHandlingBehaviour(self.agent,
@@ -161,7 +167,13 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
                                                                        intra_aas_req_data)
         self.myagent.add_behaviour(intra_aas_neg_req_handling_behav)
 
-        return None
+        # In this case, as the Intra AAS interactions are asynchronous, the behaviour will wait until the request is
+        # answered and the negotiation value is available
+        await self.neg_value_event.wait()
+        # If the behaviour continues from this line, it means that the Intra AAS interaction has been answered and the
+        # value is available
+        self.neg_value_event.clear()
+        _logger.info("The negotiation value for the negotiation with thread [" + self.thread + "] has been obtained. ")
 
     async def exit_negotiation(self, is_winner):
         """

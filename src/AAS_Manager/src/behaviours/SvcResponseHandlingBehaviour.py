@@ -4,7 +4,7 @@ import logging
 from spade.behaviour import OneShotBehaviour
 from spade.message import Message
 
-from logic import InterAASInteractions_utils
+from logic import InterAASInteractions_utils, Negotiation_utils
 from utilities import AAS_Archive_utils
 from utilities.GeneralUtils import GeneralUtils
 
@@ -92,13 +92,13 @@ class SvcResponseHandlingBehaviour(OneShotBehaviour):
             # Since the request has been performed, it is removed from the global dictionary
             await self.myagent.remove_interaction_request(interaction_id=svc_interaction_id)
             _logger.interactioninfo("interaction_requests shared object updated by " + str(self.__class__.__name__) +
-                            " responsible for interaction [" + svc_interaction_id + "]. Action: request data removed")
+                                    " responsible for interaction [" + svc_interaction_id + "]. Action: request data removed")
 
             # The information if stored in the global dictionary for the responses
             await self.myagent.save_interaction_response(interaction_id=svc_interaction_id,
                                                          response_data=self.svc_resp_data)
             _logger.interactioninfo("interaction_responses shared object updated by " + str(self.__class__.__name__) +
-                            " responsible for interaction [" + svc_interaction_id + "]. Action: response data added")
+                                    " responsible for interaction [" + svc_interaction_id + "]. Action: response data added")
 
             # It is also stored in the log of the AAS archive
             AAS_Archive_utils.save_svc_log_info(self.svc_resp_data, 'AssetRelatedService')
@@ -109,32 +109,55 @@ class SvcResponseHandlingBehaviour(OneShotBehaviour):
             # conversation). For this purpose, the attribute 'thread' will be used.
             inter_aas_req = await self.myagent.get_acl_svc_request(thread=self.svc_resp_data['thread'])
             if inter_aas_req is not None:
-                # In this case, there is a previous Inter AAS service request, so the response must be sent through
-                # FIPA-ACL to the requesting AAS.
+                # In this case, there is a previous Inter AAS interaction, so it must perform the appropriate actions
+                # according to the ontology.
                 # TODO mirar si es parte de una negociacion, en cuyo caso tendria que buscar entre los behaviours del
                 #  agente y cambiar el valor del neg_value (no enviar un ACL)
-                inter_aas_response = InterAASInteractions_utils.create_inter_aas_response_object(inter_aas_req,
-                                                                                                 self.svc_resp_data)
+                match inter_aas_req['ontology']:
+                    case "SvcRequest":
+                        # In this case, the previous interaction has been an Inter AAS servie request, so the response
+                        # to that request must be sent through FIPA-ACL to the requesting AAS.
+                        inter_aas_response = InterAASInteractions_utils.create_inter_aas_response_object(inter_aas_req,
+                                                                                                         self.svc_resp_data)
 
-                acl_msg = GeneralUtils.create_acl_msg(receiver=inter_aas_req['sender'],
-                                                      thread=self.svc_resp_data['thread'],
-                                                      performative=inter_aas_req['performative'],
-                                                      ontology=inter_aas_req['ontology'],
-                                                      body=json.dumps(inter_aas_response))
-                await self.send(acl_msg)
-                _logger.aclinfo("ACL Service response sent to request with thread ["
-                                + self.svc_resp_data['thread'] + "]")
+                        acl_msg = GeneralUtils.create_acl_msg(receiver=inter_aas_req['sender'],
+                                                              thread=self.svc_resp_data['thread'],
+                                                              performative=inter_aas_req['performative'],
+                                                              ontology=inter_aas_req['ontology'],
+                                                              body=json.dumps(inter_aas_response))
+                        await self.send(acl_msg)
+                        _logger.aclinfo("ACL Service response sent to request with thread ["
+                                        + self.svc_resp_data['thread'] + "]")
 
-                # Since the Inter AAS interaction request has also been made, it is removed from the global dictionary
-                await self.myagent.remove_acl_svc_request(self.svc_resp_data['thread'])
-                _logger.aclinfo("acl_svc_requests shared object updated by " + str(self.__class__.__name__) +
-                                " responsible for interaction [" + svc_interaction_id + "]. Action: request data removed")
+                        # Since the Inter AAS interaction request has also been made, it is removed from the global
+                        # dictionary
+                        await self.myagent.remove_acl_svc_request(self.svc_resp_data['thread'])
+                        _logger.aclinfo("acl_svc_requests shared object updated by " + str(self.__class__.__name__) +
+                                        " responsible for interaction [" + svc_interaction_id +
+                                        "]. Action: request data removed")
 
-                # The information if stored in the global dictionary for the Inter AAS interaction responses
-                await self.myagent.save_acl_svc_response(thread=self.svc_resp_data['thread'],
-                                                         response_data=inter_aas_response)
-                _logger.aclinfo("acl_svc_responses shared object updated by " + str(self.__class__.__name__) +
-                                " responsible for interaction [" + svc_interaction_id + "]. Action: response data added")
+                        # The information if stored in the global dictionary for the Inter AAS interaction responses
+                        await self.myagent.save_acl_svc_response(thread=self.svc_resp_data['thread'],
+                                                                 response_data=inter_aas_response)
+                        _logger.aclinfo("acl_svc_responses shared object updated by " + str(self.__class__.__name__) +
+                                        " responsible for interaction [" + svc_interaction_id +
+                                        "]. Action: response data added")
+
+                    case "negotiation":
+                        # In this case, the Intra AAS interaction has been part of a negotiation, so it has to notify to
+                        # the associate handling behaviour, which is in charge of this exact negotiation
+                        if inter_aas_req['serviceID'] == 'getNegotiationValue':
+                            # If the negotiation value has been requested, this value must be saved in the behaviour
+                            # class as an attribute
+                            Negotiation_utils.add_value_and_unlock_neg_handling_behaviour(
+                                agent=self.myagent,
+                                thread=inter_aas_req['thread'],
+                                neg_value=self.svc_resp_data['serviceData']['serviceParams']['value'])
+                        else:
+                            print(inter_aas_req['serviceID'])
+                            # TODO desarrollarlo
+                    case _:
+                        _logger.warning("Ontology not available.")
 
         elif self.svc_resp_interaction_type == 'Inter AAS interaction':
             # TODO pensar como se gestionaria este caso
@@ -142,11 +165,11 @@ class SvcResponseHandlingBehaviour(OneShotBehaviour):
 
     async def handle_aas_infrastructure_svc(self):
         """
-        This method handles AAS Infrastructure Services. These services are part of I4.0 Infrastructure Services
-        (Systemic relevant). They are necessary to create AASs and make them localizable and are not offered by an AAS, but
-        by the platform (computational infrastructure). These include the AAS Create Service (for creating AASs with unique
-        identifiers), AAS Registry Services (for registering AASs) and AAS Exposure and Discovery Services (for searching
-        for AASs).
+        This method handles AAS Infrastructure Services. These services are part of I4.0 Infrastructure Services (
+        Systemic relevant). They are necessary to create AASs and make them localizable and are not offered by an
+        AAS, but by the platform (computational infrastructure). These include the AAS Create Service (for creating
+        AASs with unique identifiers), AAS Registry Services (for registering AASs) and AAS Exposure and Discovery
+        Services (for searching for AASs).
 
         """
         _logger.info(str(self.myagent.get_interaction_id()) + str(self.svc_resp_data))

@@ -101,6 +101,7 @@ def create_neg_json_to_store(neg_requester_jid, participants, neg_criteria, is_w
         'is_winner': str(is_winner)
     }
 
+
 def create_intra_aas_neg_req_data(performative, ontology, thread, serviceData):
     """
     This method creates the dictionary with all the required data for an Intra AAS interaction request.
@@ -123,3 +124,27 @@ def create_intra_aas_neg_req_data(performative, ontology, thread, serviceData):
         'serviceData': serviceData
     }
     return intra_ass_req_data_json
+
+
+def add_value_and_unlock_neg_handling_behaviour(agent, thread, neg_value):
+    """
+    This method adds the value to the HandleNegotiationBehaviour which is in charge of the negotiation with the given
+    thread. Since this behaviour is waiting for this value, this method also unlocks its execution, so it can continue
+    with its logic.
+
+    Args:
+        agent (spade.agent.Agent): the SPADE agent object that represents the AAS Manager.
+        thread (str): the thread of the negotiation, which is its identifier.
+        neg_value (int): value of the AAS in the negotiation-
+    """
+    # First, it will get the exact behaviour responsible for the negotiation for the given thread
+    for behaviour in agent.behaviours:
+        behav_class_name = str(behaviour.__class__.__name__)
+        if behav_class_name == 'HandleNegotiationBehaviour':
+            if behaviour.thread == thread:
+                # Once the exact behaviour has been found, the negotiation value will be stored as an attribute, and the
+                # method will be concluded
+                behaviour.neg_value = neg_value
+                # The execution of this behaviour is also unlocked
+                behaviour.neg_value_event.set()
+                break
