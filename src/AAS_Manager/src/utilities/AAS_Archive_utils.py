@@ -1,11 +1,11 @@
 """ File to group useful methods for accessing and managing the AAS Archive."""
-import calendar
 import json
 import logging
 import os
 import time
 
 from utilities.AASarchiveInfo import AASarchiveInfo
+from utilities.GeneralUtils import GeneralUtils
 
 _logger = logging.getLogger(__name__)
 
@@ -17,7 +17,8 @@ def create_status_file():
     """This method creates the status file of the AAS Manager and sets it to "initializing". If the file exists because
     the AAS Manager has been restarted without terminating the Pod where it is running, the status file will be
     rewritten."""
-    initial_status_info = {'name': 'AAS_Manager', 'status': 'Initializing', 'timestamp': calendar.timegm(time.gmtime())}
+    initial_status_info = {'name': 'AAS_Manager', 'status': 'Initializing',
+                           'timestamp': GeneralUtils.get_current_timestamp()}
     try:
         status_file = open(AASarchiveInfo.MANAGER_STATUS_FILE_PATH, 'x')
     except FileExistsError as e:
@@ -128,7 +129,7 @@ def change_status(new_status):
     """
     status_file_json = file_to_json(AASarchiveInfo.MANAGER_STATUS_FILE_PATH)
     status_file_json['status'] = new_status
-    status_file_json['timestamp'] = calendar.timegm(time.gmtime())
+    status_file_json['timestamp'] = GeneralUtils.get_current_timestamp()
     update_json_file(AASarchiveInfo.MANAGER_STATUS_FILE_PATH, status_file_json)
 
 

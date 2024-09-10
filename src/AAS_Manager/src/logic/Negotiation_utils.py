@@ -1,14 +1,13 @@
 """
 This class contains methods related to negotiation management of the AAS Manager.
 """
-import calendar
 import json
 import logging
-import time
 
 from spade.message import Message
 
 from utilities.AASmanagerInfo import AASmanagerInfo
+from utilities.GeneralUtils import GeneralUtils
 
 _logger = logging.getLogger(__name__)
 
@@ -36,7 +35,7 @@ def create_neg_propose_msg(thread, targets, neg_requester_jid, neg_criteria, neg
         'serviceType': 'AssetRelatedService',  # TODO cambiarlo si se decide que es de otro tipo
         'serviceData': {
             'serviceCategory': 'service-request',
-            'timestamp': calendar.timegm(time.gmtime()),
+            'timestamp': GeneralUtils.get_current_timestamp(),
             'serviceParams': {
                 'targets': targets,
                 'neg_requester_jid': neg_requester_jid,
@@ -49,15 +48,15 @@ def create_neg_propose_msg(thread, targets, neg_requester_jid, neg_criteria, neg
     return propose_msg
 
 
-def create_neg_response_msg(receiver, thread, serviceID, serviceType, winner):
+def create_neg_response_msg(receiver, thread, service_id, service_type, winner):
     """
     This method creates the FIPA-ACL message to respond to a negotiation request with its result.
 
     Args:
         receiver (str): the JID of the receiver of the ACL message, that it will be the requester of the negotiation.
         thread (str): the thread of the ACL message.
-        serviceID (str): the serviceID of the ACL message.
-        serviceType (str): the serviceType of the ACL message.
+        service_id (str): the serviceID of the ACL message.
+        service_type (str): the serviceType of the ACL message.
         winner (str): the JID of the winner of the negotiation.
 
     Returns:
@@ -67,12 +66,12 @@ def create_neg_response_msg(receiver, thread, serviceID, serviceType, winner):
     response_msg.metadata = AASmanagerInfo.NEG_STANDARD_ACL_TEMPLATE_INFORM.metadata
 
     neg_response_json = {
-        'serviceID': serviceID,
-        'serviceType': serviceType,
+        'serviceID': service_id,
+        'serviceType': service_type,
         'serviceData': {
             'serviceCategory': 'service-response',
             'serviceStatus': 'Completed',
-            'timestamp': calendar.timegm(time.gmtime()),
+            'timestamp': GeneralUtils.get_current_timestamp(),
             'serviceParams': {
                 'winner': winner
             }

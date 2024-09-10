@@ -1,10 +1,8 @@
 """This class groups the methods related to the Intra AAS interactions between the Manager and the Core."""
 
-import calendar
 import json
 import logging
 from datetime import datetime
-import time
 
 from aiokafka import AIOKafkaProducer, AIOKafkaConsumer, TopicPartition
 

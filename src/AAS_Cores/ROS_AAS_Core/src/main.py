@@ -9,8 +9,7 @@ from threading import Thread
 from aas_core import AASCore
 from utilities import AASArchive_utils, Interactions_utils
 from utilities.AASArchive_utils import file_to_json
-from utilities.Interactions_utils import get_next_svc_request, add_new_svc_response, create_response_json_object, \
-    make_gateway_request
+from utilities.Interactions_utils import create_response_json_object, make_gateway_request
 from utilities.KafkaInfo import KafkaInfo
 
 # Some variables needed by this AAS Core

@@ -119,8 +119,8 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
                 # As the winner, it will reply to the sender with the result of the negotiation
                 acl_response_msg = Negotiation_utils.create_neg_response_msg(receiver=self.neg_requester_jid,
                                                                              thread=self.thread,
-                                                                             serviceID='startNegotiation',
-                                                                             serviceType='AssetRelatedService',
+                                                                             service_id='startNegotiation',
+                                                                             service_type='AssetRelatedService',
                                                                              # TODO ojo si decidimos que es de otro tipo
                                                                              winner=str(self.myagent.jid)
                                                                              )

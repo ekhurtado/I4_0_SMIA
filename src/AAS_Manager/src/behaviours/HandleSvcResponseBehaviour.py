@@ -2,7 +2,6 @@ import json
 import logging
 
 from spade.behaviour import OneShotBehaviour
-from spade.message import Message
 
 from logic import InterAASInteractions_utils, Negotiation_utils
 from utilities import AAS_Archive_utils

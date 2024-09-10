@@ -77,8 +77,8 @@ class NegotiatingBehaviour(CyclicBehaviour):
                         acl_response_msg = Negotiation_utils.create_neg_response_msg(
                             receiver=neg_requester_jid,
                             thread=msg.thread,
-                            serviceID=msg_json_body['serviceID'],
-                            serviceType=msg_json_body['serviceType'],
+                            service_id=msg_json_body['serviceID'],
+                            service_type=msg_json_body['serviceType'],
                             winner=str(self.myagent.jid))
                         await self.send(acl_response_msg)
                         _logger.aclinfo("ACL response sent for the result of the negotiation request with thread ["
