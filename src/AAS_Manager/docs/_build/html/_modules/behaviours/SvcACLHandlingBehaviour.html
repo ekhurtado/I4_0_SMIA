@@ -244,19 +244,21 @@
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.CheckCoreInitializationBehaviour.html">behaviours.CheckCoreInitializationBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.CheckPhysicalAssetBehaviour.html">behaviours.CheckPhysicalAssetBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.EndBehaviour.html">behaviours.EndBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../behaviours.HandleNegotiationBehaviour.html">behaviours.HandleNegotiationBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../behaviours.HandleSvcRequestBehaviour.html">behaviours.HandleSvcRequestBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../behaviours.HandleSvcResponseBehaviour.html">behaviours.HandleSvcResponseBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.IdleBehaviour.html">behaviours.IdleBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.InitAASarchiveBehaviour.html">behaviours.InitAASarchiveBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.InitSubmodelsBehaviour.html">behaviours.InitSubmodelsBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.InteractionHandlingBehaviour.html">behaviours.InteractionHandlingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.NegotiatingBehaviour.html">behaviours.NegotiatingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.SvcACLHandlingBehaviour.html">behaviours.SvcACLHandlingBehaviour module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../behaviours.SvcRequestHandlingBehaviour.html">behaviours.SvcRequestHandlingBehaviour module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../behaviours.SvcResponseHandlingBehaviour.html">behaviours.SvcResponseHandlingBehaviour module</a></li>
 </ul>
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../../logic.html">logic package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of logic package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../logic.InterAASInteractions_utils.html">logic.InterAASInteractions_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../logic.IntraAASInteractions_utils.html">logic.IntraAASInteractions_utils module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../logic.Negotiation_utils.html">logic.Negotiation_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../logic.Services_utils.html">logic.Services_utils module</a></li>
 </ul>
 </li>
@@ -322,8 +324,8 @@
 
 <span class="kn">from</span> <span class="nn">spade.behaviour</span> <span class="kn">import</span> <span class="n">CyclicBehaviour</span>
 
-<span class="kn">from</span> <span class="nn">behaviours.SvcRequestHandlingBehaviour</span> <span class="kn">import</span> <span class="n">SvcRequestHandlingBehaviour</span>
-<span class="kn">from</span> <span class="nn">logic</span> <span class="kn">import</span> <span class="n">Services_utils</span>
+<span class="kn">from</span> <span class="nn">behaviours.HandleSvcRequestBehaviour</span> <span class="kn">import</span> <span class="n">HandleSvcRequestBehaviour</span>
+<span class="kn">from</span> <span class="nn">logic</span> <span class="kn">import</span> <span class="n">InterAASInteractions_utils</span>
 
 <span class="n">_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
@@ -404,25 +406,33 @@
 
             <span class="k">if</span> <span class="n">service_category</span> <span class="o">==</span> <span class="s1">&#39;service-request&#39;</span><span class="p">:</span>
                 <span class="c1"># A new service request is added to the global dictionary of ACL requests of the agent</span>
-                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">get_acl_svc_request</span><span class="p">(</span><span class="n">thread</span><span class="o">=</span><span class="n">msg</span><span class="o">.</span><span class="n">thread</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">if</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">get_acl_svc_request</span><span class="p">(</span><span class="n">thread</span><span class="o">=</span><span class="n">msg</span><span class="o">.</span><span class="n">thread</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                     <span class="n">_logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;A request has been made for an ACL service that already exists.&quot;</span><span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="c1"># The thread is the identifier of the conversation</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">save_new_acl_svc_request</span><span class="p">(</span><span class="n">thread</span><span class="o">=</span><span class="n">msg</span><span class="o">.</span><span class="n">thread</span><span class="p">,</span> <span class="n">request_data</span><span class="o">=</span><span class="n">msg_json_body</span><span class="p">)</span>
+                    <span class="c1"># The thread is the identifier of the conversation, so all the information will be saved using it</span>
+                    <span class="n">msg_json_body</span><span class="p">[</span><span class="s1">&#39;performative&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">get_metadata</span><span class="p">(</span><span class="s1">&#39;performative&#39;</span><span class="p">)</span>
+                    <span class="n">msg_json_body</span><span class="p">[</span><span class="s1">&#39;ontology&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">get_metadata</span><span class="p">(</span><span class="s1">&#39;ontology&#39;</span><span class="p">)</span>
 
-                    <span class="n">svc_req_data</span> <span class="o">=</span> <span class="n">Services_utils</span><span class="o">.</span><span class="n">create_svc_req_data_from_acl_msg</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="s1">&#39;/&#39;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">sender</span><span class="p">):</span>  <span class="c1"># XMPP server can add a random string to differentiate the agent JID</span>
+                        <span class="n">msg_json_body</span><span class="p">[</span><span class="s1">&#39;sender&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">sender</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">msg_json_body</span><span class="p">[</span><span class="s1">&#39;sender&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">sender</span><span class="p">)</span>
+                    <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">save_new_acl_svc_request</span><span class="p">(</span><span class="n">thread</span><span class="o">=</span><span class="n">msg</span><span class="o">.</span><span class="n">thread</span><span class="p">,</span> <span class="n">request_data</span><span class="o">=</span><span class="n">msg_json_body</span><span class="p">)</span>
+                    <span class="n">_logger</span><span class="o">.</span><span class="n">aclinfo</span><span class="p">(</span><span class="s2">&quot;acl_svc_requests shared object updated by &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+                                    <span class="o">+</span> <span class="s2">&quot; responsible for thread [&quot;</span> <span class="o">+</span> <span class="n">msg</span><span class="o">.</span><span class="n">thread</span> <span class="o">+</span> <span class="s2">&quot;]. Action: request data added&quot;</span><span class="p">)</span>
+
+                    <span class="n">svc_req_data</span> <span class="o">=</span> <span class="n">InterAASInteractions_utils</span><span class="o">.</span><span class="n">create_svc_req_data_from_acl_msg</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
 
                     <span class="c1"># A new behaviour is added to the SPADE agent to handle this specific service request</span>
-                    <span class="n">svc_req_handling_behav</span> <span class="o">=</span> <span class="n">SvcRequestHandlingBehaviour</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">agent</span><span class="p">,</span>
-                                                                         <span class="s1">&#39;Inter AAS interaction&#39;</span><span class="p">,</span>
-                                                                         <span class="n">svc_req_data</span><span class="p">)</span>
+                    <span class="n">svc_req_handling_behav</span> <span class="o">=</span> <span class="n">HandleSvcRequestBehaviour</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">agent</span><span class="p">,</span>
+                                                                       <span class="s1">&#39;Inter AAS interaction&#39;</span><span class="p">,</span>
+                                                                       <span class="n">svc_req_data</span><span class="p">)</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">add_behaviour</span><span class="p">(</span><span class="n">svc_req_handling_behav</span><span class="p">)</span>
 
 
         <span class="k">else</span><span class="p">:</span>
             <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;         - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour)&quot;</span><span class="p">)</span></div>
 </div>
-
 
 </pre></div>
         </article>

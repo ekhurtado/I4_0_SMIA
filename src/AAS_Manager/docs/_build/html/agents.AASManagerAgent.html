@@ -245,19 +245,21 @@
 <li class="toctree-l3"><a class="reference internal" href="behaviours.CheckCoreInitializationBehaviour.html">behaviours.CheckCoreInitializationBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.CheckPhysicalAssetBehaviour.html">behaviours.CheckPhysicalAssetBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.EndBehaviour.html">behaviours.EndBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.HandleNegotiationBehaviour.html">behaviours.HandleNegotiationBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.HandleSvcRequestBehaviour.html">behaviours.HandleSvcRequestBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.HandleSvcResponseBehaviour.html">behaviours.HandleSvcResponseBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.IdleBehaviour.html">behaviours.IdleBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.InitAASarchiveBehaviour.html">behaviours.InitAASarchiveBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.InitSubmodelsBehaviour.html">behaviours.InitSubmodelsBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.InteractionHandlingBehaviour.html">behaviours.InteractionHandlingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.NegotiatingBehaviour.html">behaviours.NegotiatingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.SvcACLHandlingBehaviour.html">behaviours.SvcACLHandlingBehaviour module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="behaviours.SvcRequestHandlingBehaviour.html">behaviours.SvcRequestHandlingBehaviour module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="behaviours.SvcResponseHandlingBehaviour.html">behaviours.SvcResponseHandlingBehaviour module</a></li>
 </ul>
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="logic.html">logic package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of logic package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="logic.InterAASInteractions_utils.html">logic.InterAASInteractions_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logic.IntraAASInteractions_utils.html">logic.IntraAASInteractions_utils module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logic.Negotiation_utils.html">logic.Negotiation_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logic.Services_utils.html">logic.Services_utils module</a></li>
 </ul>
 </li>
@@ -331,6 +333,18 @@
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Agent</span></code></p>
 <p>This is the top level in the hierarchy of SPADE Agents. It extends the own class Agent of SPADE. The AAS Manager
 Agent will be the generic and from which all other types of AAS Managers will start.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="agents.AASManagerAgent.AASManagerAgent.acl_svc_requests">
+<span class="sig-name descname"><span class="pre">acl_svc_requests</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#agents.AASManagerAgent.AASManagerAgent.acl_svc_requests" title="Link to this definition">¶</a></dt>
+<dd><p>Dictionary to save FIPA-ACL service requests</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="agents.AASManagerAgent.AASManagerAgent.acl_svc_responses">
+<span class="sig-name descname"><span class="pre">acl_svc_responses</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#agents.AASManagerAgent.AASManagerAgent.acl_svc_responses" title="Link to this definition">¶</a></dt>
+<dd><p>Dictionary to save FIPA-ACL service responses</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="agents.AASManagerAgent.AASManagerAgent.get_acl_svc_request">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_acl_svc_request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">thread</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/agents/AASManagerAgent.html#AASManagerAgent.get_acl_svc_request"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#agents.AASManagerAgent.AASManagerAgent.get_acl_svc_request" title="Link to this definition">¶</a></dt>
@@ -387,6 +401,42 @@ AAS Core.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="agents.AASManagerAgent.AASManagerAgent.initialize_aas_manager_attributes">
+<span class="sig-name descname"><span class="pre">initialize_aas_manager_attributes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/agents/AASManagerAgent.html#AASManagerAgent.initialize_aas_manager_attributes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#agents.AASManagerAgent.AASManagerAgent.initialize_aas_manager_attributes" title="Link to this definition">¶</a></dt>
+<dd><p>This method initializes all the attributes of the AAS Manager</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="agents.AASManagerAgent.AASManagerAgent.interaction_id_num">
+<span class="sig-name descname"><span class="pre">interaction_id_num</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#agents.AASManagerAgent.AASManagerAgent.interaction_id_num" title="Link to this definition">¶</a></dt>
+<dd><p>Identifier for Intra AAS interaction, created by the AAS Manager</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="agents.AASManagerAgent.AASManagerAgent.interaction_requests">
+<span class="sig-name descname"><span class="pre">interaction_requests</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#agents.AASManagerAgent.AASManagerAgent.interaction_requests" title="Link to this definition">¶</a></dt>
+<dd><p>Dictionary to save Intra AAS interaction requests</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="agents.AASManagerAgent.AASManagerAgent.interaction_responses">
+<span class="sig-name descname"><span class="pre">interaction_responses</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#agents.AASManagerAgent.AASManagerAgent.interaction_responses" title="Link to this definition">¶</a></dt>
+<dd><p>Dictionary to save Intra AAS interaction responses</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="agents.AASManagerAgent.AASManagerAgent.lock">
+<span class="sig-name descname"><span class="pre">lock</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#agents.AASManagerAgent.AASManagerAgent.lock" title="Link to this definition">¶</a></dt>
+<dd><p>Asyncio Lock object for secure access to shared AAS Manager objects</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="agents.AASManagerAgent.AASManagerAgent.negotiations_data">
+<span class="sig-name descname"><span class="pre">negotiations_data</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#agents.AASManagerAgent.AASManagerAgent.negotiations_data" title="Link to this definition">¶</a></dt>
+<dd><p>Dictionary to save negotiations related information</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="agents.AASManagerAgent.AASManagerAgent.remove_acl_svc_request">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">remove_acl_svc_request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">thread</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/agents/AASManagerAgent.html#AASManagerAgent.remove_acl_svc_request"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#agents.AASManagerAgent.AASManagerAgent.remove_acl_svc_request" title="Link to this definition">¶</a></dt>
 <dd><p>This method removes an ACL Service Request from the global acl service requests dictionary of the AAS Manager.</p>
@@ -425,6 +475,21 @@ for this type of interaction.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="agents.AASManagerAgent.AASManagerAgent.save_interaction_request">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">save_interaction_request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interaction_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">request_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/agents/AASManagerAgent.html#AASManagerAgent.save_interaction_request"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#agents.AASManagerAgent.AASManagerAgent.save_interaction_request" title="Link to this definition">¶</a></dt>
+<dd><p>This method adds a specific Intra AAS interaction Request to the global requests dictionary of the AAS Manager
+for this type of interaction using a specific interaction id.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>interaction_id</strong> (<em>str</em>) – interaction identifier of the Intra AAS interaction request.</p></li>
+<li><p><strong>request_data</strong> (<em>dict</em>) – all the information of the Intra AAS interaction Request in JSON format.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="agents.AASManagerAgent.AASManagerAgent.save_interaction_response">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">save_interaction_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interaction_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">response_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/agents/AASManagerAgent.html#AASManagerAgent.save_interaction_response"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#agents.AASManagerAgent.AASManagerAgent.save_interaction_response" title="Link to this definition">¶</a></dt>
 <dd><p>This method adds a specific Intra AAS interaction response to the global responses dictionary of the AAS Manager
@@ -434,6 +499,21 @@ for this type of interaction.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>interaction_id</strong> (<em>str</em>) – identifier of the Intra AAS interaction response.</p></li>
 <li><p><strong>response_data</strong> (<em>dict</em>) – all the information of the ACL Service response in JSON format.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="agents.AASManagerAgent.AASManagerAgent.save_negotiation_data">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">save_negotiation_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">thread</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">neg_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/agents/AASManagerAgent.html#AASManagerAgent.save_negotiation_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#agents.AASManagerAgent.AASManagerAgent.save_negotiation_data" title="Link to this definition">¶</a></dt>
+<dd><p>This method saves the information of a specific negotiation in which the AAS Manager has participated. The data
+is stored in the global object for all negotiations of the AAS Manager.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>thread</strong> (<em>str</em>) – thread of the negotiation</p></li>
+<li><p><strong>neg_data</strong> (<em>dict</em>) – all the information of the specific negotiation</p></li>
 </ul>
 </dd>
 </dl>
@@ -460,7 +540,7 @@ for this type of interaction.</p>
 this type of interaction.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>request_data</strong> (<em>dict</em>) – all the information of the ACL Service Request in JSON format.</p>
+<dd class="field-odd"><p><strong>request_data</strong> (<em>dict</em>) – all the information of the Intra AAS interaction Request in JSON format.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -532,14 +612,24 @@ the general AAS Manager Agent.</p>
             <ul>
 <li><a class="reference internal" href="#">agents.AASManagerAgent module</a><ul>
 <li><a class="reference internal" href="#agents.AASManagerAgent.AASManagerAgent"><code class="docutils literal notranslate"><span class="pre">AASManagerAgent</span></code></a><ul>
+<li><a class="reference internal" href="#agents.AASManagerAgent.AASManagerAgent.acl_svc_requests"><code class="docutils literal notranslate"><span class="pre">AASManagerAgent.acl_svc_requests</span></code></a></li>
+<li><a class="reference internal" href="#agents.AASManagerAgent.AASManagerAgent.acl_svc_responses"><code class="docutils literal notranslate"><span class="pre">AASManagerAgent.acl_svc_responses</span></code></a></li>
 <li><a class="reference internal" href="#agents.AASManagerAgent.AASManagerAgent.get_acl_svc_request"><code class="docutils literal notranslate"><span class="pre">AASManagerAgent.get_acl_svc_request()</span></code></a></li>
 <li><a class="reference internal" href="#agents.AASManagerAgent.AASManagerAgent.get_interaction_id"><code class="docutils literal notranslate"><span class="pre">AASManagerAgent.get_interaction_id()</span></code></a></li>
 <li><a class="reference internal" href="#agents.AASManagerAgent.AASManagerAgent.get_interaction_request"><code class="docutils literal notranslate"><span class="pre">AASManagerAgent.get_interaction_request()</span></code></a></li>
 <li><a class="reference internal" href="#agents.AASManagerAgent.AASManagerAgent.increase_interaction_id_num"><code class="docutils literal notranslate"><span class="pre">AASManagerAgent.increase_interaction_id_num()</span></code></a></li>
+<li><a class="reference internal" href="#agents.AASManagerAgent.AASManagerAgent.initialize_aas_manager_attributes"><code class="docutils literal notranslate"><span class="pre">AASManagerAgent.initialize_aas_manager_attributes()</span></code></a></li>
+<li><a class="reference internal" href="#agents.AASManagerAgent.AASManagerAgent.interaction_id_num"><code class="docutils literal notranslate"><span class="pre">AASManagerAgent.interaction_id_num</span></code></a></li>
+<li><a class="reference internal" href="#agents.AASManagerAgent.AASManagerAgent.interaction_requests"><code class="docutils literal notranslate"><span class="pre">AASManagerAgent.interaction_requests</span></code></a></li>
+<li><a class="reference internal" href="#agents.AASManagerAgent.AASManagerAgent.interaction_responses"><code class="docutils literal notranslate"><span class="pre">AASManagerAgent.interaction_responses</span></code></a></li>
+<li><a class="reference internal" href="#agents.AASManagerAgent.AASManagerAgent.lock"><code class="docutils literal notranslate"><span class="pre">AASManagerAgent.lock</span></code></a></li>
+<li><a class="reference internal" href="#agents.AASManagerAgent.AASManagerAgent.negotiations_data"><code class="docutils literal notranslate"><span class="pre">AASManagerAgent.negotiations_data</span></code></a></li>
 <li><a class="reference internal" href="#agents.AASManagerAgent.AASManagerAgent.remove_acl_svc_request"><code class="docutils literal notranslate"><span class="pre">AASManagerAgent.remove_acl_svc_request()</span></code></a></li>
 <li><a class="reference internal" href="#agents.AASManagerAgent.AASManagerAgent.remove_interaction_request"><code class="docutils literal notranslate"><span class="pre">AASManagerAgent.remove_interaction_request()</span></code></a></li>
 <li><a class="reference internal" href="#agents.AASManagerAgent.AASManagerAgent.save_acl_svc_response"><code class="docutils literal notranslate"><span class="pre">AASManagerAgent.save_acl_svc_response()</span></code></a></li>
+<li><a class="reference internal" href="#agents.AASManagerAgent.AASManagerAgent.save_interaction_request"><code class="docutils literal notranslate"><span class="pre">AASManagerAgent.save_interaction_request()</span></code></a></li>
 <li><a class="reference internal" href="#agents.AASManagerAgent.AASManagerAgent.save_interaction_response"><code class="docutils literal notranslate"><span class="pre">AASManagerAgent.save_interaction_response()</span></code></a></li>
+<li><a class="reference internal" href="#agents.AASManagerAgent.AASManagerAgent.save_negotiation_data"><code class="docutils literal notranslate"><span class="pre">AASManagerAgent.save_negotiation_data()</span></code></a></li>
 <li><a class="reference internal" href="#agents.AASManagerAgent.AASManagerAgent.save_new_acl_svc_request"><code class="docutils literal notranslate"><span class="pre">AASManagerAgent.save_new_acl_svc_request()</span></code></a></li>
 <li><a class="reference internal" href="#agents.AASManagerAgent.AASManagerAgent.save_new_interaction_request"><code class="docutils literal notranslate"><span class="pre">AASManagerAgent.save_new_interaction_request()</span></code></a></li>
 <li><a class="reference internal" href="#agents.AASManagerAgent.AASManagerAgent.setup"><code class="docutils literal notranslate"><span class="pre">AASManagerAgent.setup()</span></code></a></li>

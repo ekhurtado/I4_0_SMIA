@@ -244,19 +244,21 @@
 <li class="toctree-l3"><a class="reference internal" href="../behaviours.CheckCoreInitializationBehaviour.html">behaviours.CheckCoreInitializationBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../behaviours.CheckPhysicalAssetBehaviour.html">behaviours.CheckPhysicalAssetBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../behaviours.EndBehaviour.html">behaviours.EndBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../behaviours.HandleNegotiationBehaviour.html">behaviours.HandleNegotiationBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../behaviours.HandleSvcRequestBehaviour.html">behaviours.HandleSvcRequestBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../behaviours.HandleSvcResponseBehaviour.html">behaviours.HandleSvcResponseBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../behaviours.IdleBehaviour.html">behaviours.IdleBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../behaviours.InitAASarchiveBehaviour.html">behaviours.InitAASarchiveBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../behaviours.InitSubmodelsBehaviour.html">behaviours.InitSubmodelsBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../behaviours.InteractionHandlingBehaviour.html">behaviours.InteractionHandlingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../behaviours.NegotiatingBehaviour.html">behaviours.NegotiatingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../behaviours.SvcACLHandlingBehaviour.html">behaviours.SvcACLHandlingBehaviour module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../behaviours.SvcRequestHandlingBehaviour.html">behaviours.SvcRequestHandlingBehaviour module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../behaviours.SvcResponseHandlingBehaviour.html">behaviours.SvcResponseHandlingBehaviour module</a></li>
 </ul>
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../logic.html">logic package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of logic package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../logic.InterAASInteractions_utils.html">logic.InterAASInteractions_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../logic.IntraAASInteractions_utils.html">logic.IntraAASInteractions_utils module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../logic.Negotiation_utils.html">logic.Negotiation_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../logic.Services_utils.html">logic.Services_utils module</a></li>
 </ul>
 </li>
@@ -364,13 +366,13 @@
     <span class="n">aas_manager_agent</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="k">match</span> <span class="n">aas_type</span><span class="p">:</span>
         <span class="k">case</span> <span class="s2">&quot;physical&quot;</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The asset is physical&quot;</span><span class="p">)</span>
+            <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;The asset is physical&quot;</span><span class="p">)</span>
             <span class="n">aas_manager_agent</span> <span class="o">=</span> <span class="n">AASManagerResourceAgent</span><span class="p">(</span><span class="n">agent_jid</span><span class="p">,</span> <span class="n">passwd</span><span class="p">)</span>
         <span class="k">case</span> <span class="s2">&quot;logical&quot;</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The asset is logical&quot;</span><span class="p">)</span>
+            <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;The asset is logical&quot;</span><span class="p">)</span>
             <span class="n">aas_manager_agent</span> <span class="o">=</span> <span class="n">AASManagerAppAgent</span><span class="p">(</span><span class="n">agent_jid</span><span class="p">,</span> <span class="n">passwd</span><span class="p">)</span>
         <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;A generic AAS Manager&quot;</span><span class="p">)</span>
+            <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;The asset is not defined, so it is a generic AAS Manager&quot;</span><span class="p">)</span>
             <span class="c1"># Create the agent object</span>
             <span class="n">aas_manager_agent</span> <span class="o">=</span> <span class="n">AASManagerAgent</span><span class="p">(</span><span class="n">agent_jid</span><span class="p">,</span> <span class="n">passwd</span><span class="p">)</span>
 
@@ -383,15 +385,6 @@
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-
-    <span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;id1&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;thread&#39;</span><span class="p">:</span> <span class="s1">&#39;aa1&#39;</span><span class="p">,</span> <span class="s1">&#39;serviceID&#39;</span><span class="p">:</span> <span class="s1">&#39;svc1&#39;</span><span class="p">},</span>
-         <span class="s1">&#39;id2&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;thread&#39;</span><span class="p">:</span> <span class="s1">&#39;aa2&#39;</span><span class="p">,</span> <span class="s1">&#39;serviceID&#39;</span><span class="p">:</span> <span class="s1">&#39;svc2&#39;</span><span class="p">},</span>
-         <span class="s1">&#39;id3&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;thread&#39;</span><span class="p">:</span> <span class="s1">&#39;aa3&#39;</span><span class="p">,</span> <span class="s1">&#39;serviceID&#39;</span><span class="p">:</span> <span class="s1">&#39;svc3&#39;</span><span class="p">}</span>
-         <span class="p">}</span>
-
-    <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">b</span> <span class="ow">in</span> <span class="n">a</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-        <span class="k">if</span> <span class="n">b</span><span class="p">[</span><span class="s1">&#39;thread&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;aa1&#39;</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ESTE SI: &quot;</span> <span class="o">+</span> <span class="n">i</span><span class="p">)</span>
 
     <span class="c1"># Configure logging</span>
     <span class="n">GeneralUtils</span><span class="o">.</span><span class="n">configure_logging</span><span class="p">()</span>

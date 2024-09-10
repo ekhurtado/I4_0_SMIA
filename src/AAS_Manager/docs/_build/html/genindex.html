@@ -243,19 +243,21 @@
 <li class="toctree-l3"><a class="reference internal" href="behaviours.CheckCoreInitializationBehaviour.html">behaviours.CheckCoreInitializationBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.CheckPhysicalAssetBehaviour.html">behaviours.CheckPhysicalAssetBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.EndBehaviour.html">behaviours.EndBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.HandleNegotiationBehaviour.html">behaviours.HandleNegotiationBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.HandleSvcRequestBehaviour.html">behaviours.HandleSvcRequestBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.HandleSvcResponseBehaviour.html">behaviours.HandleSvcResponseBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.IdleBehaviour.html">behaviours.IdleBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.InitAASarchiveBehaviour.html">behaviours.InitAASarchiveBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.InitSubmodelsBehaviour.html">behaviours.InitSubmodelsBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.InteractionHandlingBehaviour.html">behaviours.InteractionHandlingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.NegotiatingBehaviour.html">behaviours.NegotiatingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.SvcACLHandlingBehaviour.html">behaviours.SvcACLHandlingBehaviour module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="behaviours.SvcRequestHandlingBehaviour.html">behaviours.SvcRequestHandlingBehaviour module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="behaviours.SvcResponseHandlingBehaviour.html">behaviours.SvcResponseHandlingBehaviour module</a></li>
 </ul>
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="logic.html">logic package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of logic package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="logic.InterAASInteractions_utils.html">logic.InterAASInteractions_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logic.IntraAASInteractions_utils.html">logic.IntraAASInteractions_utils module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logic.Negotiation_utils.html">logic.Negotiation_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logic.Services_utils.html">logic.Services_utils module</a></li>
 </ul>
 </li>
@@ -351,13 +353,19 @@
 </li>
         <li><a href="agents.AASManagerAppAgent.html#agents.AASManagerAppAgent.AASManagerAppAgent">AASManagerAppAgent (class in agents.AASManagerAppAgent)</a>
 </li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="utilities.AASmanagerInfo.html#utilities.AASmanagerInfo.AASmanagerInfo">AASmanagerInfo (class in utilities.AASmanagerInfo)</a>
 </li>
         <li><a href="agents.AASManagerResourceAgent.html#agents.AASManagerResourceAgent.AASManagerResourceAgent">AASManagerResourceAgent (class in agents.AASManagerResourceAgent)</a>
 </li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.acl_svc_requests">acl_svc_requests (agents.AASManagerAgent.AASManagerAgent attribute)</a>
+</li>
+        <li><a href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.acl_svc_responses">acl_svc_responses (agents.AASManagerAgent.AASManagerAgent attribute)</a>
+</li>
         <li><a href="logic.IntraAASInteractions_utils.html#logic.IntraAASInteractions_utils.add_new_svc_request">add_new_svc_request() (in module logic.IntraAASInteractions_utils)</a>
+</li>
+        <li><a href="logic.Negotiation_utils.html#logic.Negotiation_utils.add_value_and_unlock_neg_handling_behaviour">add_value_and_unlock_neg_handling_behaviour() (in module logic.Negotiation_utils)</a>
 </li>
         <li>
     agents
@@ -435,6 +443,29 @@
 </li>
         </ul></li>
         <li>
+    behaviours.HandleNegotiationBehaviour
+
+        <ul>
+          <li><a href="behaviours.HandleNegotiationBehaviour.html#module-behaviours.HandleNegotiationBehaviour">module</a>
+</li>
+        </ul></li>
+        <li>
+    behaviours.HandleSvcRequestBehaviour
+
+        <ul>
+          <li><a href="behaviours.HandleSvcRequestBehaviour.html#module-behaviours.HandleSvcRequestBehaviour">module</a>
+</li>
+        </ul></li>
+        <li>
+    behaviours.HandleSvcResponseBehaviour
+
+        <ul>
+          <li><a href="behaviours.HandleSvcResponseBehaviour.html#module-behaviours.HandleSvcResponseBehaviour">module</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li>
     behaviours.IdleBehaviour
 
         <ul>
@@ -448,8 +479,6 @@
           <li><a href="behaviours.InitAASarchiveBehaviour.html#module-behaviours.InitAASarchiveBehaviour">module</a>
 </li>
         </ul></li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
         <li>
     behaviours.InitSubmodelsBehaviour
 
@@ -476,20 +505,6 @@
 
         <ul>
           <li><a href="behaviours.SvcACLHandlingBehaviour.html#module-behaviours.SvcACLHandlingBehaviour">module</a>
-</li>
-        </ul></li>
-        <li>
-    behaviours.SvcRequestHandlingBehaviour
-
-        <ul>
-          <li><a href="behaviours.SvcRequestHandlingBehaviour.html#module-behaviours.SvcRequestHandlingBehaviour">module</a>
-</li>
-        </ul></li>
-        <li>
-    behaviours.SvcResponseHandlingBehaviour
-
-        <ul>
-          <li><a href="behaviours.SvcResponseHandlingBehaviour.html#module-behaviours.SvcResponseHandlingBehaviour">module</a>
 </li>
         </ul></li>
         <li><a href="states.StateBooting.html#states.StateBooting.StateBooting.booting_state_logic">booting_state_logic() (states.StateBooting.StateBooting method)</a>
@@ -532,12 +547,12 @@
 </li>
         <li><a href="utilities.AASarchiveInfo.html#utilities.AASarchiveInfo.AASarchiveInfo.CORE_INTERACTIONS_FOLDER_PATH">CORE_INTERACTIONS_FOLDER_PATH (utilities.AASarchiveInfo.AASarchiveInfo attribute)</a>
 </li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="utilities.AASarchiveInfo.html#utilities.AASarchiveInfo.AASarchiveInfo.CORE_STATUS_FILE_PATH">CORE_STATUS_FILE_PATH (utilities.AASarchiveInfo.AASarchiveInfo attribute)</a>
 </li>
         <li><a href="utilities.KafkaInfo.html#utilities.KafkaInfo.KafkaInfo.CORE_TOPIC_PARTITION">CORE_TOPIC_PARTITION (utilities.KafkaInfo.KafkaInfo attribute)</a>
 </li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="utilities.GeneralUtils.html#utilities.GeneralUtils.GeneralUtils.create_acl_msg">create_acl_msg() (utilities.GeneralUtils.GeneralUtils static method)</a>
 </li>
         <li><a href="utilities.GeneralUtils.html#utilities.GeneralUtils.GeneralUtils.create_acl_template">create_acl_template() (utilities.GeneralUtils.GeneralUtils static method)</a>
@@ -550,7 +565,15 @@
 </li>
         <li><a href="logic.IntraAASInteractions_utils.html#logic.IntraAASInteractions_utils.create_interaction_kafka_consumer">create_interaction_kafka_consumer() (in module logic.IntraAASInteractions_utils)</a>
 </li>
+        <li><a href="logic.Negotiation_utils.html#logic.Negotiation_utils.create_intra_aas_neg_req_data">create_intra_aas_neg_req_data() (in module logic.Negotiation_utils)</a>
+</li>
         <li><a href="utilities.AAS_Archive_utils.html#utilities.AAS_Archive_utils.create_log_files">create_log_files() (in module utilities.AAS_Archive_utils)</a>
+</li>
+        <li><a href="logic.Negotiation_utils.html#logic.Negotiation_utils.create_neg_json_to_store">create_neg_json_to_store() (in module logic.Negotiation_utils)</a>
+</li>
+        <li><a href="logic.Negotiation_utils.html#logic.Negotiation_utils.create_neg_propose_msg">create_neg_propose_msg() (in module logic.Negotiation_utils)</a>
+</li>
+        <li><a href="logic.Negotiation_utils.html#logic.Negotiation_utils.create_neg_response_msg">create_neg_response_msg() (in module logic.Negotiation_utils)</a>
 </li>
         <li><a href="utilities.AAS_Archive_utils.html#utilities.AAS_Archive_utils.create_status_file">create_status_file() (in module utilities.AAS_Archive_utils)</a>
 </li>
@@ -558,7 +581,7 @@
 </li>
         <li><a href="utilities.Submodels_utils.html#utilities.Submodels_utils.create_submodel_folder">create_submodel_folder() (in module utilities.Submodels_utils)</a>
 </li>
-        <li><a href="logic.Services_utils.html#logic.Services_utils.create_svc_req_data_from_acl_msg">create_svc_req_data_from_acl_msg() (in module logic.Services_utils)</a>
+        <li><a href="logic.InterAASInteractions_utils.html#logic.InterAASInteractions_utils.create_svc_req_data_from_acl_msg">create_svc_req_data_from_acl_msg() (in module logic.InterAASInteractions_utils)</a>
 </li>
         <li><a href="logic.IntraAASInteractions_utils.html#logic.IntraAASInteractions_utils.create_svc_request_interaction_json">create_svc_request_interaction_json() (in module logic.IntraAASInteractions_utils)</a>
 </li>
@@ -573,6 +596,10 @@
   <table style="width: 100%" class="indextable genindextable"><tr>
     <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="behaviours.EndBehaviour.html#behaviours.EndBehaviour.EndBehaviour">EndBehaviour (class in behaviours.EndBehaviour)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="behaviours.HandleNegotiationBehaviour.html#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.exit_negotiation">exit_negotiation() (behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour method)</a>
 </li>
     </ul></td>
   </tr></table>
@@ -612,6 +639,8 @@
 </li>
         <li><a href="utilities.ConfigMap_utils.html#utilities.ConfigMap_utils.get_asset_type">get_asset_type() (in module utilities.ConfigMap_utils)</a>
 </li>
+        <li><a href="utilities.GeneralUtils.html#utilities.GeneralUtils.GeneralUtils.get_current_timestamp">get_current_timestamp() (utilities.GeneralUtils.GeneralUtils static method)</a>
+</li>
         <li><a href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.get_interaction_id">get_interaction_id() (agents.AASManagerAgent.AASManagerAgent method)</a>
 </li>
         <li><a href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.get_interaction_request">get_interaction_request() (agents.AASManagerAgent.AASManagerAgent method)</a>
@@ -619,6 +648,8 @@
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="utilities.AAS_Archive_utils.html#utilities.AAS_Archive_utils.get_log_file_by_service_type">get_log_file_by_service_type() (in module utilities.AAS_Archive_utils)</a>
+</li>
+        <li><a href="behaviours.HandleNegotiationBehaviour.html#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.get_neg_value_with_criteria">get_neg_value_with_criteria() (behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour method)</a>
 </li>
         <li><a href="utilities.AAS_Archive_utils.html#utilities.AAS_Archive_utils.get_status">get_status() (in module utilities.AAS_Archive_utils)</a>
 </li>
@@ -660,32 +691,38 @@
   <h2>H</h2>
   <table style="width: 100%" class="indextable genindextable"><tr>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="behaviours.SvcRequestHandlingBehaviour.html#behaviours.SvcRequestHandlingBehaviour.SvcRequestHandlingBehaviour.handle_aas_infrastructure_svc">handle_aas_infrastructure_svc() (behaviours.SvcRequestHandlingBehaviour.SvcRequestHandlingBehaviour method)</a>
+        <li><a href="behaviours.HandleSvcRequestBehaviour.html#behaviours.HandleSvcRequestBehaviour.HandleSvcRequestBehaviour.handle_aas_infrastructure_svc">handle_aas_infrastructure_svc() (behaviours.HandleSvcRequestBehaviour.HandleSvcRequestBehaviour method)</a>
 
         <ul>
-          <li><a href="behaviours.SvcResponseHandlingBehaviour.html#behaviours.SvcResponseHandlingBehaviour.SvcResponseHandlingBehaviour.handle_aas_infrastructure_svc">(behaviours.SvcResponseHandlingBehaviour.SvcResponseHandlingBehaviour method)</a>
+          <li><a href="behaviours.HandleSvcResponseBehaviour.html#behaviours.HandleSvcResponseBehaviour.HandleSvcResponseBehaviour.handle_aas_infrastructure_svc">(behaviours.HandleSvcResponseBehaviour.HandleSvcResponseBehaviour method)</a>
 </li>
         </ul></li>
-        <li><a href="behaviours.SvcRequestHandlingBehaviour.html#behaviours.SvcRequestHandlingBehaviour.SvcRequestHandlingBehaviour.handle_aas_services">handle_aas_services() (behaviours.SvcRequestHandlingBehaviour.SvcRequestHandlingBehaviour method)</a>
+        <li><a href="behaviours.HandleSvcRequestBehaviour.html#behaviours.HandleSvcRequestBehaviour.HandleSvcRequestBehaviour.handle_aas_services">handle_aas_services() (behaviours.HandleSvcRequestBehaviour.HandleSvcRequestBehaviour method)</a>
 
         <ul>
-          <li><a href="behaviours.SvcResponseHandlingBehaviour.html#behaviours.SvcResponseHandlingBehaviour.SvcResponseHandlingBehaviour.handle_aas_services">(behaviours.SvcResponseHandlingBehaviour.SvcResponseHandlingBehaviour method)</a>
+          <li><a href="behaviours.HandleSvcResponseBehaviour.html#behaviours.HandleSvcResponseBehaviour.HandleSvcResponseBehaviour.handle_aas_services">(behaviours.HandleSvcResponseBehaviour.HandleSvcResponseBehaviour method)</a>
+</li>
+        </ul></li>
+        <li><a href="behaviours.HandleSvcRequestBehaviour.html#behaviours.HandleSvcRequestBehaviour.HandleSvcRequestBehaviour.handle_asset_related_svc">handle_asset_related_svc() (behaviours.HandleSvcRequestBehaviour.HandleSvcRequestBehaviour method)</a>
+
+        <ul>
+          <li><a href="behaviours.HandleSvcResponseBehaviour.html#behaviours.HandleSvcResponseBehaviour.HandleSvcResponseBehaviour.handle_asset_related_svc">(behaviours.HandleSvcResponseBehaviour.HandleSvcResponseBehaviour method)</a>
 </li>
         </ul></li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="behaviours.SvcRequestHandlingBehaviour.html#behaviours.SvcRequestHandlingBehaviour.SvcRequestHandlingBehaviour.handle_asset_related_svc">handle_asset_related_svc() (behaviours.SvcRequestHandlingBehaviour.SvcRequestHandlingBehaviour method)</a>
+        <li><a href="behaviours.HandleSvcRequestBehaviour.html#behaviours.HandleSvcRequestBehaviour.HandleSvcRequestBehaviour.handle_submodel_services">handle_submodel_services() (behaviours.HandleSvcRequestBehaviour.HandleSvcRequestBehaviour method)</a>
 
         <ul>
-          <li><a href="behaviours.SvcResponseHandlingBehaviour.html#behaviours.SvcResponseHandlingBehaviour.SvcResponseHandlingBehaviour.handle_asset_related_svc">(behaviours.SvcResponseHandlingBehaviour.SvcResponseHandlingBehaviour method)</a>
+          <li><a href="behaviours.HandleSvcResponseBehaviour.html#behaviours.HandleSvcResponseBehaviour.HandleSvcResponseBehaviour.handle_submodel_services">(behaviours.HandleSvcResponseBehaviour.HandleSvcResponseBehaviour method)</a>
 </li>
         </ul></li>
-        <li><a href="behaviours.SvcRequestHandlingBehaviour.html#behaviours.SvcRequestHandlingBehaviour.SvcRequestHandlingBehaviour.handle_submodel_services">handle_submodel_services() (behaviours.SvcRequestHandlingBehaviour.SvcRequestHandlingBehaviour method)</a>
-
-        <ul>
-          <li><a href="behaviours.SvcResponseHandlingBehaviour.html#behaviours.SvcResponseHandlingBehaviour.SvcResponseHandlingBehaviour.handle_submodel_services">(behaviours.SvcResponseHandlingBehaviour.SvcResponseHandlingBehaviour method)</a>
+        <li><a href="behaviours.HandleNegotiationBehaviour.html#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour">HandleNegotiationBehaviour (class in behaviours.HandleNegotiationBehaviour)</a>
 </li>
-        </ul></li>
+        <li><a href="behaviours.HandleSvcRequestBehaviour.html#behaviours.HandleSvcRequestBehaviour.HandleSvcRequestBehaviour">HandleSvcRequestBehaviour (class in behaviours.HandleSvcRequestBehaviour)</a>
+</li>
+        <li><a href="behaviours.HandleSvcResponseBehaviour.html#behaviours.HandleSvcResponseBehaviour.HandleSvcResponseBehaviour">HandleSvcResponseBehaviour (class in behaviours.HandleSvcResponseBehaviour)</a>
+</li>
     </ul></td>
   </tr></table>
 </section>
@@ -704,13 +741,21 @@
 </li>
         <li><a href="glossary.html#term-Industrial-Agent"><strong>Industrial Agent</strong></a>
 </li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="behaviours.InitAASarchiveBehaviour.html#behaviours.InitAASarchiveBehaviour.InitAASarchiveBehaviour">InitAASarchiveBehaviour (class in behaviours.InitAASarchiveBehaviour)</a>
 </li>
+        <li><a href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.initialize_aas_manager_attributes">initialize_aas_manager_attributes() (agents.AASManagerAgent.AASManagerAgent method)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="behaviours.InitSubmodelsBehaviour.html#behaviours.InitSubmodelsBehaviour.InitSubmodelsBehaviour">InitSubmodelsBehaviour (class in behaviours.InitSubmodelsBehaviour)</a>
 </li>
         <li><a href="glossary.html#term-Inter-AAS-Interaction"><strong>Inter AAS Interaction</strong></a>
+</li>
+        <li><a href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.interaction_id_num">interaction_id_num (agents.AASManagerAgent.AASManagerAgent attribute)</a>
+</li>
+        <li><a href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.interaction_requests">interaction_requests (agents.AASManagerAgent.AASManagerAgent attribute)</a>
+</li>
+        <li><a href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.interaction_responses">interaction_responses (agents.AASManagerAgent.AASManagerAgent attribute)</a>
 </li>
         <li><a href="behaviours.InteractionHandlingBehaviour.html#behaviours.InteractionHandlingBehaviour.InteractionHandlingBehaviour">InteractionHandlingBehaviour (class in behaviours.InteractionHandlingBehaviour)</a>
 </li>
@@ -742,6 +787,8 @@
   <h2>L</h2>
   <table style="width: 100%" class="indextable genindextable"><tr>
     <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.lock">lock (agents.AASManagerAgent.AASManagerAgent attribute)</a>
+</li>
         <li><a href="utilities.AASarchiveInfo.html#utilities.AASarchiveInfo.AASarchiveInfo.LOG_FOLDER_PATH">LOG_FOLDER_PATH (utilities.AASarchiveInfo.AASarchiveInfo attribute)</a>
 </li>
         <li>
@@ -765,6 +812,13 @@
 
         <ul>
           <li><a href="logic.IntraAASInteractions_utils.html#module-logic.IntraAASInteractions_utils">module</a>
+</li>
+        </ul></li>
+        <li>
+    logic.Negotiation_utils
+
+        <ul>
+          <li><a href="logic.Negotiation_utils.html#module-logic.Negotiation_utils">module</a>
 </li>
         </ul></li>
         <li>
@@ -816,6 +870,12 @@
 </li>
           <li><a href="behaviours.EndBehaviour.html#module-behaviours.EndBehaviour">behaviours.EndBehaviour</a>
 </li>
+          <li><a href="behaviours.HandleNegotiationBehaviour.html#module-behaviours.HandleNegotiationBehaviour">behaviours.HandleNegotiationBehaviour</a>
+</li>
+          <li><a href="behaviours.HandleSvcRequestBehaviour.html#module-behaviours.HandleSvcRequestBehaviour">behaviours.HandleSvcRequestBehaviour</a>
+</li>
+          <li><a href="behaviours.HandleSvcResponseBehaviour.html#module-behaviours.HandleSvcResponseBehaviour">behaviours.HandleSvcResponseBehaviour</a>
+</li>
           <li><a href="behaviours.IdleBehaviour.html#module-behaviours.IdleBehaviour">behaviours.IdleBehaviour</a>
 </li>
           <li><a href="behaviours.InitAASarchiveBehaviour.html#module-behaviours.InitAASarchiveBehaviour">behaviours.InitAASarchiveBehaviour</a>
@@ -828,15 +888,13 @@
 </li>
           <li><a href="behaviours.SvcACLHandlingBehaviour.html#module-behaviours.SvcACLHandlingBehaviour">behaviours.SvcACLHandlingBehaviour</a>
 </li>
-          <li><a href="behaviours.SvcRequestHandlingBehaviour.html#module-behaviours.SvcRequestHandlingBehaviour">behaviours.SvcRequestHandlingBehaviour</a>
-</li>
-          <li><a href="behaviours.SvcResponseHandlingBehaviour.html#module-behaviours.SvcResponseHandlingBehaviour">behaviours.SvcResponseHandlingBehaviour</a>
-</li>
           <li><a href="logic.html#module-logic">logic</a>
 </li>
           <li><a href="logic.InterAASInteractions_utils.html#module-logic.InterAASInteractions_utils">logic.InterAASInteractions_utils</a>
 </li>
           <li><a href="logic.IntraAASInteractions_utils.html#module-logic.IntraAASInteractions_utils">logic.IntraAASInteractions_utils</a>
+</li>
+          <li><a href="logic.Negotiation_utils.html#module-logic.Negotiation_utils">logic.Negotiation_utils</a>
 </li>
           <li><a href="logic.Services_utils.html#module-logic.Services_utils">logic.Services_utils</a>
 </li>
@@ -873,6 +931,8 @@
     <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="glossary.html#term-Multi-Agent-System"><strong>Multi-Agent System</strong></a>
 </li>
+        <li><a href="behaviours.HandleNegotiationBehaviour.html#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.myagent">myagent (behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour attribute)</a>
+</li>
     </ul></td>
   </tr></table>
 </section>
@@ -881,19 +941,29 @@
   <h2>N</h2>
   <table style="width: 100%" class="indextable genindextable"><tr>
     <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="behaviours.HandleNegotiationBehaviour.html#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.neg_criteria">neg_criteria (behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour attribute)</a>
+</li>
+        <li><a href="behaviours.HandleNegotiationBehaviour.html#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.neg_requester_jid">neg_requester_jid (behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour attribute)</a>
+</li>
         <li><a href="utilities.AASmanagerInfo.html#utilities.AASmanagerInfo.AASmanagerInfo.NEG_STANDARD_ACL_TEMPLATE">NEG_STANDARD_ACL_TEMPLATE (utilities.AASmanagerInfo.AASmanagerInfo attribute)</a>
 </li>
-        <li><a href="utilities.AASmanagerInfo.html#utilities.AASmanagerInfo.AASmanagerInfo.neg_standard_acl_template_cfp">neg_standard_acl_template_cfp (utilities.AASmanagerInfo.AASmanagerInfo attribute)</a>
+        <li><a href="utilities.AASmanagerInfo.html#utilities.AASmanagerInfo.AASmanagerInfo.NEG_STANDARD_ACL_TEMPLATE_CFP">NEG_STANDARD_ACL_TEMPLATE_CFP (utilities.AASmanagerInfo.AASmanagerInfo attribute)</a>
 </li>
-        <li><a href="utilities.AASmanagerInfo.html#utilities.AASmanagerInfo.AASmanagerInfo.neg_standard_acl_template_failure">neg_standard_acl_template_failure (utilities.AASmanagerInfo.AASmanagerInfo attribute)</a>
+        <li><a href="utilities.AASmanagerInfo.html#utilities.AASmanagerInfo.AASmanagerInfo.NEG_STANDARD_ACL_TEMPLATE_FAILURE">NEG_STANDARD_ACL_TEMPLATE_FAILURE (utilities.AASmanagerInfo.AASmanagerInfo attribute)</a>
 </li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="utilities.AASmanagerInfo.html#utilities.AASmanagerInfo.AASmanagerInfo.neg_standard_acl_template_inform">neg_standard_acl_template_inform (utilities.AASmanagerInfo.AASmanagerInfo attribute)</a>
+        <li><a href="utilities.AASmanagerInfo.html#utilities.AASmanagerInfo.AASmanagerInfo.NEG_STANDARD_ACL_TEMPLATE_INFORM">NEG_STANDARD_ACL_TEMPLATE_INFORM (utilities.AASmanagerInfo.AASmanagerInfo attribute)</a>
 </li>
-        <li><a href="utilities.AASmanagerInfo.html#utilities.AASmanagerInfo.AASmanagerInfo.neg_standard_acl_template_propose">neg_standard_acl_template_propose (utilities.AASmanagerInfo.AASmanagerInfo attribute)</a>
+        <li><a href="utilities.AASmanagerInfo.html#utilities.AASmanagerInfo.AASmanagerInfo.NEG_STANDARD_ACL_TEMPLATE_PROPOSE">NEG_STANDARD_ACL_TEMPLATE_PROPOSE (utilities.AASmanagerInfo.AASmanagerInfo attribute)</a>
+</li>
+        <li><a href="behaviours.HandleNegotiationBehaviour.html#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.neg_value">neg_value (behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour attribute)</a>
+</li>
+        <li><a href="behaviours.HandleNegotiationBehaviour.html#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.neg_value_event">neg_value_event (behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour attribute)</a>
 </li>
         <li><a href="behaviours.NegotiatingBehaviour.html#behaviours.NegotiatingBehaviour.NegotiatingBehaviour">NegotiatingBehaviour (class in behaviours.NegotiatingBehaviour)</a>
+</li>
+        <li><a href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.negotiations_data">negotiations_data (agents.AASManagerAgent.AASManagerAgent attribute)</a>
 </li>
     </ul></td>
   </tr></table>
@@ -910,15 +980,17 @@
         <li><a href="behaviours.AASFSMBehaviour.html#behaviours.AASFSMBehaviour.AASFSMBehaviour.on_start">on_start() (behaviours.AASFSMBehaviour.AASFSMBehaviour method)</a>
 
         <ul>
+          <li><a href="behaviours.HandleNegotiationBehaviour.html#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.on_start">(behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour method)</a>
+</li>
+          <li><a href="behaviours.HandleSvcRequestBehaviour.html#behaviours.HandleSvcRequestBehaviour.HandleSvcRequestBehaviour.on_start">(behaviours.HandleSvcRequestBehaviour.HandleSvcRequestBehaviour method)</a>
+</li>
+          <li><a href="behaviours.HandleSvcResponseBehaviour.html#behaviours.HandleSvcResponseBehaviour.HandleSvcResponseBehaviour.on_start">(behaviours.HandleSvcResponseBehaviour.HandleSvcResponseBehaviour method)</a>
+</li>
           <li><a href="behaviours.InteractionHandlingBehaviour.html#behaviours.InteractionHandlingBehaviour.InteractionHandlingBehaviour.on_start">(behaviours.InteractionHandlingBehaviour.InteractionHandlingBehaviour method)</a>
 </li>
           <li><a href="behaviours.NegotiatingBehaviour.html#behaviours.NegotiatingBehaviour.NegotiatingBehaviour.on_start">(behaviours.NegotiatingBehaviour.NegotiatingBehaviour method)</a>
 </li>
           <li><a href="behaviours.SvcACLHandlingBehaviour.html#behaviours.SvcACLHandlingBehaviour.SvcACLHandlingBehaviour.on_start">(behaviours.SvcACLHandlingBehaviour.SvcACLHandlingBehaviour method)</a>
-</li>
-          <li><a href="behaviours.SvcRequestHandlingBehaviour.html#behaviours.SvcRequestHandlingBehaviour.SvcRequestHandlingBehaviour.on_start">(behaviours.SvcRequestHandlingBehaviour.SvcRequestHandlingBehaviour method)</a>
-</li>
-          <li><a href="behaviours.SvcResponseHandlingBehaviour.html#behaviours.SvcResponseHandlingBehaviour.SvcResponseHandlingBehaviour.on_start">(behaviours.SvcResponseHandlingBehaviour.SvcResponseHandlingBehaviour method)</a>
 </li>
         </ul></li>
     </ul></td>
@@ -942,6 +1014,12 @@
 </li>
           <li><a href="behaviours.EndBehaviour.html#behaviours.EndBehaviour.EndBehaviour.run">(behaviours.EndBehaviour.EndBehaviour method)</a>
 </li>
+          <li><a href="behaviours.HandleNegotiationBehaviour.html#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.run">(behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour method)</a>
+</li>
+          <li><a href="behaviours.HandleSvcRequestBehaviour.html#behaviours.HandleSvcRequestBehaviour.HandleSvcRequestBehaviour.run">(behaviours.HandleSvcRequestBehaviour.HandleSvcRequestBehaviour method)</a>
+</li>
+          <li><a href="behaviours.HandleSvcResponseBehaviour.html#behaviours.HandleSvcResponseBehaviour.HandleSvcResponseBehaviour.run">(behaviours.HandleSvcResponseBehaviour.HandleSvcResponseBehaviour method)</a>
+</li>
           <li><a href="behaviours.IdleBehaviour.html#behaviours.IdleBehaviour.IdleBehaviour.run">(behaviours.IdleBehaviour.IdleBehaviour method)</a>
 </li>
           <li><a href="behaviours.InitAASarchiveBehaviour.html#behaviours.InitAASarchiveBehaviour.InitAASarchiveBehaviour.run">(behaviours.InitAASarchiveBehaviour.InitAASarchiveBehaviour method)</a>
@@ -953,10 +1031,6 @@
           <li><a href="behaviours.NegotiatingBehaviour.html#behaviours.NegotiatingBehaviour.NegotiatingBehaviour.run">(behaviours.NegotiatingBehaviour.NegotiatingBehaviour method)</a>
 </li>
           <li><a href="behaviours.SvcACLHandlingBehaviour.html#behaviours.SvcACLHandlingBehaviour.SvcACLHandlingBehaviour.run">(behaviours.SvcACLHandlingBehaviour.SvcACLHandlingBehaviour method)</a>
-</li>
-          <li><a href="behaviours.SvcRequestHandlingBehaviour.html#behaviours.SvcRequestHandlingBehaviour.SvcRequestHandlingBehaviour.run">(behaviours.SvcRequestHandlingBehaviour.SvcRequestHandlingBehaviour method)</a>
-</li>
-          <li><a href="behaviours.SvcResponseHandlingBehaviour.html#behaviours.SvcResponseHandlingBehaviour.SvcResponseHandlingBehaviour.run">(behaviours.SvcResponseHandlingBehaviour.SvcResponseHandlingBehaviour method)</a>
 </li>
           <li><a href="states.StateBooting.html#states.StateBooting.StateBooting.run">(states.StateBooting.StateBooting method)</a>
 </li>
@@ -983,7 +1057,11 @@
     <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.save_acl_svc_response">save_acl_svc_response() (agents.AASManagerAgent.AASManagerAgent method)</a>
 </li>
+        <li><a href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.save_interaction_request">save_interaction_request() (agents.AASManagerAgent.AASManagerAgent method)</a>
+</li>
         <li><a href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.save_interaction_response">save_interaction_response() (agents.AASManagerAgent.AASManagerAgent method)</a>
+</li>
+        <li><a href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.save_negotiation_data">save_negotiation_data() (agents.AASManagerAgent.AASManagerAgent method)</a>
 </li>
         <li><a href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.save_new_acl_svc_request">save_new_acl_svc_request() (agents.AASManagerAgent.AASManagerAgent method)</a>
 </li>
@@ -1025,6 +1103,8 @@
           <li><a href="states.StateBooting.html#module-states.StateBooting">module</a>
 </li>
         </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
         <li>
     states.StateBootingResource
 
@@ -1032,8 +1112,6 @@
           <li><a href="states.StateBootingResource.html#module-states.StateBootingResource">module</a>
 </li>
         </ul></li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
         <li>
     states.StateIdle
 
@@ -1077,10 +1155,6 @@
 </li>
         <li><a href="behaviours.SvcACLHandlingBehaviour.html#behaviours.SvcACLHandlingBehaviour.SvcACLHandlingBehaviour">SvcACLHandlingBehaviour (class in behaviours.SvcACLHandlingBehaviour)</a>
 </li>
-        <li><a href="behaviours.SvcRequestHandlingBehaviour.html#behaviours.SvcRequestHandlingBehaviour.SvcRequestHandlingBehaviour">SvcRequestHandlingBehaviour (class in behaviours.SvcRequestHandlingBehaviour)</a>
-</li>
-        <li><a href="behaviours.SvcResponseHandlingBehaviour.html#behaviours.SvcResponseHandlingBehaviour.SvcResponseHandlingBehaviour">SvcResponseHandlingBehaviour (class in behaviours.SvcResponseHandlingBehaviour)</a>
-</li>
     </ul></td>
   </tr></table>
 </section>
@@ -1089,10 +1163,16 @@
   <h2>T</h2>
   <table style="width: 100%" class="indextable genindextable"><tr>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="utilities.AASarchiveInfo.html#utilities.AASarchiveInfo.AASarchiveInfo.TECHNICAL_DATA_SM_FILENAME">TECHNICAL_DATA_SM_FILENAME (utilities.AASarchiveInfo.AASarchiveInfo attribute)</a>
+        <li><a href="behaviours.HandleNegotiationBehaviour.html#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.targets">targets (behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour attribute)</a>
+</li>
+        <li><a href="behaviours.HandleNegotiationBehaviour.html#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.targets_processed">targets_processed (behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour attribute)</a>
 </li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="utilities.AASarchiveInfo.html#utilities.AASarchiveInfo.AASarchiveInfo.TECHNICAL_DATA_SM_FILENAME">TECHNICAL_DATA_SM_FILENAME (utilities.AASarchiveInfo.AASarchiveInfo attribute)</a>
+</li>
+        <li><a href="behaviours.HandleNegotiationBehaviour.html#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.thread">thread (behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour attribute)</a>
+</li>
         <li><a href="glossary.html#term-TODO"><strong>TODO</strong></a>
 </li>
     </ul></td>

@@ -245,19 +245,21 @@
 <li class="toctree-l3"><a class="reference internal" href="behaviours.CheckCoreInitializationBehaviour.html">behaviours.CheckCoreInitializationBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.CheckPhysicalAssetBehaviour.html">behaviours.CheckPhysicalAssetBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.EndBehaviour.html">behaviours.EndBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.HandleNegotiationBehaviour.html">behaviours.HandleNegotiationBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.HandleSvcRequestBehaviour.html">behaviours.HandleSvcRequestBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.HandleSvcResponseBehaviour.html">behaviours.HandleSvcResponseBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.IdleBehaviour.html">behaviours.IdleBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.InitAASarchiveBehaviour.html">behaviours.InitAASarchiveBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.InitSubmodelsBehaviour.html">behaviours.InitSubmodelsBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.InteractionHandlingBehaviour.html">behaviours.InteractionHandlingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.NegotiatingBehaviour.html">behaviours.NegotiatingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.SvcACLHandlingBehaviour.html">behaviours.SvcACLHandlingBehaviour module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="behaviours.SvcRequestHandlingBehaviour.html">behaviours.SvcRequestHandlingBehaviour module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="behaviours.SvcResponseHandlingBehaviour.html">behaviours.SvcResponseHandlingBehaviour module</a></li>
 </ul>
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="logic.html">logic package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of logic package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="logic.InterAASInteractions_utils.html">logic.InterAASInteractions_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logic.IntraAASInteractions_utils.html">logic.IntraAASInteractions_utils module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logic.Negotiation_utils.html">logic.Negotiation_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logic.Services_utils.html">logic.Services_utils module</a></li>
 </ul>
 </li>
@@ -331,14 +333,24 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="agents.AASManagerAgent.html">agents.AASManagerAgent module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent"><code class="docutils literal notranslate"><span class="pre">AASManagerAgent</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.acl_svc_requests"><code class="docutils literal notranslate"><span class="pre">AASManagerAgent.acl_svc_requests</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.acl_svc_responses"><code class="docutils literal notranslate"><span class="pre">AASManagerAgent.acl_svc_responses</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.get_acl_svc_request"><code class="docutils literal notranslate"><span class="pre">AASManagerAgent.get_acl_svc_request()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.get_interaction_id"><code class="docutils literal notranslate"><span class="pre">AASManagerAgent.get_interaction_id()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.get_interaction_request"><code class="docutils literal notranslate"><span class="pre">AASManagerAgent.get_interaction_request()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.increase_interaction_id_num"><code class="docutils literal notranslate"><span class="pre">AASManagerAgent.increase_interaction_id_num()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.initialize_aas_manager_attributes"><code class="docutils literal notranslate"><span class="pre">AASManagerAgent.initialize_aas_manager_attributes()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.interaction_id_num"><code class="docutils literal notranslate"><span class="pre">AASManagerAgent.interaction_id_num</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.interaction_requests"><code class="docutils literal notranslate"><span class="pre">AASManagerAgent.interaction_requests</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.interaction_responses"><code class="docutils literal notranslate"><span class="pre">AASManagerAgent.interaction_responses</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.lock"><code class="docutils literal notranslate"><span class="pre">AASManagerAgent.lock</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.negotiations_data"><code class="docutils literal notranslate"><span class="pre">AASManagerAgent.negotiations_data</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.remove_acl_svc_request"><code class="docutils literal notranslate"><span class="pre">AASManagerAgent.remove_acl_svc_request()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.remove_interaction_request"><code class="docutils literal notranslate"><span class="pre">AASManagerAgent.remove_interaction_request()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.save_acl_svc_response"><code class="docutils literal notranslate"><span class="pre">AASManagerAgent.save_acl_svc_response()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.save_interaction_request"><code class="docutils literal notranslate"><span class="pre">AASManagerAgent.save_interaction_request()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.save_interaction_response"><code class="docutils literal notranslate"><span class="pre">AASManagerAgent.save_interaction_response()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.save_negotiation_data"><code class="docutils literal notranslate"><span class="pre">AASManagerAgent.save_negotiation_data()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.save_new_acl_svc_request"><code class="docutils literal notranslate"><span class="pre">AASManagerAgent.save_new_acl_svc_request()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.save_new_interaction_request"><code class="docutils literal notranslate"><span class="pre">AASManagerAgent.save_new_interaction_request()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.setup"><code class="docutils literal notranslate"><span class="pre">AASManagerAgent.setup()</span></code></a></li>

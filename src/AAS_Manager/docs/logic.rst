@@ -9,6 +9,7 @@ Submodules
 
    logic.InterAASInteractions_utils
    logic.IntraAASInteractions_utils
+   logic.Negotiation_utils
    logic.Services_utils
 
 Module contents

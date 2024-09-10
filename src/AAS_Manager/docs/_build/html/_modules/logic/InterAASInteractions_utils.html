@@ -244,19 +244,21 @@
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.CheckCoreInitializationBehaviour.html">behaviours.CheckCoreInitializationBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.CheckPhysicalAssetBehaviour.html">behaviours.CheckPhysicalAssetBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.EndBehaviour.html">behaviours.EndBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../behaviours.HandleNegotiationBehaviour.html">behaviours.HandleNegotiationBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../behaviours.HandleSvcRequestBehaviour.html">behaviours.HandleSvcRequestBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../behaviours.HandleSvcResponseBehaviour.html">behaviours.HandleSvcResponseBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.IdleBehaviour.html">behaviours.IdleBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.InitAASarchiveBehaviour.html">behaviours.InitAASarchiveBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.InitSubmodelsBehaviour.html">behaviours.InitSubmodelsBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.InteractionHandlingBehaviour.html">behaviours.InteractionHandlingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.NegotiatingBehaviour.html">behaviours.NegotiatingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.SvcACLHandlingBehaviour.html">behaviours.SvcACLHandlingBehaviour module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../behaviours.SvcRequestHandlingBehaviour.html">behaviours.SvcRequestHandlingBehaviour module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../behaviours.SvcResponseHandlingBehaviour.html">behaviours.SvcResponseHandlingBehaviour module</a></li>
 </ul>
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../../logic.html">logic package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of logic package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../logic.InterAASInteractions_utils.html">logic.InterAASInteractions_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../logic.IntraAASInteractions_utils.html">logic.IntraAASInteractions_utils module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../logic.Negotiation_utils.html">logic.Negotiation_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../logic.Services_utils.html">logic.Services_utils module</a></li>
 </ul>
 </li>
@@ -318,11 +320,37 @@
         <article role="main" id="furo-main-content">
           <h1>Source code for logic.InterAASInteractions_utils</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;This class groups the methods related to the Inter AAS interactions between I4.0 SMIA entities.&quot;&quot;&quot;</span>
-<span class="kn">import</span> <span class="nn">calendar</span>
+<span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">logging</span>
-<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="kn">from</span> <span class="nn">utilities.GeneralUtils</span> <span class="kn">import</span> <span class="n">GeneralUtils</span>
 
 <span class="n">_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="create_svc_req_data_from_acl_msg">
+<a class="viewcode-back" href="../../logic.InterAASInteractions_utils.html#logic.InterAASInteractions_utils.create_svc_req_data_from_acl_msg">[docs]</a>
+<span class="k">def</span> <span class="nf">create_svc_req_data_from_acl_msg</span><span class="p">(</span><span class="n">acl_msg</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This method creates the dictionary with all the required data of the service request from an ACL message.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        acl_msg (spade.message.Message): ACL message where to get the information</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        dict: dictionary with all the information about the service request</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">svc_req_data_json</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;performative&#39;</span><span class="p">:</span> <span class="n">acl_msg</span><span class="o">.</span><span class="n">get_metadata</span><span class="p">(</span><span class="s1">&#39;performative&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;ontology&#39;</span><span class="p">:</span> <span class="n">acl_msg</span><span class="o">.</span><span class="n">get_metadata</span><span class="p">(</span><span class="s1">&#39;ontology&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;thread&#39;</span><span class="p">:</span> <span class="n">acl_msg</span><span class="o">.</span><span class="n">thread</span><span class="p">,</span>
+        <span class="s1">&#39;sender&#39;</span><span class="p">:</span> <span class="n">acl_msg</span><span class="o">.</span><span class="n">sender</span><span class="p">,</span>
+        <span class="s1">&#39;receiver&#39;</span><span class="p">:</span> <span class="n">acl_msg</span><span class="o">.</span><span class="n">to</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="c1"># The body of the ACL message contains the rest of the information</span>
+    <span class="n">svc_req_data_json</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">acl_msg</span><span class="o">.</span><span class="n">body</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">svc_req_data_json</span></div>
+
 
 
 <div class="viewcode-block" id="create_inter_aas_response_object">
@@ -339,21 +367,22 @@
 <span class="sd">    Returns:</span>
 <span class="sd">        dict: Inter AAS response object in JSON format</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># TODO comprobar que esta bien</span>
-    <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;performative&#39;</span><span class="p">:</span> <span class="n">inter_aas_request</span><span class="p">[</span><span class="s1">&#39;performative&#39;</span><span class="p">],</span>
-            <span class="s1">&#39;ontology&#39;</span><span class="p">:</span> <span class="n">inter_aas_request</span><span class="p">[</span><span class="s1">&#39;ontology&#39;</span><span class="p">],</span>
-            <span class="s1">&#39;thread&#39;</span><span class="p">:</span> <span class="n">inter_aas_request</span><span class="p">[</span><span class="s1">&#39;thread&#39;</span><span class="p">],</span>
-            <span class="s1">&#39;serviceType&#39;</span><span class="p">:</span> <span class="n">inter_aas_request</span><span class="p">[</span><span class="s1">&#39;serviceType&#39;</span><span class="p">],</span>
-            <span class="s1">&#39;serviceID&#39;</span><span class="p">:</span> <span class="n">inter_aas_request</span><span class="p">[</span><span class="s1">&#39;serviceID&#39;</span><span class="p">],</span>
-            <span class="s1">&#39;serviceData&#39;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="s1">&#39;serviceCategory&#39;</span><span class="p">:</span> <span class="s1">&#39;service-response&#39;</span><span class="p">,</span>
-                <span class="s1">&#39;timestamp&#39;</span><span class="p">:</span> <span class="n">calendar</span><span class="o">.</span><span class="n">timegm</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">gmtime</span><span class="p">()),</span>
-                <span class="s1">&#39;serviceStatus&#39;</span><span class="p">:</span> <span class="n">intra_aas_response</span><span class="p">[</span><span class="s1">&#39;serviceData&#39;</span><span class="p">][</span><span class="s1">&#39;serviceStatus&#39;</span><span class="p">],</span>  <span class="c1"># The status of the Intra AAS</span>
-                                                                                      <span class="c1"># Interaction is obtained</span>
-                <span class="s1">&#39;serviceParams&#39;</span><span class="p">:</span> <span class="n">intra_aas_response</span><span class="p">[</span><span class="s1">&#39;serviceData&#39;</span><span class="p">][</span><span class="s1">&#39;serviceParams&#39;</span><span class="p">]</span>
-            <span class="p">}</span>
-    <span class="p">}</span></div>
 
+    <span class="n">response_json</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;performative&#39;</span><span class="p">:</span> <span class="n">inter_aas_request</span><span class="p">[</span><span class="s1">&#39;performative&#39;</span><span class="p">],</span>
+                     <span class="s1">&#39;ontology&#39;</span><span class="p">:</span> <span class="n">inter_aas_request</span><span class="p">[</span><span class="s1">&#39;ontology&#39;</span><span class="p">],</span>
+                     <span class="s1">&#39;thread&#39;</span><span class="p">:</span> <span class="n">intra_aas_response</span><span class="p">[</span><span class="s1">&#39;thread&#39;</span><span class="p">],</span>
+                     <span class="s1">&#39;serviceType&#39;</span><span class="p">:</span> <span class="n">inter_aas_request</span><span class="p">[</span><span class="s1">&#39;serviceType&#39;</span><span class="p">],</span>
+                     <span class="s1">&#39;serviceID&#39;</span><span class="p">:</span> <span class="n">inter_aas_request</span><span class="p">[</span><span class="s1">&#39;serviceID&#39;</span><span class="p">],</span>
+                     <span class="s1">&#39;serviceData&#39;</span><span class="p">:</span> <span class="p">{</span>
+                         <span class="s1">&#39;serviceCategory&#39;</span><span class="p">:</span> <span class="s1">&#39;service-response&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;timestamp&#39;</span><span class="p">:</span> <span class="n">GeneralUtils</span><span class="o">.</span><span class="n">get_current_timestamp</span><span class="p">(),</span>
+                         <span class="s1">&#39;serviceStatus&#39;</span><span class="p">:</span> <span class="n">intra_aas_response</span><span class="p">[</span><span class="s1">&#39;serviceData&#39;</span><span class="p">][</span><span class="s1">&#39;serviceStatus&#39;</span><span class="p">],</span>  <span class="c1"># The status of the</span>
+                                                                                <span class="c1"># Intra AAS Interaction is obtained</span>
+                     <span class="p">}</span>
+                     <span class="p">}</span>
+    <span class="k">if</span> <span class="s1">&#39;serviceParams&#39;</span> <span class="ow">in</span> <span class="n">intra_aas_response</span><span class="p">[</span><span class="s1">&#39;serviceData&#39;</span><span class="p">]:</span>
+        <span class="n">response_json</span><span class="p">[</span><span class="s1">&#39;serviceData&#39;</span><span class="p">][</span><span class="s1">&#39;serviceParams&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">intra_aas_response</span><span class="p">[</span><span class="s1">&#39;serviceData&#39;</span><span class="p">][</span><span class="s1">&#39;serviceParams&#39;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">response_json</span></div>
 
 </pre></div>
         </article>

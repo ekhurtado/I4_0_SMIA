@@ -244,19 +244,21 @@
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.CheckCoreInitializationBehaviour.html">behaviours.CheckCoreInitializationBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.CheckPhysicalAssetBehaviour.html">behaviours.CheckPhysicalAssetBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.EndBehaviour.html">behaviours.EndBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../behaviours.HandleNegotiationBehaviour.html">behaviours.HandleNegotiationBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../behaviours.HandleSvcRequestBehaviour.html">behaviours.HandleSvcRequestBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../behaviours.HandleSvcResponseBehaviour.html">behaviours.HandleSvcResponseBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.IdleBehaviour.html">behaviours.IdleBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.InitAASarchiveBehaviour.html">behaviours.InitAASarchiveBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.InitSubmodelsBehaviour.html">behaviours.InitSubmodelsBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.InteractionHandlingBehaviour.html">behaviours.InteractionHandlingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.NegotiatingBehaviour.html">behaviours.NegotiatingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.SvcACLHandlingBehaviour.html">behaviours.SvcACLHandlingBehaviour module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../behaviours.SvcRequestHandlingBehaviour.html">behaviours.SvcRequestHandlingBehaviour module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../behaviours.SvcResponseHandlingBehaviour.html">behaviours.SvcResponseHandlingBehaviour module</a></li>
 </ul>
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../../logic.html">logic package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of logic package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../logic.InterAASInteractions_utils.html">logic.InterAASInteractions_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../logic.IntraAASInteractions_utils.html">logic.IntraAASInteractions_utils module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../logic.Negotiation_utils.html">logic.Negotiation_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../logic.Services_utils.html">logic.Services_utils module</a></li>
 </ul>
 </li>
@@ -352,20 +354,6 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This method implements the logic of the behaviour.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="c1"># TODO this code is for the interaction through JSON (it has to be removed)</span>
-        <span class="c1"># # If the file does not exist the behaviour continues to start and check again</span>
-        <span class="c1"># if os.path.isfile(AASarchiveInfo.CORE_STATUS_FILE_PATH) is True:</span>
-        <span class="c1">#     core_status_json = file_to_json(AASarchiveInfo.CORE_STATUS_FILE_PATH)</span>
-        <span class="c1">#     # If the file exists, but the JSON has not been created properly, the AAS Core is not ready yet.</span>
-        <span class="c1">#     if core_status_json is not None:</span>
-        <span class="c1">#         if core_status_json[&#39;status&#39;] != &quot;Initializing&quot;:</span>
-        <span class="c1">#             # If the status is not &quot;Initializing&quot; the AAS Core is ready, so the behaviour is finished</span>
-        <span class="c1">#             _logger.info(&#39;AAS Core has initialized, so the AAS Manager can be switched to the run state.&#39;)</span>
-        <span class="c1">#             self.kill()</span>
-
-        <span class="c1"># TODO check if it is working with Kafka</span>
-
         <span class="c1">#  To check the state of the AAS Core, the AAS Manager will get the</span>
         <span class="c1">#  information subscribing to the AAS topic of Kafka, in this case to the partition related to the AAS Core</span>
         <span class="n">kafka_consumer_core_partition</span> <span class="o">=</span> <span class="n">IntraAASInteractions_utils</span><span class="o">.</span><span class="n">create_interaction_kafka_consumer</span><span class="p">(</span><span class="s1">&#39;i4-0-smia-manager&#39;</span><span class="p">)</span>
@@ -394,7 +382,7 @@
                 <span class="n">msg_json_value</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">value</span>
 
                 <span class="k">if</span> <span class="n">msg_key</span> <span class="o">==</span> <span class="s1">&#39;core-status&#39;</span><span class="p">:</span>
-                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The AAS Core status information has been received.&quot;</span><span class="p">)</span>
+                    <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;The AAS Core status information has been received.&quot;</span><span class="p">)</span>
                     <span class="k">if</span> <span class="n">msg_json_value</span><span class="p">[</span><span class="s1">&#39;status&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;Initializing&quot;</span><span class="p">:</span>
                         <span class="c1"># If the status is not &quot;Initializing&quot; the AAS Core is ready, so the behaviour is finished</span>
                         <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;AAS Core has initialized, so the AAS Manager can be switched to the run state.&#39;</span><span class="p">)</span>

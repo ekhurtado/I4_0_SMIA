@@ -244,19 +244,21 @@
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.CheckCoreInitializationBehaviour.html">behaviours.CheckCoreInitializationBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.CheckPhysicalAssetBehaviour.html">behaviours.CheckPhysicalAssetBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.EndBehaviour.html">behaviours.EndBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../behaviours.HandleNegotiationBehaviour.html">behaviours.HandleNegotiationBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../behaviours.HandleSvcRequestBehaviour.html">behaviours.HandleSvcRequestBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../behaviours.HandleSvcResponseBehaviour.html">behaviours.HandleSvcResponseBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.IdleBehaviour.html">behaviours.IdleBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.InitAASarchiveBehaviour.html">behaviours.InitAASarchiveBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.InitSubmodelsBehaviour.html">behaviours.InitSubmodelsBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.InteractionHandlingBehaviour.html">behaviours.InteractionHandlingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.NegotiatingBehaviour.html">behaviours.NegotiatingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.SvcACLHandlingBehaviour.html">behaviours.SvcACLHandlingBehaviour module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../behaviours.SvcRequestHandlingBehaviour.html">behaviours.SvcRequestHandlingBehaviour module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../behaviours.SvcResponseHandlingBehaviour.html">behaviours.SvcResponseHandlingBehaviour module</a></li>
 </ul>
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../../logic.html">logic package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of logic package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../logic.InterAASInteractions_utils.html">logic.InterAASInteractions_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../logic.IntraAASInteractions_utils.html">logic.IntraAASInteractions_utils module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../logic.Negotiation_utils.html">logic.Negotiation_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../logic.Services_utils.html">logic.Services_utils module</a></li>
 </ul>
 </li>
@@ -317,7 +319,9 @@
         </div>
         <article role="main" id="furo-main-content">
           <h1>Source code for utilities.GeneralUtils</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">logging</span>
+<span></span><span class="kn">import</span> <span class="nn">calendar</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">time</span>
 
 <span class="kn">from</span> <span class="nn">spade.message</span> <span class="kn">import</span> <span class="n">Message</span>
 <span class="kn">from</span> <span class="nn">spade.template</span> <span class="kn">import</span> <span class="n">Template</span>
@@ -405,7 +409,7 @@
 <span class="sd">            ontology(str): The ontology of the template.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            Template: a SPADE template object.</span>
+<span class="sd">            spade.template.Template: a SPADE template object.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">custom_template</span> <span class="o">=</span> <span class="n">Template</span><span class="p">()</span>
         <span class="n">custom_template</span><span class="o">.</span><span class="n">set_metadata</span><span class="p">(</span><span class="s1">&#39;performative&#39;</span><span class="p">,</span> <span class="n">performative</span><span class="p">)</span>
@@ -436,6 +440,19 @@
 
         <span class="n">msg</span><span class="o">.</span><span class="n">body</span> <span class="o">=</span> <span class="n">body</span>  <span class="c1"># TODO Pensar si iria tambien en metadatos o todo en el body</span>
         <span class="k">return</span> <span class="n">msg</span></div>
+
+
+<div class="viewcode-block" id="GeneralUtils.get_current_timestamp">
+<a class="viewcode-back" href="../../utilities.GeneralUtils.html#utilities.GeneralUtils.GeneralUtils.get_current_timestamp">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">get_current_timestamp</span><span class="p">():</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This method returns the current timestamp of the AAS Manager.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            int: current timestamp in milliseconds</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">calendar</span><span class="o">.</span><span class="n">timegm</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">gmtime</span><span class="p">())</span></div>
 </div>
 
 </pre></div>

@@ -245,19 +245,21 @@
 <li class="toctree-l3"><a class="reference internal" href="behaviours.CheckCoreInitializationBehaviour.html">behaviours.CheckCoreInitializationBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.CheckPhysicalAssetBehaviour.html">behaviours.CheckPhysicalAssetBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.EndBehaviour.html">behaviours.EndBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.HandleNegotiationBehaviour.html">behaviours.HandleNegotiationBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.HandleSvcRequestBehaviour.html">behaviours.HandleSvcRequestBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.HandleSvcResponseBehaviour.html">behaviours.HandleSvcResponseBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.IdleBehaviour.html">behaviours.IdleBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.InitAASarchiveBehaviour.html">behaviours.InitAASarchiveBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.InitSubmodelsBehaviour.html">behaviours.InitSubmodelsBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.InteractionHandlingBehaviour.html">behaviours.InteractionHandlingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.NegotiatingBehaviour.html">behaviours.NegotiatingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.SvcACLHandlingBehaviour.html">behaviours.SvcACLHandlingBehaviour module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="behaviours.SvcRequestHandlingBehaviour.html">behaviours.SvcRequestHandlingBehaviour module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="behaviours.SvcResponseHandlingBehaviour.html">behaviours.SvcResponseHandlingBehaviour module</a></li>
 </ul>
 </li>
 <li class="toctree-l2 current has-children"><a class="reference internal" href="logic.html">logic package</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of logic package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
 <li class="toctree-l3 current current-page"><a class="current reference internal" href="#">logic.InterAASInteractions_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logic.IntraAASInteractions_utils.html">logic.IntraAASInteractions_utils module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logic.Negotiation_utils.html">logic.Negotiation_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logic.Services_utils.html">logic.Services_utils module</a></li>
 </ul>
 </li>
@@ -347,6 +349,23 @@ the Intra AAS interaction response needed to perform the initial service request
 </dl>
 </dd></dl>
 
+<dl class="py function">
+<dt class="sig sig-object py" id="logic.InterAASInteractions_utils.create_svc_req_data_from_acl_msg">
+<span class="sig-prename descclassname"><span class="pre">logic.InterAASInteractions_utils.</span></span><span class="sig-name descname"><span class="pre">create_svc_req_data_from_acl_msg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">acl_msg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/logic/InterAASInteractions_utils.html#create_svc_req_data_from_acl_msg"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#logic.InterAASInteractions_utils.create_svc_req_data_from_acl_msg" title="Link to this definition">¶</a></dt>
+<dd><p>This method creates the dictionary with all the required data of the service request from an ACL message.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>acl_msg</strong> (<em>spade.message.Message</em>) – ACL message where to get the information</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>dictionary with all the information about the service request</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 
         </article>
@@ -405,6 +424,7 @@ the Intra AAS interaction response needed to perform the initial service request
             <ul>
 <li><a class="reference internal" href="#">logic.InterAASInteractions_utils module</a><ul>
 <li><a class="reference internal" href="#logic.InterAASInteractions_utils.create_inter_aas_response_object"><code class="docutils literal notranslate"><span class="pre">create_inter_aas_response_object()</span></code></a></li>
+<li><a class="reference internal" href="#logic.InterAASInteractions_utils.create_svc_req_data_from_acl_msg"><code class="docutils literal notranslate"><span class="pre">create_svc_req_data_from_acl_msg()</span></code></a></li>
 </ul>
 </li>
 </ul>

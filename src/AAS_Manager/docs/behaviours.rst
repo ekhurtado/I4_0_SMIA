@@ -11,14 +11,15 @@ Submodules
    behaviours.CheckCoreInitializationBehaviour
    behaviours.CheckPhysicalAssetBehaviour
    behaviours.EndBehaviour
+   behaviours.HandleNegotiationBehaviour
+   behaviours.HandleSvcRequestBehaviour
+   behaviours.HandleSvcResponseBehaviour
    behaviours.IdleBehaviour
    behaviours.InitAASarchiveBehaviour
    behaviours.InitSubmodelsBehaviour
    behaviours.InteractionHandlingBehaviour
    behaviours.NegotiatingBehaviour
    behaviours.SvcACLHandlingBehaviour
-   behaviours.SvcRequestHandlingBehaviour
-   behaviours.SvcResponseHandlingBehaviour
 
 Module contents
 ---------------

@@ -244,19 +244,21 @@
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.CheckCoreInitializationBehaviour.html">behaviours.CheckCoreInitializationBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.CheckPhysicalAssetBehaviour.html">behaviours.CheckPhysicalAssetBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.EndBehaviour.html">behaviours.EndBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../behaviours.HandleNegotiationBehaviour.html">behaviours.HandleNegotiationBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../behaviours.HandleSvcRequestBehaviour.html">behaviours.HandleSvcRequestBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../behaviours.HandleSvcResponseBehaviour.html">behaviours.HandleSvcResponseBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.IdleBehaviour.html">behaviours.IdleBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.InitAASarchiveBehaviour.html">behaviours.InitAASarchiveBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.InitSubmodelsBehaviour.html">behaviours.InitSubmodelsBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.InteractionHandlingBehaviour.html">behaviours.InteractionHandlingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.NegotiatingBehaviour.html">behaviours.NegotiatingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.SvcACLHandlingBehaviour.html">behaviours.SvcACLHandlingBehaviour module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../behaviours.SvcRequestHandlingBehaviour.html">behaviours.SvcRequestHandlingBehaviour module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../behaviours.SvcResponseHandlingBehaviour.html">behaviours.SvcResponseHandlingBehaviour module</a></li>
 </ul>
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../../logic.html">logic package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of logic package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../logic.InterAASInteractions_utils.html">logic.InterAASInteractions_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../logic.IntraAASInteractions_utils.html">logic.IntraAASInteractions_utils module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../logic.Negotiation_utils.html">logic.Negotiation_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../logic.Services_utils.html">logic.Services_utils module</a></li>
 </ul>
 </li>
@@ -339,9 +341,25 @@
 <span class="sd">    Agent will be the generic and from which all other types of AAS Managers will start.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
+    <span class="n">acl_svc_requests</span> <span class="o">=</span> <span class="p">{}</span>   <span class="c1">#: Dictionary to save FIPA-ACL service requests</span>
+    <span class="n">acl_svc_responses</span> <span class="o">=</span> <span class="p">{}</span>   <span class="c1">#: Dictionary to save FIPA-ACL service responses</span>
+    <span class="n">interaction_id_num</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1">#: Identifier for Intra AAS interaction, created by the AAS Manager</span>
+    <span class="n">interaction_requests</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1">#: Dictionary to save Intra AAS interaction requests</span>
+    <span class="n">interaction_responses</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1">#: Dictionary to save Intra AAS interaction responses</span>
+    <span class="n">negotiations_data</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1">#: Dictionary to save negotiations related information</span>
+    <span class="n">lock</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1">#: Asyncio Lock object for secure access to shared AAS Manager objects</span>
+
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">jid</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">password</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">verify_security</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">jid</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">verify_security</span><span class="p">)</span>
 
+        <span class="bp">self</span><span class="o">.</span><span class="n">initialize_aas_manager_attributes</span><span class="p">()</span>
+
+<div class="viewcode-block" id="AASManagerAgent.initialize_aas_manager_attributes">
+<a class="viewcode-back" href="../../agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.initialize_aas_manager_attributes">[docs]</a>
+    <span class="k">def</span> <span class="nf">initialize_aas_manager_attributes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This method initializes all the attributes of the AAS Manager</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># Objects for storing the information related to ACL services are initialized</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">acl_messages_id</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># It is reset</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">acl_svc_requests</span> <span class="o">=</span> <span class="p">{}</span>
@@ -349,13 +367,17 @@
 
         <span class="c1"># Objects for storing the information related to AAS Manager-Core interactions are initialized</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">interaction_id_num</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># The interactionId number is reset</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">interaction_id</span> <span class="o">=</span> <span class="s1">&#39;manager-&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">agent</span><span class="o">.</span><span class="n">interaction_id_num</span><span class="p">)</span>  <span class="c1"># The complete interactionId</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">interaction_id</span> <span class="o">=</span> <span class="s1">&#39;manager-&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">interaction_id_num</span><span class="p">)</span>  <span class="c1"># The complete interactionId</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">interaction_requests</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">interaction_responses</span> <span class="o">=</span> <span class="p">{}</span>
 
+        <span class="c1"># Object for storing the information related to negotiations is initialized</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">negotiations_data</span> <span class="o">=</span> <span class="p">{}</span>
+
         <span class="c1"># The Lock object is used to manage the access to global agent attributes (request and response dictionaries,</span>
         <span class="c1"># interaction id number...)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">lock</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Lock</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lock</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Lock</span><span class="p">()</span></div>
+
 
 <div class="viewcode-block" id="AASManagerAgent.setup">
 <a class="viewcode-back" href="../../agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.setup">[docs]</a>
@@ -478,10 +500,25 @@
 <span class="sd">        this type of interaction.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            request_data (dict): all the information of the ACL Service Request in JSON format.</span>
+<span class="sd">            request_data (dict): all the information of the Intra AAS interaction Request in JSON format.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">async</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">lock</span><span class="p">:</span>  <span class="c1"># safe access to a shared object of the agent</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">interaction_requests</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">get_interaction_id</span><span class="p">()]</span> <span class="o">=</span> <span class="n">request_data</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">interaction_requests</span><span class="p">[</span><span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_interaction_id</span><span class="p">()]</span> <span class="o">=</span> <span class="n">request_data</span></div>
+
+
+<div class="viewcode-block" id="AASManagerAgent.save_interaction_request">
+<a class="viewcode-back" href="../../agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.save_interaction_request">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">save_interaction_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interaction_id</span><span class="p">,</span> <span class="n">request_data</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This method adds a specific Intra AAS interaction Request to the global requests dictionary of the AAS Manager</span>
+<span class="sd">        for this type of interaction using a specific interaction id.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            interaction_id (str): interaction identifier of the Intra AAS interaction request.</span>
+<span class="sd">            request_data (dict): all the information of the Intra AAS interaction Request in JSON format.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">async</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">lock</span><span class="p">:</span>  <span class="c1"># safe access to a shared object of the agent</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">interaction_requests</span><span class="p">[</span><span class="n">interaction_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">request_data</span></div>
 
 
 <div class="viewcode-block" id="AASManagerAgent.save_interaction_response">
@@ -530,6 +567,21 @@
                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">interaction_requests</span><span class="p">[</span><span class="n">interaction_id</span><span class="p">]</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">return</span> <span class="kc">None</span></div>
+
+
+<div class="viewcode-block" id="AASManagerAgent.save_negotiation_data">
+<a class="viewcode-back" href="../../agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.save_negotiation_data">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">save_negotiation_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">thread</span><span class="p">,</span> <span class="n">neg_data</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This method saves the information of a specific negotiation in which the AAS Manager has participated. The data</span>
+<span class="sd">        is stored in the global object for all negotiations of the AAS Manager.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            thread (str): thread of the negotiation</span>
+<span class="sd">            neg_data (dict): all the information of the specific negotiation</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">async</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">lock</span><span class="p">:</span>  <span class="c1"># safe access to a shared object of the agent</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">negotiations_data</span><span class="p">[</span><span class="n">thread</span><span class="p">]</span> <span class="o">=</span> <span class="n">neg_data</span></div>
 </div>
 
 </pre></div>

@@ -244,19 +244,21 @@
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.CheckCoreInitializationBehaviour.html">behaviours.CheckCoreInitializationBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.CheckPhysicalAssetBehaviour.html">behaviours.CheckPhysicalAssetBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.EndBehaviour.html">behaviours.EndBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../behaviours.HandleNegotiationBehaviour.html">behaviours.HandleNegotiationBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../behaviours.HandleSvcRequestBehaviour.html">behaviours.HandleSvcRequestBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../behaviours.HandleSvcResponseBehaviour.html">behaviours.HandleSvcResponseBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.IdleBehaviour.html">behaviours.IdleBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.InitAASarchiveBehaviour.html">behaviours.InitAASarchiveBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.InitSubmodelsBehaviour.html">behaviours.InitSubmodelsBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.InteractionHandlingBehaviour.html">behaviours.InteractionHandlingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.NegotiatingBehaviour.html">behaviours.NegotiatingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.SvcACLHandlingBehaviour.html">behaviours.SvcACLHandlingBehaviour module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../behaviours.SvcRequestHandlingBehaviour.html">behaviours.SvcRequestHandlingBehaviour module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../behaviours.SvcResponseHandlingBehaviour.html">behaviours.SvcResponseHandlingBehaviour module</a></li>
 </ul>
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../../logic.html">logic package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of logic package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../logic.InterAASInteractions_utils.html">logic.InterAASInteractions_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../logic.IntraAASInteractions_utils.html">logic.IntraAASInteractions_utils module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../logic.Negotiation_utils.html">logic.Negotiation_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../logic.Services_utils.html">logic.Services_utils module</a></li>
 </ul>
 </li>
@@ -322,6 +324,10 @@
 
 <span class="kn">from</span> <span class="nn">spade.behaviour</span> <span class="kn">import</span> <span class="n">CyclicBehaviour</span>
 
+<span class="kn">from</span> <span class="nn">behaviours.HandleNegotiationBehaviour</span> <span class="kn">import</span> <span class="n">HandleNegotiationBehaviour</span>
+<span class="kn">from</span> <span class="nn">logic</span> <span class="kn">import</span> <span class="n">Negotiation_utils</span>
+<span class="kn">from</span> <span class="nn">utilities.AASmanagerInfo</span> <span class="kn">import</span> <span class="n">AASmanagerInfo</span>
+
 <span class="n">_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
 
@@ -370,8 +376,8 @@
             <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>  <span class="c1"># Timeout set to 10 seconds so as not to continuously execute the behavior.</span>
         <span class="k">if</span> <span class="n">msg</span><span class="p">:</span>
             <span class="c1"># An ACL message has been received by the agent</span>
-            <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;         + Message received on AAS Manager Agent (NegotiatingBehaviour)&quot;</span><span class="p">)</span>
-            <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;                 |___ Message received with content: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">body</span><span class="p">))</span>
+            <span class="n">_logger</span><span class="o">.</span><span class="n">aclinfo</span><span class="p">(</span><span class="s2">&quot;         + Message received on AAS Manager Agent (NegotiatingBehaviour)&quot;</span><span class="p">)</span>
+            <span class="n">_logger</span><span class="o">.</span><span class="n">aclinfo</span><span class="p">(</span><span class="s2">&quot;                 |___ Message received with content: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">body</span><span class="p">))</span>
 
             <span class="c1"># The msg body will be parsed to a JSON object</span>
             <span class="n">msg_json_body</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">body</span><span class="p">)</span>
@@ -381,17 +387,65 @@
                 <span class="c1"># TODO esta hecho asi para pruebas, pero hay que pensar el procedimiento a seguir a la hora de</span>
                 <span class="c1">#  gestionar los mensajes ACL</span>
                 <span class="k">case</span> <span class="s2">&quot;CallForProposal&quot;</span><span class="p">:</span>
-                    <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;The agent has received a request to participate in a negotiation: CFP&quot;</span><span class="p">)</span>
-                    <span class="c1"># TODO analizar como lo ha hecho Alejandro para desarrollarlo mas</span>
+                    <span class="n">_logger</span><span class="o">.</span><span class="n">aclinfo</span><span class="p">(</span><span class="s2">&quot;The agent has received a request to start a negotiation (CFP) with thread [&quot;</span>
+                                    <span class="o">+</span> <span class="n">msg</span><span class="o">.</span><span class="n">thread</span> <span class="o">+</span> <span class="s2">&quot;]&quot;</span><span class="p">)</span>
+                    <span class="c1"># First, some useful information is obtained from the msg</span>
+                    <span class="n">targets_list</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="n">msg_json_body</span><span class="p">[</span><span class="s1">&#39;serviceData&#39;</span><span class="p">][</span><span class="s1">&#39;serviceParams&#39;</span><span class="p">][</span><span class="s1">&#39;targets&#39;</span><span class="p">])</span>
+
+                    <span class="k">if</span> <span class="s1">&#39;/&#39;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">sender</span><span class="p">):</span>  <span class="c1"># XMPP server can add a random string to differentiate the agent JID</span>
+                        <span class="n">neg_requester_jid</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">sender</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">neg_requester_jid</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">sender</span><span class="p">)</span>
+
+                    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">targets_list</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                        <span class="c1"># There is only one target available (therefore, it is the only one, so it is the winner)</span>
+                        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;The AAS has won the negotiation with thread [&quot;</span> <span class="o">+</span> <span class="n">msg</span><span class="o">.</span><span class="n">thread</span> <span class="o">+</span> <span class="s2">&quot;]&quot;</span><span class="p">)</span>
+
+                        <span class="c1"># As the winner, it will reply to the sender with the result of the negotiation</span>
+                        <span class="n">acl_response_msg</span> <span class="o">=</span> <span class="n">Negotiation_utils</span><span class="o">.</span><span class="n">create_neg_response_msg</span><span class="p">(</span>
+                            <span class="n">receiver</span><span class="o">=</span><span class="n">neg_requester_jid</span><span class="p">,</span>
+                            <span class="n">thread</span><span class="o">=</span><span class="n">msg</span><span class="o">.</span><span class="n">thread</span><span class="p">,</span>
+                            <span class="n">serviceID</span><span class="o">=</span><span class="n">msg_json_body</span><span class="p">[</span><span class="s1">&#39;serviceID&#39;</span><span class="p">],</span>
+                            <span class="n">serviceType</span><span class="o">=</span><span class="n">msg_json_body</span><span class="p">[</span><span class="s1">&#39;serviceType&#39;</span><span class="p">],</span>
+                            <span class="n">winner</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">jid</span><span class="p">))</span>
+                        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">acl_response_msg</span><span class="p">)</span>
+                        <span class="n">_logger</span><span class="o">.</span><span class="n">aclinfo</span><span class="p">(</span><span class="s2">&quot;ACL response sent for the result of the negotiation request with thread [&quot;</span>
+                                        <span class="o">+</span> <span class="n">msg</span><span class="o">.</span><span class="n">thread</span> <span class="o">+</span> <span class="s2">&quot;]&quot;</span><span class="p">)</span>
+
+                        <span class="c1"># Finally, the data is stored in the AAS Manager</span>
+                        <span class="n">neg_data_json</span> <span class="o">=</span> <span class="n">Negotiation_utils</span><span class="o">.</span><span class="n">create_neg_json_to_store</span><span class="p">(</span>
+                            <span class="n">neg_requester_jid</span><span class="o">=</span><span class="n">neg_requester_jid</span><span class="p">,</span>
+                            <span class="n">participants</span><span class="o">=</span><span class="n">msg_json_body</span><span class="p">[</span><span class="s1">&#39;serviceData&#39;</span><span class="p">][</span><span class="s1">&#39;serviceParams&#39;</span><span class="p">][</span><span class="s1">&#39;targets&#39;</span><span class="p">],</span>
+                            <span class="n">neg_criteria</span><span class="o">=</span><span class="n">msg_json_body</span><span class="p">[</span><span class="s1">&#39;serviceData&#39;</span><span class="p">][</span><span class="s1">&#39;serviceParams&#39;</span><span class="p">][</span><span class="s1">&#39;criteria&#39;</span><span class="p">],</span>
+                            <span class="n">is_winner</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">save_negotiation_data</span><span class="p">(</span><span class="n">thread</span><span class="o">=</span><span class="n">msg</span><span class="o">.</span><span class="n">thread</span><span class="p">,</span> <span class="n">neg_data</span><span class="o">=</span><span class="n">neg_data_json</span><span class="p">)</span>
+
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="c1"># If there are more targets, a management behavior is added to the AAS Manager, which will be</span>
+                        <span class="c1"># in charge of this particular negotiation. To this end, some information has to be passed to</span>
+                        <span class="c1"># the behaviour</span>
+                        <span class="n">neg_criteria</span> <span class="o">=</span> <span class="n">msg_json_body</span><span class="p">[</span><span class="s1">&#39;serviceData&#39;</span><span class="p">][</span><span class="s1">&#39;serviceParams&#39;</span><span class="p">][</span><span class="s1">&#39;criteria&#39;</span><span class="p">]</span>
+                        <span class="n">behaviour_info</span> <span class="o">=</span> <span class="p">{</span>
+                            <span class="s1">&#39;thread&#39;</span><span class="p">:</span> <span class="n">msg</span><span class="o">.</span><span class="n">thread</span><span class="p">,</span>
+                            <span class="s1">&#39;neg_requester_jid&#39;</span><span class="p">:</span> <span class="n">neg_requester_jid</span><span class="p">,</span>
+                            <span class="s1">&#39;targets&#39;</span><span class="p">:</span> <span class="n">msg_json_body</span><span class="p">[</span><span class="s1">&#39;serviceData&#39;</span><span class="p">][</span><span class="s1">&#39;serviceParams&#39;</span><span class="p">][</span><span class="s1">&#39;targets&#39;</span><span class="p">],</span>
+                            <span class="s1">&#39;neg_criteria&#39;</span><span class="p">:</span> <span class="n">neg_criteria</span>
+                        <span class="p">}</span>
+                        <span class="c1"># The FIPA-ACL template added to this behavior ensures that you will only receive PROPOSE</span>
+                        <span class="c1"># messages but also only with the thread of that specific thread</span>
+                        <span class="n">handle_neg_template</span> <span class="o">=</span> <span class="n">AASmanagerInfo</span><span class="o">.</span><span class="n">NEG_STANDARD_ACL_TEMPLATE_PROPOSE</span>
+                        <span class="n">handle_neg_template</span><span class="o">.</span><span class="n">thread</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">thread</span>
+                        <span class="n">handle_neg_behav</span> <span class="o">=</span> <span class="n">HandleNegotiationBehaviour</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">agent</span><span class="p">,</span> <span class="n">behaviour_info</span><span class="p">)</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">add_behaviour</span><span class="p">(</span><span class="n">handle_neg_behav</span><span class="p">,</span> <span class="n">handle_neg_template</span><span class="p">)</span>
 
                 <span class="k">case</span> <span class="s2">&quot;Inform&quot;</span><span class="p">:</span>
-                    <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;The agent has received a request to participate in a negotiation: Inform&quot;</span><span class="p">)</span>
+                    <span class="n">_logger</span><span class="o">.</span><span class="n">aclinfo</span><span class="p">(</span><span class="s2">&quot;The agent has received a request to participate in a negotiation: Inform&quot;</span><span class="p">)</span>
                     <span class="c1"># TODO analizar como lo ha hecho Alejandro para desarrollarlo mas</span>
                 <span class="k">case</span> <span class="s2">&quot;Propose&quot;</span><span class="p">:</span>
-                    <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;The agent has received a response in a negotiation: Propose&quot;</span><span class="p">)</span>
+                    <span class="n">_logger</span><span class="o">.</span><span class="n">aclinfo</span><span class="p">(</span><span class="s2">&quot;The agent has received a response in a negotiation: Propose&quot;</span><span class="p">)</span>
                     <span class="c1"># TODO analizar como lo ha hecho Alejandro para desarrollarlo mas</span>
                 <span class="k">case</span> <span class="s2">&quot;Failure&quot;</span><span class="p">:</span>
-                    <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;The agent has received a response in a negotiation: Failure&quot;</span><span class="p">)</span>
+                    <span class="n">_logger</span><span class="o">.</span><span class="n">aclinfo</span><span class="p">(</span><span class="s2">&quot;The agent has received a response in a negotiation: Failure&quot;</span><span class="p">)</span>
                     <span class="c1"># TODO analizar como lo ha hecho Alejandro para desarrollarlo mas</span>
                 <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">:</span>
                     <span class="n">_logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;ACL performative type not available.&quot;</span><span class="p">)</span>
