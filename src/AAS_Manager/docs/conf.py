@@ -85,14 +85,14 @@ html_theme_options = {
         "color-problematic": "DodgerBlue",  # other CSS colors: https://www.w3schools.com/cssref/css_colors.php
         # "color-admonition-background": "#2980B9",
         "color-api-background": "#E7F2FA",
-        "color-api-background-hover": "#a0a7ad",
+        "color-api-background-hover": "#b7c0c6",
     },
     "dark_css_variables": {  # colors for dark theme
         "color-brand-primary": "#34A1E8",
         "color-brand-content": "#2980B9",
         "color-problematic": "DodgerBlue",
         "color-api-background": "#383838",
-        "color-api-background-hover": "#848484",
+        "color-api-background-hover": "#5e5e5e",
     }
 }
 
