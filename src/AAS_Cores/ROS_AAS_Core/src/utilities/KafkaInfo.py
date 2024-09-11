@@ -6,6 +6,6 @@ class KafkaInfo:
     KAFKA_SERVER_IP = 'mi-cluster-mensajeria-kafka-bootstrap.kafka-ns'  # TODO think how to pass to AAS Manager (in AAS XML definition???)
 
     # Kafka topic related information
-    KAFKA_TOPIC = 'aastest01'  # TODO check if it is the ID of the AAS
+    KAFKA_TOPIC = 'aasrostest01'  # TODO check if it is the ID of the AAS
     MANAGER_TOPIC_PARTITION = 0
     CORE_TOPIC_PARTITION = 1

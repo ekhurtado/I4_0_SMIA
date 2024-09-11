@@ -35,9 +35,9 @@ def delete_svc_request(svc_request_object):
     update_json_file(svc_requests_file_path, svc_requests_json)
 
 
-def create_response_json_object(svc_request_info):
+def create_response_json_object(svc_request_info, svc_params = None):
 
-    return {
+    response_json =  {
         'interactionID': svc_request_info['interactionID'],
         'thread': svc_request_info['thread'],
         'serviceType': svc_request_info['serviceType'],
@@ -48,6 +48,9 @@ def create_response_json_object(svc_request_info):
             'timestamp': calendar.timegm(time.gmtime())
         }
     }
+    if svc_params is not None:
+        response_json['serviceData']['serviceParams'] = svc_params
+    return response_json
 
 
 def add_new_svc_response(new_response_json):

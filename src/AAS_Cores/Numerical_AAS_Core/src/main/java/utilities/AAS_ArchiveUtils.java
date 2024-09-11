@@ -130,10 +130,14 @@ public class AAS_ArchiveUtils {
         serviceDataJSON.put("timestamp", System.currentTimeMillis() / 1000);   // Add the timestamp in seconds
 
         if (serviceRequestedData != null) {
-            String requestedDataName = (String) ((JSONObject) ((JSONObject) requestJSON.get("serviceData")).get("serviceParams")).get("requestedData");
-            JSONObject requestedDataJSON = new JSONObject();
-            requestedDataJSON.put(requestedDataName, serviceRequestedData);
-            serviceDataJSON.put("serviceParams", requestedDataJSON);
+            JSONObject serviceParamsJSON = new JSONObject();
+            if (requestJSON.get("serviceID").equals("getAssetData")) {
+                String requestedDataName = (String) ((JSONObject) ((JSONObject) requestJSON.get("serviceData")).get("serviceParams")).get("requestedData");
+                serviceParamsJSON.put(requestedDataName, serviceRequestedData);
+            } else if (requestJSON.get("serviceID").equals("getNegotiationValue")) {
+                serviceParamsJSON.put("value", serviceRequestedData);
+            }
+            serviceDataJSON.put("serviceParams", serviceParamsJSON);
         }
         completedResponseJSON.put("serviceData", serviceDataJSON);
         return completedResponseJSON;

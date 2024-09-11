@@ -54,6 +54,10 @@ class NegotiatingBehaviour(CyclicBehaviour):
             # The msg body will be parsed to a JSON object
             msg_json_body = json.loads(msg.body)
 
+            # TODO quizas hay que comprobar que el thread no existe? Para hacer al igual que en la peticion de
+            #  servicios, utilizar el thread como identificador. Hay que pensarlo, ya que de este modo el thread
+            #  serviría para un unico servicio a un AAS
+
             # Depending on the performative of the message, the agent will have to perform some actions or others
             match msg.get_metadata('performative'):
                 # TODO esta hecho asi para pruebas, pero hay que pensar el procedimiento a seguir a la hora de
@@ -90,7 +94,7 @@ class NegotiatingBehaviour(CyclicBehaviour):
                             participants=msg_json_body['serviceData']['serviceParams']['targets'],
                             neg_criteria=msg_json_body['serviceData']['serviceParams']['criteria'],
                             is_winner=True)
-                        self.myagent.save_negotiation_data(thread=msg.thread, neg_data=neg_data_json)
+                        await self.myagent.save_negotiation_data(thread=msg.thread, neg_data=neg_data_json)
 
                     else:
                         # If there are more targets, a management behavior is added to the AAS Manager, which will be

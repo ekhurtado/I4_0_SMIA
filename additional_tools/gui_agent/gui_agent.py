@@ -1,5 +1,6 @@
 import calendar
 import json
+import os
 import time
 from urllib.parse import parse_qs
 
@@ -60,12 +61,14 @@ class GUIAgent(Agent):
             else:
                 receivers_jid = [data_json['receiver']]
 
-            print(receivers_jid)
+            for i in range(0, len(receivers_jid)):
+                receivers_jid[i] = receivers_jid[i] + '@' + data_json['server']
+            print("targets updated with XMPP server")
+
 
             for jid in receivers_jid:
                 print("Building the negotiation message to send to the agent with JID: " + jid)
-                receiver = jid + '@' + data_json['server']
-                msg = Message(to=receiver, thread=data_json['thread'])
+                msg = Message(to=jid, thread=data_json['thread'])
                 msg.set_metadata('performative', data_json['performative'])
                 msg.set_metadata('ontology', data_json['ontology'])
                 # msg.set_metadata('neg_requester_jid', str(self.agent.jid))
@@ -172,8 +175,9 @@ async def main():
     passwd = '123'
 
     # DATOS PARA PRUEBAS CON ANONYM.IM
-    agent_jid = "gui_agent@anonym.im"
-    passwd = "gcis1234"
+    if 'KUBERNETES_PORT' not in os.environ:
+        agent_jid = "gui_agent@anonym.im"
+        passwd = "gcis1234"
 
     gui_agent = GUIAgent(agent_jid, passwd)
     gui_agent.agent_name = 'gui_agent'

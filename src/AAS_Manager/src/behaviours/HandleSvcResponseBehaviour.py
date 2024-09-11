@@ -142,21 +142,22 @@ class HandleSvcResponseBehaviour(OneShotBehaviour):
                                         " responsible for interaction [" + svc_interaction_id +
                                         "]. Action: response data added")
 
-                    case "negotiation":
-                        # In this case, the Intra AAS interaction has been part of a negotiation, so it has to notify to
-                        # the associate handling behaviour, which is in charge of this exact negotiation
-                        if inter_aas_req['serviceID'] == 'getNegotiationValue':
-                            # If the negotiation value has been requested, this value must be saved in the behaviour
-                            # class as an attribute
-                            Negotiation_utils.add_value_and_unlock_neg_handling_behaviour(
-                                agent=self.myagent,
-                                thread=inter_aas_req['thread'],
-                                neg_value=self.svc_resp_data['serviceData']['serviceParams']['value'])
-                        else:
-                            print(inter_aas_req['serviceID'])
-                            # TODO desarrollarlo
                     case _:
                         _logger.warning("Ontology not available.")
+            else:
+                # In this case, there is no previous Inter AAS Interaction request
+                if self.svc_resp_data['serviceID'] == 'getNegotiationValue':
+                    # In this case, the Intra AAS interaction has been part of a negotiation, so it has to notify to
+                    # the associate handling behaviour, which is in charge of this exact negotiation
+                    # If the negotiation value has been requested, this value must be saved in the behaviour
+                    # class as an attribute
+                    Negotiation_utils.add_value_and_unlock_neg_handling_behaviour(
+                        agent=self.myagent,
+                        thread=self.svc_resp_data['thread'],
+                        neg_value=self.svc_resp_data['serviceData']['serviceParams']['value'])
+                else:
+                    print(self.svc_resp_data['serviceID'])
+                    # TODO desarrollarlo para otros casos con solo Intra AAS Interaction
 
         elif self.svc_resp_interaction_type == 'Inter AAS interaction':
             # TODO pensar como se gestionaria este caso

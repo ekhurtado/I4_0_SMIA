@@ -6,6 +6,7 @@ from threading import Thread
 import rospy
 from std_msgs.msg import String
 
+import assetRelatedMethods
 from utilities import Interactions_utils
 from utilities.AASArchive_utils import file_to_json
 from utilities.Interactions_utils import make_gateway_request, create_response_json_object
@@ -107,7 +108,7 @@ class AASCore:
                         break
                     else:
                         if msg_json_value['serviceType'] == "AssetRelatedService":
-                            print("The AAS Core has received a asset related service request")
+                            print("The AAS Core has received an asset related service request")
                             # TODO, si ha llegado alguna peticion, enviar el comando a traves del pub y pubCoord
 
                             if not self.WIP:
@@ -180,6 +181,35 @@ class AASCore:
 
                                     # Se "apaga" el flag 'WIP'
                                     self.WIP = False
+
+                                elif msg_json_value['serviceID'] == "getNegotiationValue":
+                                    if msg_json_value['serviceData']['serviceParams']['criteria'] == "battery":
+
+                                        self.WIP = True
+                                        # TODO habria que analizar como conseguir el valor real de la bateria, de momento
+                                        #  se genera un numero random
+                                        battery_value = assetRelatedMethods.get_battery()
+
+                                        # TODO: para pruebas, eliminamos la peticion de servicio, como que ya se ha ofrecido
+                                        self.processed_services[msg_json_value['interactionID']] = msg_json_value
+
+                                        svc_response_params = {'value': battery_value}
+
+                                        # Write the response in svResponses.json of the AAS Core
+                                        response_json = create_response_json_object(msg_json_value,
+                                                                                    svc_params=svc_response_params)
+                                        result = Interactions_utils.send_interaction_msg_to_manager(
+                                            client_id='i4-0-smia-core',
+                                            msg_key='core-service-response',
+                                            msg_data=response_json)
+                                        if result != "OK":
+                                            print("The AAS Manager-Core interaction is not working: " + str(result))
+                                        else:
+                                            print(
+                                                "The AAS Core has notified the AAS Manager that the service has been"
+                                                " completed.")
+
+                                        self.WIP = False
 
                         elif msg_json_value['serviceType'] == "SubmodelService":
                             print("The AAS Core has received a submodel service request")

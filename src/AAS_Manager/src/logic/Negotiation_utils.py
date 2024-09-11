@@ -121,7 +121,7 @@ def create_intra_aas_neg_req_data(performative, ontology, thread, service_data):
         'ontology': ontology,
         'thread': thread,
         'serviceID': 'getNegotiationValue',
-        'serviceType': 'AssetRelatedInformation',
+        'serviceType': 'AssetRelatedService',
         'serviceData': service_data
     }
     return intra_ass_req_data_json
@@ -145,7 +145,7 @@ def add_value_and_unlock_neg_handling_behaviour(agent, thread, neg_value):
             if behaviour.thread == thread:
                 # Once the exact behaviour has been found, the negotiation value will be stored as an attribute, and the
                 # method will be concluded
-                behaviour.neg_value = neg_value
+                behaviour.neg_value = float(neg_value)
                 # The execution of this behaviour is also unlocked
                 behaviour.neg_value_event.set()
                 break

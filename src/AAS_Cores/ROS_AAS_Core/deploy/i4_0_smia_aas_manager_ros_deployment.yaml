@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ros-aas-core-test
+  name: i4-0-smia-manager-ros-test
   labels:
-    app: ros-aas-core-test
+    app: i4-0-smia-manager-ros-test
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ros-aas-core-test
+      app: i4-0-smia-manager-ros-test
   template:
     metadata:
       labels:
-        app: ros-aas-core-test
+        app: i4-0-smia-manager-ros-test
     spec:
       containers:
-        - name: ros-aas-core
-          image: ekhurtado/aas-core:ros-latest
+        - name: aas-manager
+          image: ekhurtado/aas-manager:latest
           imagePullPolicy: Always
           volumeMounts:
             - name: aas-archive
@@ -32,21 +32,6 @@ spec:
               subPath: status
             - name: component-cm
               mountPath: /aas_archive/config
-            - name: ros-aas-core-archive
-              mountPath: /ros_aas_core_archive
-          env:
-            - name: ROS_MASTER_URI
-              value: "http://192.168.1.62:11311"
-            #            - name: ROS_HOSTNAME
-            #              valueFrom:
-            #                fieldRef:
-            #                  fieldPath: status.podIP
-            - name: ROS_IP
-              valueFrom:
-                fieldRef:
-                  fieldPath: status.podIP
-      nodeSelector:
-        kubernetes.io/hostname: worker1
       restartPolicy: Always
       serviceAccountName: ""
       volumes:
@@ -63,8 +48,4 @@ spec:
         - name: component-cm
           configMap:
             name: component-i4-0-cm-ros
-        - name: ros-aas-core-archive
-          persistentVolumeClaim:
-            claimName: ros-aas-core-archive-claim
-
 

@@ -73,6 +73,8 @@ public class Main {
             case "getAssetModel":
                 data = AssetRelatedServices.getAssetModel();
                 break;
+            case "getNegotiationValue":
+                data = AssetRelatedServices.getNegotiationValue(serviceData);
             default:
                 System.out.println("This service ID is not available.");
                 break;

@@ -49,8 +49,8 @@ class CheckCoreInitializationBehaviour(CyclicBehaviour):
 
         try:
             async for msg in kafka_consumer_core_partition:
-                _logger.info("New AAS Core message!")
-                _logger.info("   |__ msg: " + str(msg))
+                _logger.interactioninfo("New AAS Core message!")
+                _logger.interactioninfo("   |__ msg: " + str(msg))
 
                 # We get the key (as it is in bytes, we transform it into string) and the body of Kafka's message
                 msg_key = msg.key.decode("utf-8")

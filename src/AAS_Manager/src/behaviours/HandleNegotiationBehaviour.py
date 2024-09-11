@@ -101,11 +101,11 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
             sender_agent_neg_value = msg_json_body['serviceData']['serviceParams']['neg_value']
 
             # The value of this AAS Manager and the received value are compared
-            if int(sender_agent_neg_value) > self.neg_value:
+            if float(sender_agent_neg_value) > self.neg_value:
                 # As the received value is higher than this AAS Manager value, it must exit the negotiation.
                 await self.exit_negotiation(is_winner=False)
                 return  # killing a behaviour does not cancel its current run loop
-            if (int(sender_agent_neg_value) == self.neg_value) and not self.agent.tie_break:
+            if (float(sender_agent_neg_value) == self.neg_value) and not self.agent.tie_break:
                 # In this case the negotiation is tied but this AAS Manager is not the tie breaker.
                 await self.exit_negotiation(is_winner=False)
                 return  # killing a behaviour does not cancel its current run loop
@@ -147,7 +147,7 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
         # TODO aqui hay que actualizarlo cuando pensemos como hacerlo, de momento se ha hecho una peticion de Intra AAS
         #  interaction al Core directamente, pero el AAS Manager deberia ser capaz de analizar el criterio y ver si el
         #  mismo tiene el valor (p.e. de un submodelo), o en cambio se lo tiene que pedir al AAS Core
-        print("Getting the neg value with Intra AAS interaction...")
+        _logger.info("Getting the neg value with Intra AAS interaction...")
         intra_aas_svc_data = {
             'serviceCategory': 'service-request',
             'timestamp': GeneralUtils.get_current_timestamp(),
@@ -169,6 +169,7 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
 
         # In this case, as the Intra AAS interactions are asynchronous, the behaviour will wait until the request is
         # answered and the negotiation value is available
+        _logger.info(str(self.__class__.__name__) + " behaviour will be waiting for the negotiation value...")
         await self.neg_value_event.wait()
         # If the behaviour continues from this line, it means that the Intra AAS interaction has been answered and the
         # value is available
@@ -187,16 +188,16 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
 
         """
         if is_winner:
-            _logger.error("The AAS has finished the negotiation with thread [" + self.thread + "] as the winner")
+            _logger.info("The AAS has finished the negotiation with thread [" + self.thread + "] as the winner")
         else:
-            _logger.error("The AAS has finished the negotiation with thread [" + self.thread + "] not as the winner")
+            _logger.info("The AAS has finished the negotiation with thread [" + self.thread + "] not as the winner")
 
         # The negotiation information is stored in the global object of the AAS Manager
         neg_data_json = Negotiation_utils.create_neg_json_to_store(neg_requester_jid=self.neg_requester_jid,
                                                                    participants=self.targets,
                                                                    neg_criteria=self.neg_criteria,
                                                                    is_winner=is_winner)
-        self.myagent.save_negotiation_data(thread=self.thread, neg_data=neg_data_json)
+        await self.myagent.save_negotiation_data(thread=self.thread, neg_data=neg_data_json)
 
         # In order to correctly complete the negotiation process, this behavior is removed from the agent.
         self.kill(exit_code=10)
