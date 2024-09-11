@@ -54,7 +54,13 @@ class AASCore:
         # Instanciar cliente
         self.client = Client("opc.tcp://192.168.1.71:4840")
         # Establecer conexión con servidor OPCUA
-        self.client.connect()
+        try:
+            self.client.connect()
+        except OSError as e:
+            print("OSError: " + str(e))
+            print("The OPC UA server is not available, waiting 5 seconds and trying to connect again...")
+            time.sleep(5)
+            self.initialize_aas_core()
         print("OPC UA client connected.")
 
         # Obtener nodos necesarios
@@ -123,7 +129,7 @@ class AASCore:
                               "] has already been performed")
                         break
                     else:
-                        machine_plan = [msg_json_value['serviceData']['target']]
+                        machine_plan = [msg_json_value['serviceData']['serviceParams']['target']]
                         print("InteractionID: " + str(msg_json_value['interactionID']))
                         printFile('opc_ua_log.txt', "InteractionID: " + str(msg_json_value['interactionID']))
 

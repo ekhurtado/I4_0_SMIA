@@ -201,5 +201,5 @@ if __name__ == '__main__':
     print('AAS Core to work with OPC UA')
     print('AAS Core starting...')
     main()
-    print('AAS ending...')
+
 

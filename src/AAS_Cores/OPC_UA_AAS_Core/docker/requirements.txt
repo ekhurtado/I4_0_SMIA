@@ -4,3 +4,6 @@
 
 # Related to OPC UA
 opcua == 0.98.13
+
+# Related to AAS Manager-Core interactions
+kafka-python-ng==2.2.2

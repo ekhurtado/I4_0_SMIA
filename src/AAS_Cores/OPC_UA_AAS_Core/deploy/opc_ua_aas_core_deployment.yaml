@@ -32,8 +32,6 @@ spec:
               subPath: status
             - name: component-cm
               mountPath: /aas_archive/config
-            - name: ros-aas-core-archive
-              mountPath: /ros_aas_core_archive
       restartPolicy: Always
       serviceAccountName: ""
       volumes:

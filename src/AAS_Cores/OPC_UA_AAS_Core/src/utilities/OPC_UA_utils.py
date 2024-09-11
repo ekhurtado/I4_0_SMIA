@@ -11,7 +11,7 @@ def sendDataOPCUA(nServ, targetPos):
     # --------------------------------------------------------------------------------
     # Instanciar cliente
     print("Sending command through OPC UA...")
-    client = Client("opc.tcp://192.168.1.71:4840")
+    client = Client("opc.tcp://192.168.1.71:4840")  # TODO se podria añadir este metodo en la clase AASCore y utilizar el cliente de la clase
     # Establecer conexión con servidor OPCUA
     client.connect()
 
