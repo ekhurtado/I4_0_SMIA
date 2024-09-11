@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: opc-ua-aas-core-test
+  labels:
+    app: opc-ua-aas-core-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: opc-ua-aas-core-test
+  template:
+    metadata:
+      labels:
+        app: opc-ua-aas-core-test
+    spec:
+      containers:
+        - name: opc-ua-aas-core
+          image: ekhurtado/aas-core:opc-ua-latest
+          imagePullPolicy: Always
+          volumeMounts:
+            - name: aas-archive
+              mountPath: /aas_archive/
+            - name: aas-archive-interactions
+              mountPath: /aas_archive/interactions
+              subPath: interactions
+            - name: aas-archive-submodels
+              mountPath: /aas_archive/submodels
+              subPath: submodels
+            - name: aas-archive-status
+              mountPath: /aas_archive/status
+              subPath: status
+            - name: component-cm
+              mountPath: /aas_archive/config
+            - name: ros-aas-core-archive
+              mountPath: /ros_aas_core_archive
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes:
+        # The shared directory for holding the files
+        - name: aas-archive
+          emptyDir: { }
+        # Subvolume related to interactions
+        - name: aas-archive-interactions
+        # Subvolume related to submodels
+        - name: aas-archive-submodels
+        # Subvolume related to status
+        - name: aas-archive-status
+        # The configmap with all the configuration
+        - name: component-cm
+          configMap:
+            name: component-i4-0-opc-ua-cm
+
+

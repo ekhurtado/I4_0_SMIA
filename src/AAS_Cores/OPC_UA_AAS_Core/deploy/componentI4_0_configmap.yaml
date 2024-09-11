@@ -8,7 +8,7 @@ data:
   # Properties files
   aas.properties: |
     [general-information]
-    logicalID=aasmanager002
+    logicalID=aas-opcua-test01
     endpoint=7000
     
     [services-information]
