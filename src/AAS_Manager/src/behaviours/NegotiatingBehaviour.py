@@ -114,14 +114,14 @@ class NegotiatingBehaviour(CyclicBehaviour):
 
                 case "Inform":
                     _logger.aclinfo("The agent has received a request to participate in a negotiation: Inform")
-                    # TODO analizar como lo ha hecho Alejandro para desarrollarlo mas
+                    # TODO pensar como se deberian gestionar este tipo de mensajes en una negociacion
                 case "Propose":
                     _logger.aclinfo("The agent has received a response in a negotiation: Propose")
                     # TODO en teoria estos mensajes nunca llegaran aqui, ya que lo recibira el behaviour encargado de
                     #  la negociacion
                 case "Failure":
                     _logger.aclinfo("The agent has received a response in a negotiation: Failure")
-                    # TODO analizar como lo ha hecho Alejandro para desarrollarlo mas
+                    # TODO pensar como se deberian gestionar este tipo de mensajes en una negociacion
                 case _:
                     _logger.error("ACL performative type not available.")
         else:

@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: i4-0-smia-cm-warehouse-transport
+  namespace: default
+data:
+
+  # Properties files
+  aas.properties: |
+    [general-information]
+    logicalID=aasmanagertest01
+    endpoint=7000
+        
+    [services-information]
+    services.1=getAssetData
+    services.2=getSubmodelData
+    applicationToExecute=collection
+            # Other value for applicationToExecute -> delivery
+        
+    [other-aas-information]
+    transport-aas-ids=aas-ros-test01@ejabberd,aas-ros-test02@ejabberd
+    warehouse-aas-ids=aas-opcua-test01@ejabberd
+
+
+  asset.properties: |
+    [DEFAULT]
+    assetType=physical
+    assetID=KukaKR3
+    assetNumber=1
+
+  submodels.properties: |
+    [technical-data-submodel]
+    submodel1=technical-data
+    submodel1.aas-id=11
+    submodel1.aas-model=Kuka KR3
+
+    [configuration-submodel]
+    submodel2=configuration
+    submodel2.aas-number=1
+    submodel2.aas-level=edge

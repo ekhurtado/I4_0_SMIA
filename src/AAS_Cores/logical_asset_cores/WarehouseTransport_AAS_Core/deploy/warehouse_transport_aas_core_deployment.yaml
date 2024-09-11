@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: warehouse-transport-aas-core-test
+  labels:
+    app: warehouse-transport-aas-core-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: warehouse-transport-aas-core-test
+  template:
+    metadata:
+      labels:
+        app: warehouse-transport-aas-core-test
+    spec:
+      containers:
+        - name: warehouse-transport-aas-core
+          image: ekhurtado/aas-core:warehouse-transport-latest
+          imagePullPolicy: Always
+          volumeMounts:
+            - name: aas-archive
+              mountPath: /aas_archive/
+            - name: aas-archive-interactions
+              mountPath: /aas_archive/interactions
+              subPath: interactions
+            - name: aas-archive-submodels
+              mountPath: /aas_archive/submodels
+              subPath: submodels
+            - name: aas-archive-status
+              mountPath: /aas_archive/status
+              subPath: status
+            - name: i4-0-smia-cm
+              mountPath: /aas_archive/config
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes:
+        # The shared directory for holding the files
+        - name: aas-archive
+          emptyDir: { }
+        # Subvolume related to interactions
+        - name: aas-archive-interactions
+        # Subvolume related to submodels
+        - name: aas-archive-submodels
+        # Subvolume related to status
+        - name: aas-archive-status
+        # The configmap with all the configuration
+        - name: i4-0-smia-cm
+          configMap:
+            name: i4-0-smia-cm-warehouse-transport
+

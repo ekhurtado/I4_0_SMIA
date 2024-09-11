@@ -54,6 +54,8 @@ class StateBooting(State):
                                                                                msg_key='manager-status',
                                                                                msg_data={
                                                                                    'status': 'InitializationReady'})
+        # TODO cuidado, en los envios de estado no se está añadiendo el interaction_id. Es necesario? Estas
+        #  interacciones son como las demas? En realidad el key es solo de estado, no de peticion ni respuesta...
 
         if result != "OK":
             _logger.error("The AAS Manager-Core interaction is not working: " + str(result))
