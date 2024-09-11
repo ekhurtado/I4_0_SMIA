@@ -115,13 +115,14 @@ def send_interaction_msg_to_manager(client_id, msg_key, msg_data):
     print(str(result))
     try:
         record_metadata = result.get(timeout=10)
+        print("Kafka producer has sent the message. Producer closing...")
+        kafka_producer.close()
         return "OK"
     except KafkaError as e:
         print("ERROR")
         print(e)
+        kafka_producer.close()
         return None
-    print("Kafka producer has sent the message. Producer closing...")
-    kafka_producer.close()
 
 
 def create_interaction_kafka_consumer(client_id):

@@ -99,7 +99,7 @@ class AASCore:
                 self.manager_status = msg_json_value['status']
                 if self.manager_status != 'Initializing':
                     print("AAS Manager has initialized, so the AAS Core can go to running state.")
-            if msg_key == 'manager-service-request':
+            elif msg_key == 'manager-service-request':
                 if self.manager_status != 'Initializing' and self.manager_status != 'idle':
                     # Only if the AAS Manager is ready the AAS Core will work
                     if msg_json_value['interactionID'] in self.processed_services:
@@ -216,7 +216,7 @@ class AASCore:
                         else:
                             print("Service type not available")
 
-            if msg_key == 'manager-service-response':
+            elif msg_key == 'manager-service-response':
                 print("The AAS Core has received a response from the AAS Manager")
                 # TODO
             else:

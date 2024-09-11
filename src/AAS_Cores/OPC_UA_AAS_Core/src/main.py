@@ -2,6 +2,7 @@ import time
 from threading import Thread
 from opcua import Client
 
+from aas_core import AASCore
 from utilities import AASArchive_utils
 from utilities.AASArchive_utils import printFile
 from utilities.Interactions_utils import get_next_svc_request, add_new_svc_response, \
@@ -20,62 +21,68 @@ client = None
 
 def main():
 
+    # Create the AAS Core object
+    aas_core = AASCore()
+
     # First, the status file is created
-    AASArchive_utils.create_status_file()
+    # AASArchive_utils.create_status_file()
+
+    aas_core.send_status_change_to_manager('Initializing')
 
     # Then, the initialization tasks are performed
-    initialize_aas_core()
+    aas_core.initialize_aas_core()
 
-    AASArchive_utils.change_status('InitializationReady')
+    # AASArchive_utils.change_status('InitializationReady')
+    aas_core.send_status_change_to_manager('InitializationReady')
     print("AAS Core initialized!")
 
     # The AAS Core can start running
-    run_aas_core()
+    aas_core.run_aas_core()
 
-def initialize_aas_core():
-    """This method executes the required tasks to initialize the AAS Core. In this case, create the connection and
-    execute a necessary ROS nodes."""
+# def initialize_aas_core():
+#     """This method executes the required tasks to initialize the AAS Core. In this case, create the connection and
+#     execute a necessary ROS nodes."""
+#
+#     print("Initializing the AAS Core...")
+#
+#     # A ROS node corresponding to the AAS Core is executed.
+#     global client
+#     # Instanciar cliente
+#     client = Client("opc.tcp://192.168.1.71:4840")
+#     # Establecer conexión con servidor OPCUA
+#     client.connect()
+#     print("OPC UA client connected.")
+#
+#     # Obtener nodos necesarios
+#     node_AuxInit = client.get_node("ns=4;i=9")
+#     node_Marcha = client.get_node("ns=4;i=7")
+#
+#     # ------- Simular arranque de máquina ------- #
+#     # Simular pulso de "AuxInit"
+#     node_AuxInit.set_value(True)
+#     time.sleep(1)
+#     node_AuxInit.set_value(False)
+#
+#     # Simular pulso de "Marcha"
+#     node_Marcha.set_value(True)
+#     time.sleep(1)
+#     node_Marcha.set_value(False)
+#     time.sleep(2)
+#
+#     print("MACHINE READY TO TAKE REQUESTS!")
 
-    print("Initializing the AAS Core...")
 
-    # A ROS node corresponding to the AAS Core is executed.
-    global client
-    # Instanciar cliente
-    client = Client("opc.tcp://192.168.1.71:4840")
-    # Establecer conexión con servidor OPCUA
-    client.connect()
-    print("OPC UA client connected.")
-
-    # Obtener nodos necesarios
-    node_AuxInit = client.get_node("ns=4;i=9")
-    node_Marcha = client.get_node("ns=4;i=7")
-
-    # ------- Simular arranque de máquina ------- #
-    # Simular pulso de "AuxInit"
-    node_AuxInit.set_value(True)
-    time.sleep(1)
-    node_AuxInit.set_value(False)
-
-    # Simular pulso de "Marcha"
-    node_Marcha.set_value(True)
-    time.sleep(1)
-    node_Marcha.set_value(False)
-    time.sleep(2)
-
-    print("MACHINE READY TO TAKE REQUESTS!")
-
-
-def run_aas_core():
-
-    print("AAS Core running...")
-    AASArchive_utils.change_status('Running')
-
-    # Each function will have its own thread of execution
-    thread_func1 = Thread(target=handle_data_to_machine, args=())
-    thread_func2 = Thread(target=handle_data_from_machine, args=())
-
-    thread_func1.start()
-    thread_func2.start()
+# def run_aas_core():
+#
+#     print("AAS Core running...")
+#     AASArchive_utils.change_status('Running')
+#
+#     # Each function will have its own thread of execution
+#     thread_func1 = Thread(target=handle_data_to_machine, args=())
+#     thread_func2 = Thread(target=handle_data_from_machine, args=())
+#
+#     thread_func1.start()
+#     thread_func2.start()
 
 
 def handle_data_to_machine():
@@ -183,11 +190,6 @@ def handle_data_to_machine():
             time.sleep(2)
 
 
-
-
-
-
-
 def handle_data_from_machine():
     """This method handles the message and data from the transport. Thus, it obtains the data from the asset with a ROS
     Subscriber node and send the necessary interaction command or response to the AAS Manager."""
@@ -198,7 +200,6 @@ def handle_data_from_machine():
 if __name__ == '__main__':
     print('AAS Core to work with OPC UA')
     print('AAS Core starting...')
-    # time.sleep(5)   # TODO para pruebas
     main()
     print('AAS ending...')
 

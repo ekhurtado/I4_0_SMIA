@@ -60,8 +60,6 @@ class NegotiatingBehaviour(CyclicBehaviour):
 
             # Depending on the performative of the message, the agent will have to perform some actions or others
             match msg.get_metadata('performative'):
-                # TODO esta hecho asi para pruebas, pero hay que pensar el procedimiento a seguir a la hora de
-                #  gestionar los mensajes ACL
                 case "CallForProposal":
                     _logger.aclinfo("The agent has received a request to start a negotiation (CFP) with thread ["
                                     + msg.thread + "]")
@@ -119,7 +117,8 @@ class NegotiatingBehaviour(CyclicBehaviour):
                     # TODO analizar como lo ha hecho Alejandro para desarrollarlo mas
                 case "Propose":
                     _logger.aclinfo("The agent has received a response in a negotiation: Propose")
-                    # TODO analizar como lo ha hecho Alejandro para desarrollarlo mas
+                    # TODO en teoria estos mensajes nunca llegaran aqui, ya que lo recibira el behaviour encargado de
+                    #  la negociacion
                 case "Failure":
                     _logger.aclinfo("The agent has received a response in a negotiation: Failure")
                     # TODO analizar como lo ha hecho Alejandro para desarrollarlo mas
