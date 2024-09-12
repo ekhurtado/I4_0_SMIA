@@ -1,9 +1,12 @@
 package logic;
 
+import information.AAS_ArchiveInfo;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.simple.JSONObject;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -21,6 +24,8 @@ public class AASCore {
 
     public static final Logger LOGGER = LogManager.getLogger(AASCore.class);
 
+    private String aasID;
+
     private String aasCoreStatus;
     private String aasManagerStatus;
 
@@ -33,6 +38,8 @@ public class AASCore {
     private String applicationToExecute;
 
     private AASCore() {
+        aasID = null;
+
         aasCoreStatus = "Starting";
         aasManagerStatus = "Unknown";
         interactionIdNum = 0;
@@ -43,7 +50,8 @@ public class AASCore {
 
         applicationToExecute = "";
 
-        System.setProperty("log4j.configurationFile", ClassLoader.getSystemClassLoader().getResource("log4j2.xml").getPath());
+        System.setProperty("log4j.configurationFile", "log4j2.xml");
+//        System.setProperty("log4j.configurationFile", ClassLoader.getSystemClassLoader().getResource("log4j2.xml").getPath());
 
     }
 
@@ -54,18 +62,28 @@ public class AASCore {
         return instance;
     }
 
+    public synchronized void unlockLogic() {
+        notify(); // Notify any waiting threads that the value has been updated
+    }
+
+    public synchronized void lockLogic() throws InterruptedException {
+        wait(); // Wait until notified that the value has been updated
+    }
+
     // Methods related to attributes
     // -----------------------------
-    public void setStatus(String newStatus) {
-        aasCoreStatus = newStatus;
+
+    // GET METHODS
+    public String getAASID() {
+        return aasID;
+    }
+
+    public String getInteractionID() {
+        return "core-" + interactionIdNum;
     }
 
     public String getStatus() {
         return aasCoreStatus;
-    }
-
-    public void setManagerStatus(String newManagerStatus) {
-        aasManagerStatus = newManagerStatus;
     }
 
     public String getManagerStatus() {
@@ -75,6 +93,28 @@ public class AASCore {
     public String getAppToExecute() {
         return applicationToExecute;
     }
+
+    public ArrayList<String> getTransportAASIDList() {
+        return transportAASIDList;
+    }
+
+    public String getTransportAASIDListAsString() {
+        return StringUtils.join(transportAASIDList, ",");
+    }
+
+    // SET METHODS
+    public void setStatus(String newStatus) {
+        aasCoreStatus = newStatus;
+    }
+
+    public void setManagerStatus(String newManagerStatus) {
+        aasManagerStatus = newManagerStatus;
+    }
+
+    public void increaseInteractionIDNum() {
+        interactionIdNum += 1;
+    }
+
 
     // Methods related to the logic of the AAS Core
     // -------------------------------------------
@@ -87,14 +127,18 @@ public class AASCore {
          */
 
         Properties prop = new Properties();
-        URL filePath = ClassLoader.getSystemClassLoader().getResource("aas.properties");
-        System.out.println(filePath.getPath());
-        try (InputStream inputStream = filePath.openStream()) {
+//        URL filePath = ClassLoader.getSystemClassLoader().getResource("aas.properties");  // TODO for local tests
+//        System.out.println(fileURL.getPath());
+//        try (InputStream inputStream = fileURL.openStream()) {
+        String filePath = AAS_ArchiveInfo.configFolderPath + '/' + AAS_ArchiveInfo.aasPropertiesFileName;
+        try (InputStream inputStream = new FileInputStream(filePath)) {
 
             // Loading the properties.
             prop.load(inputStream);
 
             // Getting properties for the application to execute
+            aasID = prop.getProperty("logicalID");
+
             String appToExecute = prop.getProperty("applicationToExecute");
             AASCore.LOGGER.info("The application selected to be executed is: " + appToExecute);
             applicationToExecute = appToExecute;

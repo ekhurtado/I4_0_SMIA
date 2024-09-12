@@ -1,11 +1,20 @@
 package logic;
 
+import org.json.simple.JSONObject;
+import utilities.InteractionUtils;
+
 public class ApplicationExecutionLogic extends Thread {
 
     @Override
     public void run() {
         // First, the AAS Manager status will be checked to ensure that it is ready
-        checkAASManagerStatus();
+        AASCore.LOGGER.info("ApplicationExecutionLogic waiting until the AAS Manager finishes its initialization state.");
+        try {
+            AASCore.getInstance().lockLogic();  // Wait until the InteractionHandlingLogic gets the status information
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        AASCore.LOGGER.info("The AAS Manager has finished its booting state, so the application can be executed");
 
         // At this point the AAS Manager is ready
         AASCore aasCore = AASCore.getInstance();
@@ -25,7 +34,8 @@ public class ApplicationExecutionLogic extends Thread {
         }
     }
 
-    private static void checkAASManagerStatus() {
+    private void checkAASManagerStatus() throws InterruptedException {
+        // TODO old version
         while (true) {
             AASCore.LOGGER.info("Thread ApplicationExecutionLogic... ");
             AASCore aasCore = AASCore.getInstance();
@@ -48,7 +58,7 @@ public class ApplicationExecutionLogic extends Thread {
 
     private static void executeCollectionApp() {
         AASCore.LOGGER.info("Executing collection application...");
-        // TODO
+        // TODO (pensar si comparten partes con la app de delivery, para reutilizar metodos (p.e. pedir negociacion))
     }
 
 
@@ -57,5 +67,63 @@ public class ApplicationExecutionLogic extends Thread {
         // TODO primero, manda negociar a transportes. Espera hasta recibir al ganador, cuando lo tiene, le pide que
         //  lleve el producto al warehouse. Cuando lo haya hecho, le dice a la maquina del warehouse que lo almacene
         // Recordad que los IDs de los AASs se han añadido en el ConfigMap, estan en la clase AASCore
+
+        AASCore.LOGGER.info("Starting delivery application...");
+
+        // First,  a negotiation request will be sent to all transport robots to obtain the best option. The criteria
+        // will be the battery
+        AASCore.LOGGER.info("Requesting the negotiation to all transport AASs to obtain the transport with the best " +
+                "level of battery...");
+        JSONObject serviceParams = new JSONObject();
+        serviceParams.put("criteria", "battery");
+        // The target list in a String separated by ',' is obtained
+        serviceParams.put("targets", AASCore.getInstance().getTransportAASIDListAsString());
+        JSONObject negotiationInteractionRequestJSON = InteractionUtils.createInteractionObjectForManagerRequest(
+                "AssetRelatedService", "startNegotiation", serviceParams);
+        InteractionUtils.sendInteractionRequestToManager(negotiationInteractionRequestJSON);
+        // Since the interaction is asynchronous because the response of the negotiation with the winner ID can be
+        // received at any time by the AAS Core, this thread will be waiting until this happens.
+        AASCore.LOGGER.info("ApplicationExecutionLogic waiting until the negotiation winner has been received.");
+        try {
+            AASCore.getInstance().lockLogic();  // Wait until the InteractionHandlingLogic gets the status information
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        AASCore.LOGGER.info("The winner of the negotiation has already been received, so the application logic can continue.");
+
+        // Once the negotiation winner has received, the service request to perform the transport will be sent to the
+        // winner through an Intra AAS interaction request
+        AASCore.LOGGER.info("Requesting the transport service to move the product to the warehouse...");
+        JSONObject transportInteractionRequestJSON = InteractionUtils.createInteractionObjectForManagerRequest(
+                "AssetRelatedService", "delivery", null);
+        InteractionUtils.sendInteractionRequestToManager(transportInteractionRequestJSON);
+        // In this case it must also wait to receive confirmation that the service has been performed
+        AASCore.LOGGER.info("ApplicationExecutionLogic waiting to receive confirmation that the transport service " +
+                "has been realized.");
+        try {
+            AASCore.getInstance().lockLogic();  // Wait until the InteractionHandlingLogic gets the status information
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        AASCore.LOGGER.info("The transport has already been received, so the application logic can continue.");
+
+        // Now, the last part of the application can be performed: the storage of the product in the warehouse
+        AASCore.LOGGER.info("Requesting the service to store the product in the warehouse...");
+        serviceParams = new JSONObject();
+        serviceParams.put("target", "INTRODUCE:22"); // TODO para pruebas se ha puesto fijo, si no, se debe seleccionar donde se quiere almacenar
+        JSONObject storageInteractionRequestJSON = InteractionUtils.createInteractionObjectForManagerRequest(
+                "AssetRelatedService", "storeProduct", serviceParams);
+        InteractionUtils.sendInteractionRequestToManager(storageInteractionRequestJSON);
+        // It will wait to receive confirmation that the service has been performed
+        AASCore.LOGGER.info("ApplicationExecutionLogic waiting to receive confirmation that the storage service " +
+                "has been realized.");
+        try {
+            AASCore.getInstance().lockLogic();  // Wait until the InteractionHandlingLogic gets the status information
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        AASCore.LOGGER.info("The product has been stored in the warehouse, so the application has been " +
+                "successfully completed.");
+
     }
 }

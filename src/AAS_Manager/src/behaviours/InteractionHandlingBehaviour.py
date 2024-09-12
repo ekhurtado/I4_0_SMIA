@@ -63,6 +63,7 @@ class InteractionHandlingBehaviour(CyclicBehaviour):
                     case 'core-service-request':
                         _logger.interactioninfo("The AAS Manager has received a service request from the AAS Core.")
                         # TODO
+                        # TODO, desarrollarlo junto al logical AAS Core de la aplicacion del warehouse con transportes ROS. Vendran peticiones de negociacion y de envio de mensaje ACL para ejecutar servicios
                     case 'core-service-response':
                         _logger.interactioninfo("The AAS Manager has received a service response from the AAS Core.")
                         _logger.interactioninfo("The service with id " + str(msg_json_value['interactionID']) +

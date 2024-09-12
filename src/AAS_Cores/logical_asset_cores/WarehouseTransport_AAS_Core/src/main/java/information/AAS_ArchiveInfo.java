@@ -18,4 +18,8 @@ public class AAS_ArchiveInfo {
     public static final String coreStatusFilePath = "/aas_archive/status/aas_core.json";
     public static final String managerStatusFilePath = "/aas_archive/status/aas_manager.json";
 
+    // Config file
+    public static final String configFolderPath = "/aas_archive/config";
+    public static final String aasPropertiesFileName = "aas.properties";
+
 }

@@ -8,14 +8,14 @@ data:
   # Properties files
   aas.properties: |
     [general-information]
-    logicalID=aasmanagertest01
+    logicalID=aas-logical-warehouse-test01
     endpoint=7000
         
     [services-information]
     services.1=getAssetData
     services.2=getSubmodelData
-    applicationToExecute=collection
-            # Other value for applicationToExecute -> delivery
+    applicationToExecute=delivery
+            # Values for applicationToExecute -> delivery or collection
         
     [other-aas-information]
     transport-aas-ids=aas-ros-test01@ejabberd,aas-ros-test02@ejabberd

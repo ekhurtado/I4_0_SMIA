@@ -1,6 +1,8 @@
 package utilities;
 
 import information.KafkaInfo;
+import logic.AASCore;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.clients.producer.KafkaProducer;
@@ -55,6 +57,7 @@ public class InteractionUtils {
         kafkaProducerPartitionCore.send(record);
         kafkaProducerPartitionCore.flush();
         System.out.println("Kafka message sent!");
+        kafkaProducerPartitionCore.close();
 
         return "OK";
     }
@@ -67,6 +70,38 @@ public class InteractionUtils {
         if (!result.equals("OK")) {
             System.err.println("Interaction AAS Manager-Core not working");
         }
+    }
+
+    public static void sendInteractionRequestToManager(JSONObject msg_data) {
+        System.out.println("Sending Intra AAS interaction request to the AAS Manager through Kafka...");
+        String result = sendInteractionMsgToManager("core-service-request", msg_data);
+        if (!result.equals("OK")) {
+            System.err.println("Interaction AAS Manager-Core not working");
+        }
+        // After the request has been made, the interaction_id is increased
+        AASCore.getInstance().increaseInteractionIDNum();
+    }
+
+    public static JSONObject createInteractionObjectForManagerRequest(String serviceType, String serviceID, JSONObject serviceParams) {
+        JSONObject interactionJSON = new JSONObject();
+        interactionJSON.put("interactionID", AASCore.getInstance().getInteractionID());
+        interactionJSON.put("thread", createThread());
+        interactionJSON.put("serviceType", serviceType);
+        interactionJSON.put("serviceID", serviceID);
+
+        JSONObject serviceDataJSON = new JSONObject();
+        serviceDataJSON.put("serviceCategory", "service-request");
+        serviceDataJSON.put("timestamp", System.currentTimeMillis() / 1000);
+        if (serviceParams != null)
+            serviceDataJSON.put("serviceParams", serviceParams);
+        interactionJSON.put("serviceData", serviceDataJSON);
+
+        return interactionJSON;
+    }
+
+    public static String createThread() {
+        String randomString = RandomStringUtils.random(5, true, true);
+        return AASCore.getInstance().getAASID() + "-" + randomString;
     }
 
 }

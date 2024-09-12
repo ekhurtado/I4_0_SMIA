@@ -9,7 +9,7 @@ public class KafkaInfo {
     public static final String KAFKA_SERVER_IP = "mi-cluster-mensajeria-kafka-bootstrap.kafka-ns";
 
     // Kafka topic related information
-    public static final String KAFKA_TOPIC = "aastest01";
+    public static final String KAFKA_TOPIC = "aas-logical-warehouse-test01";
     public static final int MANAGER_TOPIC_PARTITION = 0;
     public static final int CORE_TOPIC_PARTITION = 1;
 

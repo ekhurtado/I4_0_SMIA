@@ -98,7 +98,7 @@ class HandleSvcRequestBehaviour(OneShotBehaviour):
                 client_id='i4-0-smia-manager',
                 msg_key='manager-service-request',
                 msg_data=interaction_request_json)
-            if request_result != "OK":
+            if request_result != "OK":  # TODO Pensar si añadir esto dentro del send_interaction_msg_to_core, al igual que incrementar el interactionID. Es decir, que ese metodo se encargue de enviar el mensaje por Kafka y asegurarse de que no hay problemas, y despues incrementar el id porque ha salido bien
                 _logger.error("The AAS Manager-Core interaction is not working: " + str(request_result))
             else:
                 _logger.interactioninfo("The service with interaction id [" + await self.myagent.get_interaction_id() +
@@ -115,7 +115,7 @@ class HandleSvcRequestBehaviour(OneShotBehaviour):
                      + " responsible for interaction [" + current_interaction_id + "]. Action: request data added")
 
                 # Finally, it has to increment the interaction id as new requests has been made
-                await self.myagent.increase_interaction_id_num()
+                await self.myagent.increase_interaction_id_num()    # TODO pensar muy bien donde aumentarlo (quizas dentro del propio send_interaction_msg_to_core de Interaction_utils? para no olvidarlo)
                 _logger.interactioninfo("interaction_id shared object updated by " + str(self.__class__.__name__)
                                         + " responsible for interaction [" + current_interaction_id +
                                         "]. Action: interaction_id increased")

@@ -22,9 +22,6 @@ public class InteractionHandlingLogic extends Thread {
             final ConsumerRecords<String, String> consumerRecords =
                     kafkaConsumerPartitionManager.poll(Duration.ofMillis(10000));
 
-            System.out.println("Consumer record:");
-            System.out.println(consumerRecords.toString());
-
             consumerRecords.forEach(record -> {
                 System.out.println("Mensaje recibido:");
 
@@ -32,19 +29,25 @@ public class InteractionHandlingLogic extends Thread {
                 System.out.println("VALUE: " + record.value());
 //                System.out.println("PARTITION:" + record.partition());
 //                System.out.println("OFFSET:" + record.offset());
-//
 //                System.out.printf("Consumer Record:(%s, %s, %d, %d)\n",
 //                        record.key(), record.value(),
 //                        record.partition(), record.offset());
 
                 // The next service request information if JSON format is in the value of the message
                 JSONObject nextRequestJSON = transformStringToJSON(record.value());
-                if (nextRequestJSON.containsKey("status")) {
+                if (record.key().equals("manager-status")) {
                     AASCore.LOGGER.info("New status of the AAS Manager: " + nextRequestJSON.get("status"));
                     AASCore aas_core = AASCore.getInstance();
                     aas_core.setManagerStatus((String) nextRequestJSON.get("status"));
-                    if (!aas_core.getManagerStatus().equals("Initializing"))
+                    if (!aas_core.getManagerStatus().equals("Initializing")) {
                         AASCore.LOGGER.info("AAS Manager has initialized, so the AAS Core can go to running state.");
+                        AASCore.LOGGER.info("The ApplicationExecutionLogic will be unlocked to start its execution");
+                        AASCore.getInstance().unlockLogic();
+                    }
+                } else if (record.key().equals("manager-service-response")) {
+                    AASCore.LOGGER.info("The Manager has reply to a previous service request of the AAS Core");
+                    // TODO en este caso son las respuestas de las peticiones de negociacion, transporte, almacenamiento... Hay que pensar como pasarle esta informacion al thread ApplicationLogic y tambien hay que desbloquear su ejecucion (estara a la espera con el lockLogic)
+
 
                 } else {
                     AASCore.LOGGER.info("The Manager has requested a service to the AAS Core");
