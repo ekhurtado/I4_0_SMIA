@@ -39,6 +39,33 @@ def create_svc_request_interaction_json(interaction_id, request_data):
     svc_request_json['serviceData']['timestamp'] = GeneralUtils.get_current_timestamp()
     return svc_request_json
 
+def create_intra_aas_response_object(intra_aas_request, inter_aas_response):
+    """
+    This method creates the Intra AAS interaction response object using the initial Intra AAS interaction request and
+    the Inter AAS interaction response needed to perform the initial service request.
+
+    Args:
+        intra_aas_request (dict): all the information about the Intra AAS interaction request
+        inter_aas_response (dict): all the information about the Inter AAS interaction response
+
+    Returns:
+        dict: Intra AAS response object in JSON format
+    """
+
+    response_json = {'thread': inter_aas_response['thread'],
+                     'serviceType': intra_aas_request['serviceType'],
+                     'serviceID': inter_aas_response['serviceID'],
+                     'serviceData': {
+                         'serviceCategory': 'service-response',
+                         'timestamp': GeneralUtils.get_current_timestamp(),
+                         'serviceStatus': inter_aas_response['serviceData']['serviceStatus'],  # The status of the
+                                                                                # Inter AAS Interaction is obtained
+                     }
+                     }
+    if 'serviceParams' in inter_aas_response['serviceData']:
+        response_json['serviceData']['serviceParams'] = inter_aas_response['serviceData']['serviceParams']
+    return response_json
+
 
 def add_new_svc_request(new_request_json):
     """

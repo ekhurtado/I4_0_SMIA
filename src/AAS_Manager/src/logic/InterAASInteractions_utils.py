@@ -7,15 +7,15 @@ from utilities.GeneralUtils import GeneralUtils
 _logger = logging.getLogger(__name__)
 
 
-def create_svc_req_data_from_acl_msg(acl_msg):
+def create_svc_json_data_from_acl_msg(acl_msg):
     """
-    This method creates the dictionary with all the required data of the service request from an ACL message.
+    This method creates the dictionary with all the required data of a service related to an ACL message.
 
     Args:
         acl_msg (spade.message.Message): ACL message where to get the information
 
     Returns:
-        dict: dictionary with all the information about the service request
+        dict: dictionary with all the information about the service
     """
     svc_req_data_json = {
         'performative': acl_msg.get_metadata('performative'),

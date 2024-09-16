@@ -77,7 +77,7 @@ class SvcACLHandlingBehaviour(CyclicBehaviour):
             service_category = msg_json_body['serviceData']['serviceCategory']
 
             if service_category == 'service-request':
-                # A new service request is added to the global dictionary of ACL requests of the agent
+                # The new service request is looked up in the agent's global ACL request dictionary.
                 if await self.myagent.get_acl_svc_request(thread=msg.thread) is not None:
                     _logger.error("A request has been made for an ACL service that already exists.")
                 else:
@@ -93,7 +93,7 @@ class SvcACLHandlingBehaviour(CyclicBehaviour):
                     _logger.aclinfo("acl_svc_requests shared object updated by " + str(self.__class__.__name__)
                                     + " responsible for thread [" + msg.thread + "]. Action: request data added")
 
-                    svc_req_data = InterAASInteractions_utils.create_svc_req_data_from_acl_msg(msg)
+                    svc_req_data = InterAASInteractions_utils.create_svc_json_data_from_acl_msg(msg)
 
                     # A new behaviour is added to the SPADE agent to handle this specific service request
                     svc_req_handling_behav = HandleSvcRequestBehaviour(self.agent,

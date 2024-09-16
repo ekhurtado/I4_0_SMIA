@@ -2,7 +2,7 @@ import logging
 
 from spade.behaviour import OneShotBehaviour
 
-from logic import IntraAASInteractions_utils
+from logic import IntraAASInteractions_utils, Negotiation_utils
 
 _logger = logging.getLogger(__name__)
 
@@ -84,8 +84,10 @@ class HandleSvcRequestBehaviour(OneShotBehaviour):
         This method handles Asset Related Services. These services are part of I4.0 Application Component (application
         relevant).
         """
-        # TODO este tipo de servicios supongo que siempre se solicitaran via ACL, pero aun asi pongo el if
         if self.svc_req_interaction_type == 'Inter AAS interaction':
+            # TODO esto hay que revisarlo. De momento, si llega una peticion por ACL directamente la solicito por Kafka,
+            #  ya que es AssetRelatedService. Aun asi, habria que analizar si existe alguna variable o atributo a
+            #  revisar para saber qué acción tomar
             # In this type of services an interaction request have to be made to the AAS Core
             # First, the valid JSON structure of the request is generated
             current_interaction_id = await self.myagent.get_interaction_id()
@@ -121,8 +123,37 @@ class HandleSvcRequestBehaviour(OneShotBehaviour):
                                         "]. Action: interaction_id increased")
 
         elif self.svc_req_interaction_type == 'Intra AAS interaction':
-            # TODO pensar como se gestionaria este caso
-            print("Asset Related Service requested through Intra AAS interaction")
+            # In this type of services an interaction request has received from the AAS Core, so it must analyze the
+            # requested service
+            _logger.info("Asset Related Service requested through Intra AAS interaction")
+
+            match self.svc_req_data['serviceID']:
+                case 'startNegotiation':
+                    _logger.info("The AAS Core has requested to start a negotiation. To do so, an Inter AAS Request "
+                                 "must be made.")
+
+                    # Create the Inter AAS Interaction required JSON for start a negotiation
+                    start_neg_acl_msg = Negotiation_utils.create_neg_cfp_msg(
+                        thread=self.svc_req_data['thread'],
+                        targets=self.svc_req_data['serviceData']['serviceParams']['targets'],
+                        neg_requester_jid=str(self.myagent.jid),
+                        neg_criteria=self.svc_req_data['serviceData']['serviceParams']['criteria'],
+                    )
+
+                    # Send the FIPA-ACL message
+                    await self.send(start_neg_acl_msg)
+                    _logger.aclinfo("ACL request sent to start a negotiation request with thread ["
+                                    + self.svc_req_data['thread'] + "]")
+
+                    # The information about the interaction request is also stored in the global variables of the agent
+                    await self.myagent.save_interaction_request(interaction_id=self.svc_req_data['interactionID'],
+                                                                request_data=self.svc_req_data)
+
+                case 'sendACLmessage':
+                    # TODO add logic to send a FIPA-ACL msg
+                    _logger.info("The AAS Core has requested to send a FIPA-ACL message.")
+                case _:
+                    logging.error("This serviceID is not available for requesting through Intra AAS interaction.")
 
     async def handle_aas_infrastructure_svc(self):
         """

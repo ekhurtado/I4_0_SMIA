@@ -2,8 +2,9 @@ import logging
 
 from spade.behaviour import CyclicBehaviour
 
+from behaviours.HandleSvcRequestBehaviour import HandleSvcRequestBehaviour
 from behaviours.HandleSvcResponseBehaviour import HandleSvcResponseBehaviour
-from logic import IntraAASInteractions_utils
+from logic import IntraAASInteractions_utils, InterAASInteractions_utils
 
 _logger = logging.getLogger(__name__)
 
@@ -64,15 +65,32 @@ class InteractionHandlingBehaviour(CyclicBehaviour):
                         _logger.interactioninfo("The AAS Manager has received a service request from the AAS Core.")
                         # TODO
                         # TODO, desarrollarlo junto al logical AAS Core de la aplicacion del warehouse con transportes ROS. Vendran peticiones de negociacion y de envio de mensaje ACL para ejecutar servicios
+                        # The new service request is looked up in the agent's global ACL request dictionary.
+                        if await self.myagent.get_interaction_request(str(msg_json_value['interactionID'])) is not None:
+                            _logger.error("A request has been made for an ACL service that already exists.")
+                        else:
+                            # All the information will be saved using the interactionID, but also the thread has to be
+                            # saved in case an Inter AAS interaction is needed
+                            _logger.interactioninfo("A new HandleSvcRequestBehaviour to handle this specific "
+                                                    "request will be added to the agent")
+
+                            # A new behaviour is added to the SPADE agent to handle this specific service request
+                            svc_req_handling_behav = HandleSvcRequestBehaviour(self.agent,
+                                                                               'Intra AAS interaction',
+                                                                               msg_json_value)
+                            self.myagent.add_behaviour(svc_req_handling_behav)
+
+
                     case 'core-service-response':
                         _logger.interactioninfo("The AAS Manager has received a service response from the AAS Core.")
                         _logger.interactioninfo("The service with id " + str(msg_json_value['interactionID']) +
                                                 " has been answered from the AAS Core to the AAS Manager. Data of the "
                                                 "response: " + str(msg_json_value))
                         # A new behaviour is added to the SPADE agent to handle this specific service request
+                        svc_resp_data = InterAASInteractions_utils.create_svc_json_data_from_acl_msg(msg)
                         svc_resp_handling_behav = HandleSvcResponseBehaviour(self.agent,
                                                                              'Intra AAS interaction',
-                                                                             msg_json_value)
+                                                                             svc_resp_data)
                         self.myagent.add_behaviour(svc_resp_handling_behav)
 
         finally:

@@ -11,6 +11,38 @@ from utilities.GeneralUtils import GeneralUtils
 
 _logger = logging.getLogger(__name__)
 
+def create_neg_cfp_msg(thread, targets, neg_requester_jid, neg_criteria):
+    """
+    This method creates the FIPA-ACL CallForProposal (CFP) message that will be sent to all participants to start
+    a negotiation.
+
+    Args:
+        thread (str): the thread of the ACL message.
+        targets (str): the JIDs of the SPADE agents that are participating in the negotiation. Is it a string that has the JIDs divided by ','
+        neg_requester_jid (str):  the JID of the SPADE agent that has requested the negotiation.
+        neg_criteria (str): criteria of the negotiation.
+
+    Returns:
+        spade.message.Message: SPADE message object FIPA-ACL-compliant.
+    """
+    cfp_msg = Message(thread=thread)
+    cfp_msg.metadata = AASmanagerInfo.NEG_STANDARD_ACL_TEMPLATE_CFP.metadata
+
+    neg_cfp_json = {
+        'serviceID': 'startNegotiation',
+        'serviceType': 'AssetRelatedService',  # TODO cambiarlo si se decide que es de otro tipo
+        'serviceData': {
+            'serviceCategory': 'service-request',
+            'timestamp': GeneralUtils.get_current_timestamp(),
+            'serviceParams': {
+                'targets': targets,
+                'neg_requester_jid': neg_requester_jid,
+                'criteria': neg_criteria
+            }
+        }
+    }
+    cfp_msg.body = json.dumps(neg_cfp_json)
+    return cfp_msg
 
 def create_neg_propose_msg(thread, targets, neg_requester_jid, neg_criteria, neg_value):
     """
@@ -149,3 +181,20 @@ def add_value_and_unlock_neg_handling_behaviour(agent, thread, neg_value):
                 # The execution of this behaviour is also unlocked
                 behaviour.neg_value_event.set()
                 break
+
+
+def get_neg_intra_aas_request_by_thread(agent, thread):
+    """
+    This method gets the data of an Intra AAS Interaction using the thread value.
+    Args:
+        agent (agents.AASManagerAgent): the SPADE agent object that represents the AAS Manager.
+        thread (str): the thread of the negotiation, which is its identifier.
+
+    Returns:
+        dict: dictionary with all the information about the Intra AAS interaction request. None if it does not exist.
+    """
+    for req_interaction_id, req_data in agent.interaction_requests.items():
+        if req_data['thread'] == thread:
+            req_data['interactionID'] = req_interaction_id
+            return req_data
+    return None

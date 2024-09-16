@@ -4,7 +4,8 @@ import logging
 from spade.behaviour import CyclicBehaviour
 
 from behaviours.HandleNegotiationBehaviour import HandleNegotiationBehaviour
-from logic import Negotiation_utils
+from behaviours.HandleSvcResponseBehaviour import HandleSvcResponseBehaviour
+from logic import Negotiation_utils, InterAASInteractions_utils
 from utilities.AASmanagerInfo import AASmanagerInfo
 
 _logger = logging.getLogger(__name__)
@@ -113,7 +114,22 @@ class NegotiatingBehaviour(CyclicBehaviour):
                         self.myagent.add_behaviour(handle_neg_behav, handle_neg_template)
 
                 case "Inform":
-                    _logger.aclinfo("The agent has received a request to participate in a negotiation: Inform")
+                    _logger.aclinfo("The agent has received an Inter AAS interaction message related to a negotiation:"
+                                    " Inform")
+                    if msg_json_body['serviceID'] == 'negotiationResult':
+                        _logger.aclinfo("The agent has received the result of the negotiation with thread ["+
+                                        msg.thread+"].")
+                        # As the result of a negotiation is a response to a previous request, a new
+                        # HandleSvcResponseBehaviour to handle this service response will be added to the agent
+                        svc_resp_data = InterAASInteractions_utils.create_svc_json_data_from_acl_msg(msg)
+                        svc_resp_handling_behav = HandleSvcResponseBehaviour(self.agent,
+                                                                             'Inter AAS interaction',
+                                                                             svc_resp_data)
+                        self.myagent.add_behaviour(svc_resp_handling_behav)
+                    else:
+                        # TODO
+                        print('serviceID not available')
+
                     # TODO pensar como se deberian gestionar este tipo de mensajes en una negociacion
                 case "Propose":
                     _logger.aclinfo("The agent has received a response in a negotiation: Propose")
