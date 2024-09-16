@@ -65,7 +65,7 @@ class NegotiatingBehaviour(CyclicBehaviour):
                     _logger.aclinfo("The agent has received a request to start a negotiation (CFP) with thread ["
                                     + msg.thread + "]")
                     # First, some useful information is obtained from the msg
-                    targets_list = eval(msg_json_body['serviceData']['serviceParams']['targets'])
+                    targets_list = msg_json_body['serviceData']['serviceParams']['targets'].split(',')
 
                     if '/' in str(msg.sender):  # XMPP server can add a random string to differentiate the agent JID
                         neg_requester_jid = str(msg.sender).split('/')[0]

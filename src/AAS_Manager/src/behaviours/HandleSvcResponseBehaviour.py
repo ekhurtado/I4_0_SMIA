@@ -168,7 +168,7 @@ class HandleSvcResponseBehaviour(OneShotBehaviour):
                 case 'negotiationResult':
                     _logger.info("The result of a negotiation has arrived. It must be checked if it is a negotiation "
                                  "requested by the AAS core.")
-                    intra_aas_request = Negotiation_utils.get_neg_intra_aas_request_by_thread(agent_object=self.myagent,
+                    intra_aas_request = Negotiation_utils.get_neg_intra_aas_request_by_thread(agent=self.myagent,
                                                                           thread=self.svc_resp_data['thread'])
                     if intra_aas_request is not None:
                         _logger.info("The result of the negotiation is due to a previous start negotiation request from "
@@ -188,9 +188,9 @@ class HandleSvcResponseBehaviour(OneShotBehaviour):
                         if request_result != "OK":  # TODO Pensar si añadir esto dentro del send_interaction_msg_to_core, al igual que incrementar el interactionID. Es decir, que ese metodo se encargue de enviar el mensaje por Kafka y asegurarse de que no hay problemas, y despues incrementar el id porque ha salido bien
                             _logger.error("The AAS Manager-Core interaction is not working: " + str(request_result))
                         else:
-                            _logger.interactioninfo(
-                                "The service with interaction id [" + await self.myagent.get_interaction_id() +
-                                "] to the AAS Core has been replied")
+                            _logger.interactioninfo("The service with interaction id ["
+                                                    + await self.myagent.get_interaction_id() +
+                                                    "] to the AAS Core has been replied")
 
                         # Since the request has been performed, it is removed from the global dictionary
                         await self.myagent.remove_interaction_request(interaction_id=intra_aas_request['interactionID'])

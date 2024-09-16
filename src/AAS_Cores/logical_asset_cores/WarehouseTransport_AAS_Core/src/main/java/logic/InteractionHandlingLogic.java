@@ -47,7 +47,10 @@ public class InteractionHandlingLogic extends Thread {
                 } else if (record.key().equals("manager-service-response")) {
                     AASCore.LOGGER.info("The Manager has reply to a previous service request of the AAS Core");
                     // TODO en este caso son las respuestas de las peticiones de negociacion, transporte, almacenamiento... Hay que pensar como pasarle esta informacion al thread ApplicationLogic y tambien hay que desbloquear su ejecucion (estara a la espera con el lockLogic)
+                    if (nextRequestJSON.get("serviceID").equals("negotiationResult")) {
+                        // In this case, the response is the result of a previously requested negotiation
 
+                    }
 
                 } else {
                     AASCore.LOGGER.info("The Manager has requested a service to the AAS Core");

@@ -71,8 +71,7 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
                                                                    neg_criteria=self.neg_criteria,
                                                                    neg_value=str(self.neg_value))
         # This PROPOSE FIP-ACL message is sent to all participants of the negotiation (except for this AAS Manager)
-        targets_list = eval(self.targets)
-        for jid_target in targets_list:
+        for jid_target in self.targets.split(','):
             if jid_target != str(self.agent.jid):
                 acl_propose_msg.to = jid_target
                 await self.send(acl_propose_msg)
@@ -112,7 +111,7 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
             # The target is added as processed in the local object (as it is a Python 'set' object there is no problem
             # of duplicate agents)
             self.targets_processed.add(str(msg.sender))
-            if len(self.targets_processed) == len(eval(self.targets)) - 1:
+            if len(self.targets_processed) == len(self.targets.split(',')) - 1:
                 # In this case all the values have already been received, so the value of this AAS Manager is the best
                 _logger.info("The AAS has won the negotiation with thread [" + msg.thread + "]")
 

@@ -140,10 +140,16 @@ class HandleSvcRequestBehaviour(OneShotBehaviour):
                         neg_criteria=self.svc_req_data['serviceData']['serviceParams']['criteria'],
                     )
 
-                    # Send the FIPA-ACL message
-                    await self.send(start_neg_acl_msg)
-                    _logger.aclinfo("ACL request sent to start a negotiation request with thread ["
-                                    + self.svc_req_data['thread'] + "]")
+                    # Send the FIPA-ACL messages to all participants
+                    # This PROPOSE FIPA-ACL message is sent to all participants of the negotiation (except for this AAS Manager)
+                    print(self.svc_req_data['serviceData']['serviceParams']['targets'])
+                    targets_list = self.svc_req_data['serviceData']['serviceParams']['targets'].split(',')
+                    for jid_target in targets_list:
+                        if jid_target != str(self.agent.jid):
+                            start_neg_acl_msg.to = jid_target
+                            await self.send(start_neg_acl_msg)
+                            _logger.aclinfo("ACL CallForProposal negotiation message sent to " + jid_target +
+                                            " on negotiation with thread [" + self.svc_req_data['thread'] + "]")
 
                     # The information about the interaction request is also stored in the global variables of the agent
                     await self.myagent.save_interaction_request(interaction_id=self.svc_req_data['interactionID'],

@@ -50,20 +50,20 @@ public class InteractionUtils {
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
 
         KafkaProducer<String, String> kafkaProducerPartitionCore = new KafkaProducer<>(props);
-        System.out.println("Kafka Producer created");
+        AASCore.LOGGER.info("Kafka Producer created");
 
         ProducerRecord<String, String> record = new ProducerRecord<>(KafkaInfo.KAFKA_TOPIC,
                 KafkaInfo.CORE_TOPIC_PARTITION, msg_key, msg_data.toString());
         kafkaProducerPartitionCore.send(record);
         kafkaProducerPartitionCore.flush();
-        System.out.println("Kafka message sent!");
+        AASCore.LOGGER.info("Kafka message sent!");
         kafkaProducerPartitionCore.close();
 
         return "OK";
     }
 
     public static void sendAASCoreStatusToManager(String currentState) {
-        System.out.println("Sending current state [" + currentState + "] to the AAS Manager through Kafka...");
+        AASCore.LOGGER.info("Sending current state [{}] to the AAS Manager through Kafka...", currentState);
         JSONObject msg_data = new JSONObject();
         msg_data.put("status", currentState);
         String result = sendInteractionMsgToManager("core-status", msg_data);
@@ -73,7 +73,7 @@ public class InteractionUtils {
     }
 
     public static void sendInteractionRequestToManager(JSONObject msg_data) {
-        System.out.println("Sending Intra AAS interaction request to the AAS Manager through Kafka...");
+        AASCore.LOGGER.info("Sending Intra AAS interaction request to the AAS Manager through Kafka...");
         String result = sendInteractionMsgToManager("core-service-request", msg_data);
         if (!result.equals("OK")) {
             System.err.println("Interaction AAS Manager-Core not working");

@@ -9,7 +9,6 @@ import org.json.simple.JSONObject;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -31,7 +30,8 @@ public class AASCore {
 
     private int interactionIdNum;
 
-    private HashMap<String,JSONObject> serviceRecord;
+    private HashMap<String,JSONObject> serviceRequestsRecord;
+    private HashMap<String,JSONObject> serviceResponsesRecord;
     private ArrayList<String> transportAASIDList;
     private ArrayList<String> warehouseAASIDList;
 
@@ -44,7 +44,9 @@ public class AASCore {
         aasManagerStatus = "Unknown";
         interactionIdNum = 0;
 
-        serviceRecord = new HashMap<>();
+        serviceRequestsRecord = new HashMap<>();
+        serviceResponsesRecord = new HashMap<>();
+
         transportAASIDList = new ArrayList<>();
         warehouseAASIDList = new ArrayList<>();
 
@@ -102,6 +104,14 @@ public class AASCore {
         return StringUtils.join(transportAASIDList, ",");
     }
 
+    public JSONObject getServiceRequestRecord(String thread) {
+        return serviceRequestsRecord.get(thread);
+    }
+
+    public JSONObject getServiceResponseRecord(String thread) {
+        return serviceResponsesRecord.get(thread);
+    }
+
     // SET METHODS
     public void setStatus(String newStatus) {
         aasCoreStatus = newStatus;
@@ -115,6 +125,13 @@ public class AASCore {
         interactionIdNum += 1;
     }
 
+    public void addNewServiceRequestRecord(JSONObject requestData) {
+        serviceRequestsRecord.put((String) requestData.get("thread"), requestData);
+    }
+
+    public void addNewServiceResponseRecord(JSONObject responseData) {
+        serviceResponsesRecord.put((String) responseData.get("thread"), responseData);
+    }
 
     // Methods related to the logic of the AAS Core
     // -------------------------------------------

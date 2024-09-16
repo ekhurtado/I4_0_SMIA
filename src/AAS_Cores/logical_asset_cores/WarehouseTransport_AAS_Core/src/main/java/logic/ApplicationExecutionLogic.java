@@ -94,8 +94,15 @@ public class ApplicationExecutionLogic extends Thread {
         // Once the negotiation winner has received, the service request to perform the transport will be sent to the
         // winner through an Intra AAS interaction request
         AASCore.LOGGER.info("Requesting the transport service to move the product to the warehouse...");
+        // First, it has to get the winner from the responses data of the AAS Core
+        AASCore aasCore = AASCore.getInstance();
+        JSONObject responseJSON = aasCore.getServiceResponseRecord((String) negotiationInteractionRequestJSON.get("thread"));
+        String winnerJID = (String) ((JSONObject)((JSONObject) responseJSON.get("serviceData")).get("serviceParams")).get("winner");
+        serviceParams = new JSONObject();
+        serviceParams.put("receiver", winnerJID);
+        serviceParams.put("serviceID", "delivery");
         JSONObject transportInteractionRequestJSON = InteractionUtils.createInteractionObjectForManagerRequest(
-                "AssetRelatedService", "delivery", null);
+                "AssetRelatedService", "sendInterAASsvcRequest", serviceParams);
         InteractionUtils.sendInteractionRequestToManager(transportInteractionRequestJSON);
         // In this case it must also wait to receive confirmation that the service has been performed
         AASCore.LOGGER.info("ApplicationExecutionLogic waiting to receive confirmation that the transport service " +

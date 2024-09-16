@@ -18,7 +18,8 @@ data:
             # Values for applicationToExecute -> delivery or collection
         
     [other-aas-information]
-    transport-aas-ids=aas-ros-test01@ejabberd,aas-ros-test02@ejabberd
+    #transport-aas-ids=aas-ros-test01@ejabberd,aas-ros-test02@ejabberd
+    transport-aas-ids=aastest01@ejabberd,aasrostest01@ejabberd
     warehouse-aas-ids=aas-opcua-test01@ejabberd
 
 

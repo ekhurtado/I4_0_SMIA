@@ -87,10 +87,9 @@ class InteractionHandlingBehaviour(CyclicBehaviour):
                                                 " has been answered from the AAS Core to the AAS Manager. Data of the "
                                                 "response: " + str(msg_json_value))
                         # A new behaviour is added to the SPADE agent to handle this specific service request
-                        svc_resp_data = InterAASInteractions_utils.create_svc_json_data_from_acl_msg(msg)
                         svc_resp_handling_behav = HandleSvcResponseBehaviour(self.agent,
                                                                              'Intra AAS interaction',
-                                                                             svc_resp_data)
+                                                                             msg_json_value)
                         self.myagent.add_behaviour(svc_resp_handling_behav)
 
         finally:
