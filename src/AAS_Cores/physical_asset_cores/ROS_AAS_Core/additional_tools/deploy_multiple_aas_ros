@@ -1,0 +1,47 @@
+#!/bin/bash
+
+# Define the main files to deploy
+CM_FILE="componentI4_0_ros_configmap.yaml"
+KAFKA_TOPIC_FILE="i4_0_smia_aas_ros_kafka_topic.yaml"
+AAS_MANAGER_FILE="i4_0_smia_aas_manager_ros_deployment.yaml"
+AAS_CORE_FILE="ros_aas_core_deployment.yaml"
+
+# Define the files to create the PersistentVolume
+echo "Creating the persistentvolume for ROS AAS Cores..."
+kubectl apply -f ros_aas_core_archive_pv.yaml
+kubectl apply -f ros_aas_core_archive_pvc.yaml
+echo "Persistentvolume created."
+
+DEPLOY_COMMAND="run configmap.yaml"
+
+# Loop twice for AAS Core 1 and 2 (we have 2 ROS simulations for now)
+for i in {1..2}; do
+    # Generate the id string (id01 for the first iteration and id02 for the second)
+    echo "Deploying AAS with ID aas-ros-test$i"
+
+    # Replace <id> with the generated id string and save in new files in all required deployment files
+    sed "s/<id>/$i/g" $CM_FILE > temp_$CM_FILE
+    sed "s/<id>/$i/g" $KAFKA_TOPIC_FILE > temp_$KAFKA_TOPIC_FILE
+    sed "s/<id>/$i/g" $AAS_MANAGER_FILE > temp_$AAS_MANAGER_FILE
+    sed "s/<id>/$i/g" $AAS_CORE_FILE > temp_$AAS_CORE_FILE
+
+    # Execute the deployment commands
+    kubectl apply -f temp_$CM_FILE
+    echo "$CM_FILE deployed"
+
+    kubectl apply -f temp_$KAFKA_TOPIC_FILE
+    echo "$KAFKA_TOPIC_FILE deployed"
+
+    kubectl apply -f temp_$AAS_MANAGER_FILE
+    echo "$AAS_MANAGER_FILE deployed"
+
+    kubectl apply -f temp_$AAS_CORE_FILE
+    echo "$AAS_CORE_FILE deployed"
+
+    # Clean up the all temporary files
+    rm temp_$CM_FILE
+    rm temp_$KAFKA_TOPIC_FILE
+    rm temp_$AAS_MANAGER_FILE
+    rm temp_$AAS_CORE_FILE
+    echo "Temporary files deleted"
+done

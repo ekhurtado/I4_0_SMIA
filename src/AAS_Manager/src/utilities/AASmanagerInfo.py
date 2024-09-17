@@ -14,12 +14,12 @@ class AASmanagerInfo:
     # Object of the standard template for service requests through ACL messages
     # -------------------------------------------------------------------------
     # TODO finalizar con el plantilla estandar final decidida para la comunicacion entre agentes
-    svc_standard_acl_template_cfp = GeneralUtils.create_acl_template(performative='CallForProposal',
+    SVC_STANDARD_ACL_TEMPLATE_CFP = GeneralUtils.create_acl_template(performative='CallForProposal',
                                                                      ontology='SvcRequest')
-    svc_standard_acl_template_inform = GeneralUtils.create_acl_template(performative='Inform',
+    SVC_STANDARD_ACL_TEMPLATE_INFORM = GeneralUtils.create_acl_template(performative='Inform',
                                                                         ontology='SvcRequest')
     # The template for the service requests is the combination of the different possibilities
-    SVC_STANDARD_ACL_TEMPLATE = (svc_standard_acl_template_cfp | svc_standard_acl_template_inform)
+    SVC_STANDARD_ACL_TEMPLATE = (SVC_STANDARD_ACL_TEMPLATE_CFP | SVC_STANDARD_ACL_TEMPLATE_INFORM)
 
     # Object of the standard template for service requests through ACL messages
     # -------------------------------------------------------------------------

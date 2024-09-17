@@ -4,6 +4,7 @@ import logging
 from spade.behaviour import CyclicBehaviour
 
 from behaviours.HandleSvcRequestBehaviour import HandleSvcRequestBehaviour
+from behaviours.HandleSvcResponseBehaviour import HandleSvcResponseBehaviour
 from logic import InterAASInteractions_utils
 
 _logger = logging.getLogger(__name__)
@@ -66,7 +67,8 @@ class SvcACLHandlingBehaviour(CyclicBehaviour):
             #  otro behaviour diferente
 
             # An ACL message has been received by the agent
-            _logger.aclinfo("         + Message received on AAS Manager Agent (ACLHandlingBehaviour)")
+            _logger.aclinfo("         + Message received on AAS Manager Agent (ACLHandlingBehaviour)"
+                            " from {}".format(msg.sender))
             _logger.aclinfo("                 |___ Message received with content: {}".format(msg.body))
 
             # The msg body will be parsed to a JSON object
@@ -100,6 +102,17 @@ class SvcACLHandlingBehaviour(CyclicBehaviour):
                                                                        'Inter AAS interaction',
                                                                        svc_req_data)
                     self.myagent.add_behaviour(svc_req_handling_behav)
+
+            elif service_category == 'service-response':
+                _logger.aclinfo("The agent has received the response of a service with thread [" + msg.thread + "].")
+
+                # As it is a response to a previous request, a new HandleSvcResponseBehaviour to handle this service
+                # response will be added to the agent
+                svc_resp_data = InterAASInteractions_utils.create_svc_json_data_from_acl_msg(msg)
+                svc_resp_handling_behav = HandleSvcResponseBehaviour(self.agent,
+                                                                     'Inter AAS interaction',
+                                                                     svc_resp_data)
+                self.myagent.add_behaviour(svc_resp_handling_behav)
 
 
         else:

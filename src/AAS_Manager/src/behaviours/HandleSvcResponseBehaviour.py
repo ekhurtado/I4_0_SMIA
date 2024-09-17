@@ -164,57 +164,67 @@ class HandleSvcResponseBehaviour(OneShotBehaviour):
             #  solicitada por el Core.
             _logger.info("Asset Related Service requested through Inter AAS interaction")
 
-            match self.svc_resp_data['serviceID']:
-                case 'negotiationResult':
-                    _logger.info("The result of a negotiation has arrived. It must be checked if it is a negotiation "
-                                 "requested by the AAS core.")
-                    intra_aas_request = Negotiation_utils.get_neg_intra_aas_request_by_thread(agent=self.myagent,
-                                                                          thread=self.svc_resp_data['thread'])
-                    if intra_aas_request is not None:
+            _logger.info("The serviceID is not one of the defaults, so it will be checked to verify if the AAS "
+                         "Core has made a previous service request.")
+            intra_aas_request = Negotiation_utils.get_neg_intra_aas_request_by_thread(agent=self.myagent,
+                                                                                      thread=self.svc_resp_data[
+                                                                                          'thread'])
+            if intra_aas_request is not None:
+                _logger.info("The Inter AAS response is due to a previous Intra AAS request from the AAS Core")
+                match self.svc_resp_data['serviceID']:
+                    case 'negotiationResult':
                         _logger.info("The result of the negotiation is due to a previous start negotiation request from "
                                      "the AAS Core.")
+                    case 'ACLmessageResult':
+                        _logger.info("The Inter AAS response is due to a previous Intra AAS request from the AAS Core")
+                    case _:
+                        _logger.info("The serviceID is not one of the defaults, so the response is due to a previous "
+                                     "Intra AAS request from the AAS Core (the serviceID is the one that is related "
+                                     "with the service requested).")
+                        # The serviceID is updated as it is not one of the defaults
+                        self.svc_resp_data['serviceID'] = 'svcRequestResult'
 
-                        # The Intra AAS interaction has to be replied, so the response JSON will be created
-                        intra_aas_response = IntraAASInteractions_utils.create_intra_aas_response_object(
-                            intra_aas_request=intra_aas_request,
-                            inter_aas_response=self.svc_resp_data
-                        )
+                # The Intra AAS interaction has to be replied, so the response JSON will be created
+                intra_aas_response = IntraAASInteractions_utils.create_intra_aas_response_object(
+                    intra_aas_request=intra_aas_request,
+                    inter_aas_response=self.svc_resp_data
+                )
 
-                        # The response is sent through Intra AAS interaction platform
-                        request_result = await IntraAASInteractions_utils.send_interaction_msg_to_core(
-                            client_id='i4-0-smia-manager',
-                            msg_key='manager-service-response',
-                            msg_data=intra_aas_response)
-                        if request_result != "OK":  # TODO Pensar si añadir esto dentro del send_interaction_msg_to_core, al igual que incrementar el interactionID. Es decir, que ese metodo se encargue de enviar el mensaje por Kafka y asegurarse de que no hay problemas, y despues incrementar el id porque ha salido bien
-                            _logger.error("The AAS Manager-Core interaction is not working: " + str(request_result))
-                        else:
-                            _logger.interactioninfo("The service with interaction id ["
-                                                    + await self.myagent.get_interaction_id() +
-                                                    "] to the AAS Core has been replied")
+                # The response is sent through Intra AAS interaction platform
+                request_result = await IntraAASInteractions_utils.send_interaction_msg_to_core(
+                    client_id='i4-0-smia-manager',
+                    msg_key='manager-service-response',
+                    msg_data=intra_aas_response)
+                if request_result != "OK":  # TODO Pensar si añadir esto dentro del send_interaction_msg_to_core, al igual que incrementar el interactionID. Es decir, que ese metodo se encargue de enviar el mensaje por Kafka y asegurarse de que no hay problemas, y despues incrementar el id porque ha salido bien
+                    _logger.error("The AAS Manager-Core interaction is not working: " + str(request_result))
+                else:
+                    _logger.interactioninfo("The service with interaction id ["
+                                            + await self.myagent.get_interaction_id() +
+                                            "] to the AAS Core has been replied")
 
-                        # Since the request has been performed, it is removed from the global dictionary
-                        await self.myagent.remove_interaction_request(interaction_id=intra_aas_request['interactionID'])
-                        _logger.interactioninfo(
-                            "interaction_requests shared object updated by " + str(self.__class__.__name__) +
-                            " responsible for interaction [" + intra_aas_request['interactionID'] + "]. Action: request data removed")
+                # Since the request has been performed, it is removed from the global dictionary
+                await self.myagent.remove_interaction_request(interaction_id=intra_aas_request['interactionID'])
+                _logger.interactioninfo(
+                    "interaction_requests shared object updated by " + str(self.__class__.__name__) +
+                    " responsible for interaction [" + intra_aas_request[
+                        'interactionID'] + "]. Action: request data removed")
 
-                        # The information if stored in the global dictionary for the responses
-                        await self.myagent.save_interaction_response(interaction_id=intra_aas_request['interactionID'],
-                                                                     response_data=self.svc_resp_data)
-                        _logger.interactioninfo(
-                            "interaction_responses shared object updated by " + str(self.__class__.__name__) +
-                            " responsible for interaction [" + intra_aas_request['interactionID'] + "]. Action: response data added")
+                # The information is stored in the global dictionary for the responses
+                await self.myagent.save_interaction_response(interaction_id=intra_aas_request['interactionID'],
+                                                             response_data=self.svc_resp_data)
+                _logger.interactioninfo(
+                    "interaction_responses shared object updated by " + str(self.__class__.__name__) +
+                    " responsible for interaction [" + intra_aas_request[
+                        'interactionID'] + "]. Action: response data added")
 
-                        # It is also stored in the log of the AAS archive
-                        AAS_Archive_utils.save_svc_log_info(self.svc_resp_data, 'AssetRelatedService')
-                        _logger.info("Information of service with id " + str(intra_aas_request['interactionID']) +
-                                     " has saved correctly in the log of the AAS Archive")
+                # It is also stored in the log of the AAS archive
+                AAS_Archive_utils.save_svc_log_info(self.svc_resp_data, 'AssetRelatedService')
+                _logger.info("Information of service with id " + str(intra_aas_request['interactionID']) +
+                             " has saved correctly in the log of the AAS Archive")
 
-                case 'ACLmessageResult':
-                    # TODO add logic to send a FIPA-ACL msg
-                    _logger.info("AAS core has been replied to a FIPA-ACL message.")
-                case _:
-                    logging.error("This serviceID is not available for responses through Inter AAS interaction.")
+            else:
+                _logger.info("There are no previous Intra AAS requests from AAS core")
+
 
     async def handle_aas_infrastructure_svc(self):
         """

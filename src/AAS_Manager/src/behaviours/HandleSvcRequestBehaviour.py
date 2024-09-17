@@ -2,7 +2,7 @@ import logging
 
 from spade.behaviour import OneShotBehaviour
 
-from logic import IntraAASInteractions_utils, Negotiation_utils
+from logic import IntraAASInteractions_utils, Negotiation_utils, InterAASInteractions_utils
 
 _logger = logging.getLogger(__name__)
 
@@ -154,6 +154,34 @@ class HandleSvcRequestBehaviour(OneShotBehaviour):
                     # The information about the interaction request is also stored in the global variables of the agent
                     await self.myagent.save_interaction_request(interaction_id=self.svc_req_data['interactionID'],
                                                                 request_data=self.svc_req_data)
+
+                case 'sendInterAASsvcRequest':
+                    _logger.info("The AAS Core has requested to send an Inter AAS interaction message to request a "
+                                 "service.")
+
+                    # the Inter AAS Interaction message for requesting a service is created
+                    service_params = self.svc_req_data['serviceData']['serviceParams']
+                    # From serviceParams it has to extract information about the msg ACL and leave the required
+                    # serviceParams of the requested service so that it can be executed
+                    receiver = service_params.pop('receiver')
+                    service_id = service_params.pop('serviceID')
+                    svc_request_acl_msg = InterAASInteractions_utils.create_inter_aas_request_msg(
+                        receiver=receiver,
+                        thread=self.svc_req_data['thread'],
+                        service_id=service_id,
+                        service_type=self.svc_req_data['serviceType'],
+                        service_params=None if len(service_params) == 0 else service_params
+                    )
+
+                    # The ACL message is sent
+                    await self.send(svc_request_acl_msg)
+                    _logger.aclinfo("ACL Service request sent to " +receiver+ " with thread ["
+                                    + self.svc_req_data['thread'] + "]")
+
+                    # The information is stored in the global dictionary for the interaction requests
+                    await self.myagent.save_interaction_request(interaction_id=self.svc_req_data['interactionID'],
+                                                                request_data=self.svc_req_data)
+
 
                 case 'sendACLmessage':
                     # TODO add logic to send a FIPA-ACL msg

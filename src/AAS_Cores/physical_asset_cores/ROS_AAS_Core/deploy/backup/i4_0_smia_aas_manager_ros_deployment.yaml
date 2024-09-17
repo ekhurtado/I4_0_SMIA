@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: i4-0-smia-manager-ros-test<id>
+  name: i4-0-smia-manager-ros-test
   labels:
-    app: i4-0-smia-manager-ros-test<id>
+    app: i4-0-smia-manager-ros-test
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: i4-0-smia-manager-ros-test<id>
+      app: i4-0-smia-manager-ros-test
   template:
     metadata:
       labels:
-        app: i4-0-smia-manager-ros-test<id>
+        app: i4-0-smia-manager-ros-test
     spec:
       containers:
         - name: aas-manager
@@ -47,5 +47,5 @@ spec:
         # The configmap with all the configuration
         - name: component-cm
           configMap:
-            name: component-i4-0-cm-ros<id>
+            name: component-i4-0-cm-ros
 

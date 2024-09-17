@@ -35,9 +35,9 @@ public class InteractionHandlingLogic extends Thread {
 
                 // The next service request information if JSON format is in the value of the message
                 JSONObject nextRequestJSON = transformStringToJSON(record.value());
+                AASCore aas_core = AASCore.getInstance();
                 if (record.key().equals("manager-status")) {
                     AASCore.LOGGER.info("New status of the AAS Manager: " + nextRequestJSON.get("status"));
-                    AASCore aas_core = AASCore.getInstance();
                     aas_core.setManagerStatus((String) nextRequestJSON.get("status"));
                     if (!aas_core.getManagerStatus().equals("Initializing")) {
                         AASCore.LOGGER.info("AAS Manager has initialized, so the AAS Core can go to running state.");
@@ -47,9 +47,13 @@ public class InteractionHandlingLogic extends Thread {
                 } else if (record.key().equals("manager-service-response")) {
                     AASCore.LOGGER.info("The Manager has reply to a previous service request of the AAS Core");
                     // TODO en este caso son las respuestas de las peticiones de negociacion, transporte, almacenamiento... Hay que pensar como pasarle esta informacion al thread ApplicationLogic y tambien hay que desbloquear su ejecucion (estara a la espera con el lockLogic)
-                    if (nextRequestJSON.get("serviceID").equals("negotiationResult")) {
-                        // In this case, the response is the result of a previously requested negotiation
-
+                    if ((nextRequestJSON.get("serviceID").equals("negotiationResult")) ||
+                            (nextRequestJSON.get("serviceID").equals("svcRequestResult"))) {
+                        // In this case, the response is the result of a previously requested service
+                        // The information of the response will be saved in the record for service responses of the AAS Core
+                        aas_core.addNewServiceResponseRecord(nextRequestJSON);
+                        // If the ApplicationExecutionLogic is waiting for a response, so it will be unlocked
+                        aas_core.unlockLogic();
                     }
 
                 } else {

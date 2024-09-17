@@ -69,6 +69,7 @@ public class ApplicationExecutionLogic extends Thread {
         // Recordad que los IDs de los AASs se han añadido en el ConfigMap, estan en la clase AASCore
 
         AASCore.LOGGER.info("Starting delivery application...");
+        AASCore aasCore = AASCore.getInstance();
 
         // First,  a negotiation request will be sent to all transport robots to obtain the best option. The criteria
         // will be the battery
@@ -77,7 +78,7 @@ public class ApplicationExecutionLogic extends Thread {
         JSONObject serviceParams = new JSONObject();
         serviceParams.put("criteria", "battery");
         // The target list in a String separated by ',' is obtained
-        serviceParams.put("targets", AASCore.getInstance().getTransportAASIDListAsString());
+        serviceParams.put("targets", aasCore.getTransportAASIDListAsString());
         JSONObject negotiationInteractionRequestJSON = InteractionUtils.createInteractionObjectForManagerRequest(
                 "AssetRelatedService", "startNegotiation", serviceParams);
         InteractionUtils.sendInteractionRequestToManager(negotiationInteractionRequestJSON);
@@ -95,7 +96,6 @@ public class ApplicationExecutionLogic extends Thread {
         // winner through an Intra AAS interaction request
         AASCore.LOGGER.info("Requesting the transport service to move the product to the warehouse...");
         // First, it has to get the winner from the responses data of the AAS Core
-        AASCore aasCore = AASCore.getInstance();
         JSONObject responseJSON = aasCore.getServiceResponseRecord((String) negotiationInteractionRequestJSON.get("thread"));
         String winnerJID = (String) ((JSONObject)((JSONObject) responseJSON.get("serviceData")).get("serviceParams")).get("winner");
         serviceParams = new JSONObject();
@@ -108,26 +108,40 @@ public class ApplicationExecutionLogic extends Thread {
         AASCore.LOGGER.info("ApplicationExecutionLogic waiting to receive confirmation that the transport service " +
                 "has been realized.");
         try {
-            AASCore.getInstance().lockLogic();  // Wait until the InteractionHandlingLogic gets the status information
+            aasCore.lockLogic();  // Wait until the InteractionHandlingLogic gets the status information
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
         AASCore.LOGGER.info("The transport has already been received, so the application logic can continue.");
+        // Before performing the next step, it will be checked whether the service has been completed
+        responseJSON = aasCore.getServiceResponseRecord((String) transportInteractionRequestJSON.get("thread"));
+        if (!((JSONObject) responseJSON.get("serviceData")).get("serviceStatus").equals("Completed")) {
+            AASCore.LOGGER.error("The transport service has not been completed.");
+            return;     // TODO pensar si añadir excepciones para cuando la aplicacion no sale bien
+        }
 
         // Now, the last part of the application can be performed: the storage of the product in the warehouse
         AASCore.LOGGER.info("Requesting the service to store the product in the warehouse...");
         serviceParams = new JSONObject();
+        serviceParams.put("receiver", aasCore.getWarehouseAASID());
+        serviceParams.put("serviceID", "storeProduct");
         serviceParams.put("target", "INTRODUCE:22"); // TODO para pruebas se ha puesto fijo, si no, se debe seleccionar donde se quiere almacenar
         JSONObject storageInteractionRequestJSON = InteractionUtils.createInteractionObjectForManagerRequest(
-                "AssetRelatedService", "storeProduct", serviceParams);
+                "AssetRelatedService", "sendInterAASsvcRequest", serviceParams);
         InteractionUtils.sendInteractionRequestToManager(storageInteractionRequestJSON);
         // It will wait to receive confirmation that the service has been performed
         AASCore.LOGGER.info("ApplicationExecutionLogic waiting to receive confirmation that the storage service " +
                 "has been realized.");
         try {
-            AASCore.getInstance().lockLogic();  // Wait until the InteractionHandlingLogic gets the status information
+            aasCore.lockLogic();  // Wait until the InteractionHandlingLogic gets the status information
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
+        }
+        // Before finishing the application, it will be checked whether the service has been completed
+        responseJSON = aasCore.getServiceResponseRecord((String) storageInteractionRequestJSON.get("thread"));
+        if (!((JSONObject) responseJSON.get("serviceData")).get("serviceStatus").equals("Completed")) {
+            AASCore.LOGGER.error("The storage service has not been completed.");
+            return;     // TODO pensar si añadir excepciones para cuando la aplicacion no sale bien
         }
         AASCore.LOGGER.info("The product has been stored in the warehouse, so the application has been " +
                 "successfully completed.");

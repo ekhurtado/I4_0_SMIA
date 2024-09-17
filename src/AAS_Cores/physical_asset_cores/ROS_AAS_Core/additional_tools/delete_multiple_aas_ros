@@ -1,0 +1,48 @@
+#!/bin/bash
+
+# Define the main files to delete
+CM_FILE="componentI4_0_ros_configmap.yaml"
+KAFKA_TOPIC_FILE="i4_0_smia_aas_ros_kafka_topic.yaml"
+AAS_MANAGER_FILE="i4_0_smia_aas_manager_ros_deployment.yaml"
+AAS_CORE_FILE="ros_aas_core_deployment.yaml"
+
+DEPLOY_COMMAND="run configmap.yaml"
+
+# Loop twice for AAS Core 1 and 2 (we have 2 ROS simulations for now)
+for i in {1..2}; do
+    # Generate the id string (id01 for the first iteration and id02 for the second)
+    echo "Deleting AAS with ID aas-ros-test$i"
+
+    # Replace <id> with the generated id string and save in new files in all required deployment files
+    sed "s/<id>/$i/g" $CM_FILE > temp_$CM_FILE
+    sed "s/<id>/$i/g" $KAFKA_TOPIC_FILE > temp_$KAFKA_TOPIC_FILE
+    sed "s/<id>/$i/g" $AAS_MANAGER_FILE > temp_$AAS_MANAGER_FILE
+    sed "s/<id>/$i/g" $AAS_CORE_FILE > temp_$AAS_CORE_FILE
+
+    # Delete the deployment commands
+    kubectl delete -f temp_$CM_FILE
+    echo "$CM_FILE deleted"
+
+    kubectl delete -f temp_$KAFKA_TOPIC_FILE
+    echo "$KAFKA_TOPIC_FILE deleted"
+
+    kubectl delete -f temp_$AAS_MANAGER_FILE
+    echo "$AAS_MANAGER_FILE deleted"
+
+    kubectl delete -f temp_$AAS_CORE_FILE
+    echo "$AAS_CORE_FILE deleted"
+
+    # Clean up the all temporary files
+    rm temp_$CM_FILE
+    rm temp_$KAFKA_TOPIC_FILE
+    rm temp_$AAS_MANAGER_FILE
+    rm temp_$AAS_CORE_FILE
+    echo "Temporary files deleted"
+
+done
+
+# Define the files to create the PersistentVolume
+echo "Deleting the persistentvolume for ROS AAS Cores..."
+kubectl delete -f ros_aas_core_archive_pvc.yaml
+kubectl delete -f ros_aas_core_archive_pv.yaml
+echo "Persistentvolume deleted."

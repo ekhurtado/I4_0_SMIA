@@ -7,7 +7,7 @@ import rospy
 from std_msgs.msg import String
 
 import assetRelatedMethods
-from utilities import Interactions_utils
+from utilities import Interactions_utils, AASArchive_utils
 from utilities.AASArchive_utils import file_to_json
 from utilities.Interactions_utils import make_gateway_request, create_response_json_object
 from utilities.KafkaInfo import KafkaInfo
@@ -17,6 +17,8 @@ class AASCore:
     """
     This class contains all the information about the AAS Core
     """
+
+    aas_id = None
 
     state = None
     ready = False
@@ -32,6 +34,9 @@ class AASCore:
 
     def __init__(self):
         print("Init method of AAS Core")
+
+        self.aas_id = None
+
         self.state = 'IDLE'
         self.ready = False
         self.WIP = False
@@ -55,6 +60,9 @@ class AASCore:
         execute a necessary ROS nodes."""
 
         print("Initializing the AAS Core...")
+
+        self.aas_id = AASArchive_utils.get_aas_general_property('logicalID')
+        print("Identifier of the AAS obtained: {}".format(self.aas_id))
 
         # A ROS node corresponding to the AAS Core is executed.
         rospy.init_node('AAS_Core', anonymous=True)

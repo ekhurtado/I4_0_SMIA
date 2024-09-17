@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import os
 from threading import Thread
 
 import rospy
@@ -8,7 +9,6 @@ import json
 import time
 
 processed_requests = []
-
 
 def main():
 
@@ -25,6 +25,10 @@ def main():
         status_file = open('/ros_aas_core_archive/status.json', 'w')
     json.dump({'status': 'IDLE'}, status_file)
     status_file.close()
+
+    print("Changing environmental variable for ROS MASTER URI...")
+    os.environ["ROS_MASTER_URI"] = 'http://192.168.1.62:11311'
+    print("Environmental variable for ROS MASTER URI changed.")
 
     rospy.init_node('ROS_AAS_Core_Gateway', anonymous=True)
 
@@ -103,7 +107,7 @@ def file_to_json(file_path):
     return content
 
 if __name__ == '__main__':
-    print('Gateway to link the AAS Core and ROS simulation resourcees')
+    print('Gateway to link the AAS Core and ROS simulation resources')
     print('Gateway starting...')
     main()
     # print('Gateway ending...')

@@ -80,6 +80,9 @@ public class InteractionUtils {
         }
         // After the request has been made, the interaction_id is increased
         AASCore.getInstance().increaseInteractionIDNum();
+
+        // The information is also saved in the record for service requests of the AAS Core
+        AASCore.getInstance().addNewServiceRequestRecord(msg_data);
     }
 
     public static JSONObject createInteractionObjectForManagerRequest(String serviceType, String serviceID, JSONObject serviceParams) {

@@ -1,5 +1,6 @@
 """File to group useful methods for accessing and managing the AAS Archive."""
 import calendar
+import configparser
 import json
 import logging
 import os
@@ -89,3 +90,18 @@ def change_status(new_status):
     status_file_json['status'] = new_status
     status_file_json['timestamp'] = calendar.timegm(time.gmtime())
     update_json_file(AASarchiveInfo.CORE_STATUS_FILE_PATH, status_file_json)
+
+
+def get_aas_general_property(property_name):
+    """
+    This method returns the property of the AAS set in the ConfigMap by the AAS Controller during the deployment process. This information is stored in "aas.properties" file within "general-information" section.
+
+    Args:
+        property_name (str): The name of the property.
+    Returns:
+        str: The general property of the AAS.
+    """
+    # Read submodels configuration
+    config_sm = configparser.RawConfigParser()
+    config_sm.read(AASarchiveInfo.CONFIG_MAP_PATH + '/' + AASarchiveInfo.CM_AAS_PROPERTIES_FILENAME)
+    return config_sm['general-information'][property_name]

@@ -104,6 +104,10 @@ public class AASCore {
         return StringUtils.join(transportAASIDList, ",");
     }
 
+    public String getWarehouseAASID() {
+        return warehouseAASIDList.get(0);   // TODO de momento solo hay uno
+    }
+
     public JSONObject getServiceRequestRecord(String thread) {
         return serviceRequestsRecord.get(thread);
     }

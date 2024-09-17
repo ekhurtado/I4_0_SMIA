@@ -1,21 +1,39 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ros-aas-core-test<id>
+  name: component-i4-0-ros-test
   labels:
-    app: ros-aas-core-test<id>
+    app: component-i4-0-ros-test
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ros-aas-core-test<id>
+      app: component-i4-0-ros-test
   template:
     metadata:
       labels:
-        app: ros-aas-core-test<id>
+        app: component-i4-0-ros-test
     spec:
       containers:
-        - name: ros-aas-core
+        - name: aas-manager
+          image: ekhurtado/aas-manager:latest
+          imagePullPolicy: Always
+          volumeMounts:
+            - name: aas-archive
+              mountPath: /aas_archive/
+            - name: aas-archive-interactions
+              mountPath: /aas_archive/interactions
+              subPath: interactions
+            - name: aas-archive-submodels
+              mountPath: /aas_archive/submodels
+              subPath: submodels
+            - name: aas-archive-status
+              mountPath: /aas_archive/status
+              subPath: status
+            - name: component-cm
+              mountPath: /aas_archive/config
+
+        - name: aas-core
           image: ekhurtado/aas-core:ros-latest
           imagePullPolicy: Always
           volumeMounts:
@@ -37,10 +55,10 @@ spec:
           env:
             - name: ROS_MASTER_URI
               value: "http://192.168.1.62:11311"
-            #            - name: ROS_HOSTNAME
-            #              valueFrom:
-            #                fieldRef:
-            #                  fieldPath: status.podIP
+#            - name: ROS_HOSTNAME
+#              valueFrom:
+#                fieldRef:
+#                  fieldPath: status.podIP
             - name: ROS_IP
               valueFrom:
                 fieldRef:
@@ -62,9 +80,8 @@ spec:
         # The configmap with all the configuration
         - name: component-cm
           configMap:
-            name: component-i4-0-cm-ros<id>
+            name: component-i4-0-cm
         - name: ros-aas-core-archive
           persistentVolumeClaim:
             claimName: ros-aas-core-archive-claim
-
 
