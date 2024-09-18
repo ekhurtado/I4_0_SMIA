@@ -1,0 +1,11 @@
+<aas:environment xmlns:aas="https://admin-shell.io/aas/3/0">
+	<aas:assetAdministrationShells>
+		<aas:assetAdministrationShell>
+			<aas:id>something_142922d6</aas:id>
+			<aas:assetInformation>
+				<aas:assetKind>Instance</aas:assetKind>
+				<aas:globalAssetId>something_eea66fa1</aas:globalAssetId>
+			</aas:assetInformation>
+		</aas:assetAdministrationShell>
+	</aas:assetAdministrationShells>
+</aas:environment>
