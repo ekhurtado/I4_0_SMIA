@@ -9,7 +9,7 @@ from std_msgs.msg import String
 import assetRelatedMethods
 from utilities import Interactions_utils, AASArchive_utils
 from utilities.AASArchive_utils import file_to_json
-from utilities.Interactions_utils import make_gateway_request, create_response_json_object
+from utilities.Interactions_utils import make_gateway_request, create_response_json_object, add_svc_finished_status
 from utilities.KafkaInfo import KafkaInfo
 
 
@@ -49,6 +49,10 @@ class AASCore:
 
         self.interaction_id_num = 0
 
+        self.aas_id = AASArchive_utils.get_aas_general_property('logicalID')
+        print("Identifier of the AAS obtained: {}".format(self.aas_id))
+        KafkaInfo.KAFKA_TOPIC = self.aas_id
+
     def increase_interaction_id_num(self):
         self.interaction_id_num += 1
 
@@ -60,9 +64,6 @@ class AASCore:
         execute a necessary ROS nodes."""
 
         print("Initializing the AAS Core...")
-
-        self.aas_id = AASArchive_utils.get_aas_general_property('logicalID')
-        print("Identifier of the AAS obtained: {}".format(self.aas_id))
 
         # A ROS node corresponding to the AAS Core is executed.
         rospy.init_node('AAS_Core', anonymous=True)
@@ -138,7 +139,8 @@ class AASCore:
                                         time.sleep(1)
 
                                         # PRUEBA CON GATEWAY
-                                        make_gateway_request('/coordinateIDLE', 'GO')
+                                        req_interaction_id = make_gateway_request(self, '/coordinateIDLE', 'GO')
+                                        add_svc_finished_status(self, req_interaction_id)
 
                                     # Se le ordena a un publicista que publique las coordenadas objetivo
                                     # Para este ejemplo, son coordenadas estáticas, que representan la
@@ -148,12 +150,13 @@ class AASCore:
                                     print("AAS Core wait while moving to warehouse")
 
                                     # PRUEBA CON GATEWAY
-                                    make_gateway_request('/coordinate', '1.43,0.59')
+                                    req_interaction_id = make_gateway_request(self, '/coordinate', '1.43,0.59')
 
                                     # TODO Pensar como hacer para no bloquear el hilo
                                     time.sleep(1)
                                     while not self.state == "ACTIVE":  # wait until the robot has reached the target coordinates
                                         time.sleep(1)
+                                    add_svc_finished_status(self, req_interaction_id)
 
                                     # TODO: para pruebas, eliminamos la peticion de servicio, como que ya se ha ofrecido
                                     self.processed_services[msg_json_value['interactionID']] = msg_json_value
@@ -173,22 +176,27 @@ class AASCore:
 
                                     # Once it is in the active state and has reached the target (has completed the service), the robot
                                     # will proceed to return to the home position.
-                                    time.sleep(2)
+                                    time.sleep(5)
                                     #    Coordenadas estáticas, que representan la posición de ORIGEN del turtlebot3
                                     self.pubCoord.publish("-1.65,-0.56")
 
                                     # PRUEBA CON GATEWAY
-                                    make_gateway_request('/coordinate', '-1.65,-0.56')
+                                    req_interaction_id = make_gateway_request(self, '/coordinate', '-1.65,-0.56')
 
                                     print("AAS Core send collection/delivery point coordinates")
                                     print("AAS Core wait while moving to collection/delivery point")
 
-                                    time.sleep(1)
+                                    time.sleep(10)
                                     while not self.state == "ACTIVE":  # wait until the robot has reached the target coordinates
                                         time.sleep(1)
 
+                                    print("collection/delivery point arrived")
+
                                     # Se "apaga" el flag 'WIP'
                                     self.WIP = False
+
+                                    # The service is defined as completed in the status JSON to notify the gateway
+                                    add_svc_finished_status(self, req_interaction_id)
 
                                 elif msg_json_value['serviceID'] == "getNegotiationValue":
                                     if msg_json_value['serviceData']['serviceParams']['criteria'] == "battery":

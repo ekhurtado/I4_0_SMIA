@@ -1,5 +1,5 @@
 """
-
+Some reusable method related to AAS Manager-Core interactions.
 """
 import calendar
 import json
@@ -73,17 +73,29 @@ def add_new_svc_response(new_response_json):
     update_json_file(svc_requests_file_path, svc_requests_json)
 
 
-def make_gateway_request(ros_topic, ros_msg):
-    global  internal_interaction_id
-    gw_request_obj = {'interactionID': internal_interaction_id,
-                        'ros_topic': ros_topic,
-                        'ros_msg': ros_msg
+def make_gateway_request(aas_core, ros_topic, ros_msg):
+    current_interaction_id = aas_core.get_interaction_id()
+    gw_request_obj = {'aasID': aas_core.aas_id,
+                      'interactionID': current_interaction_id,
+                      'ros_topic': ros_topic,
+                      'ros_msg': ros_msg
                       }
-    internal_interaction_id += 1
+    aas_core.increase_interaction_id_num()
     gw_requests_file_path = '/ros_aas_core_archive/requests.json'
     gw_requests_json = file_to_json(gw_requests_file_path)
     gw_requests_json['requests'].append(gw_request_obj)
     update_json_file('/ros_aas_core_archive/requests.json', gw_requests_json)
+    return current_interaction_id
+
+
+def add_svc_finished_status(aas_core, interaction_id):
+    status_json = file_to_json('/ros_aas_core_archive/status.json')
+    if aas_core.aas_id not in status_json:
+        status_json[aas_core.aas_id] = {interaction_id: 'completed'}
+    else:
+        status_json[aas_core.aas_id][interaction_id] = 'completed'
+    update_json_file('/ros_aas_core_archive/status.json', status_json)
+
 
 # ---------------------
 # Kafka related methods (Intra AAS interaction platform)

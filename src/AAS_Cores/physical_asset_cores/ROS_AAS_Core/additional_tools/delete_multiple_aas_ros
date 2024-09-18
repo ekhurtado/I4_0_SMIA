@@ -8,10 +8,11 @@ AAS_CORE_FILE="ros_aas_core_deployment.yaml"
 
 DEPLOY_COMMAND="run configmap.yaml"
 
+echo "-------------"
 # Loop twice for AAS Core 1 and 2 (we have 2 ROS simulations for now)
 for i in {1..2}; do
     # Generate the id string (id01 for the first iteration and id02 for the second)
-    echo "Deleting AAS with ID aas-ros-test$i"
+    echo "Deleting AAS with ID aas-ros-test0$i"
 
     # Replace <id> with the generated id string and save in new files in all required deployment files
     sed "s/<id>/$i/g" $CM_FILE > temp_$CM_FILE
@@ -38,6 +39,7 @@ for i in {1..2}; do
     rm temp_$AAS_MANAGER_FILE
     rm temp_$AAS_CORE_FILE
     echo "Temporary files deleted"
+    echo "-------------"
 
 done
 

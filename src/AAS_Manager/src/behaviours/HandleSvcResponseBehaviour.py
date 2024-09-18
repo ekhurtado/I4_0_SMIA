@@ -77,7 +77,7 @@ class HandleSvcResponseBehaviour(OneShotBehaviour):
         This method handles Asset Related Services. These services are part of I4.0 Application Component (application
         relevant).
         """
-        # TODO este tipo de servicios supongo que siempre se solicitaran via Kafka, pero aun asi pongo el if
+
         if self.svc_resp_interaction_type == 'Intra AAS interaction':
 
             # If a response of this type has arrived, it means that a previous interaction request has been made to the
@@ -114,11 +114,14 @@ class HandleSvcResponseBehaviour(OneShotBehaviour):
                 #  agente y cambiar el valor del neg_value (no enviar un ACL)
                 match inter_aas_req['ontology']:
                     case "SvcRequest":
-                        # In this case, the previous interaction has been an Inter AAS servie request, so the response
+                        # In this case, the previous interaction has been an Inter AAS service request, so the response
                         # to that request must be sent through FIPA-ACL to the requesting AAS.
+                        _logger.info("The Intra AAS Interaction response is part of an Inter AAS service request, "
+                                     "withi thread [" + self.svc_resp_data['thread'] + "].")
                         inter_aas_response = InterAASInteractions_utils.create_inter_aas_response_object(inter_aas_req,
                                                                                                          self.svc_resp_data)
 
+                        # TODO revisar si devolver el mismo serviceID o serviceType que la peticion Inter AAS
                         acl_msg = GeneralUtils.create_acl_msg(receiver=inter_aas_req['sender'],
                                                               thread=self.svc_resp_data['thread'],
                                                               performative=inter_aas_req['performative'],

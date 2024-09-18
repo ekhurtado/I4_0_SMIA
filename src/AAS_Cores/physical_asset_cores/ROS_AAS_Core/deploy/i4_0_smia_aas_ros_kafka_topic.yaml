@@ -1,7 +1,7 @@
 apiVersion: kafka.strimzi.io/v1beta2
 kind: KafkaTopic
 metadata:
-  name: aasrostest0<id>
+  name: aas-ros-test0<id>
   namespace: kafka-ns
   labels:
     strimzi.io/cluster: mi-cluster-mensajeria
