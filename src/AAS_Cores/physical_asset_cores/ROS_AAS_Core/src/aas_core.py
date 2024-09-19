@@ -250,7 +250,8 @@ class AASCore:
         while True:
             time.sleep(2)
             status_json = file_to_json('/ros_aas_core_archive/status.json')
-            self.state = status_json['status']
+            if self.aas_id in status_json['status']:
+                self.state = status_json['status'][self.aas_id]
             print("Current state in file: " + self.state)
 
     def send_status_change_to_manager(self, new_status):

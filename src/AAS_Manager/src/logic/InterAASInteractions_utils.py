@@ -60,7 +60,7 @@ def create_inter_aas_request_msg(receiver, thread, service_id, service_type, ser
         }
     }
     if service_params is not None:
-        request_msg_body_json['serviceData']['serviceParams'] = {'serviceParams': service_params}
+        request_msg_body_json['serviceData']['serviceParams'] = service_params
     request_msg.body = json.dumps(request_msg_body_json)
     return request_msg
 

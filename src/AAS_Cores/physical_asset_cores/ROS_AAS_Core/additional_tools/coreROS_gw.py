@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import os
+import subprocess
 from threading import Thread
 
 import rospy
@@ -8,8 +9,9 @@ from std_msgs.msg import String
 import json
 import time
 
-processed_requests = []
+processed_requests = {}
 ros_master_uris = {}
+aas_core_id = None
 status_subscriber = None
 
 def main():
@@ -62,7 +64,8 @@ def callback(data):
     update_status_file(state)
 
 def update_status_file(state):
-    status_json = {'status': state}
+    global aas_core_id
+    status_json = {'status': {aas_core_id: state}}
     status_file = open('/ros_aas_core_archive/status.json', 'w')
     json.dump(status_json, status_file)
     status_file.close()
@@ -112,58 +115,85 @@ def process_requests_from_all_cores():
         global processed_requests
 
         for req_received in all_req_received:
+            # print("Nueva request")
+            # print("AASID {}".format(req_received['aasID']))
+            # print("InterID {}".format(req_received['interactionID']))
+            # print("TODOS: {}".format(processed_requests))
 
-            if (req_received is not None) and (req_received['interactionID'] not in processed_requests):
+            if req_received['aasID'] in processed_requests:
+                if req_received['interactionID'] in processed_requests[req_received['aasID']]:
+                    continue
+                else:
+                    process_request(req_received)
+            else:
+            # if (req_received is not None) and (req_received['interactionID'] not in processed_requests):
+                process_request(req_received)
 
-                print("  --> New request received from AAS with id [{}]".format(req_received['aasID']))
+        time.sleep(1)
 
-                global ros_master_uris
-                print("Changing environmental variable for ROS MASTER URI...")
-                os.environ["ROS_MASTER_URI"] = ros_master_uris[req_received['aasID']]
-                print("Environmental variable for ROS MASTER URI changed.")
 
-                # Create the ros node
-                rospy.init_node('ROS_AAS_Core_Gateway', anonymous=True)
+def process_request(request_data):
+    print("  --> New request received from AAS with id [{}]".format(request_data['aasID']))
+    global aas_core_id
+    aas_core_id = request_data['aasID']
+    global ros_master_uris
+    print("Changing environmental variable for ROS MASTER URI...")
+    os.environ["ROS_MASTER_URI"] = ros_master_uris[request_data['aasID']]
+    # Using subprocess to execute a command in the host to change the environmental variable (with 'os.environ' the
+    # variable only changes in the environment of the Python process)
+    ros_master_uri = ros_master_uris[request_data['aasID']]
+    command = f'export ROS_MASTER_URI={ros_master_uri} && echo $ROS_MASTER_URI'
+    print("COMMAND: " + command)
+    subprocess.run(command, shell=True, check=True)
+    print("Environmental variable for ROS MASTER URI changed to {}.".format(ros_master_uris[request_data['aasID']]))
 
-                # Get the information about ROS
-                ros_topic = req_received['ros_topic']
-                ros_msg = req_received['ros_msg']
+    # Create the ros node
+    rospy.init_node('ROS_AAS_Core_Gateway', anonymous=True)
 
-                if ros_topic == '/coordinate':
-                    update_status_file('waiting')
-                    # Create the status subscriber
-                    status_callback()
+    # Get the information about ROS
+    ros_topic = request_data['ros_topic']
+    ros_msg = request_data['ros_msg']
 
-                print("ROS TOPIC: " + str(ros_topic) + " , ROS_MSG: " + str(ros_msg))
-                # Publish the message
-                pub = rospy.Publisher(ros_topic, String, queue_size=10)
-                print("Publisher created")
-                time.sleep(1)
-                print("Sending message...")
-                pub.publish(ros_msg)
-                print("Message sent")
+    if ros_topic == '/coordinate':
+        update_status_file('waiting')
+        # Create the status subscriber
+        status_callback()
+    print("ROS TOPIC: " + str(ros_topic) + " , ROS_MSG: " + str(ros_msg))
 
-                if ros_topic == '/coordinateIDLE':
-                    # In this case, the node must send the coordinates and check the status immediately
-                    processed_requests.append(req_received['interactionID'])
-                    process_requests_from_all_cores()
+    # Publish the message
+    pub = rospy.Publisher(ros_topic, String, queue_size=10)
+    print("Publisher created")
+    time.sleep(1)
+    print("Sending message...")
+    pub.publish(ros_msg)
+    print("Message sent")
 
-                time.sleep(1)
+    if ros_topic == '/coordinateIDLE':
+        # In this case, the node must send the coordinates and check the status immediately
+        add_request_data_as_processed(request_data)
+        process_requests_from_all_cores()
+    time.sleep(1)
 
-                # Now, the gateway will wait until the status is received by the AAS Core
-                check_status_received_by_core(aas_id=req_received['aasID'],
-                                              interaction_id=req_received['interactionID'])
-                # The status subscriber is unsubscribed
-                # global status_subscriber
-                # status_subscriber.unregister()
+    # Now, the gateway will wait until the status is received by the AAS Core
+    check_status_received_by_core(aas_id=request_data['aasID'],
+                                  interaction_id=request_data['interactionID'])
 
-                processed_requests.append(req_received['interactionID'])
+    # The status subscriber is unsubscribed
+    # global status_subscriber
+    # status_subscriber.unregister()
+    add_request_data_as_processed(request_data)
 
-                # Shutdown the ros node
-                # rospy.signal_shutdown("node completed")
-                print(" --> Service completed!")
+    # Shutdown the ros node
+    rospy.signal_shutdown("node completed")
+    print(" --> Service completed!")
 
-        time.sleep(4)
+
+def add_request_data_as_processed(request_data):
+    global processed_requests
+    if request_data['aasID'] not in processed_requests:
+        processed_requests[request_data['aasID']] = {request_data['interactionID']}
+    else:
+        processed_requests[request_data['aasID']].update({request_data['interactionID']})
 
 
 def get_all_requests():
