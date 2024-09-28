@@ -2,15 +2,27 @@
 This module contains the class for the implementation of the Asset Administration Shell.
 """
 from enum import Enum, unique
+from typing import Iterable
 
-from . import common
+from . import common, _string_constraints
 from .submodel import Submodel
 
 
+@_string_constraints.constrain_identifier("asset_type")
+# The decorator @_string_constraints.constrain_identifier("asset_type") in the AssetInformation class in the aas.py
+# file is used to enforce certain constraints on the asset_type attribute of the AssetInformation class (in this case
+# "check_identifier" is used so the asset_type value must have a minimum length of 1 and a maximum length of 2000)
 class AssetInformation:
     """
     This class collects the meta-information of the asset being represented. The asset can be either a type or an
     instance. The asset has a globally unique identifier and, if needed, an additional domain-specific identifier.
+
+    **Constraint AASd-131:**  The globalAssetId or at least one specificAssetId shall be defined for AssetInformation. (TODO comprobar que funciona)
+
+    Attributes:
+        asset_kind (AssetKind): Indicates whether the asset is of :class:`AssetKind` ``TYPE`` or ``INSTANCE``. The default is ``INSTANCE``.
+        specific_asset_id (common.SpecificAssetId): Additional domain-specific, typically proprietary identifier (Set of  :class:`SpecificAssetIds <common.SpecificAssetId>` for the asset as e.g. serial number, etc.
+        TODO finalizarlo
     """
 
     @unique
@@ -22,11 +34,13 @@ class AssetInformation:
     @unique
     class AssetType(Enum):
         """
-        This class is an own proposal to distinguish between logical and physical assets.
+        This class is an own proposal to distinguish between logical and physical assets. The asset type are defined in
+        IEC 63278-1:2024 standard.
         """
         PHYSICAL = 0
-        LOGICAL = 1
-        NOT_APPLICABLE = 2
+        DIGITAL = 1
+        INTANGIBLE = 2
+        NOT_APPLICABLE = 3
 
     class Resource:
         """This class represents an address to a file, either in absolute or relative path."""
@@ -36,14 +50,15 @@ class AssetInformation:
             self.content_type = None
 
     def __init__(self,
-                 asset_kind: AssetKind = None,
-                 specific_asset_id: set[common.SpecificAssetId] = (),
+                 asset_kind: AssetKind = AssetKind.INSTANCE,
+                 specific_asset_id: Iterable[common.SpecificAssetId] = (),  # It is used Iterable instead of set to provide flexibility (can accept any iterable type, not only sets)
                  global_asset_id: common.KeyTypes.Reference = None,
                  default_thumbnail: Resource = None,
                  asset_type: AssetType = None,
                  ):
+        super().__init__()
         self.asset_kind: AssetInformation.AssetKind = asset_kind
-        self.specific_asset_id: set[common.SpecificAssetId] = specific_asset_id
+        self.specific_asset_id: Iterable[common.SpecificAssetId] = specific_asset_id
         self.global_asset_id: common.KeyTypes.Reference = global_asset_id
         self.default_thumbnail: AssetInformation.Resource = default_thumbnail
         self.asset_type: AssetInformation.AssetType = asset_type
