@@ -1,4 +1,4 @@
-class AASarchiveInfo:
+class AASGeneralInfo:
     """This class contains all information about the AAS Archive paths."""
 
     # Paths related to interactions between Manager and Core

@@ -3,7 +3,7 @@ from spade.behaviour import OneShotBehaviour
 
 from logic import IntraAASInteractions_utils
 from utilities import Submodels_utils
-from utilities.AASarchiveInfo import AASarchiveInfo
+from utilities.AASGeneralInfo import AASGeneralInfo
 
 _logger = logging.getLogger(__name__)
 
@@ -63,7 +63,7 @@ class CheckPhysicalAssetBehaviour(OneShotBehaviour):
                 # Set the service as completed
                 # Write the information in the log file
                 IntraAASInteractions_utils.save_svc_info_in_log_file('Manager',
-                                                                     AASarchiveInfo.ASSET_RELATED_SVC_LOG_FILENAME,
+                                                                     AASGeneralInfo.ASSET_RELATED_SVC_LOG_FILENAME,
                                                                      current_interaction_id)
                 # Return message to the sender
                 _logger.info("Service completed! Response: " + str(svc_response))

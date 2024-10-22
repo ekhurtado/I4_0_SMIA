@@ -2,7 +2,7 @@
 
 import configparser
 
-from utilities.AASarchiveInfo import AASarchiveInfo
+from utilities.AASGeneralInfo import AASGeneralInfo
 
 # --------------------------------------
 # Methods related to aas information
@@ -18,7 +18,7 @@ def get_aas_general_property(property_name):
     """
     # Read submodels configuration
     config_sm = configparser.RawConfigParser()
-    config_sm.read(AASarchiveInfo.CONFIG_MAP_PATH + '/' + AASarchiveInfo.CM_AAS_PROPERTIES_FILENAME)
+    config_sm.read(AASGeneralInfo.CONFIG_MAP_PATH + '/' + AASGeneralInfo.CM_AAS_PROPERTIES_FILENAME)
     return config_sm['general-information'][property_name]
 
 
@@ -34,7 +34,7 @@ def get_asset_type():
     """
     # Read submodels configuration
     config_sm = configparser.RawConfigParser()
-    config_sm.read(AASarchiveInfo.CONFIG_MAP_PATH + '/' + AASarchiveInfo.CM_ASSET_PROPERTIES_FILENAME)
+    config_sm.read(AASGeneralInfo.CONFIG_MAP_PATH + '/' + AASGeneralInfo.CM_ASSET_PROPERTIES_FILENAME)
     return config_sm['DEFAULT']['assetType']
 
 
@@ -51,7 +51,7 @@ def get_submodel_names():
         list(str): A list with the sections of the submodel properties file, and therefore, the submodel names."""
     # Read submodels configuration
     config_sm = configparser.RawConfigParser()
-    config_sm.read(AASarchiveInfo.CONFIG_MAP_PATH + '/' + AASarchiveInfo.CM_SM_PROPERTIES_FILENAME)
+    config_sm.read(AASGeneralInfo.CONFIG_MAP_PATH + '/' + AASGeneralInfo.CM_SM_PROPERTIES_FILENAME)
 
     return config_sm.sections()
 
@@ -70,6 +70,6 @@ def get_submodel_information(submodel_name):
     """
     # Read submodels configuration
     config_sm = configparser.RawConfigParser()
-    config_sm.read(AASarchiveInfo.CONFIG_MAP_PATH + '/' + AASarchiveInfo.CM_SM_PROPERTIES_FILENAME)
+    config_sm.read(AASGeneralInfo.CONFIG_MAP_PATH + '/' + AASGeneralInfo.CM_SM_PROPERTIES_FILENAME)
 
     return config_sm.items(submodel_name)
