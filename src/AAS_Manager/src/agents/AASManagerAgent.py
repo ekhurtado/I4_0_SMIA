@@ -10,6 +10,7 @@ from states.StateStopping import StateStopping
 from utilities.AASmanagerInfo import AASmanagerInfo
 from behaviours.AASFSMBehaviour import AASFSMBehaviour
 from states.StateBooting import StateBooting
+from utilities.GeneralUtils import GeneralUtils
 
 _logger = logging.getLogger(__name__)
 
@@ -31,6 +32,9 @@ class AASManagerAgent(Agent):
 
     def __init__(self, jid: str, password: str, verify_security: bool = False):
         super().__init__(jid, password, verify_security)
+
+        # The banner of the program is printed
+        GeneralUtils.print_smia_banner()
 
         self.initialize_aas_manager_attributes()
 

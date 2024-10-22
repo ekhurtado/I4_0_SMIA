@@ -65,6 +65,23 @@ class GeneralUtils:
             formatter = logging.Formatter(log_fmt)
             return formatter.format(record)
 
+
+    @staticmethod
+    def print_smia_banner():
+        # The banner for the SMIA is set as string, avoiding installing 'art' library (which has been used to create it)
+        banner_str = ("---------------------------------------------\n" +
+                      "  ______    ____    ____   _____        _\n" +
+                      ".' ____ \  |_   \  /   _| |_   _|      / \      \n" +
+                      "| (___ \_|   |   \/   |     | |       / _ \     \n" +
+                      " _.____`.    | |\  /| |     | |      / ___ \    \n" +
+                      "| \____) |  _| |_\/_| |_   _| |_   _/ /   \ \_  \n" +
+                      " \______.' |_____||_____| |_____| |____| |____| \n" +
+                      # "                                                \n" +
+                      "---------------------------------------------\n" +
+                      "                                      v0.2.0 \n" +
+                      "---------------------------------------------\n")
+        print(banner_str)
+
     @staticmethod
     def create_acl_template(performative, ontology):
         """

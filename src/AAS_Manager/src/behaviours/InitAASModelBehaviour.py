@@ -93,5 +93,6 @@ class InitAASModelBehaviour(OneShotBehaviour):
             capability_elem.check_cap_skill_ontology_semantic_id()
 
             # It will also be checked if it has any of the qualifiers defined in the ontology for the capabilities
+            # TODO (continue from this point, it has to take the qualifier type and check if it is one of the determined in QUALIFIER_CAPABILITY_POSSIBLE_VALUES)
 
 
