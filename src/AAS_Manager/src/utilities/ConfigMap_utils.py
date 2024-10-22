@@ -9,7 +9,8 @@ from utilities.AASGeneralInfo import AASGeneralInfo
 # --------------------------------------
 def get_aas_general_property(property_name):
     """
-    This method returns the property of the AAS set in the ConfigMap by the AAS Controller during the deployment process. This information is stored in "aas.properties" file within "general-information" section.
+    This method returns the property of the AAS set in the ConfigMap by the AAS Controller during the deployment
+    process. This information is stored in "aas.properties" file within "general-information" section.
 
     Args:
         property_name (str): The name of the property.
@@ -20,6 +21,31 @@ def get_aas_general_property(property_name):
     config_sm = configparser.RawConfigParser()
     config_sm.read(AASGeneralInfo.CONFIG_MAP_PATH + '/' + AASGeneralInfo.CM_AAS_PROPERTIES_FILENAME)
     return config_sm['general-information'][property_name]
+
+def get_dt_general_property(property_name):
+    """
+    This method returns the DT property set in the ConfigMap during the deployment process. This information is stored
+    in the ‘dt.properties’ file within the ‘DEFAULT’ section.
+
+    Returns:
+        str: The general property of the DT.
+    """
+    config_sm = configparser.RawConfigParser()
+    config_sm.read(AASGeneralInfo.CONFIG_MAP_PATH + '/' + AASGeneralInfo.CM_DT_PROPERTIES_FILENAME)
+    return config_sm['DEFAULT'][property_name]
+
+def get_aas_model_filepath():
+    """
+    This method returns the AAS model file path. The AAS model is specified in the ‘dt.properties’ file
+    within the ‘DEFAULT’ section, with 'aas.model.file' attribute.
+
+    Returns:
+        str: The AAS model file path within the AAS Archive.
+    """
+    config_sm = configparser.RawConfigParser()
+    config_sm.read(AASGeneralInfo.CONFIG_MAP_PATH + '/' + AASGeneralInfo.CM_DT_PROPERTIES_FILENAME)
+    return config_sm['DEFAULT']['aas.model.file']
+
 
 
 # --------------------------------------

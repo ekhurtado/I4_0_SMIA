@@ -5,6 +5,7 @@ from agents.AASManagerAgent import AASManagerAgent
 from agents.AASManagerAppAgent import AASManagerAppAgent
 from agents.AASManagerResourceAgent import AASManagerResourceAgent
 from utilities import ConfigMap_utils
+from utilities.AASModelExtension_utils import AASModelExtensionUtils
 from utilities.GeneralUtils import GeneralUtils
 from utilities.KafkaInfo import KafkaInfo
 
@@ -65,6 +66,9 @@ if __name__ == '__main__':
     # Configure logging
     GeneralUtils.configure_logging()
     _logger.info("Initializing AAS Manager program...")
+
+    # Extend BaSyx Python SDK
+    AASModelExtensionUtils.extend_basyx_aas_model()
 
     # Run main program with SPADE
     spade.run(main())

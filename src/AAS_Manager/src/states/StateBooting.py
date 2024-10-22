@@ -3,7 +3,7 @@ from spade.behaviour import State
 
 from behaviours.CheckCoreInitializationBehaviour import CheckCoreInitializationBehaviour
 from behaviours.InitAASarchiveBehaviour import InitAASarchiveBehaviour
-from behaviours.InitSubmodelsBehaviour import InitSubmodelsBehaviour
+from behaviours.InitAASModelBehaviour import InitAASModelBehaviour
 from logic import IntraAASInteractions_utils
 from utilities import AAS_Archive_utils
 from utilities.AASmanagerInfo import AASmanagerInfo
@@ -40,12 +40,12 @@ class StateBooting(State):
         self.agent.add_behaviour(init_aas_archive_behav)
 
         # The submodels also have to be initalized, so its behaviour is also added
-        init_submodels_behav = InitSubmodelsBehaviour(self.agent)
-        self.agent.add_behaviour(init_submodels_behav)
+        init_aas_model_behav = InitAASModelBehaviour(self.agent)
+        self.agent.add_behaviour(init_aas_model_behav)
 
         # Wait until the behaviours have finished because the AAS Archive has to be initialized to pass to running state
         await init_aas_archive_behav.join()
-        await init_submodels_behav.join()
+        await init_aas_model_behav.join()
 
         # If the initialization behaviour has completed, AAS Manager is in the InitializationReady status
         AAS_Archive_utils.change_status('InitializationReady')

@@ -1,8 +1,10 @@
 import asyncio
 
+import basyx.aas.model
 from spade.agent import Agent
 import logging
 
+from aas_model_extension.ExtendedAASModel import ExtendedAASModel
 from states.StateRunning import StateRunning
 from states.StateStopping import StateStopping
 from utilities.AASmanagerInfo import AASmanagerInfo
@@ -24,6 +26,7 @@ class AASManagerAgent(Agent):
     interaction_requests = {}  #: Dictionary to save Intra AAS interaction requests
     interaction_responses = {}  #: Dictionary to save Intra AAS interaction responses
     negotiations_data = {}  #: Dictionary to save negotiations related information
+    aas_model = None  #: Object with the extended AAS model
     lock = None  #: Asyncio Lock object for secure access to shared AAS Manager objects
 
     def __init__(self, jid: str, password: str, verify_security: bool = False):
@@ -35,19 +38,22 @@ class AASManagerAgent(Agent):
         """
         This method initializes all the attributes of the AAS Manager
         """
-        # Objects for storing the information related to ACL services are initialized
+        # Objects to store the information related to ACL services are initialized
         self.acl_messages_id = 0  # It is reset
         self.acl_svc_requests = {}
         self.acl_svc_responses = {}
 
-        # Objects for storing the information related to AAS Manager-Core interactions are initialized
+        # Objects to store the information related to AAS Manager-Core interactions are initialized
         self.interaction_id_num = 0  # The interactionId number is reset
         self.interaction_id = 'manager-' + str(self.interaction_id_num)  # The complete interactionId
         self.interaction_requests = {}
         self.interaction_responses = {}
 
-        # Object for storing the information related to negotiations is initialized
+        # Object to store the information related to negotiations is initialized
         self.negotiations_data = {}
+
+        # The object with the Extended AAS model and useful methods is initialized
+        self.aas_model = ExtendedAASModel()
 
         # The Lock object is used to manage the access to global agent attributes (request and response dictionaries,
         # interaction id number...)

@@ -1,33 +1,157 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: component-i4-0-cm
+  name: smia-cm
   namespace: default
 data:
 
   # Properties files
-  aas.properties: |
-    [general-information]
-    logicalID=aas01
-    endpoint=7000
-    
-    [services-information]
-    services.1=getAssetData
-    services.2=getSubmodelData
-
-  asset.properties: |
+  dt.properties: |
     [DEFAULT]
-    assetType=physical
-    assetID=KukaKR3
-    assetNumber=1
+    dt.version=2.0.0
+    aas.meta-model.version=3.0
+    aas.model.serialization=XML
+    aas.model.file=aas_model.xml
 
-  submodels.properties: |
-    [technical-data-submodel]
-    submodel1=technical-data
-    submodel1.aas-id=11
-    submodel1.aas-model=Kuka KR3
 
-    [configuration-submodel]
-    submodel2=configuration
-    submodel2.aas-number=1
-    submodel2.aas-level=edge
+  # AAS model file
+  aas_model.xml: |
+    <?xml version='1.0' encoding='UTF-8'?>
+    <aas:environment xmlns:aas="https://admin-shell.io/aas/3/0">
+        <aas:assetAdministrationShells>
+            <aas:assetAdministrationShell>
+                <aas:id>https://acplt.org/Simple_AAS</aas:id>
+                <aas:assetInformation>
+                    <aas:assetKind>Instance</aas:assetKind>
+                    <aas:globalAssetId>test</aas:globalAssetId>
+                </aas:assetInformation>
+                <aas:submodels>
+                    <aas:reference>
+                        <aas:type>ModelReference</aas:type>
+                        <aas:keys>
+                            <aas:key>
+                                <aas:type>Submodel</aas:type>
+                                <aas:value>https://acplt.org/Simple_Submodel
+                                </aas:value>
+                            </aas:key>
+                        </aas:keys>
+                    </aas:reference>
+                </aas:submodels>
+            </aas:assetAdministrationShell>
+        </aas:assetAdministrationShells>
+        <aas:submodels>
+            <aas:submodel>
+                <aas:id>https://acplt.org/Simple_Submodel</aas:id>
+                <aas:kind>Instance</aas:kind>
+                <aas:submodelElements>
+                    <aas:property>
+                        <aas:idShort>ExampleProperty</aas:idShort>
+                        <aas:semanticId>
+                            <aas:type>ExternalReference</aas:type>
+                            <aas:keys>
+                                <aas:key>
+                                    <aas:type>GlobalReference</aas:type>
+                                    <aas:value>http://acplt.org/Properties/SimpleProperty</aas:value>
+                                </aas:key>
+                                <aas:key>
+                                    <aas:type>GlobalReference</aas:type>
+                                    <aas:value>
+                                        https://admin-shell.io/aas/conceptDescriptions/CapabilityRealizedBy/1/0</aas:value>
+                                </aas:key>
+                                <aas:key>
+                                    <aas:type>GlobalReference</aas:type>
+                                    <aas:value>
+                                        https://admin-shell.io/aas/conceptDescriptions/ManufacturingCapability/1/0</aas:value>
+                                </aas:key>
+                            </aas:keys>
+                        </aas:semanticId>
+                        <aas:qualifiers>
+                            <aas:qualifier>
+                                <aas:semanticId>
+                                    <aas:type>ExternalReference</aas:type>
+                                    <aas:keys>
+                                        <aas:key>
+                                            <aas:type>GlobalReference</aas:type>
+                                            <aas:value>0112/2///61360_7#CTA019#001</aas:value>
+                                        </aas:key>
+                                    </aas:keys>
+                                </aas:semanticId>
+                                <aas:type>as offered</aas:type>
+                                <aas:valueType>xs:string</aas:valueType>
+                                <aas:value>OFF</aas:value>
+                                <aas:valueId>
+                                    <aas:type>ExternalReference</aas:type>
+                                    <aas:keys>
+                                        <aas:key>
+                                            <aas:type>GlobalReference</aas:type>
+                                            <aas:value>0112/2///61360_7#CAA002</aas:value>
+                                        </aas:key>
+                                    </aas:keys>
+                                </aas:valueId>
+                            </aas:qualifier>
+                        </aas:qualifiers>
+                        <aas:valueType>xs:string</aas:valueType>
+                        <aas:value>exampleValue</aas:value>
+                    </aas:property>
+                    <aas:property>
+                        <aas:idShort>ExampleProperty2</aas:idShort>
+                        <aas:semanticId>
+                            <aas:type>ExternalReference</aas:type>
+                            <aas:keys>
+                                <aas:key>
+                                    <aas:type>GlobalReference</aas:type>
+                                    <aas:value>http://acplt.org/Properties/SimpleProperty</aas:value>
+                                </aas:key>
+                                <aas:key>
+                                    <aas:type>GlobalReference</aas:type>
+                                    <aas:value>
+                                        https://admin-shell.io/aas/conceptDescriptions/CapabilityRealizedBy/1/0</aas:value>
+                                </aas:key>
+                            </aas:keys>
+                        </aas:semanticId>
+                        <aas:valueType>xs:string</aas:valueType>
+                        <aas:value>exampleValue2</aas:value>
+                    </aas:property>
+                    <aas:relationshipElement>
+                        <aas:idShort>ExampleRelationshipElement</aas:idShort>
+                        <aas:semanticId>
+                            <aas:type>ExternalReference</aas:type>
+                            <aas:keys>
+                                <aas:key>
+                                    <aas:type>GlobalReference</aas:type>
+                                    <aas:value>
+                                        https://admin-shell.io/aas/conceptDescriptions/CapabilityRealizedBy/1/0</aas:value>
+                                </aas:key>
+                            </aas:keys>
+                        </aas:semanticId>
+                        <aas:first>
+                            <aas:type>ModelReference</aas:type>
+                            <aas:keys>
+                                <aas:key>
+                                    <aas:type>Submodel</aas:type>
+                                    <aas:value>https://acplt.org/Simple_Submodel</aas:value>
+                                </aas:key>
+                                <aas:key>
+                                    <aas:type>Property</aas:type>
+                                    <aas:value>ExampleProperty</aas:value>
+                                </aas:key>
+                            </aas:keys>
+                        </aas:first>
+                        <aas:second>
+                            <aas:type>ModelReference</aas:type>
+                            <aas:keys>
+                                <aas:key>
+                                    <aas:type>Submodel</aas:type>
+                                    <aas:value>https://acplt.org/Simple_Submodel</aas:value>
+                                </aas:key>
+                                <aas:key>
+                                    <aas:type>Property</aas:type>
+                                    <aas:value>ExampleProperty2</aas:value>
+                                </aas:key>
+                            </aas:keys>
+                        </aas:second>
+                    </aas:relationshipElement>
+                </aas:submodelElements>
+            </aas:submodel>
+        </aas:submodels>
+    </aas:environment>
