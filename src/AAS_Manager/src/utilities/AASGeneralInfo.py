@@ -21,7 +21,7 @@ class AASGeneralInfo:
 
     # ConfigMap files
     CONFIG_MAP_PATH = '/aas_archive/config'
-    CM_DT_PROPERTIES_FILENAME = 'dt.properties'
+    CM_GENERAL_PROPERTIES_FILENAME = 'general.properties'
     CM_AAS_PROPERTIES_FILENAME = 'aas.properties'
     CM_ASSET_PROPERTIES_FILENAME = 'asset.properties'
     CM_SM_PROPERTIES_FILENAME = 'submodels.properties'

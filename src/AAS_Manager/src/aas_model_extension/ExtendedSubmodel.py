@@ -40,14 +40,6 @@ class ExtendedSubmodelElement(SubmodelElement):
         print("\tsupplementalSemanticId: {}".format(self.supplemental_semantic_id))
         print("\tqualifiers: " + "{}".format(ExtendedGeneralMethods.print_namespace_set(self.qualifier)))
 
-    # def check_semantic_id_exist(self, semantic_id_reference):
-    #     if self.semantic_id is None:
-    #         return False
-    #     for reference in self.semantic_id.key:
-    #         if str(reference) == semantic_id_reference:
-    #             return True
-    #     return False
-
     def get_qualifier_by_semantic_id(self, semantic_id_reference):
         if self.qualifier is None:
             return None
@@ -62,6 +54,42 @@ class ExtendedSubmodelElement(SubmodelElement):
             return self.parent
         else:
             self.parent.get_parent_submodel()
+
+    def check_cap_skill_ontology_semantics_and_qualifiers(self):
+        """
+        This method checks if the SubmodelElement of the Skill has the required semanticIDs and qualifiers defined in
+        the Capability-Skill ontology.
+
+        Returns:
+            bool: result of the check (only True if both semanticIDs and qualifiers of Capability-Skill ontology exist).
+        """
+        # It will be checked if the semantic id of the skill is valid within the ontology
+        if self.check_semantic_id_exist(CapabilitySkillOntology.SEMANTICID_MANUFACTURING_SKILL) is False:
+            _logger.error("The skill {} has not valid semanticID regarding the "
+                          "Capability-Skill ontology.".format(self))
+            return False
+
+        if self.check_cap_skill_ontology_qualifier_for_skills() is False:
+            _logger.error("The skill {} has not valid qualifiers regarding the "
+                          "Capability-Skill ontology.".format(self))
+            return False
+        return True
+
+    def check_cap_skill_ontology_qualifier_for_skills(self):
+        """
+        This method checks if the SubmodelElement of the Skill has valid qualifiers defined in the Capability-Skil
+        ontology.
+
+        Returns:
+            bool: result of the check (only True if the qualifier of Capability-Skill ontology exists).
+        """
+        skill_qualifier = self.get_qualifier_by_type(CapabilitySkillOntology.QUALIFIER_SKILL_TYPE)
+        if skill_qualifier is not None:
+            if skill_qualifier.value in CapabilitySkillOntology.QUALIFIER_SKILL_POSSIBLE_VALUES:
+                return True
+        _logger.error("ERROR: the qualifier is not valid in the skill {}".format(self))
+        return False
+
 
 class ExtendedRelationshipElement(RelationshipElement):
 
@@ -101,15 +129,79 @@ class ExtendedCapability(Capability):
         super().print_submodel_element_information()
         print("Specific attributes of Capabilities:")
 
+    def check_cap_skill_ontology_semantics_and_qualifiers(self):
+        """
+        This method checks if the Capability has the required semanticIDs and qualifiers defined in the Capability-Skill
+        ontology, exactly for Capabilities.
+
+        Returns:
+            bool: result of the check (only True if both semanticIDs and qualifiers of Capability-Skill ontology exist).
+        """
+        # It will be checked if the semantic id of the capability is valid within the ontology
+        if self.check_cap_skill_ontology_semantic_id() is False:
+            _logger.error("The capability {} has not valid semanticID regarding the "
+                          "Capability-Skill ontology.".format(self))
+            return False
+
+        # It will also be checked if it has any of the qualifiers defined in the ontology for the capabilities
+        if self.check_cap_skill_ontology_qualifiers() is False:
+            _logger.error("The capability {} has not valid qualifiers regarding the "
+                          "Capability-Skill ontology.".format(self))
+            return False
+        return True
+
     def check_cap_skill_ontology_semantic_id(self):
+        """
+        This method checks if the Capability has one of the required semanticIDs defined in the Capability-Skill
+        ontology, exactly for Capabilities.
+
+        Returns:
+            bool: result of the check (only True if the semanticID of Capability-Skill ontology exists).
+        """
         if self.check_semantic_id_exist(CapabilitySkillOntology.SEMANTICID_MANUFACTURING_CAPABILITY):
             _logger.info('\t\tThe capability is of a manufacturing type.')
+            return True  # TODO juntar los tres casos de exito y despues el de fallo para no repetirlo
         elif self.check_semantic_id_exist(CapabilitySkillOntology.SEMANTICID_ASSET_CAPABILITY):
             _logger.info('\t\tThe capability is of a asset type.')
+            return True
         elif self.check_semantic_id_exist(CapabilitySkillOntology.SEMANTICID_AGENT_CAPABILITY):
             _logger.info('\t\tThe capability is of a agent type.')
+            return True
         else:
-            _logger.error("ERROR: the capability is not valid within the relationship")
+            _logger.error("ERROR: the capability is not valid within the ontology.")
+            return False
+
+    def check_cap_skill_ontology_qualifiers(self):
+        """
+        This method checks if the Capability has valid qualifiers, defined in the Capability-Skil ontology.
+
+        Returns:
+            bool: result of the check (only True if the qualifier of Capability-Skill ontology exists).
+        """
+        capability_qualifier = self.get_qualifier_by_type(CapabilitySkillOntology.QUALIFIER_CAPABILITY_TYPE)
+        if capability_qualifier is not None:
+            if capability_qualifier.value in CapabilitySkillOntology.QUALIFIER_CAPABILITY_POSSIBLE_VALUES:
+                return True
+        _logger.error("ERROR: the qualifier is not valid in the capability {}".format(self))
+        return False
+
+    def get_capability_type_in_ontology(self):
+        """
+        This method gets the type of the capability within the Capability-Skill ontology.
+
+        Returns:
+            str: value of the type of the capability within the Capability-Skill ontology.
+        """
+        if self.check_semantic_id_exist(CapabilitySkillOntology.SEMANTICID_MANUFACTURING_CAPABILITY):
+            return CapabilitySkillOntology.MANUFACTURING_CAPABILITY_TYPE
+        elif self.check_semantic_id_exist(CapabilitySkillOntology.SEMANTICID_ASSET_CAPABILITY):
+            return CapabilitySkillOntology.ASSET_CAPABILITY_TYPE
+        elif self.check_semantic_id_exist(CapabilitySkillOntology.SEMANTICID_AGENT_CAPABILITY):
+            return CapabilitySkillOntology.AGENT_CAPABILITY_TYPE
+        else:
+            _logger.error("ERROR: the capability type is not valid within the ontology.")
+            return None
+
 
 
 class ExtendedOperation(Operation):

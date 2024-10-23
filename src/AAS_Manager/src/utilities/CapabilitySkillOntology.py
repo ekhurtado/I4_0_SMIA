@@ -2,6 +2,12 @@ class CapabilitySkillOntology:
     """This class contains all information about the proposal of the ontology based on Capability-Skill model. This
     information groups the required semanticIDs or the qualifiers to analyze AAS models."""
 
+    # Types of Capabilities
+    MANUFACTURING_CAPABILITY_TYPE = 'ManufacturingCapability'
+    ASSET_CAPABILITY_TYPE = 'AssetCapability'
+    AGENT_CAPABILITY_TYPE = 'AgentCapability'
+    CAPABILITY_TYPE_POSSIBLE_VALUES = [MANUFACTURING_CAPABILITY_TYPE, ASSET_CAPABILITY_TYPE, AGENT_CAPABILITY_TYPE]
+
     # SemanticIDs of Capabilities
     SEMANTICID_MANUFACTURING_CAPABILITY = 'urn:ehu:gcis:capabilityskillontology:1:1:manufacturingcapability'
     SEMANTICID_ASSET_CAPABILITY = 'urn:ehu:gcis:capabilityskillontology:1:1:assetcapability'

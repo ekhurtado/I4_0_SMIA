@@ -1,8 +1,10 @@
 """This class contains utility methods related to the ConfigMap file."""
-
+import logging
 import configparser
 
 from utilities.AASGeneralInfo import AASGeneralInfo
+
+_logger = logging.getLogger(__name__)
 
 # --------------------------------------
 # Methods related to aas information
@@ -10,7 +12,7 @@ from utilities.AASGeneralInfo import AASGeneralInfo
 def get_aas_general_property(property_name):
     """
     This method returns the property of the AAS set in the ConfigMap by the AAS Controller during the deployment
-    process. This information is stored in "aas.properties" file within "general-information" section.
+    process. This information is stored in "general.properties" file within "AAS" section (with the 'aas.' prefix).
 
     Args:
         property_name (str): The name of the property.
@@ -19,20 +21,24 @@ def get_aas_general_property(property_name):
     """
     # Read submodels configuration
     config_sm = configparser.RawConfigParser()
-    config_sm.read(AASGeneralInfo.CONFIG_MAP_PATH + '/' + AASGeneralInfo.CM_AAS_PROPERTIES_FILENAME)
-    return config_sm['general-information'][property_name]
+    config_sm.read(AASGeneralInfo.CONFIG_MAP_PATH + '/' + AASGeneralInfo.CM_GENERAL_PROPERTIES_FILENAME)
+    return config_sm['AAS']['aas.' + property_name]
 
 def get_dt_general_property(property_name):
     """
     This method returns the DT property set in the ConfigMap during the deployment process. This information is stored
-    in the ‘dt.properties’ file within the ‘DEFAULT’ section.
+    in the ‘general.properties’ file within the ‘DT’ section (with the 'dt.' prefix).
 
     Returns:
         str: The general property of the DT.
     """
     config_sm = configparser.RawConfigParser()
-    config_sm.read(AASGeneralInfo.CONFIG_MAP_PATH + '/' + AASGeneralInfo.CM_DT_PROPERTIES_FILENAME)
-    return config_sm['DEFAULT'][property_name]
+    config_sm.read(AASGeneralInfo.CONFIG_MAP_PATH + '/' + AASGeneralInfo.CM_GENERAL_PROPERTIES_FILENAME)
+    try:
+        return config_sm['DT']['dt.' + property_name]
+    except KeyError as e:
+        _logger.error("The 'general.properties' file in the ConfigMap is not valid.")
+        return None
 
 def get_aas_model_filepath():
     """

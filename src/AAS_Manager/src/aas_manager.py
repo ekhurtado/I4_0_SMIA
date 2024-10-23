@@ -10,7 +10,7 @@ from utilities.GeneralUtils import GeneralUtils
 from utilities.KafkaInfo import KafkaInfo
 
 # XMPP_SERVER = 'worker4'
-XMPP_SERVER = 'ejabberd'
+# XMPP_SERVER = 'ejabberd'
 
 _logger = logging.getLogger(__name__)
 
@@ -26,8 +26,11 @@ async def main():
     :term:`AAS`.
     """
     # The AAS_ID will be set in the associated ConfigMap, within the general-information of the AAS
-    aas_id = ConfigMap_utils.get_aas_general_property('logicalID')
+    aas_id = ConfigMap_utils.get_dt_general_property('agentID')
     # aas_id = 'aasmanager001'  # For testing
+
+    # The XMPP server of the MAS will also be set in the associated ConfiMap
+    xmpp_server = ConfigMap_utils.get_dt_general_property('xmpp-server')
 
     # The AAS ID will be also the topic of Kafka, for AAS Manager-Core interactions
     KafkaInfo.KAFKA_TOPIC = aas_id
@@ -36,9 +39,13 @@ async def main():
     # aas_type = ConfigMap_utils.get_asset_type()
     aas_type = ''  # For testing
 
+    # TODO BORRAR
+    aas_id = 'gcis1'
+    xmpp_server = 'anonym.im'
+
     # Build the agent jid and password
-    agent_jid = aas_id + '@' + XMPP_SERVER
-    passwd = '123'  # TODO pensar que passwords utilizar (algo relacionado con el nombre del deployment quizas?)
+    agent_jid = aas_id + '@' + xmpp_server
+    passwd = 'gcis1234'  # TODO pensar que passwords utilizar (algo relacionado con el nombre del deployment quizas?)
 
     # Depending on the asset type, the associated SPADE agent will be created
     aas_manager_agent = None
@@ -46,7 +53,7 @@ async def main():
         case "physical":
             _logger.info("The asset is physical")
             aas_manager_agent = AASManagerResourceAgent(agent_jid, passwd)
-        case "logical":
+        case "digital":
             _logger.info("The asset is logical")
             aas_manager_agent = AASManagerAppAgent(agent_jid, passwd)
         case _:

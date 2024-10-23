@@ -89,10 +89,36 @@ class InitAASModelBehaviour(OneShotBehaviour):
             # relationship they are listed).
             capability_elem, skill_elem = rel_cap_skill.get_cap_skill_elem_from_relationship()
 
-            # It will be checked if the semantic id of the capability is valid within the ontology
-            capability_elem.check_cap_skill_ontology_semantic_id()
+            if capability_elem.check_cap_skill_ontology_semantics_and_qualifiers() is False:
+                continue
 
-            # It will also be checked if it has any of the qualifiers defined in the ontology for the capabilities
-            # TODO (continue from this point, it has to take the qualifier type and check if it is one of the determined in QUALIFIER_CAPABILITY_POSSIBLE_VALUES)
+            # The capability_type is obtained using the semanticID
+            capability_type = capability_elem.get_capability_type_in_ontology()
 
+            # If the capability has constraints, they will be obtained
+            capability_constraints = self.myagent.aas_model.get_capability_associated_constraints(capability_elem)
+            cap_constraints_list = list(capability_constraints)
+            if cap_constraints_list:
+                str_contraints = "\t\tThe capability associated constraints are: "
+                for constraint in cap_constraints_list:
+                    str_contraints += constraint.id_short + ', '
+                _logger.info(str_contraints)
+            else:
+                _logger.info("\t\tThe capability does not have associated constraints.")
 
+            # TODO properties have not been taken into account for the time being for the capacities, add in the future
+
+            # Once the information about the capability has been obtained, the associated skill will be analyzed
+            if skill_elem.check_cap_skill_ontology_semantics_and_qualifiers() is False:
+                continue
+
+            # The necessary Skill interface to implement the skill must be obtained
+            skill_interface_elem = self.myagent.aas_model.get_skill_interface_element(skill_elem)
+            if skill_interface_elem is None:
+                _logger.error("The interface of the skill {} does not exist.")
+                continue
+
+            # At this point of the execution, all checks ensure that the necessary information is available
+            # All the information will be saved in the global variables of the agent
+            cap_skill_info = {} # TODO pensar como estructurar la informacion
+            self.myagent.aas_model.save_capability_skill_information(capability_type, cap_skill_info)
