@@ -322,6 +322,7 @@ class ExtendedAASModel:
         if capability_elem is None:
             _logger.warning("A capability has been requested that this DT does not have.")
             return False
+        # TODO quedan por analizar las constraints
         # It will be also checked the skill id_short
         required_skill_data = required_capability_data[CapabilitySkillACLInfo.REQUIRED_SKILL_INFO]
         if await self.check_skill_elem_by_capability(required_cap_type, capability_elem, required_skill_data) is False:

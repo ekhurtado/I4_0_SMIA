@@ -28,6 +28,9 @@ class CapabilitySkillOntology:
     SEMANTICID_REL_SKILL_SKILL_PARAMETER = 'urn:ehu:gcis:capabilityskillontology:1:1:skillhasparameter'
     SEMANTICID_REL_SKILL_SKILL_STATE_MACHINE = 'urn:ehu:gcis:capabilityskillontology:1:1:skillbehavioursconformsto'
 
+    # SemanticIDs of SkillInterfaces
+    SEMANTICID_SKILL_INTERFACE_HTTP = 'https://admin-shell.io/idta/AssetInterfacesDescription/1/0/Interface'
+
     # Qualifiers for Capabilities
     QUALIFIER_CAPABILITY_TYPE = 'ExpressionSemantic'
     QUALIFIER_CAPABILITY_POSSIBLE_VALUES = ['REQUIREMENT', 'OFFER', 'ASSURANCE']
@@ -51,6 +54,5 @@ class CapabilitySkillACLInfo:
     REQUIRED_ELEMENT_TYPE = 'smeType'
     REQUIRED_SKILL_PARAMETERS = 'skillParameters'
     # TODO pensar si harian falta mas
-
 
 

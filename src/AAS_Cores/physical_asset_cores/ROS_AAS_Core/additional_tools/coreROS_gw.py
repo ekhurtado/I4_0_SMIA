@@ -43,6 +43,7 @@ def main():
     # Define the MASTER URI for all cores
     global ros_master_uris
     ros_master_uris['aas-ros-test01'] = 'http://192.168.1.62:11311'
+    ros_master_uris['transportrobot001'] = 'http://192.168.1.62:11311'
     ros_master_uris['aas-ros-test02'] = 'http://192.168.1.64:11311'
 
     # Execute logic to get and process all requests

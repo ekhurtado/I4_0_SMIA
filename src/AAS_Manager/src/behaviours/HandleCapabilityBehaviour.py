@@ -1,9 +1,11 @@
+import asyncio
 import json
 import logging
 
 from spade.behaviour import OneShotBehaviour
 
 from logic import IntraAASInteractions_utils, Negotiation_utils, InterAASInteractions_utils
+from utilities.CapabilitySkillOntology import CapabilitySkillACLInfo, CapabilitySkillOntology
 from utilities.FIPAACLInfo import FIPAACLInfo
 from utilities.GeneralUtils import GeneralUtils
 
@@ -63,8 +65,39 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
         """
         This method handle CallForProposal requests for the Capability.
         """
-        # TODO por hacer
-        pass
+        if self.svc_req_data['serviceID'] == 'capabilityRequest':
+            # First, the capability to be performed will be obtained from the internal AAS model
+            # TODO, para este paso, se podrian almacenar las capacidades que se han verificado ya cuando se recibe el
+            #  Query-If (se supone que otro agente debería mandar en CallForProposal despues del Query-If, pero para
+            #  añadirle una validacion extra)
+            required_cap_data = self.svc_req_data['serviceData']['serviceParams']
+            required_cap_type = required_cap_data[CapabilitySkillACLInfo.REQUIRED_CAPABILITY_TYPE]
+            capability_elem = await self.myagent.aas_model.get_capability_by_id_short(
+                cap_type=required_cap_type,
+                cap_id_short=required_cap_data[CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME])
+            if required_cap_type == CapabilitySkillOntology.ASSET_CAPABILITY_TYPE:
+                # In this case, the asset skill has to be executed through skill interface
+                _logger.interactioninfo("The Capability requested is of AssetCapability type.")
+                # TODO, habria que tener en cuenta que puede ser asincrono, asi que quizas un wait hasta que el asset
+                #  connection reciba la respuesta. Al final hay que pensar parecido a como se hacia con interactionID,
+                #  pero en  este caos no tenemos peticion respuesta interna
+
+                # TODO De momento el AssetConnection se establece al leer el AAS Model, pero, si queremos ofrecer mas de
+                #  una interfaz simultánea, habría que especificarla justo antes de realizar la conexión con el activo
+
+                # TODO BORRAR (es solo para pruebas, esta como el AAS Core de ROS, usando un fichero JSON como intermediario para el gateway)
+
+                self.myagent.asset_connection.configure_connection({'ros_topic': '/coordinateIDLE'})
+                self.myagent.asset_connection.send_msg_to_asset('GO')
+                await asyncio.sleep(1)
+                self.myagent.asset_connection.configure_connection({'ros_topic': '/coordinate'})
+                self.myagent.asset_connection.send_msg_to_asset('1.43,0.59')
+                await asyncio.sleep(1)
+
+
+        else:
+            pass
+            # TODO pensar que situaciones habria
 
     async def handle_query_if(self):
         """

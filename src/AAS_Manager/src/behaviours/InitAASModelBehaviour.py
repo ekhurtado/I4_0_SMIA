@@ -2,7 +2,10 @@ import logging
 
 import basyx.aas.adapter.xml
 import basyx.aas.adapter.json
+from basyx.aas.util import traversal
 from spade.behaviour import OneShotBehaviour
+
+from assetconnection.HTTPAssetConnection import HTTPAssetConnection
 from utilities import ConfigMap_utils, Submodels_utils
 from utilities.CapabilitySkillOntology import CapabilitySkillOntology
 
@@ -46,6 +49,9 @@ class InitAASModelBehaviour(OneShotBehaviour):
         # Both the agent and asset capabilities are stored in the global variables of the agents, with their related
         # information (constraints, associated skill, skill interface...).
         await self.save_capabilities_skills_information()
+
+        # After the AAS model has been analyzed, the AssetConnection class can be specified
+        await self.update_asset_connection()
 
         # TODO: pensar si faltaria comprobar mas cosas a recoger en el modelo de AAS
         _logger.info("AAS model initialized.")
@@ -124,3 +130,17 @@ class InitAASModelBehaviour(OneShotBehaviour):
             await self.myagent.aas_model.save_capability_skill_information(capability_type, cap_skill_info)
             _logger.info("Capability {} information saved in the global variables.".format(capability_elem))
 
+
+    async def update_asset_connection(self):
+        """
+        This method updates the Asset Connection class of the agent based on the Skill interface defined in the AAS
+        model.
+        """
+        capabilities_dict = await self.myagent.aas_model.get_capability_dict_by_type(CapabilitySkillOntology.ASSET_CAPABILITY_TYPE)
+        for cap_elem, cap_info in capabilities_dict.items():
+            # TODO, pensar que pasaria si las capacidades tienen diferentes protocolos. De momento se ha dejado de forma sencilla, se recoge el primero
+            skill_interface = await self.myagent.aas_model.get_skill_interface_element(cap_info['skillObject'])
+            for semantic_id in traversal.walk_semantic_ids_recursive(skill_interface):
+                for reference in semantic_id.key:
+                    if str(reference) == CapabilitySkillOntology.SEMANTICID_SKILL_INTERFACE_HTTP:
+                        await self.myagent.set_asset_connection(HTTPAssetConnection())
