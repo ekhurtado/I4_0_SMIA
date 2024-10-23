@@ -31,8 +31,9 @@ class StateRunning(State):
         self.agent.add_behaviour(svc_acl_handling_behav, AASmanagerInfo.SVC_STANDARD_ACL_TEMPLATE)
 
         # On the other hand, a behaviour is required to handle interaction messages
-        interaction_handling_behav = InteractionHandlingBehaviour(self.agent)
-        self.agent.add_behaviour(interaction_handling_behav)
+        # TODO revisar, ya que en el nuevo enfoque no hay AAS Core
+        # interaction_handling_behav = InteractionHandlingBehaviour(self.agent)
+        # self.agent.add_behaviour(interaction_handling_behav)
 
         # Besides, the negotiation behaviour has to be added to the agent
         negotiation_behav = NegotiatingBehaviour(self.agent)
@@ -41,7 +42,7 @@ class StateRunning(State):
         # Wait until the behaviour has finished. Is a CyclicBehaviour, so it will not end until an error occurs or, if
         # desired, it can be terminated manually using "behaviour.kill()".
         await svc_acl_handling_behav.join()
-        await interaction_handling_behav.join()
+        # await interaction_handling_behav.join()
         await negotiation_behav.join()
 
         # If the Execution Running State has been completed, the agent can move to the next state

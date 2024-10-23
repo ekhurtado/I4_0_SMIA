@@ -22,7 +22,11 @@ def get_aas_general_property(property_name):
     # Read submodels configuration
     config_sm = configparser.RawConfigParser()
     config_sm.read(AASGeneralInfo.CONFIG_MAP_PATH + '/' + AASGeneralInfo.CM_GENERAL_PROPERTIES_FILENAME)
-    return config_sm['AAS']['aas.' + property_name]
+    try:
+        return config_sm['AAS']['aas.' + property_name]
+    except KeyError as e:
+        _logger.error("The 'general.properties' file in the ConfigMap is not valid.")
+        return None
 
 def get_dt_general_property(property_name):
     """
@@ -42,15 +46,15 @@ def get_dt_general_property(property_name):
 
 def get_aas_model_filepath():
     """
-    This method returns the AAS model file path. The AAS model is specified in the ‘dt.properties’ file
-    within the ‘DEFAULT’ section, with 'aas.model.file' attribute.
+    This method returns the AAS model file path. The AAS model is specified in the ‘general.properties’ file
+    within the ‘AAS’ section, with 'aas.model.file' attribute.
 
     Returns:
         str: The AAS model file path within the AAS Archive.
     """
     config_sm = configparser.RawConfigParser()
-    config_sm.read(AASGeneralInfo.CONFIG_MAP_PATH + '/' + AASGeneralInfo.CM_DT_PROPERTIES_FILENAME)
-    return config_sm['DEFAULT']['aas.model.file']
+    config_sm.read(AASGeneralInfo.CONFIG_MAP_PATH + '/' + AASGeneralInfo.CM_GENERAL_PROPERTIES_FILENAME)
+    return AASGeneralInfo.CONFIG_MAP_PATH + '/' + config_sm['AAS']['aas.model.file']
 
 
 

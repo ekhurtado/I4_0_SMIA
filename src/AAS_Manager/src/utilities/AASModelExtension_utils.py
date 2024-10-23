@@ -1,10 +1,10 @@
 from basyx.aas.model import AssetAdministrationShell, AssetInformation, ConceptDescription, \
     HasSemantics, Qualifier, Capability
 
-from aas_model_extension.ExtendedAssetAdministrationShell import *
-from aas_model_extension.ExtendedBase import ExtendedHasSemantics, ExtendedQualifier
-from aas_model_extension.ExtendedConceptDescription import ExtendedConceptDescription
-from aas_model_extension.ExtendedSubmodel import *
+from aas_model.ExtendedAssetAdministrationShell import *
+from aas_model.ExtendedBase import ExtendedHasSemantics, ExtendedQualifier
+from aas_model.ExtendedConceptDescription import ExtendedConceptDescription
+from aas_model.ExtendedSubmodel import *
 
 
 class AASModelExtensionUtils:

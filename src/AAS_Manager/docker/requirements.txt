@@ -16,3 +16,6 @@ spade == 3.3.2
 setuptools == 74.1.2
 wheel == 0.44.0
 aiokafka == 0.10.0
+
+# Related to AAS model
+basyx-python-sdk == 1.0.0

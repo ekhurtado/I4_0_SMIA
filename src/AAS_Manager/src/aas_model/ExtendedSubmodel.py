@@ -4,7 +4,7 @@ from basyx.aas.model import SubmodelElementList, SubmodelElement, Operation, Sub
     AnnotatedRelationshipElement, BasicEventElement, Entity, SubmodelElementCollection, Property, MultiLanguageProperty, \
     Range, Blob, File, ReferenceElement, Capability
 
-from aas_model_extension.ExtendedAssetAdministrationShell import ExtendedGeneralMethods
+from aas_model.ExtendedAssetAdministrationShell import ExtendedGeneralMethods
 from utilities.CapabilitySkillOntology import CapabilitySkillOntology
 
 _logger = logging.getLogger(__name__)
@@ -98,23 +98,6 @@ class ExtendedRelationshipElement(RelationshipElement):
         print("\tSpecific attributes of RelationshipElements:")
         print("\t\tfirst: {}".format(self.first))
         print("\t\tsecond: {}".format(self.second))
-
-    def get_cap_skill_elem_from_relationship(self):
-        """
-        This method returns the Capability and Skill objects from the Relationship element, no matter in which order
-        they are specified.
-
-        Returns:
-            basyx.aas.model.Capability, basyx.aas.model.SubmodelElement: capability and skill SME in Python
-            reference objects.
-        """
-        if isinstance(self.first, basyx.aas.model.Capability):
-            return self.first, self.second
-        elif isinstance(self.second, basyx.aas.model.Capability):
-            return self.second, self.first
-        else:
-            _logger.error("This method has been used incorrectly. This Relationship does not have a Capability element.")
-            return None, None
 
 
 class ExtendedAnnotatedRelationshipElement(AnnotatedRelationshipElement):

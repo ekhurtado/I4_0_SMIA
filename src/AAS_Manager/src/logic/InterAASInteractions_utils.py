@@ -24,7 +24,7 @@ def create_svc_json_data_from_acl_msg(acl_msg):
         'performative': acl_msg.get_metadata('performative'),
         'ontology': acl_msg.get_metadata('ontology'),
         'thread': acl_msg.thread,
-        'sender': acl_msg.sender,
+        'sender': GeneralUtils.get_sender_from_acl_msg(acl_msg),
         'receiver': acl_msg.to,
     }
     # The body of the ACL message contains the rest of the information
@@ -34,8 +34,7 @@ def create_svc_json_data_from_acl_msg(acl_msg):
 
 def create_inter_aas_request_msg(receiver, thread, service_id, service_type, service_params=None):
     """
-    This method creates the Inter AAS interaction response object using the initial Inter AAS interaction request and
-    the Intra AAS interaction response needed to perform the initial service request.
+    This method creates the Inter AAS interaction request object.
 
     Args:
         receiver (str): the JID of the receiver of the ACL message from which the service is requested.
@@ -64,6 +63,38 @@ def create_inter_aas_request_msg(receiver, thread, service_id, service_type, ser
     request_msg.body = json.dumps(request_msg_body_json)
     return request_msg
 
+def create_inter_aas_response_msg(receiver, thread, performative, service_id=None, service_type=None, service_params=None):
+    """
+    This method creates the Inter AAS interaction response object.
+
+    Args:
+        receiver (str): the JID of the receiver of the ACL message from which the service is requested.
+        thread (str): the thread of the ACL message.
+        metadata (dict): the metadata of the ACL message.
+        service_id (str): the serviceID of the ACL message.
+        service_type (str): the serviceType of the ACL message.
+        service_params (str): the serviceParams of the "serviceData" section of the ACL message.
+
+    Returns:
+        spade.message.Message: SPADE message object FIPA-ACL-compliant.
+    """
+
+    request_msg = Message(to=receiver, thread=thread)
+    request_msg.set_metadata('performative', performative)
+    request_msg.set_metadata('ontology', 'SvcResponse')
+
+    request_msg_body_json = {
+        'serviceID': service_id,
+        'serviceType': service_type,
+        'serviceData': {
+            'serviceCategory': 'service-response',
+            'timestamp': GeneralUtils.get_current_timestamp(),
+        }
+    }
+    if service_params is not None:
+        request_msg_body_json['serviceData']['serviceParams'] = service_params
+    request_msg.body = json.dumps(request_msg_body_json)
+    return request_msg
 
 
 def create_inter_aas_response_object(inter_aas_request, intra_aas_response):

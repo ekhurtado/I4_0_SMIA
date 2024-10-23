@@ -37,3 +37,20 @@ class CapabilitySkillOntology:
     QUALIFIER_SKILL_POSSIBLE_VALUES = ['STATE', 'TRIGGER', 'OPERATION', 'FUNCTIONBLOCK']
 
 
+class CapabilitySkillACLInfo:
+    """
+    This subclass of CapabilitySkillOntology contains information about the structure of the message that are sent
+    between DTs in relation to Capability-Skill model.
+    """
+
+    # Required Capability information
+    REQUIRED_CAPABILITY_NAME = 'capabilityName'
+    REQUIRED_CAPABILITY_TYPE = 'capabilityType'
+    REQUIRED_SKILL_INFO = 'skillInfo'
+    REQUIRED_SKILL_NAME = 'skillName'
+    REQUIRED_ELEMENT_TYPE = 'smeType'
+    REQUIRED_SKILL_PARAMETERS = 'skillParameters'
+    # TODO pensar si harian falta mas
+
+
+

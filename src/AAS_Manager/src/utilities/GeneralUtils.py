@@ -122,6 +122,23 @@ class GeneralUtils:
         return msg
 
     @staticmethod
+    def get_sender_from_acl_msg(acl_msg):
+        """
+        This method returns the identifier of an agent from an ACL message, considering the suffixes that can be added
+        by the XMPP server.
+
+        Args:
+            acl_msg (spade.message.Message): ACL message object.
+
+        Returns:
+            str: identifier of the sender of the message.
+        """
+        if '/' in str(acl_msg.sender):  # XMPP server can add a random string to differentiate the agent JID
+            return str(acl_msg.sender).split('/')[0]
+        else:
+            return str(acl_msg.sender)
+
+    @staticmethod
     def get_current_timestamp():
         """
         This method returns the current timestamp of the AAS Manager.

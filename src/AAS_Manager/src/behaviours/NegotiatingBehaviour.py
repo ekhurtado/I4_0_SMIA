@@ -7,6 +7,7 @@ from behaviours.HandleNegotiationBehaviour import HandleNegotiationBehaviour
 from behaviours.HandleSvcResponseBehaviour import HandleSvcResponseBehaviour
 from logic import Negotiation_utils, InterAASInteractions_utils
 from utilities.AASmanagerInfo import AASmanagerInfo
+from utilities.GeneralUtils import GeneralUtils
 
 _logger = logging.getLogger(__name__)
 
@@ -64,14 +65,15 @@ class NegotiatingBehaviour(CyclicBehaviour):
                 case "CallForProposal":
                     _logger.aclinfo("The agent has received a request to start a negotiation (CFP) with thread ["
                                     + msg.thread + "]")
+
+                    if msg_json_body['serviceID'] == 'capabilityRequest':
+                        _logger.aclinfo("The agent has been asked to perform a capability to negotiate.")
+                        # TODO pensar como gestionar las negociaciones en forma de capacidades
+                        msg_json_body['serviceData']['serviceParams']['criteria'] = msg_json_body['serviceData']['serviceParams']['NegotiationCriteria']
+
                     # First, some useful information is obtained from the msg
                     targets_list = msg_json_body['serviceData']['serviceParams']['targets'].split(',')
-
-                    if '/' in str(msg.sender):  # XMPP server can add a random string to differentiate the agent JID
-                        neg_requester_jid = str(msg.sender).split('/')[0]
-                    else:
-                        neg_requester_jid = str(msg.sender)
-
+                    neg_requester_jid = GeneralUtils.get_sender_from_acl_msg(msg)
                     if len(targets_list) == 1:
                         # There is only one target available (therefore, it is the only one, so it is the winner)
                         _logger.info("The AAS has won the negotiation with thread [" + msg.thread + "]")

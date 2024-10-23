@@ -16,25 +16,7 @@ spec:
     spec:
       containers:
         - name: aas-manager
-          image: ekhurtado/aas-manager:0.1.1
-          imagePullPolicy: Always
-          volumeMounts:
-            - name: aas-archive
-              mountPath: /aas_archive/
-            - name: aas-archive-interactions
-              mountPath: /aas_archive/interactions
-              subPath: interactions
-            - name: aas-archive-submodels
-              mountPath: /aas_archive/submodels
-              subPath: submodels
-            - name: aas-archive-status
-              mountPath: /aas_archive/status
-              subPath: status
-            - name: component-cm
-              mountPath: /aas_archive/config
-
-        - name: aas-core
-          image: ekhurtado/aas-core:0.1.1
+          image: ekhurtado/aas-manager:latest
           imagePullPolicy: Always
           volumeMounts:
             - name: aas-archive

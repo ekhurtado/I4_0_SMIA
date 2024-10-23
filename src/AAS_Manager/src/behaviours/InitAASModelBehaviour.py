@@ -35,8 +35,7 @@ class InitAASModelBehaviour(OneShotBehaviour):
         This method implements the logic of the behaviour.
         """
         # First, the AAS model serialization format is obtained
-        aas_model_serialization_format = ConfigMap_utils.get_dt_general_property('aas.model.serialization')
-        _logger.error(aas_model_serialization_format)   # TODO ELIMINAR
+        aas_model_serialization_format = ConfigMap_utils.get_aas_general_property('model.serialization')
 
         # Depending on the serialization format, the required BaSyx read method shall be executed. This will store all
         # the received elements of the model in the corresponding global object of the agent.
@@ -46,8 +45,7 @@ class InitAASModelBehaviour(OneShotBehaviour):
         # When the object store is created, the required values and information is obtained from the AAS model
         # Both the agent and asset capabilities are stored in the global variables of the agents, with their related
         # information (constraints, associated skill, skill interface...).
-        capabilities_skills_information = await self.get_capabilities_skills_information()
-        await self.myagent.aas_model.set_capabilities_skills_object(capabilities_skills_information)
+        await self.save_capabilities_skills_information()
 
         # TODO: pensar si faltaria comprobar mas cosas a recoger en el modelo de AAS
         _logger.info("AAS model initialized.")
@@ -74,20 +72,18 @@ class InitAASModelBehaviour(OneShotBehaviour):
         else:
             return object_store
 
-    async def get_capabilities_skills_information(self):
+    async def save_capabilities_skills_information(self):
         """
-        This method gets all the information related to Capabilities and Skills defined in the AAS model.
-
-        Returns:
-            dict: object with all the information about Capabilities and Skills of the DT and the asset.
+        This method saves all the information related to Capabilities and Skills defined in the AAS model into the
+        agent global variables.
         """
         _logger.info("Reading the AAS model to get all capabilities of the asset and the industrial agent...")
-        rels_cap_skill_list = self.myagent.aas_model.get_relationship_elements_by_semantic_id(
+        rels_cap_skill_list = await self.myagent.aas_model.get_relationship_elements_by_semantic_id(
             CapabilitySkillOntology.SEMANTICID_REL_CAPABILITY_SKILL)
         for rel_cap_skill in rels_cap_skill_list:
             # First, the elements of capability and skill are determined (no matter in which order of the
             # relationship they are listed).
-            capability_elem, skill_elem = rel_cap_skill.get_cap_skill_elem_from_relationship()
+            capability_elem, skill_elem = await self.myagent.aas_model.get_cap_skill_elem_from_relationship(rel_cap_skill)
 
             if capability_elem.check_cap_skill_ontology_semantics_and_qualifiers() is False:
                 continue
@@ -96,11 +92,10 @@ class InitAASModelBehaviour(OneShotBehaviour):
             capability_type = capability_elem.get_capability_type_in_ontology()
 
             # If the capability has constraints, they will be obtained
-            capability_constraints = self.myagent.aas_model.get_capability_associated_constraints(capability_elem)
-            cap_constraints_list = list(capability_constraints)
-            if cap_constraints_list:
+            capability_constraints = await self.myagent.aas_model.get_capability_associated_constraints(capability_elem)
+            if capability_constraints:
                 str_contraints = "\t\tThe capability associated constraints are: "
-                for constraint in cap_constraints_list:
+                for constraint in capability_constraints:
                     str_contraints += constraint.id_short + ', '
                 _logger.info(str_contraints)
             else:
@@ -113,12 +108,19 @@ class InitAASModelBehaviour(OneShotBehaviour):
                 continue
 
             # The necessary Skill interface to implement the skill must be obtained
-            skill_interface_elem = self.myagent.aas_model.get_skill_interface_element(skill_elem)
-            if skill_interface_elem is None:
+            skill_interface_elem = await self.myagent.aas_model.get_skill_interface_element(skill_elem)
+            if skill_interface_elem is None and capability_type != CapabilitySkillOntology.AGENT_CAPABILITY_TYPE:
                 _logger.error("The interface of the skill {} does not exist.")
                 continue
 
             # At this point of the execution, all checks ensure that the necessary information is available
             # All the information will be saved in the global variables of the agent
-            cap_skill_info = {} # TODO pensar como estructurar la informacion
-            self.myagent.aas_model.save_capability_skill_information(capability_type, cap_skill_info)
+            cap_skill_info = {capability_elem: {
+                'skillObject': skill_elem,
+                'skillInterface': skill_interface_elem,
+            }}
+            if capability_constraints:
+                cap_skill_info[capability_elem]['capabilityConstraints'] = capability_constraints
+            await self.myagent.aas_model.save_capability_skill_information(capability_type, cap_skill_info)
+            _logger.info("Capability {} information saved in the global variables.".format(capability_elem))
+

@@ -4,7 +4,7 @@ import basyx.aas.model
 from spade.agent import Agent
 import logging
 
-from aas_model_extension.ExtendedAASModel import ExtendedAASModel
+from aas_model.ExtendedAASModel import ExtendedAASModel
 from states.StateRunning import StateRunning
 from states.StateStopping import StateStopping
 from utilities.AASmanagerInfo import AASmanagerInfo

@@ -1,4 +1,4 @@
-from basyx.aas.model import Qualifier, HasSemantics
+from basyx.aas.model import Qualifier, HasSemantics, NamespaceSet
 
 
 class ExtendedQualifier(Qualifier):
@@ -24,3 +24,4 @@ class ExtendedHasSemantics(HasSemantics):
             if str(reference) == semantic_id_reference:
                 return True
         return False
+

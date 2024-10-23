@@ -1,6 +1,7 @@
 import asyncio
 import json
 import logging
+import random
 
 from spade.behaviour import CyclicBehaviour
 
@@ -70,7 +71,7 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
                                                                    neg_requester_jid=self.neg_requester_jid,
                                                                    neg_criteria=self.neg_criteria,
                                                                    neg_value=str(self.neg_value))
-        # This PROPOSE FIP-ACL message is sent to all participants of the negotiation (except for this AAS Manager)
+        # This PROPOSE FIPA-ACL message is sent to all participants of the negotiation (except for this AAS Manager)
         for jid_target in self.targets.split(','):
             if jid_target != str(self.agent.jid):
                 acl_propose_msg.to = jid_target
@@ -147,6 +148,10 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
         #  interaction al Core directamente, pero el AAS Manager deberia ser capaz de analizar el criterio y ver si el
         #  mismo tiene el valor (p.e. de un submodelo), o en cambio se lo tiene que pedir al AAS Core
         _logger.info("Getting the neg value with Intra AAS interaction...")
+
+        # self.neg_value = random.uniform(0.0, 100.0)
+        # _logger.info("The negotiation value for the negotiation with thread [" + self.thread + "] has been obtained. ")
+        # TODO pensar como hacerlo, ya que ahora no existe el AAS Core
         intra_aas_svc_data = {
             'serviceCategory': 'service-request',
             'timestamp': GeneralUtils.get_current_timestamp(),

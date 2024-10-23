@@ -1,3 +1,4 @@
+import json
 import logging
 import spade
 
@@ -38,10 +39,6 @@ async def main():
     # Get the type of the asset
     # aas_type = ConfigMap_utils.get_asset_type()
     aas_type = ''  # For testing
-
-    # TODO BORRAR
-    aas_id = 'gcis1'
-    xmpp_server = 'anonym.im'
 
     # Build the agent jid and password
     agent_jid = aas_id + '@' + xmpp_server
