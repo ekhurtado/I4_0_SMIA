@@ -70,7 +70,8 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
             # First, the capability to be performed will be obtained from the internal AAS model
             # TODO, para este paso, se podrian almacenar las capacidades que se han verificado ya cuando se recibe el
             #  Query-If (se supone que otro agente debería mandar en CallForProposal despues del Query-If, pero para
-            #  añadirle una validacion extra) Esto podria hacerse con el thread (el Query-If y CFP estarían en la misma negociacion?)
+            #  añadirle una validacion extra) Esto podria hacerse con el thread (el Query-If y CFP estarían en la misma
+            #  negociacion?). Otra opcion es siempre ejecutar aas_model.capability_checking_from_acl_request()
             required_cap_data = self.svc_req_data['serviceData']['serviceParams']
             required_cap_type = required_cap_data[CapabilitySkillACLInfo.REQUIRED_CAPABILITY_TYPE]
             capability_elem = await self.myagent.aas_model.get_capability_by_id_short(

@@ -48,7 +48,7 @@ class InitAASModelBehaviour(OneShotBehaviour):
         # When the object store is created, the required values and information is obtained from the AAS model
         # Both the agent and asset capabilities are stored in the global variables of the agents, with their related
         # information (constraints, associated skill, skill interface...).
-        await self.save_capabilities_skills_information()
+        await self.get_and_save_capabilities_skills_information()
 
         # After the AAS model has been analyzed, the AssetConnection class can be specified
         await self.update_asset_connection()
@@ -79,7 +79,7 @@ class InitAASModelBehaviour(OneShotBehaviour):
         else:
             return object_store
 
-    async def save_capabilities_skills_information(self):
+    async def get_and_save_capabilities_skills_information(self):
         """
         This method saves all the information related to Capabilities and Skills defined in the AAS model into the
         agent global variables.
@@ -121,7 +121,7 @@ class InitAASModelBehaviour(OneShotBehaviour):
             # The necessary Skill interface to implement the skill must be obtained
             skill_interface_elem = await self.myagent.aas_model.get_skill_interface_by_skill_elem(skill_elem)
             if skill_interface_elem is None and capability_type != CapabilitySkillOntology.AGENT_CAPABILITY_TYPE:
-                _logger.error("The interface of the skill {} does not exist.")
+                _logger.error("The interface of the skill {} does not exist.".format(skill_elem))
                 continue
 
             # At this point of the execution, all checks ensure that the necessary information is available
