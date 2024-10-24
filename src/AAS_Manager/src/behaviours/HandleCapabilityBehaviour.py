@@ -57,6 +57,7 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
                 pass
             case _:
                 _logger.error("Performative not available for capability management.")
+        self.exit_code = 0
 
     # ------------------------------------------
     # Methods to handle of all types of services
@@ -69,7 +70,7 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
             # First, the capability to be performed will be obtained from the internal AAS model
             # TODO, para este paso, se podrian almacenar las capacidades que se han verificado ya cuando se recibe el
             #  Query-If (se supone que otro agente debería mandar en CallForProposal despues del Query-If, pero para
-            #  añadirle una validacion extra)
+            #  añadirle una validacion extra) Esto podria hacerse con el thread (el Query-If y CFP estarían en la misma negociacion?)
             required_cap_data = self.svc_req_data['serviceData']['serviceParams']
             required_cap_type = required_cap_data[CapabilitySkillACLInfo.REQUIRED_CAPABILITY_TYPE]
             capability_elem = await self.myagent.aas_model.get_capability_by_id_short(
@@ -86,14 +87,31 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
                 #  una interfaz simultánea, habría que especificarla justo antes de realizar la conexión con el activo
 
                 # TODO BORRAR (es solo para pruebas, esta como el AAS Core de ROS, usando un fichero JSON como intermediario para el gateway)
+                # skill_elem =  self.myagent.aas_model.get_skill_data_by_capability(capability_elem, 'skillObject')
+                skill_interface_elem = await self.myagent.aas_model.get_skill_data_by_capability(capability_elem, 'skillInterface')
 
-                self.myagent.asset_connection.configure_connection({'ros_topic': '/coordinateIDLE'})
-                self.myagent.asset_connection.send_msg_to_asset('GO')
-                await asyncio.sleep(1)
-                self.myagent.asset_connection.configure_connection({'ros_topic': '/coordinate'})
-                self.myagent.asset_connection.send_msg_to_asset('1.43,0.59')
-                await asyncio.sleep(1)
+                # If the skill has a valid interface, it will be executed
+                skill_execution_result = ''
+                if skill_interface_elem.check_semantic_id_exist(CapabilitySkillOntology.SEMANTICID_SKILL_INTERFACE_HTTP):
+                    _logger.interactioninfo("Asset connection will be configured with SkillInterface information.")
+                    self.myagent.asset_connection.configure_connection({'ros_topic': '/coordinateIDLE'})
+                    _logger.interactioninfo("Executing skill of the capability through the SkillInterface.")
+                    self.myagent.asset_connection.send_msg_to_asset('GO')
+                    await asyncio.sleep(1)
+                    self.myagent.asset_connection.configure_connection({'ros_topic': '/coordinate'})
+                    self.myagent.asset_connection.send_msg_to_asset('1.43,0.59')
+                    await asyncio.sleep(1)
+                    _logger.interactioninfo("Skill of the capability successfully executed.")
 
+                    skill_execution_result = 'Completed'
+
+                else:
+                    _logger.warning("The capability required has invalid skill interface.")
+                    skill_execution_result = 'NotExecuted'
+
+                # When the skill has finished, the request is answered
+                await self.send_response_inform_to_sender({'result': skill_execution_result})
+                _logger.info("Management of the capability {} finished.")
 
         else:
             pass
@@ -111,15 +129,9 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
             required_capability_data = self.svc_req_data['serviceData']['serviceParams']
             # It will be checked if the DT can perform the required capability
             result = await self.myagent.aas_model.capability_checking_from_acl_request(required_capability_data)
-            acl_msg = InterAASInteractions_utils.create_inter_aas_response_msg(
-                receiver=self.svc_req_data['sender'],
-                thread=self.svc_req_data['thread'],
-                performative=FIPAACLInfo.FIPA_ACL_PERFORMATIVE_INFORM,
-                service_id=self.svc_req_data['serviceID'],
-                service_type=self.svc_req_data['serviceType'],
-                service_params= json.dumps({'result': result})
-            )
-            await self.send(acl_msg)
+            await self.send_response_inform_to_sender({'result': result})
+            _logger.info("The Capability [{}] has been checked, with result: {}.".format(
+                required_capability_data[CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME], result))
         else:
             # TODO pensar otras categorias para capabilities
             pass
@@ -148,3 +160,21 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
         #  es propio del AAS Manager, podra acceder directamente y, por tanto, este behaviour sera capaz de realizar el
         #  servicio completamente. Si es un submodelo del AAS Core, tendra que solicitarselo
         _logger.info(await self.myagent.get_interaction_id() + str(self.svc_req_data))
+
+
+    async def send_response_inform_to_sender(self, service_params):
+        """
+        This method creates and sends and INFORM FIPA-ACL message with the given serviceParams.
+
+        Args:
+            service_params (dict): JSON with the serviceParams to be sent in the message.
+        """
+        acl_msg = InterAASInteractions_utils.create_inter_aas_response_msg(
+            receiver=self.svc_req_data['sender'],
+            thread=self.svc_req_data['thread'],
+            performative=FIPAACLInfo.FIPA_ACL_PERFORMATIVE_INFORM,
+            service_id=self.svc_req_data['serviceID'],
+            service_type=self.svc_req_data['serviceType'],
+            service_params=json.dumps(service_params)
+        )
+        await self.send(acl_msg)

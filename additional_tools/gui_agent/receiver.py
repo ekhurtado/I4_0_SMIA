@@ -327,6 +327,7 @@ class ReceiverAgent(Agent):
             for jid_target in targets_list:
                 # Envio el mensaje a cada uno de los targets (excepto al propio agente)
                 if jid_target + '@' + XMPP_SERVER != str(self.agent.jid):
+                # if jid_target != str(self.agent.jid):
                     propose_msg.to = jid_target + '@' + XMPP_SERVER
                     await self.send(propose_msg)
                     print("[" + str(self.agent.jid) + "]" + " [NEGOTIATION " + self.thread + "] PROPOSE message" \

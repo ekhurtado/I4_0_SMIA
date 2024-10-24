@@ -141,14 +141,9 @@ class ExtendedCapability(Capability):
         Returns:
             bool: result of the check (only True if the semanticID of Capability-Skill ontology exists).
         """
-        if self.check_semantic_id_exist(CapabilitySkillOntology.SEMANTICID_MANUFACTURING_CAPABILITY):
-            _logger.info('\t\tThe capability is of a manufacturing type.')
-            return True  # TODO juntar los tres casos de exito y despues el de fallo para no repetirlo
-        elif self.check_semantic_id_exist(CapabilitySkillOntology.SEMANTICID_ASSET_CAPABILITY):
-            _logger.info('\t\tThe capability is of a asset type.')
-            return True
-        elif self.check_semantic_id_exist(CapabilitySkillOntology.SEMANTICID_AGENT_CAPABILITY):
-            _logger.info('\t\tThe capability is of a agent type.')
+        if ((self.check_semantic_id_exist(CapabilitySkillOntology.SEMANTICID_MANUFACTURING_CAPABILITY))
+                or (self.check_semantic_id_exist(CapabilitySkillOntology.SEMANTICID_ASSET_CAPABILITY))
+                or (self.check_semantic_id_exist(CapabilitySkillOntology.SEMANTICID_AGENT_CAPABILITY))):
             return True
         else:
             _logger.error("ERROR: the capability is not valid within the ontology.")

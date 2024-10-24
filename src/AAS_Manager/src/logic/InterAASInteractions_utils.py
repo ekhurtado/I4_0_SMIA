@@ -70,7 +70,7 @@ def create_inter_aas_response_msg(receiver, thread, performative, service_id=Non
     Args:
         receiver (str): the JID of the receiver of the ACL message from which the service is requested.
         thread (str): the thread of the ACL message.
-        metadata (dict): the metadata of the ACL message.
+        performative (str): the performative of the ACL message.
         service_id (str): the serviceID of the ACL message.
         service_type (str): the serviceType of the ACL message.
         service_params (str): the serviceParams of the "serviceData" section of the ACL message.

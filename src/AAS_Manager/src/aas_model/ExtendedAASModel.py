@@ -225,7 +225,7 @@ class ExtendedAASModel:
             capability_elem (basyx.aas.model.Capability): capability Python object.
 
         Returns:
-            list: lisy with all constraints of the selected capability in form of Python objects.
+            list: list with all constraints of the selected capability in form of Python objects.
         """
         cap_constraints = []
         rels_cap_constraints = await self.get_relationship_elements_by_semantic_id(
@@ -267,20 +267,38 @@ class ExtendedAASModel:
         # The skill parameters will be also checked
         # TODO PENSAR COMO SE HARIA CON VARIOS PARAMETROS
         required_skill_parameters = skill_data[CapabilitySkillACLInfo.REQUIRED_SKILL_PARAMETERS]
-        if await self.check_element_exist_in_namespaceset_by_id_short(skill_elem.input_variable,
-                                                                      required_skill_parameters['input']) is False:
-        # if required_skill_parameters['input'] != skill_elem.input_variable.id_short:
-            _logger.warning("The given skill does not have the same input parameter as the element exists in this DT.")
-            return False
-        if await self.check_element_exist_in_namespaceset_by_id_short(skill_elem.output_variable,
-                                                                      required_skill_parameters['output']) is False:
-        # if required_skill_parameters['output'] != skill_elem.output_variable.id_short:
-            _logger.warning("The given skill does not have the same output parameter as the element exists in this DT.")
-            return False
+        if 'input' in required_skill_parameters:
+            if await self.check_element_exist_in_namespaceset_by_id_short(skill_elem.input_variable,
+                                                                          required_skill_parameters['input']) is False:
+            # if required_skill_parameters['input'] != skill_elem.input_variable.id_short:
+                _logger.warning("The given skill does not have the same input parameter as the element exists in this DT.")
+                return False
+        if 'output' in required_skill_parameters:
+            if await self.check_element_exist_in_namespaceset_by_id_short(skill_elem.output_variable,
+                                                                          required_skill_parameters['output']) is False:
+            # if required_skill_parameters['output'] != skill_elem.output_variable.id_short:
+                _logger.warning("The given skill does not have the same output parameter as the element exists in this DT.")
+                return False
         # When all checks have been passed, the given skill is valid
         return True
 
-    async def get_skill_interface_element(self, skill_elem):
+    async def get_skill_data_by_capability(self, required_cap_elem, required_data):
+        """
+        This method gets the Skill SubmodelElement of a given Capability element.
+        Args:
+            required_cap_elem (basyx.aas.model.Capability): capability Python object.
+            required_data (str): required data of the skill elem (Python object or SkillInterface element)
+
+        Returns:
+            basyx.aas.model.SubmodelElement: skill SME in form of Python object (None if the Capability does not exist).
+        """
+        for cap_info_dict in self.capabilities_skills_dict.values():
+            for cap_elem, cap_info in cap_info_dict.items():
+                if cap_elem == required_cap_elem:
+                    return cap_info[required_data]
+        return None
+
+    async def get_skill_interface_by_skill_elem(self, skill_elem):
         """
         This method gets the interfaces associated to a skill.
 

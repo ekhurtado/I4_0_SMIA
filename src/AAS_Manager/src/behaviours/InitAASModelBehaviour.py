@@ -55,6 +55,7 @@ class InitAASModelBehaviour(OneShotBehaviour):
 
         # TODO: pensar si faltaria comprobar mas cosas a recoger en el modelo de AAS
         _logger.info("AAS model initialized.")
+        self.exit_code = 0
 
     async def read_aas_model_object_store(self, aas_model_serialization_format):
         """
@@ -74,7 +75,7 @@ class InitAASModelBehaviour(OneShotBehaviour):
         if object_store is None:
             _logger.error("The AAS model is not valid. It is not possible to read and obtain elements of the AAS "
                           "metamodel.")
-            self.kill()
+            self.kill(exit_code=10)
         else:
             return object_store
 
@@ -91,11 +92,16 @@ class InitAASModelBehaviour(OneShotBehaviour):
             # relationship they are listed).
             capability_elem, skill_elem = await self.myagent.aas_model.get_cap_skill_elem_from_relationship(rel_cap_skill)
 
+            if capability_elem is None or skill_elem is None:
+                continue
+
             if capability_elem.check_cap_skill_ontology_semantics_and_qualifiers() is False:
                 continue
 
             # The capability_type is obtained using the semanticID
             capability_type = capability_elem.get_capability_type_in_ontology()
+            _logger.info("Analyzing {} [{}] and its associated skill [{}]...".format(capability_type,capability_elem.id_short,
+                                                                                             skill_elem.id_short))
 
             # If the capability has constraints, they will be obtained
             capability_constraints = await self.myagent.aas_model.get_capability_associated_constraints(capability_elem)
@@ -103,10 +109,9 @@ class InitAASModelBehaviour(OneShotBehaviour):
                 str_contraints = "\t\tThe capability associated constraints are: "
                 for constraint in capability_constraints:
                     str_contraints += constraint.id_short + ', '
-                _logger.info(str_contraints)
-            else:
-                _logger.info("\t\tThe capability does not have associated constraints.")
-
+                # _logger.info(str_contraints)
+            # else:
+            #     _logger.info("\t\tThe capability does not have associated constraints.")
             # TODO properties have not been taken into account for the time being for the capacities, add in the future
 
             # Once the information about the capability has been obtained, the associated skill will be analyzed
@@ -114,7 +119,7 @@ class InitAASModelBehaviour(OneShotBehaviour):
                 continue
 
             # The necessary Skill interface to implement the skill must be obtained
-            skill_interface_elem = await self.myagent.aas_model.get_skill_interface_element(skill_elem)
+            skill_interface_elem = await self.myagent.aas_model.get_skill_interface_by_skill_elem(skill_elem)
             if skill_interface_elem is None and capability_type != CapabilitySkillOntology.AGENT_CAPABILITY_TYPE:
                 _logger.error("The interface of the skill {} does not exist.")
                 continue
@@ -128,7 +133,7 @@ class InitAASModelBehaviour(OneShotBehaviour):
             if capability_constraints:
                 cap_skill_info[capability_elem]['capabilityConstraints'] = capability_constraints
             await self.myagent.aas_model.save_capability_skill_information(capability_type, cap_skill_info)
-            _logger.info("Capability {} information saved in the global variables.".format(capability_elem))
+            _logger.info("{} information saved in the global variables.".format(capability_elem))
 
 
     async def update_asset_connection(self):
@@ -139,7 +144,7 @@ class InitAASModelBehaviour(OneShotBehaviour):
         capabilities_dict = await self.myagent.aas_model.get_capability_dict_by_type(CapabilitySkillOntology.ASSET_CAPABILITY_TYPE)
         for cap_elem, cap_info in capabilities_dict.items():
             # TODO, pensar que pasaria si las capacidades tienen diferentes protocolos. De momento se ha dejado de forma sencilla, se recoge el primero
-            skill_interface = await self.myagent.aas_model.get_skill_interface_element(cap_info['skillObject'])
+            skill_interface = await self.myagent.aas_model.get_skill_interface_by_skill_elem(cap_info['skillObject'])
             for semantic_id in traversal.walk_semantic_ids_recursive(skill_interface):
                 for reference in semantic_id.key:
                     if str(reference) == CapabilitySkillOntology.SEMANTICID_SKILL_INTERFACE_HTTP:
