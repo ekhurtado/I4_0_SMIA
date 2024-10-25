@@ -51,7 +51,7 @@ class InitAASModelBehaviour(OneShotBehaviour):
         await self.get_and_save_capabilities_skills_information()
 
         # After the AAS model has been analyzed, the AssetConnection class can be specified
-        await self.update_asset_connection()
+        await self.get_and_configure_asset_connections()
 
         # TODO: pensar si faltaria comprobar mas cosas a recoger en el modelo de AAS
         _logger.info("AAS model initialized.")
@@ -106,6 +106,15 @@ class InitAASModelBehaviour(OneShotBehaviour):
             # If the capability has constraints, they will be obtained
             capability_constraints = await self.myagent.aas_model.get_capability_associated_constraints(capability_elem)
             if capability_constraints:
+                # TODO PROXIMO PASO: si se ha definido algun constraint, se comprobará que tiene un Qualifier valido
+                #  (FeasibilityCheckingCondition con Pre-,Post-condition o invariant). Despues, comprobará si ese
+                #  constraint (siendo una propiedad) tiene un valueId o no. Si lo tiene, este será la referencia al
+                #  ConceptDescription que define el valor de ese constraint. Este ConceptDescription, puede tener un
+                #  valueList con los posibles valores de ese constraint. (Un ejemplo es el de NegotiationCriteria. La
+                #  capacidad de negociar viene limitada por los criterios por los que puede negociar, y estos se
+                #  definen en el ConceptDescription añadido en el valueId de la propiedad del constraint). Por lo tanto,
+                #  si el valueId del constraint no está vacío, hay que analizar el ConceptDescription y añadir los
+                #  posibles valores en la información del constraint
                 str_contraints = "\t\tThe capability associated constraints are: "
                 for constraint in capability_constraints:
                     str_contraints += constraint.id_short + ', '
@@ -118,8 +127,19 @@ class InitAASModelBehaviour(OneShotBehaviour):
             if skill_elem.check_cap_skill_ontology_semantics_and_qualifiers() is False:
                 continue
 
+            # TODO PROXIMO PASO: falta analizar los inputs y outputs parameters del skill. Si es una operación, los
+            #  tiene integrados, pero si no, se deben localizar usando el semanticID 'HasParameter'. En los parametros,
+            #  también habra que comprobar si tienen un valueId, es decir, un ConceptDescription asociado con los
+            #  posibles valores que puede coger esa variable. En ese caso (p.e. el input de negociacion es el criterio
+            #  y solo puede ser bateria, o localizacion o memoria RAM), se deberá añadir la información de los posibles
+            #  valores junto al SkillParameters: analizar el ConceptDescription y ver si el valueList está o no vacio,
+            #  si no lo está, recoger esos valores y alamacenarlos en una lista, la cual será la lista para posibles
+            #  valores de ese parametro.
+
             # The necessary Skill interface to implement the skill must be obtained
             skill_interface_elem = await self.myagent.aas_model.get_skill_interface_by_skill_elem(skill_elem)
+            # TODO PROXIMO PASO: habra que analizar que el SkillInterface propuesto tenga un semanticID del Submodelo
+            #  AssetInterfacesDescription (https://admin-shell.io/idta/AssetInterfacesDescription/1/0/Interface)
             if skill_interface_elem is None and capability_type != CapabilitySkillOntology.AGENT_CAPABILITY_TYPE:
                 _logger.error("The interface of the skill {} does not exist.".format(skill_elem))
                 continue
@@ -136,11 +156,19 @@ class InitAASModelBehaviour(OneShotBehaviour):
             _logger.info("{} information saved in the global variables.".format(capability_elem))
 
 
-    async def update_asset_connection(self):
+    async def get_and_configure_asset_connections(self):
         """
-        This method updates the Asset Connection class of the agent based on the Skill interface defined in the AAS
-        model.
+        This method gets all Asset Interfaces Descriptions in the AAS model, configures each case with associated
+        'AssetConnection' class and saves the information in the global variable of the agent for all asset connections.
         """
+        # TODO PROXIMO PASO: hay que modificicar la variable global para assetconnection del agente ya que se debe
+        #  habilitar añadir mas de un AssetConnection. Para ello, se analizara el Submodelo "AssetInterfacesDescription"
+        #  y se recogerá cada SMC dentro de el, el cual determinara una interfaz diferente. Por cada interfaz,
+        #  dependiendo del tipo (HTTP, OPC UA...) se generará una clase AssetConnection. Esta deberá tener, por una
+        #  parte, la referencia al SMC del modelo AAS. Utilizando esta referencia, leera toda la informacion de ese
+        #  submodelo y configurará la interfaz (p.e. añadiendo los datos del endpoint), para dejar la interfaz lista
+        #  para ser usada (se hará referencia a los SMEs dentro de "InteractionMetada" del submodelo de la interfaz,
+        #  que es donde estan los datapoints)
         capabilities_dict = await self.myagent.aas_model.get_capability_dict_by_type(CapabilitySkillOntology.ASSET_CAPABILITY_TYPE)
         for cap_elem, cap_info in capabilities_dict.items():
             # TODO, pensar que pasaria si las capacidades tienen diferentes protocolos. De momento se ha dejado de forma sencilla, se recoge el primero

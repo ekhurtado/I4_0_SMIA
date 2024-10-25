@@ -152,6 +152,16 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
         # self.neg_value = random.uniform(0.0, 100.0)
         # _logger.info("The negotiation value for the negotiation with thread [" + self.thread + "] has been obtained. ")
         # TODO pensar como hacerlo, ya que ahora no existe el AAS Core
+        # TODO PROXIMO PASO: ahora la negociacion vendran solicitadas cmo una capacidad del agente (agentCapability). En
+        #  este punto ya se ha comprobado que el criterio requerido está entre los posibles valores definidos en el
+        #  ConceptDescription para criterios. Por ello, en este caso, habra que analizar si el criterio seleccionado
+        #  es un valor del activo, por lo que habria que solicitarselo a traves de su interfaz. Para ello, durante la
+        #  lectura del modelo AAS, se habrá añadido entre la información del SkillParameter (NegotiationCriteria en
+        #  este caso), la referencia al SkillInterface de cada parametro, dependiendo su valor. P.e. si el valor es
+        #  battery, se habrá añadido la referencia a la propiedad battery de (en su 'valueSemantics') dentro del submodelo
+        #  AssetInterfacesDescription. De esta forma, se comprobará si el criterio requerido tiene una referencia dentro
+        #  del submodelo para interfaces, y si es el caso, se ejecutará el método '' del AssetConnection asociado,
+        #  añadiendole los datos del Skill element (con los valores en los inputs) y su Skill interface.
         intra_aas_svc_data = {
             'serviceCategory': 'service-request',
             'timestamp': GeneralUtils.get_current_timestamp(),

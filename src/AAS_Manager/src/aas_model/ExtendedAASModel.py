@@ -265,7 +265,10 @@ class ExtendedAASModel:
             _logger.warning("The given skill SubmodelElement type is not the same as the element exists in this DT.")
             return False
         # The skill parameters will be also checked
-        # TODO PENSAR COMO SE HARIA CON VARIOS PARAMETROS
+        # TODO PROXIMO PASO: PENSAR COMO SE HARIA CON VARIOS PARAMETROS (una opcion es definir en el JSON 'inputs' como
+        #  listas y que haya que recorrer cada uno de los parametros, tanto de entrada como de salida. Habra que
+        #  comprobar que todos existen como elemento Python buscandolos por el id_short. En el caso de que alguno no
+        #  esté, el checking falla)
         required_skill_parameters = skill_data[CapabilitySkillACLInfo.REQUIRED_SKILL_PARAMETERS]
         if 'input' in required_skill_parameters:
             if await self.check_element_exist_in_namespaceset_by_id_short(skill_elem.input_variable,
@@ -341,6 +344,8 @@ class ExtendedAASModel:
             _logger.warning("A capability has been requested that this DT does not have.")
             return False
         # TODO quedan por analizar las constraints
+        # TODO PROXIMO PASO: para analizar las constraint, simplemente se comprobará si el nombre de la constraint se
+        #  ha definido en la capacidad requerida (en este paso no se ejecuta la capacidad, por lo que las constraints no se analizan)
         # It will be also checked the skill id_short
         required_skill_data = required_capability_data[CapabilitySkillACLInfo.REQUIRED_SKILL_INFO]
         if await self.check_skill_elem_by_capability(required_cap_type, capability_elem, required_skill_data) is False:

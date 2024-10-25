@@ -88,17 +88,34 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
                 #  una interfaz simultánea, habría que especificarla justo antes de realizar la conexión con el activo
 
                 # TODO BORRAR (es solo para pruebas, esta como el AAS Core de ROS, usando un fichero JSON como intermediario para el gateway)
+
                 # skill_elem =  self.myagent.aas_model.get_skill_data_by_capability(capability_elem, 'skillObject')
                 skill_interface_elem = await self.myagent.aas_model.get_skill_data_by_capability(capability_elem, 'skillInterface')
 
+                # TODO PROXIMO PASO: en este caso se va a modificar para usar directamente el SkillInterface para
+                #  acceder al asset. En el ejemplo de mover el robot, el AssetInterface será un SME action dentro del
+                #  submodelo de AssetInterfacesDescription. La interfaz ya estara configurada desde el estado Booting
+                #  del agente, por lo que simplemente habrá que ejecutrar el metodo 'send_msg_to_asset' del
+                #  AssetConnection, pasandole el objeto SkillInterface. El AssetConnection recogerá la información
+                #  necesaria de ese SkillInterface y del SkillElement, en este caso, que hay que enviar un HTTP GET a
+                #  '/robotactions/move' con los parametros definidos en los inputs del SkillElement y añadirlos en
+                #  htv_parameters (en este caso quedaria la url a '/robotactions/move?coordinates=x,y'). El metodo de
+                #  envio de mensajes de asset connection quedará a la espera de recibir la respuesta con el 200 OK.
+                #  Cuando se reciba, el CapabilityHandleBehaviour sabrá que el servicio se ha completado, por
                 # If the skill has a valid interface, it will be executed
                 skill_execution_result = ''
                 if skill_interface_elem.check_semantic_id_exist(CapabilitySkillOntology.SEMANTICID_SKILL_INTERFACE_HTTP):
+                    # TODO PROXIMO PASO: toda esta lógica de publicar en varios topicos y tal, es decir, la logica
+                    #  completa para mover el robot se añadira en el ROS gateway (asset integration). Desde el activo,
+                    #  simplemente se ofrecerán 'asset services', los cuales se solicitarán mediante skills (pero la
+                    #  lógica de esos servicios está o en el asset integration o en el propio activo, p.e. en el PLC)
                     _logger.interactioninfo("Asset connection will be configured with SkillInterface information.")
                     self.myagent.asset_connection.configure_connection({'ros_topic': '/coordinateIDLE'})
                     _logger.interactioninfo("Executing skill of the capability through the SkillInterface.")
                     self.myagent.asset_connection.send_msg_to_asset('GO')
                     await asyncio.sleep(1)
+                    # TODO PROXIMO PASO: se quitaria de aqui la configuracion de la interfaz, ya se ha realizado en el
+                    #  estodo booting
                     self.myagent.asset_connection.configure_connection({'ros_topic': '/coordinate'})
                     self.myagent.asset_connection.send_msg_to_asset('1.43,0.59')
                     await asyncio.sleep(1)
