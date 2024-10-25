@@ -72,8 +72,9 @@ class NegotiatingBehaviour(CyclicBehaviour):
                         # TODO PROXIMO PASO: ahora la negociacion vendran solicitadas cmo una capacidad del agente
                         #  (agentCapability). Por ello, primero se comprobará si el criterio que se ha enviado para
                         #  participar en la negociacion es valido, es decir, si su valor esta entre los definidos para
-                        #  este activo. El criterio para las negociaciones está en el SME de la skill, el cual es una
-                        #  operación con un inputo con el criterio. Esta variable de entrada 'criterio' tiene asociada
+                        #  este activo. El criterio para las negociaciones es una constraint que en realidad es un SME
+                        #  Reference que apunta al skill parameter del criterio, que está en el SME de la skill, el cual es una
+                        #  operación con un input con el criterio. Esta variable de entrada 'criterio' tiene asociada
                         #  un conceptDescription con los posibles valores. En este punto, se tendra que comprobar si el
                         #  criterio solicitado en el mensaje ACL existe entre los valores posibles definidos en el
                         #  conceptDescription. Si el resultado es que no, el agente deberá responder con un mensaje
