@@ -1,0 +1,7 @@
+# In this file all the necessary libraries to be installed will be added.
+# A specific version will be assigned to avoid unexpected errors.
+# --------------------
+
+# Related to HTTP server
+Flask == 2.2.5
+requests == 2.31.0
