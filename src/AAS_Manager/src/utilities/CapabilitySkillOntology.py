@@ -70,6 +70,8 @@ class AssetInterfacesInfo:
     # SemanticIDs of Asset Interfaces
     SEMANTICID_INTERFACES_SUBMODEL = 'https://admin-shell.io/idta/AssetInterfacesDescription/1/0/Submodel'
     SEMANTICID_INTERFACE = 'https://admin-shell.io/idta/AssetInterfacesDescription/1/0/Interface'
+    SEMANTICID_INTERACTION_METADATA = 'https://admin-shell.io/idta/AssetInterfacesDescription/1/0/InteractionMetadata'
+    SEMANTICID_VALUE_SEMANTICS = 'https://admin-shell.io/idta/AssetInterfacesDescription/1/0/valueSemantics'
 
     # SemanticIDs of HTTP Asset Interface
     SUPPL_SEMANTICID_HTTP = 'http://www.w3.org/2011/http'

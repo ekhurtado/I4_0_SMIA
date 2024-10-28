@@ -3,7 +3,7 @@ import logging
 import basyx.aas.model.submodel
 from basyx.aas.util import traversal
 
-from utilities.CapabilitySkillOntology import CapabilitySkillOntology, CapabilitySkillACLInfo
+from utilities.CapabilitySkillOntology import CapabilitySkillOntology, CapabilitySkillACLInfo, AssetInterfacesInfo
 
 _logger = logging.getLogger(__name__)
 
@@ -193,6 +193,31 @@ class ExtendedAASModel:
         return False
 
     async def get_concept_description_pair_value_id_by_value_name(self, concept_description_id, value_name):
+        """
+        This method gets the value_id of a pair within a Concept Description using the value name.
+        Args:
+            concept_description_id (str): globally unique identifier of the Concept Description.
+            value_name (str): name of the value inside the pair to find.
+
+        Returns:
+            str: value_id of the pair that contains the provided value name.
+        """
+        concept_description = self.aas_model_object_store.get_identifiable(concept_description_id)
+        if concept_description:
+            # First, it is checked the embedded_data_specifications (the specification of the data inside the element).
+            if concept_description.embedded_data_specifications:
+                # Vamos a comprobar que tenga valueList (en esa variable se añaden los posibles valores para una propiedad)
+                for embedded_data_spec in concept_description.embedded_data_specifications:
+                    if isinstance(embedded_data_spec.data_specification_content, basyx.aas.model.DataSpecificationIEC61360):
+                        if embedded_data_spec.data_specification_content.value_list:
+                            value_list = embedded_data_spec.data_specification_content.value_list
+                            for value_elem in value_list:
+                                if value_elem.value == 'battery':
+                                    # As it is another ConceptDescription, it is a ExternalReference (first key)
+                                    return value_elem.value_id.key[0].value
+
+        _logger.error("Concept Description with id [{}] not found.".format(concept_description_id))
+        return None
 
     # ---------------------------------------------------------------
     # Methods related to Capability-Skill ontology and AAS meta-model
@@ -358,6 +383,31 @@ class ExtendedAASModel:
                 return second_elem
             elif second_elem == skill_elem:
                 return first_elem
+
+    async def get_asset_interface_interaction_metadata_by_value_semantic_id(self, value_semantic_id):
+        """
+        This method reads the AssetInterfacesDescription submodel and returns an Interaction Metadata by a given value
+        semanticID. This is how in this approach it is established that an attribute is of asset data type.
+
+        Args:
+            value_semantic_id (str): semanticID of the value of the Interaction Metadata.
+
+        Returns:
+            basyx.aas.model.SubmodelElementCollection: SubmodelElement of the required Interaction Metadata (None if the semanticID does not exist)
+        """
+        asset_interfaces_submodel = await self.get_submodel_by_semantic_id(AssetInterfacesInfo.SEMANTICID_INTERFACES_SUBMODEL)
+        for interface_smc in asset_interfaces_submodel.submodel_element:
+            interaction_metadata = interface_smc.get_sm_element_by_semantic_id(AssetInterfacesInfo.SEMANTICID_INTERACTION_METADATA)
+            for element_type_smc in interaction_metadata:
+                # InteractionMetadata has properties, actions or events
+                for element_smc in element_type_smc:
+                    # The valueSemantic SubmodelElement is obtained
+                    value_semantics = element_smc.get_sm_element_by_semantic_id(AssetInterfacesInfo.SEMANTICID_VALUE_SEMANTICS)
+                    if value_semantics:
+                        for reference in value_semantics.value.key:
+                            if reference.value == value_semantic_id:
+                                return element_smc
+        return None
 
 
     async def capability_checking_from_acl_request(self, required_capability_data):

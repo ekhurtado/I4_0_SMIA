@@ -7,7 +7,7 @@ from spade.behaviour import CyclicBehaviour
 
 from behaviours.HandleSvcRequestBehaviour import HandleSvcRequestBehaviour
 from logic import Negotiation_utils
-from utilities.CapabilitySkillOntology import CapabilitySkillOntology
+from utilities.CapabilitySkillOntology import CapabilitySkillOntology, AssetInterfacesInfo
 from utilities.GeneralUtils import GeneralUtils
 
 _logger = logging.getLogger(__name__)
@@ -63,7 +63,7 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
         #  obtain the value you have to make an Intra AAS interaction request, the behaviour will not be able to start
         #  managing the negotiation until you get the answer to that request (together with the requested value).
         # TODO buscar una forma de dormir el behaviour hasta que neg_value deje de ser None
-        await self.get_neg_value_with_criteria(self.neg_criteria)
+        await self.get_neg_value_with_criteria()
 
         # Once the negotiation value is reached, the negotiation management can begin. The first step is to send the
         # PROPOSE message with your own value to the other participants in the negotiation.
@@ -135,12 +135,9 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
         else:
             _logger.info("         - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour)")
 
-    async def get_neg_value_with_criteria(self, criteria):
+    async def get_neg_value_with_criteria(self):
         """
         This method gets the negotiation value based on a given criteria.
-
-        Args:
-            criteria (str): criteria of the negotiation
 
         Returns:
             int: value of the negotiation
@@ -150,13 +147,27 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
         # First, it will be checked if the negotiation value is an asset data. To this end, it has to be checked if the
         # semanticID of the criteria appears in the AssetInterfacesDescription submodel
         criteria_semantic_id = await self.myagent.aas_model.get_concept_description_pair_value_id_by_value_name(
-            CapabilitySkillOntology.NE, self.neg_criteria)
+            CapabilitySkillOntology.CONCEPT_DESCRIPTION_ID_NEGOTIATION_CRITERIA, self.neg_criteria)
         if criteria_semantic_id is None:
             _logger.error("SemanticID for a criteria does not exist.")
             return None
-        criteria_interaction_metadata = await self.myagent.aas_model.get_asset_interface_interaction_metadata_by_value_semantic_id()
+        criteria_interaction_metadata = await self.myagent.aas_model.get_asset_interface_interaction_metadata_by_value_semantic_id(criteria_semantic_id)
         if criteria_interaction_metadata:
-
+            # In this case, the criteria is an asset data. It has to be requested
+            _logger.interactioninfo("The negotiation criteria is an asset data, so it must be requested through an asset service.")
+            asset_connection_ref = criteria_interaction_metadata.get_parent_ref_by_semantic_id(AssetInterfacesInfo.SEMANTICID_INTERFACE)
+            # TODO esto es null, voy por aqui
+            if asset_connection_ref:
+                # Once the Asset Connection reference is obtained, the associated class can be used to connect with
+                # the asset
+                asset_connection_class = await self.myagent.get_asset_connection_class(asset_connection_ref)
+                # The InteractionMetadata has the complete interface to get the value, no message is necessary
+                negotiation_value = await asset_connection_class.send_msg_to_asset(criteria_interaction_metadata, None)
+                if negotiation_value:
+                    _logger.interactioninfo("Negotiation criteria successfully obtained.")
+                    self.neg_value = float(negotiation_value)
+                else:
+                    _logger.warning("Failed to get the negotiation criteria.")
         else:
             # TODO pensar como recoger valores que no son del activo (tener un diccionario de criterias junto con su metodo para conseguirlos?)
             return None
