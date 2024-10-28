@@ -40,6 +40,9 @@ class CapabilitySkillOntology:
     QUALIFIER_FEASIBILITY_CHECKING_TYPE = 'FeasibilityCheckingCondition'
     QUALIFIER_FEASIBILITY_CHECKING_POSSIBLE_VALUES = ['PRECONDITION', 'INVARIANT', 'POSTCONDITION']
 
+    # IDs for Negotiation AgentCapability
+    CONCEPT_DESCRIPTION_ID_NEGOTIATION_CRITERIA = 'urn:ehu:gcis:conceptdescriptions:1:1:negotiationcriteria'
+
 
 class CapabilitySkillACLInfo:
     """
@@ -58,6 +61,7 @@ class CapabilitySkillACLInfo:
     REQUIRED_SKILL_INPUT_PARAMETERS = 'inputs'
     REQUIRED_SKILL_OUTPUT_PARAMETERS = 'outputs'
     # TODO pensar si harian falta mas
+
 
 class AssetInterfacesInfo:
     """This class contains the information related to Asset Interfaces submodel (AssetInterfacesDescription submodel of

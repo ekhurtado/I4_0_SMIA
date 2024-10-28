@@ -192,6 +192,8 @@ class ExtendedAASModel:
                 return True
         return False
 
+    async def get_concept_description_pair_value_id_by_value_name(self, concept_description_id, value_name):
+
     # ---------------------------------------------------------------
     # Methods related to Capability-Skill ontology and AAS meta-model
     # ---------------------------------------------------------------
