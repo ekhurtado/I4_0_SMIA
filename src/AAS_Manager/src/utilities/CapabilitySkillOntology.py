@@ -36,6 +36,10 @@ class CapabilitySkillOntology:
     QUALIFIER_SKILL_TYPE = 'SkillImplementationType'
     QUALIFIER_SKILL_POSSIBLE_VALUES = ['STATE', 'TRIGGER', 'OPERATION', 'FUNCTIONBLOCK']
 
+    # Qualifiers for Feasibility Checking
+    QUALIFIER_FEASIBILITY_CHECKING_TYPE = 'FeasibilityCheckingCondition'
+    QUALIFIER_FEASIBILITY_CHECKING_POSSIBLE_VALUES = ['PRECONDITION', 'INVARIANT', 'POSTCONDITION']
+
 
 class CapabilitySkillACLInfo:
     """
@@ -46,6 +50,7 @@ class CapabilitySkillACLInfo:
     # Required Capability information
     REQUIRED_CAPABILITY_NAME = 'capabilityName'
     REQUIRED_CAPABILITY_TYPE = 'capabilityType'
+    REQUIRED_CAPABILITY_CONSTRAINTS = 'capabilityConstraints'
     REQUIRED_SKILL_INFO = 'skillInfo'
     REQUIRED_SKILL_NAME = 'skillName'
     REQUIRED_ELEMENT_TYPE = 'smeType'

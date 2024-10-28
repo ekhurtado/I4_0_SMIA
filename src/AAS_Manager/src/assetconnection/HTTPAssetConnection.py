@@ -24,7 +24,6 @@ class HTTPAssetConnection(AssetConnection):
         self.request_headers = {}
 
     async def configure_connection_by_aas_model(self, interface_aas_elem):
-        # TODO PROBAR QUE FUNCIONE
         # Vamos a conseguir los datos necesarios del modelo AAS para configurar la conexion HTTP
         self.interface_title = interface_aas_elem.get_sm_element_by_semantic_id(
             HTTPAssetInterfaceSemantics.SEMANTICID_HTTP_INTERFACE_TITLE)
@@ -84,8 +83,6 @@ class HTTPAssetConnection(AssetConnection):
         if ('http://' in href_elem.value) or ('https://' in href_elem.value):
             self.request_uri = href_elem.value
         else:
-            _logger.aclinfo("BASE {}, HREF {}, TITLE {}, HEADERS {}".format(self.base, href_elem, self.interface_title, self.request_headers))
-            _logger.aclinfo("BASE VALUE {}, HREF VALUE {}".format(self.base.value, href_elem.value))
             self.request_uri = self.base.value + href_elem.value
 
     async def get_headers(self, forms_elem):

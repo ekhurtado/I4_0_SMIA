@@ -89,27 +89,20 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
                 # TODO BORRAR (es solo para pruebas, esta como el AAS Core de ROS, usando un fichero JSON como intermediario para el gateway)
 
                 # skill_elem =  self.myagent.aas_model.get_skill_data_by_capability(capability_elem, 'skillObject')
-                skill_interface_elem = await self.myagent.aas_model.get_skill_data_by_capability(capability_elem, 'skillInterface')
+                skill_interface_elem = await self.myagent.aas_model.get_skill_data_by_capability(capability_elem,
+                                                                                                 'skillInterface')
 
-                # TODO PROXIMO PASO: en este caso se va a modificar para usar directamente el SkillInterface para
-                #  acceder al asset. En el ejemplo de mover el robot, el AssetInterface será un SME action dentro del
-                #  submodelo de AssetInterfacesDescription. La interfaz ya estara configurada desde el estado Booting
-                #  del agente, por lo que simplemente habrá que ejecutrar el metodo 'send_msg_to_asset' del
-                #  AssetConnection, pasandole el objeto SkillInterface. El AssetConnection recogerá la información
-                #  necesaria de ese SkillInterface y del SkillElement, en este caso, que hay que enviar un HTTP GET a
-                #  '/robotactions/move' con los parametros definidos en los inputs del SkillElement y añadirlos en
-                #  htv_parameters (en este caso quedaria la url a '/robotactions/move?coordinates=x,y'). El metodo de
-                #  envio de mensajes de asset connection quedará a la espera de recibir la respuesta con el 200 OK.
-                #  Cuando se reciba, el CapabilityHandleBehaviour sabrá que el servicio se ha completado, por
-                # If the skill has a valid interface, it will be executed
+                # SkillInterface will be an SME action inside the AssetInterfacesDescription submodel. The interface
+                # will be already configured from the agent Booting state, so it will be possible to execute the
+                # AssetConnection sending method passing the SkillInterface to it. The AssetConnection will collect the
+                # necessary information from the SkillInterface (from the SubmodelElement). The asset connection message
+                # sending method will wait for the response, as well as the CapabilityHandleBehaviour.
                 skill_execution_result = ''
                 asset_connection_ref = skill_interface_elem.get_parent_ref_by_semantic_id(
                     AssetInterfacesInfo.SEMANTICID_INTERFACE)
                 if asset_connection_ref:
-                    # TODO PROXIMO PASO: toda esta lógica de publicar en varios topicos y tal, es decir, la logica
-                    #  completa para mover el robot se añadira en el ROS gateway (asset integration). Desde el activo,
-                    #  simplemente se ofrecerán 'asset services', los cuales se solicitarán mediante skills (pero la
-                    #  lógica de esos servicios está o en el asset integration o en el propio activo, p.e. en el PLC)
+                    # Once the Asset Connection reference is obtained, the associated class can be used to connect with
+                    # the asset
                     asset_connection_class = await self.myagent.get_asset_connection_class(asset_connection_ref)
 
                     # The skill inputs parameters has to be obtained
@@ -127,6 +120,11 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
                     skill_execution_result = await asset_connection_class.send_msg_to_asset(skill_interface_elem, required_skill_input_parameters)
                     if skill_execution_result:
                         _logger.interactioninfo("Skill of the capability successfully executed.")
+
+                        # Se comprueba si la capacidad requerida tiene postcondiciones
+                        constraints_values = required_cap_data[CapabilitySkillACLInfo.REQUIRED_CAPABILITY_CONSTRAINTS]
+                        await self.myagent.aas_model.skill_feasibility_checking_post_conditions(capability_elem, constraints_values)
+
                     else:
                         _logger.warning("Failed to execute the skill of the capability correctly.")
 
@@ -136,7 +134,7 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
 
                 # When the skill has finished, the request is answered
                 await self.send_response_inform_to_sender({'result': skill_execution_result})
-                _logger.info("Management of the capability {} finished.")
+                _logger.info("Management of the capability {} finished.".format(capability_elem))
 
         else:
             pass

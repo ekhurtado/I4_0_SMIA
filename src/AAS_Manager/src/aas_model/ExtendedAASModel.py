@@ -251,12 +251,31 @@ class ExtendedAASModel:
             first_elem = await self.get_object_by_reference(rel.first)
             second_elem = await self.get_object_by_reference(rel.second)
             if first_elem == capability_elem:
-                # yield second_elem
                 cap_constraints.append(second_elem)
             elif second_elem == capability_elem:
-                # yield first_elem
                 cap_constraints.append(first_elem)
         return cap_constraints
+
+    async def get_capability_associated_constraints_by_qualifier_data(self, capability_elem, qualifier_type, qualifier_value):
+        """
+        This method gets the constraints associated to a capability that have specific qualifier data.
+
+        Args:
+            capability_elem (basyx.aas.model.Capability): capability Python object.
+            qualifier_type (str): type of the qualifier
+            qualifier_value (str): value of the qualifier
+
+        Returns:
+            list: list with all constraints of the selected capability in form of Python objects.
+        """
+        all_constraints = await self.get_capability_associated_constraints(capability_elem)
+        for constraint in all_constraints:
+            if constraint.qualifier:
+                for qualifier in constraint.qualifier:
+                    if (qualifier.type == qualifier_type) and (qualifier.value == qualifier_value):
+                        return constraint
+        return None
+
 
     async def check_skill_elem_by_capability(self, cap_type, cap_elem, skill_data):
         """
@@ -371,4 +390,19 @@ class ExtendedAASModel:
         # When all checks have been passed, the given skill is valid
         return True
 
+
+    async def skill_feasibility_checking_post_conditions(self, capability_elem, constraints_data):
+        """
+        This method checks the feasibility of a Capability element in relation with its post-conditions.
+
+        Args:
+            capability_elem (basyx.aas.model.Capability): capability Python object.
+            constraints_data (dict): JSON object with the data of the constraints (with required values)
+        """
+        # First, the postcondition constraints are obtained
+        post_condition_constraints = await self.get_capability_associated_constraints_by_qualifier_data(capability_elem,
+            CapabilitySkillOntology.QUALIFIER_FEASIBILITY_CHECKING_TYPE, 'POSTCONDITION')
+        if post_condition_constraints:
+            # TODO habra que pensar como analizar las post condiciones
+            pass
 
