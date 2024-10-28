@@ -9,4 +9,5 @@ class AssetServicesInfo:
         "go_home": {"name": "Action to move the robot to starting point", "status": "inactive"},
         "recharge": {"name": "Action to move the robot to charging station", "status": "inactive"},
     }
+
     

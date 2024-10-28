@@ -9,12 +9,14 @@ RUN apk add --no-cache gcc gpgme-dev libc-dev
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY asset_integration.py /
+COPY src /
 
-WORKDIR /
+WORKDIR /src
 
 ENV FLASK_APP=asset_integration.py
 
 EXPOSE 7000
 
 CMD flask run --host=0.0.0.0
+
+# TODO De momento se han tenido problemas con ROS y contenedores, por lo que no se encapsulara el asset integration
