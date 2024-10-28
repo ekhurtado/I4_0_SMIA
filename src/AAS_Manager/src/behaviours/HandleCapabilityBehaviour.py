@@ -4,10 +4,9 @@ import logging
 
 from spade.behaviour import OneShotBehaviour
 
-from logic import IntraAASInteractions_utils, Negotiation_utils, InterAASInteractions_utils
-from utilities.CapabilitySkillOntology import CapabilitySkillACLInfo, CapabilitySkillOntology
+from logic import InterAASInteractions_utils
+from utilities.CapabilitySkillOntology import CapabilitySkillACLInfo, CapabilitySkillOntology, AssetInterfacesInfo
 from utilities.FIPAACLInfo import FIPAACLInfo
-from utilities.GeneralUtils import GeneralUtils
 
 _logger = logging.getLogger(__name__)
 
@@ -104,24 +103,32 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
                 #  Cuando se reciba, el CapabilityHandleBehaviour sabrá que el servicio se ha completado, por
                 # If the skill has a valid interface, it will be executed
                 skill_execution_result = ''
-                if skill_interface_elem.check_semantic_id_exist(CapabilitySkillOntology.SEMANTICID_SKILL_INTERFACE_HTTP):
+                asset_connection_ref = skill_interface_elem.get_parent_ref_by_semantic_id(
+                    AssetInterfacesInfo.SEMANTICID_INTERFACE)
+                if asset_connection_ref:
                     # TODO PROXIMO PASO: toda esta lógica de publicar en varios topicos y tal, es decir, la logica
                     #  completa para mover el robot se añadira en el ROS gateway (asset integration). Desde el activo,
                     #  simplemente se ofrecerán 'asset services', los cuales se solicitarán mediante skills (pero la
                     #  lógica de esos servicios está o en el asset integration o en el propio activo, p.e. en el PLC)
-                    _logger.interactioninfo("Asset connection will be configured with SkillInterface information.")
-                    self.myagent.asset_connection.configure_connection({'ros_topic': '/coordinateIDLE'})
-                    _logger.interactioninfo("Executing skill of the capability through the SkillInterface.")
-                    self.myagent.asset_connection.send_msg_to_asset('GO')
-                    await asyncio.sleep(1)
-                    # TODO PROXIMO PASO: se quitaria de aqui la configuracion de la interfaz, ya se ha realizado en el
-                    #  estodo booting
-                    self.myagent.asset_connection.configure_connection({'ros_topic': '/coordinate'})
-                    self.myagent.asset_connection.send_msg_to_asset('1.43,0.59')
-                    await asyncio.sleep(1)
-                    _logger.interactioninfo("Skill of the capability successfully executed.")
+                    asset_connection_class = await self.myagent.get_asset_connection_class(asset_connection_ref)
 
-                    skill_execution_result = 'Completed'
+                    # The skill inputs parameters has to be obtained
+                    required_skill_parameters = required_cap_data[
+                        CapabilitySkillACLInfo.REQUIRED_SKILL_INFO][CapabilitySkillACLInfo.REQUIRED_SKILL_PARAMETERS]
+                    required_skill_input_parameters = None
+                    if CapabilitySkillACLInfo.REQUIRED_SKILL_INPUT_PARAMETERS in required_skill_parameters:
+                        required_skill_input_parameters = required_skill_parameters[CapabilitySkillACLInfo.REQUIRED_SKILL_INPUT_PARAMETERS]
+                    if CapabilitySkillACLInfo.REQUIRED_SKILL_OUTPUT_PARAMETERS in required_skill_parameters:
+                        # TODO analizar que pasaria si hay output parameters
+                        required_skill_output_parameters = required_skill_parameters[CapabilitySkillACLInfo.REQUIRED_SKILL_OUTPUT_PARAMETERS]
+
+                    _logger.interactioninfo("The Asset connection of the Skill Interface has been obtained.")
+                    _logger.interactioninfo("Executing skill of the capability through a request of an asset service...")
+                    skill_execution_result = await asset_connection_class.send_msg_to_asset(skill_interface_elem, required_skill_input_parameters)
+                    if skill_execution_result:
+                        _logger.interactioninfo("Skill of the capability successfully executed.")
+                    else:
+                        _logger.warning("Failed to execute the skill of the capability correctly.")
 
                 else:
                     _logger.warning("The capability required has invalid skill interface.")

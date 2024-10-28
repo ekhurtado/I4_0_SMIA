@@ -3,11 +3,12 @@ import logging
 import basyx.aas.adapter.xml
 import basyx.aas.adapter.json
 from basyx.aas.util import traversal
+from basyx.aas.model import ModelReference
 from spade.behaviour import OneShotBehaviour
 
 from assetconnection.HTTPAssetConnection import HTTPAssetConnection
 from utilities import ConfigMap_utils, Submodels_utils
-from utilities.CapabilitySkillOntology import CapabilitySkillOntology
+from utilities.CapabilitySkillOntology import CapabilitySkillOntology, AssetInterfacesInfo
 
 _logger = logging.getLogger(__name__)
 
@@ -169,11 +170,31 @@ class InitAASModelBehaviour(OneShotBehaviour):
         #  submodelo y configurará la interfaz (p.e. añadiendo los datos del endpoint), para dejar la interfaz lista
         #  para ser usada (se hará referencia a los SMEs dentro de "InteractionMetada" del submodelo de la interfaz,
         #  que es donde estan los datapoints)
-        capabilities_dict = await self.myagent.aas_model.get_capability_dict_by_type(CapabilitySkillOntology.ASSET_CAPABILITY_TYPE)
-        for cap_elem, cap_info in capabilities_dict.items():
-            # TODO, pensar que pasaria si las capacidades tienen diferentes protocolos. De momento se ha dejado de forma sencilla, se recoge el primero
-            skill_interface = await self.myagent.aas_model.get_skill_interface_by_skill_elem(cap_info['skillObject'])
-            for semantic_id in traversal.walk_semantic_ids_recursive(skill_interface):
-                for reference in semantic_id.key:
-                    if str(reference) == CapabilitySkillOntology.SEMANTICID_SKILL_INTERFACE_HTTP:
-                        await self.myagent.set_asset_connection(HTTPAssetConnection())
+        _logger.info("Reading the AAS model to get all connections of the asset...")
+        asset_interfaces_submodel = await self.myagent.aas_model.get_submodel_by_semantic_id(
+            AssetInterfacesInfo.SEMANTICID_INTERFACES_SUBMODEL)
+        for interface_elem in asset_interfaces_submodel.submodel_element:
+            if interface_elem.check_semantic_id_exist(AssetInterfacesInfo.SEMANTICID_INTERFACE) is False:
+                _logger.warning("There is a submodel element inside the interfaces submodel with invalid semanticID.")
+                continue
+            # Dependiendo del tipo de interfaz se generara una clase u otra (de momento solo HTTP)
+            if interface_elem.check_suppl_semantic_id_exist(AssetInterfacesInfo.SUPPL_SEMANTICID_HTTP):
+                # Hay una interfaz de tipo HTTP
+                http_connection_class = HTTPAssetConnection()
+                await http_connection_class.configure_connection_by_aas_model(interface_elem)
+                interface_model_ref = ModelReference.from_referable(interface_elem)
+                await self.myagent.add_new_asset_connection(interface_model_ref, http_connection_class)
+            elif interface_elem.check_suppl_semantic_id_exist('id de opc ua'):
+                # TODO Hay una interfaz de tipo OP CUA
+                pass
+
+        _logger.info("All asset connections defined in the AAS model have been configured and saved.")
+
+        # capabilities_dict = await self.myagent.aas_model.get_capability_dict_by_type(CapabilitySkillOntology.ASSET_CAPABILITY_TYPE)
+        # for cap_elem, cap_info in capabilities_dict.items():
+        #     # TODO, pensar que pasaria si las capacidades tienen diferentes protocolos. De momento se ha dejado de forma sencilla, se recoge el primero
+        #     skill_interface = await self.myagent.aas_model.get_skill_interface_by_skill_elem(cap_info['skillObject'])
+        #     for semantic_id in traversal.walk_semantic_ids_recursive(skill_interface):
+        #         for reference in semantic_id.key:
+        #             if str(reference) == CapabilitySkillOntology.SEMANTICID_SKILL_INTERFACE_HTTP:
+        #                 await self.myagent.set_asset_connection(HTTPAssetConnection())

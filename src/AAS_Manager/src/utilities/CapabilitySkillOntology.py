@@ -28,9 +28,6 @@ class CapabilitySkillOntology:
     SEMANTICID_REL_SKILL_SKILL_PARAMETER = 'urn:ehu:gcis:capabilityskillontology:1:1:skillhasparameter'
     SEMANTICID_REL_SKILL_SKILL_STATE_MACHINE = 'urn:ehu:gcis:capabilityskillontology:1:1:skillbehavioursconformsto'
 
-    # SemanticIDs of SkillInterfaces
-    SEMANTICID_SKILL_INTERFACE_HTTP = 'https://admin-shell.io/idta/AssetInterfacesDescription/1/0/Interface'
-
     # Qualifiers for Capabilities
     QUALIFIER_CAPABILITY_TYPE = 'ExpressionSemantic'
     QUALIFIER_CAPABILITY_POSSIBLE_VALUES = ['REQUIREMENT', 'OFFER', 'ASSURANCE']
@@ -53,6 +50,17 @@ class CapabilitySkillACLInfo:
     REQUIRED_SKILL_NAME = 'skillName'
     REQUIRED_ELEMENT_TYPE = 'smeType'
     REQUIRED_SKILL_PARAMETERS = 'skillParameters'
+    REQUIRED_SKILL_INPUT_PARAMETERS = 'inputs'
+    REQUIRED_SKILL_OUTPUT_PARAMETERS = 'outputs'
     # TODO pensar si harian falta mas
 
+class AssetInterfacesInfo:
+    """This class contains the information related to Asset Interfaces submodel (AssetInterfacesDescription submodel of
+    IDTA)."""
 
+    # SemanticIDs of Asset Interfaces
+    SEMANTICID_INTERFACES_SUBMODEL = 'https://admin-shell.io/idta/AssetInterfacesDescription/1/0/Submodel'
+    SEMANTICID_INTERFACE = 'https://admin-shell.io/idta/AssetInterfacesDescription/1/0/Interface'
+
+    # SemanticIDs of HTTP Asset Interface
+    SUPPL_SEMANTICID_HTTP = 'http://www.w3.org/2011/http'

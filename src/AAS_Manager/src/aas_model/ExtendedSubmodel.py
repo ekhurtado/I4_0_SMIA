@@ -90,6 +90,24 @@ class ExtendedSubmodelElement(SubmodelElement):
         _logger.error("ERROR: the qualifier is not valid in the skill {}".format(self))
         return False
 
+    def get_parent_ref_by_semantic_id(self, semantic_id):
+        """
+        This method gets the reference of a parent element of the SubmodelElement by the semanticID.
+
+        Args:
+            semantic_id (str): semantic identifier of the parent element.
+
+        Returns:
+            basyx.aas.model.ModelReference: model reference of the parent element (None if the parent does not exist)
+        """
+        parent_elem = self.parent
+        while parent_elem:
+            if parent_elem.check_semantic_id_exist(semantic_id):
+                return basyx.aas.model.ModelReference.from_referable(parent_elem)
+            else:
+                parent_elem = parent_elem.parent
+        return None
+
 
 class ExtendedRelationshipElement(RelationshipElement):
 
@@ -229,6 +247,30 @@ class ExtendedSubmodelElementCollection(SubmodelElementCollection):
         for sm_elem_in_collection in self.value:
             print("\t\t\tSubmodelElement: {}".format(sm_elem_in_collection))
 
+    def get_sm_element_by_id_short(self, id_short):
+        """
+        This method gets a submodel element inside a SubmodelElementCollection by its id_short.
+        Args:
+            id_short (str): id_short of the submodel element to find.
+
+        Returns:
+           basyx.aas.model.SubmodelElement: submodel element in form of Python object.
+        """
+        return self.value.get('id_short', id_short)
+
+    def get_sm_element_by_semantic_id(self, semantic_id_ref):
+        """
+        This method gets a submodel element inside a SubmodelElementCollection by its semantic identifier.
+        Args:
+            semantic_id_ref (str): semantic identifier of the submodel element to find.
+
+        Returns:
+           basyx.aas.model.SubmodelElement: submodel element in form of Python object.
+        """
+        for sm_elem in self.value:
+            for reference in sm_elem.semantic_id.key:
+                if reference.value == semantic_id_ref:
+                    return sm_elem
 
 # ------------
 # DataElements

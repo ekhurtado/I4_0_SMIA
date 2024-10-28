@@ -20,17 +20,17 @@ class AssetConnection(metaclass=abc.ABCMeta):
         self.architecture_style: AssetConnection.ArchitectureStyle = AssetConnection.ArchitectureStyle.NOTAPPLICABLE
 
     @abc.abstractmethod
-    def configure_connection(self, configuration_data):
+    async def configure_connection_by_aas_model(self, interface_aas_elem):
         pass
 
     @abc.abstractmethod
-    def connect_with_asset(self):
+    async def connect_with_asset(self):
         pass
 
     @abc.abstractmethod
-    def send_msg_to_asset(self, msg):
+    async def send_msg_to_asset(self, interaction_metadata, msg):
         pass
 
     @abc.abstractmethod
-    def receive_msg_from_asset(self):
+    async def receive_msg_from_asset(self):
         pass

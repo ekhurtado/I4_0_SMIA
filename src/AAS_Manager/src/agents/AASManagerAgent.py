@@ -29,7 +29,7 @@ class AASManagerAgent(Agent):
     interaction_responses = {}  #: Dictionary to save Intra AAS interaction responses
     negotiations_data = {}  #: Dictionary to save negotiations related information
     aas_model = None  #: Object with the extended AAS model
-    asset_connection = None #: Class with the Asset Connection methods
+    asset_connections = None #: Class with the Asset Connection methods
     lock = None  #: Asyncio Lock object for secure access to shared AAS Manager objects
 
     def __init__(self, jid: str, password: str, verify_security: bool = False):
@@ -61,8 +61,8 @@ class AASManagerAgent(Agent):
         # The object with the Extended AAS model and useful methods is initialized
         self.aas_model = ExtendedAASModel()
 
-        # The object with the AssetConnection class is initialized. At this point, with the abstract class
-        self.asset_connection = None
+        # The object with the AssetConnection class is initialized. At this point, as a empty JSON
+        self.asset_connections = {}
 
         # The Lock object is used to manage the access to global agent attributes (request and response dictionaries,
         # interaction id number...)
@@ -234,12 +234,38 @@ class AASManagerAgent(Agent):
         async with self.lock:  # safe access to a shared object of the agent
             self.negotiations_data[thread] = neg_data
 
-    async def set_asset_connection(self, asset_connection):
+    async def add_new_asset_connection(self, interface_reference, asset_connection):
         """
-        This method sets a new asset connection to the global variable of the agent.
+        This method adds a new asset connection to the global variable of the agent.
 
         Args:
+            interface_reference (str): reference of the interface of the AssetConnection
             asset_connection: class with all information about the AssetConnection
         """
         async with self.lock:  # safe access to a shared object of the agent
-            self.asset_connection = asset_connection
+            self.asset_connections[interface_reference] = asset_connection
+
+    async def get_asset_connection_class(self, asset_connection_ref):
+        """
+        This method gets the asset connection class using its reference.
+
+        Args:
+            asset_connection_ref (basyx.aas.model.ModelReference): reference of the asset connection
+
+        Returns:
+            assetconnection.AssetConnection: class of the asset connection
+        """
+        async with self.lock:  # safe access to a shared object of the agent
+            for conn_ref, conn_class in self.asset_connections.items():
+                if conn_ref == asset_connection_ref:
+                    return conn_class
+
+    async def get_all_asset_connections(self):
+        """
+        This method returns all asset connections of the agent.
+
+        Returns:
+            dict: dictionary wil all asset connections
+        """
+        async with self.lock:  # safe access to a shared object of the agent
+            return self.asset_connections

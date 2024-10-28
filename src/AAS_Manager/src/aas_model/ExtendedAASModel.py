@@ -155,9 +155,26 @@ class ExtendedAASModel:
                     if isinstance(submodel_element, basyx.aas.model.RelationshipElement):
                         for semantic_id in traversal.walk_semantic_ids_recursive(submodel_element):
                             for reference in semantic_id.key:
-                                if str(reference) == rel_semantic_id_external_ref:
+                                if reference.value == rel_semantic_id_external_ref:
                                     rels_elements.append(submodel_element)
         return rels_elements
+
+    async def get_submodel_by_semantic_id(self, sm_semantic_id):
+        """
+        This method gets the Submodel object using its semantic identifier.
+
+        Args:
+            sm_semantic_id (str): semantic identifier of the Submodel.
+
+        Returns:
+            basyx.aas.model.Submodel: Submodel in form of a Python object.
+        """
+        for aas_object in self.aas_model_object_store:
+            if isinstance(aas_object, basyx.aas.model.Submodel) and aas_object.semantic_id is not None:
+                a = aas_object.semantic_id
+                for reference in aas_object.semantic_id.key:
+                    if reference.value == sm_semantic_id:
+                        return aas_object
 
     async def check_element_exist_in_namespaceset_by_id_short(self, namespaceset_elem, elem_id_short):
         """

@@ -58,11 +58,11 @@ class AssetServices:
 
     def perform_action(self, action_name, parameters):
         if action_name == 'move':
-            return self.perform_action_move(parameters['coordinate'])
+            return self.perform_action_move(parameters['destinationcoordinates'])
         else:
             return 'FAILED'
 
-    def perform_action_move(self, coordinate):
+    def perform_action_move(self, coordinates):
         # Create the ros node
         # rospy.init_node('AssetIntegration', anonymous=True)
 
@@ -73,7 +73,7 @@ class AssetServices:
         time.sleep(1)
 
         print("Sending coordinates...")
-        self.pubCoord.publish(coordinate)
+        self.pubCoord.publish(coordinates)
         print("Coordinates sent")
         time.sleep(1)
         while not self.state == "ACTIVE":  # wait until the robot has reached the target coordinates
@@ -82,5 +82,5 @@ class AssetServices:
         # Shutdown the ros node
         # rospy.signal_shutdown("node completed")
         print(" --> Move service completed!")
-        self.location = coordinate
+        self.location = coordinates
         return 'SUCCESS'
