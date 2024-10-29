@@ -42,22 +42,27 @@ class HTTPAssetConnection(AssetConnection):
         pass
 
     async def send_msg_to_asset(self, interaction_metadata, msg):
-        # El elemento interaction_metada sera un SMC de la interfaz del HTTP
+        # The interaction_metada element will be an SMC of the HTTP interface.
         if not await self.check_interaction_metadata(interaction_metadata):
-            _logger.error("ERROR: el interactionMetadata esta mal")
+            _logger.error("ERROR: interactionMetadata is not valid.")
             return 'ERROR'
 
-        # Primero, conseguimos la URI completa de la peticion HTTP
+        # First, the full URI of the HTTP request is obtained.
         forms_elem = interaction_metadata.get_sm_element_by_semantic_id(
             HTTPAssetInterfaceSemantics.SEMANTICID_HTTP_INTERFACE_FORMS)
         await self.get_complete_request_uri(forms_elem)
 
-        # Luego, conseguimos los headers
+        # Then, headers are obtained
         await self.get_headers(forms_elem)
 
-        # Finalmente, ya podemos realizar la peticion HTTP
+        # Eventually, the HTTP request is performed
+        _logger.aclinfo("Reuqest URI: {}".format(self.request_uri))  # TODO BORRAR
+        _logger.aclinfo("Reuqest headers: {}".format(self.request_headers))  # TODO BORRAR
         http_response = await self.send_http_request(await self.get_method_name(forms_elem), msg)
+        _logger.aclinfo("Response: {}".format(http_response))  # TODO BORRAR
         if http_response:
+            if http_response.status_code != 200:
+                _logger.warning("The HTTP request has not been answered correctly.")
             return await self.get_response_content(http_response)
         return None
 
