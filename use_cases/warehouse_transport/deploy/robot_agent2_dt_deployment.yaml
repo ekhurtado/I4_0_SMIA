@@ -32,8 +32,6 @@ spec:
               subPath: status
             - name: component-cm
               mountPath: /aas_archive/config
-            - name: ros-aas-core-archive
-              mountPath: /ros_aas_core_archive
       nodeSelector:
         kubernetes.io/hostname: worker1
       restartPolicy: Always
@@ -52,7 +50,4 @@ spec:
         - name: component-cm
           configMap:
             name: transportrobot2-test-cm
-        - name: ros-aas-core-archive
-          persistentVolumeClaim:
-            claimName: ros-aas-core-archive-claim
 

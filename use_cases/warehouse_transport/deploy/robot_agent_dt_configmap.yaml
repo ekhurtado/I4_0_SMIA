@@ -3206,7 +3206,7 @@ data:
                                             </qualifier>
                                           </qualifiers>
                                           <valueType>xs:string</valueType>
-                                          <value>Accept-Charset</value>
+                                          <value>Accept</value>
                                         </property>
                                         <property>
                                           <idShort>htv_fieldValue</idShort>
@@ -3228,7 +3228,7 @@ data:
                                             </qualifier>
                                           </qualifiers>
                                           <valueType>xs:string</valueType>
-                                          <value>utf-8</value>
+                                          <value>application/json</value>
                                         </property>
                                       </value>
                                     </submodelElementCollection>
@@ -4848,7 +4848,7 @@ data:
                                             </qualifier>
                                           </qualifiers>
                                           <valueType>xs:string</valueType>
-                                          <value>Accept-Charset</value>
+                                          <value>Accept</value>
                                         </property>
                                         <property>
                                           <idShort>htv_fieldValue</idShort>
@@ -4870,7 +4870,7 @@ data:
                                             </qualifier>
                                           </qualifiers>
                                           <valueType>xs:string</valueType>
-                                          <value>utf-8</value>
+                                          <value>application/json</value>
                                         </property>
                                       </value>
                                     </submodelElementCollection>

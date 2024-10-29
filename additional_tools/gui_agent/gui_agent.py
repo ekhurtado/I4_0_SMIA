@@ -85,7 +85,7 @@ class GUIAgent(Agent):
                         'serviceParams': {
                             'neg_requester_jid': str(self.agent.jid),
                             'criteria': data_json['criteria'],
-                            'targets': str(receivers_jid)
+                            'targets': ','.join(receivers_jid)
                         }
                     }
                 }

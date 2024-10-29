@@ -56,10 +56,7 @@ class HTTPAssetConnection(AssetConnection):
         await self.get_headers(forms_elem)
 
         # Eventually, the HTTP request is performed
-        _logger.aclinfo("Reuqest URI: {}".format(self.request_uri))  # TODO BORRAR
-        _logger.aclinfo("Reuqest headers: {}".format(self.request_headers))  # TODO BORRAR
         http_response = await self.send_http_request(await self.get_method_name(forms_elem), msg)
-        _logger.aclinfo("Response: {}".format(http_response))  # TODO BORRAR
         if http_response:
             if http_response.status_code != 200:
                 _logger.warning("The HTTP request has not been answered correctly.")

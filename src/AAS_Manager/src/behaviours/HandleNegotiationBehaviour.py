@@ -64,7 +64,6 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
         #  managing the negotiation until you get the answer to that request (together with the requested value).
         # TODO buscar una forma de dormir el behaviour hasta que neg_value deje de ser None
         await self.get_neg_value_with_criteria()
-        _logger.aclinfo("Value: {}".format(self.neg_value))  # TODO BORRAR
 
 
         # Once the negotiation value is reached, the negotiation management can begin. The first step is to send the
@@ -77,7 +76,6 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
         # This PROPOSE FIPA-ACL message is sent to all participants of the negotiation (except for this AAS Manager)
         for jid_target in self.targets.split(','):
             if jid_target != str(self.agent.jid):
-                _logger.aclinfo("PROPOSE TARGET: {}".format(jid_target))  # TODO BORRAR
                 acl_propose_msg.to = jid_target
                 await self.send(acl_propose_msg)
                 _logger.aclinfo("ACL PROPOSE negotiation message sent to " + jid_target +
@@ -159,14 +157,12 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
             # In this case, the criteria is an asset data. It has to be requested
             _logger.interactioninfo("The negotiation criteria is an asset data, so it must be requested through an asset service.")
             asset_connection_ref = criteria_interaction_metadata.get_parent_ref_by_semantic_id(AssetInterfacesInfo.SEMANTICID_INTERFACE)
-            _logger.aclinfo("Asset conn ref: {}".format(asset_connection_ref))  # TODO BORRAR
             if asset_connection_ref:
                 # Once the Asset Connection reference is obtained, the associated class can be used to connect with
                 # the asset
                 asset_connection_class = await self.myagent.get_asset_connection_class(asset_connection_ref)
                 # The InteractionMetadata has the complete interface to get the value, no message is necessary
                 negotiation_value = await asset_connection_class.send_msg_to_asset(criteria_interaction_metadata, None)
-                _logger.aclinfo("Neg value: {}".format(negotiation_value))  # TODO BORRAR
                 if negotiation_value:
                     _logger.interactioninfo("Negotiation criteria successfully obtained.")
                     _logger.info(
