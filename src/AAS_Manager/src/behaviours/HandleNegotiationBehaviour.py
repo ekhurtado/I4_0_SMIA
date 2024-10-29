@@ -1,14 +1,10 @@
-import asyncio
 import json
 import logging
-import random
 
 from spade.behaviour import CyclicBehaviour
 
-from behaviours.HandleSvcRequestBehaviour import HandleSvcRequestBehaviour
 from logic import Negotiation_utils
 from utilities.CapabilitySkillOntology import CapabilitySkillOntology, AssetInterfacesInfo
-from utilities.GeneralUtils import GeneralUtils
 
 _logger = logging.getLogger(__name__)
 
@@ -167,6 +163,9 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
                     _logger.interactioninfo("Negotiation criteria successfully obtained.")
                     _logger.info(
                         "The negotiation value for the negotiation with thread [" + self.thread + "] has been obtained. ")
+                    # TODO el Submodelo AssetInterfacesDescription menciona un "type" para cada propiedad en
+                    #  "InteractionMetadata". Si ahí definen que la bateria es una float o un integer, se podría
+                    #  utilizar esto para convertir el valor de string al tipo que se defina
                     self.neg_value = float(negotiation_value)
                 else:
                     _logger.warning("Failed to get the negotiation criteria.")

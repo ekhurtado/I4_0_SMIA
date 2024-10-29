@@ -2,12 +2,11 @@ import logging
 
 import basyx.aas.adapter.xml
 import basyx.aas.adapter.json
-from basyx.aas.util import traversal
 from basyx.aas.model import ModelReference
 from spade.behaviour import OneShotBehaviour
 
 from assetconnection.HTTPAssetConnection import HTTPAssetConnection
-from utilities import ConfigMap_utils, Submodels_utils
+from utilities import ConfigMap_utils
 from utilities.CapabilitySkillOntology import CapabilitySkillOntology, AssetInterfacesInfo
 
 _logger = logging.getLogger(__name__)
@@ -91,7 +90,8 @@ class InitAASModelBehaviour(OneShotBehaviour):
         for rel_cap_skill in rels_cap_skill_list:
             # First, the elements of capability and skill are determined (no matter in which order of the
             # relationship they are listed).
-            capability_elem, skill_elem = await self.myagent.aas_model.get_cap_skill_elem_from_relationship(rel_cap_skill)
+            capability_elem, skill_elem = await self.myagent.aas_model.get_cap_skill_elem_from_relationship(
+                rel_cap_skill)
 
             if capability_elem is None or skill_elem is None:
                 continue
@@ -101,8 +101,9 @@ class InitAASModelBehaviour(OneShotBehaviour):
 
             # The capability_type is obtained using the semanticID
             capability_type = capability_elem.get_capability_type_in_ontology()
-            _logger.info("Analyzing {} [{}] and its associated skill [{}]...".format(capability_type,capability_elem.id_short,
-                                                                                             skill_elem.id_short))
+            _logger.info(
+                "Analyzing {} [{}] and its associated skill [{}]...".format(capability_type, capability_elem.id_short,
+                                                                            skill_elem.id_short))
 
             # If the capability has constraints, they will be obtained
             capability_constraints = await self.myagent.aas_model.get_capability_associated_constraints(capability_elem)
@@ -155,7 +156,6 @@ class InitAASModelBehaviour(OneShotBehaviour):
                 cap_skill_info[capability_elem]['capabilityConstraints'] = capability_constraints
             await self.myagent.aas_model.save_capability_skill_information(capability_type, cap_skill_info)
             _logger.info("{} information saved in the global variables.".format(capability_elem))
-
 
     async def get_and_configure_asset_connections(self):
         """

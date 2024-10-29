@@ -1,7 +1,6 @@
 import logging
 from spade.behaviour import State
 
-from behaviours.InteractionHandlingBehaviour import InteractionHandlingBehaviour
 from behaviours.NegotiatingBehaviour import NegotiatingBehaviour
 from behaviours.SvcACLHandlingBehaviour import SvcACLHandlingBehaviour
 from utilities import AAS_Archive_utils
@@ -46,16 +45,16 @@ class StateRunning(State):
         if agent_behaviours_classes:
             # TODO revisar si esto se quiere hacer asi (pensar en las transciones entre estados)
             for behav_class in agent_behaviours_classes:
-                    await behav_class.join()
+                await behav_class.join()
 
         # If the Execution Running State has been completed, the agent can move to the next state
         _logger.info(f"{self.agent.jid} agent has finished it Running state.")
         self.set_next_state(AASmanagerInfo.STOPPING_STATE_NAME)
 
-
     async def add_agent_capabilities_behaviours(self):
         behaviours_objects = []
-        agent_capabilities = await self.agent.aas_model.get_capability_dict_by_type(CapabilitySkillOntology.AGENT_CAPABILITY_TYPE)
+        agent_capabilities = await self.agent.aas_model.get_capability_dict_by_type(
+            CapabilitySkillOntology.AGENT_CAPABILITY_TYPE)
         for capability in agent_capabilities.keys():
             if capability.id_short == 'Negotiation':
                 # The negotiation behaviour has to be added to the agent

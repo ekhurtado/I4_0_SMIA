@@ -11,6 +11,7 @@ from utilities.GeneralUtils import GeneralUtils
 
 _logger = logging.getLogger(__name__)
 
+
 def create_neg_cfp_msg(thread, targets, neg_requester_jid, neg_criteria):
     """
     This method creates the FIPA-ACL CallForProposal (CFP) message that will be sent to all participants to start
@@ -43,6 +44,7 @@ def create_neg_cfp_msg(thread, targets, neg_requester_jid, neg_criteria):
     }
     cfp_msg.body = json.dumps(neg_cfp_json)
     return cfp_msg
+
 
 def create_neg_propose_msg(thread, targets, neg_requester_jid, neg_criteria, neg_value):
     """

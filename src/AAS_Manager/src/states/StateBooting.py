@@ -1,7 +1,6 @@
 import logging
 from spade.behaviour import State
 
-from behaviours.CheckCoreInitializationBehaviour import CheckCoreInitializationBehaviour
 from behaviours.InitAASarchiveBehaviour import InitAASarchiveBehaviour
 from behaviours.InitAASModelBehaviour import InitAASModelBehaviour
 from logic import IntraAASInteractions_utils

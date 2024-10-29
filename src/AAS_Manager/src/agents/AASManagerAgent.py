@@ -5,7 +5,6 @@ from spade.agent import Agent
 import logging
 
 from aas_model.ExtendedAASModel import ExtendedAASModel
-from assetconnection.AssetConnection import AssetConnection
 from states.StateRunning import StateRunning
 from states.StateStopping import StateStopping
 from utilities.AASmanagerInfo import AASmanagerInfo

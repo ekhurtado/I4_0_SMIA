@@ -7,6 +7,7 @@ from assetconnection.AssetConnection import AssetConnection
 
 _logger = logging.getLogger(__name__)
 
+
 class HTTPAssetConnection(AssetConnection):
     """
     This class implements the asset connection for HTTP protocol.
@@ -63,7 +64,6 @@ class HTTPAssetConnection(AssetConnection):
             return await self.get_response_content(http_response)
         return None
 
-
     async def receive_msg_from_asset(self):
         pass
 
@@ -73,8 +73,10 @@ class HTTPAssetConnection(AssetConnection):
     async def check_interaction_metadata(self, interaction_metadata):
         # TODO de momento solo se comprueba que el SMC de metadatos ofrecido esta dentro del SMC 'InteractionMetadata'
         parent_elem = interaction_metadata.parent
-        while not parent_elem.check_semantic_id_exist(HTTPAssetInterfaceSemantics.SEMANTICID_HTTP_INTERFACE_INTERACTION_METADATA):
-            if parent_elem.check_semantic_id_exist('https://admin-shell.io/idta/AssetInterfacesDescription/1/0/Submodel'):
+        while not parent_elem.check_semantic_id_exist(
+                HTTPAssetInterfaceSemantics.SEMANTICID_HTTP_INTERFACE_INTERACTION_METADATA):
+            if parent_elem.check_semantic_id_exist(
+                    'https://admin-shell.io/idta/AssetInterfacesDescription/1/0/Submodel'):
                 return False
             else:
                 parent_elem = parent_elem.parent
@@ -92,8 +94,10 @@ class HTTPAssetConnection(AssetConnection):
             HTTPAssetInterfaceSemantics.SEMANTICID_HTTP_INTERFACE_HEADERS)
         request_headers = {}
         for header_smc in headers_elem:
-            field_name = header_smc.get_sm_element_by_semantic_id(HTTPAssetInterfaceSemantics.SEMANTICID_HTTP_INTERFACE_FIELD_NAME).value
-            field_value = header_smc.get_sm_element_by_semantic_id(HTTPAssetInterfaceSemantics.SEMANTICID_HTTP_INTERFACE_FIELD_VALUE).value
+            field_name = header_smc.get_sm_element_by_semantic_id(
+                HTTPAssetInterfaceSemantics.SEMANTICID_HTTP_INTERFACE_FIELD_NAME).value
+            field_value = header_smc.get_sm_element_by_semantic_id(
+                HTTPAssetInterfaceSemantics.SEMANTICID_HTTP_INTERFACE_FIELD_VALUE).value
             request_headers[field_name] = field_value
         if len(request_headers) != 0:
             self.request_headers.update(request_headers)
@@ -136,15 +140,14 @@ class HTTPAssetConnection(AssetConnection):
         else:
             return None
 
-class HTTPAssetInterfaceSemantics:
 
+class HTTPAssetInterfaceSemantics:
     SEMANTICID_HTTP_INTERFACE_TITLE = 'https://www.w3.org/2019/wot/td#title'
     SEMANTICID_HTTP_INTERFACE_BASE = 'https://www.w3.org/2019/wot/td#baseURI'
     SEMANTICID_HTTP_INTERFACE_CONTENT_TYPE = 'https://www.w3.org/2019/wot/hypermedia#forContentType'
 
     SEMANTICID_HTTP_INTERFACE_ENDPOINT_METADATA = 'https://admin-shell.io/idta/AssetInterfacesDescription/1/0/EndpointMetadata'
     SEMANTICID_HTTP_INTERFACE_INTERACTION_METADATA = 'https://admin-shell.io/idta/AssetInterfacesDescription/1/0/InteractionMetadata'
-
 
     SEMANTICID_HTTP_INTERFACE_PROPERTY = 'https://www.w3.org/2019/wot/td#PropertyAffordance'
     SEMANTICID_HTTP_INTERFACE_ACTION = 'https://www.w3.org/2019/wot/td#ActionAffordance'
@@ -155,4 +158,3 @@ class HTTPAssetInterfaceSemantics:
     SEMANTICID_HTTP_INTERFACE_HEADERS = 'https://www.w3.org/2011/http#headers'
     SEMANTICID_HTTP_INTERFACE_FIELD_NAME = 'https://www.w3.org/2011/http#fieldName'
     SEMANTICID_HTTP_INTERFACE_FIELD_VALUE = 'https://www.w3.org/2011/http#fieldValue'
-
