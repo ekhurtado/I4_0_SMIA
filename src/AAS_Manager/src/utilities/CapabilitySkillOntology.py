@@ -27,6 +27,7 @@ class CapabilitySkillOntology:
     SEMANTICID_REL_SKILL_SKILL_INTERFACE = 'urn:ehu:gcis:capabilityskillontology:1:1:skillaccesiblethrough'
     SEMANTICID_REL_SKILL_SKILL_PARAMETER = 'urn:ehu:gcis:capabilityskillontology:1:1:skillhasparameter'
     SEMANTICID_REL_SKILL_SKILL_STATE_MACHINE = 'urn:ehu:gcis:capabilityskillontology:1:1:skillbehavioursconformsto'
+    SEMANTICID_REL_SKILL_PARAMETER_INTERFACE = 'urn:ehu:gcis:capabilityskillontology:1:1:skillparameterexposurethrough' # TODO CUIDADO, ESTE ES NUEVO, PENSAR COMO SERIA. Se ha pensado para asociar un skill parameter con un apartado de la interfaz, para saber que hay que añadir ahí esos datos
 
     # Qualifiers for Capabilities
     QUALIFIER_CAPABILITY_TYPE = 'ExpressionSemantic'
