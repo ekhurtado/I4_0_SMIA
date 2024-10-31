@@ -24,6 +24,7 @@
   --color-brand-content: #2980B9;
   --color-problematic: DodgerBlue;
   --color-api-background: #E7F2FA;
+  --color-api-background-hover: #b7c0c6;
   
   }
   @media not print {
@@ -34,6 +35,7 @@
   --color-brand-content: #2980B9;
   --color-problematic: DodgerBlue;
   --color-api-background: #383838;
+  --color-api-background-hover: #5e5e5e;
   
     }
     @media (prefers-color-scheme: dark) {
@@ -44,6 +46,7 @@
   --color-brand-content: #2980B9;
   --color-problematic: DodgerBlue;
   --color-api-background: #383838;
+  --color-api-background-hover: #5e5e5e;
   
       }
     }
@@ -233,36 +236,50 @@
 <li class="toctree-l1"><a class="reference internal" href="../../aas_developer_guide.html">AAS Developer Guide</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../modules.html">API documentation</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of API documentation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../aas_manager.html">aas_manager module</a></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../agents.html">agents package</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of agents package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../aas_model.html">aas_model package</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of aas_model package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../aas_model.ExtendedAASModel.html">aas_model.ExtendedAASModel module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../aas_model.ExtendedAssetAdministrationShell.html">aas_model.ExtendedAssetAdministrationShell module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../aas_model.ExtendedBase.html">aas_model.ExtendedBase module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../aas_model.ExtendedConceptDescription.html">aas_model.ExtendedConceptDescription module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../aas_model.ExtendedSubmodel.html">aas_model.ExtendedSubmodel module</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../agents.html">agents package</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of agents package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../agents.AASManagerAgent.html">agents.AASManagerAgent module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../agents.AASManagerAppAgent.html">agents.AASManagerAppAgent module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../agents.AASManagerResourceAgent.html">agents.AASManagerResourceAgent module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../behaviours.html">behaviours package</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of behaviours package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../assetconnection.html">assetconnection package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of assetconnection package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../assetconnection.AssetConnection.html">assetconnection.AssetConnection module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../assetconnection.HTTPAssetConnection.html">assetconnection.HTTPAssetConnection module</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../behaviours.html">behaviours package</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of behaviours package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.AASFSMBehaviour.html">behaviours.AASFSMBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.CheckCoreInitializationBehaviour.html">behaviours.CheckCoreInitializationBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.CheckPhysicalAssetBehaviour.html">behaviours.CheckPhysicalAssetBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.EndBehaviour.html">behaviours.EndBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../behaviours.HandleCapabilityBehaviour.html">behaviours.HandleCapabilityBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.HandleNegotiationBehaviour.html">behaviours.HandleNegotiationBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.HandleSvcRequestBehaviour.html">behaviours.HandleSvcRequestBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.HandleSvcResponseBehaviour.html">behaviours.HandleSvcResponseBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.IdleBehaviour.html">behaviours.IdleBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../behaviours.InitAASModelBehaviour.html">behaviours.InitAASModelBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.InitAASarchiveBehaviour.html">behaviours.InitAASarchiveBehaviour module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../behaviours.InitSubmodelsBehaviour.html">behaviours.InitSubmodelsBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.InteractionHandlingBehaviour.html">behaviours.InteractionHandlingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.NegotiatingBehaviour.html">behaviours.NegotiatingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.SvcACLHandlingBehaviour.html">behaviours.SvcACLHandlingBehaviour module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../logic.html">logic package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of logic package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../logic.html">logic package</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of logic package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../logic.InterAASInteractions_utils.html">logic.InterAASInteractions_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../logic.IntraAASInteractions_utils.html">logic.IntraAASInteractions_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../logic.Negotiation_utils.html">logic.Negotiation_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../logic.Services_utils.html">logic.Services_utils module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../states.html">states package</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of states package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../states.html">states package</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of states package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../states.StateBooting.html">states.StateBooting module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../states.StateBootingResource.html">states.StateBootingResource module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../states.StateIdle.html">states.StateIdle module</a></li>
@@ -270,11 +287,14 @@
 <li class="toctree-l3"><a class="reference internal" href="../../states.StateStopping.html">states.StateStopping module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../utilities.html">utilities package</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of utilities package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../utilities.html">utilities package</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of utilities package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../utilities.AASGeneralInfo.html">utilities.AASGeneralInfo module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utilities.AASModelExtension_utils.html">utilities.AASModelExtension_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../utilities.AAS_Archive_utils.html">utilities.AAS_Archive_utils module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../utilities.AASarchiveInfo.html">utilities.AASarchiveInfo module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../utilities.AASmanagerInfo.html">utilities.AASmanagerInfo module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utilities.CapabilitySkillOntology.html">utilities.CapabilitySkillOntology module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../utilities.ConfigMap_utils.html">utilities.ConfigMap_utils module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utilities.FIPAACLInfo.html">utilities.FIPAACLInfo module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../utilities.GeneralUtils.html">utilities.GeneralUtils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../utilities.KafkaInfo.html">utilities.KafkaInfo module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../utilities.Submodels_utils.html">utilities.Submodels_utils module</a></li>
@@ -321,14 +341,17 @@
           <h1>Source code for agents.AASManagerAgent</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">asyncio</span>
 
+<span class="kn">import</span> <span class="nn">basyx.aas.model</span>
 <span class="kn">from</span> <span class="nn">spade.agent</span> <span class="kn">import</span> <span class="n">Agent</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 
+<span class="kn">from</span> <span class="nn">aas_model.ExtendedAASModel</span> <span class="kn">import</span> <span class="n">ExtendedAASModel</span>
 <span class="kn">from</span> <span class="nn">states.StateRunning</span> <span class="kn">import</span> <span class="n">StateRunning</span>
 <span class="kn">from</span> <span class="nn">states.StateStopping</span> <span class="kn">import</span> <span class="n">StateStopping</span>
 <span class="kn">from</span> <span class="nn">utilities.AASmanagerInfo</span> <span class="kn">import</span> <span class="n">AASmanagerInfo</span>
 <span class="kn">from</span> <span class="nn">behaviours.AASFSMBehaviour</span> <span class="kn">import</span> <span class="n">AASFSMBehaviour</span>
 <span class="kn">from</span> <span class="nn">states.StateBooting</span> <span class="kn">import</span> <span class="n">StateBooting</span>
+<span class="kn">from</span> <span class="nn">utilities.GeneralUtils</span> <span class="kn">import</span> <span class="n">GeneralUtils</span>
 
 <span class="n">_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
@@ -347,10 +370,15 @@
     <span class="n">interaction_requests</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1">#: Dictionary to save Intra AAS interaction requests</span>
     <span class="n">interaction_responses</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1">#: Dictionary to save Intra AAS interaction responses</span>
     <span class="n">negotiations_data</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1">#: Dictionary to save negotiations related information</span>
+    <span class="n">aas_model</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1">#: Object with the extended AAS model</span>
+    <span class="n">asset_connections</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1">#: Class with the Asset Connection methods</span>
     <span class="n">lock</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1">#: Asyncio Lock object for secure access to shared AAS Manager objects</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">jid</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">password</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">verify_security</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">jid</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">verify_security</span><span class="p">)</span>
+
+        <span class="c1"># The banner of the program is printed</span>
+        <span class="n">GeneralUtils</span><span class="o">.</span><span class="n">print_smia_banner</span><span class="p">()</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">initialize_aas_manager_attributes</span><span class="p">()</span>
 
@@ -360,19 +388,25 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This method initializes all the attributes of the AAS Manager</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># Objects for storing the information related to ACL services are initialized</span>
+        <span class="c1"># Objects to store the information related to ACL services are initialized</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">acl_messages_id</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># It is reset</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">acl_svc_requests</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">acl_svc_responses</span> <span class="o">=</span> <span class="p">{}</span>
 
-        <span class="c1"># Objects for storing the information related to AAS Manager-Core interactions are initialized</span>
+        <span class="c1"># Objects to store the information related to AAS Manager-Core interactions are initialized</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">interaction_id_num</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># The interactionId number is reset</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">interaction_id</span> <span class="o">=</span> <span class="s1">&#39;manager-&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">interaction_id_num</span><span class="p">)</span>  <span class="c1"># The complete interactionId</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">interaction_requests</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">interaction_responses</span> <span class="o">=</span> <span class="p">{}</span>
 
-        <span class="c1"># Object for storing the information related to negotiations is initialized</span>
+        <span class="c1"># Object to store the information related to negotiations is initialized</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">negotiations_data</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="c1"># The object with the Extended AAS model and useful methods is initialized</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">aas_model</span> <span class="o">=</span> <span class="n">ExtendedAASModel</span><span class="p">()</span>
+
+        <span class="c1"># The object with the AssetConnection class is initialized. At this point, as a empty JSON</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">asset_connections</span> <span class="o">=</span> <span class="p">{}</span>
 
         <span class="c1"># The Lock object is used to manage the access to global agent attributes (request and response dictionaries,</span>
         <span class="c1"># interaction id number...)</span>
@@ -582,6 +616,51 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">async</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">lock</span><span class="p">:</span>  <span class="c1"># safe access to a shared object of the agent</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">negotiations_data</span><span class="p">[</span><span class="n">thread</span><span class="p">]</span> <span class="o">=</span> <span class="n">neg_data</span></div>
+
+
+<div class="viewcode-block" id="AASManagerAgent.add_new_asset_connection">
+<a class="viewcode-back" href="../../agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.add_new_asset_connection">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">add_new_asset_connection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interface_reference</span><span class="p">,</span> <span class="n">asset_connection</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This method adds a new asset connection to the global variable of the agent.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            interface_reference (str): reference of the interface of the AssetConnection</span>
+<span class="sd">            asset_connection: class with all information about the AssetConnection</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">async</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">lock</span><span class="p">:</span>  <span class="c1"># safe access to a shared object of the agent</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">asset_connections</span><span class="p">[</span><span class="n">interface_reference</span><span class="p">]</span> <span class="o">=</span> <span class="n">asset_connection</span></div>
+
+
+<div class="viewcode-block" id="AASManagerAgent.get_asset_connection_class">
+<a class="viewcode-back" href="../../agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.get_asset_connection_class">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_asset_connection_class</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">asset_connection_ref</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This method gets the asset connection class using its reference.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            asset_connection_ref (basyx.aas.model.ModelReference): reference of the asset connection</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            assetconnection.AssetConnection: class of the asset connection</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">async</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">lock</span><span class="p">:</span>  <span class="c1"># safe access to a shared object of the agent</span>
+            <span class="k">for</span> <span class="n">conn_ref</span><span class="p">,</span> <span class="n">conn_class</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">asset_connections</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">conn_ref</span> <span class="o">==</span> <span class="n">asset_connection_ref</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="n">conn_class</span></div>
+
+
+<div class="viewcode-block" id="AASManagerAgent.get_all_asset_connections">
+<a class="viewcode-back" href="../../agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.get_all_asset_connections">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_all_asset_connections</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This method returns all asset connections of the agent.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: dictionary wil all asset connections</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">async</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">lock</span><span class="p">:</span>  <span class="c1"># safe access to a shared object of the agent</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">asset_connections</span></div>
 </div>
 
 </pre></div>

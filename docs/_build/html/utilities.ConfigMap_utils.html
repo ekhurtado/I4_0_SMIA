@@ -3,7 +3,7 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="utilities.GeneralUtils module" href="utilities.GeneralUtils.html" /><link rel="prev" title="utilities.AASmanagerInfo module" href="utilities.AASmanagerInfo.html" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="utilities.FIPAACLInfo module" href="utilities.FIPAACLInfo.html" /><link rel="prev" title="utilities.CapabilitySkillOntology module" href="utilities.CapabilitySkillOntology.html" />
 
     <link rel="shortcut icon" href="_static/I4_0_SMIA_favicon.svg"/><!-- Generated with Sphinx 7.3.7 and Furo 2024.05.06 -->
         <title>utilities.ConfigMap_utils module - I4.0 SMIA 0.1.3 documentation</title>
@@ -25,6 +25,7 @@
   --color-brand-content: #2980B9;
   --color-problematic: DodgerBlue;
   --color-api-background: #E7F2FA;
+  --color-api-background-hover: #b7c0c6;
   
   }
   @media not print {
@@ -35,6 +36,7 @@
   --color-brand-content: #2980B9;
   --color-problematic: DodgerBlue;
   --color-api-background: #383838;
+  --color-api-background-hover: #5e5e5e;
   
     }
     @media (prefers-color-scheme: dark) {
@@ -45,6 +47,7 @@
   --color-brand-content: #2980B9;
   --color-problematic: DodgerBlue;
   --color-api-background: #383838;
+  --color-api-background-hover: #5e5e5e;
   
       }
     }
@@ -234,36 +237,50 @@
 <li class="toctree-l1"><a class="reference internal" href="aas_developer_guide.html">AAS Developer Guide</a></li>
 <li class="toctree-l1 current has-children"><a class="reference internal" href="modules.html">API documentation</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of API documentation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="aas_manager.html">aas_manager module</a></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="agents.html">agents package</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of agents package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="aas_model.html">aas_model package</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of aas_model package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="aas_model.ExtendedAASModel.html">aas_model.ExtendedAASModel module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aas_model.ExtendedAssetAdministrationShell.html">aas_model.ExtendedAssetAdministrationShell module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aas_model.ExtendedBase.html">aas_model.ExtendedBase module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aas_model.ExtendedConceptDescription.html">aas_model.ExtendedConceptDescription module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aas_model.ExtendedSubmodel.html">aas_model.ExtendedSubmodel module</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="agents.html">agents package</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of agents package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="agents.AASManagerAgent.html">agents.AASManagerAgent module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="agents.AASManagerAppAgent.html">agents.AASManagerAppAgent module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="agents.AASManagerResourceAgent.html">agents.AASManagerResourceAgent module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="behaviours.html">behaviours package</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of behaviours package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="assetconnection.html">assetconnection package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of assetconnection package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="assetconnection.AssetConnection.html">assetconnection.AssetConnection module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="assetconnection.HTTPAssetConnection.html">assetconnection.HTTPAssetConnection module</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="behaviours.html">behaviours package</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of behaviours package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.AASFSMBehaviour.html">behaviours.AASFSMBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.CheckCoreInitializationBehaviour.html">behaviours.CheckCoreInitializationBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.CheckPhysicalAssetBehaviour.html">behaviours.CheckPhysicalAssetBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.EndBehaviour.html">behaviours.EndBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.HandleCapabilityBehaviour.html">behaviours.HandleCapabilityBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.HandleNegotiationBehaviour.html">behaviours.HandleNegotiationBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.HandleSvcRequestBehaviour.html">behaviours.HandleSvcRequestBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.HandleSvcResponseBehaviour.html">behaviours.HandleSvcResponseBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.IdleBehaviour.html">behaviours.IdleBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.InitAASModelBehaviour.html">behaviours.InitAASModelBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.InitAASarchiveBehaviour.html">behaviours.InitAASarchiveBehaviour module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="behaviours.InitSubmodelsBehaviour.html">behaviours.InitSubmodelsBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.InteractionHandlingBehaviour.html">behaviours.InteractionHandlingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.NegotiatingBehaviour.html">behaviours.NegotiatingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.SvcACLHandlingBehaviour.html">behaviours.SvcACLHandlingBehaviour module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="logic.html">logic package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of logic package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="logic.html">logic package</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of logic package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="logic.InterAASInteractions_utils.html">logic.InterAASInteractions_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logic.IntraAASInteractions_utils.html">logic.IntraAASInteractions_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logic.Negotiation_utils.html">logic.Negotiation_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logic.Services_utils.html">logic.Services_utils module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="states.html">states package</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of states package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="states.html">states package</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of states package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="states.StateBooting.html">states.StateBooting module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="states.StateBootingResource.html">states.StateBootingResource module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="states.StateIdle.html">states.StateIdle module</a></li>
@@ -271,11 +288,14 @@
 <li class="toctree-l3"><a class="reference internal" href="states.StateStopping.html">states.StateStopping module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current has-children"><a class="reference internal" href="utilities.html">utilities package</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of utilities package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 current has-children"><a class="reference internal" href="utilities.html">utilities package</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of utilities package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="utilities.AASGeneralInfo.html">utilities.AASGeneralInfo module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="utilities.AASModelExtension_utils.html">utilities.AASModelExtension_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="utilities.AAS_Archive_utils.html">utilities.AAS_Archive_utils module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="utilities.AASarchiveInfo.html">utilities.AASarchiveInfo module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="utilities.AASmanagerInfo.html">utilities.AASmanagerInfo module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="utilities.CapabilitySkillOntology.html">utilities.CapabilitySkillOntology module</a></li>
 <li class="toctree-l3 current current-page"><a class="current reference internal" href="#">utilities.ConfigMap_utils module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="utilities.FIPAACLInfo.html">utilities.FIPAACLInfo module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="utilities.GeneralUtils.html">utilities.GeneralUtils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="utilities.KafkaInfo.html">utilities.KafkaInfo module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="utilities.Submodels_utils.html">utilities.Submodels_utils module</a></li>
@@ -331,7 +351,8 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="utilities.ConfigMap_utils.get_aas_general_property">
 <span class="sig-prename descclassname"><span class="pre">utilities.ConfigMap_utils.</span></span><span class="sig-name descname"><span class="pre">get_aas_general_property</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">property_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/ConfigMap_utils.html#get_aas_general_property"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.ConfigMap_utils.get_aas_general_property" title="Link to this definition">¶</a></dt>
-<dd><p>This method returns the property of the AAS set in the ConfigMap by the AAS Controller during the deployment process. This information is stored in “aas.properties” file within “general-information” section.</p>
+<dd><p>This method returns the property of the AAS set in the ConfigMap by the AAS Controller during the deployment
+process. This information is stored in “general.properties” file within “AAS” section (with the ‘aas.’ prefix).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>property_name</strong> (<em>str</em>) – The name of the property.</p>
@@ -346,6 +367,36 @@
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="utilities.ConfigMap_utils.get_dt_general_property">
+<span class="sig-prename descclassname"><span class="pre">utilities.ConfigMap_utils.</span></span><span class="sig-name descname"><span class="pre">get_dt_general_property</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">property_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/ConfigMap_utils.html#get_dt_general_property"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.ConfigMap_utils.get_dt_general_property" title="Link to this definition">¶</a></dt>
+<dd><p>This method returns the DT property set in the ConfigMap during the deployment process. This information is stored
+in the ‘general.properties’ file within the ‘DT’ section (with the ‘dt.’ prefix).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The general property of the DT.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utilities.ConfigMap_utils.get_aas_model_filepath">
+<span class="sig-prename descclassname"><span class="pre">utilities.ConfigMap_utils.</span></span><span class="sig-name descname"><span class="pre">get_aas_model_filepath</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/ConfigMap_utils.html#get_aas_model_filepath"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.ConfigMap_utils.get_aas_model_filepath" title="Link to this definition">¶</a></dt>
+<dd><p>This method returns the AAS model file path. The AAS model is specified in the ‘general.properties’ file
+within the ‘AAS’ section, with ‘aas.model.file’ attribute.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The AAS model file path within the AAS Archive.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="utilities.ConfigMap_utils.get_asset_type">
 <span class="sig-prename descclassname"><span class="pre">utilities.ConfigMap_utils.</span></span><span class="sig-name descname"><span class="pre">get_asset_type</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/ConfigMap_utils.html#get_asset_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.ConfigMap_utils.get_asset_type" title="Link to this definition">¶</a></dt>
 <dd><p>This method returns the asset type of the AAS set in the ConfigMap by the AAS Controller during the deployment process. This information is stored in “asset.properties” file.</p>
@@ -355,6 +406,22 @@
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utilities.ConfigMap_utils.get_submodel_names">
+<span class="sig-prename descclassname"><span class="pre">utilities.ConfigMap_utils.</span></span><span class="sig-name descname"><span class="pre">get_submodel_names</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/ConfigMap_utils.html#get_submodel_names"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.ConfigMap_utils.get_submodel_names" title="Link to this definition">¶</a></dt>
+<dd><p>This method returns all submodel names that have been selected for the AAS instance. It is the submodel
+properties file sections of the AAS configuration in the ConfigMap that will determine which submodels these
+are.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A list with the sections of the submodel properties file, and therefore, the submodel names.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list(str)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -380,22 +447,6 @@ configuration from the ConfigMap.</p>
 </dl>
 </dd></dl>
 
-<dl class="py function">
-<dt class="sig sig-object py" id="utilities.ConfigMap_utils.get_submodel_names">
-<span class="sig-prename descclassname"><span class="pre">utilities.ConfigMap_utils.</span></span><span class="sig-name descname"><span class="pre">get_submodel_names</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/ConfigMap_utils.html#get_submodel_names"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.ConfigMap_utils.get_submodel_names" title="Link to this definition">¶</a></dt>
-<dd><p>This method returns all submodel names that have been selected for the AAS instance. It is the submodel
-properties file sections of the AAS configuration in the ConfigMap that will determine which submodels these
-are.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>A list with the sections of the submodel properties file, and therefore, the submodel names.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>list(str)</p>
-</dd>
-</dl>
-</dd></dl>
-
 </section>
 
         </article>
@@ -403,23 +454,23 @@ are.</p>
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="utilities.GeneralUtils.html">
+          <a class="next-page" href="utilities.FIPAACLInfo.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">utilities.GeneralUtils module</div>
+                <div class="title">utilities.FIPAACLInfo module</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="utilities.AASmanagerInfo.html">
+          <a class="prev-page" href="utilities.CapabilitySkillOntology.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">utilities.AASmanagerInfo module</div>
+                <div class="title">utilities.CapabilitySkillOntology module</div>
                 
               </div>
             </a>
@@ -454,9 +505,11 @@ are.</p>
             <ul>
 <li><a class="reference internal" href="#">utilities.ConfigMap_utils module</a><ul>
 <li><a class="reference internal" href="#utilities.ConfigMap_utils.get_aas_general_property"><code class="docutils literal notranslate"><span class="pre">get_aas_general_property()</span></code></a></li>
+<li><a class="reference internal" href="#utilities.ConfigMap_utils.get_dt_general_property"><code class="docutils literal notranslate"><span class="pre">get_dt_general_property()</span></code></a></li>
+<li><a class="reference internal" href="#utilities.ConfigMap_utils.get_aas_model_filepath"><code class="docutils literal notranslate"><span class="pre">get_aas_model_filepath()</span></code></a></li>
 <li><a class="reference internal" href="#utilities.ConfigMap_utils.get_asset_type"><code class="docutils literal notranslate"><span class="pre">get_asset_type()</span></code></a></li>
-<li><a class="reference internal" href="#utilities.ConfigMap_utils.get_submodel_information"><code class="docutils literal notranslate"><span class="pre">get_submodel_information()</span></code></a></li>
 <li><a class="reference internal" href="#utilities.ConfigMap_utils.get_submodel_names"><code class="docutils literal notranslate"><span class="pre">get_submodel_names()</span></code></a></li>
+<li><a class="reference internal" href="#utilities.ConfigMap_utils.get_submodel_information"><code class="docutils literal notranslate"><span class="pre">get_submodel_information()</span></code></a></li>
 </ul>
 </li>
 </ul>

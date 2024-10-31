@@ -24,6 +24,7 @@
   --color-brand-content: #2980B9;
   --color-problematic: DodgerBlue;
   --color-api-background: #E7F2FA;
+  --color-api-background-hover: #b7c0c6;
   
   }
   @media not print {
@@ -34,6 +35,7 @@
   --color-brand-content: #2980B9;
   --color-problematic: DodgerBlue;
   --color-api-background: #383838;
+  --color-api-background-hover: #5e5e5e;
   
     }
     @media (prefers-color-scheme: dark) {
@@ -44,6 +46,7 @@
   --color-brand-content: #2980B9;
   --color-problematic: DodgerBlue;
   --color-api-background: #383838;
+  --color-api-background-hover: #5e5e5e;
   
       }
     }
@@ -233,36 +236,50 @@
 <li class="toctree-l1"><a class="reference internal" href="../../aas_developer_guide.html">AAS Developer Guide</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../modules.html">API documentation</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of API documentation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../aas_manager.html">aas_manager module</a></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../agents.html">agents package</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of agents package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../aas_model.html">aas_model package</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of aas_model package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../aas_model.ExtendedAASModel.html">aas_model.ExtendedAASModel module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../aas_model.ExtendedAssetAdministrationShell.html">aas_model.ExtendedAssetAdministrationShell module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../aas_model.ExtendedBase.html">aas_model.ExtendedBase module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../aas_model.ExtendedConceptDescription.html">aas_model.ExtendedConceptDescription module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../aas_model.ExtendedSubmodel.html">aas_model.ExtendedSubmodel module</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../agents.html">agents package</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of agents package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../agents.AASManagerAgent.html">agents.AASManagerAgent module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../agents.AASManagerAppAgent.html">agents.AASManagerAppAgent module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../agents.AASManagerResourceAgent.html">agents.AASManagerResourceAgent module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../behaviours.html">behaviours package</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of behaviours package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../assetconnection.html">assetconnection package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of assetconnection package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../assetconnection.AssetConnection.html">assetconnection.AssetConnection module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../assetconnection.HTTPAssetConnection.html">assetconnection.HTTPAssetConnection module</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../behaviours.html">behaviours package</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of behaviours package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.AASFSMBehaviour.html">behaviours.AASFSMBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.CheckCoreInitializationBehaviour.html">behaviours.CheckCoreInitializationBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.CheckPhysicalAssetBehaviour.html">behaviours.CheckPhysicalAssetBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.EndBehaviour.html">behaviours.EndBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../behaviours.HandleCapabilityBehaviour.html">behaviours.HandleCapabilityBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.HandleNegotiationBehaviour.html">behaviours.HandleNegotiationBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.HandleSvcRequestBehaviour.html">behaviours.HandleSvcRequestBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.HandleSvcResponseBehaviour.html">behaviours.HandleSvcResponseBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.IdleBehaviour.html">behaviours.IdleBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../behaviours.InitAASModelBehaviour.html">behaviours.InitAASModelBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.InitAASarchiveBehaviour.html">behaviours.InitAASarchiveBehaviour module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../behaviours.InitSubmodelsBehaviour.html">behaviours.InitSubmodelsBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.InteractionHandlingBehaviour.html">behaviours.InteractionHandlingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.NegotiatingBehaviour.html">behaviours.NegotiatingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.SvcACLHandlingBehaviour.html">behaviours.SvcACLHandlingBehaviour module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../logic.html">logic package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of logic package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../logic.html">logic package</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of logic package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../logic.InterAASInteractions_utils.html">logic.InterAASInteractions_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../logic.IntraAASInteractions_utils.html">logic.IntraAASInteractions_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../logic.Negotiation_utils.html">logic.Negotiation_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../logic.Services_utils.html">logic.Services_utils module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../states.html">states package</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of states package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../states.html">states package</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of states package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../states.StateBooting.html">states.StateBooting module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../states.StateBootingResource.html">states.StateBootingResource module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../states.StateIdle.html">states.StateIdle module</a></li>
@@ -270,11 +287,14 @@
 <li class="toctree-l3"><a class="reference internal" href="../../states.StateStopping.html">states.StateStopping module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../utilities.html">utilities package</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of utilities package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../utilities.html">utilities package</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of utilities package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../utilities.AASGeneralInfo.html">utilities.AASGeneralInfo module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utilities.AASModelExtension_utils.html">utilities.AASModelExtension_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../utilities.AAS_Archive_utils.html">utilities.AAS_Archive_utils module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../utilities.AASarchiveInfo.html">utilities.AASarchiveInfo module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../utilities.AASmanagerInfo.html">utilities.AASmanagerInfo module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utilities.CapabilitySkillOntology.html">utilities.CapabilitySkillOntology module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../utilities.ConfigMap_utils.html">utilities.ConfigMap_utils module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utilities.FIPAACLInfo.html">utilities.FIPAACLInfo module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../utilities.GeneralUtils.html">utilities.GeneralUtils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../utilities.KafkaInfo.html">utilities.KafkaInfo module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../utilities.Submodels_utils.html">utilities.Submodels_utils module</a></li>
@@ -321,15 +341,13 @@
           <h1>Source code for logic.IntraAASInteractions_utils</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;This class groups the methods related to the Intra AAS interactions between the Manager and the Core.&quot;&quot;&quot;</span>
 
-<span class="kn">import</span> <span class="nn">calendar</span>
 <span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
-<span class="kn">import</span> <span class="nn">time</span>
 
 <span class="kn">from</span> <span class="nn">aiokafka</span> <span class="kn">import</span> <span class="n">AIOKafkaProducer</span><span class="p">,</span> <span class="n">AIOKafkaConsumer</span><span class="p">,</span> <span class="n">TopicPartition</span>
 
-<span class="kn">from</span> <span class="nn">utilities.AASarchiveInfo</span> <span class="kn">import</span> <span class="n">AASarchiveInfo</span>
+<span class="kn">from</span> <span class="nn">utilities.AASGeneralInfo</span> <span class="kn">import</span> <span class="n">AASGeneralInfo</span>
 <span class="kn">from</span> <span class="nn">utilities.AAS_Archive_utils</span> <span class="kn">import</span> <span class="n">file_to_json</span><span class="p">,</span> <span class="n">update_json_file</span>
 <span class="kn">from</span> <span class="nn">utilities.GeneralUtils</span> <span class="kn">import</span> <span class="n">GeneralUtils</span>
 <span class="kn">from</span> <span class="nn">utilities.KafkaInfo</span> <span class="kn">import</span> <span class="n">KafkaInfo</span>
@@ -365,6 +383,36 @@
     <span class="k">return</span> <span class="n">svc_request_json</span></div>
 
 
+<div class="viewcode-block" id="create_intra_aas_response_object">
+<a class="viewcode-back" href="../../logic.IntraAASInteractions_utils.html#logic.IntraAASInteractions_utils.create_intra_aas_response_object">[docs]</a>
+<span class="k">def</span> <span class="nf">create_intra_aas_response_object</span><span class="p">(</span><span class="n">intra_aas_request</span><span class="p">,</span> <span class="n">inter_aas_response</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This method creates the Intra AAS interaction response object using the initial Intra AAS interaction request and</span>
+<span class="sd">    the Inter AAS interaction response needed to perform the initial service request.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        intra_aas_request (dict): all the information about the Intra AAS interaction request</span>
+<span class="sd">        inter_aas_response (dict): all the information about the Inter AAS interaction response</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        dict: Intra AAS response object in JSON format</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">response_json</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;thread&#39;</span><span class="p">:</span> <span class="n">inter_aas_response</span><span class="p">[</span><span class="s1">&#39;thread&#39;</span><span class="p">],</span>
+                     <span class="s1">&#39;serviceType&#39;</span><span class="p">:</span> <span class="n">intra_aas_request</span><span class="p">[</span><span class="s1">&#39;serviceType&#39;</span><span class="p">],</span>
+                     <span class="s1">&#39;serviceID&#39;</span><span class="p">:</span> <span class="n">inter_aas_response</span><span class="p">[</span><span class="s1">&#39;serviceID&#39;</span><span class="p">],</span>
+                     <span class="s1">&#39;serviceData&#39;</span><span class="p">:</span> <span class="p">{</span>
+                         <span class="s1">&#39;serviceCategory&#39;</span><span class="p">:</span> <span class="s1">&#39;service-response&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;timestamp&#39;</span><span class="p">:</span> <span class="n">GeneralUtils</span><span class="o">.</span><span class="n">get_current_timestamp</span><span class="p">(),</span>
+                         <span class="s1">&#39;serviceStatus&#39;</span><span class="p">:</span> <span class="n">inter_aas_response</span><span class="p">[</span><span class="s1">&#39;serviceData&#39;</span><span class="p">][</span><span class="s1">&#39;serviceStatus&#39;</span><span class="p">],</span>  <span class="c1"># The status of the</span>
+                                                                                <span class="c1"># Inter AAS Interaction is obtained</span>
+                     <span class="p">}</span>
+                     <span class="p">}</span>
+    <span class="k">if</span> <span class="s1">&#39;serviceParams&#39;</span> <span class="ow">in</span> <span class="n">inter_aas_response</span><span class="p">[</span><span class="s1">&#39;serviceData&#39;</span><span class="p">]:</span>
+        <span class="n">response_json</span><span class="p">[</span><span class="s1">&#39;serviceData&#39;</span><span class="p">][</span><span class="s1">&#39;serviceParams&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">inter_aas_response</span><span class="p">[</span><span class="s1">&#39;serviceData&#39;</span><span class="p">][</span><span class="s1">&#39;serviceParams&#39;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">response_json</span></div>
+
+
 
 <div class="viewcode-block" id="add_new_svc_request">
 <a class="viewcode-back" href="../../logic.IntraAASInteractions_utils.html#logic.IntraAASInteractions_utils.add_new_svc_request">[docs]</a>
@@ -378,7 +426,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># Get the content of the service requests interaction file</span>
-    <span class="n">svc_requests_file_path</span> <span class="o">=</span> <span class="n">AASarchiveInfo</span><span class="o">.</span><span class="n">MANAGER_INTERACTIONS_FOLDER_PATH</span> <span class="o">+</span> <span class="n">AASarchiveInfo</span><span class="o">.</span><span class="n">SVC_REQUEST_FILE_SUBPATH</span>
+    <span class="n">svc_requests_file_path</span> <span class="o">=</span> <span class="n">AASGeneralInfo</span><span class="o">.</span><span class="n">MANAGER_INTERACTIONS_FOLDER_PATH</span> <span class="o">+</span> <span class="n">AASGeneralInfo</span><span class="o">.</span><span class="n">SVC_REQUEST_FILE_SUBPATH</span>
     <span class="n">svc_requests_json</span> <span class="o">=</span> <span class="n">file_to_json</span><span class="p">(</span><span class="n">svc_requests_file_path</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">svc_requests_json</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">svc_requests_json</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;serviceRequests&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">new_request_json</span><span class="p">]}</span>
@@ -401,8 +449,8 @@
 <span class="sd">    Returns:</span>
 <span class="sd">        dict: the information of the service request in JSON format.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">svc_requests_json</span> <span class="o">=</span> <span class="n">file_to_json</span><span class="p">(</span><span class="n">AASarchiveInfo</span><span class="o">.</span><span class="n">MANAGER_INTERACTIONS_FOLDER_PATH</span> <span class="o">+</span>
-                                     <span class="n">AASarchiveInfo</span><span class="o">.</span><span class="n">SVC_REQUEST_FILE_SUBPATH</span><span class="p">)</span>
+    <span class="n">svc_requests_json</span> <span class="o">=</span> <span class="n">file_to_json</span><span class="p">(</span><span class="n">AASGeneralInfo</span><span class="o">.</span><span class="n">MANAGER_INTERACTIONS_FOLDER_PATH</span> <span class="o">+</span>
+                                     <span class="n">AASGeneralInfo</span><span class="o">.</span><span class="n">SVC_REQUEST_FILE_SUBPATH</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">svc_requests_json</span><span class="p">[</span><span class="s1">&#39;serviceRequests&#39;</span><span class="p">]:</span>
         <span class="k">if</span> <span class="n">i</span><span class="p">[</span><span class="s1">&#39;interactionID&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">interaction_id</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">i</span>
@@ -426,7 +474,7 @@
 <span class="sd">        dict: the information of the service request in JSON format.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">svc_responses_json</span> <span class="o">=</span> <span class="n">file_to_json</span><span class="p">(</span>
-        <span class="n">AASarchiveInfo</span><span class="o">.</span><span class="n">CORE_INTERACTIONS_FOLDER_PATH</span> <span class="o">+</span> <span class="n">AASarchiveInfo</span><span class="o">.</span><span class="n">SVC_RESPONSE_FILE_SUBPATH</span><span class="p">)</span>
+        <span class="n">AASGeneralInfo</span><span class="o">.</span><span class="n">CORE_INTERACTIONS_FOLDER_PATH</span> <span class="o">+</span> <span class="n">AASGeneralInfo</span><span class="o">.</span><span class="n">SVC_RESPONSE_FILE_SUBPATH</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">svc_responses_json</span><span class="p">[</span><span class="s1">&#39;serviceResponses&#39;</span><span class="p">]:</span>
         <span class="k">if</span> <span class="n">i</span><span class="p">[</span><span class="s1">&#39;interactionID&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">interaction_id</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">i</span>
@@ -472,11 +520,11 @@
         <span class="n">log_structure</span><span class="p">[</span><span class="s1">&#39;serviceInfo&#39;</span><span class="p">][</span><span class="s1">&#39;serviceData&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">svc_data_json</span>
 
     <span class="c1"># Get the content of LOG file</span>
-    <span class="n">log_file_json</span> <span class="o">=</span> <span class="n">file_to_json</span><span class="p">(</span><span class="n">AASarchiveInfo</span><span class="o">.</span><span class="n">SVC_LOG_FOLDER_PATH</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">svc_type_log_file_name</span><span class="p">)</span>
+    <span class="n">log_file_json</span> <span class="o">=</span> <span class="n">file_to_json</span><span class="p">(</span><span class="n">AASGeneralInfo</span><span class="o">.</span><span class="n">SVC_LOG_FOLDER_PATH</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">svc_type_log_file_name</span><span class="p">)</span>
 
     <span class="c1"># Add the structure in the file</span>
     <span class="n">log_file_json</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">log_structure</span><span class="p">)</span>
-    <span class="n">update_json_file</span><span class="p">(</span><span class="n">file_path</span><span class="o">=</span><span class="n">AASarchiveInfo</span><span class="o">.</span><span class="n">SVC_LOG_FOLDER_PATH</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">svc_type_log_file_name</span><span class="p">,</span> <span class="n">content</span><span class="o">=</span><span class="n">log_file_json</span><span class="p">)</span>
+    <span class="n">update_json_file</span><span class="p">(</span><span class="n">file_path</span><span class="o">=</span><span class="n">AASGeneralInfo</span><span class="o">.</span><span class="n">SVC_LOG_FOLDER_PATH</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">svc_type_log_file_name</span><span class="p">,</span> <span class="n">content</span><span class="o">=</span><span class="n">log_file_json</span><span class="p">)</span>
     <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Service information related to interaction &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">interaction_id_num</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; added in log file.&quot;</span><span class="p">)</span></div>
 
 
@@ -568,16 +616,16 @@
         <span class="k">return</span> <span class="n">get_svc_request_info</span><span class="p">(</span><span class="n">interaction_id</span><span class="p">),</span> <span class="n">get_svc_response_info</span><span class="p">(</span><span class="n">interaction_id</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">requested_entity</span> <span class="o">==</span> <span class="s2">&quot;Core&quot;</span><span class="p">:</span>
         <span class="c1"># In this case, it has to search in the opposite files (request of Core and response of Manager)</span>
-        <span class="n">svc_requests_json</span> <span class="o">=</span> <span class="n">file_to_json</span><span class="p">(</span><span class="n">AASarchiveInfo</span><span class="o">.</span><span class="n">MANAGER_INTERACTIONS_FOLDER_PATH</span> <span class="o">+</span>
-                                         <span class="n">AASarchiveInfo</span><span class="o">.</span><span class="n">SVC_REQUEST_FILE_SUBPATH</span><span class="p">)</span>
+        <span class="n">svc_requests_json</span> <span class="o">=</span> <span class="n">file_to_json</span><span class="p">(</span><span class="n">AASGeneralInfo</span><span class="o">.</span><span class="n">MANAGER_INTERACTIONS_FOLDER_PATH</span> <span class="o">+</span>
+                                         <span class="n">AASGeneralInfo</span><span class="o">.</span><span class="n">SVC_REQUEST_FILE_SUBPATH</span><span class="p">)</span>
         <span class="n">svc_request_info</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">svc_requests_json</span><span class="p">[</span><span class="s1">&#39;serviceRequests&#39;</span><span class="p">]:</span>
             <span class="k">if</span> <span class="n">i</span><span class="p">[</span><span class="s1">&#39;interactionID&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">interaction_id</span><span class="p">:</span>
                 <span class="n">svc_request_info</span> <span class="o">=</span> <span class="n">i</span>
                 <span class="k">break</span>
 
-        <span class="n">svc_responses_json</span> <span class="o">=</span> <span class="n">file_to_json</span><span class="p">(</span><span class="n">AASarchiveInfo</span><span class="o">.</span><span class="n">CORE_INTERACTIONS_FOLDER_PATH</span> <span class="o">+</span>
-                                          <span class="n">AASarchiveInfo</span><span class="o">.</span><span class="n">SVC_RESPONSE_FILE_SUBPATH</span><span class="p">)</span>
+        <span class="n">svc_responses_json</span> <span class="o">=</span> <span class="n">file_to_json</span><span class="p">(</span><span class="n">AASGeneralInfo</span><span class="o">.</span><span class="n">CORE_INTERACTIONS_FOLDER_PATH</span> <span class="o">+</span>
+                                          <span class="n">AASGeneralInfo</span><span class="o">.</span><span class="n">SVC_RESPONSE_FILE_SUBPATH</span><span class="p">)</span>
         <span class="n">svc_response_info</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">svc_responses_json</span><span class="p">[</span><span class="s1">&#39;serviceResponses&#39;</span><span class="p">]:</span>
             <span class="k">if</span> <span class="n">i</span><span class="p">[</span><span class="s1">&#39;interactionID&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">interaction_id</span><span class="p">:</span>

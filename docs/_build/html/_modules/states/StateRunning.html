@@ -24,6 +24,7 @@
   --color-brand-content: #2980B9;
   --color-problematic: DodgerBlue;
   --color-api-background: #E7F2FA;
+  --color-api-background-hover: #b7c0c6;
   
   }
   @media not print {
@@ -34,6 +35,7 @@
   --color-brand-content: #2980B9;
   --color-problematic: DodgerBlue;
   --color-api-background: #383838;
+  --color-api-background-hover: #5e5e5e;
   
     }
     @media (prefers-color-scheme: dark) {
@@ -44,6 +46,7 @@
   --color-brand-content: #2980B9;
   --color-problematic: DodgerBlue;
   --color-api-background: #383838;
+  --color-api-background-hover: #5e5e5e;
   
       }
     }
@@ -233,34 +236,50 @@
 <li class="toctree-l1"><a class="reference internal" href="../../aas_developer_guide.html">AAS Developer Guide</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../modules.html">API documentation</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of API documentation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../aas_manager.html">aas_manager module</a></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../agents.html">agents package</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of agents package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../aas_model.html">aas_model package</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of aas_model package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../aas_model.ExtendedAASModel.html">aas_model.ExtendedAASModel module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../aas_model.ExtendedAssetAdministrationShell.html">aas_model.ExtendedAssetAdministrationShell module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../aas_model.ExtendedBase.html">aas_model.ExtendedBase module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../aas_model.ExtendedConceptDescription.html">aas_model.ExtendedConceptDescription module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../aas_model.ExtendedSubmodel.html">aas_model.ExtendedSubmodel module</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../agents.html">agents package</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of agents package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../agents.AASManagerAgent.html">agents.AASManagerAgent module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../agents.AASManagerAppAgent.html">agents.AASManagerAppAgent module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../agents.AASManagerResourceAgent.html">agents.AASManagerResourceAgent module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../behaviours.html">behaviours package</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of behaviours package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../assetconnection.html">assetconnection package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of assetconnection package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../assetconnection.AssetConnection.html">assetconnection.AssetConnection module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../assetconnection.HTTPAssetConnection.html">assetconnection.HTTPAssetConnection module</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../behaviours.html">behaviours package</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of behaviours package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.AASFSMBehaviour.html">behaviours.AASFSMBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.CheckCoreInitializationBehaviour.html">behaviours.CheckCoreInitializationBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.CheckPhysicalAssetBehaviour.html">behaviours.CheckPhysicalAssetBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.EndBehaviour.html">behaviours.EndBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../behaviours.HandleCapabilityBehaviour.html">behaviours.HandleCapabilityBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../behaviours.HandleNegotiationBehaviour.html">behaviours.HandleNegotiationBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../behaviours.HandleSvcRequestBehaviour.html">behaviours.HandleSvcRequestBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../behaviours.HandleSvcResponseBehaviour.html">behaviours.HandleSvcResponseBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.IdleBehaviour.html">behaviours.IdleBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../behaviours.InitAASModelBehaviour.html">behaviours.InitAASModelBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.InitAASarchiveBehaviour.html">behaviours.InitAASarchiveBehaviour module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../behaviours.InitSubmodelsBehaviour.html">behaviours.InitSubmodelsBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.InteractionHandlingBehaviour.html">behaviours.InteractionHandlingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.NegotiatingBehaviour.html">behaviours.NegotiatingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.SvcACLHandlingBehaviour.html">behaviours.SvcACLHandlingBehaviour module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../behaviours.SvcRequestHandlingBehaviour.html">behaviours.SvcRequestHandlingBehaviour module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../behaviours.SvcResponseHandlingBehaviour.html">behaviours.SvcResponseHandlingBehaviour module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../logic.html">logic package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of logic package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../logic.html">logic package</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of logic package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../logic.InterAASInteractions_utils.html">logic.InterAASInteractions_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../logic.IntraAASInteractions_utils.html">logic.IntraAASInteractions_utils module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../logic.Negotiation_utils.html">logic.Negotiation_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../logic.Services_utils.html">logic.Services_utils module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../states.html">states package</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of states package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../states.html">states package</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of states package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../states.StateBooting.html">states.StateBooting module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../states.StateBootingResource.html">states.StateBootingResource module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../states.StateIdle.html">states.StateIdle module</a></li>
@@ -268,11 +287,14 @@
 <li class="toctree-l3"><a class="reference internal" href="../../states.StateStopping.html">states.StateStopping module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../utilities.html">utilities package</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of utilities package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../utilities.html">utilities package</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of utilities package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../utilities.AASGeneralInfo.html">utilities.AASGeneralInfo module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utilities.AASModelExtension_utils.html">utilities.AASModelExtension_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../utilities.AAS_Archive_utils.html">utilities.AAS_Archive_utils module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../utilities.AASarchiveInfo.html">utilities.AASarchiveInfo module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../utilities.AASmanagerInfo.html">utilities.AASmanagerInfo module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utilities.CapabilitySkillOntology.html">utilities.CapabilitySkillOntology module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../utilities.ConfigMap_utils.html">utilities.ConfigMap_utils module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utilities.FIPAACLInfo.html">utilities.FIPAACLInfo module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../utilities.GeneralUtils.html">utilities.GeneralUtils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../utilities.KafkaInfo.html">utilities.KafkaInfo module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../utilities.Submodels_utils.html">utilities.Submodels_utils module</a></li>
@@ -320,11 +342,11 @@
 <span></span><span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">from</span> <span class="nn">spade.behaviour</span> <span class="kn">import</span> <span class="n">State</span>
 
-<span class="kn">from</span> <span class="nn">behaviours.InteractionHandlingBehaviour</span> <span class="kn">import</span> <span class="n">InteractionHandlingBehaviour</span>
 <span class="kn">from</span> <span class="nn">behaviours.NegotiatingBehaviour</span> <span class="kn">import</span> <span class="n">NegotiatingBehaviour</span>
 <span class="kn">from</span> <span class="nn">behaviours.SvcACLHandlingBehaviour</span> <span class="kn">import</span> <span class="n">SvcACLHandlingBehaviour</span>
 <span class="kn">from</span> <span class="nn">utilities</span> <span class="kn">import</span> <span class="n">AAS_Archive_utils</span>
 <span class="kn">from</span> <span class="nn">utilities.AASmanagerInfo</span> <span class="kn">import</span> <span class="n">AASmanagerInfo</span>
+<span class="kn">from</span> <span class="nn">utilities.CapabilitySkillOntology</span> <span class="kn">import</span> <span class="n">CapabilitySkillOntology</span>
 
 <span class="n">_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
@@ -354,22 +376,44 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">agent</span><span class="o">.</span><span class="n">add_behaviour</span><span class="p">(</span><span class="n">svc_acl_handling_behav</span><span class="p">,</span> <span class="n">AASmanagerInfo</span><span class="o">.</span><span class="n">SVC_STANDARD_ACL_TEMPLATE</span><span class="p">)</span>
 
         <span class="c1"># On the other hand, a behaviour is required to handle interaction messages</span>
-        <span class="n">interaction_handling_behav</span> <span class="o">=</span> <span class="n">InteractionHandlingBehaviour</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">agent</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">agent</span><span class="o">.</span><span class="n">add_behaviour</span><span class="p">(</span><span class="n">interaction_handling_behav</span><span class="p">)</span>
+        <span class="c1"># TODO revisar, ya que en el nuevo enfoque no hay AAS Core</span>
+        <span class="c1"># interaction_handling_behav = InteractionHandlingBehaviour(self.agent)</span>
+        <span class="c1"># self.agent.add_behaviour(interaction_handling_behav)</span>
 
         <span class="c1"># Besides, the negotiation behaviour has to be added to the agent</span>
-        <span class="n">negotiation_behav</span> <span class="o">=</span> <span class="n">NegotiatingBehaviour</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">agent</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">agent</span><span class="o">.</span><span class="n">add_behaviour</span><span class="p">(</span><span class="n">negotiation_behav</span><span class="p">,</span> <span class="n">AASmanagerInfo</span><span class="o">.</span><span class="n">NEG_STANDARD_ACL_TEMPLATE</span><span class="p">)</span>
+        <span class="n">agent_behaviours_classes</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_agent_capabilities_behaviours</span><span class="p">()</span>
 
         <span class="c1"># Wait until the behaviour has finished. Is a CyclicBehaviour, so it will not end until an error occurs or, if</span>
         <span class="c1"># desired, it can be terminated manually using &quot;behaviour.kill()&quot;.</span>
         <span class="k">await</span> <span class="n">svc_acl_handling_behav</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
-        <span class="k">await</span> <span class="n">interaction_handling_behav</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
-        <span class="k">await</span> <span class="n">negotiation_behav</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+        <span class="c1"># await interaction_handling_behav.join()</span>
+        <span class="k">if</span> <span class="n">agent_behaviours_classes</span><span class="p">:</span>
+            <span class="c1"># TODO revisar si esto se quiere hacer asi (pensar en las transciones entre estados)</span>
+            <span class="k">for</span> <span class="n">behav_class</span> <span class="ow">in</span> <span class="n">agent_behaviours_classes</span><span class="p">:</span>
+                <span class="k">await</span> <span class="n">behav_class</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
 
         <span class="c1"># If the Execution Running State has been completed, the agent can move to the next state</span>
         <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">agent</span><span class="o">.</span><span class="n">jid</span><span class="si">}</span><span class="s2"> agent has finished it Running state.&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">set_next_state</span><span class="p">(</span><span class="n">AASmanagerInfo</span><span class="o">.</span><span class="n">STOPPING_STATE_NAME</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="StateRunning.add_agent_capabilities_behaviours">
+<a class="viewcode-back" href="../../states.StateRunning.html#states.StateRunning.StateRunning.add_agent_capabilities_behaviours">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">add_agent_capabilities_behaviours</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">behaviours_objects</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">agent_capabilities</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">agent</span><span class="o">.</span><span class="n">aas_model</span><span class="o">.</span><span class="n">get_capability_dict_by_type</span><span class="p">(</span>
+            <span class="n">CapabilitySkillOntology</span><span class="o">.</span><span class="n">AGENT_CAPABILITY_TYPE</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">capability</span> <span class="ow">in</span> <span class="n">agent_capabilities</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">capability</span><span class="o">.</span><span class="n">id_short</span> <span class="o">==</span> <span class="s1">&#39;Negotiation&#39;</span><span class="p">:</span>
+                <span class="c1"># The negotiation behaviour has to be added to the agent</span>
+                <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;This DT has negotiation capability.&quot;</span><span class="p">)</span>
+                <span class="n">negotiation_behav</span> <span class="o">=</span> <span class="n">NegotiatingBehaviour</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">agent</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">agent</span><span class="o">.</span><span class="n">add_behaviour</span><span class="p">(</span><span class="n">negotiation_behav</span><span class="p">,</span> <span class="n">AASmanagerInfo</span><span class="o">.</span><span class="n">NEG_STANDARD_ACL_TEMPLATE</span><span class="p">)</span>
+                <span class="n">behaviours_objects</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">negotiation_behav</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">capability</span><span class="o">.</span><span class="n">id_short</span> <span class="o">==</span> <span class="s1">&#39;OtherAgentCapability&#39;</span><span class="p">:</span>
+                <span class="c1"># TODO pensarlo</span>
+                <span class="k">pass</span>
+        <span class="k">return</span> <span class="n">behaviours_objects</span></div>
 </div>
 
 </pre></div>

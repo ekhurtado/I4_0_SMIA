@@ -24,6 +24,7 @@
   --color-brand-content: #2980B9;
   --color-problematic: DodgerBlue;
   --color-api-background: #E7F2FA;
+  --color-api-background-hover: #b7c0c6;
   
   }
   @media not print {
@@ -34,6 +35,7 @@
   --color-brand-content: #2980B9;
   --color-problematic: DodgerBlue;
   --color-api-background: #383838;
+  --color-api-background-hover: #5e5e5e;
   
     }
     @media (prefers-color-scheme: dark) {
@@ -44,6 +46,7 @@
   --color-brand-content: #2980B9;
   --color-problematic: DodgerBlue;
   --color-api-background: #383838;
+  --color-api-background-hover: #5e5e5e;
   
       }
     }
@@ -233,36 +236,50 @@
 <li class="toctree-l1"><a class="reference internal" href="../../aas_developer_guide.html">AAS Developer Guide</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../modules.html">API documentation</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of API documentation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../aas_manager.html">aas_manager module</a></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../agents.html">agents package</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of agents package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../aas_model.html">aas_model package</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of aas_model package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../aas_model.ExtendedAASModel.html">aas_model.ExtendedAASModel module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../aas_model.ExtendedAssetAdministrationShell.html">aas_model.ExtendedAssetAdministrationShell module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../aas_model.ExtendedBase.html">aas_model.ExtendedBase module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../aas_model.ExtendedConceptDescription.html">aas_model.ExtendedConceptDescription module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../aas_model.ExtendedSubmodel.html">aas_model.ExtendedSubmodel module</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../agents.html">agents package</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of agents package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../agents.AASManagerAgent.html">agents.AASManagerAgent module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../agents.AASManagerAppAgent.html">agents.AASManagerAppAgent module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../agents.AASManagerResourceAgent.html">agents.AASManagerResourceAgent module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../behaviours.html">behaviours package</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of behaviours package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../assetconnection.html">assetconnection package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of assetconnection package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../assetconnection.AssetConnection.html">assetconnection.AssetConnection module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../assetconnection.HTTPAssetConnection.html">assetconnection.HTTPAssetConnection module</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../behaviours.html">behaviours package</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of behaviours package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.AASFSMBehaviour.html">behaviours.AASFSMBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.CheckCoreInitializationBehaviour.html">behaviours.CheckCoreInitializationBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.CheckPhysicalAssetBehaviour.html">behaviours.CheckPhysicalAssetBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.EndBehaviour.html">behaviours.EndBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../behaviours.HandleCapabilityBehaviour.html">behaviours.HandleCapabilityBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.HandleNegotiationBehaviour.html">behaviours.HandleNegotiationBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.HandleSvcRequestBehaviour.html">behaviours.HandleSvcRequestBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.HandleSvcResponseBehaviour.html">behaviours.HandleSvcResponseBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.IdleBehaviour.html">behaviours.IdleBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../behaviours.InitAASModelBehaviour.html">behaviours.InitAASModelBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.InitAASarchiveBehaviour.html">behaviours.InitAASarchiveBehaviour module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../behaviours.InitSubmodelsBehaviour.html">behaviours.InitSubmodelsBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.InteractionHandlingBehaviour.html">behaviours.InteractionHandlingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.NegotiatingBehaviour.html">behaviours.NegotiatingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.SvcACLHandlingBehaviour.html">behaviours.SvcACLHandlingBehaviour module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../logic.html">logic package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of logic package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../logic.html">logic package</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of logic package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../logic.InterAASInteractions_utils.html">logic.InterAASInteractions_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../logic.IntraAASInteractions_utils.html">logic.IntraAASInteractions_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../logic.Negotiation_utils.html">logic.Negotiation_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../logic.Services_utils.html">logic.Services_utils module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../states.html">states package</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of states package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../states.html">states package</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of states package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../states.StateBooting.html">states.StateBooting module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../states.StateBootingResource.html">states.StateBootingResource module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../states.StateIdle.html">states.StateIdle module</a></li>
@@ -270,11 +287,14 @@
 <li class="toctree-l3"><a class="reference internal" href="../../states.StateStopping.html">states.StateStopping module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../utilities.html">utilities package</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of utilities package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../utilities.html">utilities package</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of utilities package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../utilities.AASGeneralInfo.html">utilities.AASGeneralInfo module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utilities.AASModelExtension_utils.html">utilities.AASModelExtension_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../utilities.AAS_Archive_utils.html">utilities.AAS_Archive_utils module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../utilities.AASarchiveInfo.html">utilities.AASarchiveInfo module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../utilities.AASmanagerInfo.html">utilities.AASmanagerInfo module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utilities.CapabilitySkillOntology.html">utilities.CapabilitySkillOntology module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../utilities.ConfigMap_utils.html">utilities.ConfigMap_utils module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utilities.FIPAACLInfo.html">utilities.FIPAACLInfo module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../utilities.GeneralUtils.html">utilities.GeneralUtils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../utilities.KafkaInfo.html">utilities.KafkaInfo module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../utilities.Submodels_utils.html">utilities.Submodels_utils module</a></li>
@@ -323,7 +343,7 @@
 
 <span class="kn">from</span> <span class="nn">spade.behaviour</span> <span class="kn">import</span> <span class="n">OneShotBehaviour</span>
 
-<span class="kn">from</span> <span class="nn">logic</span> <span class="kn">import</span> <span class="n">IntraAASInteractions_utils</span>
+<span class="kn">from</span> <span class="nn">logic</span> <span class="kn">import</span> <span class="n">IntraAASInteractions_utils</span><span class="p">,</span> <span class="n">Negotiation_utils</span><span class="p">,</span> <span class="n">InterAASInteractions_utils</span>
 
 <span class="n">_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
@@ -415,8 +435,10 @@
 <span class="sd">        This method handles Asset Related Services. These services are part of I4.0 Application Component (application</span>
 <span class="sd">        relevant).</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># TODO este tipo de servicios supongo que siempre se solicitaran via ACL, pero aun asi pongo el if</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">svc_req_interaction_type</span> <span class="o">==</span> <span class="s1">&#39;Inter AAS interaction&#39;</span><span class="p">:</span>
+            <span class="c1"># TODO esto hay que revisarlo. De momento, si llega una peticion por ACL directamente la solicito por Kafka,</span>
+            <span class="c1">#  ya que es AssetRelatedService. Aun asi, habria que analizar si existe alguna variable o atributo a</span>
+            <span class="c1">#  revisar para saber qué acción tomar</span>
             <span class="c1"># In this type of services an interaction request have to be made to the AAS Core</span>
             <span class="c1"># First, the valid JSON structure of the request is generated</span>
             <span class="n">current_interaction_id</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">get_interaction_id</span><span class="p">()</span>
@@ -429,7 +451,7 @@
                 <span class="n">client_id</span><span class="o">=</span><span class="s1">&#39;i4-0-smia-manager&#39;</span><span class="p">,</span>
                 <span class="n">msg_key</span><span class="o">=</span><span class="s1">&#39;manager-service-request&#39;</span><span class="p">,</span>
                 <span class="n">msg_data</span><span class="o">=</span><span class="n">interaction_request_json</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">request_result</span> <span class="o">!=</span> <span class="s2">&quot;OK&quot;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">request_result</span> <span class="o">!=</span> <span class="s2">&quot;OK&quot;</span><span class="p">:</span>  <span class="c1"># TODO Pensar si añadir esto dentro del send_interaction_msg_to_core, al igual que incrementar el interactionID. Es decir, que ese metodo se encargue de enviar el mensaje por Kafka y asegurarse de que no hay problemas, y despues incrementar el id porque ha salido bien</span>
                 <span class="n">_logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;The AAS Manager-Core interaction is not working: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">request_result</span><span class="p">))</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">_logger</span><span class="o">.</span><span class="n">interactioninfo</span><span class="p">(</span><span class="s2">&quot;The service with interaction id [&quot;</span> <span class="o">+</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">get_interaction_id</span><span class="p">()</span> <span class="o">+</span>
@@ -446,14 +468,77 @@
                      <span class="o">+</span> <span class="s2">&quot; responsible for interaction [&quot;</span> <span class="o">+</span> <span class="n">current_interaction_id</span> <span class="o">+</span> <span class="s2">&quot;]. Action: request data added&quot;</span><span class="p">)</span>
 
                 <span class="c1"># Finally, it has to increment the interaction id as new requests has been made</span>
-                <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">increase_interaction_id_num</span><span class="p">()</span>
+                <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">increase_interaction_id_num</span><span class="p">()</span>    <span class="c1"># TODO pensar muy bien donde aumentarlo (quizas dentro del propio send_interaction_msg_to_core de Interaction_utils? para no olvidarlo)</span>
                 <span class="n">_logger</span><span class="o">.</span><span class="n">interactioninfo</span><span class="p">(</span><span class="s2">&quot;interaction_id shared object updated by &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
                                         <span class="o">+</span> <span class="s2">&quot; responsible for interaction [&quot;</span> <span class="o">+</span> <span class="n">current_interaction_id</span> <span class="o">+</span>
                                         <span class="s2">&quot;]. Action: interaction_id increased&quot;</span><span class="p">)</span>
 
         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">svc_req_interaction_type</span> <span class="o">==</span> <span class="s1">&#39;Intra AAS interaction&#39;</span><span class="p">:</span>
-            <span class="c1"># TODO pensar como se gestionaria este caso</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Asset Related Service requested through Intra AAS interaction&quot;</span><span class="p">)</span></div>
+            <span class="c1"># In this type of services an interaction request has received from the AAS Core, so it must analyze the</span>
+            <span class="c1"># requested service</span>
+            <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Asset Related Service requested through Intra AAS interaction&quot;</span><span class="p">)</span>
+
+            <span class="k">match</span> <span class="bp">self</span><span class="o">.</span><span class="n">svc_req_data</span><span class="p">[</span><span class="s1">&#39;serviceID&#39;</span><span class="p">]:</span>
+                <span class="k">case</span> <span class="s1">&#39;startNegotiation&#39;</span><span class="p">:</span>
+                    <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;The AAS Core has requested to start a negotiation. To do so, an Inter AAS Request &quot;</span>
+                                 <span class="s2">&quot;must be made.&quot;</span><span class="p">)</span>
+
+                    <span class="c1"># Create the Inter AAS Interaction required JSON for start a negotiation</span>
+                    <span class="n">start_neg_acl_msg</span> <span class="o">=</span> <span class="n">Negotiation_utils</span><span class="o">.</span><span class="n">create_neg_cfp_msg</span><span class="p">(</span>
+                        <span class="n">thread</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">svc_req_data</span><span class="p">[</span><span class="s1">&#39;thread&#39;</span><span class="p">],</span>
+                        <span class="n">targets</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">svc_req_data</span><span class="p">[</span><span class="s1">&#39;serviceData&#39;</span><span class="p">][</span><span class="s1">&#39;serviceParams&#39;</span><span class="p">][</span><span class="s1">&#39;targets&#39;</span><span class="p">],</span>
+                        <span class="n">neg_requester_jid</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">jid</span><span class="p">),</span>
+                        <span class="n">neg_criteria</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">svc_req_data</span><span class="p">[</span><span class="s1">&#39;serviceData&#39;</span><span class="p">][</span><span class="s1">&#39;serviceParams&#39;</span><span class="p">][</span><span class="s1">&#39;criteria&#39;</span><span class="p">],</span>
+                    <span class="p">)</span>
+
+                    <span class="c1"># Send the FIPA-ACL messages to all participants</span>
+                    <span class="c1"># This PROPOSE FIPA-ACL message is sent to all participants of the negotiation (except for this AAS Manager)</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">svc_req_data</span><span class="p">[</span><span class="s1">&#39;serviceData&#39;</span><span class="p">][</span><span class="s1">&#39;serviceParams&#39;</span><span class="p">][</span><span class="s1">&#39;targets&#39;</span><span class="p">])</span>
+                    <span class="n">targets_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">svc_req_data</span><span class="p">[</span><span class="s1">&#39;serviceData&#39;</span><span class="p">][</span><span class="s1">&#39;serviceParams&#39;</span><span class="p">][</span><span class="s1">&#39;targets&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">jid_target</span> <span class="ow">in</span> <span class="n">targets_list</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="n">jid_target</span> <span class="o">!=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">agent</span><span class="o">.</span><span class="n">jid</span><span class="p">):</span>
+                            <span class="n">start_neg_acl_msg</span><span class="o">.</span><span class="n">to</span> <span class="o">=</span> <span class="n">jid_target</span>
+                            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">start_neg_acl_msg</span><span class="p">)</span>
+                            <span class="n">_logger</span><span class="o">.</span><span class="n">aclinfo</span><span class="p">(</span><span class="s2">&quot;ACL CallForProposal negotiation message sent to &quot;</span> <span class="o">+</span> <span class="n">jid_target</span> <span class="o">+</span>
+                                            <span class="s2">&quot; on negotiation with thread [&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">svc_req_data</span><span class="p">[</span><span class="s1">&#39;thread&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;]&quot;</span><span class="p">)</span>
+
+                    <span class="c1"># The information about the interaction request is also stored in the global variables of the agent</span>
+                    <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">save_interaction_request</span><span class="p">(</span><span class="n">interaction_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">svc_req_data</span><span class="p">[</span><span class="s1">&#39;interactionID&#39;</span><span class="p">],</span>
+                                                                <span class="n">request_data</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">svc_req_data</span><span class="p">)</span>
+
+                <span class="k">case</span> <span class="s1">&#39;sendInterAASsvcRequest&#39;</span><span class="p">:</span>
+                    <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;The AAS Core has requested to send an Inter AAS interaction message to request a &quot;</span>
+                                 <span class="s2">&quot;service.&quot;</span><span class="p">)</span>
+
+                    <span class="c1"># the Inter AAS Interaction message for requesting a service is created</span>
+                    <span class="n">service_params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">svc_req_data</span><span class="p">[</span><span class="s1">&#39;serviceData&#39;</span><span class="p">][</span><span class="s1">&#39;serviceParams&#39;</span><span class="p">]</span>
+                    <span class="c1"># From serviceParams it has to extract information about the msg ACL and leave the required</span>
+                    <span class="c1"># serviceParams of the requested service so that it can be executed</span>
+                    <span class="n">receiver</span> <span class="o">=</span> <span class="n">service_params</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;receiver&#39;</span><span class="p">)</span>
+                    <span class="n">service_id</span> <span class="o">=</span> <span class="n">service_params</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;serviceID&#39;</span><span class="p">)</span>
+                    <span class="n">svc_request_acl_msg</span> <span class="o">=</span> <span class="n">InterAASInteractions_utils</span><span class="o">.</span><span class="n">create_inter_aas_request_msg</span><span class="p">(</span>
+                        <span class="n">receiver</span><span class="o">=</span><span class="n">receiver</span><span class="p">,</span>
+                        <span class="n">thread</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">svc_req_data</span><span class="p">[</span><span class="s1">&#39;thread&#39;</span><span class="p">],</span>
+                        <span class="n">service_id</span><span class="o">=</span><span class="n">service_id</span><span class="p">,</span>
+                        <span class="n">service_type</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">svc_req_data</span><span class="p">[</span><span class="s1">&#39;serviceType&#39;</span><span class="p">],</span>
+                        <span class="n">service_params</span><span class="o">=</span><span class="kc">None</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">service_params</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">service_params</span>
+                    <span class="p">)</span>
+
+                    <span class="c1"># The ACL message is sent</span>
+                    <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">svc_request_acl_msg</span><span class="p">)</span>
+                    <span class="n">_logger</span><span class="o">.</span><span class="n">aclinfo</span><span class="p">(</span><span class="s2">&quot;ACL Service request sent to &quot;</span> <span class="o">+</span><span class="n">receiver</span><span class="o">+</span> <span class="s2">&quot; with thread [&quot;</span>
+                                    <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">svc_req_data</span><span class="p">[</span><span class="s1">&#39;thread&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;]&quot;</span><span class="p">)</span>
+
+                    <span class="c1"># The information is stored in the global dictionary for the interaction requests</span>
+                    <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">save_interaction_request</span><span class="p">(</span><span class="n">interaction_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">svc_req_data</span><span class="p">[</span><span class="s1">&#39;interactionID&#39;</span><span class="p">],</span>
+                                                                <span class="n">request_data</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">svc_req_data</span><span class="p">)</span>
+
+
+                <span class="k">case</span> <span class="s1">&#39;sendACLmessage&#39;</span><span class="p">:</span>
+                    <span class="c1"># TODO add logic to send a FIPA-ACL msg</span>
+                    <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;The AAS Core has requested to send a FIPA-ACL message.&quot;</span><span class="p">)</span>
+                <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">:</span>
+                    <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;This serviceID is not available for requesting through Intra AAS interaction.&quot;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="HandleSvcRequestBehaviour.handle_aas_infrastructure_svc">

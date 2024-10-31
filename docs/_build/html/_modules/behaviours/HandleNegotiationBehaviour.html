@@ -24,6 +24,7 @@
   --color-brand-content: #2980B9;
   --color-problematic: DodgerBlue;
   --color-api-background: #E7F2FA;
+  --color-api-background-hover: #b7c0c6;
   
   }
   @media not print {
@@ -34,6 +35,7 @@
   --color-brand-content: #2980B9;
   --color-problematic: DodgerBlue;
   --color-api-background: #383838;
+  --color-api-background-hover: #5e5e5e;
   
     }
     @media (prefers-color-scheme: dark) {
@@ -44,6 +46,7 @@
   --color-brand-content: #2980B9;
   --color-problematic: DodgerBlue;
   --color-api-background: #383838;
+  --color-api-background-hover: #5e5e5e;
   
       }
     }
@@ -233,36 +236,50 @@
 <li class="toctree-l1"><a class="reference internal" href="../../aas_developer_guide.html">AAS Developer Guide</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../modules.html">API documentation</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of API documentation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../aas_manager.html">aas_manager module</a></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../agents.html">agents package</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of agents package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../aas_model.html">aas_model package</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of aas_model package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../aas_model.ExtendedAASModel.html">aas_model.ExtendedAASModel module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../aas_model.ExtendedAssetAdministrationShell.html">aas_model.ExtendedAssetAdministrationShell module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../aas_model.ExtendedBase.html">aas_model.ExtendedBase module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../aas_model.ExtendedConceptDescription.html">aas_model.ExtendedConceptDescription module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../aas_model.ExtendedSubmodel.html">aas_model.ExtendedSubmodel module</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../agents.html">agents package</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of agents package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../agents.AASManagerAgent.html">agents.AASManagerAgent module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../agents.AASManagerAppAgent.html">agents.AASManagerAppAgent module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../agents.AASManagerResourceAgent.html">agents.AASManagerResourceAgent module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../behaviours.html">behaviours package</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of behaviours package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../assetconnection.html">assetconnection package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of assetconnection package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../assetconnection.AssetConnection.html">assetconnection.AssetConnection module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../assetconnection.HTTPAssetConnection.html">assetconnection.HTTPAssetConnection module</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../behaviours.html">behaviours package</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of behaviours package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.AASFSMBehaviour.html">behaviours.AASFSMBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.CheckCoreInitializationBehaviour.html">behaviours.CheckCoreInitializationBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.CheckPhysicalAssetBehaviour.html">behaviours.CheckPhysicalAssetBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.EndBehaviour.html">behaviours.EndBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../behaviours.HandleCapabilityBehaviour.html">behaviours.HandleCapabilityBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.HandleNegotiationBehaviour.html">behaviours.HandleNegotiationBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.HandleSvcRequestBehaviour.html">behaviours.HandleSvcRequestBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.HandleSvcResponseBehaviour.html">behaviours.HandleSvcResponseBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.IdleBehaviour.html">behaviours.IdleBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../behaviours.InitAASModelBehaviour.html">behaviours.InitAASModelBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.InitAASarchiveBehaviour.html">behaviours.InitAASarchiveBehaviour module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../behaviours.InitSubmodelsBehaviour.html">behaviours.InitSubmodelsBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.InteractionHandlingBehaviour.html">behaviours.InteractionHandlingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.NegotiatingBehaviour.html">behaviours.NegotiatingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.SvcACLHandlingBehaviour.html">behaviours.SvcACLHandlingBehaviour module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../logic.html">logic package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of logic package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../logic.html">logic package</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of logic package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../logic.InterAASInteractions_utils.html">logic.InterAASInteractions_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../logic.IntraAASInteractions_utils.html">logic.IntraAASInteractions_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../logic.Negotiation_utils.html">logic.Negotiation_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../logic.Services_utils.html">logic.Services_utils module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../states.html">states package</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of states package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../states.html">states package</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of states package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../states.StateBooting.html">states.StateBooting module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../states.StateBootingResource.html">states.StateBootingResource module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../states.StateIdle.html">states.StateIdle module</a></li>
@@ -270,11 +287,14 @@
 <li class="toctree-l3"><a class="reference internal" href="../../states.StateStopping.html">states.StateStopping module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../utilities.html">utilities package</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of utilities package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../utilities.html">utilities package</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of utilities package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../utilities.AASGeneralInfo.html">utilities.AASGeneralInfo module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utilities.AASModelExtension_utils.html">utilities.AASModelExtension_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../utilities.AAS_Archive_utils.html">utilities.AAS_Archive_utils module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../utilities.AASarchiveInfo.html">utilities.AASarchiveInfo module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../utilities.AASmanagerInfo.html">utilities.AASmanagerInfo module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utilities.CapabilitySkillOntology.html">utilities.CapabilitySkillOntology module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../utilities.ConfigMap_utils.html">utilities.ConfigMap_utils module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utilities.FIPAACLInfo.html">utilities.FIPAACLInfo module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../utilities.GeneralUtils.html">utilities.GeneralUtils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../utilities.KafkaInfo.html">utilities.KafkaInfo module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../utilities.Submodels_utils.html">utilities.Submodels_utils module</a></li>
@@ -319,15 +339,13 @@
         </div>
         <article role="main" id="furo-main-content">
           <h1>Source code for behaviours.HandleNegotiationBehaviour</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">asyncio</span>
-<span class="kn">import</span> <span class="nn">json</span>
+<span></span><span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 
 <span class="kn">from</span> <span class="nn">spade.behaviour</span> <span class="kn">import</span> <span class="n">CyclicBehaviour</span>
 
-<span class="kn">from</span> <span class="nn">behaviours.HandleSvcRequestBehaviour</span> <span class="kn">import</span> <span class="n">HandleSvcRequestBehaviour</span>
 <span class="kn">from</span> <span class="nn">logic</span> <span class="kn">import</span> <span class="n">Negotiation_utils</span>
-<span class="kn">from</span> <span class="nn">utilities.GeneralUtils</span> <span class="kn">import</span> <span class="n">GeneralUtils</span>
+<span class="kn">from</span> <span class="nn">utilities.CapabilitySkillOntology</span> <span class="kn">import</span> <span class="n">CapabilitySkillOntology</span><span class="p">,</span> <span class="n">AssetInterfacesInfo</span>
 
 <span class="n">_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
@@ -371,7 +389,7 @@
 
         <span class="c1"># This event object will allow waiting for the negotiation value if it is necessary to request it from an</span>
         <span class="c1"># external entity (such as the AAS Core)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">neg_value_event</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Event</span><span class="p">()</span>
+        <span class="c1"># self.neg_value_event = asyncio.Event()</span>
 
 <div class="viewcode-block" id="HandleNegotiationBehaviour.on_start">
 <a class="viewcode-back" href="../../behaviours.HandleNegotiationBehaviour.html#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.on_start">[docs]</a>
@@ -386,7 +404,8 @@
         <span class="c1">#  obtain the value you have to make an Intra AAS interaction request, the behaviour will not be able to start</span>
         <span class="c1">#  managing the negotiation until you get the answer to that request (together with the requested value).</span>
         <span class="c1"># TODO buscar una forma de dormir el behaviour hasta que neg_value deje de ser None</span>
-        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_neg_value_with_criteria</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">neg_criteria</span><span class="p">)</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_neg_value_with_criteria</span><span class="p">()</span>
+
 
         <span class="c1"># Once the negotiation value is reached, the negotiation management can begin. The first step is to send the</span>
         <span class="c1"># PROPOSE message with your own value to the other participants in the negotiation.</span>
@@ -395,9 +414,8 @@
                                                                    <span class="n">neg_requester_jid</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">neg_requester_jid</span><span class="p">,</span>
                                                                    <span class="n">neg_criteria</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">neg_criteria</span><span class="p">,</span>
                                                                    <span class="n">neg_value</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">neg_value</span><span class="p">))</span>
-        <span class="c1"># This PROPOSE FIP-ACL message is sent to all participants of the negotiation (except for this AAS Manager)</span>
-        <span class="n">targets_list</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">targets</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">jid_target</span> <span class="ow">in</span> <span class="n">targets_list</span><span class="p">:</span>
+        <span class="c1"># This PROPOSE FIPA-ACL message is sent to all participants of the negotiation (except for this AAS Manager)</span>
+        <span class="k">for</span> <span class="n">jid_target</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">targets</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">jid_target</span> <span class="o">!=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">agent</span><span class="o">.</span><span class="n">jid</span><span class="p">):</span>
                 <span class="n">acl_propose_msg</span><span class="o">.</span><span class="n">to</span> <span class="o">=</span> <span class="n">jid_target</span>
                 <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">acl_propose_msg</span><span class="p">)</span>
@@ -429,26 +447,26 @@
             <span class="n">sender_agent_neg_value</span> <span class="o">=</span> <span class="n">msg_json_body</span><span class="p">[</span><span class="s1">&#39;serviceData&#39;</span><span class="p">][</span><span class="s1">&#39;serviceParams&#39;</span><span class="p">][</span><span class="s1">&#39;neg_value&#39;</span><span class="p">]</span>
 
             <span class="c1"># The value of this AAS Manager and the received value are compared</span>
-            <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">sender_agent_neg_value</span><span class="p">)</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">neg_value</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">float</span><span class="p">(</span><span class="n">sender_agent_neg_value</span><span class="p">)</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">neg_value</span><span class="p">:</span>
                 <span class="c1"># As the received value is higher than this AAS Manager value, it must exit the negotiation.</span>
                 <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">exit_negotiation</span><span class="p">(</span><span class="n">is_winner</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
                 <span class="k">return</span>  <span class="c1"># killing a behaviour does not cancel its current run loop</span>
-            <span class="k">if</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">sender_agent_neg_value</span><span class="p">)</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">neg_value</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">agent</span><span class="o">.</span><span class="n">tie_break</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">sender_agent_neg_value</span><span class="p">)</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">neg_value</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">agent</span><span class="o">.</span><span class="n">tie_break</span><span class="p">:</span>
                 <span class="c1"># In this case the negotiation is tied but this AAS Manager is not the tie breaker.</span>
                 <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">exit_negotiation</span><span class="p">(</span><span class="n">is_winner</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
                 <span class="k">return</span>  <span class="c1"># killing a behaviour does not cancel its current run loop</span>
             <span class="c1"># The target is added as processed in the local object (as it is a Python &#39;set&#39; object there is no problem</span>
             <span class="c1"># of duplicate agents)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">targets_processed</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">sender</span><span class="p">))</span>
-            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">targets_processed</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="nb">eval</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">targets</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">targets_processed</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">targets</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
                 <span class="c1"># In this case all the values have already been received, so the value of this AAS Manager is the best</span>
                 <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;The AAS has won the negotiation with thread [&quot;</span> <span class="o">+</span> <span class="n">msg</span><span class="o">.</span><span class="n">thread</span> <span class="o">+</span> <span class="s2">&quot;]&quot;</span><span class="p">)</span>
 
                 <span class="c1"># As the winner, it will reply to the sender with the result of the negotiation</span>
                 <span class="n">acl_response_msg</span> <span class="o">=</span> <span class="n">Negotiation_utils</span><span class="o">.</span><span class="n">create_neg_response_msg</span><span class="p">(</span><span class="n">receiver</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">neg_requester_jid</span><span class="p">,</span>
                                                                              <span class="n">thread</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">thread</span><span class="p">,</span>
-                                                                             <span class="n">serviceID</span><span class="o">=</span><span class="s1">&#39;startNegotiation&#39;</span><span class="p">,</span>
-                                                                             <span class="n">serviceType</span><span class="o">=</span><span class="s1">&#39;AssetRelatedService&#39;</span><span class="p">,</span>
+                                                                             <span class="n">service_id</span><span class="o">=</span><span class="s1">&#39;negotiationResult&#39;</span><span class="p">,</span> <span class="c1"># TODO pensar como llamarlo</span>
+                                                                             <span class="n">service_type</span><span class="o">=</span><span class="s1">&#39;AssetRelatedService&#39;</span><span class="p">,</span>
                                                                              <span class="c1"># TODO ojo si decidimos que es de otro tipo</span>
                                                                              <span class="n">winner</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">jid</span><span class="p">)</span>
                                                                              <span class="p">)</span>
@@ -465,47 +483,89 @@
 
 <div class="viewcode-block" id="HandleNegotiationBehaviour.get_neg_value_with_criteria">
 <a class="viewcode-back" href="../../behaviours.HandleNegotiationBehaviour.html#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.get_neg_value_with_criteria">[docs]</a>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_neg_value_with_criteria</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">criteria</span><span class="p">):</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_neg_value_with_criteria</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This method gets the negotiation value based on a given criteria.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            criteria (str): criteria of the negotiation</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            int: value of the negotiation</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># TODO aqui hay que actualizarlo cuando pensemos como hacerlo, de momento se ha hecho una peticion de Intra AAS</span>
-        <span class="c1">#  interaction al Core directamente, pero el AAS Manager deberia ser capaz de analizar el criterio y ver si el</span>
-        <span class="c1">#  mismo tiene el valor (p.e. de un submodelo), o en cambio se lo tiene que pedir al AAS Core</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Getting the neg value with Intra AAS interaction...&quot;</span><span class="p">)</span>
-        <span class="n">intra_aas_svc_data</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s1">&#39;serviceCategory&#39;</span><span class="p">:</span> <span class="s1">&#39;service-request&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;timestamp&#39;</span><span class="p">:</span> <span class="n">GeneralUtils</span><span class="o">.</span><span class="n">get_current_timestamp</span><span class="p">(),</span>
-            <span class="s1">&#39;serviceParams&#39;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="s1">&#39;criteria&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">neg_criteria</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-        <span class="n">intra_aas_req_data</span> <span class="o">=</span> <span class="n">Negotiation_utils</span><span class="o">.</span><span class="n">create_intra_aas_neg_req_data</span><span class="p">(</span>
-            <span class="n">performative</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">template</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;performative&#39;</span><span class="p">],</span>
-            <span class="n">ontology</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">template</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;ontology&#39;</span><span class="p">],</span>
-            <span class="n">thread</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">thread</span><span class="p">,</span>
-            <span class="n">serviceData</span><span class="o">=</span><span class="n">intra_aas_svc_data</span><span class="p">)</span>
+        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Getting the neg value with Intra AAS interaction...&quot;</span><span class="p">)</span>
 
-        <span class="c1"># A new behaviour is added to the SPADE agent to handle this specific service request</span>
-        <span class="n">intra_aas_neg_req_handling_behav</span> <span class="o">=</span> <span class="n">HandleSvcRequestBehaviour</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">agent</span><span class="p">,</span>
-                                                                     <span class="s1">&#39;Inter AAS interaction&#39;</span><span class="p">,</span>
-                                                                     <span class="n">intra_aas_req_data</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">add_behaviour</span><span class="p">(</span><span class="n">intra_aas_neg_req_handling_behav</span><span class="p">)</span>
+        <span class="c1"># First, it will be checked if the negotiation value is an asset data. To this end, it has to be checked if the</span>
+        <span class="c1"># semanticID of the criteria appears in the AssetInterfacesDescription submodel</span>
+        <span class="n">criteria_semantic_id</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">aas_model</span><span class="o">.</span><span class="n">get_concept_description_pair_value_id_by_value_name</span><span class="p">(</span>
+            <span class="n">CapabilitySkillOntology</span><span class="o">.</span><span class="n">CONCEPT_DESCRIPTION_ID_NEGOTIATION_CRITERIA</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">neg_criteria</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">criteria_semantic_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">_logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;SemanticID for a criteria does not exist.&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="n">criteria_interaction_metadata</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">aas_model</span><span class="o">.</span><span class="n">get_asset_interface_interaction_metadata_by_value_semantic_id</span><span class="p">(</span><span class="n">criteria_semantic_id</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">criteria_interaction_metadata</span><span class="p">:</span>
+            <span class="c1"># In this case, the criteria is an asset data. It has to be requested</span>
+            <span class="n">_logger</span><span class="o">.</span><span class="n">interactioninfo</span><span class="p">(</span><span class="s2">&quot;The negotiation criteria is an asset data, so it must be requested through an asset service.&quot;</span><span class="p">)</span>
+            <span class="n">asset_connection_ref</span> <span class="o">=</span> <span class="n">criteria_interaction_metadata</span><span class="o">.</span><span class="n">get_parent_ref_by_semantic_id</span><span class="p">(</span><span class="n">AssetInterfacesInfo</span><span class="o">.</span><span class="n">SEMANTICID_INTERFACE</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">asset_connection_ref</span><span class="p">:</span>
+                <span class="c1"># Once the Asset Connection reference is obtained, the associated class can be used to connect with</span>
+                <span class="c1"># the asset</span>
+                <span class="n">asset_connection_class</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">get_asset_connection_class</span><span class="p">(</span><span class="n">asset_connection_ref</span><span class="p">)</span>
+                <span class="c1"># The InteractionMetadata has the complete interface to get the value, no message is necessary</span>
+                <span class="n">negotiation_value</span> <span class="o">=</span> <span class="k">await</span> <span class="n">asset_connection_class</span><span class="o">.</span><span class="n">send_msg_to_asset</span><span class="p">(</span><span class="n">criteria_interaction_metadata</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">negotiation_value</span><span class="p">:</span>
+                    <span class="n">_logger</span><span class="o">.</span><span class="n">interactioninfo</span><span class="p">(</span><span class="s2">&quot;Negotiation criteria successfully obtained.&quot;</span><span class="p">)</span>
+                    <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+                        <span class="s2">&quot;The negotiation value for the negotiation with thread [&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">thread</span> <span class="o">+</span> <span class="s2">&quot;] has been obtained. &quot;</span><span class="p">)</span>
+                    <span class="c1"># TODO el Submodelo AssetInterfacesDescription menciona un &quot;type&quot; para cada propiedad en</span>
+                    <span class="c1">#  &quot;InteractionMetadata&quot;. Si ahí definen que la bateria es una float o un integer, se podría</span>
+                    <span class="c1">#  utilizar esto para convertir el valor de string al tipo que se defina</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">neg_value</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">negotiation_value</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Failed to get the negotiation criteria.&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># TODO pensar como recoger valores que no son del activo (tener un diccionario de criterias junto con su metodo para conseguirlos?)</span>
+            <span class="k">return</span> <span class="kc">None</span></div>
 
-        <span class="c1"># In this case, as the Intra AAS interactions are asynchronous, the behaviour will wait until the request is</span>
-        <span class="c1"># answered and the negotiation value is available</span>
-        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">neg_value_event</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
-        <span class="c1"># If the behaviour continues from this line, it means that the Intra AAS interaction has been answered and the</span>
-        <span class="c1"># value is available</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">neg_value_event</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
-        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;The negotiation value for the negotiation with thread [&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">thread</span> <span class="o">+</span> <span class="s2">&quot;] has been obtained. &quot;</span><span class="p">)</span></div>
 
+        <span class="c1"># self.neg_value = random.uniform(0.0, 100.0)</span>
+        <span class="c1"># _logger.info(&quot;The negotiation value for the negotiation with thread [&quot; + self.thread + &quot;] has been obtained. &quot;)</span>
+        <span class="c1"># TODO pensar como hacerlo, ya que ahora no existe el AAS Core</span>
+        <span class="c1"># TODO PROXIMO PASO: ahora la negociacion vendran solicitadas cmo una capacidad del agente (agentCapability). En</span>
+        <span class="c1">#  este punto ya se ha comprobado que el criterio requerido está entre los posibles valores definidos en el</span>
+        <span class="c1">#  ConceptDescription para criterios. Por ello, en este caso, habra que analizar si el criterio seleccionado</span>
+        <span class="c1">#  es un valor del activo, por lo que habria que solicitarselo a traves de su interfaz. Para ello, durante la</span>
+        <span class="c1">#  lectura del modelo AAS, se habrá añadido entre la información del SkillParameter (NegotiationCriteria en</span>
+        <span class="c1">#  este caso), la referencia al SkillInterface de cada parametro, dependiendo su valor. P.e. si el valor es</span>
+        <span class="c1">#  battery, se habrá añadido la referencia a la propiedad battery de (en su &#39;valueSemantics&#39;) dentro del submodelo</span>
+        <span class="c1">#  AssetInterfacesDescription. De esta forma, se comprobará si el criterio requerido tiene una referencia dentro</span>
+        <span class="c1">#  del submodelo para interfaces, y si es el caso, se ejecutará el método &#39;&#39; del AssetConnection asociado,</span>
+        <span class="c1">#  añadiendole los datos del Skill element (con los valores en los inputs) y su Skill interface.</span>
+
+        <span class="c1"># intra_aas_svc_data = {</span>
+        <span class="c1">#     &#39;serviceCategory&#39;: &#39;service-request&#39;,</span>
+        <span class="c1">#     &#39;timestamp&#39;: GeneralUtils.get_current_timestamp(),</span>
+        <span class="c1">#     &#39;serviceParams&#39;: {</span>
+        <span class="c1">#         &#39;criteria&#39;: self.neg_criteria</span>
+        <span class="c1">#     }</span>
+        <span class="c1"># }</span>
+        <span class="c1"># intra_aas_req_data = Negotiation_utils.create_intra_aas_neg_req_data(</span>
+        <span class="c1">#     performative=self.template.metadata[&#39;performative&#39;],</span>
+        <span class="c1">#     ontology=self.template.metadata[&#39;ontology&#39;],</span>
+        <span class="c1">#     thread=self.thread,</span>
+        <span class="c1">#     service_data=intra_aas_svc_data)</span>
+        <span class="c1">#</span>
+        <span class="c1"># # A new behaviour is added to the SPADE agent to handle this specific service request</span>
+        <span class="c1"># intra_aas_neg_req_handling_behav = HandleSvcRequestBehaviour(self.agent,</span>
+        <span class="c1">#                                                              &#39;Inter AAS interaction&#39;,</span>
+        <span class="c1">#                                                              intra_aas_req_data)</span>
+        <span class="c1"># self.myagent.add_behaviour(intra_aas_neg_req_handling_behav)</span>
+        <span class="c1">#</span>
+        <span class="c1"># # In this case, as the Intra AAS interactions are asynchronous, the behaviour will wait until the request is</span>
+        <span class="c1"># # answered and the negotiation value is available</span>
+        <span class="c1"># _logger.info(str(self.__class__.__name__) + &quot; behaviour will be waiting for the negotiation value...&quot;)</span>
+        <span class="c1"># await self.neg_value_event.wait()</span>
+        <span class="c1"># # If the behaviour continues from this line, it means that the Intra AAS interaction has been answered and the</span>
+        <span class="c1"># # value is available</span>
+        <span class="c1"># self.neg_value_event.clear()</span>
+        <span class="c1"># _logger.info(&quot;The negotiation value for the negotiation with thread [&quot; + self.thread + &quot;] has been obtained. &quot;)</span>
 
 <div class="viewcode-block" id="HandleNegotiationBehaviour.exit_negotiation">
 <a class="viewcode-back" href="../../behaviours.HandleNegotiationBehaviour.html#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.exit_negotiation">[docs]</a>
@@ -521,16 +581,16 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">is_winner</span><span class="p">:</span>
-            <span class="n">_logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;The AAS has finished the negotiation with thread [&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">thread</span> <span class="o">+</span> <span class="s2">&quot;] as the winner&quot;</span><span class="p">)</span>
+            <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;The AAS has finished the negotiation with thread [&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">thread</span> <span class="o">+</span> <span class="s2">&quot;] as the winner&quot;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">_logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;The AAS has finished the negotiation with thread [&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">thread</span> <span class="o">+</span> <span class="s2">&quot;] not as the winner&quot;</span><span class="p">)</span>
+            <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;The AAS has finished the negotiation with thread [&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">thread</span> <span class="o">+</span> <span class="s2">&quot;] not as the winner&quot;</span><span class="p">)</span>
 
         <span class="c1"># The negotiation information is stored in the global object of the AAS Manager</span>
         <span class="n">neg_data_json</span> <span class="o">=</span> <span class="n">Negotiation_utils</span><span class="o">.</span><span class="n">create_neg_json_to_store</span><span class="p">(</span><span class="n">neg_requester_jid</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">neg_requester_jid</span><span class="p">,</span>
                                                                    <span class="n">participants</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">targets</span><span class="p">,</span>
                                                                    <span class="n">neg_criteria</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">neg_criteria</span><span class="p">,</span>
                                                                    <span class="n">is_winner</span><span class="o">=</span><span class="n">is_winner</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">save_negotiation_data</span><span class="p">(</span><span class="n">thread</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">thread</span><span class="p">,</span> <span class="n">neg_data</span><span class="o">=</span><span class="n">neg_data_json</span><span class="p">)</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">save_negotiation_data</span><span class="p">(</span><span class="n">thread</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">thread</span><span class="p">,</span> <span class="n">neg_data</span><span class="o">=</span><span class="n">neg_data_json</span><span class="p">)</span>
 
         <span class="c1"># In order to correctly complete the negotiation process, this behavior is removed from the agent.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">kill</span><span class="p">(</span><span class="n">exit_code</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span></div>

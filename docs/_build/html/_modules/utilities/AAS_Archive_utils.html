@@ -24,6 +24,7 @@
   --color-brand-content: #2980B9;
   --color-problematic: DodgerBlue;
   --color-api-background: #E7F2FA;
+  --color-api-background-hover: #b7c0c6;
   
   }
   @media not print {
@@ -34,6 +35,7 @@
   --color-brand-content: #2980B9;
   --color-problematic: DodgerBlue;
   --color-api-background: #383838;
+  --color-api-background-hover: #5e5e5e;
   
     }
     @media (prefers-color-scheme: dark) {
@@ -44,6 +46,7 @@
   --color-brand-content: #2980B9;
   --color-problematic: DodgerBlue;
   --color-api-background: #383838;
+  --color-api-background-hover: #5e5e5e;
   
       }
     }
@@ -233,34 +236,50 @@
 <li class="toctree-l1"><a class="reference internal" href="../../aas_developer_guide.html">AAS Developer Guide</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../modules.html">API documentation</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of API documentation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../aas_manager.html">aas_manager module</a></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../agents.html">agents package</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of agents package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../aas_model.html">aas_model package</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of aas_model package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../aas_model.ExtendedAASModel.html">aas_model.ExtendedAASModel module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../aas_model.ExtendedAssetAdministrationShell.html">aas_model.ExtendedAssetAdministrationShell module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../aas_model.ExtendedBase.html">aas_model.ExtendedBase module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../aas_model.ExtendedConceptDescription.html">aas_model.ExtendedConceptDescription module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../aas_model.ExtendedSubmodel.html">aas_model.ExtendedSubmodel module</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../agents.html">agents package</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of agents package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../agents.AASManagerAgent.html">agents.AASManagerAgent module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../agents.AASManagerAppAgent.html">agents.AASManagerAppAgent module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../agents.AASManagerResourceAgent.html">agents.AASManagerResourceAgent module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../behaviours.html">behaviours package</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of behaviours package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../assetconnection.html">assetconnection package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of assetconnection package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../assetconnection.AssetConnection.html">assetconnection.AssetConnection module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../assetconnection.HTTPAssetConnection.html">assetconnection.HTTPAssetConnection module</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../behaviours.html">behaviours package</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of behaviours package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.AASFSMBehaviour.html">behaviours.AASFSMBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.CheckCoreInitializationBehaviour.html">behaviours.CheckCoreInitializationBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.CheckPhysicalAssetBehaviour.html">behaviours.CheckPhysicalAssetBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.EndBehaviour.html">behaviours.EndBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../behaviours.HandleCapabilityBehaviour.html">behaviours.HandleCapabilityBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../behaviours.HandleNegotiationBehaviour.html">behaviours.HandleNegotiationBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../behaviours.HandleSvcRequestBehaviour.html">behaviours.HandleSvcRequestBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../behaviours.HandleSvcResponseBehaviour.html">behaviours.HandleSvcResponseBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.IdleBehaviour.html">behaviours.IdleBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../behaviours.InitAASModelBehaviour.html">behaviours.InitAASModelBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.InitAASarchiveBehaviour.html">behaviours.InitAASarchiveBehaviour module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../behaviours.InitSubmodelsBehaviour.html">behaviours.InitSubmodelsBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.InteractionHandlingBehaviour.html">behaviours.InteractionHandlingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.NegotiatingBehaviour.html">behaviours.NegotiatingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.SvcACLHandlingBehaviour.html">behaviours.SvcACLHandlingBehaviour module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../behaviours.SvcRequestHandlingBehaviour.html">behaviours.SvcRequestHandlingBehaviour module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../behaviours.SvcResponseHandlingBehaviour.html">behaviours.SvcResponseHandlingBehaviour module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../logic.html">logic package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of logic package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../logic.html">logic package</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of logic package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../logic.InterAASInteractions_utils.html">logic.InterAASInteractions_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../logic.IntraAASInteractions_utils.html">logic.IntraAASInteractions_utils module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../logic.Negotiation_utils.html">logic.Negotiation_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../logic.Services_utils.html">logic.Services_utils module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../states.html">states package</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of states package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../states.html">states package</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of states package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../states.StateBooting.html">states.StateBooting module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../states.StateBootingResource.html">states.StateBootingResource module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../states.StateIdle.html">states.StateIdle module</a></li>
@@ -268,11 +287,14 @@
 <li class="toctree-l3"><a class="reference internal" href="../../states.StateStopping.html">states.StateStopping module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../utilities.html">utilities package</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of utilities package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../utilities.html">utilities package</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of utilities package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../utilities.AASGeneralInfo.html">utilities.AASGeneralInfo module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utilities.AASModelExtension_utils.html">utilities.AASModelExtension_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../utilities.AAS_Archive_utils.html">utilities.AAS_Archive_utils module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../utilities.AASarchiveInfo.html">utilities.AASarchiveInfo module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../utilities.AASmanagerInfo.html">utilities.AASmanagerInfo module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utilities.CapabilitySkillOntology.html">utilities.CapabilitySkillOntology module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../utilities.ConfigMap_utils.html">utilities.ConfigMap_utils module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utilities.FIPAACLInfo.html">utilities.FIPAACLInfo module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../utilities.GeneralUtils.html">utilities.GeneralUtils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../utilities.KafkaInfo.html">utilities.KafkaInfo module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../utilities.Submodels_utils.html">utilities.Submodels_utils module</a></li>
@@ -318,13 +340,13 @@
         <article role="main" id="furo-main-content">
           <h1>Source code for utilities.AAS_Archive_utils</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot; File to group useful methods for accessing and managing the AAS Archive.&quot;&quot;&quot;</span>
-<span class="kn">import</span> <span class="nn">calendar</span>
 <span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">time</span>
 
-<span class="kn">from</span> <span class="nn">utilities.AASarchiveInfo</span> <span class="kn">import</span> <span class="n">AASarchiveInfo</span>
+<span class="kn">from</span> <span class="nn">utilities.AASGeneralInfo</span> <span class="kn">import</span> <span class="n">AASGeneralInfo</span>
+<span class="kn">from</span> <span class="nn">utilities.GeneralUtils</span> <span class="kn">import</span> <span class="n">GeneralUtils</span>
 
 <span class="n">_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
@@ -338,11 +360,12 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;This method creates the status file of the AAS Manager and sets it to &quot;initializing&quot;. If the file exists because</span>
 <span class="sd">    the AAS Manager has been restarted without terminating the Pod where it is running, the status file will be</span>
 <span class="sd">    rewritten.&quot;&quot;&quot;</span>
-    <span class="n">initial_status_info</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;AAS_Manager&#39;</span><span class="p">,</span> <span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="s1">&#39;Initializing&#39;</span><span class="p">,</span> <span class="s1">&#39;timestamp&#39;</span><span class="p">:</span> <span class="n">calendar</span><span class="o">.</span><span class="n">timegm</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">gmtime</span><span class="p">())}</span>
+    <span class="n">initial_status_info</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;AAS_Manager&#39;</span><span class="p">,</span> <span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="s1">&#39;Initializing&#39;</span><span class="p">,</span>
+                           <span class="s1">&#39;timestamp&#39;</span><span class="p">:</span> <span class="n">GeneralUtils</span><span class="o">.</span><span class="n">get_current_timestamp</span><span class="p">()}</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">status_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">AASarchiveInfo</span><span class="o">.</span><span class="n">MANAGER_STATUS_FILE_PATH</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">)</span>
+        <span class="n">status_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">AASGeneralInfo</span><span class="o">.</span><span class="n">MANAGER_STATUS_FILE_PATH</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">FileExistsError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="n">status_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">AASarchiveInfo</span><span class="o">.</span><span class="n">MANAGER_STATUS_FILE_PATH</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+        <span class="n">status_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">AASGeneralInfo</span><span class="o">.</span><span class="n">MANAGER_STATUS_FILE_PATH</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
     <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">initial_status_info</span><span class="p">,</span> <span class="n">status_file</span><span class="p">)</span>
     <span class="n">status_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
 
@@ -354,17 +377,17 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;This method creates the necessary interaction files to exchange information between AAS Core and AAS Manager.&quot;&quot;&quot;</span>
 
     <span class="c1"># First interaction folders are created</span>
-    <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">AASarchiveInfo</span><span class="o">.</span><span class="n">CORE_INTERACTIONS_FOLDER_PATH</span><span class="p">)</span>
-    <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">AASarchiveInfo</span><span class="o">.</span><span class="n">MANAGER_INTERACTIONS_FOLDER_PATH</span><span class="p">)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">AASGeneralInfo</span><span class="o">.</span><span class="n">CORE_INTERACTIONS_FOLDER_PATH</span><span class="p">)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">AASGeneralInfo</span><span class="o">.</span><span class="n">MANAGER_INTERACTIONS_FOLDER_PATH</span><span class="p">)</span>
 
     <span class="c1"># Then the interaction files are added in each folder</span>
-    <span class="k">with</span> <span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">AASarchiveInfo</span><span class="o">.</span><span class="n">CORE_INTERACTIONS_FOLDER_PATH</span> <span class="o">+</span> <span class="n">AASarchiveInfo</span><span class="o">.</span><span class="n">SVC_REQUEST_FILE_SUBPATH</span><span class="p">,</span>
+    <span class="k">with</span> <span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">AASGeneralInfo</span><span class="o">.</span><span class="n">CORE_INTERACTIONS_FOLDER_PATH</span> <span class="o">+</span> <span class="n">AASGeneralInfo</span><span class="o">.</span><span class="n">SVC_REQUEST_FILE_SUBPATH</span><span class="p">,</span>
                <span class="s1">&#39;x&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">core_requests_file</span><span class="p">,</span>
-          <span class="nb">open</span><span class="p">(</span><span class="n">AASarchiveInfo</span><span class="o">.</span><span class="n">CORE_INTERACTIONS_FOLDER_PATH</span> <span class="o">+</span> <span class="n">AASarchiveInfo</span><span class="o">.</span><span class="n">SVC_RESPONSE_FILE_SUBPATH</span><span class="p">,</span>
+          <span class="nb">open</span><span class="p">(</span><span class="n">AASGeneralInfo</span><span class="o">.</span><span class="n">CORE_INTERACTIONS_FOLDER_PATH</span> <span class="o">+</span> <span class="n">AASGeneralInfo</span><span class="o">.</span><span class="n">SVC_RESPONSE_FILE_SUBPATH</span><span class="p">,</span>
                <span class="s1">&#39;x&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">core_responses_file</span><span class="p">,</span>
-          <span class="nb">open</span><span class="p">(</span><span class="n">AASarchiveInfo</span><span class="o">.</span><span class="n">MANAGER_INTERACTIONS_FOLDER_PATH</span> <span class="o">+</span> <span class="n">AASarchiveInfo</span><span class="o">.</span><span class="n">SVC_REQUEST_FILE_SUBPATH</span><span class="p">,</span>
+          <span class="nb">open</span><span class="p">(</span><span class="n">AASGeneralInfo</span><span class="o">.</span><span class="n">MANAGER_INTERACTIONS_FOLDER_PATH</span> <span class="o">+</span> <span class="n">AASGeneralInfo</span><span class="o">.</span><span class="n">SVC_REQUEST_FILE_SUBPATH</span><span class="p">,</span>
                <span class="s1">&#39;x&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">manager_requests_file</span><span class="p">,</span>
-          <span class="nb">open</span><span class="p">(</span><span class="n">AASarchiveInfo</span><span class="o">.</span><span class="n">MANAGER_INTERACTIONS_FOLDER_PATH</span> <span class="o">+</span> <span class="n">AASarchiveInfo</span><span class="o">.</span><span class="n">SVC_RESPONSE_FILE_SUBPATH</span><span class="p">,</span>
+          <span class="nb">open</span><span class="p">(</span><span class="n">AASGeneralInfo</span><span class="o">.</span><span class="n">MANAGER_INTERACTIONS_FOLDER_PATH</span> <span class="o">+</span> <span class="n">AASGeneralInfo</span><span class="o">.</span><span class="n">SVC_RESPONSE_FILE_SUBPATH</span><span class="p">,</span>
                <span class="s1">&#39;x&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">manager_responses_file</span><span class="p">):</span>
         <span class="n">core_requests_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;{&quot;serviceRequests&quot;: []}&#39;</span><span class="p">)</span>
         <span class="n">core_requests_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
@@ -386,16 +409,16 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;This method creates the necessary log files to save services information.&quot;&quot;&quot;</span>
 
     <span class="c1"># First the log folder is created</span>
-    <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">AASarchiveInfo</span><span class="o">.</span><span class="n">LOG_FOLDER_PATH</span><span class="p">)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">AASGeneralInfo</span><span class="o">.</span><span class="n">LOG_FOLDER_PATH</span><span class="p">)</span>
     <span class="c1"># The folder for services log is also created</span>
-    <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">AASarchiveInfo</span><span class="o">.</span><span class="n">SVC_LOG_FOLDER_PATH</span><span class="p">)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">AASGeneralInfo</span><span class="o">.</span><span class="n">SVC_LOG_FOLDER_PATH</span><span class="p">)</span>
 
     <span class="c1"># Then the log files are added in each folder</span>
-    <span class="n">all_svc_log_file_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">AASarchiveInfo</span><span class="o">.</span><span class="n">ASSET_RELATED_SVC_LOG_FILENAME</span><span class="p">,</span>
-                              <span class="n">AASarchiveInfo</span><span class="o">.</span><span class="n">AAS_INFRASTRUCTURE_SVC_LOG_FILENAME</span><span class="p">,</span>
-                              <span class="n">AASarchiveInfo</span><span class="o">.</span><span class="n">AAS_SERVICES_LOG_FILENAME</span><span class="p">,</span> <span class="n">AASarchiveInfo</span><span class="o">.</span><span class="n">SUBMODEL_SERVICES_LOG_FILENAME</span><span class="p">]</span>
+    <span class="n">all_svc_log_file_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">AASGeneralInfo</span><span class="o">.</span><span class="n">ASSET_RELATED_SVC_LOG_FILENAME</span><span class="p">,</span>
+                              <span class="n">AASGeneralInfo</span><span class="o">.</span><span class="n">AAS_INFRASTRUCTURE_SVC_LOG_FILENAME</span><span class="p">,</span>
+                              <span class="n">AASGeneralInfo</span><span class="o">.</span><span class="n">AAS_SERVICES_LOG_FILENAME</span><span class="p">,</span> <span class="n">AASGeneralInfo</span><span class="o">.</span><span class="n">SUBMODEL_SERVICES_LOG_FILENAME</span><span class="p">]</span>
     <span class="k">for</span> <span class="n">log_file_name</span> <span class="ow">in</span> <span class="n">all_svc_log_file_names</span><span class="p">:</span>
-        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">AASarchiveInfo</span><span class="o">.</span><span class="n">SVC_LOG_FOLDER_PATH</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">log_file_name</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">log_file</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">AASGeneralInfo</span><span class="o">.</span><span class="n">SVC_LOG_FOLDER_PATH</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">log_file_name</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">log_file</span><span class="p">:</span>
             <span class="n">log_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;[]&#39;</span><span class="p">)</span>
             <span class="n">log_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
 
@@ -415,13 +438,13 @@
     <span class="n">log_file_path</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="k">match</span> <span class="n">svc_type</span><span class="p">:</span>
         <span class="k">case</span> <span class="s2">&quot;AssetRelatedService&quot;</span><span class="p">:</span>
-            <span class="n">log_file_path</span> <span class="o">=</span> <span class="n">AASarchiveInfo</span><span class="o">.</span><span class="n">SVC_LOG_FOLDER_PATH</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">AASarchiveInfo</span><span class="o">.</span><span class="n">ASSET_RELATED_SVC_LOG_FILENAME</span>
+            <span class="n">log_file_path</span> <span class="o">=</span> <span class="n">AASGeneralInfo</span><span class="o">.</span><span class="n">SVC_LOG_FOLDER_PATH</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">AASGeneralInfo</span><span class="o">.</span><span class="n">ASSET_RELATED_SVC_LOG_FILENAME</span>
         <span class="k">case</span> <span class="s2">&quot;AASInfrastructureServices&quot;</span><span class="p">:</span>
-            <span class="n">log_file_path</span> <span class="o">=</span> <span class="n">AASarchiveInfo</span><span class="o">.</span><span class="n">SVC_LOG_FOLDER_PATH</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">AASarchiveInfo</span><span class="o">.</span><span class="n">AAS_INFRASTRUCTURE_SVC_LOG_FILENAME</span>
+            <span class="n">log_file_path</span> <span class="o">=</span> <span class="n">AASGeneralInfo</span><span class="o">.</span><span class="n">SVC_LOG_FOLDER_PATH</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">AASGeneralInfo</span><span class="o">.</span><span class="n">AAS_INFRASTRUCTURE_SVC_LOG_FILENAME</span>
         <span class="k">case</span> <span class="s2">&quot;AASservices&quot;</span><span class="p">:</span>
-            <span class="n">log_file_path</span> <span class="o">=</span> <span class="n">AASarchiveInfo</span><span class="o">.</span><span class="n">SVC_LOG_FOLDER_PATH</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">AASarchiveInfo</span><span class="o">.</span><span class="n">AAS_SERVICES_LOG_FILENAME</span>
+            <span class="n">log_file_path</span> <span class="o">=</span> <span class="n">AASGeneralInfo</span><span class="o">.</span><span class="n">SVC_LOG_FOLDER_PATH</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">AASGeneralInfo</span><span class="o">.</span><span class="n">AAS_SERVICES_LOG_FILENAME</span>
         <span class="k">case</span> <span class="s2">&quot;SubmodelServices&quot;</span><span class="p">:</span>
-            <span class="n">log_file_path</span> <span class="o">=</span> <span class="n">AASarchiveInfo</span><span class="o">.</span><span class="n">SVC_LOG_FOLDER_PATH</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">AASarchiveInfo</span><span class="o">.</span><span class="n">SUBMODEL_SERVICES_LOG_FILENAME</span>
+            <span class="n">log_file_path</span> <span class="o">=</span> <span class="n">AASGeneralInfo</span><span class="o">.</span><span class="n">SVC_LOG_FOLDER_PATH</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">AASGeneralInfo</span><span class="o">.</span><span class="n">SUBMODEL_SERVICES_LOG_FILENAME</span>
         <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">:</span>
             <span class="n">_logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Service type not available.&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">log_file_path</span></div>
@@ -462,10 +485,10 @@
 <span class="sd">    Args:</span>
 <span class="sd">        new_status (str): the new status of the AAS Manager instance.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">status_file_json</span> <span class="o">=</span> <span class="n">file_to_json</span><span class="p">(</span><span class="n">AASarchiveInfo</span><span class="o">.</span><span class="n">MANAGER_STATUS_FILE_PATH</span><span class="p">)</span>
+    <span class="n">status_file_json</span> <span class="o">=</span> <span class="n">file_to_json</span><span class="p">(</span><span class="n">AASGeneralInfo</span><span class="o">.</span><span class="n">MANAGER_STATUS_FILE_PATH</span><span class="p">)</span>
     <span class="n">status_file_json</span><span class="p">[</span><span class="s1">&#39;status&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_status</span>
-    <span class="n">status_file_json</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">calendar</span><span class="o">.</span><span class="n">timegm</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">gmtime</span><span class="p">())</span>
-    <span class="n">update_json_file</span><span class="p">(</span><span class="n">AASarchiveInfo</span><span class="o">.</span><span class="n">MANAGER_STATUS_FILE_PATH</span><span class="p">,</span> <span class="n">status_file_json</span><span class="p">)</span></div>
+    <span class="n">status_file_json</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">GeneralUtils</span><span class="o">.</span><span class="n">get_current_timestamp</span><span class="p">()</span>
+    <span class="n">update_json_file</span><span class="p">(</span><span class="n">AASGeneralInfo</span><span class="o">.</span><span class="n">MANAGER_STATUS_FILE_PATH</span><span class="p">,</span> <span class="n">status_file_json</span><span class="p">)</span></div>
 
 
 
@@ -483,9 +506,9 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">status_file_json</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="k">if</span> <span class="n">entity</span> <span class="o">==</span> <span class="s2">&quot;Manager&quot;</span><span class="p">:</span>
-        <span class="n">status_file_json</span> <span class="o">=</span> <span class="n">file_to_json</span><span class="p">(</span><span class="n">AASarchiveInfo</span><span class="o">.</span><span class="n">MANAGER_STATUS_FILE_PATH</span><span class="p">)</span>
+        <span class="n">status_file_json</span> <span class="o">=</span> <span class="n">file_to_json</span><span class="p">(</span><span class="n">AASGeneralInfo</span><span class="o">.</span><span class="n">MANAGER_STATUS_FILE_PATH</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">entity</span> <span class="o">==</span> <span class="s2">&quot;Core&quot;</span><span class="p">:</span>
-        <span class="n">status_file_json</span> <span class="o">=</span> <span class="n">file_to_json</span><span class="p">(</span><span class="n">AASarchiveInfo</span><span class="o">.</span><span class="n">CORE_STATUS_FILE_PATH</span><span class="p">)</span>
+        <span class="n">status_file_json</span> <span class="o">=</span> <span class="n">file_to_json</span><span class="p">(</span><span class="n">AASGeneralInfo</span><span class="o">.</span><span class="n">CORE_STATUS_FILE_PATH</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">status_file_json</span><span class="p">[</span><span class="s1">&#39;status&#39;</span><span class="p">]</span></div>
 
 
@@ -495,8 +518,8 @@
 <span class="k">def</span> <span class="nf">check_core_initialization</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;This method checks if the core has initialized so the Manager can be started.&quot;&quot;&quot;</span>
     <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">AASarchiveInfo</span><span class="o">.</span><span class="n">CORE_STATUS_FILE_PATH</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">file_to_json</span><span class="p">(</span><span class="n">AASarchiveInfo</span><span class="o">.</span><span class="n">CORE_STATUS_FILE_PATH</span><span class="p">)[</span><span class="s1">&#39;status&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;Initializing&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">AASGeneralInfo</span><span class="o">.</span><span class="n">CORE_STATUS_FILE_PATH</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">file_to_json</span><span class="p">(</span><span class="n">AASGeneralInfo</span><span class="o">.</span><span class="n">CORE_STATUS_FILE_PATH</span><span class="p">)[</span><span class="s1">&#39;status&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;Initializing&quot;</span><span class="p">:</span>
                 <span class="k">break</span>
         <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># waits 1s</span>
     <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;AAS Core has initialized, so the AAS Manager is starting.&#39;</span><span class="p">)</span></div>

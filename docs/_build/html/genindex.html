@@ -23,6 +23,7 @@
   --color-brand-content: #2980B9;
   --color-problematic: DodgerBlue;
   --color-api-background: #E7F2FA;
+  --color-api-background-hover: #b7c0c6;
   
   }
   @media not print {
@@ -33,6 +34,7 @@
   --color-brand-content: #2980B9;
   --color-problematic: DodgerBlue;
   --color-api-background: #383838;
+  --color-api-background-hover: #5e5e5e;
   
     }
     @media (prefers-color-scheme: dark) {
@@ -43,6 +45,7 @@
   --color-brand-content: #2980B9;
   --color-problematic: DodgerBlue;
   --color-api-background: #383838;
+  --color-api-background-hover: #5e5e5e;
   
       }
     }
@@ -232,36 +235,50 @@
 <li class="toctree-l1"><a class="reference internal" href="aas_developer_guide.html">AAS Developer Guide</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="modules.html">API documentation</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of API documentation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="aas_manager.html">aas_manager module</a></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="agents.html">agents package</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of agents package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="aas_model.html">aas_model package</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of aas_model package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="aas_model.ExtendedAASModel.html">aas_model.ExtendedAASModel module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aas_model.ExtendedAssetAdministrationShell.html">aas_model.ExtendedAssetAdministrationShell module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aas_model.ExtendedBase.html">aas_model.ExtendedBase module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aas_model.ExtendedConceptDescription.html">aas_model.ExtendedConceptDescription module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aas_model.ExtendedSubmodel.html">aas_model.ExtendedSubmodel module</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="agents.html">agents package</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of agents package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="agents.AASManagerAgent.html">agents.AASManagerAgent module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="agents.AASManagerAppAgent.html">agents.AASManagerAppAgent module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="agents.AASManagerResourceAgent.html">agents.AASManagerResourceAgent module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="behaviours.html">behaviours package</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of behaviours package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="assetconnection.html">assetconnection package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of assetconnection package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="assetconnection.AssetConnection.html">assetconnection.AssetConnection module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="assetconnection.HTTPAssetConnection.html">assetconnection.HTTPAssetConnection module</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="behaviours.html">behaviours package</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of behaviours package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.AASFSMBehaviour.html">behaviours.AASFSMBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.CheckCoreInitializationBehaviour.html">behaviours.CheckCoreInitializationBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.CheckPhysicalAssetBehaviour.html">behaviours.CheckPhysicalAssetBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.EndBehaviour.html">behaviours.EndBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.HandleCapabilityBehaviour.html">behaviours.HandleCapabilityBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.HandleNegotiationBehaviour.html">behaviours.HandleNegotiationBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.HandleSvcRequestBehaviour.html">behaviours.HandleSvcRequestBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.HandleSvcResponseBehaviour.html">behaviours.HandleSvcResponseBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.IdleBehaviour.html">behaviours.IdleBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.InitAASModelBehaviour.html">behaviours.InitAASModelBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.InitAASarchiveBehaviour.html">behaviours.InitAASarchiveBehaviour module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="behaviours.InitSubmodelsBehaviour.html">behaviours.InitSubmodelsBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.InteractionHandlingBehaviour.html">behaviours.InteractionHandlingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.NegotiatingBehaviour.html">behaviours.NegotiatingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.SvcACLHandlingBehaviour.html">behaviours.SvcACLHandlingBehaviour module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="logic.html">logic package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of logic package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="logic.html">logic package</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of logic package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="logic.InterAASInteractions_utils.html">logic.InterAASInteractions_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logic.IntraAASInteractions_utils.html">logic.IntraAASInteractions_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logic.Negotiation_utils.html">logic.Negotiation_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logic.Services_utils.html">logic.Services_utils module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="states.html">states package</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of states package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="states.html">states package</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of states package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="states.StateBooting.html">states.StateBooting module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="states.StateBootingResource.html">states.StateBootingResource module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="states.StateIdle.html">states.StateIdle module</a></li>
@@ -269,11 +286,14 @@
 <li class="toctree-l3"><a class="reference internal" href="states.StateStopping.html">states.StateStopping module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="utilities.html">utilities package</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of utilities package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="utilities.html">utilities package</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of utilities package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="utilities.AASGeneralInfo.html">utilities.AASGeneralInfo module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="utilities.AASModelExtension_utils.html">utilities.AASModelExtension_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="utilities.AAS_Archive_utils.html">utilities.AAS_Archive_utils module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="utilities.AASarchiveInfo.html">utilities.AASarchiveInfo module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="utilities.AASmanagerInfo.html">utilities.AASmanagerInfo module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="utilities.CapabilitySkillOntology.html">utilities.CapabilitySkillOntology module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="utilities.ConfigMap_utils.html">utilities.ConfigMap_utils module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="utilities.FIPAACLInfo.html">utilities.FIPAACLInfo module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="utilities.GeneralUtils.html">utilities.GeneralUtils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="utilities.KafkaInfo.html">utilities.KafkaInfo module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="utilities.Submodels_utils.html">utilities.Submodels_utils module</a></li>
@@ -320,7 +340,7 @@
           
 <section class="genindex-section">
   <h1 id="index">Index</h1>
-  <div class="genindex-jumpbox"><a href="#A"><strong>A</strong></a> | <a href="#B"><strong>B</strong></a> | <a href="#C"><strong>C</strong></a> | <a href="#E"><strong>E</strong></a> | <a href="#F"><strong>F</strong></a> | <a href="#G"><strong>G</strong></a> | <a href="#GroupA"><strong>GroupA</strong></a> | <a href="#GroupB"><strong>GroupB</strong></a> | <a href="#H"><strong>H</strong></a> | <a href="#I"><strong>I</strong></a> | <a href="#K"><strong>K</strong></a> | <a href="#L"><strong>L</strong></a> | <a href="#M"><strong>M</strong></a> | <a href="#N"><strong>N</strong></a> | <a href="#O"><strong>O</strong></a> | <a href="#R"><strong>R</strong></a> | <a href="#S"><strong>S</strong></a> | <a href="#T"><strong>T</strong></a> | <a href="#U"><strong>U</strong></a> | <a href="#V"><strong>V</strong></a> | <a href="#X"><strong>X</strong></a></div>
+  <div class="genindex-jumpbox"><a href="#A"><strong>A</strong></a> | <a href="#B"><strong>B</strong></a> | <a href="#C"><strong>C</strong></a> | <a href="#E"><strong>E</strong></a> | <a href="#F"><strong>F</strong></a> | <a href="#G"><strong>G</strong></a> | <a href="#GroupA"><strong>GroupA</strong></a> | <a href="#GroupB"><strong>GroupB</strong></a> | <a href="#H"><strong>H</strong></a> | <a href="#I"><strong>I</strong></a> | <a href="#K"><strong>K</strong></a> | <a href="#L"><strong>L</strong></a> | <a href="#M"><strong>M</strong></a> | <a href="#N"><strong>N</strong></a> | <a href="#O"><strong>O</strong></a> | <a href="#P"><strong>P</strong></a> | <a href="#Q"><strong>Q</strong></a> | <a href="#R"><strong>R</strong></a> | <a href="#S"><strong>S</strong></a> | <a href="#T"><strong>T</strong></a> | <a href="#U"><strong>U</strong></a> | <a href="#V"><strong>V</strong></a> | <a href="#X"><strong>X</strong></a></div>
 </section>
 <section id="A" class="genindex-section">
   <h2>A</h2>
@@ -332,7 +352,7 @@
 </li>
         <li><a href="glossary.html#term-AAS-Manager"><strong>AAS Manager</strong></a>
 </li>
-        <li><a href="utilities.AASarchiveInfo.html#utilities.AASarchiveInfo.AASarchiveInfo.AAS_INFRASTRUCTURE_SVC_LOG_FILENAME">AAS_INFRASTRUCTURE_SVC_LOG_FILENAME (utilities.AASarchiveInfo.AASarchiveInfo attribute)</a>
+        <li><a href="utilities.AASGeneralInfo.html#utilities.AASGeneralInfo.AASGeneralInfo.AAS_INFRASTRUCTURE_SVC_LOG_FILENAME">AAS_INFRASTRUCTURE_SVC_LOG_FILENAME (utilities.AASGeneralInfo.AASGeneralInfo attribute)</a>
 </li>
         <li>
     aas_manager
@@ -341,13 +361,59 @@
           <li><a href="aas_manager.html#module-aas_manager">module</a>
 </li>
         </ul></li>
-        <li><a href="utilities.AASarchiveInfo.html#utilities.AASarchiveInfo.AASarchiveInfo.AAS_MANAGER_LOG_FILENAME">AAS_MANAGER_LOG_FILENAME (utilities.AASarchiveInfo.AASarchiveInfo attribute)</a>
+        <li><a href="utilities.AASGeneralInfo.html#utilities.AASGeneralInfo.AASGeneralInfo.AAS_MANAGER_LOG_FILENAME">AAS_MANAGER_LOG_FILENAME (utilities.AASGeneralInfo.AASGeneralInfo attribute)</a>
 </li>
-        <li><a href="utilities.AASarchiveInfo.html#utilities.AASarchiveInfo.AASarchiveInfo.AAS_SERVICES_LOG_FILENAME">AAS_SERVICES_LOG_FILENAME (utilities.AASarchiveInfo.AASarchiveInfo attribute)</a>
+        <li>
+    aas_model
+
+        <ul>
+          <li><a href="aas_model.html#module-aas_model">module</a>
 </li>
-        <li><a href="utilities.AASarchiveInfo.html#utilities.AASarchiveInfo.AASarchiveInfo">AASarchiveInfo (class in utilities.AASarchiveInfo)</a>
+        </ul></li>
+        <li><a href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.aas_model">aas_model (agents.AASManagerAgent.AASManagerAgent attribute)</a>
+</li>
+        <li>
+    aas_model.ExtendedAASModel
+
+        <ul>
+          <li><a href="aas_model.ExtendedAASModel.html#module-aas_model.ExtendedAASModel">module</a>
+</li>
+        </ul></li>
+        <li>
+    aas_model.ExtendedAssetAdministrationShell
+
+        <ul>
+          <li><a href="aas_model.ExtendedAssetAdministrationShell.html#module-aas_model.ExtendedAssetAdministrationShell">module</a>
+</li>
+        </ul></li>
+        <li>
+    aas_model.ExtendedBase
+
+        <ul>
+          <li><a href="aas_model.ExtendedBase.html#module-aas_model.ExtendedBase">module</a>
+</li>
+        </ul></li>
+        <li>
+    aas_model.ExtendedConceptDescription
+
+        <ul>
+          <li><a href="aas_model.ExtendedConceptDescription.html#module-aas_model.ExtendedConceptDescription">module</a>
+</li>
+        </ul></li>
+        <li>
+    aas_model.ExtendedSubmodel
+
+        <ul>
+          <li><a href="aas_model.ExtendedSubmodel.html#module-aas_model.ExtendedSubmodel">module</a>
+</li>
+        </ul></li>
+        <li><a href="aas_model.ExtendedAASModel.html#aas_model.ExtendedAASModel.ExtendedAASModel.aas_model_object_store">aas_model_object_store (aas_model.ExtendedAASModel.ExtendedAASModel attribute)</a>
+</li>
+        <li><a href="utilities.AASGeneralInfo.html#utilities.AASGeneralInfo.AASGeneralInfo.AAS_SERVICES_LOG_FILENAME">AAS_SERVICES_LOG_FILENAME (utilities.AASGeneralInfo.AASGeneralInfo attribute)</a>
 </li>
         <li><a href="behaviours.AASFSMBehaviour.html#behaviours.AASFSMBehaviour.AASFSMBehaviour">AASFSMBehaviour (class in behaviours.AASFSMBehaviour)</a>
+</li>
+        <li><a href="utilities.AASGeneralInfo.html#utilities.AASGeneralInfo.AASGeneralInfo">AASGeneralInfo (class in utilities.AASGeneralInfo)</a>
 </li>
         <li><a href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent">AASManagerAgent (class in agents.AASManagerAgent)</a>
 </li>
@@ -359,13 +425,21 @@
 </li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="utilities.AASModelExtension_utils.html#utilities.AASModelExtension_utils.AASModelExtensionUtils">AASModelExtensionUtils (class in utilities.AASModelExtension_utils)</a>
+</li>
         <li><a href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.acl_svc_requests">acl_svc_requests (agents.AASManagerAgent.AASManagerAgent attribute)</a>
 </li>
         <li><a href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.acl_svc_responses">acl_svc_responses (agents.AASManagerAgent.AASManagerAgent attribute)</a>
 </li>
+        <li><a href="states.StateRunning.html#states.StateRunning.StateRunning.add_agent_capabilities_behaviours">add_agent_capabilities_behaviours() (states.StateRunning.StateRunning method)</a>
+</li>
+        <li><a href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.add_new_asset_connection">add_new_asset_connection() (agents.AASManagerAgent.AASManagerAgent method)</a>
+</li>
         <li><a href="logic.IntraAASInteractions_utils.html#logic.IntraAASInteractions_utils.add_new_svc_request">add_new_svc_request() (in module logic.IntraAASInteractions_utils)</a>
 </li>
         <li><a href="logic.Negotiation_utils.html#logic.Negotiation_utils.add_value_and_unlock_neg_handling_behaviour">add_value_and_unlock_neg_handling_behaviour() (in module logic.Negotiation_utils)</a>
+</li>
+        <li><a href="utilities.CapabilitySkillOntology.html#utilities.CapabilitySkillOntology.CapabilitySkillOntology.AGENT_CAPABILITY_TYPE">AGENT_CAPABILITY_TYPE (utilities.CapabilitySkillOntology.CapabilitySkillOntology attribute)</a>
 </li>
         <li>
     agents
@@ -397,7 +471,38 @@
         </ul></li>
         <li><a href="glossary.html#term-API"><strong>API</strong></a>
 </li>
-        <li><a href="utilities.AASarchiveInfo.html#utilities.AASarchiveInfo.AASarchiveInfo.ASSET_RELATED_SVC_LOG_FILENAME">ASSET_RELATED_SVC_LOG_FILENAME (utilities.AASarchiveInfo.AASarchiveInfo attribute)</a>
+        <li><a href="utilities.CapabilitySkillOntology.html#utilities.CapabilitySkillOntology.CapabilitySkillOntology.ASSET_CAPABILITY_TYPE">ASSET_CAPABILITY_TYPE (utilities.CapabilitySkillOntology.CapabilitySkillOntology attribute)</a>
+</li>
+        <li><a href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.asset_connections">asset_connections (agents.AASManagerAgent.AASManagerAgent attribute)</a>
+</li>
+        <li><a href="utilities.AASGeneralInfo.html#utilities.AASGeneralInfo.AASGeneralInfo.ASSET_RELATED_SVC_LOG_FILENAME">ASSET_RELATED_SVC_LOG_FILENAME (utilities.AASGeneralInfo.AASGeneralInfo attribute)</a>
+</li>
+        <li>
+    assetconnection
+
+        <ul>
+          <li><a href="assetconnection.html#module-assetconnection">module</a>
+</li>
+        </ul></li>
+        <li><a href="assetconnection.AssetConnection.html#assetconnection.AssetConnection.AssetConnection">AssetConnection (class in assetconnection.AssetConnection)</a>
+</li>
+        <li><a href="assetconnection.AssetConnection.html#assetconnection.AssetConnection.AssetConnection.ArchitectureStyle">AssetConnection.ArchitectureStyle (class in assetconnection.AssetConnection)</a>
+</li>
+        <li>
+    assetconnection.AssetConnection
+
+        <ul>
+          <li><a href="assetconnection.AssetConnection.html#module-assetconnection.AssetConnection">module</a>
+</li>
+        </ul></li>
+        <li>
+    assetconnection.HTTPAssetConnection
+
+        <ul>
+          <li><a href="assetconnection.HTTPAssetConnection.html#module-assetconnection.HTTPAssetConnection">module</a>
+</li>
+        </ul></li>
+        <li><a href="utilities.CapabilitySkillOntology.html#utilities.CapabilitySkillOntology.AssetInterfacesInfo">AssetInterfacesInfo (class in utilities.CapabilitySkillOntology)</a>
 </li>
     </ul></td>
   </tr></table>
@@ -443,6 +548,13 @@
 </li>
         </ul></li>
         <li>
+    behaviours.HandleCapabilityBehaviour
+
+        <ul>
+          <li><a href="behaviours.HandleCapabilityBehaviour.html#module-behaviours.HandleCapabilityBehaviour">module</a>
+</li>
+        </ul></li>
+        <li>
     behaviours.HandleNegotiationBehaviour
 
         <ul>
@@ -456,6 +568,8 @@
           <li><a href="behaviours.HandleSvcRequestBehaviour.html#module-behaviours.HandleSvcRequestBehaviour">module</a>
 </li>
         </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
         <li>
     behaviours.HandleSvcResponseBehaviour
 
@@ -463,8 +577,6 @@
           <li><a href="behaviours.HandleSvcResponseBehaviour.html#module-behaviours.HandleSvcResponseBehaviour">module</a>
 </li>
         </ul></li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
         <li>
     behaviours.IdleBehaviour
 
@@ -480,10 +592,10 @@
 </li>
         </ul></li>
         <li>
-    behaviours.InitSubmodelsBehaviour
+    behaviours.InitAASModelBehaviour
 
         <ul>
-          <li><a href="behaviours.InitSubmodelsBehaviour.html#module-behaviours.InitSubmodelsBehaviour">module</a>
+          <li><a href="behaviours.InitAASModelBehaviour.html#module-behaviours.InitAASModelBehaviour">module</a>
 </li>
         </ul></li>
         <li>
@@ -519,11 +631,43 @@
   <h2>C</h2>
   <table style="width: 100%" class="indextable genindextable"><tr>
     <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="aas_model.ExtendedAASModel.html#aas_model.ExtendedAASModel.ExtendedAASModel.capabilities_skills_dict">capabilities_skills_dict (aas_model.ExtendedAASModel.ExtendedAASModel attribute)</a>
+</li>
+        <li><a href="aas_model.ExtendedAASModel.html#aas_model.ExtendedAASModel.ExtendedAASModel.capability_checking_from_acl_request">capability_checking_from_acl_request() (aas_model.ExtendedAASModel.ExtendedAASModel method)</a>
+</li>
+        <li><a href="utilities.CapabilitySkillOntology.html#utilities.CapabilitySkillOntology.CapabilitySkillOntology.CAPABILITY_TYPE_POSSIBLE_VALUES">CAPABILITY_TYPE_POSSIBLE_VALUES (utilities.CapabilitySkillOntology.CapabilitySkillOntology attribute)</a>
+</li>
+        <li><a href="utilities.CapabilitySkillOntology.html#utilities.CapabilitySkillOntology.CapabilitySkillACLInfo">CapabilitySkillACLInfo (class in utilities.CapabilitySkillOntology)</a>
+</li>
+        <li><a href="utilities.CapabilitySkillOntology.html#utilities.CapabilitySkillOntology.CapabilitySkillOntology">CapabilitySkillOntology (class in utilities.CapabilitySkillOntology)</a>
+</li>
         <li><a href="utilities.AAS_Archive_utils.html#utilities.AAS_Archive_utils.change_status">change_status() (in module utilities.AAS_Archive_utils)</a>
 </li>
+        <li><a href="aas_model.ExtendedSubmodel.html#aas_model.ExtendedSubmodel.ExtendedSubmodelElement.check_cap_skill_ontology_qualifier_for_skills">check_cap_skill_ontology_qualifier_for_skills() (aas_model.ExtendedSubmodel.ExtendedSubmodelElement method)</a>
+</li>
+        <li><a href="aas_model.ExtendedSubmodel.html#aas_model.ExtendedSubmodel.ExtendedCapability.check_cap_skill_ontology_qualifiers">check_cap_skill_ontology_qualifiers() (aas_model.ExtendedSubmodel.ExtendedCapability method)</a>
+</li>
+        <li><a href="aas_model.ExtendedSubmodel.html#aas_model.ExtendedSubmodel.ExtendedCapability.check_cap_skill_ontology_semantic_id">check_cap_skill_ontology_semantic_id() (aas_model.ExtendedSubmodel.ExtendedCapability method)</a>
+</li>
+        <li><a href="aas_model.ExtendedSubmodel.html#aas_model.ExtendedSubmodel.ExtendedCapability.check_cap_skill_ontology_semantics_and_qualifiers">check_cap_skill_ontology_semantics_and_qualifiers() (aas_model.ExtendedSubmodel.ExtendedCapability method)</a>
+
+        <ul>
+          <li><a href="aas_model.ExtendedSubmodel.html#aas_model.ExtendedSubmodel.ExtendedSubmodelElement.check_cap_skill_ontology_semantics_and_qualifiers">(aas_model.ExtendedSubmodel.ExtendedSubmodelElement method)</a>
+</li>
+        </ul></li>
         <li><a href="utilities.AAS_Archive_utils.html#utilities.AAS_Archive_utils.check_core_initialization">check_core_initialization() (in module utilities.AAS_Archive_utils)</a>
 </li>
+        <li><a href="aas_model.ExtendedAASModel.html#aas_model.ExtendedAASModel.ExtendedAASModel.check_element_exist_in_namespaceset_by_id_short">check_element_exist_in_namespaceset_by_id_short() (aas_model.ExtendedAASModel.ExtendedAASModel method)</a>
+</li>
         <li><a href="utilities.Submodels_utils.html#utilities.Submodels_utils.check_if_submodel_exists">check_if_submodel_exists() (in module utilities.Submodels_utils)</a>
+</li>
+        <li><a href="assetconnection.HTTPAssetConnection.html#assetconnection.HTTPAssetConnection.HTTPAssetConnection.check_interaction_metadata">check_interaction_metadata() (assetconnection.HTTPAssetConnection.HTTPAssetConnection method)</a>
+</li>
+        <li><a href="aas_model.ExtendedBase.html#aas_model.ExtendedBase.ExtendedHasSemantics.check_semantic_id_exist">check_semantic_id_exist() (aas_model.ExtendedBase.ExtendedHasSemantics method)</a>
+</li>
+        <li><a href="aas_model.ExtendedAASModel.html#aas_model.ExtendedAASModel.ExtendedAASModel.check_skill_elem_by_capability">check_skill_elem_by_capability() (aas_model.ExtendedAASModel.ExtendedAASModel method)</a>
+</li>
+        <li><a href="aas_model.ExtendedBase.html#aas_model.ExtendedBase.ExtendedHasSemantics.check_suppl_semantic_id_exist">check_suppl_semantic_id_exist() (aas_model.ExtendedBase.ExtendedHasSemantics method)</a>
 </li>
         <li><a href="behaviours.CheckCoreInitializationBehaviour.html#behaviours.CheckCoreInitializationBehaviour.CheckCoreInitializationBehaviour">CheckCoreInitializationBehaviour (class in behaviours.CheckCoreInitializationBehaviour)</a>
 </li>
@@ -531,33 +675,55 @@
 </li>
         <li><a href="glossary.html#term-Class"><strong>Class</strong></a>
 </li>
-        <li><a href="utilities.AASarchiveInfo.html#utilities.AASarchiveInfo.AASarchiveInfo.CM_AAS_PROPERTIES_FILENAME">CM_AAS_PROPERTIES_FILENAME (utilities.AASarchiveInfo.AASarchiveInfo attribute)</a>
+        <li><a href="assetconnection.AssetConnection.html#assetconnection.AssetConnection.AssetConnection.ArchitectureStyle.CLIENTSERVER">CLIENTSERVER (assetconnection.AssetConnection.AssetConnection.ArchitectureStyle attribute)</a>
 </li>
-        <li><a href="utilities.AASarchiveInfo.html#utilities.AASarchiveInfo.AASarchiveInfo.CM_ASSET_PROPERTIES_FILENAME">CM_ASSET_PROPERTIES_FILENAME (utilities.AASarchiveInfo.AASarchiveInfo attribute)</a>
+        <li><a href="utilities.AASGeneralInfo.html#utilities.AASGeneralInfo.AASGeneralInfo.CM_AAS_PROPERTIES_FILENAME">CM_AAS_PROPERTIES_FILENAME (utilities.AASGeneralInfo.AASGeneralInfo attribute)</a>
 </li>
-        <li><a href="utilities.AASarchiveInfo.html#utilities.AASarchiveInfo.AASarchiveInfo.CM_SM_PROPERTIES_FILENAME">CM_SM_PROPERTIES_FILENAME (utilities.AASarchiveInfo.AASarchiveInfo attribute)</a>
+        <li><a href="utilities.AASGeneralInfo.html#utilities.AASGeneralInfo.AASGeneralInfo.CM_ASSET_PROPERTIES_FILENAME">CM_ASSET_PROPERTIES_FILENAME (utilities.AASGeneralInfo.AASGeneralInfo attribute)</a>
+</li>
+        <li><a href="utilities.AASGeneralInfo.html#utilities.AASGeneralInfo.AASGeneralInfo.CM_GENERAL_PROPERTIES_FILENAME">CM_GENERAL_PROPERTIES_FILENAME (utilities.AASGeneralInfo.AASGeneralInfo attribute)</a>
+</li>
+        <li><a href="utilities.AASGeneralInfo.html#utilities.AASGeneralInfo.AASGeneralInfo.CM_SM_PROPERTIES_FILENAME">CM_SM_PROPERTIES_FILENAME (utilities.AASGeneralInfo.AASGeneralInfo attribute)</a>
 </li>
         <li><a href="utilities.GeneralUtils.html#utilities.GeneralUtils.GeneralUtils.ColoredFormatter.COLORS">COLORS (utilities.GeneralUtils.GeneralUtils.ColoredFormatter attribute)</a>
 </li>
-        <li><a href="utilities.AASarchiveInfo.html#utilities.AASarchiveInfo.AASarchiveInfo.CONFIG_MAP_PATH">CONFIG_MAP_PATH (utilities.AASarchiveInfo.AASarchiveInfo attribute)</a>
+        <li><a href="utilities.CapabilitySkillOntology.html#utilities.CapabilitySkillOntology.CapabilitySkillOntology.CONCEPT_DESCRIPTION_ID_NEGOTIATION_CRITERIA">CONCEPT_DESCRIPTION_ID_NEGOTIATION_CRITERIA (utilities.CapabilitySkillOntology.CapabilitySkillOntology attribute)</a>
 </li>
-        <li><a href="utilities.AASarchiveInfo.html#utilities.AASarchiveInfo.AASarchiveInfo.CONFIGURATION_SM_FILENAME">CONFIGURATION_SM_FILENAME (utilities.AASarchiveInfo.AASarchiveInfo attribute)</a>
-</li>
-        <li><a href="utilities.GeneralUtils.html#utilities.GeneralUtils.GeneralUtils.configure_logging">configure_logging() (utilities.GeneralUtils.GeneralUtils static method)</a>
-</li>
-        <li><a href="utilities.AASarchiveInfo.html#utilities.AASarchiveInfo.AASarchiveInfo.CORE_INTERACTIONS_FOLDER_PATH">CORE_INTERACTIONS_FOLDER_PATH (utilities.AASarchiveInfo.AASarchiveInfo attribute)</a>
-</li>
-        <li><a href="utilities.AASarchiveInfo.html#utilities.AASarchiveInfo.AASarchiveInfo.CORE_STATUS_FILE_PATH">CORE_STATUS_FILE_PATH (utilities.AASarchiveInfo.AASarchiveInfo attribute)</a>
-</li>
-        <li><a href="utilities.KafkaInfo.html#utilities.KafkaInfo.KafkaInfo.CORE_TOPIC_PARTITION">CORE_TOPIC_PARTITION (utilities.KafkaInfo.KafkaInfo attribute)</a>
+        <li><a href="utilities.AASGeneralInfo.html#utilities.AASGeneralInfo.AASGeneralInfo.CONFIG_MAP_PATH">CONFIG_MAP_PATH (utilities.AASGeneralInfo.AASGeneralInfo attribute)</a>
 </li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="utilities.AASGeneralInfo.html#utilities.AASGeneralInfo.AASGeneralInfo.CONFIGURATION_SM_FILENAME">CONFIGURATION_SM_FILENAME (utilities.AASGeneralInfo.AASGeneralInfo attribute)</a>
+</li>
+        <li><a href="assetconnection.AssetConnection.html#assetconnection.AssetConnection.AssetConnection.configure_connection_by_aas_model">configure_connection_by_aas_model() (assetconnection.AssetConnection.AssetConnection method)</a>
+
+        <ul>
+          <li><a href="assetconnection.HTTPAssetConnection.html#assetconnection.HTTPAssetConnection.HTTPAssetConnection.configure_connection_by_aas_model">(assetconnection.HTTPAssetConnection.HTTPAssetConnection method)</a>
+</li>
+        </ul></li>
+        <li><a href="utilities.GeneralUtils.html#utilities.GeneralUtils.GeneralUtils.configure_logging">configure_logging() (utilities.GeneralUtils.GeneralUtils static method)</a>
+</li>
+        <li><a href="assetconnection.AssetConnection.html#assetconnection.AssetConnection.AssetConnection.connect_with_asset">connect_with_asset() (assetconnection.AssetConnection.AssetConnection method)</a>
+
+        <ul>
+          <li><a href="assetconnection.HTTPAssetConnection.html#assetconnection.HTTPAssetConnection.HTTPAssetConnection.connect_with_asset">(assetconnection.HTTPAssetConnection.HTTPAssetConnection method)</a>
+</li>
+        </ul></li>
+        <li><a href="utilities.AASGeneralInfo.html#utilities.AASGeneralInfo.AASGeneralInfo.CORE_INTERACTIONS_FOLDER_PATH">CORE_INTERACTIONS_FOLDER_PATH (utilities.AASGeneralInfo.AASGeneralInfo attribute)</a>
+</li>
+        <li><a href="utilities.AASGeneralInfo.html#utilities.AASGeneralInfo.AASGeneralInfo.CORE_STATUS_FILE_PATH">CORE_STATUS_FILE_PATH (utilities.AASGeneralInfo.AASGeneralInfo attribute)</a>
+</li>
+        <li><a href="utilities.KafkaInfo.html#utilities.KafkaInfo.KafkaInfo.CORE_TOPIC_PARTITION">CORE_TOPIC_PARTITION (utilities.KafkaInfo.KafkaInfo attribute)</a>
+</li>
         <li><a href="utilities.GeneralUtils.html#utilities.GeneralUtils.GeneralUtils.create_acl_msg">create_acl_msg() (utilities.GeneralUtils.GeneralUtils static method)</a>
 </li>
         <li><a href="utilities.GeneralUtils.html#utilities.GeneralUtils.GeneralUtils.create_acl_template">create_acl_template() (utilities.GeneralUtils.GeneralUtils static method)</a>
 </li>
         <li><a href="utilities.Submodels_utils.html#utilities.Submodels_utils.create_configuration_sm">create_configuration_sm() (in module utilities.Submodels_utils)</a>
+</li>
+        <li><a href="logic.InterAASInteractions_utils.html#logic.InterAASInteractions_utils.create_inter_aas_request_msg">create_inter_aas_request_msg() (in module logic.InterAASInteractions_utils)</a>
+</li>
+        <li><a href="logic.InterAASInteractions_utils.html#logic.InterAASInteractions_utils.create_inter_aas_response_msg">create_inter_aas_response_msg() (in module logic.InterAASInteractions_utils)</a>
 </li>
         <li><a href="logic.InterAASInteractions_utils.html#logic.InterAASInteractions_utils.create_inter_aas_response_object">create_inter_aas_response_object() (in module logic.InterAASInteractions_utils)</a>
 </li>
@@ -567,7 +733,11 @@
 </li>
         <li><a href="logic.Negotiation_utils.html#logic.Negotiation_utils.create_intra_aas_neg_req_data">create_intra_aas_neg_req_data() (in module logic.Negotiation_utils)</a>
 </li>
+        <li><a href="logic.IntraAASInteractions_utils.html#logic.IntraAASInteractions_utils.create_intra_aas_response_object">create_intra_aas_response_object() (in module logic.IntraAASInteractions_utils)</a>
+</li>
         <li><a href="utilities.AAS_Archive_utils.html#utilities.AAS_Archive_utils.create_log_files">create_log_files() (in module utilities.AAS_Archive_utils)</a>
+</li>
+        <li><a href="logic.Negotiation_utils.html#logic.Negotiation_utils.create_neg_cfp_msg">create_neg_cfp_msg() (in module logic.Negotiation_utils)</a>
 </li>
         <li><a href="logic.Negotiation_utils.html#logic.Negotiation_utils.create_neg_json_to_store">create_neg_json_to_store() (in module logic.Negotiation_utils)</a>
 </li>
@@ -581,7 +751,7 @@
 </li>
         <li><a href="utilities.Submodels_utils.html#utilities.Submodels_utils.create_submodel_folder">create_submodel_folder() (in module utilities.Submodels_utils)</a>
 </li>
-        <li><a href="logic.InterAASInteractions_utils.html#logic.InterAASInteractions_utils.create_svc_req_data_from_acl_msg">create_svc_req_data_from_acl_msg() (in module logic.InterAASInteractions_utils)</a>
+        <li><a href="logic.InterAASInteractions_utils.html#logic.InterAASInteractions_utils.create_svc_json_data_from_acl_msg">create_svc_json_data_from_acl_msg() (in module logic.InterAASInteractions_utils)</a>
 </li>
         <li><a href="logic.IntraAASInteractions_utils.html#logic.IntraAASInteractions_utils.create_svc_request_interaction_json">create_svc_request_interaction_json() (in module logic.IntraAASInteractions_utils)</a>
 </li>
@@ -597,9 +767,57 @@
     <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="behaviours.EndBehaviour.html#behaviours.EndBehaviour.EndBehaviour">EndBehaviour (class in behaviours.EndBehaviour)</a>
 </li>
+        <li><a href="behaviours.HandleNegotiationBehaviour.html#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.exit_negotiation">exit_negotiation() (behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour method)</a>
+</li>
+        <li><a href="utilities.AASModelExtension_utils.html#utilities.AASModelExtension_utils.AASModelExtensionUtils.extend_basyx_aas_model">extend_basyx_aas_model() (utilities.AASModelExtension_utils.AASModelExtensionUtils static method)</a>
+</li>
+        <li><a href="aas_model.ExtendedAASModel.html#aas_model.ExtendedAASModel.ExtendedAASModel">ExtendedAASModel (class in aas_model.ExtendedAASModel)</a>
+</li>
+        <li><a href="aas_model.ExtendedSubmodel.html#aas_model.ExtendedSubmodel.ExtendedAnnotatedRelationshipElement">ExtendedAnnotatedRelationshipElement (class in aas_model.ExtendedSubmodel)</a>
+</li>
+        <li><a href="aas_model.ExtendedAssetAdministrationShell.html#aas_model.ExtendedAssetAdministrationShell.ExtendedAssetAdministrationShell">ExtendedAssetAdministrationShell (class in aas_model.ExtendedAssetAdministrationShell)</a>
+</li>
+        <li><a href="aas_model.ExtendedAssetAdministrationShell.html#aas_model.ExtendedAssetAdministrationShell.ExtendedAssetInformation">ExtendedAssetInformation (class in aas_model.ExtendedAssetAdministrationShell)</a>
+</li>
+        <li><a href="aas_model.ExtendedSubmodel.html#aas_model.ExtendedSubmodel.ExtendedBasicEventElement">ExtendedBasicEventElement (class in aas_model.ExtendedSubmodel)</a>
+</li>
+        <li><a href="aas_model.ExtendedSubmodel.html#aas_model.ExtendedSubmodel.ExtendedBlob">ExtendedBlob (class in aas_model.ExtendedSubmodel)</a>
+</li>
+        <li><a href="aas_model.ExtendedSubmodel.html#aas_model.ExtendedSubmodel.ExtendedCapability">ExtendedCapability (class in aas_model.ExtendedSubmodel)</a>
+</li>
+        <li><a href="aas_model.ExtendedConceptDescription.html#aas_model.ExtendedConceptDescription.ExtendedConceptDescription">ExtendedConceptDescription (class in aas_model.ExtendedConceptDescription)</a>
+</li>
+        <li><a href="aas_model.ExtendedSubmodel.html#aas_model.ExtendedSubmodel.ExtendedEntity">ExtendedEntity (class in aas_model.ExtendedSubmodel)</a>
+</li>
+        <li><a href="aas_model.ExtendedSubmodel.html#aas_model.ExtendedSubmodel.ExtendedFile">ExtendedFile (class in aas_model.ExtendedSubmodel)</a>
+</li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="behaviours.HandleNegotiationBehaviour.html#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.exit_negotiation">exit_negotiation() (behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour method)</a>
+        <li><a href="aas_model.ExtendedAssetAdministrationShell.html#aas_model.ExtendedAssetAdministrationShell.ExtendedGeneralMethods">ExtendedGeneralMethods (class in aas_model.ExtendedAssetAdministrationShell)</a>
+</li>
+        <li><a href="aas_model.ExtendedBase.html#aas_model.ExtendedBase.ExtendedHasSemantics">ExtendedHasSemantics (class in aas_model.ExtendedBase)</a>
+</li>
+        <li><a href="aas_model.ExtendedSubmodel.html#aas_model.ExtendedSubmodel.ExtendedMultiLanguageProperty">ExtendedMultiLanguageProperty (class in aas_model.ExtendedSubmodel)</a>
+</li>
+        <li><a href="aas_model.ExtendedSubmodel.html#aas_model.ExtendedSubmodel.ExtendedOperation">ExtendedOperation (class in aas_model.ExtendedSubmodel)</a>
+</li>
+        <li><a href="aas_model.ExtendedSubmodel.html#aas_model.ExtendedSubmodel.ExtendedProperty">ExtendedProperty (class in aas_model.ExtendedSubmodel)</a>
+</li>
+        <li><a href="aas_model.ExtendedBase.html#aas_model.ExtendedBase.ExtendedQualifier">ExtendedQualifier (class in aas_model.ExtendedBase)</a>
+</li>
+        <li><a href="aas_model.ExtendedSubmodel.html#aas_model.ExtendedSubmodel.ExtendedRange">ExtendedRange (class in aas_model.ExtendedSubmodel)</a>
+</li>
+        <li><a href="aas_model.ExtendedSubmodel.html#aas_model.ExtendedSubmodel.ExtendedReferenceElement">ExtendedReferenceElement (class in aas_model.ExtendedSubmodel)</a>
+</li>
+        <li><a href="aas_model.ExtendedSubmodel.html#aas_model.ExtendedSubmodel.ExtendedRelationshipElement">ExtendedRelationshipElement (class in aas_model.ExtendedSubmodel)</a>
+</li>
+        <li><a href="aas_model.ExtendedSubmodel.html#aas_model.ExtendedSubmodel.ExtendedSubmodel">ExtendedSubmodel (class in aas_model.ExtendedSubmodel)</a>
+</li>
+        <li><a href="aas_model.ExtendedSubmodel.html#aas_model.ExtendedSubmodel.ExtendedSubmodelElement">ExtendedSubmodelElement (class in aas_model.ExtendedSubmodel)</a>
+</li>
+        <li><a href="aas_model.ExtendedSubmodel.html#aas_model.ExtendedSubmodel.ExtendedSubmodelElementCollection">ExtendedSubmodelElementCollection (class in aas_model.ExtendedSubmodel)</a>
+</li>
+        <li><a href="aas_model.ExtendedSubmodel.html#aas_model.ExtendedSubmodel.ExtendedSubmodelElementList">ExtendedSubmodelElementList (class in aas_model.ExtendedSubmodel)</a>
 </li>
     </ul></td>
   </tr></table>
@@ -611,10 +829,28 @@
     <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="utilities.AAS_Archive_utils.html#utilities.AAS_Archive_utils.file_to_json">file_to_json() (in module utilities.AAS_Archive_utils)</a>
 </li>
-        <li><a href="utilities.GeneralUtils.html#utilities.GeneralUtils.GeneralUtils.ColoredFormatter.format">format() (utilities.GeneralUtils.GeneralUtils.ColoredFormatter method)</a>
+        <li><a href="utilities.FIPAACLInfo.html#utilities.FIPAACLInfo.FIPAACLInfo.FIPA_ACL_ONTOLOGY_SVC_NEGOTIATION">FIPA_ACL_ONTOLOGY_SVC_NEGOTIATION (utilities.FIPAACLInfo.FIPAACLInfo attribute)</a>
+</li>
+        <li><a href="utilities.FIPAACLInfo.html#utilities.FIPAACLInfo.FIPAACLInfo.FIPA_ACL_ONTOLOGY_SVC_REQUEST">FIPA_ACL_ONTOLOGY_SVC_REQUEST (utilities.FIPAACLInfo.FIPAACLInfo attribute)</a>
+</li>
+        <li><a href="utilities.FIPAACLInfo.html#utilities.FIPAACLInfo.FIPAACLInfo.FIPA_ACL_ONTOLOGY_SVC_RESPONSE">FIPA_ACL_ONTOLOGY_SVC_RESPONSE (utilities.FIPAACLInfo.FIPAACLInfo attribute)</a>
+</li>
+        <li><a href="utilities.FIPAACLInfo.html#utilities.FIPAACLInfo.FIPAACLInfo.FIPA_ACL_PERFORMATIVE_CFP">FIPA_ACL_PERFORMATIVE_CFP (utilities.FIPAACLInfo.FIPAACLInfo attribute)</a>
+</li>
+        <li><a href="utilities.FIPAACLInfo.html#utilities.FIPAACLInfo.FIPAACLInfo.FIPA_ACL_PERFORMATIVE_FAILURE">FIPA_ACL_PERFORMATIVE_FAILURE (utilities.FIPAACLInfo.FIPAACLInfo attribute)</a>
+</li>
+        <li><a href="utilities.FIPAACLInfo.html#utilities.FIPAACLInfo.FIPAACLInfo.FIPA_ACL_PERFORMATIVE_INFORM">FIPA_ACL_PERFORMATIVE_INFORM (utilities.FIPAACLInfo.FIPAACLInfo attribute)</a>
 </li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="utilities.FIPAACLInfo.html#utilities.FIPAACLInfo.FIPAACLInfo.FIPA_ACL_PERFORMATIVE_PROPOSE">FIPA_ACL_PERFORMATIVE_PROPOSE (utilities.FIPAACLInfo.FIPAACLInfo attribute)</a>
+</li>
+        <li><a href="utilities.FIPAACLInfo.html#utilities.FIPAACLInfo.FIPAACLInfo.FIPA_ACL_PERFORMATIVE_QUERY_IF">FIPA_ACL_PERFORMATIVE_QUERY_IF (utilities.FIPAACLInfo.FIPAACLInfo attribute)</a>
+</li>
+        <li><a href="utilities.FIPAACLInfo.html#utilities.FIPAACLInfo.FIPAACLInfo">FIPAACLInfo (class in utilities.FIPAACLInfo)</a>
+</li>
+        <li><a href="utilities.GeneralUtils.html#utilities.GeneralUtils.GeneralUtils.ColoredFormatter.format">format() (utilities.GeneralUtils.GeneralUtils.ColoredFormatter method)</a>
+</li>
         <li><a href="utilities.GeneralUtils.html#utilities.GeneralUtils.GeneralUtils.ColoredFormatter.FORMAT_COMPLEX">FORMAT_COMPLEX (utilities.GeneralUtils.GeneralUtils.ColoredFormatter attribute)</a>
 </li>
         <li><a href="utilities.GeneralUtils.html#utilities.GeneralUtils.GeneralUtils.ColoredFormatter.FORMAT_SIMPLE">FORMAT_SIMPLE (utilities.GeneralUtils.GeneralUtils.ColoredFormatter attribute)</a>
@@ -635,23 +871,87 @@
 </li>
         <li><a href="utilities.ConfigMap_utils.html#utilities.ConfigMap_utils.get_aas_general_property">get_aas_general_property() (in module utilities.ConfigMap_utils)</a>
 </li>
+        <li><a href="utilities.ConfigMap_utils.html#utilities.ConfigMap_utils.get_aas_model_filepath">get_aas_model_filepath() (in module utilities.ConfigMap_utils)</a>
+</li>
+        <li><a href="aas_model.ExtendedAASModel.html#aas_model.ExtendedAASModel.ExtendedAASModel.get_aas_model_object_store">get_aas_model_object_store() (aas_model.ExtendedAASModel.ExtendedAASModel method)</a>
+</li>
         <li><a href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.get_acl_svc_request">get_acl_svc_request() (agents.AASManagerAgent.AASManagerAgent method)</a>
+</li>
+        <li><a href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.get_all_asset_connections">get_all_asset_connections() (agents.AASManagerAgent.AASManagerAgent method)</a>
+</li>
+        <li><a href="behaviours.InitAASModelBehaviour.html#behaviours.InitAASModelBehaviour.InitAASModelBehaviour.get_and_configure_asset_connections">get_and_configure_asset_connections() (behaviours.InitAASModelBehaviour.InitAASModelBehaviour method)</a>
+</li>
+        <li><a href="behaviours.InitAASModelBehaviour.html#behaviours.InitAASModelBehaviour.InitAASModelBehaviour.get_and_save_capabilities_skills_information">get_and_save_capabilities_skills_information() (behaviours.InitAASModelBehaviour.InitAASModelBehaviour method)</a>
+</li>
+        <li><a href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.get_asset_connection_class">get_asset_connection_class() (agents.AASManagerAgent.AASManagerAgent method)</a>
+</li>
+        <li><a href="aas_model.ExtendedAASModel.html#aas_model.ExtendedAASModel.ExtendedAASModel.get_asset_interface_interaction_metadata_by_value_semantic_id">get_asset_interface_interaction_metadata_by_value_semantic_id() (aas_model.ExtendedAASModel.ExtendedAASModel method)</a>
 </li>
         <li><a href="utilities.ConfigMap_utils.html#utilities.ConfigMap_utils.get_asset_type">get_asset_type() (in module utilities.ConfigMap_utils)</a>
 </li>
+        <li><a href="aas_model.ExtendedAASModel.html#aas_model.ExtendedAASModel.ExtendedAASModel.get_cap_skill_elem_from_relationship">get_cap_skill_elem_from_relationship() (aas_model.ExtendedAASModel.ExtendedAASModel method)</a>
+</li>
+        <li><a href="aas_model.ExtendedAASModel.html#aas_model.ExtendedAASModel.ExtendedAASModel.get_capabilities_skills_object">get_capabilities_skills_object() (aas_model.ExtendedAASModel.ExtendedAASModel method)</a>
+</li>
+        <li><a href="aas_model.ExtendedAASModel.html#aas_model.ExtendedAASModel.ExtendedAASModel.get_capability_associated_constraints">get_capability_associated_constraints() (aas_model.ExtendedAASModel.ExtendedAASModel method)</a>
+</li>
+        <li><a href="aas_model.ExtendedAASModel.html#aas_model.ExtendedAASModel.ExtendedAASModel.get_capability_associated_constraints_by_qualifier_data">get_capability_associated_constraints_by_qualifier_data() (aas_model.ExtendedAASModel.ExtendedAASModel method)</a>
+</li>
+        <li><a href="aas_model.ExtendedAASModel.html#aas_model.ExtendedAASModel.ExtendedAASModel.get_capability_by_id_short">get_capability_by_id_short() (aas_model.ExtendedAASModel.ExtendedAASModel method)</a>
+</li>
+        <li><a href="aas_model.ExtendedAASModel.html#aas_model.ExtendedAASModel.ExtendedAASModel.get_capability_dict_by_type">get_capability_dict_by_type() (aas_model.ExtendedAASModel.ExtendedAASModel method)</a>
+</li>
+        <li><a href="aas_model.ExtendedSubmodel.html#aas_model.ExtendedSubmodel.ExtendedCapability.get_capability_type_in_ontology">get_capability_type_in_ontology() (aas_model.ExtendedSubmodel.ExtendedCapability method)</a>
+</li>
+        <li><a href="assetconnection.HTTPAssetConnection.html#assetconnection.HTTPAssetConnection.HTTPAssetConnection.get_complete_request_uri">get_complete_request_uri() (assetconnection.HTTPAssetConnection.HTTPAssetConnection method)</a>
+</li>
+        <li><a href="aas_model.ExtendedAASModel.html#aas_model.ExtendedAASModel.ExtendedAASModel.get_concept_description_pair_value_id_by_value_name">get_concept_description_pair_value_id_by_value_name() (aas_model.ExtendedAASModel.ExtendedAASModel method)</a>
+</li>
         <li><a href="utilities.GeneralUtils.html#utilities.GeneralUtils.GeneralUtils.get_current_timestamp">get_current_timestamp() (utilities.GeneralUtils.GeneralUtils static method)</a>
 </li>
+        <li><a href="utilities.ConfigMap_utils.html#utilities.ConfigMap_utils.get_dt_general_property">get_dt_general_property() (in module utilities.ConfigMap_utils)</a>
+</li>
+        <li><a href="assetconnection.HTTPAssetConnection.html#assetconnection.HTTPAssetConnection.HTTPAssetConnection.get_headers">get_headers() (assetconnection.HTTPAssetConnection.HTTPAssetConnection method)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.get_interaction_id">get_interaction_id() (agents.AASManagerAgent.AASManagerAgent method)</a>
 </li>
         <li><a href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.get_interaction_request">get_interaction_request() (agents.AASManagerAgent.AASManagerAgent method)</a>
 </li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="utilities.AAS_Archive_utils.html#utilities.AAS_Archive_utils.get_log_file_by_service_type">get_log_file_by_service_type() (in module utilities.AAS_Archive_utils)</a>
+</li>
+        <li><a href="assetconnection.HTTPAssetConnection.html#assetconnection.HTTPAssetConnection.HTTPAssetConnection.get_method_name">get_method_name() (assetconnection.HTTPAssetConnection.HTTPAssetConnection method)</a>
+</li>
+        <li><a href="logic.Negotiation_utils.html#logic.Negotiation_utils.get_neg_intra_aas_request_by_thread">get_neg_intra_aas_request_by_thread() (in module logic.Negotiation_utils)</a>
 </li>
         <li><a href="behaviours.HandleNegotiationBehaviour.html#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.get_neg_value_with_criteria">get_neg_value_with_criteria() (behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour method)</a>
 </li>
+        <li><a href="aas_model.ExtendedAASModel.html#aas_model.ExtendedAASModel.ExtendedAASModel.get_object_by_reference">get_object_by_reference() (aas_model.ExtendedAASModel.ExtendedAASModel method)</a>
+</li>
+        <li><a href="aas_model.ExtendedSubmodel.html#aas_model.ExtendedSubmodel.ExtendedSubmodelElement.get_parent_ref_by_semantic_id">get_parent_ref_by_semantic_id() (aas_model.ExtendedSubmodel.ExtendedSubmodelElement method)</a>
+</li>
+        <li><a href="aas_model.ExtendedSubmodel.html#aas_model.ExtendedSubmodel.ExtendedSubmodelElement.get_parent_submodel">get_parent_submodel() (aas_model.ExtendedSubmodel.ExtendedSubmodelElement method)</a>
+</li>
+        <li><a href="aas_model.ExtendedSubmodel.html#aas_model.ExtendedSubmodel.ExtendedSubmodelElement.get_qualifier_by_semantic_id">get_qualifier_by_semantic_id() (aas_model.ExtendedSubmodel.ExtendedSubmodelElement method)</a>
+</li>
+        <li><a href="aas_model.ExtendedAASModel.html#aas_model.ExtendedAASModel.ExtendedAASModel.get_relationship_elements_by_semantic_id">get_relationship_elements_by_semantic_id() (aas_model.ExtendedAASModel.ExtendedAASModel method)</a>
+</li>
+        <li><a href="assetconnection.HTTPAssetConnection.html#assetconnection.HTTPAssetConnection.HTTPAssetConnection.get_response_content">get_response_content() (assetconnection.HTTPAssetConnection.HTTPAssetConnection method)</a>
+</li>
+        <li><a href="utilities.GeneralUtils.html#utilities.GeneralUtils.GeneralUtils.get_sender_from_acl_msg">get_sender_from_acl_msg() (utilities.GeneralUtils.GeneralUtils static method)</a>
+</li>
+        <li><a href="aas_model.ExtendedAASModel.html#aas_model.ExtendedAASModel.ExtendedAASModel.get_skill_data_by_capability">get_skill_data_by_capability() (aas_model.ExtendedAASModel.ExtendedAASModel method)</a>
+</li>
+        <li><a href="aas_model.ExtendedAASModel.html#aas_model.ExtendedAASModel.ExtendedAASModel.get_skill_interface_by_skill_elem">get_skill_interface_by_skill_elem() (aas_model.ExtendedAASModel.ExtendedAASModel method)</a>
+</li>
+        <li><a href="aas_model.ExtendedSubmodel.html#aas_model.ExtendedSubmodel.ExtendedSubmodelElementCollection.get_sm_element_by_id_short">get_sm_element_by_id_short() (aas_model.ExtendedSubmodel.ExtendedSubmodelElementCollection method)</a>
+</li>
+        <li><a href="aas_model.ExtendedSubmodel.html#aas_model.ExtendedSubmodel.ExtendedSubmodelElementCollection.get_sm_element_by_semantic_id">get_sm_element_by_semantic_id() (aas_model.ExtendedSubmodel.ExtendedSubmodelElementCollection method)</a>
+</li>
         <li><a href="utilities.AAS_Archive_utils.html#utilities.AAS_Archive_utils.get_status">get_status() (in module utilities.AAS_Archive_utils)</a>
+</li>
+        <li><a href="aas_model.ExtendedAASModel.html#aas_model.ExtendedAASModel.ExtendedAASModel.get_submodel_by_semantic_id">get_submodel_by_semantic_id() (aas_model.ExtendedAASModel.ExtendedAASModel method)</a>
 </li>
         <li><a href="utilities.ConfigMap_utils.html#utilities.ConfigMap_utils.get_submodel_information">get_submodel_information() (in module utilities.ConfigMap_utils)</a>
 </li>
@@ -709,19 +1009,33 @@
           <li><a href="behaviours.HandleSvcResponseBehaviour.html#behaviours.HandleSvcResponseBehaviour.HandleSvcResponseBehaviour.handle_asset_related_svc">(behaviours.HandleSvcResponseBehaviour.HandleSvcResponseBehaviour method)</a>
 </li>
         </ul></li>
+        <li><a href="behaviours.HandleCapabilityBehaviour.html#behaviours.HandleCapabilityBehaviour.HandleCapabilityBehaviour.handle_call_for_proposal">handle_call_for_proposal() (behaviours.HandleCapabilityBehaviour.HandleCapabilityBehaviour method)</a>
+</li>
+        <li><a href="behaviours.HandleCapabilityBehaviour.html#behaviours.HandleCapabilityBehaviour.HandleCapabilityBehaviour.handle_inform">handle_inform() (behaviours.HandleCapabilityBehaviour.HandleCapabilityBehaviour method)</a>
+</li>
+        <li><a href="behaviours.HandleCapabilityBehaviour.html#behaviours.HandleCapabilityBehaviour.HandleCapabilityBehaviour.handle_query_if">handle_query_if() (behaviours.HandleCapabilityBehaviour.HandleCapabilityBehaviour method)</a>
+</li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="behaviours.HandleSvcRequestBehaviour.html#behaviours.HandleSvcRequestBehaviour.HandleSvcRequestBehaviour.handle_submodel_services">handle_submodel_services() (behaviours.HandleSvcRequestBehaviour.HandleSvcRequestBehaviour method)</a>
+        <li><a href="behaviours.HandleCapabilityBehaviour.html#behaviours.HandleCapabilityBehaviour.HandleCapabilityBehaviour.handle_submodel_services">handle_submodel_services() (behaviours.HandleCapabilityBehaviour.HandleCapabilityBehaviour method)</a>
 
         <ul>
+          <li><a href="behaviours.HandleSvcRequestBehaviour.html#behaviours.HandleSvcRequestBehaviour.HandleSvcRequestBehaviour.handle_submodel_services">(behaviours.HandleSvcRequestBehaviour.HandleSvcRequestBehaviour method)</a>
+</li>
           <li><a href="behaviours.HandleSvcResponseBehaviour.html#behaviours.HandleSvcResponseBehaviour.HandleSvcResponseBehaviour.handle_submodel_services">(behaviours.HandleSvcResponseBehaviour.HandleSvcResponseBehaviour method)</a>
 </li>
         </ul></li>
+        <li><a href="behaviours.HandleCapabilityBehaviour.html#behaviours.HandleCapabilityBehaviour.HandleCapabilityBehaviour">HandleCapabilityBehaviour (class in behaviours.HandleCapabilityBehaviour)</a>
+</li>
         <li><a href="behaviours.HandleNegotiationBehaviour.html#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour">HandleNegotiationBehaviour (class in behaviours.HandleNegotiationBehaviour)</a>
 </li>
         <li><a href="behaviours.HandleSvcRequestBehaviour.html#behaviours.HandleSvcRequestBehaviour.HandleSvcRequestBehaviour">HandleSvcRequestBehaviour (class in behaviours.HandleSvcRequestBehaviour)</a>
 </li>
         <li><a href="behaviours.HandleSvcResponseBehaviour.html#behaviours.HandleSvcResponseBehaviour.HandleSvcResponseBehaviour">HandleSvcResponseBehaviour (class in behaviours.HandleSvcResponseBehaviour)</a>
+</li>
+        <li><a href="assetconnection.HTTPAssetConnection.html#assetconnection.HTTPAssetConnection.HTTPAssetConnection">HTTPAssetConnection (class in assetconnection.HTTPAssetConnection)</a>
+</li>
+        <li><a href="assetconnection.HTTPAssetConnection.html#assetconnection.HTTPAssetConnection.HTTPAssetInterfaceSemantics">HTTPAssetInterfaceSemantics (class in assetconnection.HTTPAssetConnection)</a>
 </li>
     </ul></td>
   </tr></table>
@@ -743,11 +1057,11 @@
 </li>
         <li><a href="behaviours.InitAASarchiveBehaviour.html#behaviours.InitAASarchiveBehaviour.InitAASarchiveBehaviour">InitAASarchiveBehaviour (class in behaviours.InitAASarchiveBehaviour)</a>
 </li>
-        <li><a href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.initialize_aas_manager_attributes">initialize_aas_manager_attributes() (agents.AASManagerAgent.AASManagerAgent method)</a>
+        <li><a href="behaviours.InitAASModelBehaviour.html#behaviours.InitAASModelBehaviour.InitAASModelBehaviour">InitAASModelBehaviour (class in behaviours.InitAASModelBehaviour)</a>
 </li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="behaviours.InitSubmodelsBehaviour.html#behaviours.InitSubmodelsBehaviour.InitSubmodelsBehaviour">InitSubmodelsBehaviour (class in behaviours.InitSubmodelsBehaviour)</a>
+        <li><a href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.initialize_aas_manager_attributes">initialize_aas_manager_attributes() (agents.AASManagerAgent.AASManagerAgent method)</a>
 </li>
         <li><a href="glossary.html#term-Inter-AAS-Interaction"><strong>Inter AAS Interaction</strong></a>
 </li>
@@ -759,7 +1073,7 @@
 </li>
         <li><a href="behaviours.InteractionHandlingBehaviour.html#behaviours.InteractionHandlingBehaviour.InteractionHandlingBehaviour">InteractionHandlingBehaviour (class in behaviours.InteractionHandlingBehaviour)</a>
 </li>
-        <li><a href="utilities.AASarchiveInfo.html#utilities.AASarchiveInfo.AASarchiveInfo.INTERACTIONS_FOLDER_PATH">INTERACTIONS_FOLDER_PATH (utilities.AASarchiveInfo.AASarchiveInfo attribute)</a>
+        <li><a href="utilities.AASGeneralInfo.html#utilities.AASGeneralInfo.AASGeneralInfo.INTERACTIONS_FOLDER_PATH">INTERACTIONS_FOLDER_PATH (utilities.AASGeneralInfo.AASGeneralInfo attribute)</a>
 </li>
         <li><a href="glossary.html#term-Intra-AAS-Interaction"><strong>Intra AAS Interaction</strong></a>
 </li>
@@ -787,9 +1101,13 @@
   <h2>L</h2>
   <table style="width: 100%" class="indextable genindextable"><tr>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.lock">lock (agents.AASManagerAgent.AASManagerAgent attribute)</a>
+        <li><a href="aas_model.ExtendedAASModel.html#aas_model.ExtendedAASModel.ExtendedAASModel.lock">lock (aas_model.ExtendedAASModel.ExtendedAASModel attribute)</a>
+
+        <ul>
+          <li><a href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.lock">(agents.AASManagerAgent.AASManagerAgent attribute)</a>
 </li>
-        <li><a href="utilities.AASarchiveInfo.html#utilities.AASarchiveInfo.AASarchiveInfo.LOG_FOLDER_PATH">LOG_FOLDER_PATH (utilities.AASarchiveInfo.AASarchiveInfo attribute)</a>
+        </ul></li>
+        <li><a href="utilities.AASGeneralInfo.html#utilities.AASGeneralInfo.AASGeneralInfo.LOG_FOLDER_PATH">LOG_FOLDER_PATH (utilities.AASGeneralInfo.AASGeneralInfo attribute)</a>
 </li>
         <li>
     logic
@@ -838,11 +1156,13 @@
     <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="aas_manager.html#aas_manager.main">main() (in module aas_manager)</a>
 </li>
-        <li><a href="utilities.AASarchiveInfo.html#utilities.AASarchiveInfo.AASarchiveInfo.MANAGER_INTERACTIONS_FOLDER_PATH">MANAGER_INTERACTIONS_FOLDER_PATH (utilities.AASarchiveInfo.AASarchiveInfo attribute)</a>
+        <li><a href="utilities.AASGeneralInfo.html#utilities.AASGeneralInfo.AASGeneralInfo.MANAGER_INTERACTIONS_FOLDER_PATH">MANAGER_INTERACTIONS_FOLDER_PATH (utilities.AASGeneralInfo.AASGeneralInfo attribute)</a>
 </li>
-        <li><a href="utilities.AASarchiveInfo.html#utilities.AASarchiveInfo.AASarchiveInfo.MANAGER_STATUS_FILE_PATH">MANAGER_STATUS_FILE_PATH (utilities.AASarchiveInfo.AASarchiveInfo attribute)</a>
+        <li><a href="utilities.AASGeneralInfo.html#utilities.AASGeneralInfo.AASGeneralInfo.MANAGER_STATUS_FILE_PATH">MANAGER_STATUS_FILE_PATH (utilities.AASGeneralInfo.AASGeneralInfo attribute)</a>
 </li>
         <li><a href="utilities.KafkaInfo.html#utilities.KafkaInfo.KafkaInfo.MANAGER_TOPIC_PARTITION">MANAGER_TOPIC_PARTITION (utilities.KafkaInfo.KafkaInfo attribute)</a>
+</li>
+        <li><a href="utilities.CapabilitySkillOntology.html#utilities.CapabilitySkillOntology.CapabilitySkillOntology.MANUFACTURING_CAPABILITY_TYPE">MANUFACTURING_CAPABILITY_TYPE (utilities.CapabilitySkillOntology.CapabilitySkillOntology attribute)</a>
 </li>
         <li><a href="glossary.html#term-Method"><strong>Method</strong></a>
 </li>
@@ -852,6 +1172,18 @@
         <ul>
           <li><a href="aas_manager.html#module-aas_manager">aas_manager</a>
 </li>
+          <li><a href="aas_model.html#module-aas_model">aas_model</a>
+</li>
+          <li><a href="aas_model.ExtendedAASModel.html#module-aas_model.ExtendedAASModel">aas_model.ExtendedAASModel</a>
+</li>
+          <li><a href="aas_model.ExtendedAssetAdministrationShell.html#module-aas_model.ExtendedAssetAdministrationShell">aas_model.ExtendedAssetAdministrationShell</a>
+</li>
+          <li><a href="aas_model.ExtendedBase.html#module-aas_model.ExtendedBase">aas_model.ExtendedBase</a>
+</li>
+          <li><a href="aas_model.ExtendedConceptDescription.html#module-aas_model.ExtendedConceptDescription">aas_model.ExtendedConceptDescription</a>
+</li>
+          <li><a href="aas_model.ExtendedSubmodel.html#module-aas_model.ExtendedSubmodel">aas_model.ExtendedSubmodel</a>
+</li>
           <li><a href="agents.html#module-agents">agents</a>
 </li>
           <li><a href="agents.AASManagerAgent.html#module-agents.AASManagerAgent">agents.AASManagerAgent</a>
@@ -859,6 +1191,12 @@
           <li><a href="agents.AASManagerAppAgent.html#module-agents.AASManagerAppAgent">agents.AASManagerAppAgent</a>
 </li>
           <li><a href="agents.AASManagerResourceAgent.html#module-agents.AASManagerResourceAgent">agents.AASManagerResourceAgent</a>
+</li>
+          <li><a href="assetconnection.html#module-assetconnection">assetconnection</a>
+</li>
+          <li><a href="assetconnection.AssetConnection.html#module-assetconnection.AssetConnection">assetconnection.AssetConnection</a>
+</li>
+          <li><a href="assetconnection.HTTPAssetConnection.html#module-assetconnection.HTTPAssetConnection">assetconnection.HTTPAssetConnection</a>
 </li>
           <li><a href="behaviours.html#module-behaviours">behaviours</a>
 </li>
@@ -870,6 +1208,8 @@
 </li>
           <li><a href="behaviours.EndBehaviour.html#module-behaviours.EndBehaviour">behaviours.EndBehaviour</a>
 </li>
+          <li><a href="behaviours.HandleCapabilityBehaviour.html#module-behaviours.HandleCapabilityBehaviour">behaviours.HandleCapabilityBehaviour</a>
+</li>
           <li><a href="behaviours.HandleNegotiationBehaviour.html#module-behaviours.HandleNegotiationBehaviour">behaviours.HandleNegotiationBehaviour</a>
 </li>
           <li><a href="behaviours.HandleSvcRequestBehaviour.html#module-behaviours.HandleSvcRequestBehaviour">behaviours.HandleSvcRequestBehaviour</a>
@@ -880,7 +1220,7 @@
 </li>
           <li><a href="behaviours.InitAASarchiveBehaviour.html#module-behaviours.InitAASarchiveBehaviour">behaviours.InitAASarchiveBehaviour</a>
 </li>
-          <li><a href="behaviours.InitSubmodelsBehaviour.html#module-behaviours.InitSubmodelsBehaviour">behaviours.InitSubmodelsBehaviour</a>
+          <li><a href="behaviours.InitAASModelBehaviour.html#module-behaviours.InitAASModelBehaviour">behaviours.InitAASModelBehaviour</a>
 </li>
           <li><a href="behaviours.InteractionHandlingBehaviour.html#module-behaviours.InteractionHandlingBehaviour">behaviours.InteractionHandlingBehaviour</a>
 </li>
@@ -914,11 +1254,17 @@
 </li>
           <li><a href="utilities.AAS_Archive_utils.html#module-utilities.AAS_Archive_utils">utilities.AAS_Archive_utils</a>
 </li>
-          <li><a href="utilities.AASarchiveInfo.html#module-utilities.AASarchiveInfo">utilities.AASarchiveInfo</a>
+          <li><a href="utilities.AASGeneralInfo.html#module-utilities.AASGeneralInfo">utilities.AASGeneralInfo</a>
 </li>
           <li><a href="utilities.AASmanagerInfo.html#module-utilities.AASmanagerInfo">utilities.AASmanagerInfo</a>
 </li>
+          <li><a href="utilities.AASModelExtension_utils.html#module-utilities.AASModelExtension_utils">utilities.AASModelExtension_utils</a>
+</li>
+          <li><a href="utilities.CapabilitySkillOntology.html#module-utilities.CapabilitySkillOntology">utilities.CapabilitySkillOntology</a>
+</li>
           <li><a href="utilities.ConfigMap_utils.html#module-utilities.ConfigMap_utils">utilities.ConfigMap_utils</a>
+</li>
+          <li><a href="utilities.FIPAACLInfo.html#module-utilities.FIPAACLInfo">utilities.FIPAACLInfo</a>
 </li>
           <li><a href="utilities.GeneralUtils.html#module-utilities.GeneralUtils">utilities.GeneralUtils</a>
 </li>
@@ -951,10 +1297,10 @@
 </li>
         <li><a href="utilities.AASmanagerInfo.html#utilities.AASmanagerInfo.AASmanagerInfo.NEG_STANDARD_ACL_TEMPLATE_FAILURE">NEG_STANDARD_ACL_TEMPLATE_FAILURE (utilities.AASmanagerInfo.AASmanagerInfo attribute)</a>
 </li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="utilities.AASmanagerInfo.html#utilities.AASmanagerInfo.AASmanagerInfo.NEG_STANDARD_ACL_TEMPLATE_INFORM">NEG_STANDARD_ACL_TEMPLATE_INFORM (utilities.AASmanagerInfo.AASmanagerInfo attribute)</a>
 </li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="utilities.AASmanagerInfo.html#utilities.AASmanagerInfo.AASmanagerInfo.NEG_STANDARD_ACL_TEMPLATE_PROPOSE">NEG_STANDARD_ACL_TEMPLATE_PROPOSE (utilities.AASmanagerInfo.AASmanagerInfo attribute)</a>
 </li>
         <li><a href="behaviours.HandleNegotiationBehaviour.html#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.neg_value">neg_value (behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour attribute)</a>
@@ -964,6 +1310,8 @@
         <li><a href="behaviours.NegotiatingBehaviour.html#behaviours.NegotiatingBehaviour.NegotiatingBehaviour">NegotiatingBehaviour (class in behaviours.NegotiatingBehaviour)</a>
 </li>
         <li><a href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.negotiations_data">negotiations_data (agents.AASManagerAgent.AASManagerAgent attribute)</a>
+</li>
+        <li><a href="assetconnection.AssetConnection.html#assetconnection.AssetConnection.AssetConnection.ArchitectureStyle.NOTAPPLICABLE">NOTAPPLICABLE (assetconnection.AssetConnection.AssetConnection.ArchitectureStyle attribute)</a>
 </li>
     </ul></td>
   </tr></table>
@@ -980,6 +1328,8 @@
         <li><a href="behaviours.AASFSMBehaviour.html#behaviours.AASFSMBehaviour.AASFSMBehaviour.on_start">on_start() (behaviours.AASFSMBehaviour.AASFSMBehaviour method)</a>
 
         <ul>
+          <li><a href="behaviours.HandleCapabilityBehaviour.html#behaviours.HandleCapabilityBehaviour.HandleCapabilityBehaviour.on_start">(behaviours.HandleCapabilityBehaviour.HandleCapabilityBehaviour method)</a>
+</li>
           <li><a href="behaviours.HandleNegotiationBehaviour.html#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.on_start">(behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour method)</a>
 </li>
           <li><a href="behaviours.HandleSvcRequestBehaviour.html#behaviours.HandleSvcRequestBehaviour.HandleSvcRequestBehaviour.on_start">(behaviours.HandleSvcRequestBehaviour.HandleSvcRequestBehaviour method)</a>
@@ -997,13 +1347,121 @@
   </tr></table>
 </section>
 
+<section id="P" class="genindex-section">
+  <h2>P</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="aas_model.ExtendedAssetAdministrationShell.html#aas_model.ExtendedAssetAdministrationShell.ExtendedAssetAdministrationShell.print_aas_information">print_aas_information() (aas_model.ExtendedAssetAdministrationShell.ExtendedAssetAdministrationShell method)</a>
+</li>
+        <li><a href="aas_model.ExtendedAssetAdministrationShell.html#aas_model.ExtendedAssetAdministrationShell.ExtendedGeneralMethods.print_administration">print_administration() (aas_model.ExtendedAssetAdministrationShell.ExtendedGeneralMethods static method)</a>
+</li>
+        <li><a href="aas_model.ExtendedAssetAdministrationShell.html#aas_model.ExtendedAssetAdministrationShell.ExtendedAssetInformation.print_asset_information">print_asset_information() (aas_model.ExtendedAssetAdministrationShell.ExtendedAssetInformation method)</a>
+</li>
+        <li><a href="aas_model.ExtendedConceptDescription.html#aas_model.ExtendedConceptDescription.ExtendedConceptDescription.print_concept_description_information">print_concept_description_information() (aas_model.ExtendedConceptDescription.ExtendedConceptDescription method)</a>
+</li>
+        <li><a href="aas_model.ExtendedAssetAdministrationShell.html#aas_model.ExtendedAssetAdministrationShell.ExtendedGeneralMethods.print_data_specifications">print_data_specifications() (aas_model.ExtendedAssetAdministrationShell.ExtendedGeneralMethods static method)</a>
+</li>
+        <li><a href="aas_model.ExtendedAssetAdministrationShell.html#aas_model.ExtendedAssetAdministrationShell.ExtendedGeneralMethods.print_namespace_set">print_namespace_set() (aas_model.ExtendedAssetAdministrationShell.ExtendedGeneralMethods static method)</a>
+</li>
+        <li><a href="utilities.GeneralUtils.html#utilities.GeneralUtils.GeneralUtils.print_smia_banner">print_smia_banner() (utilities.GeneralUtils.GeneralUtils static method)</a>
+</li>
+        <li><a href="aas_model.ExtendedSubmodel.html#aas_model.ExtendedSubmodel.ExtendedAnnotatedRelationshipElement.print_submodel_element_information">print_submodel_element_information() (aas_model.ExtendedSubmodel.ExtendedAnnotatedRelationshipElement method)</a>
+
+        <ul>
+          <li><a href="aas_model.ExtendedSubmodel.html#aas_model.ExtendedSubmodel.ExtendedBasicEventElement.print_submodel_element_information">(aas_model.ExtendedSubmodel.ExtendedBasicEventElement method)</a>
+</li>
+          <li><a href="aas_model.ExtendedSubmodel.html#aas_model.ExtendedSubmodel.ExtendedBlob.print_submodel_element_information">(aas_model.ExtendedSubmodel.ExtendedBlob method)</a>
+</li>
+          <li><a href="aas_model.ExtendedSubmodel.html#aas_model.ExtendedSubmodel.ExtendedCapability.print_submodel_element_information">(aas_model.ExtendedSubmodel.ExtendedCapability method)</a>
+</li>
+          <li><a href="aas_model.ExtendedSubmodel.html#aas_model.ExtendedSubmodel.ExtendedEntity.print_submodel_element_information">(aas_model.ExtendedSubmodel.ExtendedEntity method)</a>
+</li>
+          <li><a href="aas_model.ExtendedSubmodel.html#aas_model.ExtendedSubmodel.ExtendedFile.print_submodel_element_information">(aas_model.ExtendedSubmodel.ExtendedFile method)</a>
+</li>
+          <li><a href="aas_model.ExtendedSubmodel.html#aas_model.ExtendedSubmodel.ExtendedMultiLanguageProperty.print_submodel_element_information">(aas_model.ExtendedSubmodel.ExtendedMultiLanguageProperty method)</a>
+</li>
+          <li><a href="aas_model.ExtendedSubmodel.html#aas_model.ExtendedSubmodel.ExtendedOperation.print_submodel_element_information">(aas_model.ExtendedSubmodel.ExtendedOperation method)</a>
+</li>
+          <li><a href="aas_model.ExtendedSubmodel.html#aas_model.ExtendedSubmodel.ExtendedProperty.print_submodel_element_information">(aas_model.ExtendedSubmodel.ExtendedProperty method)</a>
+</li>
+          <li><a href="aas_model.ExtendedSubmodel.html#aas_model.ExtendedSubmodel.ExtendedRange.print_submodel_element_information">(aas_model.ExtendedSubmodel.ExtendedRange method)</a>
+</li>
+          <li><a href="aas_model.ExtendedSubmodel.html#aas_model.ExtendedSubmodel.ExtendedReferenceElement.print_submodel_element_information">(aas_model.ExtendedSubmodel.ExtendedReferenceElement method)</a>
+</li>
+          <li><a href="aas_model.ExtendedSubmodel.html#aas_model.ExtendedSubmodel.ExtendedRelationshipElement.print_submodel_element_information">(aas_model.ExtendedSubmodel.ExtendedRelationshipElement method)</a>
+</li>
+          <li><a href="aas_model.ExtendedSubmodel.html#aas_model.ExtendedSubmodel.ExtendedSubmodelElement.print_submodel_element_information">(aas_model.ExtendedSubmodel.ExtendedSubmodelElement method)</a>
+</li>
+          <li><a href="aas_model.ExtendedSubmodel.html#aas_model.ExtendedSubmodel.ExtendedSubmodelElementCollection.print_submodel_element_information">(aas_model.ExtendedSubmodel.ExtendedSubmodelElementCollection method)</a>
+</li>
+          <li><a href="aas_model.ExtendedSubmodel.html#aas_model.ExtendedSubmodel.ExtendedSubmodelElementList.print_submodel_element_information">(aas_model.ExtendedSubmodel.ExtendedSubmodelElementList method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="aas_model.ExtendedSubmodel.html#aas_model.ExtendedSubmodel.ExtendedSubmodel.print_submodel_information">print_submodel_information() (aas_model.ExtendedSubmodel.ExtendedSubmodel method)</a>
+</li>
+        <li><a href="assetconnection.AssetConnection.html#assetconnection.AssetConnection.AssetConnection.ArchitectureStyle.PUBSUB">PUBSUB (assetconnection.AssetConnection.AssetConnection.ArchitectureStyle attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="Q" class="genindex-section">
+  <h2>Q</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="utilities.CapabilitySkillOntology.html#utilities.CapabilitySkillOntology.CapabilitySkillOntology.QUALIFIER_CAPABILITY_POSSIBLE_VALUES">QUALIFIER_CAPABILITY_POSSIBLE_VALUES (utilities.CapabilitySkillOntology.CapabilitySkillOntology attribute)</a>
+</li>
+        <li><a href="utilities.CapabilitySkillOntology.html#utilities.CapabilitySkillOntology.CapabilitySkillOntology.QUALIFIER_CAPABILITY_TYPE">QUALIFIER_CAPABILITY_TYPE (utilities.CapabilitySkillOntology.CapabilitySkillOntology attribute)</a>
+</li>
+        <li><a href="utilities.CapabilitySkillOntology.html#utilities.CapabilitySkillOntology.CapabilitySkillOntology.QUALIFIER_FEASIBILITY_CHECKING_POSSIBLE_VALUES">QUALIFIER_FEASIBILITY_CHECKING_POSSIBLE_VALUES (utilities.CapabilitySkillOntology.CapabilitySkillOntology attribute)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="utilities.CapabilitySkillOntology.html#utilities.CapabilitySkillOntology.CapabilitySkillOntology.QUALIFIER_FEASIBILITY_CHECKING_TYPE">QUALIFIER_FEASIBILITY_CHECKING_TYPE (utilities.CapabilitySkillOntology.CapabilitySkillOntology attribute)</a>
+</li>
+        <li><a href="utilities.CapabilitySkillOntology.html#utilities.CapabilitySkillOntology.CapabilitySkillOntology.QUALIFIER_SKILL_POSSIBLE_VALUES">QUALIFIER_SKILL_POSSIBLE_VALUES (utilities.CapabilitySkillOntology.CapabilitySkillOntology attribute)</a>
+</li>
+        <li><a href="utilities.CapabilitySkillOntology.html#utilities.CapabilitySkillOntology.CapabilitySkillOntology.QUALIFIER_SKILL_TYPE">QUALIFIER_SKILL_TYPE (utilities.CapabilitySkillOntology.CapabilitySkillOntology attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
 <section id="R" class="genindex-section">
   <h2>R</h2>
   <table style="width: 100%" class="indextable genindextable"><tr>
     <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="behaviours.InitAASModelBehaviour.html#behaviours.InitAASModelBehaviour.InitAASModelBehaviour.read_aas_model_object_store">read_aas_model_object_store() (behaviours.InitAASModelBehaviour.InitAASModelBehaviour method)</a>
+</li>
+        <li><a href="assetconnection.AssetConnection.html#assetconnection.AssetConnection.AssetConnection.receive_msg_from_asset">receive_msg_from_asset() (assetconnection.AssetConnection.AssetConnection method)</a>
+
+        <ul>
+          <li><a href="assetconnection.HTTPAssetConnection.html#assetconnection.HTTPAssetConnection.HTTPAssetConnection.receive_msg_from_asset">(assetconnection.HTTPAssetConnection.HTTPAssetConnection method)</a>
+</li>
+        </ul></li>
         <li><a href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.remove_acl_svc_request">remove_acl_svc_request() (agents.AASManagerAgent.AASManagerAgent method)</a>
 </li>
         <li><a href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.remove_interaction_request">remove_interaction_request() (agents.AASManagerAgent.AASManagerAgent method)</a>
+</li>
+        <li><a href="utilities.CapabilitySkillOntology.html#utilities.CapabilitySkillOntology.CapabilitySkillACLInfo.REQUIRED_CAPABILITY_CONSTRAINTS">REQUIRED_CAPABILITY_CONSTRAINTS (utilities.CapabilitySkillOntology.CapabilitySkillACLInfo attribute)</a>
+</li>
+        <li><a href="utilities.CapabilitySkillOntology.html#utilities.CapabilitySkillOntology.CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME">REQUIRED_CAPABILITY_NAME (utilities.CapabilitySkillOntology.CapabilitySkillACLInfo attribute)</a>
+</li>
+        <li><a href="utilities.CapabilitySkillOntology.html#utilities.CapabilitySkillOntology.CapabilitySkillACLInfo.REQUIRED_CAPABILITY_TYPE">REQUIRED_CAPABILITY_TYPE (utilities.CapabilitySkillOntology.CapabilitySkillACLInfo attribute)</a>
+</li>
+        <li><a href="utilities.CapabilitySkillOntology.html#utilities.CapabilitySkillOntology.CapabilitySkillACLInfo.REQUIRED_ELEMENT_TYPE">REQUIRED_ELEMENT_TYPE (utilities.CapabilitySkillOntology.CapabilitySkillACLInfo attribute)</a>
+</li>
+        <li><a href="utilities.CapabilitySkillOntology.html#utilities.CapabilitySkillOntology.CapabilitySkillACLInfo.REQUIRED_SKILL_INFO">REQUIRED_SKILL_INFO (utilities.CapabilitySkillOntology.CapabilitySkillACLInfo attribute)</a>
+</li>
+        <li><a href="utilities.CapabilitySkillOntology.html#utilities.CapabilitySkillOntology.CapabilitySkillACLInfo.REQUIRED_SKILL_INPUT_PARAMETERS">REQUIRED_SKILL_INPUT_PARAMETERS (utilities.CapabilitySkillOntology.CapabilitySkillACLInfo attribute)</a>
+</li>
+        <li><a href="utilities.CapabilitySkillOntology.html#utilities.CapabilitySkillOntology.CapabilitySkillACLInfo.REQUIRED_SKILL_NAME">REQUIRED_SKILL_NAME (utilities.CapabilitySkillOntology.CapabilitySkillACLInfo attribute)</a>
+</li>
+        <li><a href="utilities.CapabilitySkillOntology.html#utilities.CapabilitySkillOntology.CapabilitySkillACLInfo.REQUIRED_SKILL_OUTPUT_PARAMETERS">REQUIRED_SKILL_OUTPUT_PARAMETERS (utilities.CapabilitySkillOntology.CapabilitySkillACLInfo attribute)</a>
+</li>
+        <li><a href="utilities.CapabilitySkillOntology.html#utilities.CapabilitySkillOntology.CapabilitySkillACLInfo.REQUIRED_SKILL_PARAMETERS">REQUIRED_SKILL_PARAMETERS (utilities.CapabilitySkillOntology.CapabilitySkillACLInfo attribute)</a>
 </li>
         <li><a href="utilities.GeneralUtils.html#utilities.GeneralUtils.GeneralUtils.ColoredFormatter.RESET">RESET (utilities.GeneralUtils.GeneralUtils.ColoredFormatter attribute)</a>
 </li>
@@ -1013,6 +1471,8 @@
           <li><a href="behaviours.CheckPhysicalAssetBehaviour.html#behaviours.CheckPhysicalAssetBehaviour.CheckPhysicalAssetBehaviour.run">(behaviours.CheckPhysicalAssetBehaviour.CheckPhysicalAssetBehaviour method)</a>
 </li>
           <li><a href="behaviours.EndBehaviour.html#behaviours.EndBehaviour.EndBehaviour.run">(behaviours.EndBehaviour.EndBehaviour method)</a>
+</li>
+          <li><a href="behaviours.HandleCapabilityBehaviour.html#behaviours.HandleCapabilityBehaviour.HandleCapabilityBehaviour.run">(behaviours.HandleCapabilityBehaviour.HandleCapabilityBehaviour method)</a>
 </li>
           <li><a href="behaviours.HandleNegotiationBehaviour.html#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.run">(behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour method)</a>
 </li>
@@ -1024,7 +1484,7 @@
 </li>
           <li><a href="behaviours.InitAASarchiveBehaviour.html#behaviours.InitAASarchiveBehaviour.InitAASarchiveBehaviour.run">(behaviours.InitAASarchiveBehaviour.InitAASarchiveBehaviour method)</a>
 </li>
-          <li><a href="behaviours.InitSubmodelsBehaviour.html#behaviours.InitSubmodelsBehaviour.InitSubmodelsBehaviour.run">(behaviours.InitSubmodelsBehaviour.InitSubmodelsBehaviour method)</a>
+          <li><a href="behaviours.InitAASModelBehaviour.html#behaviours.InitAASModelBehaviour.InitAASModelBehaviour.run">(behaviours.InitAASModelBehaviour.InitAASModelBehaviour method)</a>
 </li>
           <li><a href="behaviours.InteractionHandlingBehaviour.html#behaviours.InteractionHandlingBehaviour.InteractionHandlingBehaviour.run">(behaviours.InteractionHandlingBehaviour.InteractionHandlingBehaviour method)</a>
 </li>
@@ -1057,6 +1517,8 @@
     <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.save_acl_svc_response">save_acl_svc_response() (agents.AASManagerAgent.AASManagerAgent method)</a>
 </li>
+        <li><a href="aas_model.ExtendedAASModel.html#aas_model.ExtendedAASModel.ExtendedAASModel.save_capability_skill_information">save_capability_skill_information() (aas_model.ExtendedAASModel.ExtendedAASModel method)</a>
+</li>
         <li><a href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.save_interaction_request">save_interaction_request() (agents.AASManagerAgent.AASManagerAgent method)</a>
 </li>
         <li><a href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.save_interaction_response">save_interaction_response() (agents.AASManagerAgent.AASManagerAgent method)</a>
@@ -1071,7 +1533,87 @@
 </li>
         <li><a href="utilities.AAS_Archive_utils.html#utilities.AAS_Archive_utils.save_svc_log_info">save_svc_log_info() (in module utilities.AAS_Archive_utils)</a>
 </li>
+        <li><a href="utilities.CapabilitySkillOntology.html#utilities.CapabilitySkillOntology.CapabilitySkillOntology.SEMANTICID_AGENT_CAPABILITY">SEMANTICID_AGENT_CAPABILITY (utilities.CapabilitySkillOntology.CapabilitySkillOntology attribute)</a>
+</li>
+        <li><a href="utilities.CapabilitySkillOntology.html#utilities.CapabilitySkillOntology.CapabilitySkillOntology.SEMANTICID_ASSET_CAPABILITY">SEMANTICID_ASSET_CAPABILITY (utilities.CapabilitySkillOntology.CapabilitySkillOntology attribute)</a>
+</li>
+        <li><a href="utilities.CapabilitySkillOntology.html#utilities.CapabilitySkillOntology.CapabilitySkillOntology.SEMANTICID_CAPABILITY_CONSTRAINT">SEMANTICID_CAPABILITY_CONSTRAINT (utilities.CapabilitySkillOntology.CapabilitySkillOntology attribute)</a>
+</li>
+        <li><a href="utilities.CapabilitySkillOntology.html#utilities.CapabilitySkillOntology.CapabilitySkillOntology.SEMANTICID_CAPABILITY_PROPERTY">SEMANTICID_CAPABILITY_PROPERTY (utilities.CapabilitySkillOntology.CapabilitySkillOntology attribute)</a>
+</li>
+        <li><a href="assetconnection.HTTPAssetConnection.html#assetconnection.HTTPAssetConnection.HTTPAssetInterfaceSemantics.SEMANTICID_HTTP_INTERFACE_ACTION">SEMANTICID_HTTP_INTERFACE_ACTION (assetconnection.HTTPAssetConnection.HTTPAssetInterfaceSemantics attribute)</a>
+</li>
+        <li><a href="assetconnection.HTTPAssetConnection.html#assetconnection.HTTPAssetConnection.HTTPAssetInterfaceSemantics.SEMANTICID_HTTP_INTERFACE_BASE">SEMANTICID_HTTP_INTERFACE_BASE (assetconnection.HTTPAssetConnection.HTTPAssetInterfaceSemantics attribute)</a>
+</li>
+        <li><a href="assetconnection.HTTPAssetConnection.html#assetconnection.HTTPAssetConnection.HTTPAssetInterfaceSemantics.SEMANTICID_HTTP_INTERFACE_CONTENT_TYPE">SEMANTICID_HTTP_INTERFACE_CONTENT_TYPE (assetconnection.HTTPAssetConnection.HTTPAssetInterfaceSemantics attribute)</a>
+</li>
+        <li><a href="assetconnection.HTTPAssetConnection.html#assetconnection.HTTPAssetConnection.HTTPAssetInterfaceSemantics.SEMANTICID_HTTP_INTERFACE_ENDPOINT_METADATA">SEMANTICID_HTTP_INTERFACE_ENDPOINT_METADATA (assetconnection.HTTPAssetConnection.HTTPAssetInterfaceSemantics attribute)</a>
+</li>
+        <li><a href="assetconnection.HTTPAssetConnection.html#assetconnection.HTTPAssetConnection.HTTPAssetInterfaceSemantics.SEMANTICID_HTTP_INTERFACE_FIELD_NAME">SEMANTICID_HTTP_INTERFACE_FIELD_NAME (assetconnection.HTTPAssetConnection.HTTPAssetInterfaceSemantics attribute)</a>
+</li>
+        <li><a href="assetconnection.HTTPAssetConnection.html#assetconnection.HTTPAssetConnection.HTTPAssetInterfaceSemantics.SEMANTICID_HTTP_INTERFACE_FIELD_VALUE">SEMANTICID_HTTP_INTERFACE_FIELD_VALUE (assetconnection.HTTPAssetConnection.HTTPAssetInterfaceSemantics attribute)</a>
+</li>
+        <li><a href="assetconnection.HTTPAssetConnection.html#assetconnection.HTTPAssetConnection.HTTPAssetInterfaceSemantics.SEMANTICID_HTTP_INTERFACE_FORMS">SEMANTICID_HTTP_INTERFACE_FORMS (assetconnection.HTTPAssetConnection.HTTPAssetInterfaceSemantics attribute)</a>
+</li>
+        <li><a href="assetconnection.HTTPAssetConnection.html#assetconnection.HTTPAssetConnection.HTTPAssetInterfaceSemantics.SEMANTICID_HTTP_INTERFACE_HEADERS">SEMANTICID_HTTP_INTERFACE_HEADERS (assetconnection.HTTPAssetConnection.HTTPAssetInterfaceSemantics attribute)</a>
+</li>
+        <li><a href="assetconnection.HTTPAssetConnection.html#assetconnection.HTTPAssetConnection.HTTPAssetInterfaceSemantics.SEMANTICID_HTTP_INTERFACE_HREF">SEMANTICID_HTTP_INTERFACE_HREF (assetconnection.HTTPAssetConnection.HTTPAssetInterfaceSemantics attribute)</a>
+</li>
+        <li><a href="assetconnection.HTTPAssetConnection.html#assetconnection.HTTPAssetConnection.HTTPAssetInterfaceSemantics.SEMANTICID_HTTP_INTERFACE_INTERACTION_METADATA">SEMANTICID_HTTP_INTERFACE_INTERACTION_METADATA (assetconnection.HTTPAssetConnection.HTTPAssetInterfaceSemantics attribute)</a>
+</li>
+        <li><a href="assetconnection.HTTPAssetConnection.html#assetconnection.HTTPAssetConnection.HTTPAssetInterfaceSemantics.SEMANTICID_HTTP_INTERFACE_METHOD_NAME">SEMANTICID_HTTP_INTERFACE_METHOD_NAME (assetconnection.HTTPAssetConnection.HTTPAssetInterfaceSemantics attribute)</a>
+</li>
+        <li><a href="assetconnection.HTTPAssetConnection.html#assetconnection.HTTPAssetConnection.HTTPAssetInterfaceSemantics.SEMANTICID_HTTP_INTERFACE_PROPERTY">SEMANTICID_HTTP_INTERFACE_PROPERTY (assetconnection.HTTPAssetConnection.HTTPAssetInterfaceSemantics attribute)</a>
+</li>
+        <li><a href="assetconnection.HTTPAssetConnection.html#assetconnection.HTTPAssetConnection.HTTPAssetInterfaceSemantics.SEMANTICID_HTTP_INTERFACE_TITLE">SEMANTICID_HTTP_INTERFACE_TITLE (assetconnection.HTTPAssetConnection.HTTPAssetInterfaceSemantics attribute)</a>
+</li>
+        <li><a href="utilities.CapabilitySkillOntology.html#utilities.CapabilitySkillOntology.AssetInterfacesInfo.SEMANTICID_INTERACTION_METADATA">SEMANTICID_INTERACTION_METADATA (utilities.CapabilitySkillOntology.AssetInterfacesInfo attribute)</a>
+</li>
+        <li><a href="utilities.CapabilitySkillOntology.html#utilities.CapabilitySkillOntology.AssetInterfacesInfo.SEMANTICID_INTERFACE">SEMANTICID_INTERFACE (utilities.CapabilitySkillOntology.AssetInterfacesInfo attribute)</a>
+</li>
+        <li><a href="utilities.CapabilitySkillOntology.html#utilities.CapabilitySkillOntology.AssetInterfacesInfo.SEMANTICID_INTERFACES_SUBMODEL">SEMANTICID_INTERFACES_SUBMODEL (utilities.CapabilitySkillOntology.AssetInterfacesInfo attribute)</a>
+</li>
+        <li><a href="utilities.CapabilitySkillOntology.html#utilities.CapabilitySkillOntology.CapabilitySkillOntology.SEMANTICID_MANUFACTURING_CAPABILITY">SEMANTICID_MANUFACTURING_CAPABILITY (utilities.CapabilitySkillOntology.CapabilitySkillOntology attribute)</a>
+</li>
+        <li><a href="utilities.CapabilitySkillOntology.html#utilities.CapabilitySkillOntology.CapabilitySkillOntology.SEMANTICID_MANUFACTURING_SKILL">SEMANTICID_MANUFACTURING_SKILL (utilities.CapabilitySkillOntology.CapabilitySkillOntology attribute)</a>
+</li>
+        <li><a href="utilities.CapabilitySkillOntology.html#utilities.CapabilitySkillOntology.CapabilitySkillOntology.SEMANTICID_REL_CAPABILITY_CAPABILITY_CONTRAINT">SEMANTICID_REL_CAPABILITY_CAPABILITY_CONTRAINT (utilities.CapabilitySkillOntology.CapabilitySkillOntology attribute)</a>
+</li>
+        <li><a href="utilities.CapabilitySkillOntology.html#utilities.CapabilitySkillOntology.CapabilitySkillOntology.SEMANTICID_REL_CAPABILITY_SKILL">SEMANTICID_REL_CAPABILITY_SKILL (utilities.CapabilitySkillOntology.CapabilitySkillOntology attribute)</a>
+</li>
+        <li><a href="utilities.CapabilitySkillOntology.html#utilities.CapabilitySkillOntology.CapabilitySkillOntology.SEMANTICID_REL_SKILL_PARAMETER_INTERFACE">SEMANTICID_REL_SKILL_PARAMETER_INTERFACE (utilities.CapabilitySkillOntology.CapabilitySkillOntology attribute)</a>
+</li>
+        <li><a href="utilities.CapabilitySkillOntology.html#utilities.CapabilitySkillOntology.CapabilitySkillOntology.SEMANTICID_REL_SKILL_SKILL_INTERFACE">SEMANTICID_REL_SKILL_SKILL_INTERFACE (utilities.CapabilitySkillOntology.CapabilitySkillOntology attribute)</a>
+</li>
+        <li><a href="utilities.CapabilitySkillOntology.html#utilities.CapabilitySkillOntology.CapabilitySkillOntology.SEMANTICID_REL_SKILL_SKILL_PARAMETER">SEMANTICID_REL_SKILL_SKILL_PARAMETER (utilities.CapabilitySkillOntology.CapabilitySkillOntology attribute)</a>
+</li>
+        <li><a href="utilities.CapabilitySkillOntology.html#utilities.CapabilitySkillOntology.CapabilitySkillOntology.SEMANTICID_REL_SKILL_SKILL_STATE_MACHINE">SEMANTICID_REL_SKILL_SKILL_STATE_MACHINE (utilities.CapabilitySkillOntology.CapabilitySkillOntology attribute)</a>
+</li>
+        <li><a href="utilities.CapabilitySkillOntology.html#utilities.CapabilitySkillOntology.CapabilitySkillOntology.SEMANTICID_SKILL_INTERFACE">SEMANTICID_SKILL_INTERFACE (utilities.CapabilitySkillOntology.CapabilitySkillOntology attribute)</a>
+</li>
+        <li><a href="utilities.CapabilitySkillOntology.html#utilities.CapabilitySkillOntology.CapabilitySkillOntology.SEMANTICID_SKILL_PARAMETER">SEMANTICID_SKILL_PARAMETER (utilities.CapabilitySkillOntology.CapabilitySkillOntology attribute)</a>
+</li>
+        <li><a href="utilities.CapabilitySkillOntology.html#utilities.CapabilitySkillOntology.CapabilitySkillOntology.SEMANTICID_SKILL_STATE_MACHINE">SEMANTICID_SKILL_STATE_MACHINE (utilities.CapabilitySkillOntology.CapabilitySkillOntology attribute)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="utilities.CapabilitySkillOntology.html#utilities.CapabilitySkillOntology.AssetInterfacesInfo.SEMANTICID_VALUE_SEMANTICS">SEMANTICID_VALUE_SEMANTICS (utilities.CapabilitySkillOntology.AssetInterfacesInfo attribute)</a>
+</li>
+        <li><a href="assetconnection.HTTPAssetConnection.html#assetconnection.HTTPAssetConnection.HTTPAssetConnection.send_http_request">send_http_request() (assetconnection.HTTPAssetConnection.HTTPAssetConnection method)</a>
+</li>
         <li><a href="logic.IntraAASInteractions_utils.html#logic.IntraAASInteractions_utils.send_interaction_msg_to_core">send_interaction_msg_to_core() (in module logic.IntraAASInteractions_utils)</a>
+</li>
+        <li><a href="assetconnection.AssetConnection.html#assetconnection.AssetConnection.AssetConnection.send_msg_to_asset">send_msg_to_asset() (assetconnection.AssetConnection.AssetConnection method)</a>
+
+        <ul>
+          <li><a href="assetconnection.HTTPAssetConnection.html#assetconnection.HTTPAssetConnection.HTTPAssetConnection.send_msg_to_asset">(assetconnection.HTTPAssetConnection.HTTPAssetConnection method)</a>
+</li>
+        </ul></li>
+        <li><a href="behaviours.HandleCapabilityBehaviour.html#behaviours.HandleCapabilityBehaviour.HandleCapabilityBehaviour.send_response_inform_to_sender">send_response_inform_to_sender() (behaviours.HandleCapabilityBehaviour.HandleCapabilityBehaviour method)</a>
+</li>
+        <li><a href="aas_model.ExtendedAASModel.html#aas_model.ExtendedAASModel.ExtendedAASModel.set_aas_model_object_store">set_aas_model_object_store() (aas_model.ExtendedAASModel.ExtendedAASModel method)</a>
+</li>
+        <li><a href="aas_model.ExtendedAASModel.html#aas_model.ExtendedAASModel.ExtendedAASModel.set_capabilities_skills_object">set_capabilities_skills_object() (aas_model.ExtendedAASModel.ExtendedAASModel method)</a>
 </li>
         <li><a href="agents.AASManagerAgent.html#agents.AASManagerAgent.AASManagerAgent.setup">setup() (agents.AASManagerAgent.AASManagerAgent method)</a>
 
@@ -1081,6 +1623,8 @@
           <li><a href="agents.AASManagerResourceAgent.html#agents.AASManagerResourceAgent.AASManagerResourceAgent.setup">(agents.AASManagerResourceAgent.AASManagerResourceAgent method)</a>
 </li>
         </ul></li>
+        <li><a href="aas_model.ExtendedAASModel.html#aas_model.ExtendedAASModel.ExtendedAASModel.skill_feasibility_checking_post_conditions">skill_feasibility_checking_post_conditions() (aas_model.ExtendedAASModel.ExtendedAASModel method)</a>
+</li>
         <li><a href="states.StateBooting.html#states.StateBooting.StateBooting">StateBooting (class in states.StateBooting)</a>
 </li>
         <li><a href="states.StateBootingResource.html#states.StateBootingResource.StateBootingResource">StateBootingResource (class in states.StateBootingResource)</a>
@@ -1103,8 +1647,6 @@
           <li><a href="states.StateBooting.html#module-states.StateBooting">module</a>
 </li>
         </ul></li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
         <li>
     states.StateBootingResource
 
@@ -1137,21 +1679,25 @@
 </li>
         <li><a href="utilities.AASmanagerInfo.html#utilities.AASmanagerInfo.AASmanagerInfo.STOPPING_STATE_NAME">STOPPING_STATE_NAME (utilities.AASmanagerInfo.AASmanagerInfo attribute)</a>
 </li>
-        <li><a href="utilities.AASarchiveInfo.html#utilities.AASarchiveInfo.AASarchiveInfo.SUBMODEL_FOLDER_PATH">SUBMODEL_FOLDER_PATH (utilities.AASarchiveInfo.AASarchiveInfo attribute)</a>
+        <li><a href="utilities.AASGeneralInfo.html#utilities.AASGeneralInfo.AASGeneralInfo.SUBMODEL_FOLDER_PATH">SUBMODEL_FOLDER_PATH (utilities.AASGeneralInfo.AASGeneralInfo attribute)</a>
 </li>
-        <li><a href="utilities.AASarchiveInfo.html#utilities.AASarchiveInfo.AASarchiveInfo.SUBMODEL_SERVICES_LOG_FILENAME">SUBMODEL_SERVICES_LOG_FILENAME (utilities.AASarchiveInfo.AASarchiveInfo attribute)</a>
+        <li><a href="utilities.AASGeneralInfo.html#utilities.AASGeneralInfo.AASGeneralInfo.SUBMODEL_SERVICES_LOG_FILENAME">SUBMODEL_SERVICES_LOG_FILENAME (utilities.AASGeneralInfo.AASGeneralInfo attribute)</a>
 </li>
-        <li><a href="utilities.AASarchiveInfo.html#utilities.AASarchiveInfo.AASarchiveInfo.SVC_LOG_FOLDER_PATH">SVC_LOG_FOLDER_PATH (utilities.AASarchiveInfo.AASarchiveInfo attribute)</a>
+        <li><a href="utilities.CapabilitySkillOntology.html#utilities.CapabilitySkillOntology.AssetInterfacesInfo.SUPPL_SEMANTICID_HTTP">SUPPL_SEMANTICID_HTTP (utilities.CapabilitySkillOntology.AssetInterfacesInfo attribute)</a>
 </li>
-        <li><a href="utilities.AASarchiveInfo.html#utilities.AASarchiveInfo.AASarchiveInfo.SVC_REQUEST_FILE_SUBPATH">SVC_REQUEST_FILE_SUBPATH (utilities.AASarchiveInfo.AASarchiveInfo attribute)</a>
+        <li><a href="utilities.AASGeneralInfo.html#utilities.AASGeneralInfo.AASGeneralInfo.SVC_LOG_FOLDER_PATH">SVC_LOG_FOLDER_PATH (utilities.AASGeneralInfo.AASGeneralInfo attribute)</a>
 </li>
-        <li><a href="utilities.AASarchiveInfo.html#utilities.AASarchiveInfo.AASarchiveInfo.SVC_RESPONSE_FILE_SUBPATH">SVC_RESPONSE_FILE_SUBPATH (utilities.AASarchiveInfo.AASarchiveInfo attribute)</a>
+        <li><a href="utilities.AASGeneralInfo.html#utilities.AASGeneralInfo.AASGeneralInfo.SVC_REQUEST_FILE_SUBPATH">SVC_REQUEST_FILE_SUBPATH (utilities.AASGeneralInfo.AASGeneralInfo attribute)</a>
+</li>
+        <li><a href="utilities.AASGeneralInfo.html#utilities.AASGeneralInfo.AASGeneralInfo.SVC_RESPONSE_FILE_SUBPATH">SVC_RESPONSE_FILE_SUBPATH (utilities.AASGeneralInfo.AASGeneralInfo attribute)</a>
 </li>
         <li><a href="utilities.AASmanagerInfo.html#utilities.AASmanagerInfo.AASmanagerInfo.SVC_STANDARD_ACL_TEMPLATE">SVC_STANDARD_ACL_TEMPLATE (utilities.AASmanagerInfo.AASmanagerInfo attribute)</a>
 </li>
-        <li><a href="utilities.AASmanagerInfo.html#utilities.AASmanagerInfo.AASmanagerInfo.svc_standard_acl_template_cfp">svc_standard_acl_template_cfp (utilities.AASmanagerInfo.AASmanagerInfo attribute)</a>
+        <li><a href="utilities.AASmanagerInfo.html#utilities.AASmanagerInfo.AASmanagerInfo.SVC_STANDARD_ACL_TEMPLATE_CFP">SVC_STANDARD_ACL_TEMPLATE_CFP (utilities.AASmanagerInfo.AASmanagerInfo attribute)</a>
 </li>
-        <li><a href="utilities.AASmanagerInfo.html#utilities.AASmanagerInfo.AASmanagerInfo.svc_standard_acl_template_inform">svc_standard_acl_template_inform (utilities.AASmanagerInfo.AASmanagerInfo attribute)</a>
+        <li><a href="utilities.AASmanagerInfo.html#utilities.AASmanagerInfo.AASmanagerInfo.SVC_STANDARD_ACL_TEMPLATE_INFORM">SVC_STANDARD_ACL_TEMPLATE_INFORM (utilities.AASmanagerInfo.AASmanagerInfo attribute)</a>
+</li>
+        <li><a href="utilities.AASmanagerInfo.html#utilities.AASmanagerInfo.AASmanagerInfo.SVC_STANDARD_ACL_TEMPLATE_QUERY_IF">SVC_STANDARD_ACL_TEMPLATE_QUERY_IF (utilities.AASmanagerInfo.AASmanagerInfo attribute)</a>
 </li>
         <li><a href="behaviours.SvcACLHandlingBehaviour.html#behaviours.SvcACLHandlingBehaviour.SvcACLHandlingBehaviour">SvcACLHandlingBehaviour (class in behaviours.SvcACLHandlingBehaviour)</a>
 </li>
@@ -1169,7 +1715,7 @@
 </li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="utilities.AASarchiveInfo.html#utilities.AASarchiveInfo.AASarchiveInfo.TECHNICAL_DATA_SM_FILENAME">TECHNICAL_DATA_SM_FILENAME (utilities.AASarchiveInfo.AASarchiveInfo attribute)</a>
+        <li><a href="utilities.AASGeneralInfo.html#utilities.AASGeneralInfo.AASGeneralInfo.TECHNICAL_DATA_SM_FILENAME">TECHNICAL_DATA_SM_FILENAME (utilities.AASGeneralInfo.AASGeneralInfo attribute)</a>
 </li>
         <li><a href="behaviours.HandleNegotiationBehaviour.html#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.thread">thread (behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour attribute)</a>
 </li>
@@ -1200,10 +1746,10 @@
 </li>
         </ul></li>
         <li>
-    utilities.AASarchiveInfo
+    utilities.AASGeneralInfo
 
         <ul>
-          <li><a href="utilities.AASarchiveInfo.html#module-utilities.AASarchiveInfo">module</a>
+          <li><a href="utilities.AASGeneralInfo.html#module-utilities.AASGeneralInfo">module</a>
 </li>
         </ul></li>
         <li>
@@ -1213,13 +1759,34 @@
           <li><a href="utilities.AASmanagerInfo.html#module-utilities.AASmanagerInfo">module</a>
 </li>
         </ul></li>
+        <li>
+    utilities.AASModelExtension_utils
+
+        <ul>
+          <li><a href="utilities.AASModelExtension_utils.html#module-utilities.AASModelExtension_utils">module</a>
+</li>
+        </ul></li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
+        <li>
+    utilities.CapabilitySkillOntology
+
+        <ul>
+          <li><a href="utilities.CapabilitySkillOntology.html#module-utilities.CapabilitySkillOntology">module</a>
+</li>
+        </ul></li>
         <li>
     utilities.ConfigMap_utils
 
         <ul>
           <li><a href="utilities.ConfigMap_utils.html#module-utilities.ConfigMap_utils">module</a>
+</li>
+        </ul></li>
+        <li>
+    utilities.FIPAACLInfo
+
+        <ul>
+          <li><a href="utilities.FIPAACLInfo.html#module-utilities.FIPAACLInfo">module</a>
 </li>
         </ul></li>
         <li>

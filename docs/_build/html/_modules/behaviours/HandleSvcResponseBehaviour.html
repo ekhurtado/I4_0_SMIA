@@ -24,6 +24,7 @@
   --color-brand-content: #2980B9;
   --color-problematic: DodgerBlue;
   --color-api-background: #E7F2FA;
+  --color-api-background-hover: #b7c0c6;
   
   }
   @media not print {
@@ -34,6 +35,7 @@
   --color-brand-content: #2980B9;
   --color-problematic: DodgerBlue;
   --color-api-background: #383838;
+  --color-api-background-hover: #5e5e5e;
   
     }
     @media (prefers-color-scheme: dark) {
@@ -44,6 +46,7 @@
   --color-brand-content: #2980B9;
   --color-problematic: DodgerBlue;
   --color-api-background: #383838;
+  --color-api-background-hover: #5e5e5e;
   
       }
     }
@@ -233,36 +236,50 @@
 <li class="toctree-l1"><a class="reference internal" href="../../aas_developer_guide.html">AAS Developer Guide</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../modules.html">API documentation</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of API documentation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../aas_manager.html">aas_manager module</a></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../agents.html">agents package</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of agents package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../aas_model.html">aas_model package</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of aas_model package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../aas_model.ExtendedAASModel.html">aas_model.ExtendedAASModel module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../aas_model.ExtendedAssetAdministrationShell.html">aas_model.ExtendedAssetAdministrationShell module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../aas_model.ExtendedBase.html">aas_model.ExtendedBase module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../aas_model.ExtendedConceptDescription.html">aas_model.ExtendedConceptDescription module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../aas_model.ExtendedSubmodel.html">aas_model.ExtendedSubmodel module</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../agents.html">agents package</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of agents package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../agents.AASManagerAgent.html">agents.AASManagerAgent module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../agents.AASManagerAppAgent.html">agents.AASManagerAppAgent module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../agents.AASManagerResourceAgent.html">agents.AASManagerResourceAgent module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../behaviours.html">behaviours package</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of behaviours package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../assetconnection.html">assetconnection package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of assetconnection package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../assetconnection.AssetConnection.html">assetconnection.AssetConnection module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../assetconnection.HTTPAssetConnection.html">assetconnection.HTTPAssetConnection module</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../behaviours.html">behaviours package</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of behaviours package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.AASFSMBehaviour.html">behaviours.AASFSMBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.CheckCoreInitializationBehaviour.html">behaviours.CheckCoreInitializationBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.CheckPhysicalAssetBehaviour.html">behaviours.CheckPhysicalAssetBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.EndBehaviour.html">behaviours.EndBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../behaviours.HandleCapabilityBehaviour.html">behaviours.HandleCapabilityBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.HandleNegotiationBehaviour.html">behaviours.HandleNegotiationBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.HandleSvcRequestBehaviour.html">behaviours.HandleSvcRequestBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.HandleSvcResponseBehaviour.html">behaviours.HandleSvcResponseBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.IdleBehaviour.html">behaviours.IdleBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../behaviours.InitAASModelBehaviour.html">behaviours.InitAASModelBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.InitAASarchiveBehaviour.html">behaviours.InitAASarchiveBehaviour module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../behaviours.InitSubmodelsBehaviour.html">behaviours.InitSubmodelsBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.InteractionHandlingBehaviour.html">behaviours.InteractionHandlingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.NegotiatingBehaviour.html">behaviours.NegotiatingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.SvcACLHandlingBehaviour.html">behaviours.SvcACLHandlingBehaviour module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../logic.html">logic package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of logic package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../logic.html">logic package</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of logic package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../logic.InterAASInteractions_utils.html">logic.InterAASInteractions_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../logic.IntraAASInteractions_utils.html">logic.IntraAASInteractions_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../logic.Negotiation_utils.html">logic.Negotiation_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../logic.Services_utils.html">logic.Services_utils module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../states.html">states package</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of states package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../states.html">states package</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of states package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../states.StateBooting.html">states.StateBooting module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../states.StateBootingResource.html">states.StateBootingResource module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../states.StateIdle.html">states.StateIdle module</a></li>
@@ -270,11 +287,14 @@
 <li class="toctree-l3"><a class="reference internal" href="../../states.StateStopping.html">states.StateStopping module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../utilities.html">utilities package</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of utilities package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../utilities.html">utilities package</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of utilities package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../utilities.AASGeneralInfo.html">utilities.AASGeneralInfo module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utilities.AASModelExtension_utils.html">utilities.AASModelExtension_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../utilities.AAS_Archive_utils.html">utilities.AAS_Archive_utils module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../utilities.AASarchiveInfo.html">utilities.AASarchiveInfo module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../utilities.AASmanagerInfo.html">utilities.AASmanagerInfo module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utilities.CapabilitySkillOntology.html">utilities.CapabilitySkillOntology module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../utilities.ConfigMap_utils.html">utilities.ConfigMap_utils module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utilities.FIPAACLInfo.html">utilities.FIPAACLInfo module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../utilities.GeneralUtils.html">utilities.GeneralUtils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../utilities.KafkaInfo.html">utilities.KafkaInfo module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../utilities.Submodels_utils.html">utilities.Submodels_utils module</a></li>
@@ -323,9 +343,8 @@
 <span class="kn">import</span> <span class="nn">logging</span>
 
 <span class="kn">from</span> <span class="nn">spade.behaviour</span> <span class="kn">import</span> <span class="n">OneShotBehaviour</span>
-<span class="kn">from</span> <span class="nn">spade.message</span> <span class="kn">import</span> <span class="n">Message</span>
 
-<span class="kn">from</span> <span class="nn">logic</span> <span class="kn">import</span> <span class="n">InterAASInteractions_utils</span><span class="p">,</span> <span class="n">Negotiation_utils</span>
+<span class="kn">from</span> <span class="nn">logic</span> <span class="kn">import</span> <span class="n">InterAASInteractions_utils</span><span class="p">,</span> <span class="n">Negotiation_utils</span><span class="p">,</span> <span class="n">IntraAASInteractions_utils</span>
 <span class="kn">from</span> <span class="nn">utilities</span> <span class="kn">import</span> <span class="n">AAS_Archive_utils</span>
 <span class="kn">from</span> <span class="nn">utilities.GeneralUtils</span> <span class="kn">import</span> <span class="n">GeneralUtils</span>
 
@@ -409,7 +428,7 @@
 <span class="sd">        This method handles Asset Related Services. These services are part of I4.0 Application Component (application</span>
 <span class="sd">        relevant).</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># TODO este tipo de servicios supongo que siempre se solicitaran via Kafka, pero aun asi pongo el if</span>
+
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">svc_resp_interaction_type</span> <span class="o">==</span> <span class="s1">&#39;Intra AAS interaction&#39;</span><span class="p">:</span>
 
             <span class="c1"># If a response of this type has arrived, it means that a previous interaction request has been made to the</span>
@@ -446,11 +465,14 @@
                 <span class="c1">#  agente y cambiar el valor del neg_value (no enviar un ACL)</span>
                 <span class="k">match</span> <span class="n">inter_aas_req</span><span class="p">[</span><span class="s1">&#39;ontology&#39;</span><span class="p">]:</span>
                     <span class="k">case</span> <span class="s2">&quot;SvcRequest&quot;</span><span class="p">:</span>
-                        <span class="c1"># In this case, the previous interaction has been an Inter AAS servie request, so the response</span>
+                        <span class="c1"># In this case, the previous interaction has been an Inter AAS service request, so the response</span>
                         <span class="c1"># to that request must be sent through FIPA-ACL to the requesting AAS.</span>
+                        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;The Intra AAS Interaction response is part of an Inter AAS service request, &quot;</span>
+                                     <span class="s2">&quot;withi thread [&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">svc_resp_data</span><span class="p">[</span><span class="s1">&#39;thread&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;].&quot;</span><span class="p">)</span>
                         <span class="n">inter_aas_response</span> <span class="o">=</span> <span class="n">InterAASInteractions_utils</span><span class="o">.</span><span class="n">create_inter_aas_response_object</span><span class="p">(</span><span class="n">inter_aas_req</span><span class="p">,</span>
                                                                                                          <span class="bp">self</span><span class="o">.</span><span class="n">svc_resp_data</span><span class="p">)</span>
 
+                        <span class="c1"># TODO revisar si devolver el mismo serviceID o serviceType que la peticion Inter AAS</span>
                         <span class="n">acl_msg</span> <span class="o">=</span> <span class="n">GeneralUtils</span><span class="o">.</span><span class="n">create_acl_msg</span><span class="p">(</span><span class="n">receiver</span><span class="o">=</span><span class="n">inter_aas_req</span><span class="p">[</span><span class="s1">&#39;sender&#39;</span><span class="p">],</span>
                                                               <span class="n">thread</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">svc_resp_data</span><span class="p">[</span><span class="s1">&#39;thread&#39;</span><span class="p">],</span>
                                                               <span class="n">performative</span><span class="o">=</span><span class="n">inter_aas_req</span><span class="p">[</span><span class="s1">&#39;performative&#39;</span><span class="p">],</span>
@@ -474,25 +496,89 @@
                                         <span class="s2">&quot; responsible for interaction [&quot;</span> <span class="o">+</span> <span class="n">svc_interaction_id</span> <span class="o">+</span>
                                         <span class="s2">&quot;]. Action: response data added&quot;</span><span class="p">)</span>
 
-                    <span class="k">case</span> <span class="s2">&quot;negotiation&quot;</span><span class="p">:</span>
-                        <span class="c1"># In this case, the Intra AAS interaction has been part of a negotiation, so it has to notify to</span>
-                        <span class="c1"># the associate handling behaviour, which is in charge of this exact negotiation</span>
-                        <span class="k">if</span> <span class="n">inter_aas_req</span><span class="p">[</span><span class="s1">&#39;serviceID&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;getNegotiationValue&#39;</span><span class="p">:</span>
-                            <span class="c1"># If the negotiation value has been requested, this value must be saved in the behaviour</span>
-                            <span class="c1"># class as an attribute</span>
-                            <span class="n">Negotiation_utils</span><span class="o">.</span><span class="n">add_value_and_unlock_neg_handling_behaviour</span><span class="p">(</span>
-                                <span class="n">agent</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="p">,</span>
-                                <span class="n">thread</span><span class="o">=</span><span class="n">inter_aas_req</span><span class="p">[</span><span class="s1">&#39;thread&#39;</span><span class="p">],</span>
-                                <span class="n">neg_value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">svc_resp_data</span><span class="p">[</span><span class="s1">&#39;serviceData&#39;</span><span class="p">][</span><span class="s1">&#39;serviceParams&#39;</span><span class="p">][</span><span class="s1">&#39;value&#39;</span><span class="p">])</span>
-                        <span class="k">else</span><span class="p">:</span>
-                            <span class="nb">print</span><span class="p">(</span><span class="n">inter_aas_req</span><span class="p">[</span><span class="s1">&#39;serviceID&#39;</span><span class="p">])</span>
-                            <span class="c1"># TODO desarrollarlo</span>
                     <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">:</span>
                         <span class="n">_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Ontology not available.&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># In this case, there is no previous Inter AAS Interaction request</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">svc_resp_data</span><span class="p">[</span><span class="s1">&#39;serviceID&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;getNegotiationValue&#39;</span><span class="p">:</span>
+                    <span class="c1"># In this case, the Intra AAS interaction has been part of a negotiation, so it has to notify to</span>
+                    <span class="c1"># the associate handling behaviour, which is in charge of this exact negotiation</span>
+                    <span class="c1"># If the negotiation value has been requested, this value must be saved in the behaviour</span>
+                    <span class="c1"># class as an attribute</span>
+                    <span class="n">Negotiation_utils</span><span class="o">.</span><span class="n">add_value_and_unlock_neg_handling_behaviour</span><span class="p">(</span>
+                        <span class="n">agent</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="p">,</span>
+                        <span class="n">thread</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">svc_resp_data</span><span class="p">[</span><span class="s1">&#39;thread&#39;</span><span class="p">],</span>
+                        <span class="n">neg_value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">svc_resp_data</span><span class="p">[</span><span class="s1">&#39;serviceData&#39;</span><span class="p">][</span><span class="s1">&#39;serviceParams&#39;</span><span class="p">][</span><span class="s1">&#39;value&#39;</span><span class="p">])</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">svc_resp_data</span><span class="p">[</span><span class="s1">&#39;serviceID&#39;</span><span class="p">])</span>
+                    <span class="c1"># TODO desarrollarlo para otros casos con solo Intra AAS Interaction</span>
 
         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">svc_resp_interaction_type</span> <span class="o">==</span> <span class="s1">&#39;Inter AAS interaction&#39;</span><span class="p">:</span>
-            <span class="c1"># TODO pensar como se gestionaria este caso</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Asset Related Service requested through Inter AAS interaction&quot;</span><span class="p">)</span></div>
+            <span class="c1"># TODO pensar como se gestionaria este caso. Uno que se me ocurre es que llega el ganador de una negociacion</span>
+            <span class="c1">#  solicitada por el Core.</span>
+            <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Asset Related Service requested through Inter AAS interaction&quot;</span><span class="p">)</span>
+
+            <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;The serviceID is not one of the defaults, so it will be checked to verify if the AAS &quot;</span>
+                         <span class="s2">&quot;Core has made a previous service request.&quot;</span><span class="p">)</span>
+            <span class="n">intra_aas_request</span> <span class="o">=</span> <span class="n">Negotiation_utils</span><span class="o">.</span><span class="n">get_neg_intra_aas_request_by_thread</span><span class="p">(</span><span class="n">agent</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="p">,</span>
+                                                                                      <span class="n">thread</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">svc_resp_data</span><span class="p">[</span>
+                                                                                          <span class="s1">&#39;thread&#39;</span><span class="p">])</span>
+            <span class="k">if</span> <span class="n">intra_aas_request</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;The Inter AAS response is due to a previous Intra AAS request from the AAS Core&quot;</span><span class="p">)</span>
+                <span class="k">match</span> <span class="bp">self</span><span class="o">.</span><span class="n">svc_resp_data</span><span class="p">[</span><span class="s1">&#39;serviceID&#39;</span><span class="p">]:</span>
+                    <span class="k">case</span> <span class="s1">&#39;negotiationResult&#39;</span><span class="p">:</span>
+                        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;The result of the negotiation is due to a previous start negotiation request from &quot;</span>
+                                     <span class="s2">&quot;the AAS Core.&quot;</span><span class="p">)</span>
+                    <span class="k">case</span> <span class="s1">&#39;ACLmessageResult&#39;</span><span class="p">:</span>
+                        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;The Inter AAS response is due to a previous Intra AAS request from the AAS Core&quot;</span><span class="p">)</span>
+                    <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">:</span>
+                        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;The serviceID is not one of the defaults, so the response is due to a previous &quot;</span>
+                                     <span class="s2">&quot;Intra AAS request from the AAS Core (the serviceID is the one that is related &quot;</span>
+                                     <span class="s2">&quot;with the service requested).&quot;</span><span class="p">)</span>
+                        <span class="c1"># The serviceID is updated as it is not one of the defaults</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">svc_resp_data</span><span class="p">[</span><span class="s1">&#39;serviceID&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;svcRequestResult&#39;</span>
+
+                <span class="c1"># The Intra AAS interaction has to be replied, so the response JSON will be created</span>
+                <span class="n">intra_aas_response</span> <span class="o">=</span> <span class="n">IntraAASInteractions_utils</span><span class="o">.</span><span class="n">create_intra_aas_response_object</span><span class="p">(</span>
+                    <span class="n">intra_aas_request</span><span class="o">=</span><span class="n">intra_aas_request</span><span class="p">,</span>
+                    <span class="n">inter_aas_response</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">svc_resp_data</span>
+                <span class="p">)</span>
+
+                <span class="c1"># The response is sent through Intra AAS interaction platform</span>
+                <span class="n">request_result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">IntraAASInteractions_utils</span><span class="o">.</span><span class="n">send_interaction_msg_to_core</span><span class="p">(</span>
+                    <span class="n">client_id</span><span class="o">=</span><span class="s1">&#39;i4-0-smia-manager&#39;</span><span class="p">,</span>
+                    <span class="n">msg_key</span><span class="o">=</span><span class="s1">&#39;manager-service-response&#39;</span><span class="p">,</span>
+                    <span class="n">msg_data</span><span class="o">=</span><span class="n">intra_aas_response</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">request_result</span> <span class="o">!=</span> <span class="s2">&quot;OK&quot;</span><span class="p">:</span>  <span class="c1"># TODO Pensar si añadir esto dentro del send_interaction_msg_to_core, al igual que incrementar el interactionID. Es decir, que ese metodo se encargue de enviar el mensaje por Kafka y asegurarse de que no hay problemas, y despues incrementar el id porque ha salido bien</span>
+                    <span class="n">_logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;The AAS Manager-Core interaction is not working: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">request_result</span><span class="p">))</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">_logger</span><span class="o">.</span><span class="n">interactioninfo</span><span class="p">(</span><span class="s2">&quot;The service with interaction id [&quot;</span>
+                                            <span class="o">+</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">get_interaction_id</span><span class="p">()</span> <span class="o">+</span>
+                                            <span class="s2">&quot;] to the AAS Core has been replied&quot;</span><span class="p">)</span>
+
+                <span class="c1"># Since the request has been performed, it is removed from the global dictionary</span>
+                <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">remove_interaction_request</span><span class="p">(</span><span class="n">interaction_id</span><span class="o">=</span><span class="n">intra_aas_request</span><span class="p">[</span><span class="s1">&#39;interactionID&#39;</span><span class="p">])</span>
+                <span class="n">_logger</span><span class="o">.</span><span class="n">interactioninfo</span><span class="p">(</span>
+                    <span class="s2">&quot;interaction_requests shared object updated by &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span> <span class="o">+</span>
+                    <span class="s2">&quot; responsible for interaction [&quot;</span> <span class="o">+</span> <span class="n">intra_aas_request</span><span class="p">[</span>
+                        <span class="s1">&#39;interactionID&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;]. Action: request data removed&quot;</span><span class="p">)</span>
+
+                <span class="c1"># The information is stored in the global dictionary for the responses</span>
+                <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">save_interaction_response</span><span class="p">(</span><span class="n">interaction_id</span><span class="o">=</span><span class="n">intra_aas_request</span><span class="p">[</span><span class="s1">&#39;interactionID&#39;</span><span class="p">],</span>
+                                                             <span class="n">response_data</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">svc_resp_data</span><span class="p">)</span>
+                <span class="n">_logger</span><span class="o">.</span><span class="n">interactioninfo</span><span class="p">(</span>
+                    <span class="s2">&quot;interaction_responses shared object updated by &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span> <span class="o">+</span>
+                    <span class="s2">&quot; responsible for interaction [&quot;</span> <span class="o">+</span> <span class="n">intra_aas_request</span><span class="p">[</span>
+                        <span class="s1">&#39;interactionID&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;]. Action: response data added&quot;</span><span class="p">)</span>
+
+                <span class="c1"># It is also stored in the log of the AAS archive</span>
+                <span class="n">AAS_Archive_utils</span><span class="o">.</span><span class="n">save_svc_log_info</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">svc_resp_data</span><span class="p">,</span> <span class="s1">&#39;AssetRelatedService&#39;</span><span class="p">)</span>
+                <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Information of service with id &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">intra_aas_request</span><span class="p">[</span><span class="s1">&#39;interactionID&#39;</span><span class="p">])</span> <span class="o">+</span>
+                             <span class="s2">&quot; has saved correctly in the log of the AAS Archive&quot;</span><span class="p">)</span>
+
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;There are no previous Intra AAS requests from AAS core&quot;</span><span class="p">)</span></div>
+
 
 
 <div class="viewcode-block" id="HandleSvcResponseBehaviour.handle_aas_infrastructure_svc">

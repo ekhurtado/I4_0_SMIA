@@ -23,6 +23,7 @@
   --color-brand-content: #2980B9;
   --color-problematic: DodgerBlue;
   --color-api-background: #E7F2FA;
+  --color-api-background-hover: #b7c0c6;
   
   }
   @media not print {
@@ -33,6 +34,7 @@
   --color-brand-content: #2980B9;
   --color-problematic: DodgerBlue;
   --color-api-background: #383838;
+  --color-api-background-hover: #5e5e5e;
   
     }
     @media (prefers-color-scheme: dark) {
@@ -43,6 +45,7 @@
   --color-brand-content: #2980B9;
   --color-problematic: DodgerBlue;
   --color-api-background: #383838;
+  --color-api-background-hover: #5e5e5e;
   
       }
     }
@@ -232,36 +235,50 @@
 <li class="toctree-l1"><a class="reference internal" href="aas_developer_guide.html">AAS Developer Guide</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="modules.html">API documentation</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of API documentation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="aas_manager.html">aas_manager module</a></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="agents.html">agents package</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of agents package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="aas_model.html">aas_model package</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of aas_model package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="aas_model.ExtendedAASModel.html">aas_model.ExtendedAASModel module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aas_model.ExtendedAssetAdministrationShell.html">aas_model.ExtendedAssetAdministrationShell module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aas_model.ExtendedBase.html">aas_model.ExtendedBase module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aas_model.ExtendedConceptDescription.html">aas_model.ExtendedConceptDescription module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aas_model.ExtendedSubmodel.html">aas_model.ExtendedSubmodel module</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="agents.html">agents package</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of agents package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="agents.AASManagerAgent.html">agents.AASManagerAgent module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="agents.AASManagerAppAgent.html">agents.AASManagerAppAgent module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="agents.AASManagerResourceAgent.html">agents.AASManagerResourceAgent module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="behaviours.html">behaviours package</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of behaviours package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="assetconnection.html">assetconnection package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of assetconnection package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="assetconnection.AssetConnection.html">assetconnection.AssetConnection module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="assetconnection.HTTPAssetConnection.html">assetconnection.HTTPAssetConnection module</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="behaviours.html">behaviours package</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of behaviours package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.AASFSMBehaviour.html">behaviours.AASFSMBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.CheckCoreInitializationBehaviour.html">behaviours.CheckCoreInitializationBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.CheckPhysicalAssetBehaviour.html">behaviours.CheckPhysicalAssetBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.EndBehaviour.html">behaviours.EndBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.HandleCapabilityBehaviour.html">behaviours.HandleCapabilityBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.HandleNegotiationBehaviour.html">behaviours.HandleNegotiationBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.HandleSvcRequestBehaviour.html">behaviours.HandleSvcRequestBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.HandleSvcResponseBehaviour.html">behaviours.HandleSvcResponseBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.IdleBehaviour.html">behaviours.IdleBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.InitAASModelBehaviour.html">behaviours.InitAASModelBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.InitAASarchiveBehaviour.html">behaviours.InitAASarchiveBehaviour module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="behaviours.InitSubmodelsBehaviour.html">behaviours.InitSubmodelsBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.InteractionHandlingBehaviour.html">behaviours.InteractionHandlingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.NegotiatingBehaviour.html">behaviours.NegotiatingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.SvcACLHandlingBehaviour.html">behaviours.SvcACLHandlingBehaviour module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="logic.html">logic package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of logic package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="logic.html">logic package</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of logic package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="logic.InterAASInteractions_utils.html">logic.InterAASInteractions_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logic.IntraAASInteractions_utils.html">logic.IntraAASInteractions_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logic.Negotiation_utils.html">logic.Negotiation_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logic.Services_utils.html">logic.Services_utils module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="states.html">states package</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of states package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="states.html">states package</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of states package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="states.StateBooting.html">states.StateBooting module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="states.StateBootingResource.html">states.StateBootingResource module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="states.StateIdle.html">states.StateIdle module</a></li>
@@ -269,11 +286,14 @@
 <li class="toctree-l3"><a class="reference internal" href="states.StateStopping.html">states.StateStopping module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="utilities.html">utilities package</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of utilities package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="utilities.html">utilities package</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of utilities package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="utilities.AASGeneralInfo.html">utilities.AASGeneralInfo module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="utilities.AASModelExtension_utils.html">utilities.AASModelExtension_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="utilities.AAS_Archive_utils.html">utilities.AAS_Archive_utils module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="utilities.AASarchiveInfo.html">utilities.AASarchiveInfo module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="utilities.AASmanagerInfo.html">utilities.AASmanagerInfo module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="utilities.CapabilitySkillOntology.html">utilities.CapabilitySkillOntology module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="utilities.ConfigMap_utils.html">utilities.ConfigMap_utils module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="utilities.FIPAACLInfo.html">utilities.FIPAACLInfo module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="utilities.GeneralUtils.html">utilities.GeneralUtils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="utilities.KafkaInfo.html">utilities.KafkaInfo module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="utilities.Submodels_utils.html">utilities.Submodels_utils module</a></li>
@@ -339,25 +359,81 @@
     <td><img src="_static/minus.png" class="toggler"
               id="toggle-1" style="display: none" alt="-" /></td>
     <td>
-        <a href="agents.html#module-agents"><code class="xref">agents</code></a></td><td>
+        <a href="aas_model.html#module-aas_model"><code class="xref">aas_model</code></a></td><td>
     <em></em></td>
   </tr>
   <tr class="cg-1">
+    <td></td>
+    <td>&#160;&#160;&#160;
+        <a href="aas_model.ExtendedAASModel.html#module-aas_model.ExtendedAASModel"><code class="xref">aas_model.ExtendedAASModel</code></a></td><td>
+    <em></em></td>
+  </tr>
+  <tr class="cg-1">
+    <td></td>
+    <td>&#160;&#160;&#160;
+        <a href="aas_model.ExtendedAssetAdministrationShell.html#module-aas_model.ExtendedAssetAdministrationShell"><code class="xref">aas_model.ExtendedAssetAdministrationShell</code></a></td><td>
+    <em></em></td>
+  </tr>
+  <tr class="cg-1">
+    <td></td>
+    <td>&#160;&#160;&#160;
+        <a href="aas_model.ExtendedBase.html#module-aas_model.ExtendedBase"><code class="xref">aas_model.ExtendedBase</code></a></td><td>
+    <em></em></td>
+  </tr>
+  <tr class="cg-1">
+    <td></td>
+    <td>&#160;&#160;&#160;
+        <a href="aas_model.ExtendedConceptDescription.html#module-aas_model.ExtendedConceptDescription"><code class="xref">aas_model.ExtendedConceptDescription</code></a></td><td>
+    <em></em></td>
+  </tr>
+  <tr class="cg-1">
+    <td></td>
+    <td>&#160;&#160;&#160;
+        <a href="aas_model.ExtendedSubmodel.html#module-aas_model.ExtendedSubmodel"><code class="xref">aas_model.ExtendedSubmodel</code></a></td><td>
+    <em></em></td>
+  </tr>
+  <tr>
+    <td><img src="_static/minus.png" class="toggler"
+              id="toggle-2" style="display: none" alt="-" /></td>
+    <td>
+        <a href="agents.html#module-agents"><code class="xref">agents</code></a></td><td>
+    <em></em></td>
+  </tr>
+  <tr class="cg-2">
     <td></td>
     <td>&#160;&#160;&#160;
         <a href="agents.AASManagerAgent.html#module-agents.AASManagerAgent"><code class="xref">agents.AASManagerAgent</code></a></td><td>
     <em></em></td>
   </tr>
-  <tr class="cg-1">
+  <tr class="cg-2">
     <td></td>
     <td>&#160;&#160;&#160;
         <a href="agents.AASManagerAppAgent.html#module-agents.AASManagerAppAgent"><code class="xref">agents.AASManagerAppAgent</code></a></td><td>
     <em></em></td>
   </tr>
-  <tr class="cg-1">
+  <tr class="cg-2">
     <td></td>
     <td>&#160;&#160;&#160;
         <a href="agents.AASManagerResourceAgent.html#module-agents.AASManagerResourceAgent"><code class="xref">agents.AASManagerResourceAgent</code></a></td><td>
+    <em></em></td>
+  </tr>
+  <tr>
+    <td><img src="_static/minus.png" class="toggler"
+              id="toggle-3" style="display: none" alt="-" /></td>
+    <td>
+        <a href="assetconnection.html#module-assetconnection"><code class="xref">assetconnection</code></a></td><td>
+    <em></em></td>
+  </tr>
+  <tr class="cg-3">
+    <td></td>
+    <td>&#160;&#160;&#160;
+        <a href="assetconnection.AssetConnection.html#module-assetconnection.AssetConnection"><code class="xref">assetconnection.AssetConnection</code></a></td><td>
+    <em></em></td>
+  </tr>
+  <tr class="cg-3">
+    <td></td>
+    <td>&#160;&#160;&#160;
+        <a href="assetconnection.HTTPAssetConnection.html#module-assetconnection.HTTPAssetConnection"><code class="xref">assetconnection.HTTPAssetConnection</code></a></td><td>
     <em></em></td>
   </tr>
   <tr class="pcap">
@@ -368,84 +444,90 @@
   </tr>
   <tr>
     <td><img src="_static/minus.png" class="toggler"
-              id="toggle-2" style="display: none" alt="-" /></td>
+              id="toggle-4" style="display: none" alt="-" /></td>
     <td>
         <a href="behaviours.html#module-behaviours"><code class="xref">behaviours</code></a></td><td>
     <em></em></td>
   </tr>
-  <tr class="cg-2">
+  <tr class="cg-4">
     <td></td>
     <td>&#160;&#160;&#160;
         <a href="behaviours.AASFSMBehaviour.html#module-behaviours.AASFSMBehaviour"><code class="xref">behaviours.AASFSMBehaviour</code></a></td><td>
     <em></em></td>
   </tr>
-  <tr class="cg-2">
+  <tr class="cg-4">
     <td></td>
     <td>&#160;&#160;&#160;
         <a href="behaviours.CheckCoreInitializationBehaviour.html#module-behaviours.CheckCoreInitializationBehaviour"><code class="xref">behaviours.CheckCoreInitializationBehaviour</code></a></td><td>
     <em></em></td>
   </tr>
-  <tr class="cg-2">
+  <tr class="cg-4">
     <td></td>
     <td>&#160;&#160;&#160;
         <a href="behaviours.CheckPhysicalAssetBehaviour.html#module-behaviours.CheckPhysicalAssetBehaviour"><code class="xref">behaviours.CheckPhysicalAssetBehaviour</code></a></td><td>
     <em></em></td>
   </tr>
-  <tr class="cg-2">
+  <tr class="cg-4">
     <td></td>
     <td>&#160;&#160;&#160;
         <a href="behaviours.EndBehaviour.html#module-behaviours.EndBehaviour"><code class="xref">behaviours.EndBehaviour</code></a></td><td>
     <em></em></td>
   </tr>
-  <tr class="cg-2">
+  <tr class="cg-4">
+    <td></td>
+    <td>&#160;&#160;&#160;
+        <a href="behaviours.HandleCapabilityBehaviour.html#module-behaviours.HandleCapabilityBehaviour"><code class="xref">behaviours.HandleCapabilityBehaviour</code></a></td><td>
+    <em></em></td>
+  </tr>
+  <tr class="cg-4">
     <td></td>
     <td>&#160;&#160;&#160;
         <a href="behaviours.HandleNegotiationBehaviour.html#module-behaviours.HandleNegotiationBehaviour"><code class="xref">behaviours.HandleNegotiationBehaviour</code></a></td><td>
     <em></em></td>
   </tr>
-  <tr class="cg-2">
+  <tr class="cg-4">
     <td></td>
     <td>&#160;&#160;&#160;
         <a href="behaviours.HandleSvcRequestBehaviour.html#module-behaviours.HandleSvcRequestBehaviour"><code class="xref">behaviours.HandleSvcRequestBehaviour</code></a></td><td>
     <em></em></td>
   </tr>
-  <tr class="cg-2">
+  <tr class="cg-4">
     <td></td>
     <td>&#160;&#160;&#160;
         <a href="behaviours.HandleSvcResponseBehaviour.html#module-behaviours.HandleSvcResponseBehaviour"><code class="xref">behaviours.HandleSvcResponseBehaviour</code></a></td><td>
     <em></em></td>
   </tr>
-  <tr class="cg-2">
+  <tr class="cg-4">
     <td></td>
     <td>&#160;&#160;&#160;
         <a href="behaviours.IdleBehaviour.html#module-behaviours.IdleBehaviour"><code class="xref">behaviours.IdleBehaviour</code></a></td><td>
     <em></em></td>
   </tr>
-  <tr class="cg-2">
+  <tr class="cg-4">
     <td></td>
     <td>&#160;&#160;&#160;
         <a href="behaviours.InitAASarchiveBehaviour.html#module-behaviours.InitAASarchiveBehaviour"><code class="xref">behaviours.InitAASarchiveBehaviour</code></a></td><td>
     <em></em></td>
   </tr>
-  <tr class="cg-2">
+  <tr class="cg-4">
     <td></td>
     <td>&#160;&#160;&#160;
-        <a href="behaviours.InitSubmodelsBehaviour.html#module-behaviours.InitSubmodelsBehaviour"><code class="xref">behaviours.InitSubmodelsBehaviour</code></a></td><td>
+        <a href="behaviours.InitAASModelBehaviour.html#module-behaviours.InitAASModelBehaviour"><code class="xref">behaviours.InitAASModelBehaviour</code></a></td><td>
     <em></em></td>
   </tr>
-  <tr class="cg-2">
+  <tr class="cg-4">
     <td></td>
     <td>&#160;&#160;&#160;
         <a href="behaviours.InteractionHandlingBehaviour.html#module-behaviours.InteractionHandlingBehaviour"><code class="xref">behaviours.InteractionHandlingBehaviour</code></a></td><td>
     <em></em></td>
   </tr>
-  <tr class="cg-2">
+  <tr class="cg-4">
     <td></td>
     <td>&#160;&#160;&#160;
         <a href="behaviours.NegotiatingBehaviour.html#module-behaviours.NegotiatingBehaviour"><code class="xref">behaviours.NegotiatingBehaviour</code></a></td><td>
     <em></em></td>
   </tr>
-  <tr class="cg-2">
+  <tr class="cg-4">
     <td></td>
     <td>&#160;&#160;&#160;
         <a href="behaviours.SvcACLHandlingBehaviour.html#module-behaviours.SvcACLHandlingBehaviour"><code class="xref">behaviours.SvcACLHandlingBehaviour</code></a></td><td>
@@ -459,30 +541,30 @@
   </tr>
   <tr>
     <td><img src="_static/minus.png" class="toggler"
-              id="toggle-3" style="display: none" alt="-" /></td>
+              id="toggle-5" style="display: none" alt="-" /></td>
     <td>
         <a href="logic.html#module-logic"><code class="xref">logic</code></a></td><td>
     <em></em></td>
   </tr>
-  <tr class="cg-3">
+  <tr class="cg-5">
     <td></td>
     <td>&#160;&#160;&#160;
         <a href="logic.InterAASInteractions_utils.html#module-logic.InterAASInteractions_utils"><code class="xref">logic.InterAASInteractions_utils</code></a></td><td>
     <em></em></td>
   </tr>
-  <tr class="cg-3">
+  <tr class="cg-5">
     <td></td>
     <td>&#160;&#160;&#160;
         <a href="logic.IntraAASInteractions_utils.html#module-logic.IntraAASInteractions_utils"><code class="xref">logic.IntraAASInteractions_utils</code></a></td><td>
     <em></em></td>
   </tr>
-  <tr class="cg-3">
+  <tr class="cg-5">
     <td></td>
     <td>&#160;&#160;&#160;
         <a href="logic.Negotiation_utils.html#module-logic.Negotiation_utils"><code class="xref">logic.Negotiation_utils</code></a></td><td>
     <em></em></td>
   </tr>
-  <tr class="cg-3">
+  <tr class="cg-5">
     <td></td>
     <td>&#160;&#160;&#160;
         <a href="logic.Services_utils.html#module-logic.Services_utils"><code class="xref">logic.Services_utils</code></a></td><td>
@@ -496,36 +578,36 @@
   </tr>
   <tr>
     <td><img src="_static/minus.png" class="toggler"
-              id="toggle-4" style="display: none" alt="-" /></td>
+              id="toggle-6" style="display: none" alt="-" /></td>
     <td>
         <a href="states.html#module-states"><code class="xref">states</code></a></td><td>
     <em></em></td>
   </tr>
-  <tr class="cg-4">
+  <tr class="cg-6">
     <td></td>
     <td>&#160;&#160;&#160;
         <a href="states.StateBooting.html#module-states.StateBooting"><code class="xref">states.StateBooting</code></a></td><td>
     <em></em></td>
   </tr>
-  <tr class="cg-4">
+  <tr class="cg-6">
     <td></td>
     <td>&#160;&#160;&#160;
         <a href="states.StateBootingResource.html#module-states.StateBootingResource"><code class="xref">states.StateBootingResource</code></a></td><td>
     <em></em></td>
   </tr>
-  <tr class="cg-4">
+  <tr class="cg-6">
     <td></td>
     <td>&#160;&#160;&#160;
         <a href="states.StateIdle.html#module-states.StateIdle"><code class="xref">states.StateIdle</code></a></td><td>
     <em></em></td>
   </tr>
-  <tr class="cg-4">
+  <tr class="cg-6">
     <td></td>
     <td>&#160;&#160;&#160;
         <a href="states.StateRunning.html#module-states.StateRunning"><code class="xref">states.StateRunning</code></a></td><td>
     <em></em></td>
   </tr>
-  <tr class="cg-4">
+  <tr class="cg-6">
     <td></td>
     <td>&#160;&#160;&#160;
         <a href="states.StateStopping.html#module-states.StateStopping"><code class="xref">states.StateStopping</code></a></td><td>
@@ -539,48 +621,66 @@
   </tr>
   <tr>
     <td><img src="_static/minus.png" class="toggler"
-              id="toggle-5" style="display: none" alt="-" /></td>
+              id="toggle-7" style="display: none" alt="-" /></td>
     <td>
         <a href="utilities.html#module-utilities"><code class="xref">utilities</code></a></td><td>
     <em></em></td>
   </tr>
-  <tr class="cg-5">
+  <tr class="cg-7">
     <td></td>
     <td>&#160;&#160;&#160;
         <a href="utilities.AAS_Archive_utils.html#module-utilities.AAS_Archive_utils"><code class="xref">utilities.AAS_Archive_utils</code></a></td><td>
     <em></em></td>
   </tr>
-  <tr class="cg-5">
+  <tr class="cg-7">
     <td></td>
     <td>&#160;&#160;&#160;
-        <a href="utilities.AASarchiveInfo.html#module-utilities.AASarchiveInfo"><code class="xref">utilities.AASarchiveInfo</code></a></td><td>
+        <a href="utilities.AASGeneralInfo.html#module-utilities.AASGeneralInfo"><code class="xref">utilities.AASGeneralInfo</code></a></td><td>
     <em></em></td>
   </tr>
-  <tr class="cg-5">
+  <tr class="cg-7">
     <td></td>
     <td>&#160;&#160;&#160;
         <a href="utilities.AASmanagerInfo.html#module-utilities.AASmanagerInfo"><code class="xref">utilities.AASmanagerInfo</code></a></td><td>
     <em></em></td>
   </tr>
-  <tr class="cg-5">
+  <tr class="cg-7">
+    <td></td>
+    <td>&#160;&#160;&#160;
+        <a href="utilities.AASModelExtension_utils.html#module-utilities.AASModelExtension_utils"><code class="xref">utilities.AASModelExtension_utils</code></a></td><td>
+    <em></em></td>
+  </tr>
+  <tr class="cg-7">
+    <td></td>
+    <td>&#160;&#160;&#160;
+        <a href="utilities.CapabilitySkillOntology.html#module-utilities.CapabilitySkillOntology"><code class="xref">utilities.CapabilitySkillOntology</code></a></td><td>
+    <em></em></td>
+  </tr>
+  <tr class="cg-7">
     <td></td>
     <td>&#160;&#160;&#160;
         <a href="utilities.ConfigMap_utils.html#module-utilities.ConfigMap_utils"><code class="xref">utilities.ConfigMap_utils</code></a></td><td>
     <em></em></td>
   </tr>
-  <tr class="cg-5">
+  <tr class="cg-7">
+    <td></td>
+    <td>&#160;&#160;&#160;
+        <a href="utilities.FIPAACLInfo.html#module-utilities.FIPAACLInfo"><code class="xref">utilities.FIPAACLInfo</code></a></td><td>
+    <em></em></td>
+  </tr>
+  <tr class="cg-7">
     <td></td>
     <td>&#160;&#160;&#160;
         <a href="utilities.GeneralUtils.html#module-utilities.GeneralUtils"><code class="xref">utilities.GeneralUtils</code></a></td><td>
     <em></em></td>
   </tr>
-  <tr class="cg-5">
+  <tr class="cg-7">
     <td></td>
     <td>&#160;&#160;&#160;
         <a href="utilities.KafkaInfo.html#module-utilities.KafkaInfo"><code class="xref">utilities.KafkaInfo</code></a></td><td>
     <em></em></td>
   </tr>
-  <tr class="cg-5">
+  <tr class="cg-7">
     <td></td>
     <td>&#160;&#160;&#160;
         <a href="utilities.Submodels_utils.html#module-utilities.Submodels_utils"><code class="xref">utilities.Submodels_utils</code></a></td><td>

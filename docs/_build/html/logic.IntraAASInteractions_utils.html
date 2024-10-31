@@ -25,6 +25,7 @@
   --color-brand-content: #2980B9;
   --color-problematic: DodgerBlue;
   --color-api-background: #E7F2FA;
+  --color-api-background-hover: #b7c0c6;
   
   }
   @media not print {
@@ -35,6 +36,7 @@
   --color-brand-content: #2980B9;
   --color-problematic: DodgerBlue;
   --color-api-background: #383838;
+  --color-api-background-hover: #5e5e5e;
   
     }
     @media (prefers-color-scheme: dark) {
@@ -45,6 +47,7 @@
   --color-brand-content: #2980B9;
   --color-problematic: DodgerBlue;
   --color-api-background: #383838;
+  --color-api-background-hover: #5e5e5e;
   
       }
     }
@@ -234,36 +237,50 @@
 <li class="toctree-l1"><a class="reference internal" href="aas_developer_guide.html">AAS Developer Guide</a></li>
 <li class="toctree-l1 current has-children"><a class="reference internal" href="modules.html">API documentation</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of API documentation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="aas_manager.html">aas_manager module</a></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="agents.html">agents package</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of agents package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="aas_model.html">aas_model package</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of aas_model package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="aas_model.ExtendedAASModel.html">aas_model.ExtendedAASModel module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aas_model.ExtendedAssetAdministrationShell.html">aas_model.ExtendedAssetAdministrationShell module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aas_model.ExtendedBase.html">aas_model.ExtendedBase module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aas_model.ExtendedConceptDescription.html">aas_model.ExtendedConceptDescription module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aas_model.ExtendedSubmodel.html">aas_model.ExtendedSubmodel module</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="agents.html">agents package</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of agents package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="agents.AASManagerAgent.html">agents.AASManagerAgent module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="agents.AASManagerAppAgent.html">agents.AASManagerAppAgent module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="agents.AASManagerResourceAgent.html">agents.AASManagerResourceAgent module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="behaviours.html">behaviours package</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of behaviours package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="assetconnection.html">assetconnection package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of assetconnection package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="assetconnection.AssetConnection.html">assetconnection.AssetConnection module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="assetconnection.HTTPAssetConnection.html">assetconnection.HTTPAssetConnection module</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="behaviours.html">behaviours package</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of behaviours package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.AASFSMBehaviour.html">behaviours.AASFSMBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.CheckCoreInitializationBehaviour.html">behaviours.CheckCoreInitializationBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.CheckPhysicalAssetBehaviour.html">behaviours.CheckPhysicalAssetBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.EndBehaviour.html">behaviours.EndBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.HandleCapabilityBehaviour.html">behaviours.HandleCapabilityBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.HandleNegotiationBehaviour.html">behaviours.HandleNegotiationBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.HandleSvcRequestBehaviour.html">behaviours.HandleSvcRequestBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.HandleSvcResponseBehaviour.html">behaviours.HandleSvcResponseBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.IdleBehaviour.html">behaviours.IdleBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.InitAASModelBehaviour.html">behaviours.InitAASModelBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.InitAASarchiveBehaviour.html">behaviours.InitAASarchiveBehaviour module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="behaviours.InitSubmodelsBehaviour.html">behaviours.InitSubmodelsBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.InteractionHandlingBehaviour.html">behaviours.InteractionHandlingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.NegotiatingBehaviour.html">behaviours.NegotiatingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.SvcACLHandlingBehaviour.html">behaviours.SvcACLHandlingBehaviour module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current has-children"><a class="reference internal" href="logic.html">logic package</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of logic package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 current has-children"><a class="reference internal" href="logic.html">logic package</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of logic package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="logic.InterAASInteractions_utils.html">logic.InterAASInteractions_utils module</a></li>
 <li class="toctree-l3 current current-page"><a class="current reference internal" href="#">logic.IntraAASInteractions_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logic.Negotiation_utils.html">logic.Negotiation_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logic.Services_utils.html">logic.Services_utils module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="states.html">states package</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of states package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="states.html">states package</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of states package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="states.StateBooting.html">states.StateBooting module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="states.StateBootingResource.html">states.StateBootingResource module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="states.StateIdle.html">states.StateIdle module</a></li>
@@ -271,11 +288,14 @@
 <li class="toctree-l3"><a class="reference internal" href="states.StateStopping.html">states.StateStopping module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="utilities.html">utilities package</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of utilities package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="utilities.html">utilities package</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of utilities package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="utilities.AASGeneralInfo.html">utilities.AASGeneralInfo module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="utilities.AASModelExtension_utils.html">utilities.AASModelExtension_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="utilities.AAS_Archive_utils.html">utilities.AAS_Archive_utils module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="utilities.AASarchiveInfo.html">utilities.AASarchiveInfo module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="utilities.AASmanagerInfo.html">utilities.AASmanagerInfo module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="utilities.CapabilitySkillOntology.html">utilities.CapabilitySkillOntology module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="utilities.ConfigMap_utils.html">utilities.ConfigMap_utils module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="utilities.FIPAACLInfo.html">utilities.FIPAACLInfo module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="utilities.GeneralUtils.html">utilities.GeneralUtils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="utilities.KafkaInfo.html">utilities.KafkaInfo module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="utilities.Submodels_utils.html">utilities.Submodels_utils module</a></li>
@@ -329,34 +349,6 @@
 <span id="logic-intraaasinteractions-utils-module"></span><h1>logic.IntraAASInteractions_utils module<a class="headerlink" href="#module-logic.IntraAASInteractions_utils" title="Link to this heading">¶</a></h1>
 <p>This class groups the methods related to the Intra AAS interactions between the Manager and the Core.</p>
 <dl class="py function">
-<dt class="sig sig-object py" id="logic.IntraAASInteractions_utils.add_new_svc_request">
-<span class="sig-prename descclassname"><span class="pre">logic.IntraAASInteractions_utils.</span></span><span class="sig-name descname"><span class="pre">add_new_svc_request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_request_json</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/logic/IntraAASInteractions_utils.html#add_new_svc_request"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#logic.IntraAASInteractions_utils.add_new_svc_request" title="Link to this definition">¶</a></dt>
-<dd><p>This method adds a new service request to the related service interaction file of the manager and updates it
-in the AAS Archive.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>new_request_json</strong> – The service requests content in JSON format.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="logic.IntraAASInteractions_utils.create_interaction_kafka_consumer">
-<span class="sig-prename descclassname"><span class="pre">logic.IntraAASInteractions_utils.</span></span><span class="sig-name descname"><span class="pre">create_interaction_kafka_consumer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/logic/IntraAASInteractions_utils.html#create_interaction_kafka_consumer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#logic.IntraAASInteractions_utils.create_interaction_kafka_consumer" title="Link to this definition">¶</a></dt>
-<dd><p>This method creates the Kafka consumer for subscribing to AAS Core partition in the topic of the AAS.
-:param client_id: the id of the client of the Kafka consumer.
-:type client_id: str</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>the object of the Kafka consumer.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>AIOKafkaConsumer</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
 <dt class="sig sig-object py" id="logic.IntraAASInteractions_utils.create_svc_request_interaction_json">
 <span class="sig-prename descclassname"><span class="pre">logic.IntraAASInteractions_utils.</span></span><span class="sig-name descname"><span class="pre">create_svc_request_interaction_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interaction_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">request_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/logic/IntraAASInteractions_utils.html#create_svc_request_interaction_json"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#logic.IntraAASInteractions_utils.create_svc_request_interaction_json" title="Link to this definition">¶</a></dt>
 <dd><p>This method creates a service request JSON object for an <a class="reference internal" href="glossary.html#term-Intra-AAS-Interaction"><span class="xref std std-term">Intra AAS Interaction</span></a>.</p>
@@ -378,24 +370,34 @@ in the AAS Archive.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="logic.IntraAASInteractions_utils.get_svc_info">
-<span class="sig-prename descclassname"><span class="pre">logic.IntraAASInteractions_utils.</span></span><span class="sig-name descname"><span class="pre">get_svc_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">requested_entity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interaction_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/logic/IntraAASInteractions_utils.html#get_svc_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#logic.IntraAASInteractions_utils.get_svc_info" title="Link to this definition">¶</a></dt>
-<dd><p>This method obtains the information of the service considering the entity that has requested the service. In the
-entity is Manager it has to search in Manager requests and Core responses, and in the case of being the Core the
-one that has made the request, the opposite.</p>
+<dt class="sig sig-object py" id="logic.IntraAASInteractions_utils.create_intra_aas_response_object">
+<span class="sig-prename descclassname"><span class="pre">logic.IntraAASInteractions_utils.</span></span><span class="sig-name descname"><span class="pre">create_intra_aas_response_object</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">intra_aas_request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inter_aas_response</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/logic/IntraAASInteractions_utils.html#create_intra_aas_response_object"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#logic.IntraAASInteractions_utils.create_intra_aas_response_object" title="Link to this definition">¶</a></dt>
+<dd><p>This method creates the Intra AAS interaction response object using the initial Intra AAS interaction request and
+the Inter AAS interaction response needed to perform the initial service request.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>requested_entity</strong> (<em>str</em>) – The entity that has requested the service, to know in which interaction files to search.</p></li>
-<li><p><strong>interaction_id</strong> (<em>int</em>) – Identifier of the interaction.</p></li>
+<li><p><strong>intra_aas_request</strong> (<em>dict</em>) – all the information about the Intra AAS interaction request</p></li>
+<li><p><strong>inter_aas_response</strong> (<em>dict</em>) – all the information about the Inter AAS interaction response</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Information of the service request in JSON format
-dict: Information of the service response in JSON format.</p>
+<dd class="field-even"><p>Intra AAS response object in JSON format</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="logic.IntraAASInteractions_utils.add_new_svc_request">
+<span class="sig-prename descclassname"><span class="pre">logic.IntraAASInteractions_utils.</span></span><span class="sig-name descname"><span class="pre">add_new_svc_request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_request_json</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/logic/IntraAASInteractions_utils.html#add_new_svc_request"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#logic.IntraAASInteractions_utils.add_new_svc_request" title="Link to this definition">¶</a></dt>
+<dd><p>This method adds a new service request to the related service interaction file of the manager and updates it
+in the AAS Archive.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>new_request_json</strong> – The service requests content in JSON format.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -450,6 +452,22 @@ dict: Information of the service response in JSON format.</p>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="logic.IntraAASInteractions_utils.create_interaction_kafka_consumer">
+<span class="sig-prename descclassname"><span class="pre">logic.IntraAASInteractions_utils.</span></span><span class="sig-name descname"><span class="pre">create_interaction_kafka_consumer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/logic/IntraAASInteractions_utils.html#create_interaction_kafka_consumer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#logic.IntraAASInteractions_utils.create_interaction_kafka_consumer" title="Link to this definition">¶</a></dt>
+<dd><p>This method creates the Kafka consumer for subscribing to AAS Core partition in the topic of the AAS.
+:param client_id: the id of the client of the Kafka consumer.
+:type client_id: str</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the object of the Kafka consumer.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>AIOKafkaConsumer</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="logic.IntraAASInteractions_utils.send_interaction_msg_to_core">
 <em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">logic.IntraAASInteractions_utils.</span></span><span class="sig-name descname"><span class="pre">send_interaction_msg_to_core</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">msg_key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">msg_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/logic/IntraAASInteractions_utils.html#send_interaction_msg_to_core"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#logic.IntraAASInteractions_utils.send_interaction_msg_to_core" title="Link to this definition">¶</a></dt>
 <dd><p>This method sends a Kafka interaction message to the AAS Core. To this end, the AAS Manager will publish messages
@@ -467,6 +485,29 @@ in its partition, where the AAS Core will be listening.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="logic.IntraAASInteractions_utils.get_svc_info">
+<span class="sig-prename descclassname"><span class="pre">logic.IntraAASInteractions_utils.</span></span><span class="sig-name descname"><span class="pre">get_svc_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">requested_entity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interaction_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/logic/IntraAASInteractions_utils.html#get_svc_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#logic.IntraAASInteractions_utils.get_svc_info" title="Link to this definition">¶</a></dt>
+<dd><p>This method obtains the information of the service considering the entity that has requested the service. In the
+entity is Manager it has to search in Manager requests and Core responses, and in the case of being the Core the
+one that has made the request, the opposite.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>requested_entity</strong> (<em>str</em>) – The entity that has requested the service, to know in which interaction files to search.</p></li>
+<li><p><strong>interaction_id</strong> (<em>int</em>) – Identifier of the interaction.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Information of the service request in JSON format
+dict: Information of the service response in JSON format.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
 </dd>
 </dl>
 </dd></dl>
@@ -528,14 +569,15 @@ in its partition, where the AAS Core will be listening.</p>
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">logic.IntraAASInteractions_utils module</a><ul>
-<li><a class="reference internal" href="#logic.IntraAASInteractions_utils.add_new_svc_request"><code class="docutils literal notranslate"><span class="pre">add_new_svc_request()</span></code></a></li>
-<li><a class="reference internal" href="#logic.IntraAASInteractions_utils.create_interaction_kafka_consumer"><code class="docutils literal notranslate"><span class="pre">create_interaction_kafka_consumer()</span></code></a></li>
 <li><a class="reference internal" href="#logic.IntraAASInteractions_utils.create_svc_request_interaction_json"><code class="docutils literal notranslate"><span class="pre">create_svc_request_interaction_json()</span></code></a></li>
-<li><a class="reference internal" href="#logic.IntraAASInteractions_utils.get_svc_info"><code class="docutils literal notranslate"><span class="pre">get_svc_info()</span></code></a></li>
+<li><a class="reference internal" href="#logic.IntraAASInteractions_utils.create_intra_aas_response_object"><code class="docutils literal notranslate"><span class="pre">create_intra_aas_response_object()</span></code></a></li>
+<li><a class="reference internal" href="#logic.IntraAASInteractions_utils.add_new_svc_request"><code class="docutils literal notranslate"><span class="pre">add_new_svc_request()</span></code></a></li>
 <li><a class="reference internal" href="#logic.IntraAASInteractions_utils.get_svc_request_info"><code class="docutils literal notranslate"><span class="pre">get_svc_request_info()</span></code></a></li>
 <li><a class="reference internal" href="#logic.IntraAASInteractions_utils.get_svc_response_info"><code class="docutils literal notranslate"><span class="pre">get_svc_response_info()</span></code></a></li>
 <li><a class="reference internal" href="#logic.IntraAASInteractions_utils.save_svc_info_in_log_file"><code class="docutils literal notranslate"><span class="pre">save_svc_info_in_log_file()</span></code></a></li>
+<li><a class="reference internal" href="#logic.IntraAASInteractions_utils.create_interaction_kafka_consumer"><code class="docutils literal notranslate"><span class="pre">create_interaction_kafka_consumer()</span></code></a></li>
 <li><a class="reference internal" href="#logic.IntraAASInteractions_utils.send_interaction_msg_to_core"><code class="docutils literal notranslate"><span class="pre">send_interaction_msg_to_core()</span></code></a></li>
+<li><a class="reference internal" href="#logic.IntraAASInteractions_utils.get_svc_info"><code class="docutils literal notranslate"><span class="pre">get_svc_info()</span></code></a></li>
 </ul>
 </li>
 </ul>

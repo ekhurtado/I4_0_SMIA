@@ -3,7 +3,7 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="behaviours.AASFSMBehaviour module" href="behaviours.AASFSMBehaviour.html" /><link rel="prev" title="agents.AASManagerResourceAgent module" href="agents.AASManagerResourceAgent.html" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="behaviours.AASFSMBehaviour module" href="behaviours.AASFSMBehaviour.html" /><link rel="prev" title="assetconnection.HTTPAssetConnection module" href="assetconnection.HTTPAssetConnection.html" />
 
     <link rel="shortcut icon" href="_static/I4_0_SMIA_favicon.svg"/><!-- Generated with Sphinx 7.3.7 and Furo 2024.05.06 -->
         <title>behaviours package - I4.0 SMIA 0.1.3 documentation</title>
@@ -25,6 +25,7 @@
   --color-brand-content: #2980B9;
   --color-problematic: DodgerBlue;
   --color-api-background: #E7F2FA;
+  --color-api-background-hover: #b7c0c6;
   
   }
   @media not print {
@@ -35,6 +36,7 @@
   --color-brand-content: #2980B9;
   --color-problematic: DodgerBlue;
   --color-api-background: #383838;
+  --color-api-background-hover: #5e5e5e;
   
     }
     @media (prefers-color-scheme: dark) {
@@ -45,6 +47,7 @@
   --color-brand-content: #2980B9;
   --color-problematic: DodgerBlue;
   --color-api-background: #383838;
+  --color-api-background-hover: #5e5e5e;
   
       }
     }
@@ -234,36 +237,50 @@
 <li class="toctree-l1"><a class="reference internal" href="aas_developer_guide.html">AAS Developer Guide</a></li>
 <li class="toctree-l1 current has-children"><a class="reference internal" href="modules.html">API documentation</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of API documentation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="aas_manager.html">aas_manager module</a></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="agents.html">agents package</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of agents package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="aas_model.html">aas_model package</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of aas_model package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="aas_model.ExtendedAASModel.html">aas_model.ExtendedAASModel module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aas_model.ExtendedAssetAdministrationShell.html">aas_model.ExtendedAssetAdministrationShell module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aas_model.ExtendedBase.html">aas_model.ExtendedBase module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aas_model.ExtendedConceptDescription.html">aas_model.ExtendedConceptDescription module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aas_model.ExtendedSubmodel.html">aas_model.ExtendedSubmodel module</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="agents.html">agents package</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of agents package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="agents.AASManagerAgent.html">agents.AASManagerAgent module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="agents.AASManagerAppAgent.html">agents.AASManagerAppAgent module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="agents.AASManagerResourceAgent.html">agents.AASManagerResourceAgent module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current has-children current-page"><a class="current reference internal" href="#">behaviours package</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of behaviours package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="assetconnection.html">assetconnection package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of assetconnection package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="assetconnection.AssetConnection.html">assetconnection.AssetConnection module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="assetconnection.HTTPAssetConnection.html">assetconnection.HTTPAssetConnection module</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current has-children current-page"><a class="current reference internal" href="#">behaviours package</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of behaviours package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.AASFSMBehaviour.html">behaviours.AASFSMBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.CheckCoreInitializationBehaviour.html">behaviours.CheckCoreInitializationBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.CheckPhysicalAssetBehaviour.html">behaviours.CheckPhysicalAssetBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.EndBehaviour.html">behaviours.EndBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.HandleCapabilityBehaviour.html">behaviours.HandleCapabilityBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.HandleNegotiationBehaviour.html">behaviours.HandleNegotiationBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.HandleSvcRequestBehaviour.html">behaviours.HandleSvcRequestBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.HandleSvcResponseBehaviour.html">behaviours.HandleSvcResponseBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.IdleBehaviour.html">behaviours.IdleBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.InitAASModelBehaviour.html">behaviours.InitAASModelBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.InitAASarchiveBehaviour.html">behaviours.InitAASarchiveBehaviour module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="behaviours.InitSubmodelsBehaviour.html">behaviours.InitSubmodelsBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.InteractionHandlingBehaviour.html">behaviours.InteractionHandlingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.NegotiatingBehaviour.html">behaviours.NegotiatingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.SvcACLHandlingBehaviour.html">behaviours.SvcACLHandlingBehaviour module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="logic.html">logic package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of logic package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="logic.html">logic package</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of logic package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="logic.InterAASInteractions_utils.html">logic.InterAASInteractions_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logic.IntraAASInteractions_utils.html">logic.IntraAASInteractions_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logic.Negotiation_utils.html">logic.Negotiation_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logic.Services_utils.html">logic.Services_utils module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="states.html">states package</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of states package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="states.html">states package</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of states package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="states.StateBooting.html">states.StateBooting module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="states.StateBootingResource.html">states.StateBootingResource module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="states.StateIdle.html">states.StateIdle module</a></li>
@@ -271,11 +288,14 @@
 <li class="toctree-l3"><a class="reference internal" href="states.StateStopping.html">states.StateStopping module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="utilities.html">utilities package</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of utilities package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="utilities.html">utilities package</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of utilities package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="utilities.AASGeneralInfo.html">utilities.AASGeneralInfo module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="utilities.AASModelExtension_utils.html">utilities.AASModelExtension_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="utilities.AAS_Archive_utils.html">utilities.AAS_Archive_utils module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="utilities.AASarchiveInfo.html">utilities.AASarchiveInfo module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="utilities.AASmanagerInfo.html">utilities.AASmanagerInfo module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="utilities.CapabilitySkillOntology.html">utilities.CapabilitySkillOntology module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="utilities.ConfigMap_utils.html">utilities.ConfigMap_utils module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="utilities.FIPAACLInfo.html">utilities.FIPAACLInfo module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="utilities.GeneralUtils.html">utilities.GeneralUtils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="utilities.KafkaInfo.html">utilities.KafkaInfo module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="utilities.Submodels_utils.html">utilities.Submodels_utils module</a></li>
@@ -333,8 +353,8 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="behaviours.AASFSMBehaviour.html">behaviours.AASFSMBehaviour module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="behaviours.AASFSMBehaviour.html#behaviours.AASFSMBehaviour.AASFSMBehaviour"><code class="docutils literal notranslate"><span class="pre">AASFSMBehaviour</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="behaviours.AASFSMBehaviour.html#behaviours.AASFSMBehaviour.AASFSMBehaviour.on_end"><code class="docutils literal notranslate"><span class="pre">AASFSMBehaviour.on_end()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.AASFSMBehaviour.html#behaviours.AASFSMBehaviour.AASFSMBehaviour.on_start"><code class="docutils literal notranslate"><span class="pre">AASFSMBehaviour.on_start()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.AASFSMBehaviour.html#behaviours.AASFSMBehaviour.AASFSMBehaviour.on_end"><code class="docutils literal notranslate"><span class="pre">AASFSMBehaviour.on_end()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -360,44 +380,57 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="behaviours.HandleCapabilityBehaviour.html">behaviours.HandleCapabilityBehaviour module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="behaviours.HandleCapabilityBehaviour.html#behaviours.HandleCapabilityBehaviour.HandleCapabilityBehaviour"><code class="docutils literal notranslate"><span class="pre">HandleCapabilityBehaviour</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.HandleCapabilityBehaviour.html#behaviours.HandleCapabilityBehaviour.HandleCapabilityBehaviour.on_start"><code class="docutils literal notranslate"><span class="pre">HandleCapabilityBehaviour.on_start()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.HandleCapabilityBehaviour.html#behaviours.HandleCapabilityBehaviour.HandleCapabilityBehaviour.run"><code class="docutils literal notranslate"><span class="pre">HandleCapabilityBehaviour.run()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.HandleCapabilityBehaviour.html#behaviours.HandleCapabilityBehaviour.HandleCapabilityBehaviour.handle_call_for_proposal"><code class="docutils literal notranslate"><span class="pre">HandleCapabilityBehaviour.handle_call_for_proposal()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.HandleCapabilityBehaviour.html#behaviours.HandleCapabilityBehaviour.HandleCapabilityBehaviour.handle_query_if"><code class="docutils literal notranslate"><span class="pre">HandleCapabilityBehaviour.handle_query_if()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.HandleCapabilityBehaviour.html#behaviours.HandleCapabilityBehaviour.HandleCapabilityBehaviour.handle_inform"><code class="docutils literal notranslate"><span class="pre">HandleCapabilityBehaviour.handle_inform()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.HandleCapabilityBehaviour.html#behaviours.HandleCapabilityBehaviour.HandleCapabilityBehaviour.handle_submodel_services"><code class="docutils literal notranslate"><span class="pre">HandleCapabilityBehaviour.handle_submodel_services()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.HandleCapabilityBehaviour.html#behaviours.HandleCapabilityBehaviour.HandleCapabilityBehaviour.send_response_inform_to_sender"><code class="docutils literal notranslate"><span class="pre">HandleCapabilityBehaviour.send_response_inform_to_sender()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="behaviours.HandleNegotiationBehaviour.html">behaviours.HandleNegotiationBehaviour module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="behaviours.HandleNegotiationBehaviour.html#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour"><code class="docutils literal notranslate"><span class="pre">HandleNegotiationBehaviour</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="behaviours.HandleNegotiationBehaviour.html#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.exit_negotiation"><code class="docutils literal notranslate"><span class="pre">HandleNegotiationBehaviour.exit_negotiation()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="behaviours.HandleNegotiationBehaviour.html#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.get_neg_value_with_criteria"><code class="docutils literal notranslate"><span class="pre">HandleNegotiationBehaviour.get_neg_value_with_criteria()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="behaviours.HandleNegotiationBehaviour.html#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.myagent"><code class="docutils literal notranslate"><span class="pre">HandleNegotiationBehaviour.myagent</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="behaviours.HandleNegotiationBehaviour.html#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.neg_criteria"><code class="docutils literal notranslate"><span class="pre">HandleNegotiationBehaviour.neg_criteria</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="behaviours.HandleNegotiationBehaviour.html#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.neg_requester_jid"><code class="docutils literal notranslate"><span class="pre">HandleNegotiationBehaviour.neg_requester_jid</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.HandleNegotiationBehaviour.html#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.neg_value"><code class="docutils literal notranslate"><span class="pre">HandleNegotiationBehaviour.neg_value</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.HandleNegotiationBehaviour.html#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.neg_value_event"><code class="docutils literal notranslate"><span class="pre">HandleNegotiationBehaviour.neg_value_event</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.HandleNegotiationBehaviour.html#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.myagent"><code class="docutils literal notranslate"><span class="pre">HandleNegotiationBehaviour.myagent</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.HandleNegotiationBehaviour.html#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.thread"><code class="docutils literal notranslate"><span class="pre">HandleNegotiationBehaviour.thread</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.HandleNegotiationBehaviour.html#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.neg_requester_jid"><code class="docutils literal notranslate"><span class="pre">HandleNegotiationBehaviour.neg_requester_jid</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.HandleNegotiationBehaviour.html#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.targets"><code class="docutils literal notranslate"><span class="pre">HandleNegotiationBehaviour.targets</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.HandleNegotiationBehaviour.html#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.neg_criteria"><code class="docutils literal notranslate"><span class="pre">HandleNegotiationBehaviour.neg_criteria</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.HandleNegotiationBehaviour.html#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.targets_processed"><code class="docutils literal notranslate"><span class="pre">HandleNegotiationBehaviour.targets_processed</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.HandleNegotiationBehaviour.html#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.on_start"><code class="docutils literal notranslate"><span class="pre">HandleNegotiationBehaviour.on_start()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.HandleNegotiationBehaviour.html#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.run"><code class="docutils literal notranslate"><span class="pre">HandleNegotiationBehaviour.run()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="behaviours.HandleNegotiationBehaviour.html#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.targets"><code class="docutils literal notranslate"><span class="pre">HandleNegotiationBehaviour.targets</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="behaviours.HandleNegotiationBehaviour.html#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.targets_processed"><code class="docutils literal notranslate"><span class="pre">HandleNegotiationBehaviour.targets_processed</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="behaviours.HandleNegotiationBehaviour.html#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.thread"><code class="docutils literal notranslate"><span class="pre">HandleNegotiationBehaviour.thread</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.HandleNegotiationBehaviour.html#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.get_neg_value_with_criteria"><code class="docutils literal notranslate"><span class="pre">HandleNegotiationBehaviour.get_neg_value_with_criteria()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.HandleNegotiationBehaviour.html#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.exit_negotiation"><code class="docutils literal notranslate"><span class="pre">HandleNegotiationBehaviour.exit_negotiation()</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="behaviours.HandleSvcRequestBehaviour.html">behaviours.HandleSvcRequestBehaviour module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="behaviours.HandleSvcRequestBehaviour.html#behaviours.HandleSvcRequestBehaviour.HandleSvcRequestBehaviour"><code class="docutils literal notranslate"><span class="pre">HandleSvcRequestBehaviour</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="behaviours.HandleSvcRequestBehaviour.html#behaviours.HandleSvcRequestBehaviour.HandleSvcRequestBehaviour.handle_aas_infrastructure_svc"><code class="docutils literal notranslate"><span class="pre">HandleSvcRequestBehaviour.handle_aas_infrastructure_svc()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="behaviours.HandleSvcRequestBehaviour.html#behaviours.HandleSvcRequestBehaviour.HandleSvcRequestBehaviour.handle_aas_services"><code class="docutils literal notranslate"><span class="pre">HandleSvcRequestBehaviour.handle_aas_services()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="behaviours.HandleSvcRequestBehaviour.html#behaviours.HandleSvcRequestBehaviour.HandleSvcRequestBehaviour.handle_asset_related_svc"><code class="docutils literal notranslate"><span class="pre">HandleSvcRequestBehaviour.handle_asset_related_svc()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="behaviours.HandleSvcRequestBehaviour.html#behaviours.HandleSvcRequestBehaviour.HandleSvcRequestBehaviour.handle_submodel_services"><code class="docutils literal notranslate"><span class="pre">HandleSvcRequestBehaviour.handle_submodel_services()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.HandleSvcRequestBehaviour.html#behaviours.HandleSvcRequestBehaviour.HandleSvcRequestBehaviour.on_start"><code class="docutils literal notranslate"><span class="pre">HandleSvcRequestBehaviour.on_start()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.HandleSvcRequestBehaviour.html#behaviours.HandleSvcRequestBehaviour.HandleSvcRequestBehaviour.run"><code class="docutils literal notranslate"><span class="pre">HandleSvcRequestBehaviour.run()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.HandleSvcRequestBehaviour.html#behaviours.HandleSvcRequestBehaviour.HandleSvcRequestBehaviour.handle_asset_related_svc"><code class="docutils literal notranslate"><span class="pre">HandleSvcRequestBehaviour.handle_asset_related_svc()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.HandleSvcRequestBehaviour.html#behaviours.HandleSvcRequestBehaviour.HandleSvcRequestBehaviour.handle_aas_infrastructure_svc"><code class="docutils literal notranslate"><span class="pre">HandleSvcRequestBehaviour.handle_aas_infrastructure_svc()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.HandleSvcRequestBehaviour.html#behaviours.HandleSvcRequestBehaviour.HandleSvcRequestBehaviour.handle_aas_services"><code class="docutils literal notranslate"><span class="pre">HandleSvcRequestBehaviour.handle_aas_services()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.HandleSvcRequestBehaviour.html#behaviours.HandleSvcRequestBehaviour.HandleSvcRequestBehaviour.handle_submodel_services"><code class="docutils literal notranslate"><span class="pre">HandleSvcRequestBehaviour.handle_submodel_services()</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="behaviours.HandleSvcResponseBehaviour.html">behaviours.HandleSvcResponseBehaviour module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="behaviours.HandleSvcResponseBehaviour.html#behaviours.HandleSvcResponseBehaviour.HandleSvcResponseBehaviour"><code class="docutils literal notranslate"><span class="pre">HandleSvcResponseBehaviour</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="behaviours.HandleSvcResponseBehaviour.html#behaviours.HandleSvcResponseBehaviour.HandleSvcResponseBehaviour.handle_aas_infrastructure_svc"><code class="docutils literal notranslate"><span class="pre">HandleSvcResponseBehaviour.handle_aas_infrastructure_svc()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="behaviours.HandleSvcResponseBehaviour.html#behaviours.HandleSvcResponseBehaviour.HandleSvcResponseBehaviour.handle_aas_services"><code class="docutils literal notranslate"><span class="pre">HandleSvcResponseBehaviour.handle_aas_services()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="behaviours.HandleSvcResponseBehaviour.html#behaviours.HandleSvcResponseBehaviour.HandleSvcResponseBehaviour.handle_asset_related_svc"><code class="docutils literal notranslate"><span class="pre">HandleSvcResponseBehaviour.handle_asset_related_svc()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="behaviours.HandleSvcResponseBehaviour.html#behaviours.HandleSvcResponseBehaviour.HandleSvcResponseBehaviour.handle_submodel_services"><code class="docutils literal notranslate"><span class="pre">HandleSvcResponseBehaviour.handle_submodel_services()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.HandleSvcResponseBehaviour.html#behaviours.HandleSvcResponseBehaviour.HandleSvcResponseBehaviour.on_start"><code class="docutils literal notranslate"><span class="pre">HandleSvcResponseBehaviour.on_start()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.HandleSvcResponseBehaviour.html#behaviours.HandleSvcResponseBehaviour.HandleSvcResponseBehaviour.run"><code class="docutils literal notranslate"><span class="pre">HandleSvcResponseBehaviour.run()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.HandleSvcResponseBehaviour.html#behaviours.HandleSvcResponseBehaviour.HandleSvcResponseBehaviour.handle_asset_related_svc"><code class="docutils literal notranslate"><span class="pre">HandleSvcResponseBehaviour.handle_asset_related_svc()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.HandleSvcResponseBehaviour.html#behaviours.HandleSvcResponseBehaviour.HandleSvcResponseBehaviour.handle_aas_infrastructure_svc"><code class="docutils literal notranslate"><span class="pre">HandleSvcResponseBehaviour.handle_aas_infrastructure_svc()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.HandleSvcResponseBehaviour.html#behaviours.HandleSvcResponseBehaviour.HandleSvcResponseBehaviour.handle_aas_services"><code class="docutils literal notranslate"><span class="pre">HandleSvcResponseBehaviour.handle_aas_services()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.HandleSvcResponseBehaviour.html#behaviours.HandleSvcResponseBehaviour.HandleSvcResponseBehaviour.handle_submodel_services"><code class="docutils literal notranslate"><span class="pre">HandleSvcResponseBehaviour.handle_submodel_services()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -409,16 +442,19 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="behaviours.InitAASModelBehaviour.html">behaviours.InitAASModelBehaviour module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="behaviours.InitAASModelBehaviour.html#behaviours.InitAASModelBehaviour.InitAASModelBehaviour"><code class="docutils literal notranslate"><span class="pre">InitAASModelBehaviour</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.InitAASModelBehaviour.html#behaviours.InitAASModelBehaviour.InitAASModelBehaviour.run"><code class="docutils literal notranslate"><span class="pre">InitAASModelBehaviour.run()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.InitAASModelBehaviour.html#behaviours.InitAASModelBehaviour.InitAASModelBehaviour.read_aas_model_object_store"><code class="docutils literal notranslate"><span class="pre">InitAASModelBehaviour.read_aas_model_object_store()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.InitAASModelBehaviour.html#behaviours.InitAASModelBehaviour.InitAASModelBehaviour.get_and_save_capabilities_skills_information"><code class="docutils literal notranslate"><span class="pre">InitAASModelBehaviour.get_and_save_capabilities_skills_information()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.InitAASModelBehaviour.html#behaviours.InitAASModelBehaviour.InitAASModelBehaviour.get_and_configure_asset_connections"><code class="docutils literal notranslate"><span class="pre">InitAASModelBehaviour.get_and_configure_asset_connections()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="behaviours.InitAASarchiveBehaviour.html">behaviours.InitAASarchiveBehaviour module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="behaviours.InitAASarchiveBehaviour.html#behaviours.InitAASarchiveBehaviour.InitAASarchiveBehaviour"><code class="docutils literal notranslate"><span class="pre">InitAASarchiveBehaviour</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.InitAASarchiveBehaviour.html#behaviours.InitAASarchiveBehaviour.InitAASarchiveBehaviour.run"><code class="docutils literal notranslate"><span class="pre">InitAASarchiveBehaviour.run()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="behaviours.InitSubmodelsBehaviour.html">behaviours.InitSubmodelsBehaviour module</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="behaviours.InitSubmodelsBehaviour.html#behaviours.InitSubmodelsBehaviour.InitSubmodelsBehaviour"><code class="docutils literal notranslate"><span class="pre">InitSubmodelsBehaviour</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="behaviours.InitSubmodelsBehaviour.html#behaviours.InitSubmodelsBehaviour.InitSubmodelsBehaviour.run"><code class="docutils literal notranslate"><span class="pre">InitSubmodelsBehaviour.run()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -470,14 +506,14 @@
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="agents.AASManagerResourceAgent.html">
+          <a class="prev-page" href="assetconnection.HTTPAssetConnection.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">agents.AASManagerResourceAgent module</div>
+                <div class="title">assetconnection.HTTPAssetConnection module</div>
                 
               </div>
             </a>

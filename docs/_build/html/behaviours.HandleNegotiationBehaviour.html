@@ -3,7 +3,7 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="behaviours.HandleSvcRequestBehaviour module" href="behaviours.HandleSvcRequestBehaviour.html" /><link rel="prev" title="behaviours.EndBehaviour module" href="behaviours.EndBehaviour.html" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="behaviours.HandleSvcRequestBehaviour module" href="behaviours.HandleSvcRequestBehaviour.html" /><link rel="prev" title="behaviours.HandleCapabilityBehaviour module" href="behaviours.HandleCapabilityBehaviour.html" />
 
     <link rel="shortcut icon" href="_static/I4_0_SMIA_favicon.svg"/><!-- Generated with Sphinx 7.3.7 and Furo 2024.05.06 -->
         <title>behaviours.HandleNegotiationBehaviour module - I4.0 SMIA 0.1.3 documentation</title>
@@ -25,6 +25,7 @@
   --color-brand-content: #2980B9;
   --color-problematic: DodgerBlue;
   --color-api-background: #E7F2FA;
+  --color-api-background-hover: #b7c0c6;
   
   }
   @media not print {
@@ -35,6 +36,7 @@
   --color-brand-content: #2980B9;
   --color-problematic: DodgerBlue;
   --color-api-background: #383838;
+  --color-api-background-hover: #5e5e5e;
   
     }
     @media (prefers-color-scheme: dark) {
@@ -45,6 +47,7 @@
   --color-brand-content: #2980B9;
   --color-problematic: DodgerBlue;
   --color-api-background: #383838;
+  --color-api-background-hover: #5e5e5e;
   
       }
     }
@@ -234,36 +237,50 @@
 <li class="toctree-l1"><a class="reference internal" href="aas_developer_guide.html">AAS Developer Guide</a></li>
 <li class="toctree-l1 current has-children"><a class="reference internal" href="modules.html">API documentation</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of API documentation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="aas_manager.html">aas_manager module</a></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="agents.html">agents package</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of agents package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="aas_model.html">aas_model package</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of aas_model package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="aas_model.ExtendedAASModel.html">aas_model.ExtendedAASModel module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aas_model.ExtendedAssetAdministrationShell.html">aas_model.ExtendedAssetAdministrationShell module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aas_model.ExtendedBase.html">aas_model.ExtendedBase module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aas_model.ExtendedConceptDescription.html">aas_model.ExtendedConceptDescription module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aas_model.ExtendedSubmodel.html">aas_model.ExtendedSubmodel module</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="agents.html">agents package</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of agents package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="agents.AASManagerAgent.html">agents.AASManagerAgent module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="agents.AASManagerAppAgent.html">agents.AASManagerAppAgent module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="agents.AASManagerResourceAgent.html">agents.AASManagerResourceAgent module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current has-children"><a class="reference internal" href="behaviours.html">behaviours package</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of behaviours package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="assetconnection.html">assetconnection package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of assetconnection package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="assetconnection.AssetConnection.html">assetconnection.AssetConnection module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="assetconnection.HTTPAssetConnection.html">assetconnection.HTTPAssetConnection module</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current has-children"><a class="reference internal" href="behaviours.html">behaviours package</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of behaviours package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="behaviours.AASFSMBehaviour.html">behaviours.AASFSMBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.CheckCoreInitializationBehaviour.html">behaviours.CheckCoreInitializationBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.CheckPhysicalAssetBehaviour.html">behaviours.CheckPhysicalAssetBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.EndBehaviour.html">behaviours.EndBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.HandleCapabilityBehaviour.html">behaviours.HandleCapabilityBehaviour module</a></li>
 <li class="toctree-l3 current current-page"><a class="current reference internal" href="#">behaviours.HandleNegotiationBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.HandleSvcRequestBehaviour.html">behaviours.HandleSvcRequestBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.HandleSvcResponseBehaviour.html">behaviours.HandleSvcResponseBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.IdleBehaviour.html">behaviours.IdleBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.InitAASModelBehaviour.html">behaviours.InitAASModelBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.InitAASarchiveBehaviour.html">behaviours.InitAASarchiveBehaviour module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="behaviours.InitSubmodelsBehaviour.html">behaviours.InitSubmodelsBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.InteractionHandlingBehaviour.html">behaviours.InteractionHandlingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.NegotiatingBehaviour.html">behaviours.NegotiatingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.SvcACLHandlingBehaviour.html">behaviours.SvcACLHandlingBehaviour module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="logic.html">logic package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of logic package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="logic.html">logic package</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of logic package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="logic.InterAASInteractions_utils.html">logic.InterAASInteractions_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logic.IntraAASInteractions_utils.html">logic.IntraAASInteractions_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logic.Negotiation_utils.html">logic.Negotiation_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logic.Services_utils.html">logic.Services_utils module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="states.html">states package</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of states package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="states.html">states package</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of states package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="states.StateBooting.html">states.StateBooting module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="states.StateBootingResource.html">states.StateBootingResource module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="states.StateIdle.html">states.StateIdle module</a></li>
@@ -271,11 +288,14 @@
 <li class="toctree-l3"><a class="reference internal" href="states.StateStopping.html">states.StateStopping module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="utilities.html">utilities package</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of utilities package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="utilities.html">utilities package</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of utilities package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="utilities.AASGeneralInfo.html">utilities.AASGeneralInfo module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="utilities.AASModelExtension_utils.html">utilities.AASModelExtension_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="utilities.AAS_Archive_utils.html">utilities.AAS_Archive_utils module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="utilities.AASarchiveInfo.html">utilities.AASarchiveInfo module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="utilities.AASmanagerInfo.html">utilities.AASmanagerInfo module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="utilities.CapabilitySkillOntology.html">utilities.CapabilitySkillOntology module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="utilities.ConfigMap_utils.html">utilities.ConfigMap_utils module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="utilities.FIPAACLInfo.html">utilities.FIPAACLInfo module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="utilities.GeneralUtils.html">utilities.GeneralUtils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="utilities.KafkaInfo.html">utilities.KafkaInfo module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="utilities.Submodels_utils.html">utilities.Submodels_utils module</a></li>
@@ -332,6 +352,79 @@
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">behaviours.HandleNegotiationBehaviour.</span></span><span class="sig-name descname"><span class="pre">HandleNegotiationBehaviour</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">agent_object</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">negotiation_info</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/behaviours/HandleNegotiationBehaviour.html#HandleNegotiationBehaviour"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">CyclicBehaviour</span></code></p>
 <p>This class implements the behaviour that handle a particular negotiation.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.neg_value">
+<span class="sig-name descname"><span class="pre">neg_value</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.neg_value" title="Link to this definition">¶</a></dt>
+<dd><p>value of the negotiation</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.neg_value_event">
+<span class="sig-name descname"><span class="pre">neg_value_event</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.neg_value_event" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.myagent">
+<span class="sig-name descname"><span class="pre">myagent</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.myagent" title="Link to this definition">¶</a></dt>
+<dd><p>the SPADE agent object of the AAS Manager agent.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.thread">
+<span class="sig-name descname"><span class="pre">thread</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.thread" title="Link to this definition">¶</a></dt>
+<dd><p>thread of the negotiation</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.neg_requester_jid">
+<span class="sig-name descname"><span class="pre">neg_requester_jid</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.neg_requester_jid" title="Link to this definition">¶</a></dt>
+<dd><p>JID of the SPADE agent that has requested the negotiation</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.targets">
+<span class="sig-name descname"><span class="pre">targets</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.targets" title="Link to this definition">¶</a></dt>
+<dd><p>targets of the negotiation</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.neg_criteria">
+<span class="sig-name descname"><span class="pre">neg_criteria</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.neg_criteria" title="Link to this definition">¶</a></dt>
+<dd><p>criteria of the negotiation</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.targets_processed">
+<span class="sig-name descname"><span class="pre">targets_processed</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.targets_processed" title="Link to this definition">¶</a></dt>
+<dd><p>targets that their values have been processed</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.on_start">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_start</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/behaviours/HandleNegotiationBehaviour.html#HandleNegotiationBehaviour.on_start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.on_start" title="Link to this definition">¶</a></dt>
+<dd><p>This method implements the initialization process of this behaviour.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.run">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/behaviours/HandleNegotiationBehaviour.html#HandleNegotiationBehaviour.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.run" title="Link to this definition">¶</a></dt>
+<dd><p>This method implements the logic of the behaviour.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.get_neg_value_with_criteria">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_neg_value_with_criteria</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/behaviours/HandleNegotiationBehaviour.html#HandleNegotiationBehaviour.get_neg_value_with_criteria"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.get_neg_value_with_criteria" title="Link to this definition">¶</a></dt>
+<dd><p>This method gets the negotiation value based on a given criteria.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>value of the negotiation</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.exit_negotiation">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">exit_negotiation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">is_winner</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/behaviours/HandleNegotiationBehaviour.html#HandleNegotiationBehaviour.exit_negotiation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.exit_negotiation" title="Link to this definition">¶</a></dt>
@@ -346,82 +439,6 @@ identifier of each one of them.</p>
 <dd class="field-odd"><p><strong>is_winner</strong> (<em>bool</em>) – it determines whether the AAS Manager has been the winner of the negotiation.</p>
 </dd>
 </dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.get_neg_value_with_criteria">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_neg_value_with_criteria</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">criteria</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/behaviours/HandleNegotiationBehaviour.html#HandleNegotiationBehaviour.get_neg_value_with_criteria"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.get_neg_value_with_criteria" title="Link to this definition">¶</a></dt>
-<dd><p>This method gets the negotiation value based on a given criteria.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>criteria</strong> (<em>str</em>) – criteria of the negotiation</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>value of the negotiation</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>int</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.myagent">
-<span class="sig-name descname"><span class="pre">myagent</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.myagent" title="Link to this definition">¶</a></dt>
-<dd><p>the SPADE agent object of the AAS Manager agent.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.neg_criteria">
-<span class="sig-name descname"><span class="pre">neg_criteria</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.neg_criteria" title="Link to this definition">¶</a></dt>
-<dd><p>criteria of the negotiation</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.neg_requester_jid">
-<span class="sig-name descname"><span class="pre">neg_requester_jid</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.neg_requester_jid" title="Link to this definition">¶</a></dt>
-<dd><p>JID of the SPADE agent that has requested the negotiation</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.neg_value">
-<span class="sig-name descname"><span class="pre">neg_value</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.neg_value" title="Link to this definition">¶</a></dt>
-<dd><p>value of the negotiation</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.neg_value_event">
-<span class="sig-name descname"><span class="pre">neg_value_event</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.neg_value_event" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.on_start">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_start</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/behaviours/HandleNegotiationBehaviour.html#HandleNegotiationBehaviour.on_start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.on_start" title="Link to this definition">¶</a></dt>
-<dd><p>This method implements the initialization process of this behaviour.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.run">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/behaviours/HandleNegotiationBehaviour.html#HandleNegotiationBehaviour.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.run" title="Link to this definition">¶</a></dt>
-<dd><p>This method implements the logic of the behaviour.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.targets">
-<span class="sig-name descname"><span class="pre">targets</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.targets" title="Link to this definition">¶</a></dt>
-<dd><p>targets of the negotiation</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.targets_processed">
-<span class="sig-name descname"><span class="pre">targets_processed</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.targets_processed" title="Link to this definition">¶</a></dt>
-<dd><p>targets that their values have been processed</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.thread">
-<span class="sig-name descname"><span class="pre">thread</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.thread" title="Link to this definition">¶</a></dt>
-<dd><p>thread of the negotiation</p>
 </dd></dl>
 
 </dd></dl>
@@ -442,14 +459,14 @@ identifier of each one of them.</p>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="behaviours.EndBehaviour.html">
+          <a class="prev-page" href="behaviours.HandleCapabilityBehaviour.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">behaviours.EndBehaviour module</div>
+                <div class="title">behaviours.HandleCapabilityBehaviour module</div>
                 
               </div>
             </a>
@@ -484,18 +501,18 @@ identifier of each one of them.</p>
             <ul>
 <li><a class="reference internal" href="#">behaviours.HandleNegotiationBehaviour module</a><ul>
 <li><a class="reference internal" href="#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour"><code class="docutils literal notranslate"><span class="pre">HandleNegotiationBehaviour</span></code></a><ul>
-<li><a class="reference internal" href="#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.exit_negotiation"><code class="docutils literal notranslate"><span class="pre">HandleNegotiationBehaviour.exit_negotiation()</span></code></a></li>
-<li><a class="reference internal" href="#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.get_neg_value_with_criteria"><code class="docutils literal notranslate"><span class="pre">HandleNegotiationBehaviour.get_neg_value_with_criteria()</span></code></a></li>
-<li><a class="reference internal" href="#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.myagent"><code class="docutils literal notranslate"><span class="pre">HandleNegotiationBehaviour.myagent</span></code></a></li>
-<li><a class="reference internal" href="#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.neg_criteria"><code class="docutils literal notranslate"><span class="pre">HandleNegotiationBehaviour.neg_criteria</span></code></a></li>
-<li><a class="reference internal" href="#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.neg_requester_jid"><code class="docutils literal notranslate"><span class="pre">HandleNegotiationBehaviour.neg_requester_jid</span></code></a></li>
 <li><a class="reference internal" href="#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.neg_value"><code class="docutils literal notranslate"><span class="pre">HandleNegotiationBehaviour.neg_value</span></code></a></li>
 <li><a class="reference internal" href="#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.neg_value_event"><code class="docutils literal notranslate"><span class="pre">HandleNegotiationBehaviour.neg_value_event</span></code></a></li>
+<li><a class="reference internal" href="#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.myagent"><code class="docutils literal notranslate"><span class="pre">HandleNegotiationBehaviour.myagent</span></code></a></li>
+<li><a class="reference internal" href="#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.thread"><code class="docutils literal notranslate"><span class="pre">HandleNegotiationBehaviour.thread</span></code></a></li>
+<li><a class="reference internal" href="#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.neg_requester_jid"><code class="docutils literal notranslate"><span class="pre">HandleNegotiationBehaviour.neg_requester_jid</span></code></a></li>
+<li><a class="reference internal" href="#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.targets"><code class="docutils literal notranslate"><span class="pre">HandleNegotiationBehaviour.targets</span></code></a></li>
+<li><a class="reference internal" href="#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.neg_criteria"><code class="docutils literal notranslate"><span class="pre">HandleNegotiationBehaviour.neg_criteria</span></code></a></li>
+<li><a class="reference internal" href="#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.targets_processed"><code class="docutils literal notranslate"><span class="pre">HandleNegotiationBehaviour.targets_processed</span></code></a></li>
 <li><a class="reference internal" href="#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.on_start"><code class="docutils literal notranslate"><span class="pre">HandleNegotiationBehaviour.on_start()</span></code></a></li>
 <li><a class="reference internal" href="#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.run"><code class="docutils literal notranslate"><span class="pre">HandleNegotiationBehaviour.run()</span></code></a></li>
-<li><a class="reference internal" href="#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.targets"><code class="docutils literal notranslate"><span class="pre">HandleNegotiationBehaviour.targets</span></code></a></li>
-<li><a class="reference internal" href="#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.targets_processed"><code class="docutils literal notranslate"><span class="pre">HandleNegotiationBehaviour.targets_processed</span></code></a></li>
-<li><a class="reference internal" href="#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.thread"><code class="docutils literal notranslate"><span class="pre">HandleNegotiationBehaviour.thread</span></code></a></li>
+<li><a class="reference internal" href="#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.get_neg_value_with_criteria"><code class="docutils literal notranslate"><span class="pre">HandleNegotiationBehaviour.get_neg_value_with_criteria()</span></code></a></li>
+<li><a class="reference internal" href="#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour.exit_negotiation"><code class="docutils literal notranslate"><span class="pre">HandleNegotiationBehaviour.exit_negotiation()</span></code></a></li>
 </ul>
 </li>
 </ul>

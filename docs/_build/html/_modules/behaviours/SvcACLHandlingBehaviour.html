@@ -24,6 +24,7 @@
   --color-brand-content: #2980B9;
   --color-problematic: DodgerBlue;
   --color-api-background: #E7F2FA;
+  --color-api-background-hover: #b7c0c6;
   
   }
   @media not print {
@@ -34,6 +35,7 @@
   --color-brand-content: #2980B9;
   --color-problematic: DodgerBlue;
   --color-api-background: #383838;
+  --color-api-background-hover: #5e5e5e;
   
     }
     @media (prefers-color-scheme: dark) {
@@ -44,6 +46,7 @@
   --color-brand-content: #2980B9;
   --color-problematic: DodgerBlue;
   --color-api-background: #383838;
+  --color-api-background-hover: #5e5e5e;
   
       }
     }
@@ -233,36 +236,50 @@
 <li class="toctree-l1"><a class="reference internal" href="../../aas_developer_guide.html">AAS Developer Guide</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../modules.html">API documentation</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of API documentation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../aas_manager.html">aas_manager module</a></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../agents.html">agents package</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of agents package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../aas_model.html">aas_model package</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of aas_model package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../aas_model.ExtendedAASModel.html">aas_model.ExtendedAASModel module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../aas_model.ExtendedAssetAdministrationShell.html">aas_model.ExtendedAssetAdministrationShell module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../aas_model.ExtendedBase.html">aas_model.ExtendedBase module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../aas_model.ExtendedConceptDescription.html">aas_model.ExtendedConceptDescription module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../aas_model.ExtendedSubmodel.html">aas_model.ExtendedSubmodel module</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../agents.html">agents package</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of agents package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../agents.AASManagerAgent.html">agents.AASManagerAgent module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../agents.AASManagerAppAgent.html">agents.AASManagerAppAgent module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../agents.AASManagerResourceAgent.html">agents.AASManagerResourceAgent module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../behaviours.html">behaviours package</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of behaviours package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../assetconnection.html">assetconnection package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of assetconnection package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../assetconnection.AssetConnection.html">assetconnection.AssetConnection module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../assetconnection.HTTPAssetConnection.html">assetconnection.HTTPAssetConnection module</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../behaviours.html">behaviours package</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of behaviours package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.AASFSMBehaviour.html">behaviours.AASFSMBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.CheckCoreInitializationBehaviour.html">behaviours.CheckCoreInitializationBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.CheckPhysicalAssetBehaviour.html">behaviours.CheckPhysicalAssetBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.EndBehaviour.html">behaviours.EndBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../behaviours.HandleCapabilityBehaviour.html">behaviours.HandleCapabilityBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.HandleNegotiationBehaviour.html">behaviours.HandleNegotiationBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.HandleSvcRequestBehaviour.html">behaviours.HandleSvcRequestBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.HandleSvcResponseBehaviour.html">behaviours.HandleSvcResponseBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.IdleBehaviour.html">behaviours.IdleBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../behaviours.InitAASModelBehaviour.html">behaviours.InitAASModelBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.InitAASarchiveBehaviour.html">behaviours.InitAASarchiveBehaviour module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../behaviours.InitSubmodelsBehaviour.html">behaviours.InitSubmodelsBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.InteractionHandlingBehaviour.html">behaviours.InteractionHandlingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.NegotiatingBehaviour.html">behaviours.NegotiatingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.SvcACLHandlingBehaviour.html">behaviours.SvcACLHandlingBehaviour module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../logic.html">logic package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of logic package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../logic.html">logic package</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of logic package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../logic.InterAASInteractions_utils.html">logic.InterAASInteractions_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../logic.IntraAASInteractions_utils.html">logic.IntraAASInteractions_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../logic.Negotiation_utils.html">logic.Negotiation_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../logic.Services_utils.html">logic.Services_utils module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../states.html">states package</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of states package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../states.html">states package</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of states package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../states.StateBooting.html">states.StateBooting module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../states.StateBootingResource.html">states.StateBootingResource module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../states.StateIdle.html">states.StateIdle module</a></li>
@@ -270,11 +287,14 @@
 <li class="toctree-l3"><a class="reference internal" href="../../states.StateStopping.html">states.StateStopping module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../utilities.html">utilities package</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of utilities package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../utilities.html">utilities package</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of utilities package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../utilities.AASGeneralInfo.html">utilities.AASGeneralInfo module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utilities.AASModelExtension_utils.html">utilities.AASModelExtension_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../utilities.AAS_Archive_utils.html">utilities.AAS_Archive_utils module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../utilities.AASarchiveInfo.html">utilities.AASarchiveInfo module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../utilities.AASmanagerInfo.html">utilities.AASmanagerInfo module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utilities.CapabilitySkillOntology.html">utilities.CapabilitySkillOntology module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../utilities.ConfigMap_utils.html">utilities.ConfigMap_utils module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utilities.FIPAACLInfo.html">utilities.FIPAACLInfo module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../utilities.GeneralUtils.html">utilities.GeneralUtils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../utilities.KafkaInfo.html">utilities.KafkaInfo module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../utilities.Submodels_utils.html">utilities.Submodels_utils module</a></li>
@@ -324,8 +344,11 @@
 
 <span class="kn">from</span> <span class="nn">spade.behaviour</span> <span class="kn">import</span> <span class="n">CyclicBehaviour</span>
 
+<span class="kn">from</span> <span class="nn">behaviours.HandleCapabilityBehaviour</span> <span class="kn">import</span> <span class="n">HandleCapabilityBehaviour</span>
 <span class="kn">from</span> <span class="nn">behaviours.HandleSvcRequestBehaviour</span> <span class="kn">import</span> <span class="n">HandleSvcRequestBehaviour</span>
+<span class="kn">from</span> <span class="nn">behaviours.HandleSvcResponseBehaviour</span> <span class="kn">import</span> <span class="n">HandleSvcResponseBehaviour</span>
 <span class="kn">from</span> <span class="nn">logic</span> <span class="kn">import</span> <span class="n">InterAASInteractions_utils</span>
+<span class="kn">from</span> <span class="nn">utilities.GeneralUtils</span> <span class="kn">import</span> <span class="n">GeneralUtils</span>
 
 <span class="n">_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
@@ -394,40 +417,76 @@
             <span class="c1">#  otro behaviour diferente</span>
 
             <span class="c1"># An ACL message has been received by the agent</span>
-            <span class="n">_logger</span><span class="o">.</span><span class="n">aclinfo</span><span class="p">(</span><span class="s2">&quot;         + Message received on AAS Manager Agent (ACLHandlingBehaviour)&quot;</span><span class="p">)</span>
+            <span class="n">_logger</span><span class="o">.</span><span class="n">aclinfo</span><span class="p">(</span><span class="s2">&quot;         + Message received on AAS Manager Agent (ACLHandlingBehaviour)&quot;</span>
+                            <span class="s2">&quot; from </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">sender</span><span class="p">))</span>
             <span class="n">_logger</span><span class="o">.</span><span class="n">aclinfo</span><span class="p">(</span><span class="s2">&quot;                 |___ Message received with content: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">body</span><span class="p">))</span>
 
             <span class="c1"># The msg body will be parsed to a JSON object</span>
             <span class="n">msg_json_body</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">body</span><span class="p">)</span>
 
-            <span class="c1"># TODO por ACL entiendo que también pueden llegar respuestas de servicios, no solo solicitudes,</span>
-            <span class="c1">#  asi que habria que modificar esto</span>
-            <span class="n">service_category</span> <span class="o">=</span> <span class="n">msg_json_body</span><span class="p">[</span><span class="s1">&#39;serviceData&#39;</span><span class="p">][</span><span class="s1">&#39;serviceCategory&#39;</span><span class="p">]</span>
+            <span class="c1"># Depending on the performative of the message, the agent will have to perform some actions or others</span>
+            <span class="k">match</span> <span class="n">msg</span><span class="o">.</span><span class="n">get_metadata</span><span class="p">(</span><span class="s1">&#39;performative&#39;</span><span class="p">):</span>
+                <span class="k">case</span> <span class="s2">&quot;CallForProposal&quot;</span><span class="p">:</span>
+                    <span class="n">_logger</span><span class="o">.</span><span class="n">aclinfo</span><span class="p">(</span><span class="s2">&quot;The performative of the message is CallForProposal, so the DT needs to perform &quot;</span>
+                                    <span class="s2">&quot;some action.&quot;</span><span class="p">)</span>
 
-            <span class="k">if</span> <span class="n">service_category</span> <span class="o">==</span> <span class="s1">&#39;service-request&#39;</span><span class="p">:</span>
-                <span class="c1"># A new service request is added to the global dictionary of ACL requests of the agent</span>
-                <span class="k">if</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">get_acl_svc_request</span><span class="p">(</span><span class="n">thread</span><span class="o">=</span><span class="n">msg</span><span class="o">.</span><span class="n">thread</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="n">_logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;A request has been made for an ACL service that already exists.&quot;</span><span class="p">)</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="c1"># The thread is the identifier of the conversation, so all the information will be saved using it</span>
-                    <span class="n">msg_json_body</span><span class="p">[</span><span class="s1">&#39;performative&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">get_metadata</span><span class="p">(</span><span class="s1">&#39;performative&#39;</span><span class="p">)</span>
-                    <span class="n">msg_json_body</span><span class="p">[</span><span class="s1">&#39;ontology&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">get_metadata</span><span class="p">(</span><span class="s1">&#39;ontology&#39;</span><span class="p">)</span>
-
-                    <span class="k">if</span> <span class="s1">&#39;/&#39;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">sender</span><span class="p">):</span>  <span class="c1"># XMPP server can add a random string to differentiate the agent JID</span>
-                        <span class="n">msg_json_body</span><span class="p">[</span><span class="s1">&#39;sender&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">sender</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+                    <span class="n">service_id</span> <span class="o">=</span> <span class="n">msg_json_body</span><span class="p">[</span><span class="s1">&#39;serviceID&#39;</span><span class="p">]</span>
+                    <span class="k">if</span> <span class="n">service_id</span> <span class="o">==</span> <span class="s1">&#39;capabilityRequest&#39;</span><span class="p">:</span>
+                        <span class="n">_logger</span><span class="o">.</span><span class="n">aclinfo</span><span class="p">(</span><span class="s2">&quot;The agent has received a request to perform a capability&quot;</span><span class="p">)</span>
+                        <span class="c1"># The behaviour to handle this specific capability will be added to the agent</span>
+                        <span class="n">svc_req_data</span> <span class="o">=</span> <span class="n">InterAASInteractions_utils</span><span class="o">.</span><span class="n">create_svc_json_data_from_acl_msg</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                        <span class="n">capability_handling_behav</span> <span class="o">=</span> <span class="n">HandleCapabilityBehaviour</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">agent</span><span class="p">,</span> <span class="n">svc_req_data</span><span class="p">)</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">add_behaviour</span><span class="p">(</span><span class="n">capability_handling_behav</span><span class="p">)</span>
                     <span class="k">else</span><span class="p">:</span>
-                        <span class="n">msg_json_body</span><span class="p">[</span><span class="s1">&#39;sender&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">sender</span><span class="p">)</span>
-                    <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">save_new_acl_svc_request</span><span class="p">(</span><span class="n">thread</span><span class="o">=</span><span class="n">msg</span><span class="o">.</span><span class="n">thread</span><span class="p">,</span> <span class="n">request_data</span><span class="o">=</span><span class="n">msg_json_body</span><span class="p">)</span>
-                    <span class="n">_logger</span><span class="o">.</span><span class="n">aclinfo</span><span class="p">(</span><span class="s2">&quot;acl_svc_requests shared object updated by &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
-                                    <span class="o">+</span> <span class="s2">&quot; responsible for thread [&quot;</span> <span class="o">+</span> <span class="n">msg</span><span class="o">.</span><span class="n">thread</span> <span class="o">+</span> <span class="s2">&quot;]. Action: request data added&quot;</span><span class="p">)</span>
+                        <span class="c1"># TODO pensar mas tipos de serviceIDs</span>
+                        <span class="n">service_category</span> <span class="o">=</span> <span class="n">msg_json_body</span><span class="p">[</span><span class="s1">&#39;serviceData&#39;</span><span class="p">][</span><span class="s1">&#39;serviceCategory&#39;</span><span class="p">]</span>
+                        <span class="k">if</span> <span class="n">service_category</span> <span class="o">==</span> <span class="s1">&#39;service-request&#39;</span><span class="p">:</span>
+                            <span class="c1"># The new service request is looked up in the agent&#39;s global ACL request dictionary.</span>
+                            <span class="k">if</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">get_acl_svc_request</span><span class="p">(</span><span class="n">thread</span><span class="o">=</span><span class="n">msg</span><span class="o">.</span><span class="n">thread</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                                <span class="n">_logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;A request has been made for an ACL service that already exists.&quot;</span><span class="p">)</span>
+                            <span class="k">else</span><span class="p">:</span>
+                                <span class="c1"># The thread is the identifier of the conversation, so all the information will be saved using it</span>
+                                <span class="n">msg_json_body</span><span class="p">[</span><span class="s1">&#39;performative&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">get_metadata</span><span class="p">(</span><span class="s1">&#39;performative&#39;</span><span class="p">)</span>
+                                <span class="n">msg_json_body</span><span class="p">[</span><span class="s1">&#39;ontology&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">get_metadata</span><span class="p">(</span><span class="s1">&#39;ontology&#39;</span><span class="p">)</span>
 
-                    <span class="n">svc_req_data</span> <span class="o">=</span> <span class="n">InterAASInteractions_utils</span><span class="o">.</span><span class="n">create_svc_req_data_from_acl_msg</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                                <span class="n">msg_json_body</span><span class="p">[</span><span class="s1">&#39;sender&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">GeneralUtils</span><span class="o">.</span><span class="n">get_sender_from_acl_msg</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                                <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">save_new_acl_svc_request</span><span class="p">(</span><span class="n">thread</span><span class="o">=</span><span class="n">msg</span><span class="o">.</span><span class="n">thread</span><span class="p">,</span> <span class="n">request_data</span><span class="o">=</span><span class="n">msg_json_body</span><span class="p">)</span>
+                                <span class="n">_logger</span><span class="o">.</span><span class="n">aclinfo</span><span class="p">(</span><span class="s2">&quot;acl_svc_requests shared object updated by &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+                                                <span class="o">+</span> <span class="s2">&quot; responsible for thread [&quot;</span> <span class="o">+</span> <span class="n">msg</span><span class="o">.</span><span class="n">thread</span> <span class="o">+</span> <span class="s2">&quot;]. Action: request data added&quot;</span><span class="p">)</span>
 
-                    <span class="c1"># A new behaviour is added to the SPADE agent to handle this specific service request</span>
-                    <span class="n">svc_req_handling_behav</span> <span class="o">=</span> <span class="n">HandleSvcRequestBehaviour</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">agent</span><span class="p">,</span>
-                                                                       <span class="s1">&#39;Inter AAS interaction&#39;</span><span class="p">,</span>
-                                                                       <span class="n">svc_req_data</span><span class="p">)</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">add_behaviour</span><span class="p">(</span><span class="n">svc_req_handling_behav</span><span class="p">)</span>
+                                <span class="n">svc_req_data</span> <span class="o">=</span> <span class="n">InterAASInteractions_utils</span><span class="o">.</span><span class="n">create_svc_json_data_from_acl_msg</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+                                <span class="c1"># A new behaviour is added to the SPADE agent to handle this specific service request</span>
+                                <span class="n">svc_req_handling_behav</span> <span class="o">=</span> <span class="n">HandleSvcRequestBehaviour</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">agent</span><span class="p">,</span>
+                                                                                   <span class="s1">&#39;Inter AAS interaction&#39;</span><span class="p">,</span>
+                                                                                   <span class="n">svc_req_data</span><span class="p">)</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">add_behaviour</span><span class="p">(</span><span class="n">svc_req_handling_behav</span><span class="p">)</span>
+
+                        <span class="k">elif</span> <span class="n">service_category</span> <span class="o">==</span> <span class="s1">&#39;service-response&#39;</span><span class="p">:</span>
+                            <span class="n">_logger</span><span class="o">.</span><span class="n">aclinfo</span><span class="p">(</span><span class="s2">&quot;The agent has received the response of a service with thread [&quot;</span> <span class="o">+</span> <span class="n">msg</span><span class="o">.</span><span class="n">thread</span> <span class="o">+</span> <span class="s2">&quot;].&quot;</span><span class="p">)</span>
+
+                            <span class="c1"># As it is a response to a previous request, a new HandleSvcResponseBehaviour to handle this service</span>
+                            <span class="c1"># response will be added to the agent</span>
+                            <span class="n">svc_resp_data</span> <span class="o">=</span> <span class="n">InterAASInteractions_utils</span><span class="o">.</span><span class="n">create_svc_json_data_from_acl_msg</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                            <span class="n">svc_resp_handling_behav</span> <span class="o">=</span> <span class="n">HandleSvcResponseBehaviour</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">agent</span><span class="p">,</span>
+                                                                                 <span class="s1">&#39;Inter AAS interaction&#39;</span><span class="p">,</span>
+                                                                                 <span class="n">svc_resp_data</span><span class="p">)</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">add_behaviour</span><span class="p">(</span><span class="n">svc_resp_handling_behav</span><span class="p">)</span>
+
+
+                <span class="k">case</span> <span class="s2">&quot;Query-If&quot;</span><span class="p">:</span>
+                    <span class="n">_logger</span><span class="o">.</span><span class="n">aclinfo</span><span class="p">(</span><span class="s2">&quot;The performative of the message is Query-If, so the DT has been asked about some &quot;</span>
+                                    <span class="s2">&quot;aspect of it.&quot;</span><span class="p">)</span>
+
+                    <span class="n">service_category</span> <span class="o">=</span> <span class="n">msg_json_body</span><span class="p">[</span><span class="s1">&#39;serviceID&#39;</span><span class="p">]</span>
+                    <span class="k">if</span> <span class="n">service_category</span> <span class="o">==</span> <span class="s1">&#39;capabilityChecking&#39;</span><span class="p">:</span>
+                        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;The DT has been asked to check if it has a given capability.&quot;</span><span class="p">)</span>
+                        <span class="n">svc_req_data</span> <span class="o">=</span> <span class="n">InterAASInteractions_utils</span><span class="o">.</span><span class="n">create_svc_json_data_from_acl_msg</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                        <span class="n">capability_handling_behav</span> <span class="o">=</span> <span class="n">HandleCapabilityBehaviour</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">agent</span><span class="p">,</span> <span class="n">svc_req_data</span><span class="p">)</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">myagent</span><span class="o">.</span><span class="n">add_behaviour</span><span class="p">(</span><span class="n">capability_handling_behav</span><span class="p">)</span>
+                <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">:</span>
+                    <span class="n">_logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;ACL performative type not available.&quot;</span><span class="p">)</span>
+
 
 
         <span class="k">else</span><span class="p">:</span>

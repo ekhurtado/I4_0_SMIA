@@ -25,6 +25,7 @@
   --color-brand-content: #2980B9;
   --color-problematic: DodgerBlue;
   --color-api-background: #E7F2FA;
+  --color-api-background-hover: #b7c0c6;
   
   }
   @media not print {
@@ -35,6 +36,7 @@
   --color-brand-content: #2980B9;
   --color-problematic: DodgerBlue;
   --color-api-background: #383838;
+  --color-api-background-hover: #5e5e5e;
   
     }
     @media (prefers-color-scheme: dark) {
@@ -45,6 +47,7 @@
   --color-brand-content: #2980B9;
   --color-problematic: DodgerBlue;
   --color-api-background: #383838;
+  --color-api-background-hover: #5e5e5e;
   
       }
     }
@@ -234,36 +237,50 @@
 <li class="toctree-l1"><a class="reference internal" href="aas_developer_guide.html">AAS Developer Guide</a></li>
 <li class="toctree-l1 current has-children current-page"><a class="current reference internal" href="#">API documentation</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of API documentation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="aas_manager.html">aas_manager module</a></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="agents.html">agents package</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of agents package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="aas_model.html">aas_model package</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of aas_model package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="aas_model.ExtendedAASModel.html">aas_model.ExtendedAASModel module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aas_model.ExtendedAssetAdministrationShell.html">aas_model.ExtendedAssetAdministrationShell module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aas_model.ExtendedBase.html">aas_model.ExtendedBase module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aas_model.ExtendedConceptDescription.html">aas_model.ExtendedConceptDescription module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aas_model.ExtendedSubmodel.html">aas_model.ExtendedSubmodel module</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="agents.html">agents package</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of agents package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="agents.AASManagerAgent.html">agents.AASManagerAgent module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="agents.AASManagerAppAgent.html">agents.AASManagerAppAgent module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="agents.AASManagerResourceAgent.html">agents.AASManagerResourceAgent module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="behaviours.html">behaviours package</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of behaviours package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="assetconnection.html">assetconnection package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of assetconnection package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="assetconnection.AssetConnection.html">assetconnection.AssetConnection module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="assetconnection.HTTPAssetConnection.html">assetconnection.HTTPAssetConnection module</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="behaviours.html">behaviours package</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of behaviours package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.AASFSMBehaviour.html">behaviours.AASFSMBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.CheckCoreInitializationBehaviour.html">behaviours.CheckCoreInitializationBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.CheckPhysicalAssetBehaviour.html">behaviours.CheckPhysicalAssetBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.EndBehaviour.html">behaviours.EndBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.HandleCapabilityBehaviour.html">behaviours.HandleCapabilityBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.HandleNegotiationBehaviour.html">behaviours.HandleNegotiationBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.HandleSvcRequestBehaviour.html">behaviours.HandleSvcRequestBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.HandleSvcResponseBehaviour.html">behaviours.HandleSvcResponseBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.IdleBehaviour.html">behaviours.IdleBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.InitAASModelBehaviour.html">behaviours.InitAASModelBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.InitAASarchiveBehaviour.html">behaviours.InitAASarchiveBehaviour module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="behaviours.InitSubmodelsBehaviour.html">behaviours.InitSubmodelsBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.InteractionHandlingBehaviour.html">behaviours.InteractionHandlingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.NegotiatingBehaviour.html">behaviours.NegotiatingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.SvcACLHandlingBehaviour.html">behaviours.SvcACLHandlingBehaviour module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="logic.html">logic package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of logic package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="logic.html">logic package</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of logic package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="logic.InterAASInteractions_utils.html">logic.InterAASInteractions_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logic.IntraAASInteractions_utils.html">logic.IntraAASInteractions_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logic.Negotiation_utils.html">logic.Negotiation_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logic.Services_utils.html">logic.Services_utils module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="states.html">states package</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of states package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="states.html">states package</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of states package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="states.StateBooting.html">states.StateBooting module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="states.StateBootingResource.html">states.StateBootingResource module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="states.StateIdle.html">states.StateIdle module</a></li>
@@ -271,11 +288,14 @@
 <li class="toctree-l3"><a class="reference internal" href="states.StateStopping.html">states.StateStopping module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="utilities.html">utilities package</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of utilities package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="utilities.html">utilities package</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of utilities package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="utilities.AASGeneralInfo.html">utilities.AASGeneralInfo module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="utilities.AASModelExtension_utils.html">utilities.AASModelExtension_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="utilities.AAS_Archive_utils.html">utilities.AAS_Archive_utils module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="utilities.AASarchiveInfo.html">utilities.AASarchiveInfo module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="utilities.AASmanagerInfo.html">utilities.AASmanagerInfo module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="utilities.CapabilitySkillOntology.html">utilities.CapabilitySkillOntology module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="utilities.ConfigMap_utils.html">utilities.ConfigMap_utils module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="utilities.FIPAACLInfo.html">utilities.FIPAACLInfo module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="utilities.GeneralUtils.html">utilities.GeneralUtils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="utilities.KafkaInfo.html">utilities.KafkaInfo module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="utilities.Submodels_utils.html">utilities.Submodels_utils module</a></li>
@@ -333,6 +353,51 @@
 <li class="toctree-l2"><a class="reference internal" href="aas_manager.html#aas_manager.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="aas_model.html">aas_model package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="aas_model.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="aas_model.ExtendedAASModel.html">aas_model.ExtendedAASModel module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="aas_model.ExtendedAASModel.html#aas_model.ExtendedAASModel.ExtendedAASModel"><code class="docutils literal notranslate"><span class="pre">ExtendedAASModel</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="aas_model.ExtendedAssetAdministrationShell.html">aas_model.ExtendedAssetAdministrationShell module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="aas_model.ExtendedAssetAdministrationShell.html#aas_model.ExtendedAssetAdministrationShell.ExtendedAssetAdministrationShell"><code class="docutils literal notranslate"><span class="pre">ExtendedAssetAdministrationShell</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="aas_model.ExtendedAssetAdministrationShell.html#aas_model.ExtendedAssetAdministrationShell.ExtendedAssetInformation"><code class="docutils literal notranslate"><span class="pre">ExtendedAssetInformation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="aas_model.ExtendedAssetAdministrationShell.html#aas_model.ExtendedAssetAdministrationShell.ExtendedGeneralMethods"><code class="docutils literal notranslate"><span class="pre">ExtendedGeneralMethods</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="aas_model.ExtendedBase.html">aas_model.ExtendedBase module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="aas_model.ExtendedBase.html#aas_model.ExtendedBase.ExtendedQualifier"><code class="docutils literal notranslate"><span class="pre">ExtendedQualifier</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="aas_model.ExtendedBase.html#aas_model.ExtendedBase.ExtendedHasSemantics"><code class="docutils literal notranslate"><span class="pre">ExtendedHasSemantics</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="aas_model.ExtendedConceptDescription.html">aas_model.ExtendedConceptDescription module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="aas_model.ExtendedConceptDescription.html#aas_model.ExtendedConceptDescription.ExtendedConceptDescription"><code class="docutils literal notranslate"><span class="pre">ExtendedConceptDescription</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="aas_model.ExtendedSubmodel.html">aas_model.ExtendedSubmodel module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="aas_model.ExtendedSubmodel.html#aas_model.ExtendedSubmodel.ExtendedSubmodel"><code class="docutils literal notranslate"><span class="pre">ExtendedSubmodel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="aas_model.ExtendedSubmodel.html#aas_model.ExtendedSubmodel.ExtendedSubmodelElement"><code class="docutils literal notranslate"><span class="pre">ExtendedSubmodelElement</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="aas_model.ExtendedSubmodel.html#aas_model.ExtendedSubmodel.ExtendedRelationshipElement"><code class="docutils literal notranslate"><span class="pre">ExtendedRelationshipElement</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="aas_model.ExtendedSubmodel.html#aas_model.ExtendedSubmodel.ExtendedAnnotatedRelationshipElement"><code class="docutils literal notranslate"><span class="pre">ExtendedAnnotatedRelationshipElement</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="aas_model.ExtendedSubmodel.html#aas_model.ExtendedSubmodel.ExtendedCapability"><code class="docutils literal notranslate"><span class="pre">ExtendedCapability</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="aas_model.ExtendedSubmodel.html#aas_model.ExtendedSubmodel.ExtendedOperation"><code class="docutils literal notranslate"><span class="pre">ExtendedOperation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="aas_model.ExtendedSubmodel.html#aas_model.ExtendedSubmodel.ExtendedBasicEventElement"><code class="docutils literal notranslate"><span class="pre">ExtendedBasicEventElement</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="aas_model.ExtendedSubmodel.html#aas_model.ExtendedSubmodel.ExtendedEntity"><code class="docutils literal notranslate"><span class="pre">ExtendedEntity</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="aas_model.ExtendedSubmodel.html#aas_model.ExtendedSubmodel.ExtendedSubmodelElementList"><code class="docutils literal notranslate"><span class="pre">ExtendedSubmodelElementList</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="aas_model.ExtendedSubmodel.html#aas_model.ExtendedSubmodel.ExtendedSubmodelElementCollection"><code class="docutils literal notranslate"><span class="pre">ExtendedSubmodelElementCollection</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="aas_model.ExtendedSubmodel.html#aas_model.ExtendedSubmodel.ExtendedProperty"><code class="docutils literal notranslate"><span class="pre">ExtendedProperty</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="aas_model.ExtendedSubmodel.html#aas_model.ExtendedSubmodel.ExtendedMultiLanguageProperty"><code class="docutils literal notranslate"><span class="pre">ExtendedMultiLanguageProperty</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="aas_model.ExtendedSubmodel.html#aas_model.ExtendedSubmodel.ExtendedRange"><code class="docutils literal notranslate"><span class="pre">ExtendedRange</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="aas_model.ExtendedSubmodel.html#aas_model.ExtendedSubmodel.ExtendedBlob"><code class="docutils literal notranslate"><span class="pre">ExtendedBlob</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="aas_model.ExtendedSubmodel.html#aas_model.ExtendedSubmodel.ExtendedFile"><code class="docutils literal notranslate"><span class="pre">ExtendedFile</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="aas_model.ExtendedSubmodel.html#aas_model.ExtendedSubmodel.ExtendedReferenceElement"><code class="docutils literal notranslate"><span class="pre">ExtendedReferenceElement</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="aas_model.html#module-aas_model">Module contents</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="agents.html">agents package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="agents.html#submodules">Submodules</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="agents.AASManagerAgent.html">agents.AASManagerAgent module</a><ul>
@@ -350,6 +415,22 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="agents.html#module-agents">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="assetconnection.html">assetconnection package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="assetconnection.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="assetconnection.AssetConnection.html">assetconnection.AssetConnection module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="assetconnection.AssetConnection.html#assetconnection.AssetConnection.AssetConnection"><code class="docutils literal notranslate"><span class="pre">AssetConnection</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="assetconnection.HTTPAssetConnection.html">assetconnection.HTTPAssetConnection module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="assetconnection.HTTPAssetConnection.html#assetconnection.HTTPAssetConnection.HTTPAssetConnection"><code class="docutils literal notranslate"><span class="pre">HTTPAssetConnection</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="assetconnection.HTTPAssetConnection.html#assetconnection.HTTPAssetConnection.HTTPAssetInterfaceSemantics"><code class="docutils literal notranslate"><span class="pre">HTTPAssetInterfaceSemantics</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="assetconnection.html#module-assetconnection">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="behaviours.html">behaviours package</a><ul>
@@ -370,6 +451,10 @@
 <li class="toctree-l4"><a class="reference internal" href="behaviours.EndBehaviour.html#behaviours.EndBehaviour.EndBehaviour"><code class="docutils literal notranslate"><span class="pre">EndBehaviour</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.HandleCapabilityBehaviour.html">behaviours.HandleCapabilityBehaviour module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="behaviours.HandleCapabilityBehaviour.html#behaviours.HandleCapabilityBehaviour.HandleCapabilityBehaviour"><code class="docutils literal notranslate"><span class="pre">HandleCapabilityBehaviour</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.HandleNegotiationBehaviour.html">behaviours.HandleNegotiationBehaviour module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="behaviours.HandleNegotiationBehaviour.html#behaviours.HandleNegotiationBehaviour.HandleNegotiationBehaviour"><code class="docutils literal notranslate"><span class="pre">HandleNegotiationBehaviour</span></code></a></li>
 </ul>
@@ -386,12 +471,12 @@
 <li class="toctree-l4"><a class="reference internal" href="behaviours.IdleBehaviour.html#behaviours.IdleBehaviour.IdleBehaviour"><code class="docutils literal notranslate"><span class="pre">IdleBehaviour</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="behaviours.InitAASarchiveBehaviour.html">behaviours.InitAASarchiveBehaviour module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="behaviours.InitAASarchiveBehaviour.html#behaviours.InitAASarchiveBehaviour.InitAASarchiveBehaviour"><code class="docutils literal notranslate"><span class="pre">InitAASarchiveBehaviour</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.InitAASModelBehaviour.html">behaviours.InitAASModelBehaviour module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="behaviours.InitAASModelBehaviour.html#behaviours.InitAASModelBehaviour.InitAASModelBehaviour"><code class="docutils literal notranslate"><span class="pre">InitAASModelBehaviour</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="behaviours.InitSubmodelsBehaviour.html">behaviours.InitSubmodelsBehaviour module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="behaviours.InitSubmodelsBehaviour.html#behaviours.InitSubmodelsBehaviour.InitSubmodelsBehaviour"><code class="docutils literal notranslate"><span class="pre">InitSubmodelsBehaviour</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.InitAASarchiveBehaviour.html">behaviours.InitAASarchiveBehaviour module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="behaviours.InitAASarchiveBehaviour.html#behaviours.InitAASarchiveBehaviour.InitAASarchiveBehaviour"><code class="docutils literal notranslate"><span class="pre">InitAASarchiveBehaviour</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.InteractionHandlingBehaviour.html">behaviours.InteractionHandlingBehaviour module</a><ul>
@@ -414,27 +499,32 @@
 <li class="toctree-l1"><a class="reference internal" href="logic.html">logic package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="logic.html#submodules">Submodules</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="logic.InterAASInteractions_utils.html">logic.InterAASInteractions_utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="logic.InterAASInteractions_utils.html#logic.InterAASInteractions_utils.create_svc_json_data_from_acl_msg"><code class="docutils literal notranslate"><span class="pre">create_svc_json_data_from_acl_msg()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="logic.InterAASInteractions_utils.html#logic.InterAASInteractions_utils.create_inter_aas_request_msg"><code class="docutils literal notranslate"><span class="pre">create_inter_aas_request_msg()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="logic.InterAASInteractions_utils.html#logic.InterAASInteractions_utils.create_inter_aas_response_msg"><code class="docutils literal notranslate"><span class="pre">create_inter_aas_response_msg()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="logic.InterAASInteractions_utils.html#logic.InterAASInteractions_utils.create_inter_aas_response_object"><code class="docutils literal notranslate"><span class="pre">create_inter_aas_response_object()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="logic.InterAASInteractions_utils.html#logic.InterAASInteractions_utils.create_svc_req_data_from_acl_msg"><code class="docutils literal notranslate"><span class="pre">create_svc_req_data_from_acl_msg()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="logic.IntraAASInteractions_utils.html">logic.IntraAASInteractions_utils module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="logic.IntraAASInteractions_utils.html#logic.IntraAASInteractions_utils.add_new_svc_request"><code class="docutils literal notranslate"><span class="pre">add_new_svc_request()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="logic.IntraAASInteractions_utils.html#logic.IntraAASInteractions_utils.create_interaction_kafka_consumer"><code class="docutils literal notranslate"><span class="pre">create_interaction_kafka_consumer()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="logic.IntraAASInteractions_utils.html#logic.IntraAASInteractions_utils.create_svc_request_interaction_json"><code class="docutils literal notranslate"><span class="pre">create_svc_request_interaction_json()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="logic.IntraAASInteractions_utils.html#logic.IntraAASInteractions_utils.get_svc_info"><code class="docutils literal notranslate"><span class="pre">get_svc_info()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="logic.IntraAASInteractions_utils.html#logic.IntraAASInteractions_utils.create_intra_aas_response_object"><code class="docutils literal notranslate"><span class="pre">create_intra_aas_response_object()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="logic.IntraAASInteractions_utils.html#logic.IntraAASInteractions_utils.add_new_svc_request"><code class="docutils literal notranslate"><span class="pre">add_new_svc_request()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="logic.IntraAASInteractions_utils.html#logic.IntraAASInteractions_utils.get_svc_request_info"><code class="docutils literal notranslate"><span class="pre">get_svc_request_info()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="logic.IntraAASInteractions_utils.html#logic.IntraAASInteractions_utils.get_svc_response_info"><code class="docutils literal notranslate"><span class="pre">get_svc_response_info()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="logic.IntraAASInteractions_utils.html#logic.IntraAASInteractions_utils.save_svc_info_in_log_file"><code class="docutils literal notranslate"><span class="pre">save_svc_info_in_log_file()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="logic.IntraAASInteractions_utils.html#logic.IntraAASInteractions_utils.create_interaction_kafka_consumer"><code class="docutils literal notranslate"><span class="pre">create_interaction_kafka_consumer()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="logic.IntraAASInteractions_utils.html#logic.IntraAASInteractions_utils.send_interaction_msg_to_core"><code class="docutils literal notranslate"><span class="pre">send_interaction_msg_to_core()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="logic.IntraAASInteractions_utils.html#logic.IntraAASInteractions_utils.get_svc_info"><code class="docutils literal notranslate"><span class="pre">get_svc_info()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="logic.Negotiation_utils.html">logic.Negotiation_utils module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="logic.Negotiation_utils.html#logic.Negotiation_utils.add_value_and_unlock_neg_handling_behaviour"><code class="docutils literal notranslate"><span class="pre">add_value_and_unlock_neg_handling_behaviour()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="logic.Negotiation_utils.html#logic.Negotiation_utils.create_intra_aas_neg_req_data"><code class="docutils literal notranslate"><span class="pre">create_intra_aas_neg_req_data()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="logic.Negotiation_utils.html#logic.Negotiation_utils.create_neg_json_to_store"><code class="docutils literal notranslate"><span class="pre">create_neg_json_to_store()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="logic.Negotiation_utils.html#logic.Negotiation_utils.create_neg_cfp_msg"><code class="docutils literal notranslate"><span class="pre">create_neg_cfp_msg()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="logic.Negotiation_utils.html#logic.Negotiation_utils.create_neg_propose_msg"><code class="docutils literal notranslate"><span class="pre">create_neg_propose_msg()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="logic.Negotiation_utils.html#logic.Negotiation_utils.create_neg_response_msg"><code class="docutils literal notranslate"><span class="pre">create_neg_response_msg()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="logic.Negotiation_utils.html#logic.Negotiation_utils.create_neg_json_to_store"><code class="docutils literal notranslate"><span class="pre">create_neg_json_to_store()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="logic.Negotiation_utils.html#logic.Negotiation_utils.create_intra_aas_neg_req_data"><code class="docutils literal notranslate"><span class="pre">create_intra_aas_neg_req_data()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="logic.Negotiation_utils.html#logic.Negotiation_utils.add_value_and_unlock_neg_handling_behaviour"><code class="docutils literal notranslate"><span class="pre">add_value_and_unlock_neg_handling_behaviour()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="logic.Negotiation_utils.html#logic.Negotiation_utils.get_neg_intra_aas_request_by_thread"><code class="docutils literal notranslate"><span class="pre">get_neg_intra_aas_request_by_thread()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="logic.Services_utils.html">logic.Services_utils module</a></li>
@@ -472,33 +562,49 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="utilities.html">utilities package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="utilities.html#submodules">Submodules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="utilities.AAS_Archive_utils.html">utilities.AAS_Archive_utils module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="utilities.AAS_Archive_utils.html#utilities.AAS_Archive_utils.change_status"><code class="docutils literal notranslate"><span class="pre">change_status()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="utilities.AAS_Archive_utils.html#utilities.AAS_Archive_utils.check_core_initialization"><code class="docutils literal notranslate"><span class="pre">check_core_initialization()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="utilities.AAS_Archive_utils.html#utilities.AAS_Archive_utils.create_interaction_files"><code class="docutils literal notranslate"><span class="pre">create_interaction_files()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="utilities.AAS_Archive_utils.html#utilities.AAS_Archive_utils.create_log_files"><code class="docutils literal notranslate"><span class="pre">create_log_files()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="utilities.AAS_Archive_utils.html#utilities.AAS_Archive_utils.create_status_file"><code class="docutils literal notranslate"><span class="pre">create_status_file()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="utilities.AAS_Archive_utils.html#utilities.AAS_Archive_utils.file_to_json"><code class="docutils literal notranslate"><span class="pre">file_to_json()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="utilities.AAS_Archive_utils.html#utilities.AAS_Archive_utils.get_log_file_by_service_type"><code class="docutils literal notranslate"><span class="pre">get_log_file_by_service_type()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="utilities.AAS_Archive_utils.html#utilities.AAS_Archive_utils.get_status"><code class="docutils literal notranslate"><span class="pre">get_status()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="utilities.AAS_Archive_utils.html#utilities.AAS_Archive_utils.save_svc_log_info"><code class="docutils literal notranslate"><span class="pre">save_svc_log_info()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="utilities.AAS_Archive_utils.html#utilities.AAS_Archive_utils.update_json_file"><code class="docutils literal notranslate"><span class="pre">update_json_file()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="utilities.AAS_Archive_utils.html#utilities.AAS_Archive_utils.xml_to_file"><code class="docutils literal notranslate"><span class="pre">xml_to_file()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="utilities.AASGeneralInfo.html">utilities.AASGeneralInfo module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="utilities.AASGeneralInfo.html#utilities.AASGeneralInfo.AASGeneralInfo"><code class="docutils literal notranslate"><span class="pre">AASGeneralInfo</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="utilities.AASarchiveInfo.html">utilities.AASarchiveInfo module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="utilities.AASarchiveInfo.html#utilities.AASarchiveInfo.AASarchiveInfo"><code class="docutils literal notranslate"><span class="pre">AASarchiveInfo</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="utilities.AASModelExtension_utils.html">utilities.AASModelExtension_utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="utilities.AASModelExtension_utils.html#utilities.AASModelExtension_utils.AASModelExtensionUtils"><code class="docutils literal notranslate"><span class="pre">AASModelExtensionUtils</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="utilities.AAS_Archive_utils.html">utilities.AAS_Archive_utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="utilities.AAS_Archive_utils.html#utilities.AAS_Archive_utils.create_status_file"><code class="docutils literal notranslate"><span class="pre">create_status_file()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="utilities.AAS_Archive_utils.html#utilities.AAS_Archive_utils.create_interaction_files"><code class="docutils literal notranslate"><span class="pre">create_interaction_files()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="utilities.AAS_Archive_utils.html#utilities.AAS_Archive_utils.create_log_files"><code class="docutils literal notranslate"><span class="pre">create_log_files()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="utilities.AAS_Archive_utils.html#utilities.AAS_Archive_utils.get_log_file_by_service_type"><code class="docutils literal notranslate"><span class="pre">get_log_file_by_service_type()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="utilities.AAS_Archive_utils.html#utilities.AAS_Archive_utils.save_svc_log_info"><code class="docutils literal notranslate"><span class="pre">save_svc_log_info()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="utilities.AAS_Archive_utils.html#utilities.AAS_Archive_utils.change_status"><code class="docutils literal notranslate"><span class="pre">change_status()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="utilities.AAS_Archive_utils.html#utilities.AAS_Archive_utils.get_status"><code class="docutils literal notranslate"><span class="pre">get_status()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="utilities.AAS_Archive_utils.html#utilities.AAS_Archive_utils.check_core_initialization"><code class="docutils literal notranslate"><span class="pre">check_core_initialization()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="utilities.AAS_Archive_utils.html#utilities.AAS_Archive_utils.file_to_json"><code class="docutils literal notranslate"><span class="pre">file_to_json()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="utilities.AAS_Archive_utils.html#utilities.AAS_Archive_utils.update_json_file"><code class="docutils literal notranslate"><span class="pre">update_json_file()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="utilities.AAS_Archive_utils.html#utilities.AAS_Archive_utils.xml_to_file"><code class="docutils literal notranslate"><span class="pre">xml_to_file()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="utilities.AASmanagerInfo.html">utilities.AASmanagerInfo module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="utilities.AASmanagerInfo.html#utilities.AASmanagerInfo.AASmanagerInfo"><code class="docutils literal notranslate"><span class="pre">AASmanagerInfo</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="utilities.CapabilitySkillOntology.html">utilities.CapabilitySkillOntology module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="utilities.CapabilitySkillOntology.html#utilities.CapabilitySkillOntology.CapabilitySkillOntology"><code class="docutils literal notranslate"><span class="pre">CapabilitySkillOntology</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="utilities.CapabilitySkillOntology.html#utilities.CapabilitySkillOntology.CapabilitySkillACLInfo"><code class="docutils literal notranslate"><span class="pre">CapabilitySkillACLInfo</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="utilities.CapabilitySkillOntology.html#utilities.CapabilitySkillOntology.AssetInterfacesInfo"><code class="docutils literal notranslate"><span class="pre">AssetInterfacesInfo</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="utilities.ConfigMap_utils.html">utilities.ConfigMap_utils module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="utilities.ConfigMap_utils.html#utilities.ConfigMap_utils.get_aas_general_property"><code class="docutils literal notranslate"><span class="pre">get_aas_general_property()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="utilities.ConfigMap_utils.html#utilities.ConfigMap_utils.get_dt_general_property"><code class="docutils literal notranslate"><span class="pre">get_dt_general_property()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="utilities.ConfigMap_utils.html#utilities.ConfigMap_utils.get_aas_model_filepath"><code class="docutils literal notranslate"><span class="pre">get_aas_model_filepath()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="utilities.ConfigMap_utils.html#utilities.ConfigMap_utils.get_asset_type"><code class="docutils literal notranslate"><span class="pre">get_asset_type()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="utilities.ConfigMap_utils.html#utilities.ConfigMap_utils.get_submodel_information"><code class="docutils literal notranslate"><span class="pre">get_submodel_information()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="utilities.ConfigMap_utils.html#utilities.ConfigMap_utils.get_submodel_names"><code class="docutils literal notranslate"><span class="pre">get_submodel_names()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="utilities.ConfigMap_utils.html#utilities.ConfigMap_utils.get_submodel_information"><code class="docutils literal notranslate"><span class="pre">get_submodel_information()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="utilities.FIPAACLInfo.html">utilities.FIPAACLInfo module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="utilities.FIPAACLInfo.html#utilities.FIPAACLInfo.FIPAACLInfo"><code class="docutils literal notranslate"><span class="pre">FIPAACLInfo</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="utilities.GeneralUtils.html">utilities.GeneralUtils module</a><ul>
@@ -510,11 +616,11 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="utilities.Submodels_utils.html">utilities.Submodels_utils module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="utilities.Submodels_utils.html#utilities.Submodels_utils.check_if_submodel_exists"><code class="docutils literal notranslate"><span class="pre">check_if_submodel_exists()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="utilities.Submodels_utils.html#utilities.Submodels_utils.create_configuration_sm"><code class="docutils literal notranslate"><span class="pre">create_configuration_sm()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="utilities.Submodels_utils.html#utilities.Submodels_utils.create_submodel_files"><code class="docutils literal notranslate"><span class="pre">create_submodel_files()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="utilities.Submodels_utils.html#utilities.Submodels_utils.create_submodel_folder"><code class="docutils literal notranslate"><span class="pre">create_submodel_folder()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="utilities.Submodels_utils.html#utilities.Submodels_utils.create_submodel_files"><code class="docutils literal notranslate"><span class="pre">create_submodel_files()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="utilities.Submodels_utils.html#utilities.Submodels_utils.create_technical_data_sm"><code class="docutils literal notranslate"><span class="pre">create_technical_data_sm()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="utilities.Submodels_utils.html#utilities.Submodels_utils.create_configuration_sm"><code class="docutils literal notranslate"><span class="pre">create_configuration_sm()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="utilities.Submodels_utils.html#utilities.Submodels_utils.check_if_submodel_exists"><code class="docutils literal notranslate"><span class="pre">check_if_submodel_exists()</span></code></a></li>
 </ul>
 </li>
 </ul>

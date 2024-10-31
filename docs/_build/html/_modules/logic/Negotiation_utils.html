@@ -24,6 +24,7 @@
   --color-brand-content: #2980B9;
   --color-problematic: DodgerBlue;
   --color-api-background: #E7F2FA;
+  --color-api-background-hover: #b7c0c6;
   
   }
   @media not print {
@@ -34,6 +35,7 @@
   --color-brand-content: #2980B9;
   --color-problematic: DodgerBlue;
   --color-api-background: #383838;
+  --color-api-background-hover: #5e5e5e;
   
     }
     @media (prefers-color-scheme: dark) {
@@ -44,6 +46,7 @@
   --color-brand-content: #2980B9;
   --color-problematic: DodgerBlue;
   --color-api-background: #383838;
+  --color-api-background-hover: #5e5e5e;
   
       }
     }
@@ -233,36 +236,50 @@
 <li class="toctree-l1"><a class="reference internal" href="../../aas_developer_guide.html">AAS Developer Guide</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../modules.html">API documentation</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of API documentation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../aas_manager.html">aas_manager module</a></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../agents.html">agents package</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of agents package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../aas_model.html">aas_model package</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of aas_model package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../aas_model.ExtendedAASModel.html">aas_model.ExtendedAASModel module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../aas_model.ExtendedAssetAdministrationShell.html">aas_model.ExtendedAssetAdministrationShell module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../aas_model.ExtendedBase.html">aas_model.ExtendedBase module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../aas_model.ExtendedConceptDescription.html">aas_model.ExtendedConceptDescription module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../aas_model.ExtendedSubmodel.html">aas_model.ExtendedSubmodel module</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../agents.html">agents package</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of agents package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../agents.AASManagerAgent.html">agents.AASManagerAgent module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../agents.AASManagerAppAgent.html">agents.AASManagerAppAgent module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../agents.AASManagerResourceAgent.html">agents.AASManagerResourceAgent module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../behaviours.html">behaviours package</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of behaviours package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../assetconnection.html">assetconnection package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of assetconnection package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../assetconnection.AssetConnection.html">assetconnection.AssetConnection module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../assetconnection.HTTPAssetConnection.html">assetconnection.HTTPAssetConnection module</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../behaviours.html">behaviours package</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of behaviours package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.AASFSMBehaviour.html">behaviours.AASFSMBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.CheckCoreInitializationBehaviour.html">behaviours.CheckCoreInitializationBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.CheckPhysicalAssetBehaviour.html">behaviours.CheckPhysicalAssetBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.EndBehaviour.html">behaviours.EndBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../behaviours.HandleCapabilityBehaviour.html">behaviours.HandleCapabilityBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.HandleNegotiationBehaviour.html">behaviours.HandleNegotiationBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.HandleSvcRequestBehaviour.html">behaviours.HandleSvcRequestBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.HandleSvcResponseBehaviour.html">behaviours.HandleSvcResponseBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.IdleBehaviour.html">behaviours.IdleBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../behaviours.InitAASModelBehaviour.html">behaviours.InitAASModelBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.InitAASarchiveBehaviour.html">behaviours.InitAASarchiveBehaviour module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../behaviours.InitSubmodelsBehaviour.html">behaviours.InitSubmodelsBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.InteractionHandlingBehaviour.html">behaviours.InteractionHandlingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.NegotiatingBehaviour.html">behaviours.NegotiatingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../behaviours.SvcACLHandlingBehaviour.html">behaviours.SvcACLHandlingBehaviour module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../logic.html">logic package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of logic package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../logic.html">logic package</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of logic package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../logic.InterAASInteractions_utils.html">logic.InterAASInteractions_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../logic.IntraAASInteractions_utils.html">logic.IntraAASInteractions_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../logic.Negotiation_utils.html">logic.Negotiation_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../logic.Services_utils.html">logic.Services_utils module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../states.html">states package</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of states package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../states.html">states package</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of states package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../states.StateBooting.html">states.StateBooting module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../states.StateBootingResource.html">states.StateBootingResource module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../states.StateIdle.html">states.StateIdle module</a></li>
@@ -270,11 +287,14 @@
 <li class="toctree-l3"><a class="reference internal" href="../../states.StateStopping.html">states.StateStopping module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../utilities.html">utilities package</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of utilities package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../utilities.html">utilities package</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of utilities package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../utilities.AASGeneralInfo.html">utilities.AASGeneralInfo module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utilities.AASModelExtension_utils.html">utilities.AASModelExtension_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../utilities.AAS_Archive_utils.html">utilities.AAS_Archive_utils module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../utilities.AASarchiveInfo.html">utilities.AASarchiveInfo module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../utilities.AASmanagerInfo.html">utilities.AASmanagerInfo module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utilities.CapabilitySkillOntology.html">utilities.CapabilitySkillOntology module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../utilities.ConfigMap_utils.html">utilities.ConfigMap_utils module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utilities.FIPAACLInfo.html">utilities.FIPAACLInfo module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../utilities.GeneralUtils.html">utilities.GeneralUtils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../utilities.KafkaInfo.html">utilities.KafkaInfo module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../utilities.Submodels_utils.html">utilities.Submodels_utils module</a></li>
@@ -322,16 +342,53 @@
 <span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">This class contains methods related to negotiation management of the AAS Manager.</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="kn">import</span> <span class="nn">calendar</span>
 <span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">logging</span>
-<span class="kn">import</span> <span class="nn">time</span>
 
 <span class="kn">from</span> <span class="nn">spade.message</span> <span class="kn">import</span> <span class="n">Message</span>
 
 <span class="kn">from</span> <span class="nn">utilities.AASmanagerInfo</span> <span class="kn">import</span> <span class="n">AASmanagerInfo</span>
+<span class="kn">from</span> <span class="nn">utilities.GeneralUtils</span> <span class="kn">import</span> <span class="n">GeneralUtils</span>
 
 <span class="n">_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="create_neg_cfp_msg">
+<a class="viewcode-back" href="../../logic.Negotiation_utils.html#logic.Negotiation_utils.create_neg_cfp_msg">[docs]</a>
+<span class="k">def</span> <span class="nf">create_neg_cfp_msg</span><span class="p">(</span><span class="n">thread</span><span class="p">,</span> <span class="n">targets</span><span class="p">,</span> <span class="n">neg_requester_jid</span><span class="p">,</span> <span class="n">neg_criteria</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This method creates the FIPA-ACL CallForProposal (CFP) message that will be sent to all participants to start</span>
+<span class="sd">    a negotiation.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        thread (str): the thread of the ACL message.</span>
+<span class="sd">        targets (str): the JIDs of the SPADE agents that are participating in the negotiation. Is it a string that has the JIDs divided by &#39;,&#39;</span>
+<span class="sd">        neg_requester_jid (str):  the JID of the SPADE agent that has requested the negotiation.</span>
+<span class="sd">        neg_criteria (str): criteria of the negotiation.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        spade.message.Message: SPADE message object FIPA-ACL-compliant.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">cfp_msg</span> <span class="o">=</span> <span class="n">Message</span><span class="p">(</span><span class="n">thread</span><span class="o">=</span><span class="n">thread</span><span class="p">)</span>
+    <span class="n">cfp_msg</span><span class="o">.</span><span class="n">metadata</span> <span class="o">=</span> <span class="n">AASmanagerInfo</span><span class="o">.</span><span class="n">NEG_STANDARD_ACL_TEMPLATE_CFP</span><span class="o">.</span><span class="n">metadata</span>
+
+    <span class="n">neg_cfp_json</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;serviceID&#39;</span><span class="p">:</span> <span class="s1">&#39;startNegotiation&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;serviceType&#39;</span><span class="p">:</span> <span class="s1">&#39;AssetRelatedService&#39;</span><span class="p">,</span>  <span class="c1"># TODO cambiarlo si se decide que es de otro tipo</span>
+        <span class="s1">&#39;serviceData&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;serviceCategory&#39;</span><span class="p">:</span> <span class="s1">&#39;service-request&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;timestamp&#39;</span><span class="p">:</span> <span class="n">GeneralUtils</span><span class="o">.</span><span class="n">get_current_timestamp</span><span class="p">(),</span>
+            <span class="s1">&#39;serviceParams&#39;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s1">&#39;targets&#39;</span><span class="p">:</span> <span class="n">targets</span><span class="p">,</span>
+                <span class="s1">&#39;neg_requester_jid&#39;</span><span class="p">:</span> <span class="n">neg_requester_jid</span><span class="p">,</span>
+                <span class="s1">&#39;criteria&#39;</span><span class="p">:</span> <span class="n">neg_criteria</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">cfp_msg</span><span class="o">.</span><span class="n">body</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">neg_cfp_json</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">cfp_msg</span></div>
+
+
 
 <div class="viewcode-block" id="create_neg_propose_msg">
 <a class="viewcode-back" href="../../logic.Negotiation_utils.html#logic.Negotiation_utils.create_neg_propose_msg">[docs]</a>
@@ -355,10 +412,10 @@
 
     <span class="n">neg_propose_json</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s1">&#39;serviceID&#39;</span><span class="p">:</span> <span class="s1">&#39;proposeNegotiation&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;serviceType&#39;</span><span class="p">:</span> <span class="s1">&#39;AssetRelatedService&#39;</span><span class="p">,</span>   <span class="c1"># TODO cambiarlo si se decide que es de otro tipo</span>
+        <span class="s1">&#39;serviceType&#39;</span><span class="p">:</span> <span class="s1">&#39;AssetRelatedService&#39;</span><span class="p">,</span>  <span class="c1"># TODO cambiarlo si se decide que es de otro tipo</span>
         <span class="s1">&#39;serviceData&#39;</span><span class="p">:</span> <span class="p">{</span>
             <span class="s1">&#39;serviceCategory&#39;</span><span class="p">:</span> <span class="s1">&#39;service-request&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;timestamp&#39;</span><span class="p">:</span> <span class="n">calendar</span><span class="o">.</span><span class="n">timegm</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">gmtime</span><span class="p">()),</span>
+            <span class="s1">&#39;timestamp&#39;</span><span class="p">:</span> <span class="n">GeneralUtils</span><span class="o">.</span><span class="n">get_current_timestamp</span><span class="p">(),</span>
             <span class="s1">&#39;serviceParams&#39;</span><span class="p">:</span> <span class="p">{</span>
                 <span class="s1">&#39;targets&#39;</span><span class="p">:</span> <span class="n">targets</span><span class="p">,</span>
                 <span class="s1">&#39;neg_requester_jid&#39;</span><span class="p">:</span> <span class="n">neg_requester_jid</span><span class="p">,</span>
@@ -371,17 +428,18 @@
     <span class="k">return</span> <span class="n">propose_msg</span></div>
 
 
+
 <div class="viewcode-block" id="create_neg_response_msg">
 <a class="viewcode-back" href="../../logic.Negotiation_utils.html#logic.Negotiation_utils.create_neg_response_msg">[docs]</a>
-<span class="k">def</span> <span class="nf">create_neg_response_msg</span><span class="p">(</span><span class="n">receiver</span><span class="p">,</span> <span class="n">thread</span><span class="p">,</span> <span class="n">serviceID</span><span class="p">,</span> <span class="n">serviceType</span><span class="p">,</span> <span class="n">winner</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">create_neg_response_msg</span><span class="p">(</span><span class="n">receiver</span><span class="p">,</span> <span class="n">thread</span><span class="p">,</span> <span class="n">service_id</span><span class="p">,</span> <span class="n">service_type</span><span class="p">,</span> <span class="n">winner</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This method creates the FIPA-ACL message to respond to a negotiation request with its result.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        receiver (str): the JID of the receiver of the ACL message, that it will be the requester of the negotiation.</span>
 <span class="sd">        thread (str): the thread of the ACL message.</span>
-<span class="sd">        serviceID (str): the serviceID of the ACL message.</span>
-<span class="sd">        serviceType (str): the serviceType of the ACL message.</span>
+<span class="sd">        service_id (str): the serviceID of the ACL message.</span>
+<span class="sd">        service_type (str): the serviceType of the ACL message.</span>
 <span class="sd">        winner (str): the JID of the winner of the negotiation.</span>
 
 <span class="sd">    Returns:</span>
@@ -391,12 +449,12 @@
     <span class="n">response_msg</span><span class="o">.</span><span class="n">metadata</span> <span class="o">=</span> <span class="n">AASmanagerInfo</span><span class="o">.</span><span class="n">NEG_STANDARD_ACL_TEMPLATE_INFORM</span><span class="o">.</span><span class="n">metadata</span>
 
     <span class="n">neg_response_json</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s1">&#39;serviceID&#39;</span><span class="p">:</span> <span class="n">serviceID</span><span class="p">,</span>
-        <span class="s1">&#39;serviceType&#39;</span><span class="p">:</span> <span class="n">serviceType</span><span class="p">,</span>
+        <span class="s1">&#39;serviceID&#39;</span><span class="p">:</span> <span class="n">service_id</span><span class="p">,</span>
+        <span class="s1">&#39;serviceType&#39;</span><span class="p">:</span> <span class="n">service_type</span><span class="p">,</span>
         <span class="s1">&#39;serviceData&#39;</span><span class="p">:</span> <span class="p">{</span>
             <span class="s1">&#39;serviceCategory&#39;</span><span class="p">:</span> <span class="s1">&#39;service-response&#39;</span><span class="p">,</span>
             <span class="s1">&#39;serviceStatus&#39;</span><span class="p">:</span> <span class="s1">&#39;Completed&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;timestamp&#39;</span><span class="p">:</span> <span class="n">calendar</span><span class="o">.</span><span class="n">timegm</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">gmtime</span><span class="p">()),</span>
+            <span class="s1">&#39;timestamp&#39;</span><span class="p">:</span> <span class="n">GeneralUtils</span><span class="o">.</span><span class="n">get_current_timestamp</span><span class="p">(),</span>
             <span class="s1">&#39;serviceParams&#39;</span><span class="p">:</span> <span class="p">{</span>
                 <span class="s1">&#39;winner&#39;</span><span class="p">:</span> <span class="n">winner</span>
             <span class="p">}</span>
@@ -434,7 +492,7 @@
 
 <div class="viewcode-block" id="create_intra_aas_neg_req_data">
 <a class="viewcode-back" href="../../logic.Negotiation_utils.html#logic.Negotiation_utils.create_intra_aas_neg_req_data">[docs]</a>
-<span class="k">def</span> <span class="nf">create_intra_aas_neg_req_data</span><span class="p">(</span><span class="n">performative</span><span class="p">,</span> <span class="n">ontology</span><span class="p">,</span> <span class="n">thread</span><span class="p">,</span> <span class="n">serviceData</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">create_intra_aas_neg_req_data</span><span class="p">(</span><span class="n">performative</span><span class="p">,</span> <span class="n">ontology</span><span class="p">,</span> <span class="n">thread</span><span class="p">,</span> <span class="n">service_data</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This method creates the dictionary with all the required data for an Intra AAS interaction request.</span>
 
@@ -442,7 +500,7 @@
 <span class="sd">        performative (str): performative of the FIPA-ACL message.</span>
 <span class="sd">        ontology (str): ontology of the FIPA-ACL message.</span>
 <span class="sd">        thread (str): thread of the FIPA-ACL message.</span>
-<span class="sd">        serviceData (dict): all the data of the service for the Intra AAS interaction request.</span>
+<span class="sd">        service_data (dict): all the data of the service for the Intra AAS interaction request.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        dict: dictionary with all the information about the Intra AAS interaction request</span>
@@ -452,8 +510,8 @@
         <span class="s1">&#39;ontology&#39;</span><span class="p">:</span> <span class="n">ontology</span><span class="p">,</span>
         <span class="s1">&#39;thread&#39;</span><span class="p">:</span> <span class="n">thread</span><span class="p">,</span>
         <span class="s1">&#39;serviceID&#39;</span><span class="p">:</span> <span class="s1">&#39;getNegotiationValue&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;serviceType&#39;</span><span class="p">:</span> <span class="s1">&#39;AssetRelatedInformation&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;serviceData&#39;</span><span class="p">:</span> <span class="n">serviceData</span>
+        <span class="s1">&#39;serviceType&#39;</span><span class="p">:</span> <span class="s1">&#39;AssetRelatedService&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;serviceData&#39;</span><span class="p">:</span> <span class="n">service_data</span>
     <span class="p">}</span>
     <span class="k">return</span> <span class="n">intra_ass_req_data_json</span></div>
 
@@ -479,10 +537,30 @@
             <span class="k">if</span> <span class="n">behaviour</span><span class="o">.</span><span class="n">thread</span> <span class="o">==</span> <span class="n">thread</span><span class="p">:</span>
                 <span class="c1"># Once the exact behaviour has been found, the negotiation value will be stored as an attribute, and the</span>
                 <span class="c1"># method will be concluded</span>
-                <span class="n">behaviour</span><span class="o">.</span><span class="n">neg_value</span> <span class="o">=</span> <span class="n">neg_value</span>
+                <span class="n">behaviour</span><span class="o">.</span><span class="n">neg_value</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">neg_value</span><span class="p">)</span>
                 <span class="c1"># The execution of this behaviour is also unlocked</span>
                 <span class="n">behaviour</span><span class="o">.</span><span class="n">neg_value_event</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
                 <span class="k">break</span></div>
+
+
+
+<div class="viewcode-block" id="get_neg_intra_aas_request_by_thread">
+<a class="viewcode-back" href="../../logic.Negotiation_utils.html#logic.Negotiation_utils.get_neg_intra_aas_request_by_thread">[docs]</a>
+<span class="k">def</span> <span class="nf">get_neg_intra_aas_request_by_thread</span><span class="p">(</span><span class="n">agent</span><span class="p">,</span> <span class="n">thread</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This method gets the data of an Intra AAS Interaction using the thread value.</span>
+<span class="sd">    Args:</span>
+<span class="sd">        agent (agents.AASManagerAgent): the SPADE agent object that represents the AAS Manager.</span>
+<span class="sd">        thread (str): the thread of the negotiation, which is its identifier.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        dict: dictionary with all the information about the Intra AAS interaction request. None if it does not exist.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">req_interaction_id</span><span class="p">,</span> <span class="n">req_data</span> <span class="ow">in</span> <span class="n">agent</span><span class="o">.</span><span class="n">interaction_requests</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">req_data</span><span class="p">[</span><span class="s1">&#39;thread&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">thread</span><span class="p">:</span>
+            <span class="n">req_data</span><span class="p">[</span><span class="s1">&#39;interactionID&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">req_interaction_id</span>
+            <span class="k">return</span> <span class="n">req_data</span>
+    <span class="k">return</span> <span class="kc">None</span></div>
 
 </pre></div>
         </article>

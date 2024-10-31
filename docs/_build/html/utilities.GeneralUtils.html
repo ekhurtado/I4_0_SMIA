@@ -3,7 +3,7 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="utilities.KafkaInfo module" href="utilities.KafkaInfo.html" /><link rel="prev" title="utilities.ConfigMap_utils module" href="utilities.ConfigMap_utils.html" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="utilities.KafkaInfo module" href="utilities.KafkaInfo.html" /><link rel="prev" title="utilities.FIPAACLInfo module" href="utilities.FIPAACLInfo.html" />
 
     <link rel="shortcut icon" href="_static/I4_0_SMIA_favicon.svg"/><!-- Generated with Sphinx 7.3.7 and Furo 2024.05.06 -->
         <title>utilities.GeneralUtils module - I4.0 SMIA 0.1.3 documentation</title>
@@ -25,6 +25,7 @@
   --color-brand-content: #2980B9;
   --color-problematic: DodgerBlue;
   --color-api-background: #E7F2FA;
+  --color-api-background-hover: #b7c0c6;
   
   }
   @media not print {
@@ -35,6 +36,7 @@
   --color-brand-content: #2980B9;
   --color-problematic: DodgerBlue;
   --color-api-background: #383838;
+  --color-api-background-hover: #5e5e5e;
   
     }
     @media (prefers-color-scheme: dark) {
@@ -45,6 +47,7 @@
   --color-brand-content: #2980B9;
   --color-problematic: DodgerBlue;
   --color-api-background: #383838;
+  --color-api-background-hover: #5e5e5e;
   
       }
     }
@@ -234,36 +237,50 @@
 <li class="toctree-l1"><a class="reference internal" href="aas_developer_guide.html">AAS Developer Guide</a></li>
 <li class="toctree-l1 current has-children"><a class="reference internal" href="modules.html">API documentation</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of API documentation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="aas_manager.html">aas_manager module</a></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="agents.html">agents package</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of agents package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="aas_model.html">aas_model package</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of aas_model package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="aas_model.ExtendedAASModel.html">aas_model.ExtendedAASModel module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aas_model.ExtendedAssetAdministrationShell.html">aas_model.ExtendedAssetAdministrationShell module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aas_model.ExtendedBase.html">aas_model.ExtendedBase module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aas_model.ExtendedConceptDescription.html">aas_model.ExtendedConceptDescription module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aas_model.ExtendedSubmodel.html">aas_model.ExtendedSubmodel module</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="agents.html">agents package</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of agents package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="agents.AASManagerAgent.html">agents.AASManagerAgent module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="agents.AASManagerAppAgent.html">agents.AASManagerAppAgent module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="agents.AASManagerResourceAgent.html">agents.AASManagerResourceAgent module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="behaviours.html">behaviours package</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of behaviours package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="assetconnection.html">assetconnection package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of assetconnection package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="assetconnection.AssetConnection.html">assetconnection.AssetConnection module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="assetconnection.HTTPAssetConnection.html">assetconnection.HTTPAssetConnection module</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="behaviours.html">behaviours package</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of behaviours package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.AASFSMBehaviour.html">behaviours.AASFSMBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.CheckCoreInitializationBehaviour.html">behaviours.CheckCoreInitializationBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.CheckPhysicalAssetBehaviour.html">behaviours.CheckPhysicalAssetBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.EndBehaviour.html">behaviours.EndBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.HandleCapabilityBehaviour.html">behaviours.HandleCapabilityBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.HandleNegotiationBehaviour.html">behaviours.HandleNegotiationBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.HandleSvcRequestBehaviour.html">behaviours.HandleSvcRequestBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.HandleSvcResponseBehaviour.html">behaviours.HandleSvcResponseBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.IdleBehaviour.html">behaviours.IdleBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.InitAASModelBehaviour.html">behaviours.InitAASModelBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.InitAASarchiveBehaviour.html">behaviours.InitAASarchiveBehaviour module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="behaviours.InitSubmodelsBehaviour.html">behaviours.InitSubmodelsBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.InteractionHandlingBehaviour.html">behaviours.InteractionHandlingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.NegotiatingBehaviour.html">behaviours.NegotiatingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.SvcACLHandlingBehaviour.html">behaviours.SvcACLHandlingBehaviour module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="logic.html">logic package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of logic package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="logic.html">logic package</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of logic package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="logic.InterAASInteractions_utils.html">logic.InterAASInteractions_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logic.IntraAASInteractions_utils.html">logic.IntraAASInteractions_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logic.Negotiation_utils.html">logic.Negotiation_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logic.Services_utils.html">logic.Services_utils module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="states.html">states package</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of states package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="states.html">states package</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of states package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="states.StateBooting.html">states.StateBooting module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="states.StateBootingResource.html">states.StateBootingResource module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="states.StateIdle.html">states.StateIdle module</a></li>
@@ -271,11 +288,14 @@
 <li class="toctree-l3"><a class="reference internal" href="states.StateStopping.html">states.StateStopping module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current has-children"><a class="reference internal" href="utilities.html">utilities package</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of utilities package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 current has-children"><a class="reference internal" href="utilities.html">utilities package</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of utilities package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="utilities.AASGeneralInfo.html">utilities.AASGeneralInfo module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="utilities.AASModelExtension_utils.html">utilities.AASModelExtension_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="utilities.AAS_Archive_utils.html">utilities.AAS_Archive_utils module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="utilities.AASarchiveInfo.html">utilities.AASarchiveInfo module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="utilities.AASmanagerInfo.html">utilities.AASmanagerInfo module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="utilities.CapabilitySkillOntology.html">utilities.CapabilitySkillOntology module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="utilities.ConfigMap_utils.html">utilities.ConfigMap_utils module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="utilities.FIPAACLInfo.html">utilities.FIPAACLInfo module</a></li>
 <li class="toctree-l3 current current-page"><a class="current reference internal" href="#">utilities.GeneralUtils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="utilities.KafkaInfo.html">utilities.KafkaInfo module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="utilities.Submodels_utils.html">utilities.Submodels_utils module</a></li>
@@ -332,14 +352,21 @@
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">utilities.GeneralUtils.</span></span><span class="sig-name descname"><span class="pre">GeneralUtils</span></span><a class="reference internal" href="_modules/utilities/GeneralUtils.html#GeneralUtils"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.GeneralUtils.GeneralUtils" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>This class contains some general utils to ben used by any module.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="utilities.GeneralUtils.GeneralUtils.configure_logging">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">configure_logging</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/GeneralUtils.html#GeneralUtils.configure_logging"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.GeneralUtils.GeneralUtils.configure_logging" title="Link to this definition">¶</a></dt>
+<dd><p>This method configures the logging to be used by all modules. It specifies different colors to improve the
+readability of the console and adds new levels to the printouts related to ACL and interaction messages.</p>
+</dd></dl>
+
 <dl class="py class">
 <dt class="sig sig-object py" id="utilities.GeneralUtils.GeneralUtils.ColoredFormatter">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ColoredFormatter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datefmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'%'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">defaults</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/GeneralUtils.html#GeneralUtils.ColoredFormatter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.GeneralUtils.GeneralUtils.ColoredFormatter" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Formatter</span></code></p>
 <p>This class contains the format of all the levels of the logging, including the color of each of them.</p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="utilities.GeneralUtils.GeneralUtils.ColoredFormatter.COLORS">
-<span class="sig-name descname"><span class="pre">COLORS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{10:</span> <span class="pre">'\x1b[94m%(asctime)s</span> <span class="pre">[%(name)s]</span> <span class="pre">[%(levelname)s]</span> <span class="pre">%(message)s\x1b[0m',</span> <span class="pre">20:</span> <span class="pre">'\x1b[39;20m%(asctime)s</span> <span class="pre">[%(name)s]</span> <span class="pre">[%(levelname)s]</span> <span class="pre">%(message)s\x1b[0m',</span> <span class="pre">30:</span> <span class="pre">'\x1b[93m%(asctime)s</span> <span class="pre">[%(name)s]</span> <span class="pre">[%(levelname)s]</span> <span class="pre">%(message)s</span> <span class="pre">line:%(lineno)d\x1b[0m',</span> <span class="pre">35:</span> <span class="pre">'\x1b[38;2;255;150;20m%(asctime)s</span> <span class="pre">[%(name)s]</span> <span class="pre">[%(levelname)s]</span> <span class="pre">%(message)s\x1b[0m',</span> <span class="pre">36:</span> <span class="pre">'\x1b[38;2;0;255;255m%(asctime)s</span> <span class="pre">[%(name)s]</span> <span class="pre">[%(levelname)s]</span> <span class="pre">%(message)s\x1b[0m',</span> <span class="pre">40:</span> <span class="pre">'\x1b[91m%(asctime)s</span> <span class="pre">[%(name)s]</span> <span class="pre">[%(levelname)s]</span> <span class="pre">%(message)s</span> <span class="pre">line:%(lineno)d\x1b[0m',</span> <span class="pre">50:</span> <span class="pre">'\x1b[41m%(asctime)s</span> <span class="pre">[%(name)s]</span> <span class="pre">[%(levelname)s]</span> <span class="pre">%(message)s</span> <span class="pre">line:%(lineno)d\x1b[0m'}</span></em><a class="headerlink" href="#utilities.GeneralUtils.GeneralUtils.ColoredFormatter.COLORS" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="utilities.GeneralUtils.GeneralUtils.ColoredFormatter.FORMAT_SIMPLE">
+<span class="sig-name descname"><span class="pre">FORMAT_SIMPLE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'%(asctime)s</span> <span class="pre">[%(name)s]</span> <span class="pre">[%(levelname)s]</span> <span class="pre">%(message)s'</span></em><a class="headerlink" href="#utilities.GeneralUtils.GeneralUtils.ColoredFormatter.FORMAT_SIMPLE" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -348,13 +375,13 @@
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="utilities.GeneralUtils.GeneralUtils.ColoredFormatter.FORMAT_SIMPLE">
-<span class="sig-name descname"><span class="pre">FORMAT_SIMPLE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'%(asctime)s</span> <span class="pre">[%(name)s]</span> <span class="pre">[%(levelname)s]</span> <span class="pre">%(message)s'</span></em><a class="headerlink" href="#utilities.GeneralUtils.GeneralUtils.ColoredFormatter.FORMAT_SIMPLE" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="utilities.GeneralUtils.GeneralUtils.ColoredFormatter.RESET">
+<span class="sig-name descname"><span class="pre">RESET</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\x1b[0m'</span></em><a class="headerlink" href="#utilities.GeneralUtils.GeneralUtils.ColoredFormatter.RESET" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="utilities.GeneralUtils.GeneralUtils.ColoredFormatter.RESET">
-<span class="sig-name descname"><span class="pre">RESET</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\x1b[0m'</span></em><a class="headerlink" href="#utilities.GeneralUtils.GeneralUtils.ColoredFormatter.RESET" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="utilities.GeneralUtils.GeneralUtils.ColoredFormatter.COLORS">
+<span class="sig-name descname"><span class="pre">COLORS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{10:</span> <span class="pre">'\x1b[94m%(asctime)s</span> <span class="pre">[%(name)s]</span> <span class="pre">[%(levelname)s]</span> <span class="pre">%(message)s\x1b[0m',</span> <span class="pre">20:</span> <span class="pre">'\x1b[39;20m%(asctime)s</span> <span class="pre">[%(name)s]</span> <span class="pre">[%(levelname)s]</span> <span class="pre">%(message)s\x1b[0m',</span> <span class="pre">30:</span> <span class="pre">'\x1b[93m%(asctime)s</span> <span class="pre">[%(name)s]</span> <span class="pre">[%(levelname)s]</span> <span class="pre">%(message)s</span> <span class="pre">line:%(lineno)d\x1b[0m',</span> <span class="pre">35:</span> <span class="pre">'\x1b[38;2;255;150;20m%(asctime)s</span> <span class="pre">[%(name)s]</span> <span class="pre">[%(levelname)s]</span> <span class="pre">%(message)s\x1b[0m',</span> <span class="pre">36:</span> <span class="pre">'\x1b[38;2;0;255;255m%(asctime)s</span> <span class="pre">[%(name)s]</span> <span class="pre">[%(levelname)s]</span> <span class="pre">%(message)s\x1b[0m',</span> <span class="pre">40:</span> <span class="pre">'\x1b[91m%(asctime)s</span> <span class="pre">[%(name)s]</span> <span class="pre">[%(levelname)s]</span> <span class="pre">%(message)s</span> <span class="pre">line:%(lineno)d\x1b[0m',</span> <span class="pre">50:</span> <span class="pre">'\x1b[41m%(asctime)s</span> <span class="pre">[%(name)s]</span> <span class="pre">[%(levelname)s]</span> <span class="pre">%(message)s</span> <span class="pre">line:%(lineno)d\x1b[0m'}</span></em><a class="headerlink" href="#utilities.GeneralUtils.GeneralUtils.ColoredFormatter.COLORS" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -374,10 +401,28 @@ it is formatted using formatException() and appended to the message.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="utilities.GeneralUtils.GeneralUtils.configure_logging">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">configure_logging</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/GeneralUtils.html#GeneralUtils.configure_logging"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.GeneralUtils.GeneralUtils.configure_logging" title="Link to this definition">¶</a></dt>
-<dd><p>This method configures the logging to be used by all modules. It specifies different colors to improve the
-readability of the console and adds new levels to the printouts related to ACL and interaction messages.</p>
+<dt class="sig sig-object py" id="utilities.GeneralUtils.GeneralUtils.print_smia_banner">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">print_smia_banner</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/GeneralUtils.html#GeneralUtils.print_smia_banner"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.GeneralUtils.GeneralUtils.print_smia_banner" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="utilities.GeneralUtils.GeneralUtils.create_acl_template">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_acl_template</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">performative</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ontology</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/GeneralUtils.html#GeneralUtils.create_acl_template"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.GeneralUtils.GeneralUtils.create_acl_template" title="Link to this definition">¶</a></dt>
+<dd><p>This method creates a template aligned with FIPA-ACL standard.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>performative</strong> (<em>str</em>) – The performative of the template.</p></li>
+<li><p><strong>ontology</strong> (<em>str</em>) – The ontology of the template.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a SPADE template object.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>spade.template.Template</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
@@ -404,21 +449,19 @@ readability of the console and adds new levels to the printouts related to ACL a
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="utilities.GeneralUtils.GeneralUtils.create_acl_template">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_acl_template</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">performative</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ontology</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/GeneralUtils.html#GeneralUtils.create_acl_template"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.GeneralUtils.GeneralUtils.create_acl_template" title="Link to this definition">¶</a></dt>
-<dd><p>This method creates a template aligned with FIPA-ACL standard.</p>
+<dt class="sig sig-object py" id="utilities.GeneralUtils.GeneralUtils.get_sender_from_acl_msg">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_sender_from_acl_msg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">acl_msg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/GeneralUtils.html#GeneralUtils.get_sender_from_acl_msg"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.GeneralUtils.GeneralUtils.get_sender_from_acl_msg" title="Link to this definition">¶</a></dt>
+<dd><p>This method returns the identifier of an agent from an ACL message, considering the suffixes that can be added
+by the XMPP server.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>performative</strong> (<em>str</em>) – The performative of the template.</p></li>
-<li><p><strong>ontology</strong> (<em>str</em>) – The ontology of the template.</p></li>
-</ul>
+<dd class="field-odd"><p><strong>acl_msg</strong> (<em>spade.message.Message</em>) – ACL message object.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>a SPADE template object.</p>
+<dd class="field-even"><p>identifier of the sender of the message.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>spade.template.Template</p>
+<dd class="field-odd"><p>str</p>
 </dd>
 </dl>
 </dd></dl>
@@ -455,14 +498,14 @@ readability of the console and adds new levels to the printouts related to ACL a
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="utilities.ConfigMap_utils.html">
+          <a class="prev-page" href="utilities.FIPAACLInfo.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">utilities.ConfigMap_utils module</div>
+                <div class="title">utilities.FIPAACLInfo module</div>
                 
               </div>
             </a>
@@ -497,17 +540,19 @@ readability of the console and adds new levels to the printouts related to ACL a
             <ul>
 <li><a class="reference internal" href="#">utilities.GeneralUtils module</a><ul>
 <li><a class="reference internal" href="#utilities.GeneralUtils.GeneralUtils"><code class="docutils literal notranslate"><span class="pre">GeneralUtils</span></code></a><ul>
+<li><a class="reference internal" href="#utilities.GeneralUtils.GeneralUtils.configure_logging"><code class="docutils literal notranslate"><span class="pre">GeneralUtils.configure_logging()</span></code></a></li>
 <li><a class="reference internal" href="#utilities.GeneralUtils.GeneralUtils.ColoredFormatter"><code class="docutils literal notranslate"><span class="pre">GeneralUtils.ColoredFormatter</span></code></a><ul>
-<li><a class="reference internal" href="#utilities.GeneralUtils.GeneralUtils.ColoredFormatter.COLORS"><code class="docutils literal notranslate"><span class="pre">GeneralUtils.ColoredFormatter.COLORS</span></code></a></li>
-<li><a class="reference internal" href="#utilities.GeneralUtils.GeneralUtils.ColoredFormatter.FORMAT_COMPLEX"><code class="docutils literal notranslate"><span class="pre">GeneralUtils.ColoredFormatter.FORMAT_COMPLEX</span></code></a></li>
 <li><a class="reference internal" href="#utilities.GeneralUtils.GeneralUtils.ColoredFormatter.FORMAT_SIMPLE"><code class="docutils literal notranslate"><span class="pre">GeneralUtils.ColoredFormatter.FORMAT_SIMPLE</span></code></a></li>
+<li><a class="reference internal" href="#utilities.GeneralUtils.GeneralUtils.ColoredFormatter.FORMAT_COMPLEX"><code class="docutils literal notranslate"><span class="pre">GeneralUtils.ColoredFormatter.FORMAT_COMPLEX</span></code></a></li>
 <li><a class="reference internal" href="#utilities.GeneralUtils.GeneralUtils.ColoredFormatter.RESET"><code class="docutils literal notranslate"><span class="pre">GeneralUtils.ColoredFormatter.RESET</span></code></a></li>
+<li><a class="reference internal" href="#utilities.GeneralUtils.GeneralUtils.ColoredFormatter.COLORS"><code class="docutils literal notranslate"><span class="pre">GeneralUtils.ColoredFormatter.COLORS</span></code></a></li>
 <li><a class="reference internal" href="#utilities.GeneralUtils.GeneralUtils.ColoredFormatter.format"><code class="docutils literal notranslate"><span class="pre">GeneralUtils.ColoredFormatter.format()</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#utilities.GeneralUtils.GeneralUtils.configure_logging"><code class="docutils literal notranslate"><span class="pre">GeneralUtils.configure_logging()</span></code></a></li>
-<li><a class="reference internal" href="#utilities.GeneralUtils.GeneralUtils.create_acl_msg"><code class="docutils literal notranslate"><span class="pre">GeneralUtils.create_acl_msg()</span></code></a></li>
+<li><a class="reference internal" href="#utilities.GeneralUtils.GeneralUtils.print_smia_banner"><code class="docutils literal notranslate"><span class="pre">GeneralUtils.print_smia_banner()</span></code></a></li>
 <li><a class="reference internal" href="#utilities.GeneralUtils.GeneralUtils.create_acl_template"><code class="docutils literal notranslate"><span class="pre">GeneralUtils.create_acl_template()</span></code></a></li>
+<li><a class="reference internal" href="#utilities.GeneralUtils.GeneralUtils.create_acl_msg"><code class="docutils literal notranslate"><span class="pre">GeneralUtils.create_acl_msg()</span></code></a></li>
+<li><a class="reference internal" href="#utilities.GeneralUtils.GeneralUtils.get_sender_from_acl_msg"><code class="docutils literal notranslate"><span class="pre">GeneralUtils.get_sender_from_acl_msg()</span></code></a></li>
 <li><a class="reference internal" href="#utilities.GeneralUtils.GeneralUtils.get_current_timestamp"><code class="docutils literal notranslate"><span class="pre">GeneralUtils.get_current_timestamp()</span></code></a></li>
 </ul>
 </li>

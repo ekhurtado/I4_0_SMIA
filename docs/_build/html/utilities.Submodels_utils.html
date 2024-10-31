@@ -25,6 +25,7 @@
   --color-brand-content: #2980B9;
   --color-problematic: DodgerBlue;
   --color-api-background: #E7F2FA;
+  --color-api-background-hover: #b7c0c6;
   
   }
   @media not print {
@@ -35,6 +36,7 @@
   --color-brand-content: #2980B9;
   --color-problematic: DodgerBlue;
   --color-api-background: #383838;
+  --color-api-background-hover: #5e5e5e;
   
     }
     @media (prefers-color-scheme: dark) {
@@ -45,6 +47,7 @@
   --color-brand-content: #2980B9;
   --color-problematic: DodgerBlue;
   --color-api-background: #383838;
+  --color-api-background-hover: #5e5e5e;
   
       }
     }
@@ -234,36 +237,50 @@
 <li class="toctree-l1"><a class="reference internal" href="aas_developer_guide.html">AAS Developer Guide</a></li>
 <li class="toctree-l1 current has-children"><a class="reference internal" href="modules.html">API documentation</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of API documentation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="aas_manager.html">aas_manager module</a></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="agents.html">agents package</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of agents package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="aas_model.html">aas_model package</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of aas_model package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="aas_model.ExtendedAASModel.html">aas_model.ExtendedAASModel module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aas_model.ExtendedAssetAdministrationShell.html">aas_model.ExtendedAssetAdministrationShell module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aas_model.ExtendedBase.html">aas_model.ExtendedBase module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aas_model.ExtendedConceptDescription.html">aas_model.ExtendedConceptDescription module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aas_model.ExtendedSubmodel.html">aas_model.ExtendedSubmodel module</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="agents.html">agents package</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of agents package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="agents.AASManagerAgent.html">agents.AASManagerAgent module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="agents.AASManagerAppAgent.html">agents.AASManagerAppAgent module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="agents.AASManagerResourceAgent.html">agents.AASManagerResourceAgent module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="behaviours.html">behaviours package</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of behaviours package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="assetconnection.html">assetconnection package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of assetconnection package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="assetconnection.AssetConnection.html">assetconnection.AssetConnection module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="assetconnection.HTTPAssetConnection.html">assetconnection.HTTPAssetConnection module</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="behaviours.html">behaviours package</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of behaviours package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.AASFSMBehaviour.html">behaviours.AASFSMBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.CheckCoreInitializationBehaviour.html">behaviours.CheckCoreInitializationBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.CheckPhysicalAssetBehaviour.html">behaviours.CheckPhysicalAssetBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.EndBehaviour.html">behaviours.EndBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.HandleCapabilityBehaviour.html">behaviours.HandleCapabilityBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.HandleNegotiationBehaviour.html">behaviours.HandleNegotiationBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.HandleSvcRequestBehaviour.html">behaviours.HandleSvcRequestBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.HandleSvcResponseBehaviour.html">behaviours.HandleSvcResponseBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.IdleBehaviour.html">behaviours.IdleBehaviour module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behaviours.InitAASModelBehaviour.html">behaviours.InitAASModelBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.InitAASarchiveBehaviour.html">behaviours.InitAASarchiveBehaviour module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="behaviours.InitSubmodelsBehaviour.html">behaviours.InitSubmodelsBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.InteractionHandlingBehaviour.html">behaviours.InteractionHandlingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.NegotiatingBehaviour.html">behaviours.NegotiatingBehaviour module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="behaviours.SvcACLHandlingBehaviour.html">behaviours.SvcACLHandlingBehaviour module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="logic.html">logic package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of logic package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="logic.html">logic package</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of logic package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="logic.InterAASInteractions_utils.html">logic.InterAASInteractions_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logic.IntraAASInteractions_utils.html">logic.IntraAASInteractions_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logic.Negotiation_utils.html">logic.Negotiation_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logic.Services_utils.html">logic.Services_utils module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="states.html">states package</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of states package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="states.html">states package</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of states package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="states.StateBooting.html">states.StateBooting module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="states.StateBootingResource.html">states.StateBootingResource module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="states.StateIdle.html">states.StateIdle module</a></li>
@@ -271,11 +288,14 @@
 <li class="toctree-l3"><a class="reference internal" href="states.StateStopping.html">states.StateStopping module</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current has-children"><a class="reference internal" href="utilities.html">utilities package</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of utilities package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 current has-children"><a class="reference internal" href="utilities.html">utilities package</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of utilities package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="utilities.AASGeneralInfo.html">utilities.AASGeneralInfo module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="utilities.AASModelExtension_utils.html">utilities.AASModelExtension_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="utilities.AAS_Archive_utils.html">utilities.AAS_Archive_utils module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="utilities.AASarchiveInfo.html">utilities.AASarchiveInfo module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="utilities.AASmanagerInfo.html">utilities.AASmanagerInfo module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="utilities.CapabilitySkillOntology.html">utilities.CapabilitySkillOntology module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="utilities.ConfigMap_utils.html">utilities.ConfigMap_utils module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="utilities.FIPAACLInfo.html">utilities.FIPAACLInfo module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="utilities.GeneralUtils.html">utilities.GeneralUtils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="utilities.KafkaInfo.html">utilities.KafkaInfo module</a></li>
 <li class="toctree-l3 current current-page"><a class="current reference internal" href="#">utilities.Submodels_utils module</a></li>
@@ -329,18 +349,32 @@
 <span id="utilities-submodels-utils-module"></span><h1>utilities.Submodels_utils module<a class="headerlink" href="#module-utilities.Submodels_utils" title="Link to this heading">¶</a></h1>
 <p>This class contains utility methods related to submodels.</p>
 <dl class="py function">
-<dt class="sig sig-object py" id="utilities.Submodels_utils.check_if_submodel_exists">
-<span class="sig-prename descclassname"><span class="pre">utilities.Submodels_utils.</span></span><span class="sig-name descname"><span class="pre">check_if_submodel_exists</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">submodel_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/Submodels_utils.html#check_if_submodel_exists"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.Submodels_utils.check_if_submodel_exists" title="Link to this definition">¶</a></dt>
-<dd><p>This method checks if a submodel exist by its name.</p>
+<dt class="sig sig-object py" id="utilities.Submodels_utils.create_submodel_folder">
+<span class="sig-prename descclassname"><span class="pre">utilities.Submodels_utils.</span></span><span class="sig-name descname"><span class="pre">create_submodel_folder</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/Submodels_utils.html#create_submodel_folder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.Submodels_utils.create_submodel_folder" title="Link to this definition">¶</a></dt>
+<dd><p>Create folder to save submodels.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utilities.Submodels_utils.create_submodel_files">
+<span class="sig-prename descclassname"><span class="pre">utilities.Submodels_utils.</span></span><span class="sig-name descname"><span class="pre">create_submodel_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">submodel_names_list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/Submodels_utils.html#create_submodel_files"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.Submodels_utils.create_submodel_files" title="Link to this definition">¶</a></dt>
+<dd><p>This method creates all the files associated to the selected submodels.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>submodel_name</strong> (<em>str</em>) – Name of the submodel</p>
+<dd class="field-odd"><p><strong>submodel_names_list</strong> (<em>list</em><em>(</em><em>str</em><em>)</em>) – list of submodel names.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>True if submodel exists and False if not.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>boolean</p>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utilities.Submodels_utils.create_technical_data_sm">
+<span class="sig-prename descclassname"><span class="pre">utilities.Submodels_utils.</span></span><span class="sig-name descname"><span class="pre">create_technical_data_sm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">submodel_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/Submodels_utils.html#create_technical_data_sm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.Submodels_utils.create_technical_data_sm" title="Link to this definition">¶</a></dt>
+<dd><p>This method creates the ‘Technical Data’ submodel XML file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>submodel_data</strong> (<em>dict</em>) – information of the submodel in the same format as the submodel properties file</p></li>
+<li><p><strong>content.</strong></p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -360,32 +394,18 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="utilities.Submodels_utils.create_submodel_files">
-<span class="sig-prename descclassname"><span class="pre">utilities.Submodels_utils.</span></span><span class="sig-name descname"><span class="pre">create_submodel_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">submodel_names_list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/Submodels_utils.html#create_submodel_files"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.Submodels_utils.create_submodel_files" title="Link to this definition">¶</a></dt>
-<dd><p>This method creates all the files associated to the selected submodels.</p>
+<dt class="sig sig-object py" id="utilities.Submodels_utils.check_if_submodel_exists">
+<span class="sig-prename descclassname"><span class="pre">utilities.Submodels_utils.</span></span><span class="sig-name descname"><span class="pre">check_if_submodel_exists</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">submodel_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/Submodels_utils.html#check_if_submodel_exists"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.Submodels_utils.check_if_submodel_exists" title="Link to this definition">¶</a></dt>
+<dd><p>This method checks if a submodel exist by its name.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>submodel_names_list</strong> (<em>list</em><em>(</em><em>str</em><em>)</em>) – list of submodel names.</p>
+<dd class="field-odd"><p><strong>submodel_name</strong> (<em>str</em>) – Name of the submodel</p>
 </dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="utilities.Submodels_utils.create_submodel_folder">
-<span class="sig-prename descclassname"><span class="pre">utilities.Submodels_utils.</span></span><span class="sig-name descname"><span class="pre">create_submodel_folder</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/Submodels_utils.html#create_submodel_folder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.Submodels_utils.create_submodel_folder" title="Link to this definition">¶</a></dt>
-<dd><p>Create folder to save submodels.</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="utilities.Submodels_utils.create_technical_data_sm">
-<span class="sig-prename descclassname"><span class="pre">utilities.Submodels_utils.</span></span><span class="sig-name descname"><span class="pre">create_technical_data_sm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">submodel_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/Submodels_utils.html#create_technical_data_sm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.Submodels_utils.create_technical_data_sm" title="Link to this definition">¶</a></dt>
-<dd><p>This method creates the ‘Technical Data’ submodel XML file.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>submodel_data</strong> (<em>dict</em>) – information of the submodel in the same format as the submodel properties file</p></li>
-<li><p><strong>content.</strong></p></li>
-</ul>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if submodel exists and False if not.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>boolean</p>
 </dd>
 </dl>
 </dd></dl>
@@ -447,11 +467,11 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">utilities.Submodels_utils module</a><ul>
-<li><a class="reference internal" href="#utilities.Submodels_utils.check_if_submodel_exists"><code class="docutils literal notranslate"><span class="pre">check_if_submodel_exists()</span></code></a></li>
-<li><a class="reference internal" href="#utilities.Submodels_utils.create_configuration_sm"><code class="docutils literal notranslate"><span class="pre">create_configuration_sm()</span></code></a></li>
-<li><a class="reference internal" href="#utilities.Submodels_utils.create_submodel_files"><code class="docutils literal notranslate"><span class="pre">create_submodel_files()</span></code></a></li>
 <li><a class="reference internal" href="#utilities.Submodels_utils.create_submodel_folder"><code class="docutils literal notranslate"><span class="pre">create_submodel_folder()</span></code></a></li>
+<li><a class="reference internal" href="#utilities.Submodels_utils.create_submodel_files"><code class="docutils literal notranslate"><span class="pre">create_submodel_files()</span></code></a></li>
 <li><a class="reference internal" href="#utilities.Submodels_utils.create_technical_data_sm"><code class="docutils literal notranslate"><span class="pre">create_technical_data_sm()</span></code></a></li>
+<li><a class="reference internal" href="#utilities.Submodels_utils.create_configuration_sm"><code class="docutils literal notranslate"><span class="pre">create_configuration_sm()</span></code></a></li>
+<li><a class="reference internal" href="#utilities.Submodels_utils.check_if_submodel_exists"><code class="docutils literal notranslate"><span class="pre">check_if_submodel_exists()</span></code></a></li>
 </ul>
 </li>
 </ul>
