@@ -1,0 +1,32 @@
+src package
+===========
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   src.aas_model
+   src.agents
+   src.assetconnection
+   src.behaviours
+   src.logic
+   src.states
+   src.utilities
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   src.aas_manager
+
+Module contents
+---------------
+
+.. automodule:: src
+   :members:
+   :undoc-members:
+   :show-inheritance:

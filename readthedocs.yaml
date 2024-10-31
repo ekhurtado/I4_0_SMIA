@@ -12,7 +12,7 @@ formats:
 
 python:
   install:
-    - requirements: src/AAS_Manager/docs/requirements.txt
+    - requirements: docs/requirements.txt
 
 sphinx:
-  configuration: src/AAS_Manager/docs/conf.py
+  configuration: docs/conf.py
