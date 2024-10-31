@@ -4,8 +4,8 @@ import logging
 import os
 import time
 
-from utilities.AASGeneralInfo import AASGeneralInfo
-from utilities.GeneralUtils import GeneralUtils
+from utilities.aas_general_info import AASGeneralInfo
+from utilities.general_utils import GeneralUtils
 
 _logger = logging.getLogger(__name__)
 

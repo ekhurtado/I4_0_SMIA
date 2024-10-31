@@ -3,9 +3,9 @@ import logging
 
 from spade.behaviour import OneShotBehaviour
 
-from logic import InterAASInteractions_utils, Negotiation_utils, IntraAASInteractions_utils
+from logic import inter_aas_interactions_utils, negotiation_utils, IntraAASInteractions_utils
 from utilities import AAS_Archive_utils
-from utilities.GeneralUtils import GeneralUtils
+from utilities.general_utils import GeneralUtils
 
 _logger = logging.getLogger(__name__)
 

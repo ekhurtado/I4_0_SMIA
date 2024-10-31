@@ -4,8 +4,8 @@ from basyx.aas.model import SubmodelElementList, SubmodelElement, Operation, Sub
     AnnotatedRelationshipElement, BasicEventElement, Entity, SubmodelElementCollection, Property, MultiLanguageProperty, \
     Range, Blob, File, ReferenceElement, Capability
 
-from aas_model.ExtendedAssetAdministrationShell import ExtendedGeneralMethods
-from utilities.CapabilitySkillOntology import CapabilitySkillOntology
+from aas_model.extended_aas import ExtendedGeneralMethods
+from utilities.capability_skill_ontology import CapabilitySkillOntology
 
 _logger = logging.getLogger(__name__)
 

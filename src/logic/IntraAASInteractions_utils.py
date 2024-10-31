@@ -6,9 +6,9 @@ from datetime import datetime
 
 from aiokafka import AIOKafkaProducer, AIOKafkaConsumer, TopicPartition
 
-from utilities.AASGeneralInfo import AASGeneralInfo
+from utilities.aas_general_info import AASGeneralInfo
 from utilities.AAS_Archive_utils import file_to_json, update_json_file
-from utilities.GeneralUtils import GeneralUtils
+from utilities.general_utils import GeneralUtils
 from utilities.KafkaInfo import KafkaInfo
 
 _logger = logging.getLogger(__name__)

@@ -4,7 +4,7 @@ from spade.behaviour import CyclicBehaviour
 
 from behaviours.HandleSvcRequestBehaviour import HandleSvcRequestBehaviour
 from behaviours.HandleSvcResponseBehaviour import HandleSvcResponseBehaviour
-from logic import IntraAASInteractions_utils, InterAASInteractions_utils
+from logic import IntraAASInteractions_utils, inter_aas_interactions_utils
 
 _logger = logging.getLogger(__name__)
 
