@@ -26,11 +26,11 @@ async def main():
     :term:`AAS`.
     """
     # The AAS_ID will be set in the associated ConfigMap, within the general-information of the AAS
-    aas_id = ConfigMap_utils.get_dt_general_property('agentID')
+    aas_id = configmap_utils.get_dt_general_property('agentID')
     # aas_id = 'aasmanager001'  # For testing
 
     # The XMPP server of the MAS will also be set in the associated ConfiMap
-    xmpp_server = ConfigMap_utils.get_dt_general_property('xmpp-server')
+    xmpp_server = configmap_utils.get_dt_general_property('xmpp-server')
 
     # The AAS ID will be also the topic of Kafka, for AAS Manager-Core interactions
     KafkaInfo.KAFKA_TOPIC = aas_id
@@ -68,7 +68,11 @@ if __name__ == '__main__':
 
     # Configure logging
     GeneralUtils.configure_logging()
-    _logger.info("Initializing AAS Manager program...")
+
+    # Configure paths
+    GeneralUtils.configure_paths()
+
+    _logger.info("Initializing SMIA program...")
 
     # Extend BaSyx Python SDK
     AASModelExtensionUtils.extend_basyx_aas_model()

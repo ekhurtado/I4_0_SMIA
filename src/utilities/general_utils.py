@@ -1,9 +1,12 @@
 import calendar
 import logging
+import os
 import time
 
 from spade.message import Message
 from spade.template import Template
+
+from utilities.aas_general_info import AASGeneralInfo
 
 
 class GeneralUtils:
@@ -28,7 +31,7 @@ class GeneralUtils:
             if self.isEnabledFor(interaction_level_num):
                 self._log(interaction_level_num, message, args, **kwargs)
 
-        logging.Logger.interactioninfo = interactioninfo    # TODO PROXIMO PASO: CAMBIARLO POR 'assetinfo'
+        logging.Logger.interactioninfo = interactioninfo  # TODO PROXIMO PASO: CAMBIARLO POR 'assetinfo'
 
         def aclinfo(self, message, *args, **kwargs):
             if self.isEnabledFor(fipa_acl_level_num):
@@ -41,6 +44,17 @@ class GeneralUtils:
         handler.setFormatter(formatter)
         logging.getLogger('').addHandler(handler)
         logging.getLogger('').setLevel(logging.INFO)  # Set the default logging level
+
+    @staticmethod
+    def configure_paths():
+        """
+        This method configures the necessary paths for agent-based AAS-compliant DT, especially with regard to the
+        properties file and the AAS model file to self-configure.
+        """
+        # If the SMIA DT is deployed in Kubernetes, the configuration files are in the associated ConfigMap
+        # If the SMIA DT is run locally, the configuration files are in 'config' folder of this project
+        if 'KUBERNETES_PORT' not in os.environ:
+            AASGeneralInfo.CONFIG_MAP_PATH = '../config'
 
     class ColoredFormatter(logging.Formatter):
         """
@@ -64,7 +78,6 @@ class GeneralUtils:
             log_fmt = self.COLORS.get(record.levelno)
             formatter = logging.Formatter(log_fmt)
             return formatter.format(record)
-
 
     @staticmethod
     def print_smia_banner():
