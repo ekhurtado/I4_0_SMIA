@@ -90,7 +90,7 @@ class NegotiatingBehaviour(CyclicBehaviour):
                         _logger.info("The AAS has won the negotiation with thread [" + msg.thread + "]")
 
                         # As the winner, it will reply to the sender with the result of the negotiation
-                        acl_response_msg = Negotiation_utils.create_neg_response_msg(
+                        acl_response_msg = negotiation_utils.create_neg_response_msg(
                             receiver=neg_requester_jid,
                             thread=msg.thread,
                             service_id=msg_json_body['serviceID'],
@@ -101,7 +101,7 @@ class NegotiatingBehaviour(CyclicBehaviour):
                                         + msg.thread + "]")
 
                         # Finally, the data is stored in the AAS Manager
-                        neg_data_json = Negotiation_utils.create_neg_json_to_store(
+                        neg_data_json = negotiation_utils.create_neg_json_to_store(
                             neg_requester_jid=neg_requester_jid,
                             participants=msg_json_body['serviceData']['serviceParams']['targets'],
                             neg_criteria=msg_json_body['serviceData']['serviceParams']['criteria'],
@@ -134,7 +134,7 @@ class NegotiatingBehaviour(CyclicBehaviour):
                                         msg.thread+"].")
                         # As the result of a negotiation is a response to a previous request, a new
                         # HandleSvcResponseBehaviour to handle this service response will be added to the agent
-                        svc_resp_data = InterAASInteractions_utils.create_svc_json_data_from_acl_msg(msg)
+                        svc_resp_data = inter_aas_interactions_utils.create_svc_json_data_from_acl_msg(msg)
                         svc_resp_handling_behav = HandleSvcResponseBehaviour(self.agent,
                                                                              'Inter AAS interaction',
                                                                              svc_resp_data)

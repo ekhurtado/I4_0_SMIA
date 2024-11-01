@@ -3,7 +3,7 @@ from spade.behaviour import OneShotBehaviour
 
 from logic import IntraAASInteractions_utils
 from utilities import submodels_utils
-from utilities.aas_general_info import AASGeneralInfo
+from utilities.aas_general_info import SMIAGeneralInfo
 
 _logger = logging.getLogger(__name__)
 
@@ -31,8 +31,11 @@ class CheckPhysicalAssetBehaviour(OneShotBehaviour):
         """
         This method implements the logic of the behaviour.
         """
+        # TODO se podria realizar una comprobacion de si el activo fisico es accesible usando todos los asset
+        #  connections definidos en el modelo AAS
+
         # First it is checked if the submodel file exists has to be checked
-        if Submodels_utils.check_if_submodel_exists("asset_identification") is False:
+        if submodels_utils.check_if_submodel_exists("asset_identification") is False:
             # TODO pensar que hacer en el caso de que no exista (matar al agente?)
             _logger.error("The submodel asset identification does not exist.")
         _logger.info("The submodel 'Asset identification' of the asset exists.")
@@ -63,7 +66,7 @@ class CheckPhysicalAssetBehaviour(OneShotBehaviour):
                 # Set the service as completed
                 # Write the information in the log file
                 IntraAASInteractions_utils.save_svc_info_in_log_file('Manager',
-                                                                     AASGeneralInfo.ASSET_RELATED_SVC_LOG_FILENAME,
+                                                                     SMIAGeneralInfo.ASSET_RELATED_SVC_LOG_FILENAME,
                                                                      current_interaction_id)
                 # Return message to the sender
                 _logger.info("Service completed! Response: " + str(svc_response))

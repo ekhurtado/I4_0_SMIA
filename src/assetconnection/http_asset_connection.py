@@ -39,6 +39,9 @@ class HTTPAssetConnection(AssetConnection):
             self.request_headers['Content-Type'] = content_type_elem.value
         # TODO: pensar como añadir el resto , p.e. tema de seguridad o autentificacion (bearer)
 
+    async def check_asset_connection(self):
+        pass
+
     async def connect_with_asset(self):
         pass
 

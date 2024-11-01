@@ -6,7 +6,7 @@ import time
 from spade.message import Message
 from spade.template import Template
 
-from utilities.aas_general_info import AASGeneralInfo
+from utilities.aas_general_info import SMIAGeneralInfo
 
 
 class GeneralUtils:
@@ -45,16 +45,10 @@ class GeneralUtils:
         logging.getLogger('').addHandler(handler)
         logging.getLogger('').setLevel(logging.INFO)  # Set the default logging level
 
-    @staticmethod
-    def configure_paths():
-        """
-        This method configures the necessary paths for agent-based AAS-compliant DT, especially with regard to the
-        properties file and the AAS model file to self-configure.
-        """
-        # If the SMIA DT is deployed in Kubernetes, the configuration files are in the associated ConfigMap
-        # If the SMIA DT is run locally, the configuration files are in 'config' folder of this project
-        if 'KUBERNETES_PORT' not in os.environ:
-            AASGeneralInfo.CONFIG_MAP_PATH = '../config'
+        # Create a file handler
+        file_handler = logging.FileHandler(SMIAGeneralInfo.LOG_FOLDER_PATH + '/' + SMIAGeneralInfo.SMIA_LOG_FILENAME)
+        file_handler.setFormatter(logging.Formatter(GeneralUtils.ColoredFormatter.FORMAT_COMPLEX))
+        logging.getLogger('').addHandler(file_handler)
 
     class ColoredFormatter(logging.Formatter):
         """

@@ -51,7 +51,7 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
                 await self.handle_query_if()
             case FIPAACLInfo.FIPA_ACL_PERFORMATIVE_INFORM:
                 await self.handle_inform()
-            case "PensarOtro": # TODO
+            case "PensarOtro":  # TODO
                 pass
             case _:
                 _logger.error("Performative not available for capability management.")
@@ -109,20 +109,25 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
                         CapabilitySkillACLInfo.REQUIRED_SKILL_INFO][CapabilitySkillACLInfo.REQUIRED_SKILL_PARAMETERS]
                     required_skill_input_parameters = None
                     if CapabilitySkillACLInfo.REQUIRED_SKILL_INPUT_PARAMETERS in required_skill_parameters:
-                        required_skill_input_parameters = required_skill_parameters[CapabilitySkillACLInfo.REQUIRED_SKILL_INPUT_PARAMETERS]
+                        required_skill_input_parameters = required_skill_parameters[
+                            CapabilitySkillACLInfo.REQUIRED_SKILL_INPUT_PARAMETERS]
                     if CapabilitySkillACLInfo.REQUIRED_SKILL_OUTPUT_PARAMETERS in required_skill_parameters:
                         # TODO analizar que pasaria si hay output parameters
-                        required_skill_output_parameters = required_skill_parameters[CapabilitySkillACLInfo.REQUIRED_SKILL_OUTPUT_PARAMETERS]
+                        required_skill_output_parameters = required_skill_parameters[
+                            CapabilitySkillACLInfo.REQUIRED_SKILL_OUTPUT_PARAMETERS]
 
                     _logger.interactioninfo("The Asset connection of the Skill Interface has been obtained.")
-                    _logger.interactioninfo("Executing skill of the capability through a request of an asset service...")
-                    skill_execution_result = await asset_connection_class.send_msg_to_asset(skill_interface_elem, required_skill_input_parameters)
+                    _logger.interactioninfo(
+                        "Executing skill of the capability through a request of an asset service...")
+                    skill_execution_result = await asset_connection_class.send_msg_to_asset(skill_interface_elem,
+                                                                                            required_skill_input_parameters)
                     if skill_execution_result:
                         _logger.interactioninfo("Skill of the capability successfully executed.")
 
                         # Se comprueba si la capacidad requerida tiene postcondiciones
                         constraints_values = required_cap_data[CapabilitySkillACLInfo.REQUIRED_CAPABILITY_CONSTRAINTS]
-                        await self.myagent.aas_model.skill_feasibility_checking_post_conditions(capability_elem, constraints_values)
+                        await self.myagent.aas_model.skill_feasibility_checking_post_conditions(capability_elem,
+                                                                                                constraints_values)
 
                     else:
                         _logger.warning("Failed to execute the skill of the capability correctly.")
@@ -158,8 +163,6 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
             # TODO pensar otras categorias para capabilities
             pass
 
-
-
     async def handle_inform(self):
         """
         This method handles AAS Services. These services serve for the management of asset-related information through
@@ -183,7 +186,6 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
         #  servicio completamente. Si es un submodelo del AAS Core, tendra que solicitarselo
         _logger.info(await self.myagent.get_interaction_id() + str(self.svc_req_data))
 
-
     async def send_response_inform_to_sender(self, service_params):
         """
         This method creates and sends and INFORM FIPA-ACL message with the given serviceParams.
@@ -191,7 +193,7 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
         Args:
             service_params (dict): JSON with the serviceParams to be sent in the message.
         """
-        acl_msg = InterAASInteractions_utils.create_inter_aas_response_msg(
+        acl_msg = inter_aas_interactions_utils.create_inter_aas_response_msg(
             receiver=self.svc_req_data['sender'],
             thread=self.svc_req_data['thread'],
             performative=FIPAACLInfo.FIPA_ACL_PERFORMATIVE_INFORM,

@@ -4,25 +4,57 @@ import logging
 import os
 import time
 
-from utilities.aas_general_info import AASGeneralInfo
+from utilities.aas_general_info import SMIAGeneralInfo
 from utilities.general_utils import GeneralUtils
 
 _logger = logging.getLogger(__name__)
 
 
+def initialize_smia_archive():
+    """
+    This method initializes the SMIA Archive, performing the necessary actions to let the archive in the initial
+    necessary conditions to start the software.
+    """
+    # Create the status file
+    create_status_file()
+
+    # Create log file
+    create_log_files()
+
+    print("SMIA Archive initialized.")
+
+
 # ------------------------
 # Methods related to files
 # ------------------------
+def safe_open_file(file_path):
+    """
+    This method opens a file in a safe way. If the file does not exist, it will be created, and then opened.
+
+    Args:
+        file_path (str): The path to the file to be opened.
+    """
+    try:
+        return open(file_path, 'x')
+    except FileExistsError as e:
+        return open(file_path, 'w')
+
+
 def create_status_file():
     """This method creates the status file of the AAS Manager and sets it to "initializing". If the file exists because
     the AAS Manager has been restarted without terminating the Pod where it is running, the status file will be
     rewritten."""
-    initial_status_info = {'name': 'AAS_Manager', 'status': 'Initializing',
-                           'timestamp': GeneralUtils.get_current_timestamp()}
-    try:
-        status_file = open(AASGeneralInfo.MANAGER_STATUS_FILE_PATH, 'x')
-    except FileExistsError as e:
-        status_file = open(AASGeneralInfo.MANAGER_STATUS_FILE_PATH, 'w')
+    # The status information file will be a list of all the statuses the software has gone through.
+    initial_status_info = [{'name': 'SMIA', 'status': 'Initializing',
+                            'timestamp': GeneralUtils.get_current_timestamp()}]
+    if not os.path.exists(SMIAGeneralInfo.STATUS_FOLDER_PATH):
+        # If necessary, the status folder is created
+        os.mkdir(SMIAGeneralInfo.STATUS_FOLDER_PATH)
+    # try:
+    #     status_file = open(SMIAGeneralInfo.STATUS_FOLDER_PATH + SMIAGeneralInfo.SMIA_STATUS_FILE_NAME, 'x')
+    # except FileExistsError as e:
+    #     status_file = open(SMIAGeneralInfo.STATUS_FOLDER_PATH + SMIAGeneralInfo.SMIA_STATUS_FILE_NAME, 'w')
+    status_file = safe_open_file(SMIAGeneralInfo.STATUS_FOLDER_PATH + '/' + SMIAGeneralInfo.SMIA_STATUS_FILE_NAME)
     json.dump(initial_status_info, status_file)
     status_file.close()
 
@@ -31,17 +63,17 @@ def create_interaction_files():
     """This method creates the necessary interaction files to exchange information between AAS Core and AAS Manager."""
 
     # First interaction folders are created
-    os.mkdir(AASGeneralInfo.CORE_INTERACTIONS_FOLDER_PATH)
-    os.mkdir(AASGeneralInfo.MANAGER_INTERACTIONS_FOLDER_PATH)
+    os.mkdir(SMIAGeneralInfo.CORE_INTERACTIONS_FOLDER_PATH)
+    os.mkdir(SMIAGeneralInfo.MANAGER_INTERACTIONS_FOLDER_PATH)
 
     # Then the interaction files are added in each folder
-    with (open(AASGeneralInfo.CORE_INTERACTIONS_FOLDER_PATH + AASGeneralInfo.SVC_REQUEST_FILE_SUBPATH,
+    with (open(SMIAGeneralInfo.CORE_INTERACTIONS_FOLDER_PATH + SMIAGeneralInfo.SVC_REQUEST_FILE_SUBPATH,
                'x') as core_requests_file,
-          open(AASGeneralInfo.CORE_INTERACTIONS_FOLDER_PATH + AASGeneralInfo.SVC_RESPONSE_FILE_SUBPATH,
+          open(SMIAGeneralInfo.CORE_INTERACTIONS_FOLDER_PATH + SMIAGeneralInfo.SVC_RESPONSE_FILE_SUBPATH,
                'x') as core_responses_file,
-          open(AASGeneralInfo.MANAGER_INTERACTIONS_FOLDER_PATH + AASGeneralInfo.SVC_REQUEST_FILE_SUBPATH,
+          open(SMIAGeneralInfo.MANAGER_INTERACTIONS_FOLDER_PATH + SMIAGeneralInfo.SVC_REQUEST_FILE_SUBPATH,
                'x') as manager_requests_file,
-          open(AASGeneralInfo.MANAGER_INTERACTIONS_FOLDER_PATH + AASGeneralInfo.SVC_RESPONSE_FILE_SUBPATH,
+          open(SMIAGeneralInfo.MANAGER_INTERACTIONS_FOLDER_PATH + SMIAGeneralInfo.SVC_RESPONSE_FILE_SUBPATH,
                'x') as manager_responses_file):
         core_requests_file.write('{"serviceRequests": []}')
         core_requests_file.close()
@@ -59,17 +91,20 @@ def create_interaction_files():
 def create_log_files():
     """This method creates the necessary log files to save services information."""
 
-    # First the log folder is created
-    os.mkdir(AASGeneralInfo.LOG_FOLDER_PATH)
-    # The folder for services log is also created
-    os.mkdir(AASGeneralInfo.SVC_LOG_FOLDER_PATH)
+    if not os.path.exists(SMIAGeneralInfo.LOG_FOLDER_PATH):
+        # If necessary, the status folder is created
+        os.mkdir(SMIAGeneralInfo.LOG_FOLDER_PATH)
+
+    if not os.path.exists(SMIAGeneralInfo.SVC_LOG_FOLDER_PATH):
+        # If necessary, the folder for services log is also created
+        os.mkdir(SMIAGeneralInfo.SVC_LOG_FOLDER_PATH)
 
     # Then the log files are added in each folder
-    all_svc_log_file_names = [AASGeneralInfo.ASSET_RELATED_SVC_LOG_FILENAME,
-                              AASGeneralInfo.AAS_INFRASTRUCTURE_SVC_LOG_FILENAME,
-                              AASGeneralInfo.AAS_SERVICES_LOG_FILENAME, AASGeneralInfo.SUBMODEL_SERVICES_LOG_FILENAME]
+    all_svc_log_file_names = [SMIAGeneralInfo.ASSET_RELATED_SVC_LOG_FILENAME,
+                              SMIAGeneralInfo.AAS_INFRASTRUCTURE_SVC_LOG_FILENAME,
+                              SMIAGeneralInfo.AAS_SERVICES_LOG_FILENAME, SMIAGeneralInfo.SUBMODEL_SERVICES_LOG_FILENAME]
     for log_file_name in all_svc_log_file_names:
-        with open(AASGeneralInfo.SVC_LOG_FOLDER_PATH + '/' + log_file_name, 'x') as log_file:
+        with safe_open_file(SMIAGeneralInfo.SVC_LOG_FOLDER_PATH + '/' + log_file_name) as log_file:
             log_file.write('[]')
             log_file.close()
 
@@ -86,13 +121,13 @@ def get_log_file_by_service_type(svc_type):
     log_file_path = None
     match svc_type:
         case "AssetRelatedService":
-            log_file_path = AASGeneralInfo.SVC_LOG_FOLDER_PATH + '/' + AASGeneralInfo.ASSET_RELATED_SVC_LOG_FILENAME
+            log_file_path = SMIAGeneralInfo.SVC_LOG_FOLDER_PATH + '/' + SMIAGeneralInfo.ASSET_RELATED_SVC_LOG_FILENAME
         case "AASInfrastructureServices":
-            log_file_path = AASGeneralInfo.SVC_LOG_FOLDER_PATH + '/' + AASGeneralInfo.AAS_INFRASTRUCTURE_SVC_LOG_FILENAME
+            log_file_path = SMIAGeneralInfo.SVC_LOG_FOLDER_PATH + '/' + SMIAGeneralInfo.AAS_INFRASTRUCTURE_SVC_LOG_FILENAME
         case "AASservices":
-            log_file_path = AASGeneralInfo.SVC_LOG_FOLDER_PATH + '/' + AASGeneralInfo.AAS_SERVICES_LOG_FILENAME
+            log_file_path = SMIAGeneralInfo.SVC_LOG_FOLDER_PATH + '/' + SMIAGeneralInfo.AAS_SERVICES_LOG_FILENAME
         case "SubmodelServices":
-            log_file_path = AASGeneralInfo.SVC_LOG_FOLDER_PATH + '/' + AASGeneralInfo.SUBMODEL_SERVICES_LOG_FILENAME
+            log_file_path = SMIAGeneralInfo.SVC_LOG_FOLDER_PATH + '/' + SMIAGeneralInfo.SUBMODEL_SERVICES_LOG_FILENAME
         case _:
             _logger.error("Service type not available.")
     return log_file_path
@@ -120,17 +155,18 @@ def save_svc_log_info(svc_info, svc_type):
 # -------------------------
 # Methods related to status
 # -------------------------
-def change_status(new_status):
+def update_status(new_status):
     """
     This method updated the status of an AAS Manager instance.
 
     Args:
         new_status (str): the new status of the AAS Manager instance.
     """
-    status_file_json = file_to_json(AASGeneralInfo.MANAGER_STATUS_FILE_PATH)
-    status_file_json['status'] = new_status
-    status_file_json['timestamp'] = GeneralUtils.get_current_timestamp()
-    update_json_file(AASGeneralInfo.MANAGER_STATUS_FILE_PATH, status_file_json)
+    status_file_path = SMIAGeneralInfo.STATUS_FOLDER_PATH + '/' + SMIAGeneralInfo.SMIA_STATUS_FILE_NAME
+    status_file_json = file_to_json(status_file_path)
+    status_file_json.append({'name': 'SMIA', 'status': new_status,
+                             'timestamp': GeneralUtils.get_current_timestamp()})
+    update_json_file(status_file_path, status_file_json)
 
 
 def get_status(entity):
@@ -145,17 +181,17 @@ def get_status(entity):
     """
     status_file_json = None
     if entity == "Manager":
-        status_file_json = file_to_json(AASGeneralInfo.MANAGER_STATUS_FILE_PATH)
+        status_file_json = file_to_json(SMIAGeneralInfo.SMIA_STATUS_FILE_PATH)
     elif entity == "Core":
-        status_file_json = file_to_json(AASGeneralInfo.CORE_STATUS_FILE_PATH)
+        status_file_json = file_to_json(SMIAGeneralInfo.CORE_STATUS_FILE_PATH)
     return status_file_json['status']
 
 
 def check_core_initialization():
     """This method checks if the core has initialized so the Manager can be started."""
     while True:
-        if os.path.isfile(AASGeneralInfo.CORE_STATUS_FILE_PATH) is True:
-            if file_to_json(AASGeneralInfo.CORE_STATUS_FILE_PATH)['status'] != "Initializing":
+        if os.path.isfile(SMIAGeneralInfo.CORE_STATUS_FILE_PATH) is True:
+            if file_to_json(SMIAGeneralInfo.CORE_STATUS_FILE_PATH)['status'] != "Initializing":
                 break
         time.sleep(1)  # waits 1s
     _logger.info('AAS Core has initialized, so the AAS Manager is starting.')

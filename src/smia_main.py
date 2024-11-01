@@ -4,7 +4,7 @@ import spade
 from agents.smia_agent import AASManagerAgent
 from agents.smia_app_agent import AASManagerAppAgent
 from agents.smia_resource_agent import AASManagerResourceAgent
-from utilities import configmap_utils
+from utilities import configmap_utils, smia_archive_utils
 from utilities.AASModelExtension_utils import AASModelExtensionUtils
 from utilities.general_utils import GeneralUtils
 from utilities.KafkaInfo import KafkaInfo
@@ -66,13 +66,13 @@ async def main():
 
 if __name__ == '__main__':
 
+    # Initialize SMIA archive
+    smia_archive_utils.initialize_smia_archive()
+
     # Configure logging
     GeneralUtils.configure_logging()
 
-    # Configure paths
-    GeneralUtils.configure_paths()
-
-    _logger.info("Initializing SMIA program...")
+    _logger.info("Initializing SMIA software...")
 
     # Extend BaSyx Python SDK
     AASModelExtensionUtils.extend_basyx_aas_model()

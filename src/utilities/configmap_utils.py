@@ -1,10 +1,13 @@
 """This class contains utility methods related to the ConfigMap file."""
 import logging
 import configparser
+import os.path
 
-from utilities.aas_general_info import AASGeneralInfo
+from logic.exceptions import CriticalError
+from utilities.aas_general_info import SMIAGeneralInfo
 
 _logger = logging.getLogger(__name__)
+
 
 # --------------------------------------
 # Methods related to aas information
@@ -21,12 +24,14 @@ def get_aas_general_property(property_name):
     """
     # Read submodels configuration
     config_sm = configparser.RawConfigParser()
-    config_sm.read(AASGeneralInfo.CONFIG_MAP_PATH + '/' + AASGeneralInfo.CM_GENERAL_PROPERTIES_FILENAME)
+    config_sm.read(SMIAGeneralInfo.CONFIGURATION_FOLDER_PATH + '/' + SMIAGeneralInfo.CM_GENERAL_PROPERTIES_FILENAME)
+
     try:
         return config_sm['AAS']['aas.' + property_name]
     except KeyError as e:
         _logger.error("The 'general.properties' file in the ConfigMap is not valid.")
         return None
+
 
 def get_dt_general_property(property_name):
     """
@@ -37,12 +42,16 @@ def get_dt_general_property(property_name):
         str: The general property of the DT.
     """
     config_sm = configparser.RawConfigParser()
-    config_sm.read(AASGeneralInfo.CONFIG_MAP_PATH + '/' + AASGeneralInfo.CM_GENERAL_PROPERTIES_FILENAME)
+    if not os.path.exists(
+            SMIAGeneralInfo.CONFIGURATION_FOLDER_PATH + '/' + SMIAGeneralInfo.CM_GENERAL_PROPERTIES_FILENAME):
+        raise CriticalError("General properties file not found in [" + SMIAGeneralInfo.CONFIGURATION_FOLDER_PATH + '/' +
+                            SMIAGeneralInfo.CM_GENERAL_PROPERTIES_FILENAME + "], the path is invalid.")
+    config_sm.read(SMIAGeneralInfo.CONFIGURATION_FOLDER_PATH + '/' + SMIAGeneralInfo.CM_GENERAL_PROPERTIES_FILENAME)
     try:
         return config_sm['DT']['dt.' + property_name]
     except KeyError as e:
-        _logger.error("The 'general.properties' file in the ConfigMap is not valid.")
-        return None
+        raise CriticalError("The 'general.properties' file in the ConfigMap does not have valid keys.")
+
 
 def get_aas_model_filepath():
     """
@@ -53,9 +62,8 @@ def get_aas_model_filepath():
         str: The AAS model file path within the AAS Archive.
     """
     config_sm = configparser.RawConfigParser()
-    config_sm.read(AASGeneralInfo.CONFIG_MAP_PATH + '/' + AASGeneralInfo.CM_GENERAL_PROPERTIES_FILENAME)
-    return AASGeneralInfo.CONFIG_MAP_PATH + '/' + config_sm['AAS']['aas.model.file']
-
+    config_sm.read(SMIAGeneralInfo.CONFIGURATION_FOLDER_PATH + '/' + SMIAGeneralInfo.CM_GENERAL_PROPERTIES_FILENAME)
+    return SMIAGeneralInfo.CONFIGURATION_FOLDER_PATH + '/' + config_sm['AAS']['aas.model.file']
 
 
 # --------------------------------------
@@ -70,7 +78,7 @@ def get_asset_type():
     """
     # Read submodels configuration
     config_sm = configparser.RawConfigParser()
-    config_sm.read(AASGeneralInfo.CONFIG_MAP_PATH + '/' + AASGeneralInfo.CM_ASSET_PROPERTIES_FILENAME)
+    config_sm.read(SMIAGeneralInfo.CONFIGURATION_FOLDER_PATH + '/' + SMIAGeneralInfo.CM_ASSET_PROPERTIES_FILENAME)
     return config_sm['DEFAULT']['assetType']
 
 
@@ -87,7 +95,7 @@ def get_submodel_names():
         list(str): A list with the sections of the submodel properties file, and therefore, the submodel names."""
     # Read submodels configuration
     config_sm = configparser.RawConfigParser()
-    config_sm.read(AASGeneralInfo.CONFIG_MAP_PATH + '/' + AASGeneralInfo.CM_SM_PROPERTIES_FILENAME)
+    config_sm.read(SMIAGeneralInfo.CONFIGURATION_FOLDER_PATH + '/' + SMIAGeneralInfo.CM_SM_PROPERTIES_FILENAME)
 
     return config_sm.sections()
 
@@ -106,6 +114,6 @@ def get_submodel_information(submodel_name):
     """
     # Read submodels configuration
     config_sm = configparser.RawConfigParser()
-    config_sm.read(AASGeneralInfo.CONFIG_MAP_PATH + '/' + AASGeneralInfo.CM_SM_PROPERTIES_FILENAME)
+    config_sm.read(SMIAGeneralInfo.CONFIGURATION_FOLDER_PATH + '/' + SMIAGeneralInfo.CM_SM_PROPERTIES_FILENAME)
 
     return config_sm.items(submodel_name)

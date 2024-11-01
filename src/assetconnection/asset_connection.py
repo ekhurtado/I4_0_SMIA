@@ -30,6 +30,10 @@ class AssetConnection(metaclass=abc.ABCMeta):
         pass
 
     @abc.abstractmethod
+    async def check_asset_connection(self):
+        pass
+
+    @abc.abstractmethod
     async def connect_with_asset(self):
         pass
 

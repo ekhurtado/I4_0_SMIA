@@ -6,8 +6,8 @@ from datetime import datetime
 
 from aiokafka import AIOKafkaProducer, AIOKafkaConsumer, TopicPartition
 
-from utilities.aas_general_info import AASGeneralInfo
-from utilities.AAS_Archive_utils import file_to_json, update_json_file
+from utilities.aas_general_info import SMIAGeneralInfo
+from utilities.smia_archive_utils import file_to_json, update_json_file
 from utilities.general_utils import GeneralUtils
 from utilities.KafkaInfo import KafkaInfo
 
@@ -77,7 +77,7 @@ def add_new_svc_request(new_request_json):
     """
 
     # Get the content of the service requests interaction file
-    svc_requests_file_path = AASGeneralInfo.MANAGER_INTERACTIONS_FOLDER_PATH + AASGeneralInfo.SVC_REQUEST_FILE_SUBPATH
+    svc_requests_file_path = SMIAGeneralInfo.MANAGER_INTERACTIONS_FOLDER_PATH + SMIAGeneralInfo.SVC_REQUEST_FILE_SUBPATH
     svc_requests_json = file_to_json(svc_requests_file_path)
     if svc_requests_json is None:
         svc_requests_json = {'serviceRequests': [new_request_json]}
@@ -97,8 +97,8 @@ def get_svc_request_info(interaction_id):
     Returns:
         dict: the information of the service request in JSON format.
     """
-    svc_requests_json = file_to_json(AASGeneralInfo.MANAGER_INTERACTIONS_FOLDER_PATH +
-                                     AASGeneralInfo.SVC_REQUEST_FILE_SUBPATH)
+    svc_requests_json = file_to_json(SMIAGeneralInfo.MANAGER_INTERACTIONS_FOLDER_PATH +
+                                     SMIAGeneralInfo.SVC_REQUEST_FILE_SUBPATH)
     for i in svc_requests_json['serviceRequests']:
         if i['interactionID'] == interaction_id:
             return i
@@ -119,7 +119,7 @@ def get_svc_response_info(interaction_id):
         dict: the information of the service request in JSON format.
     """
     svc_responses_json = file_to_json(
-        AASGeneralInfo.CORE_INTERACTIONS_FOLDER_PATH + AASGeneralInfo.SVC_RESPONSE_FILE_SUBPATH)
+        SMIAGeneralInfo.CORE_INTERACTIONS_FOLDER_PATH + SMIAGeneralInfo.SVC_RESPONSE_FILE_SUBPATH)
     for i in svc_responses_json['serviceResponses']:
         if i['interactionID'] == interaction_id:
             return i
@@ -162,11 +162,11 @@ def save_svc_info_in_log_file(requested_entity, svc_type_log_file_name, interact
         log_structure['serviceInfo']['serviceData'] = svc_data_json
 
     # Get the content of LOG file
-    log_file_json = file_to_json(AASGeneralInfo.SVC_LOG_FOLDER_PATH + '/' + svc_type_log_file_name)
+    log_file_json = file_to_json(SMIAGeneralInfo.SVC_LOG_FOLDER_PATH + '/' + svc_type_log_file_name)
 
     # Add the structure in the file
     log_file_json.append(log_structure)
-    update_json_file(file_path=AASGeneralInfo.SVC_LOG_FOLDER_PATH + '/' + svc_type_log_file_name, content=log_file_json)
+    update_json_file(file_path=SMIAGeneralInfo.SVC_LOG_FOLDER_PATH + '/' + svc_type_log_file_name, content=log_file_json)
     _logger.info("Service information related to interaction " + str(interaction_id_num) + " added in log file.")
 
 
@@ -249,16 +249,16 @@ def get_svc_info(requested_entity, interaction_id):
         return get_svc_request_info(interaction_id), get_svc_response_info(interaction_id)
     elif requested_entity == "Core":
         # In this case, it has to search in the opposite files (request of Core and response of Manager)
-        svc_requests_json = file_to_json(AASGeneralInfo.MANAGER_INTERACTIONS_FOLDER_PATH +
-                                         AASGeneralInfo.SVC_REQUEST_FILE_SUBPATH)
+        svc_requests_json = file_to_json(SMIAGeneralInfo.MANAGER_INTERACTIONS_FOLDER_PATH +
+                                         SMIAGeneralInfo.SVC_REQUEST_FILE_SUBPATH)
         svc_request_info = None
         for i in svc_requests_json['serviceRequests']:
             if i['interactionID'] == interaction_id:
                 svc_request_info = i
                 break
 
-        svc_responses_json = file_to_json(AASGeneralInfo.CORE_INTERACTIONS_FOLDER_PATH +
-                                          AASGeneralInfo.SVC_RESPONSE_FILE_SUBPATH)
+        svc_responses_json = file_to_json(SMIAGeneralInfo.CORE_INTERACTIONS_FOLDER_PATH +
+                                          SMIAGeneralInfo.SVC_RESPONSE_FILE_SUBPATH)
         svc_response_info = None
         for i in svc_responses_json['serviceResponses']:
             if i['interactionID'] == interaction_id:

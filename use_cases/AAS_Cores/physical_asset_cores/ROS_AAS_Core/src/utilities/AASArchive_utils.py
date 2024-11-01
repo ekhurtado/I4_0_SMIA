@@ -103,5 +103,5 @@ def get_aas_general_property(property_name):
     """
     # Read submodels configuration
     config_sm = configparser.RawConfigParser()
-    config_sm.read(AASarchiveInfo.CONFIG_MAP_PATH + '/' + AASarchiveInfo.CM_AAS_PROPERTIES_FILENAME)
+    config_sm.read(AASarchiveInfo.CONFIGURATION_FOLDER_PATH + '/' + AASarchiveInfo.CM_AAS_PROPERTIES_FILENAME)
     return config_sm['general-information'][property_name]

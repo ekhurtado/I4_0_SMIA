@@ -1,7 +1,7 @@
 import logging
 from spade.behaviour import OneShotBehaviour
 
-from utilities import AAS_Archive_utils
+from utilities import smia_archive_utils
 
 _logger = logging.getLogger(__name__)
 
@@ -30,12 +30,12 @@ class InitAASarchiveBehaviour(OneShotBehaviour):
         This method implements the logic of the behaviour.
         """
         # Create the status file
-        AAS_Archive_utils.create_status_file()
+        smia_archive_utils.create_status_file()
 
         # Create the interaction files
-        AAS_Archive_utils.create_interaction_files()
+        # AAS_Archive_utils.create_interaction_files()
 
         # Create log file
-        AAS_Archive_utils.create_log_files()
+        smia_archive_utils.create_log_files()
 
         _logger.info("AAS Archive initialized.")

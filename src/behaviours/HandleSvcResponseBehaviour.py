@@ -4,7 +4,7 @@ import logging
 from spade.behaviour import OneShotBehaviour
 
 from logic import inter_aas_interactions_utils, negotiation_utils, IntraAASInteractions_utils
-from utilities import AAS_Archive_utils
+from utilities import smia_archive_utils
 from utilities.general_utils import GeneralUtils
 
 _logger = logging.getLogger(__name__)
@@ -100,7 +100,7 @@ class HandleSvcResponseBehaviour(OneShotBehaviour):
                                     " responsible for interaction [" + svc_interaction_id + "]. Action: response data added")
 
             # It is also stored in the log of the AAS archive
-            AAS_Archive_utils.save_svc_log_info(self.svc_resp_data, 'AssetRelatedService')
+            smia_archive_utils.save_svc_log_info(self.svc_resp_data, 'AssetRelatedService')
             _logger.info("Information of service with id " + str(svc_interaction_id) +
                          " has saved correctly in the log of the AAS Archive")
 
@@ -118,7 +118,7 @@ class HandleSvcResponseBehaviour(OneShotBehaviour):
                         # to that request must be sent through FIPA-ACL to the requesting AAS.
                         _logger.info("The Intra AAS Interaction response is part of an Inter AAS service request, "
                                      "withi thread [" + self.svc_resp_data['thread'] + "].")
-                        inter_aas_response = InterAASInteractions_utils.create_inter_aas_response_object(inter_aas_req,
+                        inter_aas_response = inter_aas_interactions_utils.create_inter_aas_response_object(inter_aas_req,
                                                                                                          self.svc_resp_data)
 
                         # TODO revisar si devolver el mismo serviceID o serviceType que la peticion Inter AAS
@@ -154,7 +154,7 @@ class HandleSvcResponseBehaviour(OneShotBehaviour):
                     # the associate handling behaviour, which is in charge of this exact negotiation
                     # If the negotiation value has been requested, this value must be saved in the behaviour
                     # class as an attribute
-                    Negotiation_utils.add_value_and_unlock_neg_handling_behaviour(
+                    negotiation_utils.add_value_and_unlock_neg_handling_behaviour(
                         agent=self.myagent,
                         thread=self.svc_resp_data['thread'],
                         neg_value=self.svc_resp_data['serviceData']['serviceParams']['value'])
@@ -169,7 +169,7 @@ class HandleSvcResponseBehaviour(OneShotBehaviour):
 
             _logger.info("The serviceID is not one of the defaults, so it will be checked to verify if the AAS "
                          "Core has made a previous service request.")
-            intra_aas_request = Negotiation_utils.get_neg_intra_aas_request_by_thread(agent=self.myagent,
+            intra_aas_request = negotiation_utils.get_neg_intra_aas_request_by_thread(agent=self.myagent,
                                                                                       thread=self.svc_resp_data[
                                                                                           'thread'])
             if intra_aas_request is not None:
@@ -221,7 +221,7 @@ class HandleSvcResponseBehaviour(OneShotBehaviour):
                         'interactionID'] + "]. Action: response data added")
 
                 # It is also stored in the log of the AAS archive
-                AAS_Archive_utils.save_svc_log_info(self.svc_resp_data, 'AssetRelatedService')
+                smia_archive_utils.save_svc_log_info(self.svc_resp_data, 'AssetRelatedService')
                 _logger.info("Information of service with id " + str(intra_aas_request['interactionID']) +
                              " has saved correctly in the log of the AAS Archive")
 

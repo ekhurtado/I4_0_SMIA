@@ -2,6 +2,8 @@ import logging
 
 from spade.behaviour import State
 
+from utilities import smia_archive_utils
+
 _logger = logging.getLogger(__name__)
 
 
@@ -21,4 +23,5 @@ class StateStopping(State):
         # self.agent.add_behaviour(sb)
         _logger.info("     [Stopping Behaviour]")
         _logger.info("         |___ Stopping MachineAgent...")
+        smia_archive_utils.update_status('Stopping')
         # No se ha indicado un estado final, por lo que este se considera el último

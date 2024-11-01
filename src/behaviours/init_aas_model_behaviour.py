@@ -38,7 +38,7 @@ class InitAASModelBehaviour(OneShotBehaviour):
         This method implements the logic of the behaviour.
         """
         # First, the AAS model serialization format is obtained
-        aas_model_serialization_format = ConfigMap_utils.get_aas_general_property('model.serialization')
+        aas_model_serialization_format = configmap_utils.get_aas_general_property('model.serialization')
 
         # Depending on the serialization format, the required BaSyx read method shall be executed. This will store all
         # the received elements of the model in the corresponding global object of the agent.
@@ -69,9 +69,9 @@ class InitAASModelBehaviour(OneShotBehaviour):
         """
         object_store = None
         if aas_model_serialization_format == 'JSON':
-            object_store = basyx.aas.adapter.json.read_aas_json_file(ConfigMap_utils.get_aas_model_filepath())
+            object_store = basyx.aas.adapter.json.read_aas_json_file(configmap_utils.get_aas_model_filepath())
         elif aas_model_serialization_format == 'XML':
-            object_store = basyx.aas.adapter.xml.read_aas_xml_file(ConfigMap_utils.get_aas_model_filepath())
+            object_store = basyx.aas.adapter.xml.read_aas_xml_file(configmap_utils.get_aas_model_filepath())
         if object_store is None:
             _logger.error("The AAS model is not valid. It is not possible to read and obtain elements of the AAS "
                           "metamodel.")

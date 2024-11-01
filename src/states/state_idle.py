@@ -2,6 +2,7 @@ import logging
 from spade.behaviour import State
 
 from behaviours.IdleBehaviour import IdleBehaviour
+from utilities import smia_archive_utils
 
 _logger = logging.getLogger(__name__)
 
@@ -18,6 +19,7 @@ class StateIdle(State):
         """
 
         _logger.info("## STATE 4: IDLE ##")
+        smia_archive_utils.update_status('Idle')
 
         idle_behav = IdleBehaviour(self.agent)
         self.agent.add_behaviour(idle_behav)

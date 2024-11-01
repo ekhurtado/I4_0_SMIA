@@ -3,8 +3,8 @@ import logging
 import os
 from lxml import etree
 
-from utilities import AAS_Archive_utils, configmap_utils
-from utilities.aas_general_info import AASGeneralInfo
+from utilities import smia_archive_utils, configmap_utils
+from utilities.aas_general_info import SMIAGeneralInfo
 
 _logger = logging.getLogger(__name__)
 
@@ -14,7 +14,7 @@ _logger = logging.getLogger(__name__)
 # ------------------------
 def create_submodel_folder():
     """Create folder to save submodels."""
-    os.mkdir(AASGeneralInfo.SUBMODEL_FOLDER_PATH)
+    os.mkdir(SMIAGeneralInfo.SUBMODEL_FOLDER_PATH)
 
 
 def create_submodel_files(submodel_names_list):
@@ -26,7 +26,7 @@ def create_submodel_files(submodel_names_list):
         """
     for submodel_name in submodel_names_list:
         # Get the submodel information from ConfigMap
-        submodel_data = ConfigMap_utils.get_submodel_information(submodel_name)
+        submodel_data = configmap_utils.get_submodel_information(submodel_name)
 
         match submodel_name:
             case "technical-data-submodel":
@@ -60,8 +60,8 @@ def create_technical_data_sm(submodel_data):
         etree.SubElement(technical_data_level, key).text = val
 
     # Write the content of submodel in a file
-    AAS_Archive_utils.xml_to_file(
-        AASGeneralInfo.SUBMODEL_FOLDER_PATH + '/' + AASGeneralInfo.TECHNICAL_DATA_SM_FILENAME,
+    smia_archive_utils.xml_to_file(
+        SMIAGeneralInfo.SUBMODEL_FOLDER_PATH + '/' + SMIAGeneralInfo.TECHNICAL_DATA_SM_FILENAME,
         etree.tostring(submodel_xml_content))
 
 
@@ -84,8 +84,8 @@ def create_configuration_sm(submodel_data):
         etree.SubElement(configuration_level, key).text = val
 
     # Write the content of submodel in a file
-    AAS_Archive_utils.xml_to_file(
-        AASGeneralInfo.SUBMODEL_FOLDER_PATH + '/' + AASGeneralInfo.CONFIGURATION_SM_FILENAME,
+    smia_archive_utils.xml_to_file(
+        SMIAGeneralInfo.SUBMODEL_FOLDER_PATH + '/' + SMIAGeneralInfo.CONFIGURATION_SM_FILENAME,
         etree.tostring(submodel_xml_content))
 
 
@@ -101,7 +101,7 @@ def check_if_submodel_exists(submodel_name):
     """
 
     # First, if the submodel.properties file exists has to be checked
-    if os.path.isfile(AASGeneralInfo.CONFIG_MAP_PATH + '/' + AASGeneralInfo.CM_SM_PROPERTIES_FILENAME) is False:
+    if os.path.isfile(SMIAGeneralInfo.CONFIGURATION_FOLDER_PATH + '/' + SMIAGeneralInfo.CM_SM_PROPERTIES_FILENAME) is False:
         return False
     else:
         # Read each submodel definition files to get the submodel

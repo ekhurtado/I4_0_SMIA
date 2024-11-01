@@ -133,7 +133,7 @@ class HandleSvcRequestBehaviour(OneShotBehaviour):
                                  "must be made.")
 
                     # Create the Inter AAS Interaction required JSON for start a negotiation
-                    start_neg_acl_msg = Negotiation_utils.create_neg_cfp_msg(
+                    start_neg_acl_msg = negotiation_utils.create_neg_cfp_msg(
                         thread=self.svc_req_data['thread'],
                         targets=self.svc_req_data['serviceData']['serviceParams']['targets'],
                         neg_requester_jid=str(self.myagent.jid),
@@ -165,7 +165,7 @@ class HandleSvcRequestBehaviour(OneShotBehaviour):
                     # serviceParams of the requested service so that it can be executed
                     receiver = service_params.pop('receiver')
                     service_id = service_params.pop('serviceID')
-                    svc_request_acl_msg = InterAASInteractions_utils.create_inter_aas_request_msg(
+                    svc_request_acl_msg = inter_aas_interactions_utils.create_inter_aas_request_msg(
                         receiver=receiver,
                         thread=self.svc_req_data['thread'],
                         service_id=service_id,

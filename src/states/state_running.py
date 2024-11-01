@@ -3,7 +3,7 @@ from spade.behaviour import State
 
 from behaviours.negotiating_behaviour import NegotiatingBehaviour
 from behaviours.svc_acl_handling_behaviour import SvcACLHandlingBehaviour
-from utilities import AAS_Archive_utils
+from utilities import smia_archive_utils
 from utilities.smia_info import SMIAInfo
 from utilities.capability_skill_ontology import CapabilitySkillOntology
 
@@ -23,8 +23,8 @@ class StateRunning(State):
 
         _logger.info("## STATE 2: RUNNING ##  (Initial state)")
 
-        # IAAS Manager is in the Running status
-        AAS_Archive_utils.change_status('Running')
+        # SMIA is in the Running status
+        smia_archive_utils.update_status('Running')
 
         # On the one hand, a behaviour is required to handle ACL messages
         svc_acl_handling_behav = SvcACLHandlingBehaviour(self.agent)

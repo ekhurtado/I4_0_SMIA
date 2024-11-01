@@ -64,7 +64,7 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
 
         # Once the negotiation value is reached, the negotiation management can begin. The first step is to send the
         # PROPOSE message with your own value to the other participants in the negotiation.
-        acl_propose_msg = Negotiation_utils.create_neg_propose_msg(thread=self.thread,
+        acl_propose_msg = negotiation_utils.create_neg_propose_msg(thread=self.thread,
                                                                    targets=self.targets,
                                                                    neg_requester_jid=self.neg_requester_jid,
                                                                    neg_criteria=self.neg_criteria,
@@ -115,7 +115,7 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
                 _logger.info("The AAS has won the negotiation with thread [" + msg.thread + "]")
 
                 # As the winner, it will reply to the sender with the result of the negotiation
-                acl_response_msg = Negotiation_utils.create_neg_response_msg(receiver=self.neg_requester_jid,
+                acl_response_msg = negotiation_utils.create_neg_response_msg(receiver=self.neg_requester_jid,
                                                                              thread=self.thread,
                                                                              service_id='negotiationResult', # TODO pensar como llamarlo
                                                                              service_type='AssetRelatedService',
@@ -232,7 +232,7 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
             _logger.info("The AAS has finished the negotiation with thread [" + self.thread + "] not as the winner")
 
         # The negotiation information is stored in the global object of the AAS Manager
-        neg_data_json = Negotiation_utils.create_neg_json_to_store(neg_requester_jid=self.neg_requester_jid,
+        neg_data_json = negotiation_utils.create_neg_json_to_store(neg_requester_jid=self.neg_requester_jid,
                                                                    participants=self.targets,
                                                                    neg_criteria=self.neg_criteria,
                                                                    is_winner=is_winner)
