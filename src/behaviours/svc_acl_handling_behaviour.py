@@ -86,7 +86,7 @@ class SvcACLHandlingBehaviour(CyclicBehaviour):
                     if service_id == 'capabilityRequest':
                         _logger.aclinfo("The agent has received a request to perform a capability")
                         # The behaviour to handle this specific capability will be added to the agent
-                        svc_req_data = InterAASInteractions_utils.create_svc_json_data_from_acl_msg(msg)
+                        svc_req_data = inter_aas_interactions_utils.create_svc_json_data_from_acl_msg(msg)
                         capability_handling_behav = HandleCapabilityBehaviour(self.agent, svc_req_data)
                         self.myagent.add_behaviour(capability_handling_behav)
                     else:

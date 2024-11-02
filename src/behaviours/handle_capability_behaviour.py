@@ -4,6 +4,7 @@ import logging
 from spade.behaviour import OneShotBehaviour
 
 from logic import inter_aas_interactions_utils
+from logic.exceptions import CapabilityRequestExecutionError
 from utilities.capability_skill_ontology import CapabilitySkillACLInfo, CapabilitySkillOntology, AssetInterfacesInfo
 from utilities.fipa_acl_info import FIPAACLInfo
 
@@ -71,6 +72,10 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
             #  añadirle una validacion extra) Esto podria hacerse con el thread (el Query-If y CFP estarían en la misma
             #  negociacion?). Otra opcion es siempre ejecutar aas_model.capability_checking_from_acl_request()
             required_cap_data = self.svc_req_data['serviceData']['serviceParams']
+
+            # The data received is checked to ensure that it contains all the necessary information.
+            await self.check_received_cap_data(required_cap_data)
+
             required_cap_type = required_cap_data[CapabilitySkillACLInfo.REQUIRED_CAPABILITY_TYPE]
             capability_elem = await self.myagent.aas_model.get_capability_by_id_short(
                 cap_type=required_cap_type,
@@ -202,3 +207,20 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
             service_params=json.dumps(service_params)
         )
         await self.send(acl_msg)
+
+    async def check_received_cap_data(self, received_cap_data):
+        """
+        This method checks if the received
+
+        Args:
+            received_cap_data (dict): JSON with the received information about the requested capability.
+
+        Returns:
+            bool: the result of the check.
+        """
+        # TODO hacer ahora
+        if CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME not in received_cap_data:
+            raise CapabilityRequestExecutionError("The capability cannot be executed due to missing {} field in request "
+                                                  "message.".format(CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME),
+                                                  self.svc_req_data['sender'], self.svc_req_data['thread'], self)
+        pass
