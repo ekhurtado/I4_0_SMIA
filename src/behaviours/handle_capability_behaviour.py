@@ -74,8 +74,9 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
             required_cap_data = self.svc_req_data['serviceData']['serviceParams']
 
             # The data received is checked to ensure that it contains all the necessary information.
-            await self.check_received_cap_data(required_cap_data)
-
+            check_result = await self.check_received_cap_data(required_cap_data)
+            if not check_result:
+                return  # killing a behaviour does not cancel its current run loop
             required_cap_type = required_cap_data[CapabilitySkillACLInfo.REQUIRED_CAPABILITY_TYPE]
             capability_elem = await self.myagent.aas_model.get_capability_by_id_short(
                 cap_type=required_cap_type,
@@ -221,10 +222,15 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
         # TODO hacer ahora
         try:
             if CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME not in received_cap_data:
-                raise CapabilityRequestExecutionError("The capability cannot be executed due to missing {} field in request "
-                                                      "message.".format(CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME),
-                                                      self.svc_req_data['sender'], self.svc_req_data['thread'],
-                                                      self.svc_req_data['serviceID'], self)
-            pass
+                raise CapabilityRequestExecutionError("The capability cannot be executed due to missing {} field in "
+                                                      "request message.".format(CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME),
+                                                      self.svc_req_data, self)
+            elif CapabilitySkillACLInfo.REQUIRED_CAPABILITY_TYPE not in received_cap_data:
+                raise CapabilityRequestExecutionError("The capability cannot be executed due to missing {} field in "
+                                                      "request message.".format(CapabilitySkillACLInfo.REQUIRED_CAPABILITY_TYPE),
+                                                      self.svc_req_data, self)
+            # TODO faltan añadir los demas fields obligatorios (p.e. skill name)
+            return True
         except CapabilityRequestExecutionError as cap_exec_error:
             await cap_exec_error.handle_capability_execution_error()
+            return False

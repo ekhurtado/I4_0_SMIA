@@ -27,7 +27,7 @@ class CapabilitySkillOntology:
     SEMANTICID_REL_SKILL_SKILL_INTERFACE = 'urn:ehu:gcis:capabilityskillontology:1:1:skillaccesiblethrough'
     SEMANTICID_REL_SKILL_SKILL_PARAMETER = 'urn:ehu:gcis:capabilityskillontology:1:1:skillhasparameter'
     SEMANTICID_REL_SKILL_SKILL_STATE_MACHINE = 'urn:ehu:gcis:capabilityskillontology:1:1:skillbehavioursconformsto'
-    SEMANTICID_REL_SKILL_PARAMETER_INTERFACE = 'urn:ehu:gcis:capabilityskillontology:1:1:skillparameterexposurethrough' # TODO CUIDADO, ESTE ES NUEVO, PENSAR COMO SERIA. Se ha pensado para asociar un skill parameter con un apartado de la interfaz, para saber que hay que añadir ahí esos datos
+
 
     # Qualifiers for Capabilities
     QUALIFIER_CAPABILITY_TYPE = 'ExpressionSemantic'
@@ -76,3 +76,7 @@ class AssetInterfacesInfo:
 
     # SemanticIDs of HTTP Asset Interface
     SUPPL_SEMANTICID_HTTP = 'http://www.w3.org/2011/http'
+
+    # TODO NUEVOS
+    SEMANTICID_INTERFACE_INTERACTION_DATA_LOCATION = 'urn:ehu:gcis:assetinterfacesdescription:1:1:interfaceinteractiondatalocation'  # TODO CUIDADO, ESTE ES NUEVO, PENSAR COMO SERIA. Se ha pensado asociar este ID con un apartado de la interfaz, para saber donde hay que añadir los datos (p.e. en los parametros de una peticion HTTP, o en el body...)
+    SEMANTICID_INTERFACE_INTERACTION_DATA_QUERY = 'urn:ehu:gcis:assetinterfacesdescription:1:1:interfaceinteractiondataquery'  # TODO CUIDADO, ESTE ES NUEVO, PENSAR COMO SERIA. Se ha pensado asociar este ID con un apartado de la interfaz donde se añadirá el query para extraer la informacion de la respuesta del activo (esta query debera ir en relacion con el tipo de contenido, p.e. JSONata o JSONPath para respuestas JSON)
