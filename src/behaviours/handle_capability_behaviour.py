@@ -219,8 +219,12 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
             bool: the result of the check.
         """
         # TODO hacer ahora
-        if CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME not in received_cap_data:
-            raise CapabilityRequestExecutionError("The capability cannot be executed due to missing {} field in request "
-                                                  "message.".format(CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME),
-                                                  self.svc_req_data['sender'], self.svc_req_data['thread'], self)
-        pass
+        try:
+            if CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME not in received_cap_data:
+                raise CapabilityRequestExecutionError("The capability cannot be executed due to missing {} field in request "
+                                                      "message.".format(CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME),
+                                                      self.svc_req_data['sender'], self.svc_req_data['thread'],
+                                                      self.svc_req_data['serviceID'], self)
+            pass
+        except CapabilityRequestExecutionError as cap_exec_error:
+            await cap_exec_error.handle_capability_execution_error()

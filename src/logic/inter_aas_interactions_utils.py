@@ -63,7 +63,9 @@ def create_inter_aas_request_msg(receiver, thread, service_id, service_type, ser
     request_msg.body = json.dumps(request_msg_body_json)
     return request_msg
 
-def create_inter_aas_response_msg(receiver, thread, performative, service_id=None, service_type=None, service_params=None):
+
+def create_inter_aas_response_msg(receiver, thread, performative, service_id=None, service_type=None,
+                                  service_params=None):
     """
     This method creates the Inter AAS interaction response object.
 
@@ -119,7 +121,7 @@ def create_inter_aas_response_object(inter_aas_request, intra_aas_response):
                          'serviceCategory': 'service-response',
                          'timestamp': GeneralUtils.get_current_timestamp(),
                          'serviceStatus': intra_aas_response['serviceData']['serviceStatus'],  # The status of the
-                                                                                # Intra AAS Interaction is obtained
+                         # Intra AAS Interaction is obtained
                      }
                      }
     if 'serviceParams' in intra_aas_response['serviceData']:

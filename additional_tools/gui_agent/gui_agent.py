@@ -176,7 +176,7 @@ async def main():
 
     # DATOS PARA PRUEBAS CON ANONYM.IM
     if 'KUBERNETES_PORT' not in os.environ:
-        # agent_jid = "gui_agent@xmpp.jp"
+        # agent_jid = "gui_agent@anonym.im"
         agent_jid = "gui_agent@xmpp.jp"
         passwd = "gcis1234"
 
