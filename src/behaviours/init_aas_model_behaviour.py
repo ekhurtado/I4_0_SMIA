@@ -1,9 +1,14 @@
+import asyncio
 import logging
+import sys
+import time
 
 import basyx.aas.adapter.xml
 import basyx.aas.adapter.json
 from basyx.aas.model import ModelReference
 from spade.behaviour import OneShotBehaviour
+from tqdm.asyncio import tqdm
+from tqdm.contrib.logging import logging_redirect_tqdm
 
 from assetconnection.http_asset_connection import HTTPAssetConnection
 from utilities import configmap_utils
@@ -33,6 +38,8 @@ class InitAASModelBehaviour(OneShotBehaviour):
         # The SPADE agent object is stored as a variable of the behaviour class
         self.myagent = agent_object
 
+        self.progress_bar = None
+
     async def run(self):
         """
         This method implements the logic of the behaviour.
@@ -45,6 +52,9 @@ class InitAASModelBehaviour(OneShotBehaviour):
         object_store = await self.read_aas_model_object_store(aas_model_serialization_format)
         await self.myagent.aas_model.set_aas_model_object_store(object_store)
 
+        # A progress bar is used for showing how the AAS model is being read.
+        await self.create_progress_bar_object()
+
         # When the object store is created, the required values and information is obtained from the AAS model
         # Both the agent and asset capabilities are stored in the global variables of the agents, with their related
         # information (constraints, associated skill, skill interface...).
@@ -52,6 +62,9 @@ class InitAASModelBehaviour(OneShotBehaviour):
 
         # After the AAS model has been analyzed, the AssetConnection class can be specified
         await self.get_and_configure_asset_connections()
+
+        # The progress bar is closed
+        self.progress_bar.close()
 
         # TODO: pensar si faltaria comprobar mas cosas a recoger en el modelo de AAS
         _logger.info("AAS model initialized.")
@@ -88,6 +101,10 @@ class InitAASModelBehaviour(OneShotBehaviour):
         rels_cap_skill_list = await self.myagent.aas_model.get_relationship_elements_by_semantic_id(
             CapabilitySkillOntology.SEMANTICID_REL_CAPABILITY_SKILL)
         for rel_cap_skill in rels_cap_skill_list:
+            # Add a new step in the progress bar
+            self.progress_bar.update(1)
+            await asyncio.sleep(.5)  # Simulate some processing time
+
             # First, the elements of capability and skill are determined (no matter in which order of the
             # relationship they are listed).
             capability_elem, skill_elem = await self.myagent.aas_model.get_cap_skill_elem_from_relationship(
@@ -174,6 +191,10 @@ class InitAASModelBehaviour(OneShotBehaviour):
         asset_interfaces_submodel = await self.myagent.aas_model.get_submodel_by_semantic_id(
             AssetInterfacesInfo.SEMANTICID_INTERFACES_SUBMODEL)
         for interface_elem in asset_interfaces_submodel.submodel_element:
+            # Add a new step in the progress bar
+            self.progress_bar.update(1)
+            await asyncio.sleep(.5)  # Simulate some processing time
+
             if interface_elem.check_semantic_id_exist(AssetInterfacesInfo.SEMANTICID_INTERFACE) is False:
                 _logger.warning("There is a submodel element inside the interfaces submodel with invalid semanticID.")
                 continue
@@ -198,3 +219,19 @@ class InitAASModelBehaviour(OneShotBehaviour):
         #         for reference in semantic_id.key:
         #             if str(reference) == CapabilitySkillOntology.SEMANTICID_SKILL_INTERFACE_HTTP:
         #                 await self.myagent.set_asset_connection(HTTPAssetConnection())
+
+    async def create_progress_bar_object(self):
+        """
+        This method creates the object for showing by console the progress of the analysis of the AAS model in form of
+        a progress bar. The object is
+        """
+        # The iterations during the analysis of the AAS model will be the number of steps in the progress bar
+        # The iteration number will be the sum of the possible Asset Connections and the Capability-Skill relationships.
+        asset_interfaces_submodel = await self.myagent.aas_model.get_submodel_by_semantic_id(
+            AssetInterfacesInfo.SEMANTICID_INTERFACES_SUBMODEL)
+        rels_cap_skill_list = await self.myagent.aas_model.get_relationship_elements_by_semantic_id(
+            CapabilitySkillOntology.SEMANTICID_REL_CAPABILITY_SKILL)
+        total_iterations = len(asset_interfaces_submodel.submodel_element) + len(rels_cap_skill_list)
+        # with logging_redirect_tqdm():
+        self.progress_bar = tqdm(total=total_iterations, desc='Analyzing AAS model', file=sys.stdout, ncols=75,
+                                 bar_format='{l_bar}{bar}| {n_fmt}/{total_fmt} ontology elements \n')

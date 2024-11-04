@@ -9,3 +9,4 @@ sphinx-notfound-page==1.0.2
 sphinx_design==0.6.0
 aiokafka==0.10.0
 basyx-python-sdk==1.0.0
+tdqm==4.66.6
