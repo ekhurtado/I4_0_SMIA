@@ -7,9 +7,9 @@ Submodules
 .. toctree::
    :maxdepth: 4
 
-   agents.AASManagerAgent
-   agents.AASManagerAppAgent
-   agents.AASManagerResourceAgent
+   agents.smia_agent
+   agents.smia_app_agent
+   agents.smia_resource_agent
 
 Module contents
 ---------------

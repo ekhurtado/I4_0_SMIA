@@ -7,8 +7,8 @@ Submodules
 .. toctree::
    :maxdepth: 4
 
-   assetconnection.AssetConnection
-   assetconnection.HTTPAssetConnection
+   assetconnection.asset_connection
+   assetconnection.http_asset_connection
 
 Module contents
 ---------------

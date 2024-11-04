@@ -7,20 +7,20 @@ Submodules
 .. toctree::
    :maxdepth: 4
 
-   behaviours.AASFSMBehaviour
    behaviours.CheckCoreInitializationBehaviour
    behaviours.CheckPhysicalAssetBehaviour
-   behaviours.EndBehaviour
-   behaviours.HandleCapabilityBehaviour
-   behaviours.HandleNegotiationBehaviour
    behaviours.HandleSvcRequestBehaviour
    behaviours.HandleSvcResponseBehaviour
    behaviours.IdleBehaviour
-   behaviours.InitAASModelBehaviour
-   behaviours.InitAASarchiveBehaviour
    behaviours.InteractionHandlingBehaviour
-   behaviours.NegotiatingBehaviour
-   behaviours.SvcACLHandlingBehaviour
+   behaviours.aas_fsm_behaviour
+   behaviours.end_behaviour
+   behaviours.handle_capability_behaviour
+   behaviours.handle_negotiation_behaviour
+   behaviours.init_aas_archive_behaviour
+   behaviours.init_aas_model_behaviour
+   behaviours.negotiating_behaviour
+   behaviours.svc_acl_handling_behaviour
 
 Module contents
 ---------------

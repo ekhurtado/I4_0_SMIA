@@ -7,16 +7,16 @@ Submodules
 .. toctree::
    :maxdepth: 4
 
-   utilities.AASGeneralInfo
    utilities.AASModelExtension_utils
-   utilities.AAS_Archive_utils
-   utilities.AASmanagerInfo
-   utilities.CapabilitySkillOntology
-   utilities.ConfigMap_utils
-   utilities.FIPAACLInfo
-   utilities.GeneralUtils
    utilities.KafkaInfo
-   utilities.Submodels_utils
+   utilities.aas_general_info
+   utilities.capability_skill_ontology
+   utilities.configmap_utils
+   utilities.fipa_acl_info
+   utilities.general_utils
+   utilities.smia_archive_utils
+   utilities.smia_info
+   utilities.submodels_utils
 
 Module contents
 ---------------

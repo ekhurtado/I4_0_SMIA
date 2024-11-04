@@ -7,11 +7,11 @@ Submodules
 .. toctree::
    :maxdepth: 4
 
-   states.StateBooting
-   states.StateBootingResource
-   states.StateIdle
-   states.StateRunning
-   states.StateStopping
+   states.state_booting
+   states.state_booting_resource
+   states.state_idle
+   states.state_running
+   states.state_stopping
 
 Module contents
 ---------------
