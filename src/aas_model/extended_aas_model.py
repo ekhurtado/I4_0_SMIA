@@ -3,6 +3,7 @@ import logging
 import basyx.aas.model.submodel
 from basyx.aas.util import traversal
 
+from logic.exceptions import CapabilityCheckingError
 from utilities.capability_skill_ontology import CapabilitySkillOntology, CapabilitySkillACLInfo, AssetInterfacesInfo
 
 _logger = logging.getLogger(__name__)
@@ -208,7 +209,8 @@ class ExtendedAASModel:
             if concept_description.embedded_data_specifications:
                 # Vamos a comprobar que tenga valueList (en esa variable se añaden los posibles valores para una propiedad)
                 for embedded_data_spec in concept_description.embedded_data_specifications:
-                    if isinstance(embedded_data_spec.data_specification_content, basyx.aas.model.DataSpecificationIEC61360):
+                    if isinstance(embedded_data_spec.data_specification_content,
+                                  basyx.aas.model.DataSpecificationIEC61360):
                         if embedded_data_spec.data_specification_content.value_list:
                             value_list = embedded_data_spec.data_specification_content.value_list
                             for value_elem in value_list:
@@ -258,7 +260,8 @@ class ExtendedAASModel:
         elif isinstance(second_rel_elem, basyx.aas.model.Capability):
             return second_rel_elem, first_rel_elem
         else:
-            _logger.error("This method has been used incorrectly. This Relationship does not have a Capability element.")
+            _logger.error(
+                "This method has been used incorrectly. This Relationship does not have a Capability element.")
             return None, None
 
     async def get_capability_associated_constraints(self, capability_elem):
@@ -283,7 +286,8 @@ class ExtendedAASModel:
                 cap_constraints.append(first_elem)
         return cap_constraints
 
-    async def get_capability_associated_constraints_by_qualifier_data(self, capability_elem, qualifier_type, qualifier_value):
+    async def get_capability_associated_constraints_by_qualifier_data(self, capability_elem, qualifier_type,
+                                                                      qualifier_value):
         """
         This method gets the constraints associated to a capability that have specific qualifier data.
 
@@ -303,7 +307,6 @@ class ExtendedAASModel:
                         return constraint
         return None
 
-
     async def check_skill_elem_by_capability(self, cap_type, cap_elem, skill_data):
         """
         This method checks if a skill SubmodelElement is defined associated to a Capability using given skill data.
@@ -317,34 +320,54 @@ class ExtendedAASModel:
             bool: result of the check (True if the skill is in the global variable, linked to the capability)
         """
         # First, the skill id_short will be checked
+        if CapabilitySkillACLInfo.REQUIRED_SKILL_NAME not in skill_data:
+            _logger.warning(f"The received data is invalid due to missing the required field #{CapabilitySkillACLInfo.REQUIRED_SKILL_NAME}")
+            raise CapabilityCheckingError(cap_elem.id_short,
+                                          f"The received data is invalid due to missing the required field #{CapabilitySkillACLInfo.REQUIRED_SKILL_NAME}")
         required_skill_name = skill_data[CapabilitySkillACLInfo.REQUIRED_SKILL_NAME]
         skill_elem = (await self.get_capability_dict_by_type(cap_type))[cap_elem]['skillObject']
         if skill_elem.id_short != required_skill_name:
             _logger.warning("The given skill does not exist in this DT.")
-            return False
+            raise CapabilityCheckingError(cap_elem.id_short, "The given skill does not exist in this DT.")
+
         # Then, the skill SubmodelElement type will be checked
+        if CapabilitySkillACLInfo.REQUIRED_ELEMENT_TYPE not in skill_data:
+            _logger.warning("The given data does not contain required skill SubmodelElement type.")
+            raise CapabilityCheckingError(cap_elem.id_short,
+                                          "The given data does not contain required skill SubmodelElement type.")
         required_skill_sme_type = skill_data[CapabilitySkillACLInfo.REQUIRED_ELEMENT_TYPE]
         if skill_elem.__class__.__name__ != required_skill_sme_type:
             _logger.warning("The given skill SubmodelElement type is not the same as the element exists in this DT.")
-            return False
+            raise CapabilityCheckingError(cap_elem.id_short,
+                                          "The given skill SubmodelElement type is not the same as the element exists in this DT.")
+
         # The skill parameters will be also checked
         # TODO PROXIMO PASO: PENSAR COMO SE HARIA CON VARIOS PARAMETROS (una opcion es definir en el JSON 'inputs' como
         #  listas y que haya que recorrer cada uno de los parametros, tanto de entrada como de salida. Habra que
         #  comprobar que todos existen como elemento Python buscandolos por el id_short. En el caso de que alguno no
         #  esté, el checking falla)
+        if CapabilitySkillACLInfo.REQUIRED_SKILL_PARAMETERS not in skill_data:
+            _logger.warning("The given data does not contain required skill parameters information.")
+            raise CapabilityCheckingError(cap_elem.id_short,
+                                          "The given data does not contain required skill parameters information.")
         required_skill_parameters = skill_data[CapabilitySkillACLInfo.REQUIRED_SKILL_PARAMETERS]
         if 'input' in required_skill_parameters:
             if await self.check_element_exist_in_namespaceset_by_id_short(skill_elem.input_variable,
                                                                           required_skill_parameters['input']) is False:
-            # if required_skill_parameters['input'] != skill_elem.input_variable.id_short:
+                # if required_skill_parameters['input'] != skill_elem.input_variable.id_short:
                 _logger.warning("The given skill does not have the same input parameter as the element exists in this DT.")
-                return False
+                raise CapabilityCheckingError(cap_elem.id_short,
+                                              "The given skill does not have the same input parameter as the element exists in this DT.")
+
         if 'output' in required_skill_parameters:
             if await self.check_element_exist_in_namespaceset_by_id_short(skill_elem.output_variable,
                                                                           required_skill_parameters['output']) is False:
-            # if required_skill_parameters['output'] != skill_elem.output_variable.id_short:
-                _logger.warning("The given skill does not have the same output parameter as the element exists in this DT.")
-                return False
+                # if required_skill_parameters['output'] != skill_elem.output_variable.id_short:
+                _logger.warning(
+                    "The given skill does not have the same output parameter as the element exists in this DT.")
+                raise CapabilityCheckingError(cap_elem.id_short,
+                                              "The given skill does not have the same output parameter as the element exists in this DT.")
+
         # When all checks have been passed, the given skill is valid
         return True
 
@@ -395,20 +418,22 @@ class ExtendedAASModel:
         Returns:
             basyx.aas.model.SubmodelElementCollection: SubmodelElement of the required Interaction Metadata (None if the semanticID does not exist)
         """
-        asset_interfaces_submodel = await self.get_submodel_by_semantic_id(AssetInterfacesInfo.SEMANTICID_INTERFACES_SUBMODEL)
+        asset_interfaces_submodel = await self.get_submodel_by_semantic_id(
+            AssetInterfacesInfo.SEMANTICID_INTERFACES_SUBMODEL)
         for interface_smc in asset_interfaces_submodel.submodel_element:
-            interaction_metadata = interface_smc.get_sm_element_by_semantic_id(AssetInterfacesInfo.SEMANTICID_INTERACTION_METADATA)
+            interaction_metadata = interface_smc.get_sm_element_by_semantic_id(
+                AssetInterfacesInfo.SEMANTICID_INTERACTION_METADATA)
             for element_type_smc in interaction_metadata:
                 # InteractionMetadata has properties, actions or events
                 for element_smc in element_type_smc:
                     # The valueSemantic SubmodelElement is obtained
-                    value_semantics = element_smc.get_sm_element_by_semantic_id(AssetInterfacesInfo.SEMANTICID_VALUE_SEMANTICS)
+                    value_semantics = element_smc.get_sm_element_by_semantic_id(
+                        AssetInterfacesInfo.SEMANTICID_VALUE_SEMANTICS)
                     if value_semantics:
                         for reference in value_semantics.value.key:
                             if reference.value == value_semantic_id:
                                 return element_smc
         return None
-
 
     async def capability_checking_from_acl_request(self, required_capability_data):
         """
@@ -419,18 +444,22 @@ class ExtendedAASModel:
 
         Returns:
             bool: result of the check (True if the DT can perform the capability)
+            reason: None if the result of the check is True (the reason of the Failure if it is False)
         """
         required_cap_name = required_capability_data[CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME]
         required_cap_type = required_capability_data[CapabilitySkillACLInfo.REQUIRED_CAPABILITY_TYPE]
         # It will be checked if the type is among the available options
         if required_cap_type not in CapabilitySkillOntology.CAPABILITY_TYPE_POSSIBLE_VALUES:
             _logger.warning("The required capability does not have a valid type.")
-            return False
+            raise CapabilityCheckingError(required_cap_name, "The received capability does not have a valid type.")
+
         # It will be checked if the capability is among the defined in this DT
         capability_elem = await self.get_capability_by_id_short(required_cap_type, required_cap_name)
         if capability_elem is None:
             _logger.warning("A capability has been requested that this DT does not have.")
-            return False
+            raise CapabilityCheckingError(required_cap_name,
+                                          "A capability has been requested that this DT does not have.")
+
         # TODO quedan por analizar las constraints
         # TODO PROXIMO PASO: para analizar las constraint, simplemente se comprobará si el nombre de la constraint se
         #  ha definido en la capacidad requerida (en este paso no se ejecuta la capacidad, por lo que las constraints no se analizan)
@@ -438,10 +467,11 @@ class ExtendedAASModel:
         required_skill_data = required_capability_data[CapabilitySkillACLInfo.REQUIRED_SKILL_INFO]
         if await self.check_skill_elem_by_capability(required_cap_type, capability_elem, required_skill_data) is False:
             _logger.warning("A capability has been requested that its skill does not exist in this DT.")
-            return False
+            raise CapabilityCheckingError(required_cap_name,
+                                          "A capability has been requested that its skill does not exist in this DT.")
+
         # When all checks have been passed, the given skill is valid
         return True
-
 
     async def skill_feasibility_checking_post_conditions(self, capability_elem, constraints_data):
         """
@@ -453,8 +483,8 @@ class ExtendedAASModel:
         """
         # First, the postcondition constraints are obtained
         post_condition_constraints = await self.get_capability_associated_constraints_by_qualifier_data(capability_elem,
-            CapabilitySkillOntology.QUALIFIER_FEASIBILITY_CHECKING_TYPE, 'POSTCONDITION')
+                                                                                                        CapabilitySkillOntology.QUALIFIER_FEASIBILITY_CHECKING_TYPE,
+                                                                                                        'POSTCONDITION')
         if post_condition_constraints:
             # TODO habra que pensar como analizar las post condiciones
             pass
-

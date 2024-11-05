@@ -4,7 +4,7 @@ import logging
 from spade.behaviour import OneShotBehaviour
 
 from logic import inter_aas_interactions_utils
-from logic.exceptions import CapabilityRequestExecutionError
+from logic.exceptions import CapabilityRequestExecutionError, CapabilityCheckingError, CapabilityDataError
 from utilities.capability_skill_ontology import CapabilitySkillACLInfo, CapabilitySkillOntology, AssetInterfacesInfo
 from utilities.fipa_acl_info import FIPAACLInfo
 
@@ -73,80 +73,113 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
             #  negociacion?). Otra opcion es siempre ejecutar aas_model.capability_checking_from_acl_request()
             required_cap_data = self.svc_req_data['serviceData']['serviceParams']
 
-            # The data received is checked to ensure that it contains all the necessary information.
-            check_result = await self.check_received_cap_data(required_cap_data)
-            if not check_result:
-                return  # killing a behaviour does not cancel its current run loop
-            required_cap_type = required_cap_data[CapabilitySkillACLInfo.REQUIRED_CAPABILITY_TYPE]
-            capability_elem = await self.myagent.aas_model.get_capability_by_id_short(
-                cap_type=required_cap_type,
-                cap_id_short=required_cap_data[CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME])
-            if required_cap_type == CapabilitySkillOntology.ASSET_CAPABILITY_TYPE:
-                # In this case, the asset skill has to be executed through skill interface
-                _logger.interactioninfo("The Capability requested is of AssetCapability type.")
-                # TODO, habria que tener en cuenta que puede ser asincrono, asi que quizas un wait hasta que el asset
-                #  connection reciba la respuesta. Al final hay que pensar parecido a como se hacia con interactionID,
-                #  pero en  este caos no tenemos peticion respuesta interna
+            try:
 
-                # TODO De momento el AssetConnection se establece al leer el AAS Model, pero, si queremos ofrecer mas de
-                #  una interfaz simultánea, habría que especificarla justo antes de realizar la conexión con el activo
+                # The data received is checked to ensure that it contains all the necessary information.
+                await self.check_received_cap_data()
 
-                # TODO BORRAR (es solo para pruebas, esta como el AAS Core de ROS, usando un fichero JSON como intermediario para el gateway)
+                # The capability checking should be also performed to ensure that the DT can perform it
+                # TODO PENSAR COMO REALIZAR EL CAPABILITY CHECKING YA QUE LA INFORMACION RECIBIDA AL SOLICITAR UN CAPABILITY CHECKING O REQUEST NO ES LA MISMA (p.e. en request estan los datos de los parametros)
+                # await self.myagent.aas_model.capability_checking_from_acl_request(required_cap_data)
 
-                # skill_elem =  self.myagent.aas_model.get_skill_data_by_capability(capability_elem, 'skillObject')
-                skill_interface_elem = await self.myagent.aas_model.get_skill_data_by_capability(capability_elem,
-                                                                                                 'skillInterface')
+                # TODO CAMBIAR REQUIRED POR RECEIVED
+                required_cap_type = required_cap_data[CapabilitySkillACLInfo.REQUIRED_CAPABILITY_TYPE]
+                capability_elem = await self.myagent.aas_model.get_capability_by_id_short(
+                    cap_type=required_cap_type,
+                    cap_id_short=required_cap_data[CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME])
+                if required_cap_type == CapabilitySkillOntology.ASSET_CAPABILITY_TYPE:
+                    # In this case, the asset skill has to be executed through skill interface
+                    _logger.interactioninfo("The Capability requested is of AssetCapability type.")
+                    # TODO, habria que tener en cuenta que puede ser asincrono, asi que quizas un wait hasta que el asset
+                    #  connection reciba la respuesta. Al final hay que pensar parecido a como se hacia con interactionID,
+                    #  pero en  este caos no tenemos peticion respuesta interna
 
-                # SkillInterface will be an SME action inside the AssetInterfacesDescription submodel. The interface
-                # will be already configured from the agent Booting state, so it will be possible to execute the
-                # AssetConnection sending method passing the SkillInterface to it. The AssetConnection will collect the
-                # necessary information from the SkillInterface (from the SubmodelElement). The asset connection message
-                # sending method will wait for the response, as well as the CapabilityHandleBehaviour.
-                skill_execution_result = ''
-                asset_connection_ref = skill_interface_elem.get_parent_ref_by_semantic_id(
-                    AssetInterfacesInfo.SEMANTICID_INTERFACE)
-                if asset_connection_ref:
-                    # Once the Asset Connection reference is obtained, the associated class can be used to connect with
-                    # the asset
-                    asset_connection_class = await self.myagent.get_asset_connection_class(asset_connection_ref)
+                    # TODO De momento el AssetConnection se establece al leer el AAS Model, pero, si queremos ofrecer mas de
+                    #  una interfaz simultánea, habría que especificarla justo antes de realizar la conexión con el activo
 
-                    # The skill inputs parameters has to be obtained
-                    required_skill_parameters = required_cap_data[
-                        CapabilitySkillACLInfo.REQUIRED_SKILL_INFO][CapabilitySkillACLInfo.REQUIRED_SKILL_PARAMETERS]
-                    required_skill_input_parameters = None
-                    if CapabilitySkillACLInfo.REQUIRED_SKILL_INPUT_PARAMETERS in required_skill_parameters:
-                        required_skill_input_parameters = required_skill_parameters[
-                            CapabilitySkillACLInfo.REQUIRED_SKILL_INPUT_PARAMETERS]
-                    if CapabilitySkillACLInfo.REQUIRED_SKILL_OUTPUT_PARAMETERS in required_skill_parameters:
-                        # TODO analizar que pasaria si hay output parameters
-                        required_skill_output_parameters = required_skill_parameters[
-                            CapabilitySkillACLInfo.REQUIRED_SKILL_OUTPUT_PARAMETERS]
+                    # TODO BORRAR (es solo para pruebas, esta como el AAS Core de ROS, usando un fichero JSON como intermediario para el gateway)
 
-                    _logger.interactioninfo("The Asset connection of the Skill Interface has been obtained.")
-                    _logger.interactioninfo(
-                        "Executing skill of the capability through a request of an asset service...")
-                    skill_execution_result = await asset_connection_class.send_msg_to_asset(skill_interface_elem,
-                                                                                            required_skill_input_parameters)
-                    if skill_execution_result:
-                        _logger.interactioninfo("Skill of the capability successfully executed.")
+                    skill_interface_elem = await self.myagent.aas_model.get_skill_data_by_capability(capability_elem,
+                                                                                                     'skillInterface')
 
-                        # Se comprueba si la capacidad requerida tiene postcondiciones
-                        constraints_values = required_cap_data[CapabilitySkillACLInfo.REQUIRED_CAPABILITY_CONSTRAINTS]
-                        await self.myagent.aas_model.skill_feasibility_checking_post_conditions(capability_elem,
-                                                                                                constraints_values)
+                    # SkillInterface will be an SME action inside the AssetInterfacesDescription submodel. The interface
+                    # will be already configured from the agent Booting state, so it will be possible to execute the
+                    # AssetConnection sending method passing the SkillInterface to it. The AssetConnection will collect the
+                    # necessary information from the SkillInterface (from the SubmodelElement). The asset connection message
+                    # sending method will wait for the response, as well as the CapabilityHandleBehaviour.
+                    skill_execution_result = ''
+                    asset_connection_ref = skill_interface_elem.get_parent_ref_by_semantic_id(
+                        AssetInterfacesInfo.SEMANTICID_INTERFACE)
+                    if asset_connection_ref:
+                        # Once the Asset Connection reference is obtained, the associated class can be used to
+                        # connect with the asset
+                        asset_connection_class = await self.myagent.get_asset_connection_class(asset_connection_ref)
+
+                        # If the skill has parameters, they have to be obtained from the received data
+                        skill_elem = await self.myagent.aas_model.get_skill_data_by_capability(
+                            capability_elem,
+                            'skillObject')
+                        # TODO como de momento el skill elem es Operation, tiene los parametros dentro del elemento
+                        if len(skill_elem.input_variable) != 0 or len(skill_elem.output_variable) != 0:
+                            if CapabilitySkillACLInfo.REQUIRED_SKILL_PARAMETERS not in required_cap_data[
+                                CapabilitySkillACLInfo.REQUIRED_SKILL_INFO]:
+                                _logger.warning("The skill of the Capability requested needs input parameters and these have not been added to the request data.")
+                                CapabilityRequestExecutionError(required_cap_data[CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME],
+                                                                "The skill of the Capability requested needs input parameters and these have not been added to the request data.", self)
+                        required_skill_parameters = required_cap_data[
+                            CapabilitySkillACLInfo.REQUIRED_SKILL_INFO][
+                            CapabilitySkillACLInfo.REQUIRED_SKILL_PARAMETERS]
+                        required_skill_input_parameters = None
+                        if len(skill_elem.input_variable) != 0:
+                            # The skill has input parameters, they have to be obtained
+                            required_skill_input_parameters = None
+                            if CapabilitySkillACLInfo.REQUIRED_SKILL_INPUT_PARAMETERS in required_skill_parameters:
+                                required_skill_input_parameters = required_skill_parameters[
+                                    CapabilitySkillACLInfo.REQUIRED_SKILL_INPUT_PARAMETERS]
+                        if len(skill_elem.output_variable) != 0:
+                            # The skill has output parameters, they have to be obtained
+                            required_skill_output_parameters = None
+                            if CapabilitySkillACLInfo.REQUIRED_SKILL_OUTPUT_PARAMETERS in required_skill_parameters:
+                                required_skill_output_parameters = required_skill_parameters[
+                                    CapabilitySkillACLInfo.REQUIRED_SKILL_OUTPUT_PARAMETERS]
+                                # TODO analizar que pasaria si hay output parameters
+
+                        _logger.interactioninfo("The Asset connection of the Skill Interface has been obtained.")
+                        _logger.interactioninfo(
+                            "Executing skill of the capability through a request of an asset service...")
+                        skill_execution_result = await asset_connection_class.send_msg_to_asset(skill_interface_elem,
+                                                                                                required_skill_input_parameters)
+                        if skill_execution_result:
+                            _logger.interactioninfo("Skill of the capability successfully executed.")
+
+                            # Se comprueba si la capacidad requerida tiene postcondiciones
+                            constraints_values = required_cap_data[CapabilitySkillACLInfo.REQUIRED_CAPABILITY_CONSTRAINTS]
+                            await self.myagent.aas_model.skill_feasibility_checking_post_conditions(capability_elem,
+                                                                                                    constraints_values)
+
+                        else:
+                            _logger.warning("Failed to execute the skill of the capability correctly.")
 
                     else:
-                        _logger.warning("Failed to execute the skill of the capability correctly.")
+                        _logger.warning("The capability required has invalid skill interface.")
+                        skill_execution_result = 'NotExecuted'
 
-                else:
-                    _logger.warning("The capability required has invalid skill interface.")
-                    skill_execution_result = 'NotExecuted'
+                    # When the skill has finished, the request is answered
+                    await self.send_response_msg_to_sender(FIPAACLInfo.FIPA_ACL_PERFORMATIVE_INFORM,
+                                                           {'result': skill_execution_result})
+                    _logger.info("Management of the capability {} finished.".format(capability_elem))
+            except (CapabilityDataError, CapabilityCheckingError, CapabilityRequestExecutionError) as cap_request_error:    # TODO pensar si hay mas (p.e. AssetConnectionError)
+                if isinstance(cap_request_error, CapabilityDataError):
+                    if CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME in required_cap_data:
+                        cap_request_error = CapabilityRequestExecutionError(
+                            required_cap_data[CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME], cap_request_error.message, self)
+                    else:
+                        cap_request_error = CapabilityRequestExecutionError('', cap_request_error.message, self)
+                if isinstance(cap_request_error, CapabilityCheckingError):
+                    cap_request_error = CapabilityRequestExecutionError(cap_request_error.cap_name, cap_request_error.reason, self)
 
-                # When the skill has finished, the request is answered
-                await self.send_response_msg_to_sender(FIPAACLInfo.FIPA_ACL_PERFORMATIVE_INFORM,
-                                                       {'result': skill_execution_result})
-                _logger.info("Management of the capability {} finished.".format(capability_elem))
-
+                await cap_request_error.handle_capability_execution_error()
+                return  # killing a behaviour does not cancel its current run loop
         else:
             pass
             # TODO pensar que situaciones habria
@@ -160,12 +193,30 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
         if self.svc_req_data['serviceID'] == 'capabilityChecking':
             # The DT has been asked if it has a given capability.
             # First, the information about the required capability is obtained
-            required_capability_data = self.svc_req_data['serviceData']['serviceParams']
+            required_cap_data = self.svc_req_data['serviceData']['serviceParams']
+
             # It will be checked if the DT can perform the required capability
-            result = await self.myagent.aas_model.capability_checking_from_acl_request(required_capability_data)
+            try:
+                # First, the received data is checked
+                await self.check_received_cap_data()
+
+                # Then, the capability checking process can be executed
+                result = await self.myagent.aas_model.capability_checking_from_acl_request(required_cap_data)
+            except (CapabilityDataError, CapabilityCheckingError) as cap_checking_error:
+                if isinstance(cap_checking_error, CapabilityDataError):
+                    if CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME in required_cap_data:
+                        cap_checking_error = CapabilityCheckingError(
+                            required_cap_data[CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME], cap_checking_error.message)
+                    else:
+                        cap_checking_error = CapabilityCheckingError('', cap_checking_error.message)
+
+                cap_checking_error.add_behav_class(self)
+                await cap_checking_error.handle_capability_checking_error()
+                return  # killing a behaviour does not cancel its current run loop
+
             await self.send_response_msg_to_sender(FIPAACLInfo.FIPA_ACL_PERFORMATIVE_INFORM, {'result': result})
             _logger.info("The Capability [{}] has been checked, with result: {}.".format(
-                required_capability_data[CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME], result))
+                required_cap_data[CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME], result))
         else:
             # TODO pensar otras categorias para capabilities
             pass
@@ -211,28 +262,39 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
         )
         await self.send(acl_msg)
 
-    async def check_received_cap_data(self, received_cap_data):
+
+    async def check_received_cap_data(self):
         """
         This method checks if the received
-
-        Args:
-            received_cap_data (dict): JSON with the received information about the requested capability.
 
         Returns:
             bool: the result of the check.
         """
-        # TODO hacer ahora
-        try:
-            if CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME not in received_cap_data:
-                raise CapabilityRequestExecutionError("The capability cannot be executed due to missing {} field in "
-                                                      "request message.".format(CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME),
-                                                      self)
-            elif CapabilitySkillACLInfo.REQUIRED_CAPABILITY_TYPE not in received_cap_data:
-                raise CapabilityRequestExecutionError("The capability cannot be executed due to missing {} field in "
-                                                      "request message.".format(CapabilitySkillACLInfo.REQUIRED_CAPABILITY_TYPE),
-                                                      self)
-            # TODO faltan añadir los demas fields obligatorios (p.e. skill name)
-            return True
-        except CapabilityRequestExecutionError as cap_exec_error:
-            await cap_exec_error.handle_capability_execution_error()
-            return False
+        # try:
+        #     if CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME not in received_cap_data:
+        #         raise CapabilityRequestExecutionError("The received capability data is invalid due to missing #{} "
+        #                                               "field in request message.".format(CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME),
+        #                                               self)
+        #     elif CapabilitySkillACLInfo.REQUIRED_CAPABILITY_TYPE not in received_cap_data:
+        #         raise CapabilityRequestExecutionError("The received capability data is invalid due to missing #{} field in "
+        #                                               "request message.".format(CapabilitySkillACLInfo.REQUIRED_CAPABILITY_TYPE),
+        #                                               self)
+        #     elif CapabilitySkillACLInfo.REQUIRED_SKILL_INFO not in received_cap_data:
+        #         raise CapabilityRequestExecutionError("The received capability data is invalid due to missing #{} field in "
+        #                                               "request message.".format(CapabilitySkillACLInfo.REQUIRED_SKILL_INFO),
+        #                                               self)
+        #     # TODO analizar si faltan mas fields obligatorios
+        #     return True
+        # except CapabilityRequestExecutionError as cap_exec_error:
+        #     await cap_exec_error.handle_capability_execution_error()
+        #     return False
+        received_cap_data = self.svc_req_data['serviceData']['serviceParams']
+        if CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME not in received_cap_data:
+            raise CapabilityDataError("The received capability data is invalid due to missing #{} field in request "
+                                      "message.".format(CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME))
+        elif CapabilitySkillACLInfo.REQUIRED_CAPABILITY_TYPE not in received_cap_data:
+            raise CapabilityDataError("The received capability data is invalid due to missing #{} field in request "
+                                      "message.".format(CapabilitySkillACLInfo.REQUIRED_CAPABILITY_TYPE))
+        elif CapabilitySkillACLInfo.REQUIRED_SKILL_INFO not in received_cap_data:
+            raise CapabilityDataError("The received capability data is invalid due to missing #{} field in request "
+                                      "message.".format(CapabilitySkillACLInfo.REQUIRED_SKILL_INFO))
