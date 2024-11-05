@@ -6,6 +6,7 @@ from spade.behaviour import CyclicBehaviour
 from behaviours.handle_negotiation_behaviour import HandleNegotiationBehaviour
 from behaviours.HandleSvcResponseBehaviour import HandleSvcResponseBehaviour
 from logic import negotiation_utils, inter_aas_interactions_utils
+from utilities.fipa_acl_info import FIPAACLInfo
 from utilities.smia_info import SMIAInfo
 from utilities.general_utils import GeneralUtils
 
@@ -62,7 +63,7 @@ class NegotiatingBehaviour(CyclicBehaviour):
 
             # Depending on the performative of the message, the agent will have to perform some actions or others
             match msg.get_metadata('performative'):
-                case "CallForProposal":
+                case FIPAACLInfo.FIPA_ACL_PERFORMATIVE_CFP:
                     _logger.aclinfo("The agent has received a request to start a negotiation (CFP) with thread ["
                                     + msg.thread + "]")
 
@@ -126,7 +127,7 @@ class NegotiatingBehaviour(CyclicBehaviour):
                         handle_neg_behav = HandleNegotiationBehaviour(self.agent, behaviour_info)
                         self.myagent.add_behaviour(handle_neg_behav, handle_neg_template)
 
-                case "Inform":
+                case FIPAACLInfo.FIPA_ACL_PERFORMATIVE_INFORM:
                     _logger.aclinfo("The agent has received an Inter AAS interaction message related to a negotiation:"
                                     " Inform")
                     if msg_json_body['serviceID'] == 'negotiationResult':
@@ -144,11 +145,8 @@ class NegotiatingBehaviour(CyclicBehaviour):
                         print('serviceID not available')
 
                     # TODO pensar como se deberian gestionar este tipo de mensajes en una negociacion
-                case "Propose":
-                    _logger.aclinfo("The agent has received a response in a negotiation: Propose")
-                    # TODO en teoria estos mensajes nunca llegaran aqui, ya que lo recibira el behaviour encargado de
-                    #  la negociacion
-                case "Failure":
+
+                case FIPAACLInfo.FIPA_ACL_PERFORMATIVE_FAILURE:
                     _logger.aclinfo("The agent has received a response in a negotiation: Failure")
                     # TODO pensar como se deberian gestionar este tipo de mensajes en una negociacion
                 case _:

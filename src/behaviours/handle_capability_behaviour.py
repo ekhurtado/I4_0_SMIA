@@ -46,8 +46,8 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
 
         # First, the performative of request is obtained and, depending on it, different actions will be taken
         match self.svc_req_data['performative']:
-            case FIPAACLInfo.FIPA_ACL_PERFORMATIVE_CFP:  # TODO actualizar dentro de todo el codigo los usos de performativas y ontologias de FIPA-ACL
-                await self.handle_call_for_proposal()
+            case FIPAACLInfo.FIPA_ACL_PERFORMATIVE_REQUEST:  # TODO actualizar dentro de todo el codigo los usos de performativas y ontologias de FIPA-ACL
+                await self.handle_request()
             case FIPAACLInfo.FIPA_ACL_PERFORMATIVE_QUERY_IF:
                 await self.handle_query_if()
             case FIPAACLInfo.FIPA_ACL_PERFORMATIVE_INFORM:
@@ -61,7 +61,7 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
     # ------------------------------------------
     # Methods to handle of all types of services
     # ------------------------------------------
-    async def handle_call_for_proposal(self):
+    async def handle_request(self):
         """
         This method handle CallForProposal requests for the Capability.
         """
@@ -143,7 +143,8 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
                     skill_execution_result = 'NotExecuted'
 
                 # When the skill has finished, the request is answered
-                await self.send_response_inform_to_sender({'result': skill_execution_result})
+                await self.send_response_msg_to_sender(FIPAACLInfo.FIPA_ACL_PERFORMATIVE_INFORM,
+                                                       {'result': skill_execution_result})
                 _logger.info("Management of the capability {} finished.".format(capability_elem))
 
         else:
@@ -162,7 +163,7 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
             required_capability_data = self.svc_req_data['serviceData']['serviceParams']
             # It will be checked if the DT can perform the required capability
             result = await self.myagent.aas_model.capability_checking_from_acl_request(required_capability_data)
-            await self.send_response_inform_to_sender({'result': result})
+            await self.send_response_msg_to_sender(FIPAACLInfo.FIPA_ACL_PERFORMATIVE_INFORM, {'result': result})
             _logger.info("The Capability [{}] has been checked, with result: {}.".format(
                 required_capability_data[CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME], result))
         else:
@@ -192,17 +193,18 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
         #  servicio completamente. Si es un submodelo del AAS Core, tendra que solicitarselo
         _logger.info(await self.myagent.get_interaction_id() + str(self.svc_req_data))
 
-    async def send_response_inform_to_sender(self, service_params):
+    async def send_response_msg_to_sender(self, performative, service_params):
         """
-        This method creates and sends and INFORM FIPA-ACL message with the given serviceParams.
+        This method creates and sends a FIPA-ACL message with the given serviceParams and performative.
 
         Args:
+            performative (str): performative according to FIPA-ACL standard.
             service_params (dict): JSON with the serviceParams to be sent in the message.
         """
         acl_msg = inter_aas_interactions_utils.create_inter_aas_response_msg(
             receiver=self.svc_req_data['sender'],
             thread=self.svc_req_data['thread'],
-            performative=FIPAACLInfo.FIPA_ACL_PERFORMATIVE_INFORM,
+            performative=performative,
             service_id=self.svc_req_data['serviceID'],
             service_type=self.svc_req_data['serviceType'],
             service_params=json.dumps(service_params)
@@ -224,11 +226,11 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
             if CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME not in received_cap_data:
                 raise CapabilityRequestExecutionError("The capability cannot be executed due to missing {} field in "
                                                       "request message.".format(CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME),
-                                                      self.svc_req_data, self)
+                                                      self)
             elif CapabilitySkillACLInfo.REQUIRED_CAPABILITY_TYPE not in received_cap_data:
                 raise CapabilityRequestExecutionError("The capability cannot be executed due to missing {} field in "
                                                       "request message.".format(CapabilitySkillACLInfo.REQUIRED_CAPABILITY_TYPE),
-                                                      self.svc_req_data, self)
+                                                      self)
             # TODO faltan añadir los demas fields obligatorios (p.e. skill name)
             return True
         except CapabilityRequestExecutionError as cap_exec_error:

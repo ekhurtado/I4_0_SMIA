@@ -5,6 +5,7 @@ import json
 import logging
 
 from logic import inter_aas_interactions_utils
+from utilities.fipa_acl_info import FIPAACLInfo
 
 _logger = logging.getLogger(__name__)
 
@@ -26,9 +27,8 @@ class CapabilityRequestExecutionError(Exception):
     been requested, this class also must response to the requester with a Failure of the capability execution.
     """
 
-    def __init__(self, message, request_data, behav_class):
+    def __init__(self, message, behav_class):
         self.message = message
-        self.request_data = request_data
         self.behav_class = behav_class
 
     async def handle_capability_execution_error(self):
@@ -40,14 +40,8 @@ class CapabilityRequestExecutionError(Exception):
         _logger.info("Due to an incorrect execution of a capability, the requester shall be informed with a Failure "
                      "message.")
 
-        failure_acl_msg = inter_aas_interactions_utils.create_inter_aas_response_msg(
-            receiver=self.request_data['sender'],
-            thread=self.request_data['thread'],
-            performative='Failure',
-            service_id=self.request_data['serviceID'],
-            service_type=self.request_data['serviceType'],
-            service_params=json.dumps({'reason': self.message}))
-        await self.behav_class.send(failure_acl_msg)
+        await self.behav_class.send_response_msg_to_sender(FIPAACLInfo.FIPA_ACL_PERFORMATIVE_FAILURE,
+                                                           {'reason': self.message})
         _logger.info("Failure message sent to the requester of the capability.")
 
         # TODO Pensar si añadir un objeto global en el agente para almacenar informacion sobre errores

@@ -107,6 +107,7 @@ class GUIAgent(Agent):
                 msg_body_json = json.loads(msg.body)
                 msg_body_json['sender'] = msg.sender
                 msg_body_json['thread'] = msg.thread
+                msg_body_json['performative'] = msg.get_metadata('performative')
                 self.agent.acl_msg_log.append(msg_body_json)
                 print(f"Message received: {msg.body}")
             # else:
