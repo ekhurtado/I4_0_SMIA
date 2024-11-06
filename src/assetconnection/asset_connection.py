@@ -38,7 +38,7 @@ class AssetConnection(metaclass=abc.ABCMeta):
         pass
 
     @abc.abstractmethod
-    async def send_msg_to_asset(self, interaction_metadata, msg):
+    async def execute_skill_by_asset_service(self, interaction_metadata, skill_params_exposure_elems, skill_input_params= None, skill_output_params=None):
         """
         This method sends a message to the asset and returns the response. The connection of the interface of the asset
         is already configured in 'configure_connection_by_aas_model' method, but the interaction metadata is provided
@@ -46,10 +46,28 @@ class AssetConnection(metaclass=abc.ABCMeta):
 
         Args:
             interaction_metadata (basyx.aas.model.SubmodelElement): element of the AAS model with all metadata for the interaction with the asset.
-            msg: object with the message to send
+            skill_params_exposure_elems (list(basyx.aas.model.SubmodelElement)): submodel elements that exposes all skill parameters.
+            skill_input_params (dict): skill input parameters in form of JSON object (None if the skill does not have inputs).
+            skill_output_params (dict): skill output parameters in form of JSON object (None if the skill does not have outputs).
 
         Returns:
-            str: content of the HTTP response
+            object: response information defined in the interaction metadata.
+        """
+        pass
+
+    @abc.abstractmethod
+    async def execute_asset_service(self, interaction_metadata, service_data=None):
+        """
+        This method sends a message to the asset and returns the response. The connection of the interface of the asset
+        is already configured in 'configure_connection_by_aas_model' method, but the interaction metadata is provided
+        in form of a Python object of AAS model (SubmodelElement).
+
+        Args:
+            interaction_metadata (basyx.aas.model.SubmodelElement): element of the AAS model with all metadata for the interaction with the asset.
+            service_data: object with the data of the service
+
+        Returns:
+            object: response information defined in the interaction metadata.
         """
         pass
 
