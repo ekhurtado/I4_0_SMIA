@@ -210,6 +210,26 @@ class ExtendedOperation(Operation):
         print("\t\tinoutputVariable: {}".format(ExtendedGeneralMethods.print_namespace_set(self.in_output_variable)))
 
 
+    def get_variable_value_id(self, value_id):
+        """
+        This method gets the variable of the Operation that matches with the given valueId.
+
+        Args:
+             value_id (str): the value id of the variable to find.
+
+        Returns:
+            (str): id_short of the variable
+        """
+        all_variables = [self.input_variable, self.output_variable, self.in_output_variable]
+        for var_type_set in all_variables:
+            for var in var_type_set:
+                if var.value_id:
+                    for key in var.value_id.key:
+                        if key.value == value_id:
+                            return var.id_short
+        return None
+
+
 class ExtendedBasicEventElement(BasicEventElement):
 
     def print_submodel_element_information(self):

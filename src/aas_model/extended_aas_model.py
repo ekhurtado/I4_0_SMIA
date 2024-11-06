@@ -135,7 +135,8 @@ class ExtendedAASModel:
             object: Python object of the desired element associated to the reference.
         """
         if isinstance(reference, basyx.aas.model.ExternalReference):
-            return self.aas_model_object_store.get_identifiable(reference.key)
+            for key in reference.key:
+                return self.aas_model_object_store.get_identifiable(key.value)
         elif isinstance(reference, basyx.aas.model.ModelReference):
             return reference.resolve(self.aas_model_object_store)
 
@@ -395,7 +396,7 @@ class ExtendedAASModel:
             skill_elem (basyx.aas.model.SubmodelElement): skill Python object in form of a SubmodelElement.
 
         Returns:
-            generator: the interface of the selected skill in form of Python object.
+            (basyx.aas.model.SubmodelElement): the interface of the selected skill in form of Python object (None if it does not exist).
         """
         rels_skill_interfaces = await self.get_relationship_elements_by_semantic_id(
             CapabilitySkillOntology.SEMANTICID_REL_SKILL_SKILL_INTERFACE)
@@ -406,6 +407,7 @@ class ExtendedAASModel:
                 return second_elem
             elif second_elem == skill_elem:
                 return first_elem
+        return None
 
     async def get_asset_interface_interaction_metadata_by_value_semantic_id(self, value_semantic_id):
         """

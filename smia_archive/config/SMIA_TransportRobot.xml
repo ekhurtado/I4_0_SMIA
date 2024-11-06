@@ -3184,6 +3184,40 @@
             </operationVariable>
           </outputVariables>
         </operation>
+        <relationshipElement>
+          <idShort>SkillAccesibleInterfaceRelationship</idShort>
+          <semanticId>
+            <type>ExternalReference</type>
+            <keys>
+              <key>
+                <type>GlobalReference</type>
+                <value>urn:ehu:gcis:capabilityskillontology:1:1:skillaccesiblethrough</value>
+              </key>
+            </keys>
+          </semanticId>
+          <first>
+            <type>ModelReference</type>
+            <keys>
+              <key>
+                <type>Submodel</type>
+                <value>urn:ehu:gcis:submodel:1:1:agentskills001</value>
+              </key>
+              <key>
+                <type>Operation</type>
+                <value>NegotiationBasedOnCriteria</value>
+              </key>
+            </keys>
+          </first>
+          <second>
+            <type>ExternalReference</type>
+            <keys>
+              <key>
+                <type>GlobalReference</type>
+                <value>urn:ehu:gcis:conceptdescriptions:1:1:negotiationcriteria</value>
+              </key>
+            </keys>
+          </second>
+        </relationshipElement>
       </submodelElements>
     </submodel>
     <submodel>
