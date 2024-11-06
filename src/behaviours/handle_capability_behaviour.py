@@ -126,29 +126,35 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
                                 _logger.warning("The skill of the Capability requested needs input parameters and these have not been added to the request data.")
                                 CapabilityRequestExecutionError(required_cap_data[CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME],
                                                                 "The skill of the Capability requested needs input parameters and these have not been added to the request data.", self)
-                        required_skill_parameters = required_cap_data[
-                            CapabilitySkillACLInfo.REQUIRED_SKILL_INFO][
+
+                            # The exposure element within the skill interface need to be obtained from each skill parameter
+                            skill_params_exposures = await self.myagent.aas_model.get_skill_parameters_exposure_interface_elements(skill_elem)
+
+                        # The required data is obtained from the received information
+                        received_skill_parameters = required_cap_data[CapabilitySkillACLInfo.REQUIRED_SKILL_INFO][
                             CapabilitySkillACLInfo.REQUIRED_SKILL_PARAMETERS]
-                        required_skill_input_parameters = None
+                        received_skill_input_parameters = None
+                        received_skill_output_parameters = None
                         if len(skill_elem.input_variable) != 0:
                             # The skill has input parameters, they have to be obtained
-                            required_skill_input_parameters = None
-                            if CapabilitySkillACLInfo.REQUIRED_SKILL_INPUT_PARAMETERS in required_skill_parameters:
-                                required_skill_input_parameters = required_skill_parameters[
+                            if CapabilitySkillACLInfo.REQUIRED_SKILL_INPUT_PARAMETERS in received_skill_parameters:
+                                received_skill_input_parameters = received_skill_parameters[
                                     CapabilitySkillACLInfo.REQUIRED_SKILL_INPUT_PARAMETERS]
                         if len(skill_elem.output_variable) != 0:
                             # The skill has output parameters, they have to be obtained
-                            required_skill_output_parameters = None
-                            if CapabilitySkillACLInfo.REQUIRED_SKILL_OUTPUT_PARAMETERS in required_skill_parameters:
-                                required_skill_output_parameters = required_skill_parameters[
+                            if CapabilitySkillACLInfo.REQUIRED_SKILL_OUTPUT_PARAMETERS in received_skill_parameters:
+                                received_skill_output_parameters = received_skill_parameters[
                                     CapabilitySkillACLInfo.REQUIRED_SKILL_OUTPUT_PARAMETERS]
                                 # TODO analizar que pasaria si hay output parameters
 
                         _logger.interactioninfo("The Asset connection of the Skill Interface has been obtained.")
                         _logger.interactioninfo(
                             "Executing skill of the capability through a request of an asset service...")
-                        skill_execution_result = await asset_connection_class.send_msg_to_asset(skill_interface_elem,
-                                                                                                required_skill_input_parameters)
+                        skill_execution_result = await asset_connection_class.execute_skill_by_asset_service(
+                            interaction_metadata=skill_interface_elem,
+                            skill_params_exposure_elems=skill_params_exposures,
+                            skill_input_params=received_skill_input_parameters,
+                            skill_output_params=received_skill_output_parameters)
                         if skill_execution_result:
                             _logger.interactioninfo("Skill of the capability successfully executed.")
 

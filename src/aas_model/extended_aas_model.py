@@ -435,6 +435,30 @@ class ExtendedAASModel:
                                 return element_smc
         return None
 
+    async def get_skill_parameters_exposure_interface_elements(self, skill_elem):
+        """
+        This method gets all exposure elements within the skill interface linked to the parameters of a given skill.
+
+        Args:
+            skill_elem (basyx.aas.model.SubmodelElement): skill Python object in form of a SubmodelElement.
+
+        Returns:
+            list(basyx.aas.model.SubmodelElement): list with all exposure submodel elements of skill parameters.
+        """
+        # The exposure elements can be obtained with the related relationship semanticID
+        exposure_elements = []
+        rels_params_exposed = await self.get_relationship_elements_by_semantic_id(CapabilitySkillOntology.SEMANTICID_REL_SKILL_PARAMETER_SKILL_INTERFACE)
+        for rel in rels_params_exposed:
+            first_elem = await self.get_object_by_reference(rel.first)
+            second_elem = await self.get_object_by_reference(rel.second)
+            if first_elem == skill_elem:
+                exposure_elements.append(second_elem)
+            elif second_elem == skill_elem:
+                exposure_elements.append(first_elem)
+        return exposure_elements
+
+
+
     async def capability_checking_from_acl_request(self, required_capability_data):
         """
         This method checks if the DT has a capability required in an ACL message.

@@ -158,7 +158,7 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
                 # the asset
                 asset_connection_class = await self.myagent.get_asset_connection_class(asset_connection_ref)
                 # The InteractionMetadata has the complete interface to get the value, no message is necessary
-                negotiation_value = await asset_connection_class.send_msg_to_asset(criteria_interaction_metadata, None)
+                negotiation_value = await asset_connection_class.execute_skill_by_asset_service(criteria_interaction_metadata, None)
                 if negotiation_value:
                     _logger.interactioninfo("Negotiation criteria successfully obtained.")
                     _logger.info(

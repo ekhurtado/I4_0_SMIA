@@ -1,9 +1,11 @@
 import json
 import logging
 import requests
+from basyx.aas.util.traversal import walk_submodel
 from lxml import etree
 
 from assetconnection.asset_connection import AssetConnection
+from utilities.capability_skill_ontology import AssetInterfacesInfo
 
 _logger = logging.getLogger(__name__)
 
@@ -21,8 +23,13 @@ class HTTPAssetConnection(AssetConnection):
         # Other data
         self.interface_title = None
         self.base = None
+        self.security_scheme_elem = None
+
+        # Data of each request
         self.request_uri = None
         self.request_headers = {}
+        self.request_params = None
+        self.request_method = None
 
     async def configure_connection_by_aas_model(self, interface_aas_elem):
         # Vamos a conseguir los datos necesarios del modelo AAS para configurar la conexion HTTP
@@ -30,14 +37,19 @@ class HTTPAssetConnection(AssetConnection):
             HTTPAssetInterfaceSemantics.SEMANTICID_HTTP_INTERFACE_TITLE)
         # La informacion general de la conexion con el activo se define en el SMC 'EndpointMetadata'
         endpoint_metadata_elem = interface_aas_elem.get_sm_element_by_semantic_id(
-            HTTPAssetInterfaceSemantics.SEMANTICID_HTTP_INTERFACE_ENDPOINT_METADATA)
+            AssetInterfacesInfo.SEMANTICID_ENDPOINT_METADATA)
         self.base = endpoint_metadata_elem.get_sm_element_by_semantic_id(
             HTTPAssetInterfaceSemantics.SEMANTICID_HTTP_INTERFACE_BASE)
         content_type_elem = endpoint_metadata_elem.get_sm_element_by_semantic_id(
             HTTPAssetInterfaceSemantics.SEMANTICID_HTTP_INTERFACE_CONTENT_TYPE)
         if content_type_elem is not None:
             self.request_headers['Content-Type'] = content_type_elem.value
-        # TODO: pensar como añadir el resto , p.e. tema de seguridad o autentificacion (bearer)
+
+        security_definitions_elem = endpoint_metadata_elem.get_sm_element_by_semantic_id(
+            HTTPAssetInterfaceSemantics.SEMANTICID_HTTP_INTERFACE_SECURITY_DEFINITIONS)
+        if security_definitions_elem is not None:
+            self.security_scheme_elem = security_definitions_elem.value
+        # TODO: pensar como añadir el resto , p.e. tema de seguridad o autentificacion (bearer). De momento se ha dejado sin seguridad (nosec_sc)
 
     async def check_asset_connection(self):
         pass
@@ -45,7 +57,35 @@ class HTTPAssetConnection(AssetConnection):
     async def connect_with_asset(self):
         pass
 
-    async def send_msg_to_asset(self, interaction_metadata, msg):
+    async def execute_skill_by_asset_service(self, interaction_metadata, skill_params_exposure_elems, skill_input_params= None, skill_output_params=None):
+
+        await self.extract_general_interaction_metadata(interaction_metadata)
+
+        # Then, the data of the skill is added in the required field. To do that, the 'SkillParameterExposedThrough'
+        # relationship should be obtained, which indicates where the parameter data should be added
+        if skill_input_params:
+            await self.add_asset_service_data(skill_params_exposure_elems, skill_input_params)
+
+        # At this point, the HTTP request is performed
+        http_response = await self.send_http_request()
+        if http_response:
+            if http_response.status_code != 200:
+                _logger.warning("The HTTP request has not been answered correctly.")
+            return await self.get_response_content(http_response)
+        return None
+
+    async def execute_asset_service(self, interaction_metadata, service_data=None):
+        await self.extract_general_interaction_metadata(interaction_metadata)
+        # TODO hacer
+        pass
+
+    async def receive_msg_from_asset(self):
+        pass
+
+    # --------------------
+    # Other useful methods
+    # --------------------
+    async def extract_general_interaction_metadata(self, interaction_metadata):
         # The interaction_metada element will be an SMC of the HTTP interface.
         if not await self.check_interaction_metadata(interaction_metadata):
             _logger.error("ERROR: interactionMetadata is not valid.")
@@ -59,27 +99,15 @@ class HTTPAssetConnection(AssetConnection):
         # Then, headers are obtained
         await self.get_headers(forms_elem)
 
-        # Eventually, the HTTP request is performed
-        http_response = await self.send_http_request(await self.get_method_name(forms_elem), msg)
-        if http_response:
-            if http_response.status_code != 200:
-                _logger.warning("The HTTP request has not been answered correctly.")
-            return await self.get_response_content(http_response)
-        return None
+        # Eventually, the method name is also obtained
+        await self.get_method_name(forms_elem)
 
-    async def receive_msg_from_asset(self):
-        pass
-
-    # --------------------
-    # Other useful methods
-    # --------------------
     async def check_interaction_metadata(self, interaction_metadata):
         # TODO de momento solo se comprueba que el SMC de metadatos ofrecido esta dentro del SMC 'InteractionMetadata'
         parent_elem = interaction_metadata.parent
         while not parent_elem.check_semantic_id_exist(
-                HTTPAssetInterfaceSemantics.SEMANTICID_HTTP_INTERFACE_INTERACTION_METADATA):
-            if parent_elem.check_semantic_id_exist(
-                    'https://admin-shell.io/idta/AssetInterfacesDescription/1/0/Submodel'):
+                AssetInterfacesInfo.SEMANTICID_INTERACTION_METADATA):
+            if parent_elem.check_semantic_id_exist(AssetInterfacesInfo.SEMANTICID_INTERFACES_SUBMODEL):
                 return False
             else:
                 parent_elem = parent_elem.parent
@@ -108,23 +136,33 @@ class HTTPAssetConnection(AssetConnection):
     async def get_method_name(self, forms_elem):
         method_name_elem = forms_elem.get_sm_element_by_semantic_id(
             HTTPAssetInterfaceSemantics.SEMANTICID_HTTP_INTERFACE_METHOD_NAME)
-        return method_name_elem.value
+        self.request_method = method_name_elem.value
 
-    async def send_http_request(self, request_method, msg):
-        if request_method == 'GET':
-            return requests.get(url=self.request_uri, headers=self.request_headers, params=msg)
-        elif request_method == 'DELETE':
+    async def add_asset_service_data(self, skill_params_exposure_elems, skill_input_params):
+        request_params = {}
+        for i in range(len(skill_params_exposure_elems)):
+            if skill_params_exposure_elems[i].check_semantic_id_exist(HTTPAssetInterfaceSemantics.SEMANTICID_HTTP_INTERFACE_PARAM_NAME):
+                request_params[skill_params_exposure_elems[i].value] = list(skill_input_params.values())[i]
+            # TODO PENSAR EN MAS OPCIONES DE AÑADIR LOS PARAMETROS (P.E. EN LA URI)
+        if len(request_params) != 0:
+            self.request_params = request_params
+
+
+    async def send_http_request(self):
+        if self.request_method == 'GET':
+            return requests.get(url=self.request_uri, headers=self.request_headers, params=self.request_params)
+        elif self.request_method == 'DELETE':
             # TODO a probar
             return requests.delete(url=self.request_uri, headers=self.request_headers, params=self.request_params)
-        elif request_method == 'HEAD':
+        elif self.request_method == 'HEAD':
             # TODO a probar
             return requests.head(url=self.request_uri, headers=self.request_headers, params=self.request_params)
-        elif request_method == 'PATCH':
+        elif self.request_method == 'PATCH':
             # TODO a probar
             return requests.patch(url=self.request_uri, headers=self.request_headers, params=self.request_params)
-        elif request_method == 'POST':
+        elif self.request_method == 'POST':
             return requests.post(url=self.request_uri, headers=self.request_headers, data=msg)
-        elif request_method == 'PUT':
+        elif self.request_method == 'PUT':
             # TODO a probar
             return requests.put(url=self.request_uri, headers=self.request_headers, params=self.request_params)
 
@@ -149,8 +187,8 @@ class HTTPAssetInterfaceSemantics:
     SEMANTICID_HTTP_INTERFACE_BASE = 'https://www.w3.org/2019/wot/td#baseURI'
     SEMANTICID_HTTP_INTERFACE_CONTENT_TYPE = 'https://www.w3.org/2019/wot/hypermedia#forContentType'
 
-    SEMANTICID_HTTP_INTERFACE_ENDPOINT_METADATA = 'https://admin-shell.io/idta/AssetInterfacesDescription/1/0/EndpointMetadata'
-    SEMANTICID_HTTP_INTERFACE_INTERACTION_METADATA = 'https://admin-shell.io/idta/AssetInterfacesDescription/1/0/InteractionMetadata'
+    SEMANTICID_HTTP_INTERFACE_SECURITY_DEFINITIONS = 'https://www.w3.org/2019/wot/td#definesSecurityScheme'
+    SEMANTICID_HTTP_INTERFACE_NO_SECURITY_SCHEME = 'https://www.w3.org/2019/wot/security#NoSecurityScheme'
 
     SEMANTICID_HTTP_INTERFACE_PROPERTY = 'https://www.w3.org/2019/wot/td#PropertyAffordance'
     SEMANTICID_HTTP_INTERFACE_ACTION = 'https://www.w3.org/2019/wot/td#ActionAffordance'
@@ -161,3 +199,8 @@ class HTTPAssetInterfaceSemantics:
     SEMANTICID_HTTP_INTERFACE_HEADERS = 'https://www.w3.org/2011/http#headers'
     SEMANTICID_HTTP_INTERFACE_FIELD_NAME = 'https://www.w3.org/2011/http#fieldName'
     SEMANTICID_HTTP_INTERFACE_FIELD_VALUE = 'https://www.w3.org/2011/http#fieldValue'
+
+    # TODO nuevo
+    SEMANTICID_HTTP_INTERFACE_PARAMS = 'https://www.w3.org/2011/http#params'
+    SEMANTICID_HTTP_INTERFACE_PARAM_NAME = 'https://www.w3.org/2011/http#paramName'
+    SEMANTICID_HTTP_INTERFACE_PARAM_VALUE = 'https://www.w3.org/2011/http#paramValue'
