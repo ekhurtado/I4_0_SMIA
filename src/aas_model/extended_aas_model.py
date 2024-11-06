@@ -457,6 +457,8 @@ class ExtendedAASModel:
                 exposure_elements.append(second_elem)
             elif second_elem == skill_elem:
                 exposure_elements.append(first_elem)
+        if len(exposure_elements) == 0:
+            return None
         return exposure_elements
 
 
