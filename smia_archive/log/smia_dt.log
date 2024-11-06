@@ -5767,3 +5767,119 @@ TypeError: 'dict_values' object is not subscriptable
 2024-11-06 14:00:26,447 [behaviours.handle_capability_behaviour] [INTERACTIONINFO] The Capability requested is of AssetCapability type. line:92
 2024-11-06 14:00:26,452 [behaviours.handle_capability_behaviour] [INTERACTIONINFO] The Asset connection of the Skill Interface has been obtained. line:150
 2024-11-06 14:00:26,453 [behaviours.handle_capability_behaviour] [INTERACTIONINFO] Executing skill of the capability through a request of an asset service... line:151
+2024-11-06 14:02:15,203 [__main__] [INFO] Initializing SMIA software... line:75
+2024-11-06 14:02:15,214 [__main__] [INFO] The asset is not defined, so it is a generic AAS Manager line:56
+2024-11-06 14:02:18,180 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-06 14:02:19,326 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/1427821491167653824177274595 line:935
+2024-11-06 14:02:19,609 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABwxNDI3ODIxNDkxMTY3NjUzODI0MTc3Mjc0NTk1bQAAAAiCz1Oau4D/sQ==' line:2209
+2024-11-06 14:02:20,200 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-06 14:02:20,202 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:90
+2024-11-06 14:02:20,202 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-06 14:02:20,203 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-06 14:02:20,204 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:32
+2024-11-06 14:02:20,380 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all capabilities of the asset and the industrial agent... line:100
+2024-11-06 14:02:20,855 [behaviours.init_aas_model_behaviour] [INFO] Analyzing AgentCapability [Negotiation] and its associated skill [NegotiationBasedOnCriteria]... line:121
+2024-11-06 14:02:20,859 [behaviours.init_aas_model_behaviour] [INFO] Capability[urn:ehu:gcis:submodel:1:1:agentcapabilities001 / Negotiation] information saved in the global variables. line:175
+2024-11-06 14:02:21,355 [behaviours.init_aas_model_behaviour] [INFO] Analyzing AssetCapability [EfficientTransport] and its associated skill [EfficientMovement]... line:121
+2024-11-06 14:02:21,359 [behaviours.init_aas_model_behaviour] [INFO] Capability[urn:ehu:gcis:submodel:1:1:capabilities001 / CapabilityDefinitions / EfficientTransport] information saved in the global variables. line:175
+2024-11-06 14:02:21,360 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all connections of the asset... line:190
+2024-11-06 14:02:21,854 [behaviours.init_aas_model_behaviour] [INFO] All asset connections defined in the AAS model have been configured and saved. line:212
+2024-11-06 14:02:21,856 [behaviours.init_aas_model_behaviour] [INFO] AAS model initialized. line:70
+2024-11-06 14:02:21,857 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: None line:154
+2024-11-06 14:02:21,871 [states.state_booting] [INFO] gcis1@xmpp.jp agent has finished it Boot state. line:68
+2024-11-06 14:02:21,872 [spade.behaviour] [INFO] FSM transiting from BOOTING to RUNNING. line:591
+2024-11-06 14:02:21,872 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-06 14:02:21,873 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-06 14:02:21,885 [states.state_running] [INFO] This DT has negotiation capability. line:61
+2024-11-06 14:02:21,885 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-06 14:02:21,886 [behaviours.negotiating_behaviour] [INFO] NegotiationBehaviour starting... line:42
+2024-11-06 14:02:26,610 [behaviours.svc_acl_handling_behaviour] [ACLINFO]          + Message received on AAS Manager Agent (ACLHandlingBehaviour) from gui_agent@xmpp.jp/9647105103263114624106243330 line:73
+2024-11-06 14:02:26,610 [behaviours.svc_acl_handling_behaviour] [ACLINFO]                  |___ Message received with content: {"serviceID": "capabilityRequest", "serviceType": "AssetRelatedService", "serviceData": {"serviceCategory": "service-request", "serviceParams": {"capabilityName": "EfficientTransport", "capabilityType": "AssetCapability", "capabilityConstraints": {"EfficientTransportConstraintLocation": "-1.65,-0.56"}, "skillInfo": {"skillName": "EfficientMovement", "smeType": "Operation", "skillParameters": {"inputs": {"destinationcoordinates": "1.43,0.59"}}}}}} line:75
+2024-11-06 14:02:26,610 [behaviours.svc_acl_handling_behaviour] [ACLINFO] The performative of the message is Request, so the DT needs to perform some action. line:83
+2024-11-06 14:02:26,610 [behaviours.svc_acl_handling_behaviour] [ACLINFO] The agent has received a request to perform a capability line:88
+2024-11-06 14:02:26,611 [behaviours.handle_capability_behaviour] [INFO] HandleCapabilityBehaviour starting... line:40
+2024-11-06 14:02:26,612 [behaviours.handle_capability_behaviour] [INTERACTIONINFO] The Capability requested is of AssetCapability type. line:92
+2024-11-06 14:02:26,614 [behaviours.handle_capability_behaviour] [INTERACTIONINFO] The Asset connection of the Skill Interface has been obtained. line:150
+2024-11-06 14:02:26,614 [behaviours.handle_capability_behaviour] [INTERACTIONINFO] Executing skill of the capability through a request of an asset service... line:151
+2024-11-06 14:02:46,555 [spade.behaviour] [ERROR] Exception running behaviour OneShotBehaviour/HandleCapabilityBehaviour: HTTPConnectionPool(host='192.168.1.2', port=5000): Max retries exceeded with url: /robotactions/move?destinationcoordinates=1.43%2C0.59 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000002256E2BF580>: Failed to establish a new connection: [WinError 10061] No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión')) line:291
+2024-11-06 14:02:46,612 [spade.behaviour] [ERROR] Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\urllib3\connection.py", line 174, in _new_conn
+    conn = connection.create_connection(
+  File "C:\Python310\lib\site-packages\urllib3\util\connection.py", line 95, in create_connection
+    raise err
+  File "C:\Python310\lib\site-packages\urllib3\util\connection.py", line 85, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [WinError 10061] No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\urllib3\connectionpool.py", line 703, in urlopen
+    httplib_response = self._make_request(
+  File "C:\Python310\lib\site-packages\urllib3\connectionpool.py", line 398, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "C:\Python310\lib\site-packages\urllib3\connection.py", line 239, in request
+    super(HTTPConnection, self).request(method, url, body=body, headers=headers)
+  File "C:\Python310\lib\http\client.py", line 1283, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "C:\Python310\lib\http\client.py", line 1329, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "C:\Python310\lib\http\client.py", line 1278, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "C:\Python310\lib\http\client.py", line 1038, in _send_output
+    self.send(msg)
+  File "C:\Python310\lib\http\client.py", line 976, in send
+    self.connect()
+  File "C:\Python310\lib\site-packages\urllib3\connection.py", line 205, in connect
+    conn = self._new_conn()
+  File "C:\Python310\lib\site-packages\urllib3\connection.py", line 186, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x000002256E2BF580>: Failed to establish a new connection: [WinError 10061] No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\requests\adapters.py", line 489, in send
+    resp = conn.urlopen(
+  File "C:\Python310\lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    retries = retries.increment(
+  File "C:\Python310\lib\site-packages\urllib3\util\retry.py", line 592, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='192.168.1.2', port=5000): Max retries exceeded with url: /robotactions/move?destinationcoordinates=1.43%2C0.59 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000002256E2BF580>: Failed to establish a new connection: [WinError 10061] No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 285, in _step
+    await self._run()
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 274, in _run
+    await self.run()
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\handle_capability_behaviour.py", line 50, in run
+    await self.handle_request()
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\handle_capability_behaviour.py", line 153, in handle_request
+    skill_execution_result = await asset_connection_class.execute_skill_by_asset_service(
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\assetconnection\http_asset_connection.py", line 70, in execute_skill_by_asset_service
+    http_response = await self.send_http_request()
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\assetconnection\http_asset_connection.py", line 153, in send_http_request
+    return requests.get(url=self.request_uri, headers=self.request_headers, params=self.request_params)
+  File "C:\Python310\lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Python310\lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Python310\lib\site-packages\requests\sessions.py", line 587, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Python310\lib\site-packages\requests\sessions.py", line 701, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Python310\lib\site-packages\requests\adapters.py", line 565, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='192.168.1.2', port=5000): Max retries exceeded with url: /robotactions/move?destinationcoordinates=1.43%2C0.59 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000002256E2BF580>: Failed to establish a new connection: [WinError 10061] No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión'))
+ line:296
+2024-11-06 14:02:46,612 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/HandleCapabilityBehaviour with exit code: HTTPConnectionPool(host='192.168.1.2', port=5000): Max retries exceeded with url: /robotactions/move?destinationcoordinates=1.43%2C0.59 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000002256E2BF580>: Failed to establish a new connection: [WinError 10061] No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión')) line:154
+2024-11-06 14:02:46,613 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/HandleCapabilityBehaviour with exit code: None line:154
+2024-11-06 14:02:46,620 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-06 14:02:52,039 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-06 14:02:52,041 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-06 14:02:52,042 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-06 14:02:52,051 [states.state_running] [INFO] This DT has negotiation capability. line:61
+2024-11-06 14:02:52,052 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-06 14:02:52,053 [behaviours.negotiating_behaviour] [INFO] NegotiationBehaviour starting... line:42
