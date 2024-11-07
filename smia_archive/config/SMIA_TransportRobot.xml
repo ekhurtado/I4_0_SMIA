@@ -3100,14 +3100,6 @@
                 <type>SubmodelElementList</type>
                 <value>htv_params</value>
               </key>
-              <key>
-                <type>SubmodelElementCollection</type>
-                <value>0</value>
-              </key>
-              <key>
-                <type>Property</type>
-                <value>htv_paramName</value>
-              </key>
             </keys>
           </second>
         </relationshipElement>

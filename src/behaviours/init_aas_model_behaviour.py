@@ -81,6 +81,7 @@ class InitAASModelBehaviour(OneShotBehaviour):
             basyx.aas.model.DictObjectStore:  object with all Python elements of the AAS model.
         """
         object_store = None
+        # TODO HACER AHORA: AÑADIR EL PODER LEER AASX
         if aas_model_serialization_format == 'JSON':
             object_store = basyx.aas.adapter.json.read_aas_json_file(configmap_utils.get_aas_model_filepath())
         elif aas_model_serialization_format == 'XML':
