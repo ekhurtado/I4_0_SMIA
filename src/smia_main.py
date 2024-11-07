@@ -44,24 +44,28 @@ async def main():
     passwd = 'gcis1234'  # TODO pensar que passwords utilizar (algo relacionado con el nombre del deployment quizas?)
 
     # Depending on the asset type, the associated SPADE agent will be created
-    aas_manager_agent = None
     match aas_type:
         case "physical":
             _logger.info("The asset is physical")
-            aas_manager_agent = AASManagerResourceAgent(agent_jid, passwd)
+            smia_agent = AASManagerResourceAgent(agent_jid, passwd)
         case "digital":
             _logger.info("The asset is logical")
-            aas_manager_agent = AASManagerAppAgent(agent_jid, passwd)
+            smia_agent = AASManagerAppAgent(agent_jid, passwd)
         case _:
             _logger.info("The asset is not defined, so it is a generic AAS Manager")
             # Create the agent object
-            aas_manager_agent = AASManagerAgent(agent_jid, passwd)
+            smia_agent = AASManagerAgent(agent_jid, passwd)
 
     # Since the agent object has already been created, the agent will start
-    await aas_manager_agent.start()
+    await smia_agent.start()
+
+    # In the general properties file you can select the web interface (provided by SPADE).
+    web_ui = configmap_utils.get_dt_general_property('web-ui')
+    if bool(web_ui):
+        smia_agent.web.start(hostname="0.0.0.0", port="10002")
 
     # The main thread will be waiting until the agent has finished
-    await spade.wait_until_finished(aas_manager_agent)
+    await spade.wait_until_finished(smia_agent)
 
 
 if __name__ == '__main__':

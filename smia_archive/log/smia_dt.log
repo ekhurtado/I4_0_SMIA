@@ -9917,3 +9917,329 @@ logic.exceptions.AssetConnectionError: ('The request to asset timed out, so the 
 2024-11-07 17:30:25,471 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
 2024-11-07 17:30:27,851 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
 2024-11-07 17:30:27,852 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:14:14,535 [__main__] [INFO] Initializing SMIA software... line:79
+2024-11-07 18:14:14,542 [__main__] [INFO] The asset is not defined, so it is a generic AAS Manager line:55
+2024-11-07 18:14:17,119 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-07 18:14:18,269 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/1656714484347745192082675523 line:935
+2024-11-07 18:14:18,552 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABwxNjU2NzE0NDg0MzQ3NzQ1MTkyMDgyNjc1NTIzbQAAAAgPMIFntFgEDg==' line:2209
+2024-11-07 18:14:19,152 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-07 18:14:19,154 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:90
+2024-11-07 18:14:24,246 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-07 18:14:24,247 [gcis1] [INFO] client shutting down (on request) line:975
+2024-11-07 18:14:24,248 [gcis1] [WARNING] something is odd: failure future is already done ... line:813
+2024-11-07 18:14:24,248 [gcis1.StanzaStream] [INFO] stopping SM stream line:2473
+2024-11-07 18:14:24,248 [gcis1] [INFO] stopping stream line:989
+2024-11-07 18:14:39,289 [__main__] [INFO] Initializing SMIA software... line:79
+2024-11-07 18:14:39,294 [__main__] [INFO] The asset is not defined, so it is a generic AAS Manager line:55
+2024-11-07 18:14:41,877 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-07 18:14:42,967 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/1040680745621253362882677347 line:935
+2024-11-07 18:14:43,236 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABwxMDQwNjgwNzQ1NjIxMjUzMzYyODgyNjc3MzQ3bQAAAAj/BQLuxaCCug==' line:2209
+2024-11-07 18:14:43,794 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-07 18:14:43,796 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:90
+2024-11-07 18:14:49,917 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-07 18:14:49,917 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-07 18:14:49,917 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:32
+2024-11-07 18:14:49,981 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all capabilities of the asset and the industrial agent... line:101
+2024-11-07 18:14:49,984 [spade.Web] [INFO] Serving on http://0.0.0.0:10000/ line:39
+2024-11-07 18:14:50,465 [behaviours.init_aas_model_behaviour] [INFO] Analyzing AgentCapability [Negotiation] and its associated skill [NegotiationBasedOnCriteria]... line:122
+2024-11-07 18:14:50,467 [behaviours.init_aas_model_behaviour] [INFO] Capability[urn:ehu:gcis:submodel:1:1:agentcapabilities001 / Negotiation] information saved in the global variables. line:176
+2024-11-07 18:14:50,977 [behaviours.init_aas_model_behaviour] [INFO] Analyzing AssetCapability [EfficientTransport] and its associated skill [EfficientMovement]... line:122
+2024-11-07 18:14:50,979 [behaviours.init_aas_model_behaviour] [INFO] Capability[urn:ehu:gcis:submodel:1:1:capabilities001 / CapabilityDefinitions / EfficientTransport] information saved in the global variables. line:176
+2024-11-07 18:14:50,979 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all connections of the asset... line:191
+2024-11-07 18:14:51,469 [behaviours.init_aas_model_behaviour] [INFO] All asset connections defined in the AAS model have been configured and saved. line:217
+2024-11-07 18:14:51,470 [behaviours.init_aas_model_behaviour] [INFO] AAS model initialized. line:70
+2024-11-07 18:14:51,470 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: None line:154
+2024-11-07 18:14:51,471 [states.state_booting] [INFO] gcis1@xmpp.jp agent has finished it Boot state. line:68
+2024-11-07 18:14:51,472 [spade.behaviour] [INFO] FSM transiting from BOOTING to RUNNING. line:591
+2024-11-07 18:14:51,472 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-07 18:14:51,472 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-07 18:14:51,474 [states.state_running] [INFO] This DT has negotiation capability. line:61
+2024-11-07 18:14:51,477 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-07 18:14:51,477 [behaviours.negotiating_behaviour] [INFO] NegotiationBehaviour starting... line:42
+2024-11-07 18:14:57,464 [aiohttp.access] [INFO] 127.0.0.1 [07/Nov/2024:17:14:57 +0000] "GET /spade HTTP/1.1" 200 12839 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0" line:206
+2024-11-07 18:14:59,844 [aiohttp.access] [INFO] 127.0.0.1 [07/Nov/2024:17:14:59 +0000] "GET /spade HTTP/1.1" 200 12839 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0" line:206
+2024-11-07 18:15:01,464 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:15:01,465 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:15:03,318 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-07 18:15:05,248 [__main__] [INFO] Initializing SMIA software... line:79
+2024-11-07 18:15:05,251 [__main__] [INFO] The asset is not defined, so it is a generic AAS Manager line:55
+2024-11-07 18:15:07,850 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-07 18:15:09,012 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/9460540777899622231113631298 line:935
+2024-11-07 18:15:09,296 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABw5NDYwNTQwNzc3ODk5NjIyMjMxMTEzNjMxMjk4bQAAAAh3lePocS7ffQ==' line:2209
+2024-11-07 18:15:09,886 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-07 18:15:09,886 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:90
+2024-11-07 18:15:09,890 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-07 18:15:09,891 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-07 18:15:09,891 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:32
+2024-11-07 18:15:09,927 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all capabilities of the asset and the industrial agent... line:101
+2024-11-07 18:15:09,928 [spade.Web] [INFO] Serving on http://0.0.0.0:10000/ line:39
+2024-11-07 18:15:10,115 [aiohttp.access] [INFO] 127.0.0.1 [07/Nov/2024:17:15:10 +0000] "GET /spade HTTP/1.1" 200 11711 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0" line:206
+2024-11-07 18:15:10,426 [behaviours.init_aas_model_behaviour] [INFO] Analyzing AgentCapability [Negotiation] and its associated skill [NegotiationBasedOnCriteria]... line:122
+2024-11-07 18:15:10,428 [behaviours.init_aas_model_behaviour] [INFO] Capability[urn:ehu:gcis:submodel:1:1:agentcapabilities001 / Negotiation] information saved in the global variables. line:176
+2024-11-07 18:15:10,925 [behaviours.init_aas_model_behaviour] [INFO] Analyzing AssetCapability [EfficientTransport] and its associated skill [EfficientMovement]... line:122
+2024-11-07 18:15:10,926 [behaviours.init_aas_model_behaviour] [INFO] Capability[urn:ehu:gcis:submodel:1:1:capabilities001 / CapabilityDefinitions / EfficientTransport] information saved in the global variables. line:176
+2024-11-07 18:15:10,926 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all connections of the asset... line:191
+2024-11-07 18:15:10,965 [aiohttp.access] [INFO] 127.0.0.1 [07/Nov/2024:17:15:10 +0000] "GET /spade HTTP/1.1" 200 11711 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0" line:206
+2024-11-07 18:15:11,306 [aiohttp.access] [INFO] 127.0.0.1 [07/Nov/2024:17:15:11 +0000] "GET /spade HTTP/1.1" 200 11711 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0" line:206
+2024-11-07 18:15:11,421 [behaviours.init_aas_model_behaviour] [INFO] All asset connections defined in the AAS model have been configured and saved. line:217
+2024-11-07 18:15:11,422 [behaviours.init_aas_model_behaviour] [INFO] AAS model initialized. line:70
+2024-11-07 18:15:11,422 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: None line:154
+2024-11-07 18:15:11,423 [states.state_booting] [INFO] gcis1@xmpp.jp agent has finished it Boot state. line:68
+2024-11-07 18:15:11,423 [spade.behaviour] [INFO] FSM transiting from BOOTING to RUNNING. line:591
+2024-11-07 18:15:11,423 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-07 18:15:11,423 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-07 18:15:11,424 [states.state_running] [INFO] This DT has negotiation capability. line:61
+2024-11-07 18:15:11,424 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-07 18:15:11,424 [behaviours.negotiating_behaviour] [INFO] NegotiationBehaviour starting... line:42
+2024-11-07 18:15:11,719 [aiohttp.access] [INFO] 127.0.0.1 [07/Nov/2024:17:15:11 +0000] "GET /spade HTTP/1.1" 200 12839 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0" line:206
+2024-11-07 18:15:12,298 [aiohttp.access] [INFO] 127.0.0.1 [07/Nov/2024:17:15:12 +0000] "GET /spade HTTP/1.1" 200 12839 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0" line:206
+2024-11-07 18:15:12,622 [aiohttp.access] [INFO] 127.0.0.1 [07/Nov/2024:17:15:12 +0000] "GET /spade HTTP/1.1" 200 12839 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0" line:206
+2024-11-07 18:15:12,852 [aiohttp.access] [INFO] 127.0.0.1 [07/Nov/2024:17:15:12 +0000] "GET /spade HTTP/1.1" 200 12839 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0" line:206
+2024-11-07 18:15:13,703 [aiohttp.access] [INFO] 127.0.0.1 [07/Nov/2024:17:15:13 +0000] "GET /spade/behaviour/CyclicBehaviour/NegotiatingBehaviour/ HTTP/1.1" 200 10844 "http://localhost:10000/spade" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0" line:206
+2024-11-07 18:15:15,913 [aiohttp.access] [INFO] 127.0.0.1 [07/Nov/2024:17:15:15 +0000] "GET /spade HTTP/1.1" 200 12839 "http://localhost:10000/spade/behaviour/CyclicBehaviour/NegotiatingBehaviour/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0" line:206
+2024-11-07 18:15:16,716 [aiohttp.access] [INFO] 127.0.0.1 [07/Nov/2024:17:15:16 +0000] "GET /spade/behaviour/CyclicBehaviour/SvcACLHandlingBehaviour/ HTTP/1.1" 200 10847 "http://localhost:10000/spade" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0" line:206
+2024-11-07 18:15:18,224 [aiohttp.access] [INFO] 127.0.0.1 [07/Nov/2024:17:15:18 +0000] "GET /spade HTTP/1.1" 200 12839 "http://localhost:10000/spade/behaviour/CyclicBehaviour/SvcACLHandlingBehaviour/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0" line:206
+2024-11-07 18:15:19,304 [aiohttp.access] [INFO] 127.0.0.1 [07/Nov/2024:17:15:19 +0000] "GET /spade/behaviour/FSMBehaviour/AASFSMBehaviour/ HTTP/1.1" 200 12372 "http://localhost:10000/spade" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0" line:206
+2024-11-07 18:15:21,425 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:15:21,425 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:15:21,836 [aiohttp.access] [INFO] 127.0.0.1 [07/Nov/2024:17:15:21 +0000] "GET /spade HTTP/1.1" 200 12839 "http://localhost:10000/spade/behaviour/FSMBehaviour/AASFSMBehaviour/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0" line:206
+2024-11-07 18:15:22,956 [aiohttp.access] [INFO] 127.0.0.1 [07/Nov/2024:17:15:22 +0000] "GET /spade/behaviour/CyclicBehaviour/SvcACLHandlingBehaviour/ HTTP/1.1" 200 10847 "http://localhost:10000/spade" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0" line:206
+2024-11-07 18:15:24,406 [aiohttp.access] [INFO] 127.0.0.1 [07/Nov/2024:17:15:24 +0000] "GET /spade HTTP/1.1" 200 12839 "http://localhost:10000/spade/behaviour/CyclicBehaviour/SvcACLHandlingBehaviour/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0" line:206
+2024-11-07 18:15:25,207 [aiohttp.access] [INFO] 127.0.0.1 [07/Nov/2024:17:15:25 +0000] "GET /spade/behaviour/FSMBehaviour/AASFSMBehaviour/ HTTP/1.1" 200 12372 "http://localhost:10000/spade" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0" line:206
+2024-11-07 18:15:28,701 [aiohttp.access] [INFO] 127.0.0.1 [07/Nov/2024:17:15:28 +0000] "GET /spade HTTP/1.1" 200 12839 "http://localhost:10000/spade/behaviour/FSMBehaviour/AASFSMBehaviour/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0" line:206
+2024-11-07 18:15:29,654 [aiohttp.access] [INFO] 127.0.0.1 [07/Nov/2024:17:15:29 +0000] "GET /spade/behaviour/FSMBehaviour/AASFSMBehaviour/ HTTP/1.1" 200 12372 "http://localhost:10000/spade" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0" line:206
+2024-11-07 18:15:29,713 [aiohttp.access] [INFO] 127.0.0.1 [07/Nov/2024:17:15:29 +0000] "GET /favicon.ico HTTP/1.1" 404 173 "http://localhost:10000/spade/behaviour/FSMBehaviour/AASFSMBehaviour/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0" line:206
+2024-11-07 18:15:31,421 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:15:31,421 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:15:41,428 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:15:41,428 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:15:47,014 [aiohttp.access] [INFO] 127.0.0.1 [07/Nov/2024:17:15:47 +0000] "GET /spade HTTP/1.1" 200 12839 "http://localhost:10000/spade/behaviour/FSMBehaviour/AASFSMBehaviour/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0" line:206
+2024-11-07 18:15:48,091 [aiohttp.access] [INFO] 127.0.0.1 [07/Nov/2024:17:15:48 +0000] "GET /spade/behaviour/CyclicBehaviour/SvcACLHandlingBehaviour/ HTTP/1.1" 200 10847 "http://localhost:10000/spade" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0" line:206
+2024-11-07 18:15:50,131 [aiohttp.access] [INFO] 127.0.0.1 [07/Nov/2024:17:15:50 +0000] "GET /spade HTTP/1.1" 200 12839 "http://localhost:10000/spade/behaviour/CyclicBehaviour/SvcACLHandlingBehaviour/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0" line:206
+2024-11-07 18:15:50,962 [aiohttp.access] [INFO] 127.0.0.1 [07/Nov/2024:17:15:50 +0000] "GET /spade/behaviour/CyclicBehaviour/NegotiatingBehaviour/ HTTP/1.1" 200 10844 "http://localhost:10000/spade" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0" line:206
+2024-11-07 18:15:51,418 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:15:51,418 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:15:51,780 [aiohttp.access] [INFO] 127.0.0.1 [07/Nov/2024:17:15:51 +0000] "GET /spade HTTP/1.1" 200 12839 "http://localhost:10000/spade/behaviour/CyclicBehaviour/NegotiatingBehaviour/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0" line:206
+2024-11-07 18:15:53,017 [aiohttp.access] [INFO] 127.0.0.1 [07/Nov/2024:17:15:53 +0000] "GET /spade/behaviour/FSMBehaviour/AASFSMBehaviour/ HTTP/1.1" 200 12372 "http://localhost:10000/spade" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0" line:206
+2024-11-07 18:16:01,424 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:16:01,426 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:16:11,423 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:16:11,423 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:16:21,428 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:16:21,429 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:16:24,929 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-07 18:16:24,929 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-07 18:16:24,929 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-07 18:16:24,930 [states.state_running] [INFO] This DT has negotiation capability. line:61
+2024-11-07 18:16:24,932 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-07 18:16:24,932 [behaviours.negotiating_behaviour] [INFO] NegotiationBehaviour starting... line:42
+2024-11-07 18:16:28,160 [__main__] [INFO] Initializing SMIA software... line:79
+2024-11-07 18:16:28,162 [__main__] [INFO] The asset is not defined, so it is a generic AAS Manager line:55
+2024-11-07 18:16:30,693 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-07 18:16:31,776 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/12150552203435880919113637186 line:935
+2024-11-07 18:16:32,046 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAAB0xMjE1MDU1MjIwMzQzNTg4MDkxOTExMzYzNzE4Nm0AAAAIAjkSkLJUutU=' line:2209
+2024-11-07 18:16:32,598 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-07 18:16:32,598 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:90
+2024-11-07 18:16:32,599 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-07 18:16:32,599 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-07 18:16:32,599 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:32
+2024-11-07 18:16:32,631 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all capabilities of the asset and the industrial agent... line:101
+2024-11-07 18:16:32,631 [spade.Web] [INFO] Serving on http://0.0.0.0:10002/ line:39
+2024-11-07 18:16:33,126 [behaviours.init_aas_model_behaviour] [INFO] Analyzing AgentCapability [Negotiation] and its associated skill [NegotiationBasedOnCriteria]... line:122
+2024-11-07 18:16:33,126 [behaviours.init_aas_model_behaviour] [INFO] Capability[urn:ehu:gcis:submodel:1:1:agentcapabilities001 / Negotiation] information saved in the global variables. line:176
+2024-11-07 18:16:33,629 [behaviours.init_aas_model_behaviour] [INFO] Analyzing AssetCapability [EfficientTransport] and its associated skill [EfficientMovement]... line:122
+2024-11-07 18:16:33,630 [behaviours.init_aas_model_behaviour] [INFO] Capability[urn:ehu:gcis:submodel:1:1:capabilities001 / CapabilityDefinitions / EfficientTransport] information saved in the global variables. line:176
+2024-11-07 18:16:33,630 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all connections of the asset... line:191
+2024-11-07 18:16:34,133 [behaviours.init_aas_model_behaviour] [INFO] All asset connections defined in the AAS model have been configured and saved. line:217
+2024-11-07 18:16:34,133 [behaviours.init_aas_model_behaviour] [INFO] AAS model initialized. line:70
+2024-11-07 18:16:34,133 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: None line:154
+2024-11-07 18:16:34,135 [states.state_booting] [INFO] gcis1@xmpp.jp agent has finished it Boot state. line:68
+2024-11-07 18:16:34,135 [spade.behaviour] [INFO] FSM transiting from BOOTING to RUNNING. line:591
+2024-11-07 18:16:34,135 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-07 18:16:34,135 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-07 18:16:34,136 [states.state_running] [INFO] This DT has negotiation capability. line:61
+2024-11-07 18:16:34,137 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-07 18:16:34,137 [behaviours.negotiating_behaviour] [INFO] NegotiationBehaviour starting... line:42
+2024-11-07 18:16:40,081 [aiohttp.access] [INFO] 127.0.0.1 [07/Nov/2024:17:16:40 +0000] "GET /spade/behaviour/FSMBehaviour/AASFSMBehaviour/ HTTP/1.1" 200 12372 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0" line:206
+2024-11-07 18:16:40,614 [aiohttp.access] [INFO] 127.0.0.1 [07/Nov/2024:17:16:40 +0000] "GET /favicon.ico HTTP/1.1" 404 173 "http://localhost:10002/spade/behaviour/FSMBehaviour/AASFSMBehaviour/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0" line:206
+2024-11-07 18:16:44,142 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:16:44,142 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:16:46,471 [aiohttp.access] [INFO] 127.0.0.1 [07/Nov/2024:17:16:46 +0000] "GET /spade HTTP/1.1" 200 12839 "http://localhost:10002/spade/behaviour/FSMBehaviour/AASFSMBehaviour/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0" line:206
+2024-11-07 18:16:47,112 [aiohttp.access] [INFO] 127.0.0.1 [07/Nov/2024:17:16:47 +0000] "GET /spade HTTP/1.1" 200 12839 "http://localhost:10002/spade" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0" line:206
+2024-11-07 18:16:47,553 [aiohttp.access] [INFO] 127.0.0.1 [07/Nov/2024:17:16:47 +0000] "GET /spade HTTP/1.1" 200 12839 "http://localhost:10002/spade" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0" line:206
+2024-11-07 18:16:49,520 [aiohttp.access] [INFO] 127.0.0.1 [07/Nov/2024:17:16:49 +0000] "GET /spade/behaviour/FSMBehaviour/AASFSMBehaviour/ HTTP/1.1" 200 12372 "http://localhost:10002/spade" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0" line:206
+2024-11-07 18:16:54,137 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:16:54,138 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:17:04,139 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:17:04,140 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:17:14,145 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:17:14,146 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:17:24,138 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:17:24,139 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:17:34,146 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:17:34,146 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:17:44,147 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:17:44,149 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:17:54,147 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:17:54,147 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:18:04,144 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:18:04,145 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:18:14,144 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:18:14,145 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:18:24,134 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:18:24,136 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:18:34,146 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:18:34,146 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:18:44,138 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:18:44,139 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:18:54,141 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:18:54,141 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:19:04,135 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:19:04,136 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:19:14,145 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:19:14,146 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:19:24,146 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:19:24,146 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:19:34,143 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:19:34,143 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:19:44,144 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:19:44,145 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:19:54,141 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:19:54,141 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:20:04,135 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:20:04,135 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:20:14,137 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:20:14,137 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:20:24,144 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:20:24,144 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:20:28,884 [gcis1] [ERROR] stream failed: stream error: {urn:ietf:params:xml:ns:xmpp-streams}conflict ('Replaced by new connection') line:972
+2024-11-07 18:20:28,885 [gcis1] [ERROR] failed to negotiate stream features line:980
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\aioxmpp\stream.py", line 2001, in _run
+    done, pending = await asyncio.wait(
+  File "C:\Python310\lib\asyncio\tasks.py", line 384, in wait
+    return await _wait(fs, timeout, return_when, loop)
+  File "C:\Python310\lib\asyncio\tasks.py", line 491, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\aioxmpp\node.py", line 973, in _main_impl
+    raise exc
+  File "C:\Python310\lib\site-packages\aioxmpp\stream.py", line 888, in _done_handler
+    task.result()
+  File "C:\Python310\lib\site-packages\aioxmpp\stream.py", line 2076, in _run
+    raise self._xmlstream_exception
+aioxmpp.errors.StreamError: stream error: {urn:ietf:params:xml:ns:xmpp-streams}conflict ('Replaced by new connection')
+2024-11-07 18:20:28,896 [gcis1] [WARNING] discarding SM state because of error during negotiation line:983
+2024-11-07 18:20:28,896 [gcis1.StanzaStream] [INFO] stopping SM stream line:2473
+2024-11-07 18:20:28,896 [gcis1] [INFO] stopping stream line:989
+2024-11-07 18:20:28,897 [gcis1] [ERROR] main failed line:842
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\aioxmpp\stream.py", line 2001, in _run
+    done, pending = await asyncio.wait(
+  File "C:\Python310\lib\asyncio\tasks.py", line 384, in wait
+    return await _wait(fs, timeout, return_when, loop)
+  File "C:\Python310\lib\asyncio\tasks.py", line 491, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\aioxmpp\node.py", line 837, in _on_main_done
+    task.result()
+  File "C:\Python310\lib\site-packages\aioxmpp\node.py", line 1005, in _main
+    await self._main_impl()
+  File "C:\Python310\lib\site-packages\aioxmpp\node.py", line 973, in _main_impl
+    raise exc
+  File "C:\Python310\lib\site-packages\aioxmpp\stream.py", line 888, in _done_handler
+    task.result()
+  File "C:\Python310\lib\site-packages\aioxmpp\stream.py", line 2076, in _run
+    raise self._xmlstream_exception
+aioxmpp.errors.StreamError: stream error: {urn:ietf:params:xml:ns:xmpp-streams}conflict ('Replaced by new connection')
+2024-11-07 18:20:34,147 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:20:34,147 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:20:44,144 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:20:44,144 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:20:54,145 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:20:54,146 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:21:04,142 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:21:04,143 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:21:14,135 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:21:14,136 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:21:24,139 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:21:24,139 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:21:34,148 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:21:34,148 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:21:44,143 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:21:44,144 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:21:54,140 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:21:54,140 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:22:04,145 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:22:04,145 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:22:14,137 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:22:14,137 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:22:24,140 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:22:24,142 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:22:34,142 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:22:34,143 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:22:44,139 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:22:44,139 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:22:54,139 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:22:54,140 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:23:04,144 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:23:04,145 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:23:14,143 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:23:14,143 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:23:24,135 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:23:24,136 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:23:34,143 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:23:34,144 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:23:44,141 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:23:44,141 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:23:54,142 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:23:54,142 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:24:04,142 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:24:04,142 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:24:14,147 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:24:14,147 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:24:24,135 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:24:24,136 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:24:34,142 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:24:34,143 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:24:44,143 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:24:44,144 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:24:54,148 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:24:54,149 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:25:04,141 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:25:04,142 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:25:14,148 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:25:14,149 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:25:24,145 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:25:24,145 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:25:34,139 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:25:34,140 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:25:44,140 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:25:44,140 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:25:54,141 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:25:54,144 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:26:02,198 [aiohttp.access] [INFO] 127.0.0.1 [07/Nov/2024:17:26:02 +0000] "GET /spade HTTP/1.1" 200 12839 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36 Edg/130.0.0.0" line:206
+2024-11-07 18:26:02,715 [aiohttp.access] [INFO] 127.0.0.1 [07/Nov/2024:17:26:02 +0000] "GET /favicon.ico HTTP/1.1" 404 173 "http://localhost:10002/spade" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36 Edg/130.0.0.0" line:206
+2024-11-07 18:26:03,461 [aiohttp.access] [INFO] 127.0.0.1 [07/Nov/2024:17:26:03 +0000] "GET /spade/behaviour/FSMBehaviour/AASFSMBehaviour/ HTTP/1.1" 200 12372 "http://localhost:10002/spade" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36 Edg/130.0.0.0" line:206
+2024-11-07 18:26:04,146 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:26:04,146 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:26:14,142 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:26:14,142 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:26:17,053 [aiohttp.access] [INFO] 127.0.0.1 [07/Nov/2024:17:26:17 +0000] "GET /spade HTTP/1.1" 200 12839 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0" line:206
+2024-11-07 18:26:18,547 [aiohttp.access] [INFO] 127.0.0.1 [07/Nov/2024:17:26:18 +0000] "GET /spade/behaviour/FSMBehaviour/AASFSMBehaviour/ HTTP/1.1" 200 12372 "http://localhost:10002/spade" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0" line:206
+2024-11-07 18:26:24,145 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:26:24,146 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:26:29,272 [aiohttp.access] [INFO] 127.0.0.1 [07/Nov/2024:17:26:29 +0000] "GET /spade HTTP/1.1" 200 12839 "http://localhost:10002/spade/behaviour/FSMBehaviour/AASFSMBehaviour/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0" line:206
+2024-11-07 18:26:30,397 [aiohttp.access] [INFO] 127.0.0.1 [07/Nov/2024:17:26:30 +0000] "GET /spade/behaviour/CyclicBehaviour/NegotiatingBehaviour/ HTTP/1.1" 200 10844 "http://localhost:10002/spade" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0" line:206
+2024-11-07 18:26:34,135 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 18:26:34,136 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 18:26:37,238 [aiohttp.access] [INFO] 127.0.0.1 [07/Nov/2024:17:26:37 +0000] "GET /spade HTTP/1.1" 200 12839 "http://localhost:10002/spade/behaviour/CyclicBehaviour/NegotiatingBehaviour/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0" line:206
+2024-11-07 18:26:40,416 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
