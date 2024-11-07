@@ -53,7 +53,7 @@ class ExtendedSubmodelElement(SubmodelElement):
         if isinstance(self.parent, basyx.aas.model.Submodel):
             return self.parent
         else:
-            self.parent.get_parent_submodel()
+            return self.parent.get_parent_submodel()
 
     def check_cap_skill_ontology_semantics_and_qualifiers(self):
         """

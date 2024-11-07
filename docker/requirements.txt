@@ -19,3 +19,6 @@ aiokafka == 0.10.0
 
 # Related to AAS model
 basyx-python-sdk == 1.0.0
+
+# Related to asset connections
+jsonpath-ng == 1.7.0

@@ -332,11 +332,11 @@ class ExtendedAASModel:
             raise CapabilityCheckingError(cap_elem.id_short, "The given skill does not exist in this DT.")
 
         # Then, the skill SubmodelElement type will be checked
-        if CapabilitySkillACLInfo.REQUIRED_ELEMENT_TYPE not in skill_data:
+        if CapabilitySkillACLInfo.REQUIRED_SKILL_ELEMENT_TYPE not in skill_data:
             _logger.warning("The given data does not contain required skill SubmodelElement type.")
             raise CapabilityCheckingError(cap_elem.id_short,
                                           "The given data does not contain required skill SubmodelElement type.")
-        required_skill_sme_type = skill_data[CapabilitySkillACLInfo.REQUIRED_ELEMENT_TYPE]
+        required_skill_sme_type = skill_data[CapabilitySkillACLInfo.REQUIRED_SKILL_ELEMENT_TYPE]
         if skill_elem.__class__.__name__ != required_skill_sme_type:
             _logger.warning("The given skill SubmodelElement type is not the same as the element exists in this DT.")
             raise CapabilityCheckingError(cap_elem.id_short,
@@ -437,29 +437,27 @@ class ExtendedAASModel:
                                 return element_smc
         return None
 
-    async def get_skill_parameters_exposure_interface_elements(self, skill_elem):
+    async def get_skill_parameters_exposure_interface_elem(self, skill_elem):
         """
-        This method gets all exposure elements within the skill interface linked to the parameters of a given skill.
+        This method gets the exposure element within the skill interface linked to the parameters of the given skill.
 
         Args:
             skill_elem (basyx.aas.model.SubmodelElement): skill Python object in form of a SubmodelElement.
 
         Returns:
-            list(basyx.aas.model.SubmodelElement): list with all exposure submodel elements of skill parameters.
+            basyx.aas.model.SubmodelElement: exposure submodel element of skill parameters.
         """
         # The exposure elements can be obtained with the related relationship semanticID
-        exposure_elements = []
-        rels_params_exposed = await self.get_relationship_elements_by_semantic_id(CapabilitySkillOntology.SEMANTICID_REL_SKILL_PARAMETER_SKILL_INTERFACE)
+        rels_params_exposed = await self.get_relationship_elements_by_semantic_id(
+            CapabilitySkillOntology.SEMANTICID_REL_SKILL_PARAMETER_SKILL_INTERFACE)
         for rel in rels_params_exposed:
             first_elem = await self.get_object_by_reference(rel.first)
             second_elem = await self.get_object_by_reference(rel.second)
             if first_elem == skill_elem:
-                exposure_elements.append(second_elem)
+                 return  second_elem
             elif second_elem == skill_elem:
-                exposure_elements.append(first_elem)
-        if len(exposure_elements) == 0:
-            return None
-        return exposure_elements
+                return first_elem
+        return None
 
 
 

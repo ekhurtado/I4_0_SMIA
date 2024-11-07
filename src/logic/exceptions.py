@@ -91,3 +91,14 @@ class CapabilityCheckingError(Exception):
         # TODO Pensar si añadir un objeto global en el agente para almacenar informacion sobre errores
         # The behaviour for the execution of the capability must be killed
         self.behav_class.kill(exit_code=10)
+
+class AssetConnectionError(Exception):
+    """
+    This exception class is defined for errors that are related to the asset connection processes.
+    """
+
+    def __init__(self, message, error_type, reason):
+        self.message = message
+        self.error_type = error_type
+        self.reason = reason
+        _logger.error(f"{self.message}")
