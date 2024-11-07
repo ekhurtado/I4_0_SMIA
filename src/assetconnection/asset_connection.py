@@ -83,10 +83,38 @@ class AssetConnection(metaclass=abc.ABCMeta):
     async def receive_msg_from_asset(self):
         pass
 
+    # ------------------------------------------------------------
+    # Useful methods for the configuration of the asset connection
+    # ------------------------------------------------------------
+    @classmethod
+    async def check_endpoint_metadata(cls, endpoint_metadata):
+        """
+        This method checks if the given endpointMetadata object is valid (if it is within the correct submodel and if
+        it has all required attributes).
+
+        Args:
+            endpoint_metadata (basyx.aas.model.SubmodelElementCollection): SubmodelElement of endpointMetadata.
+        """
+        # First, it is checked that the metadata SMC offered is within the Submodel 'AssetInterfacesDescription'.
+        parent_submodel = endpoint_metadata.get_parent_submodel()
+        if not parent_submodel.check_semantic_id_exist(AssetInterfacesInfo.SEMANTICID_INTERFACES_SUBMODEL):
+            raise AssetConnectionError("The interaction_metadata object is invalid because it is not within"
+                                       " the required submodel", "invalid interaction metadata",
+                                       "Interaction_metadata is not within the required submodel")
+        # TODO añadir las comprobaciones de los atributos requeridos
+
     # -----------------------------------------------------------------
     # Useful methods for the processes prior to connection to the asset
     # -----------------------------------------------------------------
+    @classmethod
     async def check_interaction_metadata(cls, interaction_metadata):
+        """
+        This method checks if the given interactionMetadata object is valid (if it is within the correct submodel and if
+        it has all required attributes).
+
+        Args:
+            interaction_metadata (basyx.aas.model.SubmodelElementCollection): SubmodelElement of interactionMetadata.
+        """
         # First, it is checked that the metadata SMC offered is within the Submodel 'AssetInterfacesDescription'.
         parent_submodel = interaction_metadata.get_parent_submodel()
         if not parent_submodel.check_semantic_id_exist(AssetInterfacesInfo.SEMANTICID_INTERFACES_SUBMODEL):
@@ -100,12 +128,13 @@ class AssetConnection(metaclass=abc.ABCMeta):
                                        "interaction_metadata object does not have required 'forms' element",
                                        "missing submodel element",
                                        "Interaction_metadata does not have required 'forms' element")
-        forms_elem = interaction_metadata.get_sm_element_by_semantic_id(AssetInterfacesInfo.SEMANTICID_INTERFACE_FORMS)
-        if not forms_elem:
+        forms_href_elem = forms_elem.get_sm_element_by_semantic_id(AssetInterfacesInfo.SEMANTICID_INTERFACE_HREF)
+        if not forms_href_elem:
             raise AssetConnectionError("The asset service cannot be executed because the given "
-                                       "interaction_metadata object does not have required 'forms' element",
-                                       "missing submodel element",
-                                       "Interaction_metadata does not have required 'forms' element")
+                                       "interaction_metadata object does not have required 'href' element in 'forms' "
+                                       "section", "missing submodel element",
+                                       "Interaction_metadata does not have required 'href' in 'forms' element")
+        # TODO comprobar que no haya mas atributos requeridos
 
     # --------------------------------------------------------
     # Useful methods to extract information from asset message

@@ -39,6 +39,10 @@ class HTTPAssetConnection(AssetConnection):
         # La informacion general de la conexion con el activo se define en el SMC 'EndpointMetadata'
         endpoint_metadata_elem = interface_aas_elem.get_sm_element_by_semantic_id(
             AssetInterfacesInfo.SEMANTICID_ENDPOINT_METADATA)
+
+        # The endpointMetadata element need to be checked
+        await self.check_endpoint_metadata(endpoint_metadata_elem)
+
         self.base = endpoint_metadata_elem.get_sm_element_by_semantic_id(
             AssetInterfacesInfo.SEMANTICID_INTERFACE_BASE)
         content_type_elem = endpoint_metadata_elem.get_sm_element_by_semantic_id(
@@ -95,12 +99,8 @@ class HTTPAssetConnection(AssetConnection):
         await self.check_interaction_metadata(interaction_metadata)
 
         # First, the full URI of the HTTP request is obtained.
-        forms_elem = interaction_metadata.get_sm_element_by_semantic_id(
-            AssetInterfacesInfo.SEMANTICID_INTERFACE_FORMS)
-        if not forms_elem:
-            raise AssetConnectionError("The asset service cannot be executed because the given "
-                                       "interaction_metadata object does not have required 'forms' element",
-                                       "missing submodel element","Interaction_metadata does not have required 'forms' element")
+        forms_elem = interaction_metadata.get_sm_element_by_semantic_id(AssetInterfacesInfo.SEMANTICID_INTERFACE_FORMS)
+        # TODO HACER AHORA: VOY POR AQUI AÑADIENDO LAS EXCEPCIONES DEL ASSETCONNECTION
         await self.get_complete_request_uri(forms_elem)
 
         # Then, headers are obtained
