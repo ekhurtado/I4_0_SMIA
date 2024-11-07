@@ -191,6 +191,10 @@ class InitAASModelBehaviour(OneShotBehaviour):
         _logger.info("Reading the AAS model to get all connections of the asset...")
         asset_interfaces_submodel = await self.myagent.aas_model.get_submodel_by_semantic_id(
             AssetInterfacesInfo.SEMANTICID_INTERFACES_SUBMODEL)
+        if not asset_interfaces_submodel:
+            _logger.warning("AssetInterfacesSubmodel submodel is not defined. Make sure that this DT does not need to "
+                            "be connected to the asset.")
+            return
         for interface_elem in asset_interfaces_submodel.submodel_element:
             # Add a new step in the progress bar
             self.progress_bar.update(1)
@@ -232,6 +236,10 @@ class InitAASModelBehaviour(OneShotBehaviour):
             AssetInterfacesInfo.SEMANTICID_INTERFACES_SUBMODEL)
         rels_cap_skill_list = await self.myagent.aas_model.get_relationship_elements_by_semantic_id(
             CapabilitySkillOntology.SEMANTICID_REL_CAPABILITY_SKILL)
+        if not asset_interfaces_submodel:
+            _logger.warning("AssetInterfacesSubmodel submodel is not defined. Make sure that this DT does not need to be"
+                            " connected to the asset.")
+            asset_interfaces_submodel = type('obj', (object,), {'submodel_element': []})    # This is a solution to not brake the next commmand
         total_iterations = len(asset_interfaces_submodel.submodel_element) + len(rels_cap_skill_list)
         # with logging_redirect_tqdm():
         self.progress_bar = tqdm(total=total_iterations, desc='Analyzing AAS model', file=sys.stdout, ncols=75,

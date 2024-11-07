@@ -5,7 +5,8 @@ import basyx.aas.model
 from spade.behaviour import OneShotBehaviour
 
 from logic import inter_aas_interactions_utils
-from logic.exceptions import CapabilityRequestExecutionError, CapabilityCheckingError, CapabilityDataError
+from logic.exceptions import CapabilityRequestExecutionError, CapabilityCheckingError, CapabilityDataError, \
+    AssetConnectionError
 from utilities.capability_skill_ontology import CapabilitySkillACLInfo, CapabilitySkillOntology, AssetInterfacesInfo
 from utilities.fipa_acl_info import FIPAACLInfo
 
@@ -88,7 +89,6 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
                 skill_elem = await self.myagent.aas_model.get_skill_data_by_capability(capability_elem,
                                                                                        'skillObject')
 
-
                 # The received skill information must be also checked
                 await self.check_received_skill_data(skill_elem)
 
@@ -107,7 +107,8 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
                     skill_parameter_id_short = skill_elem.get_variable_value_id(skill_interface_elem.id)
                     # Since the id_short of the parameter is the same key as the received value, the value can be get
                     skill_parameter_value = received_cap_data[CapabilitySkillACLInfo.REQUIRED_SKILL_INFO][
-                        CapabilitySkillACLInfo.REQUIRED_SKILL_PARAMETERS][CapabilitySkillACLInfo.REQUIRED_SKILL_INPUT_PARAMETERS][skill_parameter_id_short]
+                        CapabilitySkillACLInfo.REQUIRED_SKILL_PARAMETERS][
+                        CapabilitySkillACLInfo.REQUIRED_SKILL_INPUT_PARAMETERS][skill_parameter_id_short]
                     skill_parameter_value_semantic_id = await self.myagent.aas_model.get_concept_description_pair_value_id_by_value_name(
                         skill_interface_elem.id, skill_parameter_value)
                     skill_interface_elem = await self.myagent.aas_model.get_asset_interface_interaction_metadata_by_value_semantic_id(
@@ -115,7 +116,8 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
 
                 if not skill_interface_elem:
                     raise CapabilityRequestExecutionError(cap_name, "The capability {} could not be executed because "
-                            "its skill interface element was not found.".format(cap_name), self)
+                                                                    "its skill interface element was not found.".format(
+                        cap_name), self)
 
                 # SkillInterface will be an SME action inside the AssetInterfacesDescription submodel. The interface
                 # will be already configured from the agent Booting state, so it will be possible to execute the
@@ -129,7 +131,8 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
                 asset_connection_class = await self.myagent.get_asset_connection_class(asset_connection_ref)
                 if not asset_connection_ref:
                     raise CapabilityRequestExecutionError(cap_name, "The capability {} could not be executed because "
-                        "the asset connection of its skill interface element was not found.".format(cap_name), self)
+                                                                    "the asset connection of its skill interface element was not found.".format(
+                        cap_name), self)
 
                 received_skill_input_parameters, received_skill_output_parameters, skill_params_exposures = \
                     await self.get_asset_connection_skill_data(skill_elem)
@@ -159,20 +162,27 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
                 else:
                     _logger.warning("Failed to execute the skill of the capability correctly.")
 
-
                 # When the skill has finished, the request is answered
                 await self.send_response_msg_to_sender(FIPAACLInfo.FIPA_ACL_PERFORMATIVE_INFORM,
                                                        {'result': skill_execution_result})
                 _logger.info("Management of the capability {} finished.".format(capability_elem))
-            except (CapabilityDataError, CapabilityCheckingError, CapabilityRequestExecutionError) as cap_request_error:    # TODO pensar si hay mas (p.e. AssetConnectionError)
+            except (CapabilityDataError, CapabilityCheckingError, CapabilityRequestExecutionError,
+                    AssetConnectionError) as cap_request_error:  # TODO pensar si hay mas (p.e. AssetConnectionError)
                 if isinstance(cap_request_error, CapabilityDataError):
                     if CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME in received_cap_data:
                         cap_request_error = CapabilityRequestExecutionError(
-                            received_cap_data[CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME], cap_request_error.message, self)
+                            received_cap_data[CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME],
+                            cap_request_error.message, self)
                     else:
                         cap_request_error = CapabilityRequestExecutionError('', cap_request_error.message, self)
                 if isinstance(cap_request_error, CapabilityCheckingError):
-                    cap_request_error = CapabilityRequestExecutionError(cap_request_error.cap_name, cap_request_error.reason, self)
+                    cap_request_error = CapabilityRequestExecutionError(cap_request_error.cap_name,
+                                                                        cap_request_error.reason, self)
+                if isinstance(cap_request_error, AssetConnectionError):
+                    cap_request_error = CapabilityRequestExecutionError(
+                        received_cap_data[CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME],f"The error "
+                            f"[{cap_request_error.error_type}] has appeared during the asset connection. "
+                            f"Reason: {cap_request_error.reason}.", self)
 
                 await cap_request_error.handle_capability_execution_error()
                 return  # killing a behaviour does not cancel its current run loop
@@ -202,7 +212,8 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
                 if isinstance(cap_checking_error, CapabilityDataError):
                     if CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME in received_cap_data:
                         cap_checking_error = CapabilityCheckingError(
-                            received_cap_data[CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME], cap_checking_error.message)
+                            received_cap_data[CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME],
+                            cap_checking_error.message)
                     else:
                         cap_checking_error = CapabilityCheckingError('', cap_checking_error.message)
 
@@ -258,7 +269,6 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
         )
         await self.send(acl_msg)
 
-
     async def check_received_cap_data(self):
         """
         This method checks whether the data received contains the necessary information to be able to execute
@@ -290,11 +300,11 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
             for constraint in cap_constraints:
                 if constraint.id_short not in received_cap_data[CapabilitySkillACLInfo.REQUIRED_CAPABILITY_CONSTRAINTS]:
                     raise CapabilityDataError("The received capability data is invalid due to missing #{} constraint in"
-                        " the constraint section of the request message.".format(constraint.id_short))
-
+                                              " the constraint section of the request message.".format(
+                        constraint.id_short))
 
     async def check_received_skill_data(self, skill_elem):
-            """
+        """
             This method checks whether the data received contains the necessary information in relation to the skill of the
             received capability request.
 
@@ -304,33 +314,38 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
             Returns:
                 bool: the result of the check.
             """
-            received_skill_data = self.svc_req_data['serviceData']['serviceParams'][CapabilitySkillACLInfo.REQUIRED_SKILL_INFO]
-            if CapabilitySkillACLInfo.REQUIRED_SKILL_NAME not in received_skill_data:
+        received_skill_data = self.svc_req_data['serviceData']['serviceParams'][
+            CapabilitySkillACLInfo.REQUIRED_SKILL_INFO]
+        if CapabilitySkillACLInfo.REQUIRED_SKILL_NAME not in received_skill_data:
+            raise CapabilityDataError(
+                "The received capability data is invalid due to missing #{} field in the skill "
+                "information section of the request message.".format(CapabilitySkillACLInfo.REQUIRED_SKILL_NAME))
+        if CapabilitySkillACLInfo.REQUIRED_SKILL_ELEMENT_TYPE not in received_skill_data:
+            raise CapabilityDataError(
+                "The received capability data is invalid due to missing #{} field in the skill "
+                "information section of the request message.".format(
+                    CapabilitySkillACLInfo.REQUIRED_SKILL_ELEMENT_TYPE))
+        # If the skill has parameters, it will be checked if they exist within the received data
+        # TODO de momento los skills son solo Operation, pensar como recoger los skill parameters para los demas casos
+        if skill_elem.input_variable or skill_elem.output_variable:
+            if CapabilitySkillACLInfo.REQUIRED_SKILL_PARAMETERS not in received_skill_data:
                 raise CapabilityDataError(
-                    "The received capability data is invalid due to missing #{} field in the skill "
-                    "information section of the request message.".format(CapabilitySkillACLInfo.REQUIRED_SKILL_NAME))
-            if CapabilitySkillACLInfo.REQUIRED_SKILL_ELEMENT_TYPE not in received_skill_data:
+                    "The received capability data is invalid due to missing #{} field in the skill information"
+                    " section of the request message.".format(CapabilitySkillACLInfo.REQUIRED_SKILL_PARAMETERS))
+        if skill_elem.input_variable:
+            if CapabilitySkillACLInfo.REQUIRED_SKILL_INPUT_PARAMETERS not in received_skill_data[
+                CapabilitySkillACLInfo.REQUIRED_SKILL_PARAMETERS]:
                 raise CapabilityDataError(
-                    "The received capability data is invalid due to missing #{} field in the skill "
-                    "information section of the request message.".format(CapabilitySkillACLInfo.REQUIRED_SKILL_ELEMENT_TYPE))
-            # If the skill has parameters, it will be checked if they exist within the received data
-            # TODO de momento los skills son solo Operation, pensar como recoger los skill parameters para los demas casos
-            if skill_elem.input_variable or skill_elem.output_variable:
-                if CapabilitySkillACLInfo.REQUIRED_SKILL_PARAMETERS not in received_skill_data:
-                    raise CapabilityDataError(
-                        "The received capability data is invalid due to missing #{} field in the skill information"
-                        " section of the request message.".format(CapabilitySkillACLInfo.REQUIRED_SKILL_PARAMETERS))
-            if skill_elem.input_variable:
-                if CapabilitySkillACLInfo.REQUIRED_SKILL_INPUT_PARAMETERS not in received_skill_data[CapabilitySkillACLInfo.REQUIRED_SKILL_PARAMETERS]:
-                    raise CapabilityDataError(
-                        "The received capability data is invalid due to missing #{} field in the skill parameters "
-                        "information section of the request message.".format(CapabilitySkillACLInfo.REQUIRED_SKILL_INPUT_PARAMETERS))
-            if skill_elem.output_variable:
-                if CapabilitySkillACLInfo.REQUIRED_SKILL_OUTPUT_PARAMETERS not in received_skill_data[CapabilitySkillACLInfo.REQUIRED_SKILL_PARAMETERS]:
-                    raise CapabilityDataError(
-                        "The received capability data is invalid due to missing #{} field in the skill parameters "
-                        "information section of the request message.".format(CapabilitySkillACLInfo.REQUIRED_SKILL_OUTPUT_PARAMETERS))
-
+                    "The received capability data is invalid due to missing #{} field in the skill parameters "
+                    "information section of the request message.".format(
+                        CapabilitySkillACLInfo.REQUIRED_SKILL_INPUT_PARAMETERS))
+        if skill_elem.output_variable:
+            if CapabilitySkillACLInfo.REQUIRED_SKILL_OUTPUT_PARAMETERS not in received_skill_data[
+                CapabilitySkillACLInfo.REQUIRED_SKILL_PARAMETERS]:
+                raise CapabilityDataError(
+                    "The received capability data is invalid due to missing #{} field in the skill parameters "
+                    "information section of the request message.".format(
+                        CapabilitySkillACLInfo.REQUIRED_SKILL_OUTPUT_PARAMETERS))
 
     async def get_asset_connection_skill_data(self, skill_elem):
         """

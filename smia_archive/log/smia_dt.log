@@ -8914,3 +8914,1006 @@ TypeError: 'traceback' object is not callable
 2024-11-07 14:00:55,105 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/HandleCapabilityBehaviour with exit code: 'traceback' object is not callable line:154
 2024-11-07 14:00:55,105 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/HandleCapabilityBehaviour with exit code: None line:154
 2024-11-07 14:00:55,107 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 16:42:06,250 [__main__] [INFO] Initializing SMIA software... line:75
+2024-11-07 16:42:06,255 [__main__] [INFO] The asset is not defined, so it is a generic AAS Manager line:56
+2024-11-07 16:42:08,887 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-07 16:42:09,990 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/1192555461278200794844930372 line:935
+2024-11-07 16:42:10,269 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABwxMTkyNTU1NDYxMjc4MjAwNzk0ODQ0OTMwMzcybQAAAAi93jELuDgFpw==' line:2209
+2024-11-07 16:42:10,834 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-07 16:42:10,835 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:90
+2024-11-07 16:42:10,836 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-07 16:42:10,836 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-07 16:42:10,836 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:32
+2024-11-07 16:42:10,914 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all capabilities of the asset and the industrial agent... line:101
+2024-11-07 16:42:11,425 [behaviours.init_aas_model_behaviour] [INFO] Analyzing AgentCapability [Negotiation] and its associated skill [NegotiationBasedOnCriteria]... line:122
+2024-11-07 16:42:11,431 [behaviours.init_aas_model_behaviour] [INFO] Capability[urn:ehu:gcis:submodel:1:1:agentcapabilities001 / Negotiation] information saved in the global variables. line:176
+2024-11-07 16:42:11,926 [behaviours.init_aas_model_behaviour] [INFO] Analyzing AssetCapability [EfficientTransport] and its associated skill [EfficientMovement]... line:122
+2024-11-07 16:42:11,933 [behaviours.init_aas_model_behaviour] [INFO] Capability[urn:ehu:gcis:submodel:1:1:capabilities001 / CapabilityDefinitions / EfficientTransport] information saved in the global variables. line:176
+2024-11-07 16:42:11,934 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all connections of the asset... line:191
+2024-11-07 16:43:12,906 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-07 16:43:12,909 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-07 16:43:12,909 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:32
+2024-11-07 16:43:12,945 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all capabilities of the asset and the industrial agent... line:101
+2024-11-07 16:43:13,447 [behaviours.init_aas_model_behaviour] [INFO] Analyzing AgentCapability [Negotiation] and its associated skill [NegotiationBasedOnCriteria]... line:122
+2024-11-07 16:43:13,448 [behaviours.init_aas_model_behaviour] [INFO] Capability[urn:ehu:gcis:submodel:1:1:agentcapabilities001 / Negotiation] information saved in the global variables. line:176
+2024-11-07 16:43:13,961 [behaviours.init_aas_model_behaviour] [INFO] Analyzing AssetCapability [EfficientTransport] and its associated skill [EfficientMovement]... line:122
+2024-11-07 16:43:13,964 [behaviours.init_aas_model_behaviour] [INFO] Capability[urn:ehu:gcis:submodel:1:1:capabilities001 / CapabilityDefinitions / EfficientTransport] information saved in the global variables. line:176
+2024-11-07 16:43:13,964 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all connections of the asset... line:191
+2024-11-07 16:43:14,478 [behaviours.init_aas_model_behaviour] [INFO] All asset connections defined in the AAS model have been configured and saved. line:213
+2024-11-07 16:43:14,479 [behaviours.init_aas_model_behaviour] [INFO] AAS model initialized. line:70
+2024-11-07 16:43:14,479 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: None line:154
+2024-11-07 16:43:14,482 [states.state_booting] [INFO] gcis1@xmpp.jp agent has finished it Boot state. line:68
+2024-11-07 16:43:14,483 [spade.behaviour] [INFO] FSM transiting from BOOTING to RUNNING. line:591
+2024-11-07 16:43:14,483 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-07 16:43:14,483 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-07 16:43:14,486 [states.state_running] [INFO] This DT has negotiation capability. line:61
+2024-11-07 16:43:14,487 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-07 16:43:14,488 [behaviours.negotiating_behaviour] [INFO] NegotiationBehaviour starting... line:42
+2024-11-07 16:43:19,175 [__main__] [INFO] Initializing SMIA software... line:75
+2024-11-07 16:43:19,179 [__main__] [INFO] The asset is not defined, so it is a generic AAS Manager line:56
+2024-11-07 16:43:21,821 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-07 16:43:22,921 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/1371639034973524512144933700 line:935
+2024-11-07 16:43:23,192 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABwxMzcxNjM5MDM0OTczNTI0NTEyMTQ0OTMzNzAwbQAAAAgLy2OamGOyHQ==' line:2209
+2024-11-07 16:43:23,760 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-07 16:43:23,762 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:90
+2024-11-07 16:43:23,763 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-07 16:43:23,763 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-07 16:43:23,764 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:32
+2024-11-07 16:43:23,834 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all capabilities of the asset and the industrial agent... line:101
+2024-11-07 16:43:24,326 [behaviours.init_aas_model_behaviour] [INFO] Analyzing AgentCapability [Negotiation] and its associated skill [NegotiationBasedOnCriteria]... line:122
+2024-11-07 16:43:24,328 [behaviours.init_aas_model_behaviour] [INFO] Capability[urn:ehu:gcis:submodel:1:1:agentcapabilities001 / Negotiation] information saved in the global variables. line:176
+2024-11-07 16:43:24,831 [behaviours.init_aas_model_behaviour] [INFO] Analyzing AssetCapability [EfficientTransport] and its associated skill [EfficientMovement]... line:122
+2024-11-07 16:43:24,835 [behaviours.init_aas_model_behaviour] [INFO] Capability[urn:ehu:gcis:submodel:1:1:capabilities001 / CapabilityDefinitions / EfficientTransport] information saved in the global variables. line:176
+2024-11-07 16:43:24,836 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all connections of the asset... line:191
+2024-11-07 16:43:29,222 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-07 16:43:29,222 [gcis1] [INFO] client shutting down (on request) line:975
+2024-11-07 16:43:29,598 [gcis1.StanzaStream] [INFO] stopping SM stream line:2473
+2024-11-07 16:43:29,598 [gcis1] [INFO] stopping stream line:989
+2024-11-07 16:43:29,598 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-07 16:43:29,598 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:32
+2024-11-07 16:43:29,640 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all capabilities of the asset and the industrial agent... line:101
+2024-11-07 16:43:46,594 [__main__] [INFO] Initializing SMIA software... line:75
+2024-11-07 16:43:46,601 [__main__] [INFO] The asset is not defined, so it is a generic AAS Manager line:56
+2024-11-07 16:43:49,218 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-07 16:43:50,324 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/1563189549861495018544935172 line:935
+2024-11-07 16:43:50,595 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABwxNTYzMTg5NTQ5ODYxNDk1MDE4NTQ0OTM1MTcybQAAAAhlyvpol+98zg==' line:2209
+2024-11-07 16:43:51,160 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-07 16:43:51,163 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:90
+2024-11-07 16:43:51,164 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-07 16:43:51,165 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-07 16:43:51,166 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:32
+2024-11-07 16:43:51,232 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all capabilities of the asset and the industrial agent... line:101
+2024-11-07 16:43:51,727 [behaviours.init_aas_model_behaviour] [INFO] Analyzing AgentCapability [Negotiation] and its associated skill [NegotiationBasedOnCriteria]... line:122
+2024-11-07 16:43:51,733 [behaviours.init_aas_model_behaviour] [INFO] Capability[urn:ehu:gcis:submodel:1:1:agentcapabilities001 / Negotiation] information saved in the global variables. line:176
+2024-11-07 16:43:52,216 [behaviours.init_aas_model_behaviour] [INFO] Analyzing AssetCapability [EfficientTransport] and its associated skill [EfficientMovement]... line:122
+2024-11-07 16:43:52,220 [behaviours.init_aas_model_behaviour] [INFO] Capability[urn:ehu:gcis:submodel:1:1:capabilities001 / CapabilityDefinitions / EfficientTransport] information saved in the global variables. line:176
+2024-11-07 16:43:52,220 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all connections of the asset... line:191
+2024-11-07 16:44:07,197 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-07 16:44:07,198 [gcis1] [INFO] client shutting down (on request) line:975
+2024-11-07 16:44:07,199 [gcis1.StanzaStream] [INFO] stopping SM stream line:2473
+2024-11-07 16:44:07,199 [gcis1] [INFO] stopping stream line:989
+2024-11-07 16:44:07,199 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-07 16:44:07,199 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:32
+2024-11-07 16:44:07,231 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all capabilities of the asset and the industrial agent... line:101
+2024-11-07 16:44:30,739 [__main__] [INFO] Initializing SMIA software... line:75
+2024-11-07 16:44:30,743 [__main__] [INFO] The asset is not defined, so it is a generic AAS Manager line:56
+2024-11-07 16:44:33,355 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-07 16:44:34,473 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/1728183069475481189213802149 line:935
+2024-11-07 16:44:34,752 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABwxNzI4MTgzMDY5NDc1NDgxMTg5MjEzODAyMTQ5bQAAAAg9sPxUjJ3P8Q==' line:2209
+2024-11-07 16:44:35,328 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-07 16:44:35,330 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:90
+2024-11-07 16:44:35,331 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-07 16:44:35,331 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-07 16:44:35,331 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:32
+2024-11-07 16:44:35,380 [spade.behaviour] [ERROR] Exception running behaviour OneShotBehaviour/InitAASModelBehaviour: 'NoneType' object has no attribute 'submodel_element' line:291
+2024-11-07 16:44:35,390 [spade.behaviour] [ERROR] Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 285, in _step
+    await self._run()
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 274, in _run
+    await self.run()
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\init_aas_model_behaviour.py", line 56, in run
+    await self.create_progress_bar_object()
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\init_aas_model_behaviour.py", line 235, in create_progress_bar_object
+    total_iterations = len(asset_interfaces_submodel.submodel_element) + len(rels_cap_skill_list)
+AttributeError: 'NoneType' object has no attribute 'submodel_element'
+ line:296
+2024-11-07 16:44:35,390 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: 'NoneType' object has no attribute 'submodel_element' line:154
+2024-11-07 16:44:35,390 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: None line:154
+2024-11-07 16:44:35,392 [states.state_booting] [INFO] gcis1@xmpp.jp agent has finished it Boot state. line:68
+2024-11-07 16:44:35,392 [spade.behaviour] [INFO] FSM transiting from BOOTING to RUNNING. line:591
+2024-11-07 16:44:35,392 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-07 16:44:35,392 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-07 16:44:35,393 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-07 16:44:45,398 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 16:44:55,392 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 16:45:05,392 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 16:45:15,400 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 16:45:25,399 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 16:45:35,396 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 16:45:45,397 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 16:45:55,399 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 16:46:05,386 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 16:46:15,386 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 16:46:25,401 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 16:46:35,395 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 16:46:45,391 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 16:46:47,074 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-07 16:46:47,075 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-07 16:46:47,075 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-07 16:46:47,078 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-07 16:46:55,411 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 16:46:57,084 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 16:47:17,131 [__main__] [INFO] Initializing SMIA software... line:75
+2024-11-07 16:47:17,135 [__main__] [INFO] The asset is not defined, so it is a generic AAS Manager line:56
+2024-11-07 16:47:19,828 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-07 16:47:20,974 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/73608705145030469072438151 line:935
+2024-11-07 16:47:21,257 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABo3MzYwODcwNTE0NTAzMDQ2OTA3MjQzODE1MW0AAAAIpAl2qyZij18=' line:2209
+2024-11-07 16:47:21,848 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-07 16:47:21,849 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:90
+2024-11-07 16:47:21,849 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-07 16:47:21,849 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-07 16:47:21,849 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:32
+2024-11-07 16:47:21,920 [behaviours.init_aas_model_behaviour] [WARNING] AssetInterfacesSubmodel submodel is not defined. Make sure that this DT does not need to be connected to the asset. line:236
+2024-11-07 16:47:21,921 [spade.behaviour] [ERROR] Exception running behaviour OneShotBehaviour/InitAASModelBehaviour: 'dict' object has no attribute 'submodel_element' line:291
+2024-11-07 16:47:21,922 [spade.behaviour] [ERROR] Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 285, in _step
+    await self._run()
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 274, in _run
+    await self.run()
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\init_aas_model_behaviour.py", line 56, in run
+    await self.create_progress_bar_object()
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\init_aas_model_behaviour.py", line 239, in create_progress_bar_object
+    total_iterations = len(asset_interfaces_submodel.submodel_element) + len(rels_cap_skill_list)
+AttributeError: 'dict' object has no attribute 'submodel_element'
+ line:296
+2024-11-07 16:47:21,922 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: 'dict' object has no attribute 'submodel_element' line:154
+2024-11-07 16:47:21,922 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: None line:154
+2024-11-07 16:47:21,924 [states.state_booting] [INFO] gcis1@xmpp.jp agent has finished it Boot state. line:68
+2024-11-07 16:47:21,925 [spade.behaviour] [INFO] FSM transiting from BOOTING to RUNNING. line:591
+2024-11-07 16:47:21,925 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-07 16:47:21,925 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-07 16:47:21,927 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-07 16:47:31,929 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 16:47:41,923 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 16:47:43,722 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-07 16:47:43,724 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-07 16:47:43,724 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-07 16:47:43,726 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-07 16:48:32,997 [__main__] [INFO] Initializing SMIA software... line:75
+2024-11-07 16:48:33,001 [__main__] [INFO] The asset is not defined, so it is a generic AAS Manager line:56
+2024-11-07 16:48:35,643 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-07 16:48:36,740 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/8942926712327949468113275618 line:935
+2024-11-07 16:48:37,011 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABw4OTQyOTI2NzEyMzI3OTQ5NDY4MTEzMjc1NjE4bQAAAAjUmg2QLh58UQ==' line:2209
+2024-11-07 16:48:37,585 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-07 16:48:37,587 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:90
+2024-11-07 16:48:37,588 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-07 16:48:37,588 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-07 16:48:37,589 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:32
+2024-11-07 16:48:37,648 [behaviours.init_aas_model_behaviour] [WARNING] AssetInterfacesSubmodel submodel is not defined. Make sure that this DT does not need to be connected to the asset. line:236
+2024-11-07 16:48:37,658 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all capabilities of the asset and the industrial agent... line:101
+2024-11-07 16:48:38,145 [behaviours.init_aas_model_behaviour] [INFO] Analyzing AgentCapability [Negotiation] and its associated skill [NegotiationBasedOnCriteria]... line:122
+2024-11-07 16:48:38,148 [behaviours.init_aas_model_behaviour] [INFO] Capability[urn:ehu:gcis:submodel:1:1:agentcapabilities001 / Negotiation] information saved in the global variables. line:176
+2024-11-07 16:48:38,635 [behaviours.init_aas_model_behaviour] [INFO] Analyzing AssetCapability [EfficientTransport] and its associated skill [EfficientMovement]... line:122
+2024-11-07 16:48:38,637 [behaviours.init_aas_model_behaviour] [INFO] Capability[urn:ehu:gcis:submodel:1:1:capabilities001 / CapabilityDefinitions / EfficientTransport] information saved in the global variables. line:176
+2024-11-07 16:48:38,638 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all connections of the asset... line:191
+2024-11-07 16:48:38,638 [spade.behaviour] [ERROR] Exception running behaviour OneShotBehaviour/InitAASModelBehaviour: 'NoneType' object has no attribute 'submodel_element' line:291
+2024-11-07 16:48:38,639 [spade.behaviour] [ERROR] Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 285, in _step
+    await self._run()
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 274, in _run
+    await self.run()
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\init_aas_model_behaviour.py", line 64, in run
+    await self.get_and_configure_asset_connections()
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\init_aas_model_behaviour.py", line 194, in get_and_configure_asset_connections
+    for interface_elem in asset_interfaces_submodel.submodel_element:
+AttributeError: 'NoneType' object has no attribute 'submodel_element'
+ line:296
+2024-11-07 16:48:38,640 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: 'NoneType' object has no attribute 'submodel_element' line:154
+2024-11-07 16:48:38,640 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: None line:154
+2024-11-07 16:48:38,653 [states.state_booting] [INFO] gcis1@xmpp.jp agent has finished it Boot state. line:68
+2024-11-07 16:48:38,653 [spade.behaviour] [INFO] FSM transiting from BOOTING to RUNNING. line:591
+2024-11-07 16:48:38,654 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-07 16:48:38,654 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-07 16:48:38,656 [states.state_running] [INFO] This DT has negotiation capability. line:61
+2024-11-07 16:48:38,657 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-07 16:48:38,658 [behaviours.negotiating_behaviour] [INFO] NegotiationBehaviour starting... line:42
+2024-11-07 16:48:48,645 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 16:48:48,645 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 16:48:58,646 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 16:48:58,646 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 16:49:08,639 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 16:49:08,640 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 16:49:18,640 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 16:49:18,641 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 16:49:28,640 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 16:49:28,642 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 16:49:38,640 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 16:49:38,641 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 16:49:38,871 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-07 16:49:41,901 [__main__] [INFO] Initializing SMIA software... line:75
+2024-11-07 16:49:41,904 [__main__] [INFO] The asset is not defined, so it is a generic AAS Manager line:56
+2024-11-07 16:49:44,575 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-07 16:49:45,706 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/3410539937199228803113282018 line:935
+2024-11-07 16:49:45,985 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABwzNDEwNTM5OTM3MTk5MjI4ODAzMTEzMjgyMDE4bQAAAAhJl2TaJubSXQ==' line:2209
+2024-11-07 16:49:46,571 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-07 16:49:46,573 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:90
+2024-11-07 16:49:46,574 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-07 16:49:46,575 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-07 16:49:46,575 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:32
+2024-11-07 16:49:46,626 [behaviours.init_aas_model_behaviour] [WARNING] AssetInterfacesSubmodel submodel is not defined. Make sure that this DT does not need to be connected to the asset. line:240
+2024-11-07 16:49:46,635 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all capabilities of the asset and the industrial agent... line:101
+2024-11-07 16:49:47,139 [behaviours.init_aas_model_behaviour] [INFO] Analyzing AgentCapability [Negotiation] and its associated skill [NegotiationBasedOnCriteria]... line:122
+2024-11-07 16:49:47,145 [behaviours.init_aas_model_behaviour] [INFO] Capability[urn:ehu:gcis:submodel:1:1:agentcapabilities001 / Negotiation] information saved in the global variables. line:176
+2024-11-07 16:49:47,641 [behaviours.init_aas_model_behaviour] [INFO] Analyzing AssetCapability [EfficientTransport] and its associated skill [EfficientMovement]... line:122
+2024-11-07 16:49:47,645 [behaviours.init_aas_model_behaviour] [INFO] Capability[urn:ehu:gcis:submodel:1:1:capabilities001 / CapabilityDefinitions / EfficientTransport] information saved in the global variables. line:176
+2024-11-07 16:49:47,645 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all connections of the asset... line:191
+2024-11-07 16:49:47,645 [behaviours.init_aas_model_behaviour] [WARNING] AssetInterfacesSubmodel submodel is not defined. Make sure that this DT does not need to be connected to the asset. line:195
+2024-11-07 16:49:47,646 [behaviours.init_aas_model_behaviour] [INFO] AAS model initialized. line:70
+2024-11-07 16:49:47,646 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: None line:154
+2024-11-07 16:49:47,649 [states.state_booting] [INFO] gcis1@xmpp.jp agent has finished it Boot state. line:68
+2024-11-07 16:49:47,649 [spade.behaviour] [INFO] FSM transiting from BOOTING to RUNNING. line:591
+2024-11-07 16:49:47,650 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-07 16:49:47,650 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-07 16:49:47,652 [states.state_running] [INFO] This DT has negotiation capability. line:61
+2024-11-07 16:49:47,653 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-07 16:49:47,654 [behaviours.negotiating_behaviour] [INFO] NegotiationBehaviour starting... line:42
+2024-11-07 16:49:57,637 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 16:49:57,637 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 16:50:01,217 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-07 16:50:08,661 [__main__] [INFO] Initializing SMIA software... line:75
+2024-11-07 16:50:08,664 [__main__] [INFO] The asset is not defined, so it is a generic AAS Manager line:56
+2024-11-07 16:50:11,257 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-07 16:50:12,339 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/15548436372122028802113283810 line:935
+2024-11-07 16:50:12,607 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAAB0xNTU0ODQzNjM3MjEyMjAyODgwMjExMzI4MzgxMG0AAAAIyHgjUJkqEFk=' line:2209
+2024-11-07 16:50:13,169 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-07 16:50:13,170 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:90
+2024-11-07 16:50:13,171 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-07 16:50:13,171 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-07 16:50:13,171 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:32
+2024-11-07 16:50:13,236 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all capabilities of the asset and the industrial agent... line:101
+2024-11-07 16:50:13,713 [behaviours.init_aas_model_behaviour] [INFO] Analyzing AgentCapability [Negotiation] and its associated skill [NegotiationBasedOnCriteria]... line:122
+2024-11-07 16:50:13,718 [behaviours.init_aas_model_behaviour] [INFO] Capability[urn:ehu:gcis:submodel:1:1:agentcapabilities001 / Negotiation] information saved in the global variables. line:176
+2024-11-07 16:50:14,216 [behaviours.init_aas_model_behaviour] [INFO] Analyzing AssetCapability [EfficientTransport] and its associated skill [EfficientMovement]... line:122
+2024-11-07 16:50:14,222 [behaviours.init_aas_model_behaviour] [INFO] Capability[urn:ehu:gcis:submodel:1:1:capabilities001 / CapabilityDefinitions / EfficientTransport] information saved in the global variables. line:176
+2024-11-07 16:50:14,223 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all connections of the asset... line:191
+2024-11-07 16:50:14,722 [behaviours.init_aas_model_behaviour] [WARNING] There is a submodel element inside the interfaces submodel with invalid semanticID. line:204
+2024-11-07 16:50:14,723 [behaviours.init_aas_model_behaviour] [INFO] All asset connections defined in the AAS model have been configured and saved. line:217
+2024-11-07 16:50:14,723 [behaviours.init_aas_model_behaviour] [INFO] AAS model initialized. line:70
+2024-11-07 16:50:14,723 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: None line:154
+2024-11-07 16:50:14,725 [states.state_booting] [INFO] gcis1@xmpp.jp agent has finished it Boot state. line:68
+2024-11-07 16:50:14,725 [spade.behaviour] [INFO] FSM transiting from BOOTING to RUNNING. line:591
+2024-11-07 16:50:14,726 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-07 16:50:14,726 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-07 16:50:14,727 [states.state_running] [INFO] This DT has negotiation capability. line:61
+2024-11-07 16:50:14,728 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-07 16:50:14,729 [behaviours.negotiating_behaviour] [INFO] NegotiationBehaviour starting... line:42
+2024-11-07 16:50:24,716 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 16:50:24,717 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 16:50:34,721 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 16:50:34,724 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 16:50:37,115 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-07 16:50:37,117 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-07 16:50:37,118 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-07 16:50:37,119 [states.state_running] [INFO] This DT has negotiation capability. line:61
+2024-11-07 16:50:37,120 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-07 16:50:37,120 [behaviours.negotiating_behaviour] [INFO] NegotiationBehaviour starting... line:42
+2024-11-07 16:50:40,119 [__main__] [INFO] Initializing SMIA software... line:75
+2024-11-07 16:50:40,124 [__main__] [INFO] The asset is not defined, so it is a generic AAS Manager line:56
+2024-11-07 16:50:42,756 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-07 16:50:43,846 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/302521392942691373144949092 line:935
+2024-11-07 16:50:44,117 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABszMDI1MjEzOTI5NDI2OTEzNzMxNDQ5NDkwOTJtAAAACBZR5uTKZQzP' line:2209
+2024-11-07 16:50:44,679 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-07 16:50:44,680 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:90
+2024-11-07 16:50:44,681 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-07 16:50:44,681 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-07 16:50:44,682 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:32
+2024-11-07 16:50:44,747 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all capabilities of the asset and the industrial agent... line:101
+2024-11-07 16:50:45,244 [behaviours.init_aas_model_behaviour] [INFO] Analyzing AgentCapability [Negotiation] and its associated skill [NegotiationBasedOnCriteria]... line:122
+2024-11-07 16:50:45,246 [behaviours.init_aas_model_behaviour] [INFO] Capability[urn:ehu:gcis:submodel:1:1:agentcapabilities001 / Negotiation] information saved in the global variables. line:176
+2024-11-07 16:50:45,757 [behaviours.init_aas_model_behaviour] [INFO] Analyzing AssetCapability [EfficientTransport] and its associated skill [EfficientMovement]... line:122
+2024-11-07 16:50:45,764 [behaviours.init_aas_model_behaviour] [INFO] Capability[urn:ehu:gcis:submodel:1:1:capabilities001 / CapabilityDefinitions / EfficientTransport] information saved in the global variables. line:176
+2024-11-07 16:50:45,765 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all connections of the asset... line:191
+2024-11-07 16:50:46,271 [behaviours.init_aas_model_behaviour] [WARNING] There is a submodel element inside the interfaces submodel with invalid semanticID. line:204
+2024-11-07 16:50:46,272 [behaviours.init_aas_model_behaviour] [INFO] All asset connections defined in the AAS model have been configured and saved. line:217
+2024-11-07 16:50:46,273 [behaviours.init_aas_model_behaviour] [INFO] AAS model initialized. line:70
+2024-11-07 16:50:46,274 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: None line:154
+2024-11-07 16:50:46,278 [states.state_booting] [INFO] gcis1@xmpp.jp agent has finished it Boot state. line:68
+2024-11-07 16:50:46,279 [spade.behaviour] [INFO] FSM transiting from BOOTING to RUNNING. line:591
+2024-11-07 16:50:46,280 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-07 16:50:46,281 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-07 16:50:46,285 [states.state_running] [INFO] This DT has negotiation capability. line:61
+2024-11-07 16:50:46,286 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-07 16:50:46,287 [behaviours.negotiating_behaviour] [INFO] NegotiationBehaviour starting... line:42
+2024-11-07 16:50:56,271 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 16:50:56,272 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 16:51:06,269 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 16:51:06,270 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 16:51:11,131 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-07 16:51:14,351 [__main__] [INFO] Initializing SMIA software... line:75
+2024-11-07 16:51:14,354 [__main__] [INFO] The asset is not defined, so it is a generic AAS Manager line:56
+2024-11-07 16:51:16,947 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-07 16:51:18,042 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/445810784163117491544950628 line:935
+2024-11-07 16:51:18,313 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABs0NDU4MTA3ODQxNjMxMTc0OTE1NDQ5NTA2MjhtAAAACGGiC8dkHO9M' line:2209
+2024-11-07 16:51:18,888 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-07 16:51:18,888 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:90
+2024-11-07 16:51:18,889 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-07 16:51:18,889 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-07 16:51:18,889 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:32
+2024-11-07 16:51:18,944 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all capabilities of the asset and the industrial agent... line:101
+2024-11-07 16:51:19,423 [behaviours.init_aas_model_behaviour] [INFO] Analyzing AgentCapability [Negotiation] and its associated skill [NegotiationBasedOnCriteria]... line:122
+2024-11-07 16:51:19,432 [behaviours.init_aas_model_behaviour] [INFO] Capability[urn:ehu:gcis:submodel:1:1:agentcapabilities001 / Negotiation] information saved in the global variables. line:176
+2024-11-07 16:51:19,927 [behaviours.init_aas_model_behaviour] [INFO] Analyzing AssetCapability [EfficientTransport] and its associated skill [EfficientMovement]... line:122
+2024-11-07 16:51:19,933 [behaviours.init_aas_model_behaviour] [INFO] Capability[urn:ehu:gcis:submodel:1:1:capabilities001 / CapabilityDefinitions / EfficientTransport] information saved in the global variables. line:176
+2024-11-07 16:51:19,933 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all connections of the asset... line:191
+2024-11-07 16:51:29,901 [logic.exceptions] [ERROR] The InterfaceForHTTP object is invalid because the given object does not have required 'title' element line:104
+2024-11-07 16:51:29,903 [spade.behaviour] [ERROR] Exception running behaviour OneShotBehaviour/InitAASModelBehaviour: ("The InterfaceForHTTP object is invalid because the given object does not have required 'title' element", 'missing submodel element', "InterfaceForHTTP does not have required 'title'") line:291
+2024-11-07 16:51:29,904 [spade.behaviour] [ERROR] Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 285, in _step
+    await self._run()
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 274, in _run
+    await self.run()
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\init_aas_model_behaviour.py", line 64, in run
+    await self.get_and_configure_asset_connections()
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\init_aas_model_behaviour.py", line 210, in get_and_configure_asset_connections
+    await http_connection_class.configure_connection_by_aas_model(interface_elem)
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\assetconnection\http_asset_connection.py", line 36, in configure_connection_by_aas_model
+    await self.check_interface_element(interface_aas_elem)
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\assetconnection\asset_connection.py", line 103, in check_interface_element
+    await cls.check_submodel_element_exist_by_semantic_id(interface_elem, 'title',
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\assetconnection\asset_connection.py", line 195, in check_submodel_element_exist_by_semantic_id
+    raise AssetConnectionError(f"The {submodel_elem_col.id_short} object is invalid because the given "
+logic.exceptions.AssetConnectionError: ("The InterfaceForHTTP object is invalid because the given object does not have required 'title' element", 'missing submodel element', "InterfaceForHTTP does not have required 'title'")
+ line:296
+2024-11-07 16:51:29,905 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: ("The InterfaceForHTTP object is invalid because the given object does not have required 'title' element", 'missing submodel element', "InterfaceForHTTP does not have required 'title'") line:154
+2024-11-07 16:51:29,905 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: None line:154
+2024-11-07 16:51:29,907 [states.state_booting] [INFO] gcis1@xmpp.jp agent has finished it Boot state. line:68
+2024-11-07 16:51:29,907 [spade.behaviour] [INFO] FSM transiting from BOOTING to RUNNING. line:591
+2024-11-07 16:51:29,907 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-07 16:51:29,907 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-07 16:51:29,908 [states.state_running] [INFO] This DT has negotiation capability. line:61
+2024-11-07 16:51:29,908 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-07 16:51:29,908 [behaviours.negotiating_behaviour] [INFO] NegotiationBehaviour starting... line:42
+2024-11-07 16:51:39,894 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 16:51:39,895 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 16:51:49,890 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 16:51:49,890 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 16:51:57,254 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-07 16:51:59,416 [__main__] [INFO] Initializing SMIA software... line:75
+2024-11-07 16:51:59,418 [__main__] [INFO] The asset is not defined, so it is a generic AAS Manager line:56
+2024-11-07 16:52:02,048 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-07 16:52:03,184 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/13703066220212002365113291266 line:935
+2024-11-07 16:52:03,463 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAAB0xMzcwMzA2NjIyMDIxMjAwMjM2NTExMzI5MTI2Nm0AAAAITC0WZMIE1bg=' line:2209
+2024-11-07 16:52:04,046 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-07 16:52:04,046 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:90
+2024-11-07 16:52:04,048 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-07 16:52:04,048 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-07 16:52:04,048 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:32
+2024-11-07 16:52:04,084 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all capabilities of the asset and the industrial agent... line:101
+2024-11-07 16:52:04,584 [behaviours.init_aas_model_behaviour] [INFO] Analyzing AgentCapability [Negotiation] and its associated skill [NegotiationBasedOnCriteria]... line:122
+2024-11-07 16:52:04,586 [behaviours.init_aas_model_behaviour] [INFO] Capability[urn:ehu:gcis:submodel:1:1:agentcapabilities001 / Negotiation] information saved in the global variables. line:176
+2024-11-07 16:52:05,073 [behaviours.init_aas_model_behaviour] [INFO] Analyzing AssetCapability [EfficientTransport] and its associated skill [EfficientMovement]... line:122
+2024-11-07 16:52:05,074 [behaviours.init_aas_model_behaviour] [INFO] Capability[urn:ehu:gcis:submodel:1:1:capabilities001 / CapabilityDefinitions / EfficientTransport] information saved in the global variables. line:176
+2024-11-07 16:52:05,074 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all connections of the asset... line:191
+2024-11-07 16:52:05,579 [logic.exceptions] [ERROR] The InterfaceForHTTP object is invalid because the given object does not have required 'EndpointMetadata' element line:104
+2024-11-07 16:52:05,579 [spade.behaviour] [ERROR] Exception running behaviour OneShotBehaviour/InitAASModelBehaviour: ("The InterfaceForHTTP object is invalid because the given object does not have required 'EndpointMetadata' element", 'missing submodel element', "InterfaceForHTTP does not have required 'EndpointMetadata'") line:291
+2024-11-07 16:52:05,582 [spade.behaviour] [ERROR] Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 285, in _step
+    await self._run()
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 274, in _run
+    await self.run()
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\init_aas_model_behaviour.py", line 64, in run
+    await self.get_and_configure_asset_connections()
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\init_aas_model_behaviour.py", line 210, in get_and_configure_asset_connections
+    await http_connection_class.configure_connection_by_aas_model(interface_elem)
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\assetconnection\http_asset_connection.py", line 36, in configure_connection_by_aas_model
+    await self.check_interface_element(interface_aas_elem)
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\assetconnection\asset_connection.py", line 105, in check_interface_element
+    await cls.check_submodel_element_exist_by_semantic_id(interface_elem, 'EndpointMetadata',
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\assetconnection\asset_connection.py", line 195, in check_submodel_element_exist_by_semantic_id
+    raise AssetConnectionError(f"The {submodel_elem_col.id_short} object is invalid because the given "
+logic.exceptions.AssetConnectionError: ("The InterfaceForHTTP object is invalid because the given object does not have required 'EndpointMetadata' element", 'missing submodel element', "InterfaceForHTTP does not have required 'EndpointMetadata'")
+ line:296
+2024-11-07 16:52:05,582 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: ("The InterfaceForHTTP object is invalid because the given object does not have required 'EndpointMetadata' element", 'missing submodel element', "InterfaceForHTTP does not have required 'EndpointMetadata'") line:154
+2024-11-07 16:52:05,582 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: None line:154
+2024-11-07 16:52:05,596 [states.state_booting] [INFO] gcis1@xmpp.jp agent has finished it Boot state. line:68
+2024-11-07 16:52:05,596 [spade.behaviour] [INFO] FSM transiting from BOOTING to RUNNING. line:591
+2024-11-07 16:52:05,596 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-07 16:52:05,597 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-07 16:52:05,598 [states.state_running] [INFO] This DT has negotiation capability. line:61
+2024-11-07 16:52:05,598 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-07 16:52:05,598 [behaviours.negotiating_behaviour] [INFO] NegotiationBehaviour starting... line:42
+2024-11-07 16:52:15,596 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 16:52:15,596 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 16:52:19,136 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-07 16:52:19,136 [gcis1] [INFO] client shutting down (on request) line:975
+2024-11-07 16:52:19,136 [gcis1.StanzaStream] [INFO] stopping SM stream line:2473
+2024-11-07 16:52:19,137 [gcis1] [INFO] stopping stream line:989
+2024-11-07 16:52:19,137 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-07 16:52:19,137 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-07 16:52:19,138 [states.state_running] [INFO] This DT has negotiation capability. line:61
+2024-11-07 16:52:19,138 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-07 16:52:19,138 [behaviours.negotiating_behaviour] [INFO] NegotiationBehaviour starting... line:42
+2024-11-07 16:52:21,257 [__main__] [INFO] Initializing SMIA software... line:75
+2024-11-07 16:52:21,259 [__main__] [INFO] The asset is not defined, so it is a generic AAS Manager line:56
+2024-11-07 16:52:23,816 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-07 16:52:24,949 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/6452516031283451917113293858 line:935
+2024-11-07 16:52:25,231 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABw2NDUyNTE2MDMxMjgzNDUxOTE3MTEzMjkzODU4bQAAAAizkXi+xuZhrg==' line:2209
+2024-11-07 16:52:25,807 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-07 16:52:25,807 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:90
+2024-11-07 16:52:25,808 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-07 16:52:25,808 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-07 16:52:25,808 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:32
+2024-11-07 16:52:25,846 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all capabilities of the asset and the industrial agent... line:101
+2024-11-07 16:52:26,346 [behaviours.init_aas_model_behaviour] [INFO] Analyzing AgentCapability [Negotiation] and its associated skill [NegotiationBasedOnCriteria]... line:122
+2024-11-07 16:52:26,347 [behaviours.init_aas_model_behaviour] [INFO] Capability[urn:ehu:gcis:submodel:1:1:agentcapabilities001 / Negotiation] information saved in the global variables. line:176
+2024-11-07 16:52:26,851 [behaviours.init_aas_model_behaviour] [INFO] Analyzing AssetCapability [EfficientTransport] and its associated skill [EfficientMovement]... line:122
+2024-11-07 16:52:26,852 [behaviours.init_aas_model_behaviour] [INFO] Capability[urn:ehu:gcis:submodel:1:1:capabilities001 / CapabilityDefinitions / EfficientTransport] information saved in the global variables. line:176
+2024-11-07 16:52:26,852 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all connections of the asset... line:191
+2024-11-07 16:52:27,343 [logic.exceptions] [ERROR] The EndpointMetadata object is invalid because the given object does not have required 'base' element line:104
+2024-11-07 16:52:27,343 [spade.behaviour] [ERROR] Exception running behaviour OneShotBehaviour/InitAASModelBehaviour: ("The EndpointMetadata object is invalid because the given object does not have required 'base' element", 'missing submodel element', "EndpointMetadata does not have required 'base'") line:291
+2024-11-07 16:52:27,346 [spade.behaviour] [ERROR] Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 285, in _step
+    await self._run()
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 274, in _run
+    await self.run()
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\init_aas_model_behaviour.py", line 64, in run
+    await self.get_and_configure_asset_connections()
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\init_aas_model_behaviour.py", line 210, in get_and_configure_asset_connections
+    await http_connection_class.configure_connection_by_aas_model(interface_elem)
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\assetconnection\http_asset_connection.py", line 46, in configure_connection_by_aas_model
+    await self.check_endpoint_metadata(endpoint_metadata_elem)
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\assetconnection\asset_connection.py", line 127, in check_endpoint_metadata
+    await cls.check_submodel_element_exist_by_semantic_id(endpoint_metadata, 'base',
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\assetconnection\asset_connection.py", line 195, in check_submodel_element_exist_by_semantic_id
+    raise AssetConnectionError(f"The {submodel_elem_col.id_short} object is invalid because the given "
+logic.exceptions.AssetConnectionError: ("The EndpointMetadata object is invalid because the given object does not have required 'base' element", 'missing submodel element', "EndpointMetadata does not have required 'base'")
+ line:296
+2024-11-07 16:52:27,346 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: ("The EndpointMetadata object is invalid because the given object does not have required 'base' element", 'missing submodel element', "EndpointMetadata does not have required 'base'") line:154
+2024-11-07 16:52:27,346 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: None line:154
+2024-11-07 16:52:27,360 [states.state_booting] [INFO] gcis1@xmpp.jp agent has finished it Boot state. line:68
+2024-11-07 16:52:27,361 [spade.behaviour] [INFO] FSM transiting from BOOTING to RUNNING. line:591
+2024-11-07 16:52:27,361 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-07 16:52:27,361 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-07 16:52:27,363 [states.state_running] [INFO] This DT has negotiation capability. line:61
+2024-11-07 16:52:27,363 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-07 16:52:27,363 [behaviours.negotiating_behaviour] [INFO] NegotiationBehaviour starting... line:42
+2024-11-07 16:52:37,339 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 16:52:37,339 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 16:52:42,350 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-07 16:52:42,350 [gcis1] [INFO] client shutting down (on request) line:975
+2024-11-07 16:52:42,350 [gcis1.StanzaStream] [INFO] stopping SM stream line:2473
+2024-11-07 16:52:42,351 [gcis1] [INFO] stopping stream line:989
+2024-11-07 16:52:42,351 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-07 16:52:42,351 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-07 16:52:42,352 [states.state_running] [INFO] This DT has negotiation capability. line:61
+2024-11-07 16:52:42,352 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-07 16:52:42,353 [behaviours.negotiating_behaviour] [INFO] NegotiationBehaviour starting... line:42
+2024-11-07 16:52:44,405 [__main__] [INFO] Initializing SMIA software... line:75
+2024-11-07 16:52:44,408 [__main__] [INFO] The asset is not defined, so it is a generic AAS Manager line:56
+2024-11-07 16:52:46,923 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-07 16:52:48,008 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/6479051197038618156113295746 line:935
+2024-11-07 16:52:48,279 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABw2NDc5MDUxMTk3MDM4NjE4MTU2MTEzMjk1NzQ2bQAAAAiB592WRe+XBw==' line:2209
+2024-11-07 16:52:48,832 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-07 16:52:48,833 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:90
+2024-11-07 16:52:48,833 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-07 16:52:48,833 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-07 16:52:48,833 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:32
+2024-11-07 16:52:48,872 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all capabilities of the asset and the industrial agent... line:101
+2024-11-07 16:52:49,383 [behaviours.init_aas_model_behaviour] [INFO] Analyzing AgentCapability [Negotiation] and its associated skill [NegotiationBasedOnCriteria]... line:122
+2024-11-07 16:52:49,385 [behaviours.init_aas_model_behaviour] [INFO] Capability[urn:ehu:gcis:submodel:1:1:agentcapabilities001 / Negotiation] information saved in the global variables. line:176
+2024-11-07 16:52:49,890 [behaviours.init_aas_model_behaviour] [INFO] Analyzing AssetCapability [EfficientTransport] and its associated skill [EfficientMovement]... line:122
+2024-11-07 16:52:49,892 [behaviours.init_aas_model_behaviour] [INFO] Capability[urn:ehu:gcis:submodel:1:1:capabilities001 / CapabilityDefinitions / EfficientTransport] information saved in the global variables. line:176
+2024-11-07 16:52:49,892 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all connections of the asset... line:191
+2024-11-07 16:52:50,398 [logic.exceptions] [ERROR] The InterfaceForHTTP object is invalid because the given object does not have required 'InteractionMetadata' element line:104
+2024-11-07 16:52:50,398 [spade.behaviour] [ERROR] Exception running behaviour OneShotBehaviour/InitAASModelBehaviour: ("The InterfaceForHTTP object is invalid because the given object does not have required 'InteractionMetadata' element", 'missing submodel element', "InterfaceForHTTP does not have required 'InteractionMetadata'") line:291
+2024-11-07 16:52:50,399 [spade.behaviour] [ERROR] Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 285, in _step
+    await self._run()
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 274, in _run
+    await self.run()
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\init_aas_model_behaviour.py", line 64, in run
+    await self.get_and_configure_asset_connections()
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\init_aas_model_behaviour.py", line 210, in get_and_configure_asset_connections
+    await http_connection_class.configure_connection_by_aas_model(interface_elem)
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\assetconnection\http_asset_connection.py", line 36, in configure_connection_by_aas_model
+    await self.check_interface_element(interface_aas_elem)
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\assetconnection\asset_connection.py", line 107, in check_interface_element
+    await cls.check_submodel_element_exist_by_semantic_id(interface_elem, 'InteractionMetadata',
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\assetconnection\asset_connection.py", line 195, in check_submodel_element_exist_by_semantic_id
+    raise AssetConnectionError(f"The {submodel_elem_col.id_short} object is invalid because the given "
+logic.exceptions.AssetConnectionError: ("The InterfaceForHTTP object is invalid because the given object does not have required 'InteractionMetadata' element", 'missing submodel element', "InterfaceForHTTP does not have required 'InteractionMetadata'")
+ line:296
+2024-11-07 16:52:50,400 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: ("The InterfaceForHTTP object is invalid because the given object does not have required 'InteractionMetadata' element", 'missing submodel element', "InterfaceForHTTP does not have required 'InteractionMetadata'") line:154
+2024-11-07 16:52:50,400 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: None line:154
+2024-11-07 16:52:50,400 [states.state_booting] [INFO] gcis1@xmpp.jp agent has finished it Boot state. line:68
+2024-11-07 16:52:50,400 [spade.behaviour] [INFO] FSM transiting from BOOTING to RUNNING. line:591
+2024-11-07 16:52:50,400 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-07 16:52:50,400 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-07 16:52:50,402 [states.state_running] [INFO] This DT has negotiation capability. line:61
+2024-11-07 16:52:50,402 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-07 16:52:50,403 [behaviours.negotiating_behaviour] [INFO] NegotiationBehaviour starting... line:42
+2024-11-07 16:53:00,389 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 16:53:00,389 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 16:53:00,687 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-07 16:53:00,688 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-07 16:53:00,688 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-07 16:53:00,689 [states.state_running] [INFO] This DT has negotiation capability. line:61
+2024-11-07 16:53:00,689 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-07 16:53:00,689 [behaviours.negotiating_behaviour] [INFO] NegotiationBehaviour starting... line:42
+2024-11-07 17:12:42,754 [__main__] [INFO] Initializing SMIA software... line:75
+2024-11-07 17:12:42,756 [__main__] [INFO] The asset is not defined, so it is a generic AAS Manager line:56
+2024-11-07 17:12:45,391 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-07 17:12:46,506 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/10545567568362320179113376290 line:935
+2024-11-07 17:12:46,784 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAAB0xMDU0NTU2NzU2ODM2MjMyMDE3OTExMzM3NjI5MG0AAAAI89rhgXJk+AE=' line:2209
+2024-11-07 17:12:47,353 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-07 17:12:47,353 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:90
+2024-11-07 17:12:47,354 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-07 17:12:47,354 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-07 17:12:47,354 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:32
+2024-11-07 17:12:47,383 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all capabilities of the asset and the industrial agent... line:101
+2024-11-07 17:12:47,894 [behaviours.init_aas_model_behaviour] [INFO] Analyzing AgentCapability [Negotiation] and its associated skill [NegotiationBasedOnCriteria]... line:122
+2024-11-07 17:12:47,895 [behaviours.init_aas_model_behaviour] [INFO] Capability[urn:ehu:gcis:submodel:1:1:agentcapabilities001 / Negotiation] information saved in the global variables. line:176
+2024-11-07 17:12:48,386 [behaviours.init_aas_model_behaviour] [INFO] Analyzing AssetCapability [EfficientTransport] and its associated skill [EfficientMovement]... line:122
+2024-11-07 17:12:48,386 [behaviours.init_aas_model_behaviour] [INFO] Capability[urn:ehu:gcis:submodel:1:1:capabilities001 / CapabilityDefinitions / EfficientTransport] information saved in the global variables. line:176
+2024-11-07 17:12:48,387 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all connections of the asset... line:191
+2024-11-07 17:12:48,891 [behaviours.init_aas_model_behaviour] [INFO] All asset connections defined in the AAS model have been configured and saved. line:217
+2024-11-07 17:12:48,892 [behaviours.init_aas_model_behaviour] [INFO] AAS model initialized. line:70
+2024-11-07 17:12:48,892 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: None line:154
+2024-11-07 17:12:48,893 [states.state_booting] [INFO] gcis1@xmpp.jp agent has finished it Boot state. line:68
+2024-11-07 17:12:48,893 [spade.behaviour] [INFO] FSM transiting from BOOTING to RUNNING. line:591
+2024-11-07 17:12:48,893 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-07 17:12:48,893 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-07 17:12:48,894 [states.state_running] [INFO] This DT has negotiation capability. line:61
+2024-11-07 17:12:48,894 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-07 17:12:48,894 [behaviours.negotiating_behaviour] [INFO] NegotiationBehaviour starting... line:42
+2024-11-07 17:12:58,889 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:12:58,889 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:13:08,887 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:13:08,887 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:13:18,887 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:13:18,888 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:13:27,169 [behaviours.svc_acl_handling_behaviour] [ACLINFO]          + Message received on AAS Manager Agent (ACLHandlingBehaviour) from gui_agent@xmpp.jp/2269565415236702271113377346 line:73
+2024-11-07 17:13:27,169 [behaviours.svc_acl_handling_behaviour] [ACLINFO]                  |___ Message received with content: {"serviceID": "capabilityRequest", "serviceType": "AssetRelatedService", "serviceData": {"serviceCategory": "service-request", "serviceParams": {"capabilityName": "EfficientTransport", "capabilityType": "AssetCapability", "skillInfo": {"skillName": "EfficientMovement", "smeType": "Operation", "skillParameters": {"inputs": {"destinationcoordinates": "-1.59,0.59"}}}}}} line:75
+2024-11-07 17:13:27,169 [behaviours.svc_acl_handling_behaviour] [ACLINFO] The performative of the message is Request, so the DT needs to perform some action. line:83
+2024-11-07 17:13:27,170 [behaviours.svc_acl_handling_behaviour] [ACLINFO] The agent has received a request to perform a capability line:88
+2024-11-07 17:13:27,170 [behaviours.handle_capability_behaviour] [INFO] HandleCapabilityBehaviour starting... line:41
+2024-11-07 17:13:27,170 [logic.exceptions] [ERROR] The received capability data is invalid due to missing #capabilityConstraints field in request message. line:30
+2024-11-07 17:13:27,170 [logic.exceptions] [ERROR] The received capability data is invalid due to missing #capabilityConstraints field in request message. line:48
+2024-11-07 17:13:27,170 [logic.exceptions] [INFO] Due to an incorrect execution of the capability [EfficientTransport], the requester shall be informed with a Failure message. line:50
+2024-11-07 17:13:27,725 [logic.exceptions] [INFO] Failure message sent to the requester of the capability []. line:55
+2024-11-07 17:13:27,725 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/HandleCapabilityBehaviour with exit code: 10 line:154
+2024-11-07 17:13:27,725 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/HandleCapabilityBehaviour with exit code: None line:154
+2024-11-07 17:13:28,895 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:13:37,178 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:13:38,895 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:13:47,173 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:13:48,886 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:13:57,166 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:13:58,886 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:14:07,170 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:14:08,892 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:14:16,359 [behaviours.svc_acl_handling_behaviour] [ACLINFO]          + Message received on AAS Manager Agent (ACLHandlingBehaviour) from gui_agent@xmpp.jp/2269565415236702271113377346 line:73
+2024-11-07 17:14:16,360 [behaviours.svc_acl_handling_behaviour] [ACLINFO]                  |___ Message received with content: {"serviceID": "capabilityRequest", "serviceType": "AssetRelatedService", "serviceData": {"serviceCategory": "service-request", "serviceParams": {"capabilityName": "EfficientTransport", "capabilityType": "AssetCapability", "capabilityConstraints": {"EfficientTransportConstraintLocation": "-1.59,0.59"}, "skillInfo": {"skillName": "EfficientMovement", "smeType": "Operation", "skillParameters": {"inputs": {"destinationcoordinates": "-1.59,0.59"}}}}}} line:75
+2024-11-07 17:14:16,360 [behaviours.svc_acl_handling_behaviour] [ACLINFO] The performative of the message is Request, so the DT needs to perform some action. line:83
+2024-11-07 17:14:16,361 [behaviours.svc_acl_handling_behaviour] [ACLINFO] The agent has received a request to perform a capability line:88
+2024-11-07 17:14:16,363 [behaviours.handle_capability_behaviour] [INFO] HandleCapabilityBehaviour starting... line:41
+2024-11-07 17:14:16,368 [behaviours.handle_capability_behaviour] [INTERACTIONINFO] The Asset connection of the Skill Interface has been obtained. line:137
+2024-11-07 17:14:16,369 [behaviours.handle_capability_behaviour] [INTERACTIONINFO] Executing skill of the capability through a request of an asset service... line:138
+2024-11-07 17:14:37,398 [spade.behaviour] [ERROR] Exception running behaviour OneShotBehaviour/HandleCapabilityBehaviour: HTTPConnectionPool(host='192.168.1.2', port=5000): Max retries exceeded with url: /robotactions/move?destinationcoordinates=-1.59%2C0.59 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x00000196D8D60DC0>, 'Connection to 192.168.1.2 timed out. (connect timeout=None)')) line:291
+2024-11-07 17:14:37,439 [spade.behaviour] [ERROR] Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\urllib3\connection.py", line 174, in _new_conn
+    conn = connection.create_connection(
+  File "C:\Python310\lib\site-packages\urllib3\util\connection.py", line 95, in create_connection
+    raise err
+  File "C:\Python310\lib\site-packages\urllib3\util\connection.py", line 85, in create_connection
+    sock.connect(sa)
+TimeoutError: [WinError 10060] Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexión establecida ya que el host conectado no ha podido responder
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\urllib3\connectionpool.py", line 716, in urlopen
+    httplib_response = self._make_request(
+  File "C:\Python310\lib\site-packages\urllib3\connectionpool.py", line 416, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "C:\Python310\lib\site-packages\urllib3\connection.py", line 244, in request
+    super(HTTPConnection, self).request(method, url, body=body, headers=headers)
+  File "C:\Python310\lib\http\client.py", line 1283, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "C:\Python310\lib\http\client.py", line 1329, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "C:\Python310\lib\http\client.py", line 1278, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "C:\Python310\lib\http\client.py", line 1038, in _send_output
+    self.send(msg)
+  File "C:\Python310\lib\http\client.py", line 976, in send
+    self.connect()
+  File "C:\Python310\lib\site-packages\urllib3\connection.py", line 205, in connect
+    conn = self._new_conn()
+  File "C:\Python310\lib\site-packages\urllib3\connection.py", line 179, in _new_conn
+    raise ConnectTimeoutError(
+urllib3.exceptions.ConnectTimeoutError: (<urllib3.connection.HTTPConnection object at 0x00000196D8D60DC0>, 'Connection to 192.168.1.2 timed out. (connect timeout=None)')
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\requests\adapters.py", line 667, in send
+    resp = conn.urlopen(
+  File "C:\Python310\lib\site-packages\urllib3\connectionpool.py", line 802, in urlopen
+    retries = retries.increment(
+  File "C:\Python310\lib\site-packages\urllib3\util\retry.py", line 594, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='192.168.1.2', port=5000): Max retries exceeded with url: /robotactions/move?destinationcoordinates=-1.59%2C0.59 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x00000196D8D60DC0>, 'Connection to 192.168.1.2 timed out. (connect timeout=None)'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 285, in _step
+    await self._run()
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 274, in _run
+    await self.run()
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\handle_capability_behaviour.py", line 51, in run
+    await self.handle_request()
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\handle_capability_behaviour.py", line 140, in handle_request
+    skill_execution_result = await asset_connection_class.execute_skill_by_asset_service(
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\assetconnection\http_asset_connection.py", line 82, in execute_skill_by_asset_service
+    http_response = await self.send_http_request()
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\assetconnection\http_asset_connection.py", line 205, in send_http_request
+    return requests.get(url=self.request_uri, headers=self.request_headers, params=self.request_params)
+  File "C:\Python310\lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Python310\lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Python310\lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Python310\lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Python310\lib\site-packages\requests\adapters.py", line 688, in send
+    raise ConnectTimeout(e, request=request)
+requests.exceptions.ConnectTimeout: HTTPConnectionPool(host='192.168.1.2', port=5000): Max retries exceeded with url: /robotactions/move?destinationcoordinates=-1.59%2C0.59 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x00000196D8D60DC0>, 'Connection to 192.168.1.2 timed out. (connect timeout=None)'))
+ line:296
+2024-11-07 17:14:37,444 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/HandleCapabilityBehaviour with exit code: HTTPConnectionPool(host='192.168.1.2', port=5000): Max retries exceeded with url: /robotactions/move?destinationcoordinates=-1.59%2C0.59 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x00000196D8D60DC0>, 'Connection to 192.168.1.2 timed out. (connect timeout=None)')) line:154
+2024-11-07 17:14:37,444 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/HandleCapabilityBehaviour with exit code: None line:154
+2024-11-07 17:14:37,444 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:14:47,425 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:14:47,426 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:14:57,426 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:14:57,426 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:15:07,430 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:15:07,431 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:15:17,427 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:15:17,427 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:15:27,424 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:15:27,424 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:15:37,416 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:15:37,416 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:15:47,429 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:15:47,430 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:15:57,418 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:15:57,420 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:16:07,417 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:16:07,417 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:16:17,417 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:16:17,418 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:16:27,424 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:16:27,424 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:16:37,429 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:16:37,430 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:16:47,421 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:16:47,422 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:16:57,429 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:16:57,430 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:17:01,306 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-07 17:17:07,418 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:17:11,296 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:17:17,421 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:17:21,292 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:17:27,421 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:17:31,291 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:17:37,430 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:17:41,303 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:17:47,422 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:17:51,305 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:17:57,427 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:18:01,292 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:18:07,421 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:18:11,296 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:18:17,416 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:18:21,297 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:18:27,421 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:18:31,294 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:18:37,430 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:18:41,302 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:18:47,416 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:18:51,293 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:18:57,420 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:19:01,303 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:19:07,423 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:19:11,292 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:19:21,714 [__main__] [INFO] Initializing SMIA software... line:75
+2024-11-07 17:19:21,717 [__main__] [INFO] The asset is not defined, so it is a generic AAS Manager line:56
+2024-11-07 17:19:24,331 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-07 17:19:25,447 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/776693019413300008645010692 line:935
+2024-11-07 17:19:25,724 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABs3NzY2OTMwMTk0MTMzMDAwMDg2NDUwMTA2OTJtAAAACHjjF4RNzIGc' line:2209
+2024-11-07 17:19:26,291 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-07 17:19:26,292 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:90
+2024-11-07 17:19:26,292 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-07 17:19:26,292 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-07 17:19:26,292 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:32
+2024-11-07 17:19:26,333 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all capabilities of the asset and the industrial agent... line:101
+2024-11-07 17:19:26,825 [behaviours.init_aas_model_behaviour] [INFO] Analyzing AgentCapability [Negotiation] and its associated skill [NegotiationBasedOnCriteria]... line:122
+2024-11-07 17:19:26,827 [behaviours.init_aas_model_behaviour] [INFO] Capability[urn:ehu:gcis:submodel:1:1:agentcapabilities001 / Negotiation] information saved in the global variables. line:176
+2024-11-07 17:19:27,327 [behaviours.init_aas_model_behaviour] [INFO] Analyzing AssetCapability [EfficientTransport] and its associated skill [EfficientMovement]... line:122
+2024-11-07 17:19:27,328 [behaviours.init_aas_model_behaviour] [INFO] Capability[urn:ehu:gcis:submodel:1:1:capabilities001 / CapabilityDefinitions / EfficientTransport] information saved in the global variables. line:176
+2024-11-07 17:19:27,328 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all connections of the asset... line:191
+2024-11-07 17:19:27,836 [behaviours.init_aas_model_behaviour] [INFO] All asset connections defined in the AAS model have been configured and saved. line:217
+2024-11-07 17:19:27,837 [behaviours.init_aas_model_behaviour] [INFO] AAS model initialized. line:70
+2024-11-07 17:19:27,837 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: None line:154
+2024-11-07 17:19:27,839 [states.state_booting] [INFO] gcis1@xmpp.jp agent has finished it Boot state. line:68
+2024-11-07 17:19:27,839 [spade.behaviour] [INFO] FSM transiting from BOOTING to RUNNING. line:591
+2024-11-07 17:19:27,840 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-07 17:19:27,840 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-07 17:19:27,840 [states.state_running] [INFO] This DT has negotiation capability. line:61
+2024-11-07 17:19:27,841 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-07 17:19:27,841 [behaviours.negotiating_behaviour] [INFO] NegotiationBehaviour starting... line:42
+2024-11-07 17:19:35,649 [behaviours.svc_acl_handling_behaviour] [ACLINFO]          + Message received on AAS Manager Agent (ACLHandlingBehaviour) from gui_agent@xmpp.jp/2269565415236702271113377346 line:73
+2024-11-07 17:19:35,649 [behaviours.svc_acl_handling_behaviour] [ACLINFO]                  |___ Message received with content: {"serviceID": "capabilityRequest", "serviceType": "AssetRelatedService", "serviceData": {"serviceCategory": "service-request", "serviceParams": {"capabilityName": "EfficientTransport", "capabilityType": "AssetCapability", "capabilityConstraints": {"EfficientTransportConstraintLocation": "-1.59,0.59"}, "skillInfo": {"skillName": "EfficientMovement", "smeType": "Operation", "skillParameters": {"inputs": {"destinationcoordinates": "-1.59,0.59"}}}}}} line:75
+2024-11-07 17:19:35,649 [behaviours.svc_acl_handling_behaviour] [ACLINFO] The performative of the message is Request, so the DT needs to perform some action. line:83
+2024-11-07 17:19:35,649 [behaviours.svc_acl_handling_behaviour] [ACLINFO] The agent has received a request to perform a capability line:88
+2024-11-07 17:19:35,650 [behaviours.handle_capability_behaviour] [INFO] HandleCapabilityBehaviour starting... line:41
+2024-11-07 17:19:35,651 [behaviours.handle_capability_behaviour] [INTERACTIONINFO] The Asset connection of the Skill Interface has been obtained. line:137
+2024-11-07 17:19:35,651 [behaviours.handle_capability_behaviour] [INTERACTIONINFO] Executing skill of the capability through a request of an asset service... line:138
+2024-11-07 17:19:56,691 [assetconnection.http_asset_connection] [ERROR] HTTPConnectionPool(host='192.168.1.2', port=5000): Max retries exceeded with url: /robotactions/move?destinationcoordinates=-1.59%2C0.59 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x000002BD63F253C0>, 'Connection to 192.168.1.2 timed out. (connect timeout=None)')) line:224
+2024-11-07 17:19:56,692 [logic.exceptions] [ERROR] The request to asset timed out, so the asset is not available. line:104
+2024-11-07 17:19:56,692 [spade.behaviour] [ERROR] Exception running behaviour OneShotBehaviour/HandleCapabilityBehaviour: ('The request to asset timed out, so the asset is not available.', 'Asset not available', 'The asset connection timed out') line:291
+2024-11-07 17:19:56,698 [spade.behaviour] [ERROR] Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\urllib3\connection.py", line 174, in _new_conn
+    conn = connection.create_connection(
+  File "C:\Python310\lib\site-packages\urllib3\util\connection.py", line 95, in create_connection
+    raise err
+  File "C:\Python310\lib\site-packages\urllib3\util\connection.py", line 85, in create_connection
+    sock.connect(sa)
+TimeoutError: [WinError 10060] Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexión establecida ya que el host conectado no ha podido responder
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\urllib3\connectionpool.py", line 716, in urlopen
+    httplib_response = self._make_request(
+  File "C:\Python310\lib\site-packages\urllib3\connectionpool.py", line 416, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "C:\Python310\lib\site-packages\urllib3\connection.py", line 244, in request
+    super(HTTPConnection, self).request(method, url, body=body, headers=headers)
+  File "C:\Python310\lib\http\client.py", line 1283, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "C:\Python310\lib\http\client.py", line 1329, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "C:\Python310\lib\http\client.py", line 1278, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "C:\Python310\lib\http\client.py", line 1038, in _send_output
+    self.send(msg)
+  File "C:\Python310\lib\http\client.py", line 976, in send
+    self.connect()
+  File "C:\Python310\lib\site-packages\urllib3\connection.py", line 205, in connect
+    conn = self._new_conn()
+  File "C:\Python310\lib\site-packages\urllib3\connection.py", line 179, in _new_conn
+    raise ConnectTimeoutError(
+urllib3.exceptions.ConnectTimeoutError: (<urllib3.connection.HTTPConnection object at 0x000002BD63F253C0>, 'Connection to 192.168.1.2 timed out. (connect timeout=None)')
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\requests\adapters.py", line 667, in send
+    resp = conn.urlopen(
+  File "C:\Python310\lib\site-packages\urllib3\connectionpool.py", line 802, in urlopen
+    retries = retries.increment(
+  File "C:\Python310\lib\site-packages\urllib3\util\retry.py", line 594, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='192.168.1.2', port=5000): Max retries exceeded with url: /robotactions/move?destinationcoordinates=-1.59%2C0.59 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x000002BD63F253C0>, 'Connection to 192.168.1.2 timed out. (connect timeout=None)'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\assetconnection\http_asset_connection.py", line 207, in send_http_request
+    return requests.get(url=self.request_uri, headers=self.request_headers, params=self.request_params)
+  File "C:\Python310\lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Python310\lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Python310\lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Python310\lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Python310\lib\site-packages\requests\adapters.py", line 688, in send
+    raise ConnectTimeout(e, request=request)
+requests.exceptions.ConnectTimeout: HTTPConnectionPool(host='192.168.1.2', port=5000): Max retries exceeded with url: /robotactions/move?destinationcoordinates=-1.59%2C0.59 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x000002BD63F253C0>, 'Connection to 192.168.1.2 timed out. (connect timeout=None)'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 285, in _step
+    await self._run()
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 274, in _run
+    await self.run()
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\handle_capability_behaviour.py", line 51, in run
+    await self.handle_request()
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\handle_capability_behaviour.py", line 140, in handle_request
+    skill_execution_result = await asset_connection_class.execute_skill_by_asset_service(
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\assetconnection\http_asset_connection.py", line 83, in execute_skill_by_asset_service
+    http_response = await self.send_http_request()
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\assetconnection\http_asset_connection.py", line 225, in send_http_request
+    raise AssetConnectionError("The request to asset timed out, so the asset is not available.",
+logic.exceptions.AssetConnectionError: ('The request to asset timed out, so the asset is not available.', 'Asset not available', 'The asset connection timed out')
+ line:296
+2024-11-07 17:19:56,702 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/HandleCapabilityBehaviour with exit code: ('The request to asset timed out, so the asset is not available.', 'Asset not available', 'The asset connection timed out') line:154
+2024-11-07 17:19:56,702 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/HandleCapabilityBehaviour with exit code: None line:154
+2024-11-07 17:19:56,705 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:20:06,701 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:20:06,701 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:20:16,704 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:20:16,705 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:20:26,706 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:20:26,706 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:20:36,708 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:20:36,708 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:20:46,707 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:20:46,708 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:20:56,700 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:20:56,700 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:21:06,709 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:21:06,709 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:21:16,704 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:21:16,705 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:21:26,699 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:21:26,699 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:21:36,702 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:21:36,703 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:21:46,703 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:21:46,703 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:21:56,697 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:21:56,697 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:22:06,706 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:22:06,706 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:22:16,700 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:22:16,700 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:22:26,700 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:22:26,700 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:22:36,704 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:22:36,704 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:22:46,708 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:22:46,708 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:22:56,702 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:22:56,702 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:23:06,709 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:23:06,709 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:23:16,700 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:23:16,700 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:23:26,704 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:23:26,704 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:23:36,702 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:23:36,703 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:23:46,707 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:23:46,708 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:23:56,708 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:23:56,708 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:24:06,699 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:24:06,699 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:24:16,710 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:24:16,710 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:24:26,291 [gcis1.StanzaStream] [WARNING] unhandleable IQ request: from=JID(localpart=None, domain='xmpp.jp', resource=None), type_=<IQType.GET: 'get'>, payload=<aioxmpp.ping.xso.Ping object at 0x000002BD63F251B0> line:1012
+2024-11-07 17:24:26,703 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:24:26,703 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:24:36,700 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:24:36,700 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:24:46,705 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:24:46,705 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:24:56,711 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:24:56,712 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:25:06,704 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:25:06,704 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:25:16,700 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:25:16,700 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:25:26,707 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:25:26,707 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:25:36,697 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:25:36,697 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:25:46,708 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:25:46,709 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:25:56,699 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:25:56,699 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:26:01,991 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-07 17:26:05,915 [__main__] [INFO] Initializing SMIA software... line:75
+2024-11-07 17:26:05,918 [__main__] [INFO] The asset is not defined, so it is a generic AAS Manager line:56
+2024-11-07 17:26:08,492 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-07 17:26:09,602 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/10295275281936322227113428002 line:935
+2024-11-07 17:26:09,880 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAAB0xMDI5NTI3NTI4MTkzNjMyMjIyNzExMzQyODAwMm0AAAAIs+ZmLaHRG6I=' line:2209
+2024-11-07 17:26:10,447 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-07 17:26:10,447 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:90
+2024-11-07 17:26:10,448 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-07 17:26:10,448 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-07 17:26:10,448 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:32
+2024-11-07 17:26:10,477 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all capabilities of the asset and the industrial agent... line:101
+2024-11-07 17:26:10,975 [behaviours.init_aas_model_behaviour] [INFO] Analyzing AgentCapability [Negotiation] and its associated skill [NegotiationBasedOnCriteria]... line:122
+2024-11-07 17:26:10,976 [behaviours.init_aas_model_behaviour] [INFO] Capability[urn:ehu:gcis:submodel:1:1:agentcapabilities001 / Negotiation] information saved in the global variables. line:176
+2024-11-07 17:26:11,465 [behaviours.init_aas_model_behaviour] [INFO] Analyzing AssetCapability [EfficientTransport] and its associated skill [EfficientMovement]... line:122
+2024-11-07 17:26:11,467 [behaviours.init_aas_model_behaviour] [INFO] Capability[urn:ehu:gcis:submodel:1:1:capabilities001 / CapabilityDefinitions / EfficientTransport] information saved in the global variables. line:176
+2024-11-07 17:26:11,467 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all connections of the asset... line:191
+2024-11-07 17:26:11,974 [behaviours.init_aas_model_behaviour] [INFO] All asset connections defined in the AAS model have been configured and saved. line:217
+2024-11-07 17:26:11,974 [behaviours.init_aas_model_behaviour] [INFO] AAS model initialized. line:70
+2024-11-07 17:26:11,975 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: None line:154
+2024-11-07 17:26:11,977 [states.state_booting] [INFO] gcis1@xmpp.jp agent has finished it Boot state. line:68
+2024-11-07 17:26:11,977 [spade.behaviour] [INFO] FSM transiting from BOOTING to RUNNING. line:591
+2024-11-07 17:26:11,978 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-07 17:26:11,978 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-07 17:26:11,979 [states.state_running] [INFO] This DT has negotiation capability. line:61
+2024-11-07 17:26:11,980 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-07 17:26:11,980 [behaviours.negotiating_behaviour] [INFO] NegotiationBehaviour starting... line:42
+2024-11-07 17:26:14,387 [behaviours.svc_acl_handling_behaviour] [ACLINFO]          + Message received on AAS Manager Agent (ACLHandlingBehaviour) from gui_agent@xmpp.jp/2269565415236702271113377346 line:73
+2024-11-07 17:26:14,387 [behaviours.svc_acl_handling_behaviour] [ACLINFO]                  |___ Message received with content: {"serviceID": "capabilityRequest", "serviceType": "AssetRelatedService", "serviceData": {"serviceCategory": "service-request", "serviceParams": {"capabilityName": "EfficientTransport", "capabilityType": "AssetCapability", "capabilityConstraints": {"EfficientTransportConstraintLocation": "-1.59,0.59"}, "skillInfo": {"skillName": "EfficientMovement", "smeType": "Operation", "skillParameters": {"inputs": {"destinationcoordinates": "-1.59,0.59"}}}}}} line:75
+2024-11-07 17:26:14,387 [behaviours.svc_acl_handling_behaviour] [ACLINFO] The performative of the message is Request, so the DT needs to perform some action. line:83
+2024-11-07 17:26:14,387 [behaviours.svc_acl_handling_behaviour] [ACLINFO] The agent has received a request to perform a capability line:88
+2024-11-07 17:26:14,387 [behaviours.handle_capability_behaviour] [INFO] HandleCapabilityBehaviour starting... line:42
+2024-11-07 17:26:14,388 [behaviours.handle_capability_behaviour] [INTERACTIONINFO] The Asset connection of the Skill Interface has been obtained. line:140
+2024-11-07 17:26:14,388 [behaviours.handle_capability_behaviour] [INTERACTIONINFO] Executing skill of the capability through a request of an asset service... line:141
+2024-11-07 17:26:35,446 [assetconnection.http_asset_connection] [ERROR] HTTPConnectionPool(host='192.168.1.2', port=5000): Max retries exceeded with url: /robotactions/move?destinationcoordinates=-1.59%2C0.59 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x000001ADC9595A50>, 'Connection to 192.168.1.2 timed out. (connect timeout=None)')) line:224
+2024-11-07 17:26:35,446 [logic.exceptions] [ERROR] The request to asset timed out, so the asset is not available. line:104
+2024-11-07 17:26:35,447 [logic.exceptions] [ERROR] The error [Asset not available] has appeared during the asset connection. Reason: The asset connection timed out. line:48
+2024-11-07 17:26:35,447 [logic.exceptions] [INFO] Due to an incorrect execution of the capability [EfficientTransport], the requester shall be informed with a Failure message. line:50
+2024-11-07 17:26:35,449 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:26:35,728 [logic.exceptions] [INFO] Failure message sent to the requester of the capability []. line:55
+2024-11-07 17:26:35,728 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/HandleCapabilityBehaviour with exit code: 10 line:154
+2024-11-07 17:26:35,729 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/HandleCapabilityBehaviour with exit code: None line:154
+2024-11-07 17:26:45,454 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:26:45,454 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:26:55,461 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:26:55,462 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:27:05,477 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:27:05,478 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:27:15,478 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:27:15,479 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:27:25,465 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:27:25,465 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:27:35,473 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:27:35,474 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:27:45,464 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:27:45,465 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:27:55,475 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:27:55,476 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:28:05,467 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:28:05,468 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:28:15,468 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:28:15,468 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:28:25,471 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:28:25,471 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:28:35,469 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:28:35,469 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:28:45,469 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:28:45,469 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:28:55,473 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:28:55,473 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:29:05,470 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:29:05,471 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:29:15,471 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:29:15,472 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:29:25,474 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:29:25,475 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:29:35,462 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:29:35,463 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:29:45,474 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:29:45,475 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:29:55,473 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:29:55,474 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:30:05,467 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:30:05,468 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:30:15,467 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:30:15,468 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:30:17,841 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-07 17:30:17,841 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-07 17:30:17,841 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-07 17:30:17,842 [states.state_running] [INFO] This DT has negotiation capability. line:61
+2024-11-07 17:30:17,843 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-07 17:30:17,843 [behaviours.negotiating_behaviour] [INFO] NegotiationBehaviour starting... line:42
+2024-11-07 17:30:25,471 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:30:25,471 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-07 17:30:27,851 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-07 17:30:27,852 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147

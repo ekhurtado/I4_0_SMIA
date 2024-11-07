@@ -1,8 +1,6 @@
-import json
 import logging
 import requests
-from basyx.aas.util.traversal import walk_submodel
-from lxml import etree
+from requests import ConnectTimeout
 
 from assetconnection.asset_connection import AssetConnection
 from logic.exceptions import AssetConnectionError
@@ -31,8 +29,13 @@ class HTTPAssetConnection(AssetConnection):
         self.request_headers = {}
         self.request_params = None
         self.request_method = None
+        self.request_body = None
 
     async def configure_connection_by_aas_model(self, interface_aas_elem):
+
+        # The Interface element need to be checked
+        await self.check_interface_element(interface_aas_elem)
+
         # Vamos a conseguir los datos necesarios del modelo AAS para configurar la conexion HTTP
         self.interface_title = interface_aas_elem.get_sm_element_by_semantic_id(
             AssetInterfacesInfo.SEMANTICID_INTERFACE_TITLE)
@@ -66,7 +69,8 @@ class HTTPAssetConnection(AssetConnection):
 
         if not interaction_metadata:
             raise AssetConnectionError("The skill cannot be executed by asset service because the given "
-                                       "interaction_metadata object is None", "invalid method parameter","Interaction_metadata object is None")
+                                       "InteractionMetadata object is None", "invalid method parameter",
+                                       "InteractionMetadata object is None")
 
         await self.extract_general_interaction_metadata(interaction_metadata)
 
@@ -80,7 +84,7 @@ class HTTPAssetConnection(AssetConnection):
         if http_response:
             if http_response.status_code != 200:
                 _logger.warning("The HTTP request has not been answered correctly.")
-            return await self.get_response_content(interaction_metadata, http_response)
+            return await self.get_response_content(interaction_metadata, http_response.text)
         return None
 
     async def execute_asset_service(self, interaction_metadata, service_data=None):
@@ -91,16 +95,23 @@ class HTTPAssetConnection(AssetConnection):
     async def receive_msg_from_asset(self):
         pass
 
-    # --------------------
-    # Other useful methods
-    # --------------------
+    # ---------------------
+    # HTTP specific methods
+    # ---------------------
     async def extract_general_interaction_metadata(self, interaction_metadata):
+        """
+        This method extracts the general interaction information from the interaction metadata object. Since this is an
+        HTTP Asset Connection, information about the URI, headers and method name is obtained. All information is saved
+        in the global variables of the class.
+
+        Args:
+             interaction_metadata (basyx.aas.model.SubmodelElementCollection): SubmodelElement of interactionMetadata.
+        """
         # The interaction_metada element will be an SMC of the HTTP interface.
         await self.check_interaction_metadata(interaction_metadata)
 
         # First, the full URI of the HTTP request is obtained.
         forms_elem = interaction_metadata.get_sm_element_by_semantic_id(AssetInterfacesInfo.SEMANTICID_INTERFACE_FORMS)
-        # TODO HACER AHORA: VOY POR AQUI AÑADIENDO LAS EXCEPCIONES DEL ASSETCONNECTION
         await self.get_complete_request_uri(forms_elem)
 
         # Then, headers are obtained
@@ -110,6 +121,13 @@ class HTTPAssetConnection(AssetConnection):
         await self.get_method_name(forms_elem)
 
     async def get_complete_request_uri(self, forms_elem):
+        """
+        This method gets the complete request URI from the forms element within the InteractionMetadata element. The
+        information is saved in the global variables of the class.
+
+        Args:
+            forms_elem (basyx.aas.model.submodelElementCollection): SubmodelElement of forms within InteractionMetadata.
+        """
         href_elem = forms_elem.get_sm_element_by_semantic_id(AssetInterfacesInfo.SEMANTICID_INTERFACE_HREF)
         if ('http://' in href_elem.value) or ('https://' in href_elem.value):
             self.request_uri = href_elem.value
@@ -117,24 +135,49 @@ class HTTPAssetConnection(AssetConnection):
             self.request_uri = self.base.value + href_elem.value
 
     async def get_headers(self, forms_elem):
+        """
+        This method gets the headers for the request from the forms element within the InteractionMetadata element. The
+        information is saved in the global variables of the class.
+
+        Args:
+            forms_elem (basyx.aas.model.submodelElementCollection): SubmodelElement of forms within InteractionMetadata.
+        """
         headers_elem = forms_elem.get_sm_element_by_semantic_id(
             HTTPAssetInterfaceSemantics.SEMANTICID_HTTP_INTERFACE_HEADERS)
-        request_headers = {}
+        if not headers_elem:
+            # This Interaction element does not have headers
+            return
+        # The old request headers are updated
+        self.request_headers = {}
         for header_smc in headers_elem:
             field_name = header_smc.get_sm_element_by_semantic_id(
                 HTTPAssetInterfaceSemantics.SEMANTICID_HTTP_INTERFACE_FIELD_NAME).value
             field_value = header_smc.get_sm_element_by_semantic_id(
                 HTTPAssetInterfaceSemantics.SEMANTICID_HTTP_INTERFACE_FIELD_VALUE).value
-            request_headers[field_name] = field_value
-        if len(request_headers) != 0:
-            self.request_headers.update(request_headers)
+            self.request_headers[field_name] = field_value
 
     async def get_method_name(self, forms_elem):
+        """
+        This method gets the method name of the request from the forms element within the InteractionMetadata element.
+        The information is saved in the global variables of the class.
+
+        Args:
+            forms_elem (basyx.aas.model.submodelElementCollection): SubmodelElement of forms within InteractionMetadata.
+        """
         method_name_elem = forms_elem.get_sm_element_by_semantic_id(
             HTTPAssetInterfaceSemantics.SEMANTICID_HTTP_INTERFACE_METHOD_NAME)
-        self.request_method = method_name_elem.value
+        if method_name_elem:
+            self.request_method = method_name_elem.value
 
     async def add_asset_service_data(self, skill_params_exposure_elem, skill_input_params):
+        """
+        This method adds the required data of the asset service, using the skill params information (exposure element
+        and skill input data). The information is saved in the global variables of the class.
+
+        Args:
+            skill_params_exposure_elem (basyx.aas.model.submodelElement): SubmodelElement within the skill interface that exposes the skill parameters.
+            skill_input_params (dict): dictionary containing the skill input data.
+        """
         if skill_params_exposure_elem:
             if skill_params_exposure_elem.check_semantic_id_exist(
                     HTTPAssetInterfaceSemantics.SEMANTICID_HTTP_INTERFACE_PARAMS):
@@ -151,51 +194,42 @@ class HTTPAssetConnection(AssetConnection):
                 print("Interface skill parameters exposure not with HTTP params field")
                 # TODO PENSAR EN MAS OPCIONES DE AÑADIR LOS PARAMETROS (P.E. EN LA URI)
 
-
     async def send_http_request(self):
-        if self.request_method == 'GET':
-            return requests.get(url=self.request_uri, headers=self.request_headers, params=self.request_params)
-        elif self.request_method == 'DELETE':
-            # TODO a probar
-            return requests.delete(url=self.request_uri, headers=self.request_headers, params=self.request_params)
-        elif self.request_method == 'HEAD':
-            # TODO a probar
-            return requests.head(url=self.request_uri, headers=self.request_headers, params=self.request_params)
-        elif self.request_method == 'PATCH':
-            # TODO a probar
-            return requests.patch(url=self.request_uri, headers=self.request_headers, params=self.request_params)
-        elif self.request_method == 'POST':
-            return requests.post(url=self.request_uri, headers=self.request_headers, data=msg)
-        elif self.request_method == 'PUT':
-            # TODO a probar
-            return requests.put(url=self.request_uri, headers=self.request_headers, params=self.request_params)
+        """
+        This method sends the required HTTP request message to the asset. All the required information is obtained from
+         the global variables of the class.
 
-    async def get_response_content(self, interaction_metadata, http_response):
-        response_content = http_response.text
-
-        # First, if 'dataQuery' attribute is set has to be analyzed
-        data_query_elem = interaction_metadata.get_sm_element_by_semantic_id(
-            AssetInterfacesInfo.SEMANTICID_INTERFACE_INTERACTION_DATA_QUERY)
-        if data_query_elem:
-            # The type of the content must be obtained
-            forms_elem = interaction_metadata.get_sm_element_by_semantic_id(
-                AssetInterfacesInfo.SEMANTICID_INTERFACE_FORMS)
-            content_type = forms_elem.get_sm_element_by_semantic_id(
-                AssetInterfacesInfo.SEMANTICID_INTERFACE_CONTENT_TYPE).value
-            # The general method for all Asset Connections will be used
-            response_content = await AssetConnection.extract_information_with_data_query(content_type,
-                                                                                         response_content,
-                                                                                         data_query_elem.value)
-        # Now, if the type of the interaction element of the interface is added, it needs a transformation of data type
-        data_type = interaction_metadata.get_sm_element_by_semantic_id(
-                AssetInterfacesInfo.SEMANTICID_INTERFACE_INTERACTION_TYPE)
-        if data_type:
-            return await AssetConnection.transform_data_by_type(response_content, data_type.value)
-        else:
-            return response_content
+        Returns:
+            requests.Response: response of the asset.
+        """
+        try:
+            if self.request_method == 'GET':
+                return requests.get(url=self.request_uri, headers=self.request_headers, params=self.request_params)
+            elif self.request_method == 'DELETE':
+                # TODO a probar
+                return requests.delete(url=self.request_uri, headers=self.request_headers, params=self.request_params)
+            elif self.request_method == 'HEAD':
+                # TODO a probar
+                return requests.head(url=self.request_uri, headers=self.request_headers, params=self.request_params)
+            elif self.request_method == 'PATCH':
+                # TODO a probar
+                return requests.patch(url=self.request_uri, headers=self.request_headers, params=self.request_params)
+            elif self.request_method == 'POST':
+                # TODO a probar
+                return requests.post(url=self.request_uri, headers=self.request_headers, data=self.request_body)
+            elif self.request_method == 'PUT':
+                # TODO a probar
+                return requests.put(url=self.request_uri, headers=self.request_headers, params=self.request_params)
+        except ConnectTimeout as e:
+            _logger.error(e)
+            raise AssetConnectionError("The request to asset timed out, so the asset is not available.",
+                                       "Asset not available", "The asset connection timed out")
 
 
 class HTTPAssetInterfaceSemantics:
+    """
+    This class contains the specific semanticIDs of HTTP interfaces.
+    """
 
     SEMANTICID_HTTP_INTERFACE_METHOD_NAME = 'https://www.w3.org/2011/http#methodName'
     SEMANTICID_HTTP_INTERFACE_HEADERS = 'https://www.w3.org/2011/http#headers'

@@ -87,6 +87,28 @@ class AssetConnection(metaclass=abc.ABCMeta):
     # Useful methods for the configuration of the asset connection
     # ------------------------------------------------------------
     @classmethod
+    async def check_interface_element(cls, interface_elem):
+        # First, it is checked that the Interface element offered is within the Submodel 'AssetInterfacesDescription'.
+        parent_submodel = interface_elem.get_parent_submodel()
+        if not parent_submodel.check_semantic_id_exist(AssetInterfacesInfo.SEMANTICID_INTERFACES_SUBMODEL):
+            raise AssetConnectionError("The Interface element object is invalid because it is not within"
+                                       " the required submodel", "invalid interface element",
+                                       "Interface element is not within the required submodel")
+        # The semanticID of the Interface element is also checked
+        if not interface_elem.check_semantic_id_exist(AssetInterfacesInfo.SEMANTICID_INTERFACE):
+            raise AssetConnectionError("The Interface element object is invalid because it does not have"
+                                       " the required semanticID", "invalid interface element",
+                                       "Interface element does not have the required semanticID")
+        # Then, if required submodel elements are missing is checked
+        await cls.check_submodel_element_exist_by_semantic_id(interface_elem, 'title',
+                                                              AssetInterfacesInfo.SEMANTICID_INTERFACE_TITLE)
+        await cls.check_submodel_element_exist_by_semantic_id(interface_elem, 'EndpointMetadata',
+                                                              AssetInterfacesInfo.SEMANTICID_ENDPOINT_METADATA)
+        await cls.check_submodel_element_exist_by_semantic_id(interface_elem, 'InteractionMetadata',
+                                                              AssetInterfacesInfo.SEMANTICID_INTERACTION_METADATA)
+        # TODO comprobar que no haya mas atributos requeridos
+
+    @classmethod
     async def check_endpoint_metadata(cls, endpoint_metadata):
         """
         This method checks if the given endpointMetadata object is valid (if it is within the correct submodel and if
@@ -98,10 +120,17 @@ class AssetConnection(metaclass=abc.ABCMeta):
         # First, it is checked that the metadata SMC offered is within the Submodel 'AssetInterfacesDescription'.
         parent_submodel = endpoint_metadata.get_parent_submodel()
         if not parent_submodel.check_semantic_id_exist(AssetInterfacesInfo.SEMANTICID_INTERFACES_SUBMODEL):
-            raise AssetConnectionError("The interaction_metadata object is invalid because it is not within"
-                                       " the required submodel", "invalid interaction metadata",
-                                       "Interaction_metadata is not within the required submodel")
-        # TODO añadir las comprobaciones de los atributos requeridos
+            raise AssetConnectionError("The EndpointMetadata object is invalid because it is not within"
+                                       " the required submodel", "invalid endpoint metadata",
+                                       "EndpointMetadata is not within the required submodel")
+        # Then, if required submodel elements are missing is checked
+        await cls.check_submodel_element_exist_by_semantic_id(endpoint_metadata, 'base',
+                                                              AssetInterfacesInfo.SEMANTICID_INTERFACE_BASE)
+        await cls.check_submodel_element_exist_by_semantic_id(endpoint_metadata, 'contentType',
+                                                              AssetInterfacesInfo.SEMANTICID_INTERFACE_CONTENT_TYPE)
+        await cls.check_submodel_element_exist_by_semantic_id(endpoint_metadata, 'securityDefinitions',
+                                                              AssetInterfacesInfo.SEMANTICID_INTERFACE_SECURITY_DEFINITIONS)
+        # TODO comprobar que no haya mas atributos requeridos
 
     # -----------------------------------------------------------------
     # Useful methods for the processes prior to connection to the asset
@@ -118,27 +147,68 @@ class AssetConnection(metaclass=abc.ABCMeta):
         # First, it is checked that the metadata SMC offered is within the Submodel 'AssetInterfacesDescription'.
         parent_submodel = interaction_metadata.get_parent_submodel()
         if not parent_submodel.check_semantic_id_exist(AssetInterfacesInfo.SEMANTICID_INTERFACES_SUBMODEL):
-            raise AssetConnectionError("The interaction_metadata object is invalid because it is not within"
+            raise AssetConnectionError("The InteractionMetadata object is invalid because it is not within"
                                        " the required submodel", "invalid interaction metadata",
-                                       "Interaction_metadata is not within the required submodel")
+                                       "InteractionMetadata is not within the required submodel")
         # Then, if required submodel elements are missing is checked
-        forms_elem = interaction_metadata.get_sm_element_by_semantic_id(AssetInterfacesInfo.SEMANTICID_INTERFACE_FORMS)
-        if not forms_elem:
-            raise AssetConnectionError("The asset service cannot be executed because the given "
-                                       "interaction_metadata object does not have required 'forms' element",
-                                       "missing submodel element",
-                                       "Interaction_metadata does not have required 'forms' element")
-        forms_href_elem = forms_elem.get_sm_element_by_semantic_id(AssetInterfacesInfo.SEMANTICID_INTERFACE_HREF)
-        if not forms_href_elem:
-            raise AssetConnectionError("The asset service cannot be executed because the given "
-                                       "interaction_metadata object does not have required 'href' element in 'forms' "
-                                       "section", "missing submodel element",
-                                       "Interaction_metadata does not have required 'href' in 'forms' element")
+        await cls.check_submodel_element_exist_by_semantic_id(interaction_metadata, 'forms',
+                                                              AssetInterfacesInfo.SEMANTICID_INTERFACE_FORMS)
+        await cls.check_submodel_element_exist_by_semantic_id(
+            interaction_metadata.get_sm_element_by_semantic_id(AssetInterfacesInfo.SEMANTICID_INTERFACE_FORMS),
+            'href', AssetInterfacesInfo.SEMANTICID_INTERFACE_HREF)
         # TODO comprobar que no haya mas atributos requeridos
+
+    @classmethod
+    async def check_submodel_element_exist_by_semantic_id(cls, submodel_elem_col, sm_id_short, semantic_id):
+        """
+        This method checks if a submodelElement with the given semanticID exists within the given
+        SubmodelElementCollection.
+
+        Args:
+            submodel_elem_col (basyx.aas.model.SubmodelElementCollection): SubmodelElementCollection where the SubmodelElement has to be found.
+            sm_id_short (str): idShort of the SubmodelElement to find.
+            semantic_id (str): semantic ID to find the required SubmodelElement.
+        """
+        elem_to_find = submodel_elem_col.get_sm_element_by_semantic_id(semantic_id)
+        if not elem_to_find:
+            raise AssetConnectionError(f"The {submodel_elem_col.id_short} object is invalid because the given "
+                                       f"object does not have required '{sm_id_short}' element",
+                                       "missing submodel element",
+                                       f"{submodel_elem_col.id_short} does not have required '{sm_id_short}'")
 
     # --------------------------------------------------------
     # Useful methods to extract information from asset message
     # --------------------------------------------------------
+    @classmethod
+    async def get_response_content(cls, interaction_metadata, response_content):
+        """
+        This method gets the required information from the content of the response message from the asset using the
+        interactionMetadata information.
+
+        Args:
+            interaction_metadata (basyx.aas.model.SubmodelElementCollection): SubmodelElement of interactionMetadata.
+            response_content (str): The content of the response message from the asset in string format.
+        """
+        # First, if 'dataQuery' attribute is set has to be analyzed
+        data_query_elem = interaction_metadata.get_sm_element_by_semantic_id(
+            AssetInterfacesInfo.SEMANTICID_INTERFACE_INTERACTION_DATA_QUERY)
+        if data_query_elem:
+            # The type of the content must be obtained
+            forms_elem = interaction_metadata.get_sm_element_by_semantic_id(
+                AssetInterfacesInfo.SEMANTICID_INTERFACE_FORMS)
+            content_type = forms_elem.get_sm_element_by_semantic_id(
+                AssetInterfacesInfo.SEMANTICID_INTERFACE_CONTENT_TYPE).value
+            # The general method for all Asset Connections will be used
+            response_content = await cls.extract_information_with_data_query(content_type, response_content,
+                                                                             data_query_elem.value)
+        # Now, if the type of the interaction element of the interface is added, it needs a transformation of data type
+        data_type = interaction_metadata.get_sm_element_by_semantic_id(
+                AssetInterfacesInfo.SEMANTICID_INTERFACE_INTERACTION_TYPE)
+        if data_type:
+            return await cls.transform_data_by_type(response_content, data_type.value)
+        else:
+            return response_content
+
     @classmethod
     async def extract_information_with_data_query(cls, content_type, content_data, query):
         """
