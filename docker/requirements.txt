@@ -22,3 +22,6 @@ basyx-python-sdk == 1.0.0
 
 # Related to asset connections
 jsonpath-ng == 1.7.0
+
+# Related to agent services
+psutil == 6.1.0

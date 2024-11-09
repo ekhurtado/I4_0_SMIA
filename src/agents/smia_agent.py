@@ -5,6 +5,7 @@ from spade.agent import Agent
 import logging
 
 from aas_model.extended_aas_model import ExtendedAASModel
+from logic.agent_services import AgentServices
 from states.state_running import StateRunning
 from states.state_stopping import StateStopping
 from utilities.smia_info import SMIAInfo
@@ -28,7 +29,8 @@ class AASManagerAgent(Agent):
     interaction_responses = {}  #: Dictionary to save Intra AAS interaction responses
     negotiations_data = {}  #: Dictionary to save negotiations related information
     aas_model = None  #: Object with the extended AAS model
-    asset_connections = None #: Class with the Asset Connection methods
+    asset_connections = None  #: Class with the Asset Connection methods
+    agent_services = None   #: Class with the all services of the Agent
     lock = None  #: Asyncio Lock object for secure access to shared AAS Manager objects
 
     def __init__(self, jid: str, password: str, verify_security: bool = False):
@@ -37,9 +39,9 @@ class AASManagerAgent(Agent):
         # The banner of the program is printed
         GeneralUtils.print_smia_banner()
 
-        self.initialize_aas_manager_attributes()
+        self.initialize_smia_attributes()
 
-    def initialize_aas_manager_attributes(self):
+    def initialize_smia_attributes(self):
         """
         This method initializes all the attributes of the AAS Manager
         """
@@ -62,6 +64,9 @@ class AASManagerAgent(Agent):
 
         # The object with the AssetConnection class is initialized. At this point, as a empty JSON
         self.asset_connections = {}
+
+        # The class with all AgentServices is initialized
+        self.agent_services = AgentServices(self)
 
         # The Lock object is used to manage the access to global agent attributes (request and response dictionaries,
         # interaction id number...)

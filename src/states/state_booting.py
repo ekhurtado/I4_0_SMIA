@@ -32,7 +32,7 @@ class StateBooting(State):
         _logger.info("## STATE 1: BOOTING ##  (Initial state)")
 
         # First, it is ensured that the attributes of the AAS Manager are initialized
-        self.agent.initialize_aas_manager_attributes()
+        self.agent.initialize_smia_attributes()
 
         # The submodels also have to be initalized, so its behaviour is also added
         init_aas_model_behav = InitAASModelBehaviour(self.agent)

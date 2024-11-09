@@ -11,3 +11,4 @@ aiokafka==0.10.0
 basyx-python-sdk==1.0.0
 tdqm==0.0.1
 jsonpath-ng==1.7.0
+psutil==6.1.0

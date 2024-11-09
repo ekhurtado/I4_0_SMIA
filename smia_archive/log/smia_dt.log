@@ -10552,3 +10552,190 @@ ValueError: Not a valid AASX file: aasx-origin Relationship is missing.
 2024-11-09 12:15:06,775 [states.state_running] [INFO] This DT has negotiation capability. line:61
 2024-11-09 12:15:06,775 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
 2024-11-09 12:15:06,775 [behaviours.negotiating_behaviour] [INFO] NegotiationBehaviour starting... line:42
+2024-11-09 12:45:26,071 [__main__] [INFO] Initializing SMIA software... line:79
+2024-11-09 12:45:26,075 [__main__] [INFO] The asset is not defined, so it is a generic AAS Manager line:55
+2024-11-09 12:45:53,191 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-09 12:45:53,221 [asyncio] [ERROR] Task exception was never retrieved
+future: <Task finished name='Task-1' coro=<main() done, defined at C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\smia_main.py:22> exception=KeyboardInterrupt()> line:1758
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\spade\container.py", line 114, in run_container
+    container.run(main_func)
+  File "C:\Python310\lib\site-packages\spade\container.py", line 108, in run
+    self.loop.run_until_complete(coro)
+  File "C:\Program Files\JetBrains\PyCharm 2024.1.4\plugins\python\helpers-pro\pydevd_asyncio\pydevd_nest_asyncio.py", line 234, in run_until_complete
+    self._run_once()
+  File "C:\Program Files\JetBrains\PyCharm 2024.1.4\plugins\python\helpers-pro\pydevd_asyncio\pydevd_nest_asyncio.py", line 286, in _run_once
+    handle._run()
+  File "C:\Python310\lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Program Files\JetBrains\PyCharm 2024.1.4\plugins\python\helpers-pro\pydevd_asyncio\pydevd_nest_asyncio.py", line 395, in step
+    step_orig(task, exc)
+  File "C:\Python310\lib\asyncio\tasks.py", line 232, in __step
+    result = coro.send(None)
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\smia_main.py", line 57, in main
+    smia_agent = AASManagerAgent(agent_jid, passwd)
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\agents\smia_agent.py", line 42, in __init__
+    self.initialize_smia_attributes()
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\agents\smia_agent.py", line 76, in initialize_smia_attributes
+    self.lock = asyncio.Lock()
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\agents\smia_agent.py", line 76, in initialize_smia_attributes
+    self.lock = asyncio.Lock()
+  File "_pydevd_bundle\pydevd_cython_win32_310_64.pyx", line 1187, in _pydevd_bundle.pydevd_cython_win32_310_64.SafeCallWrapper.__call__
+  File "_pydevd_bundle\pydevd_cython_win32_310_64.pyx", line 627, in _pydevd_bundle.pydevd_cython_win32_310_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_310_64.pyx", line 1103, in _pydevd_bundle.pydevd_cython_win32_310_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_310_64.pyx", line 1065, in _pydevd_bundle.pydevd_cython_win32_310_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_310_64.pyx", line 585, in _pydevd_bundle.pydevd_cython_win32_310_64.PyDBFrame.do_wait_suspend
+  File "C:\Program Files\JetBrains\PyCharm 2024.1.4\plugins\python\helpers\pydev\pydevd.py", line 1201, in do_wait_suspend
+    self._do_wait_suspend(thread, frame, event, arg, suspend_type, from_this_thread)
+  File "C:\Program Files\JetBrains\PyCharm 2024.1.4\plugins\python\helpers\pydev\pydevd.py", line 1216, in _do_wait_suspend
+    time.sleep(0.01)
+KeyboardInterrupt
+2024-11-09 12:46:22,217 [__main__] [INFO] Initializing SMIA software... line:79
+2024-11-09 12:46:22,221 [__main__] [INFO] The asset is not defined, so it is a generic AAS Manager line:55
+2024-11-09 12:46:25,407 [SPADE] [ERROR] Exception in the event loop: 'AgentServices' object has no attribute 'a' line:118
+2024-11-09 12:46:52,171 [__main__] [INFO] Initializing SMIA software... line:79
+2024-11-09 12:46:52,174 [__main__] [INFO] The asset is not defined, so it is a generic AAS Manager line:55
+2024-11-09 12:47:01,207 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-09 12:47:01,236 [asyncio] [ERROR] Task exception was never retrieved
+future: <Task finished name='Task-1' coro=<main() done, defined at C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\smia_main.py:22> exception=KeyboardInterrupt()> line:1758
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\spade\container.py", line 114, in run_container
+    container.run(main_func)
+  File "C:\Python310\lib\site-packages\spade\container.py", line 108, in run
+    self.loop.run_until_complete(coro)
+  File "C:\Program Files\JetBrains\PyCharm 2024.1.4\plugins\python\helpers-pro\pydevd_asyncio\pydevd_nest_asyncio.py", line 234, in run_until_complete
+    self._run_once()
+  File "C:\Program Files\JetBrains\PyCharm 2024.1.4\plugins\python\helpers-pro\pydevd_asyncio\pydevd_nest_asyncio.py", line 286, in _run_once
+    handle._run()
+  File "C:\Python310\lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Program Files\JetBrains\PyCharm 2024.1.4\plugins\python\helpers-pro\pydevd_asyncio\pydevd_nest_asyncio.py", line 395, in step
+    step_orig(task, exc)
+  File "C:\Python310\lib\asyncio\tasks.py", line 232, in __step
+    result = coro.send(None)
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\smia_main.py", line 57, in main
+    smia_agent = AASManagerAgent(agent_jid, passwd)
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\agents\smia_agent.py", line 42, in __init__
+    self.initialize_smia_attributes()
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\agents\smia_agent.py", line 76, in initialize_smia_attributes
+    self.lock = asyncio.Lock()
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\agents\smia_agent.py", line 76, in initialize_smia_attributes
+    self.lock = asyncio.Lock()
+  File "_pydevd_bundle\pydevd_cython_win32_310_64.pyx", line 1187, in _pydevd_bundle.pydevd_cython_win32_310_64.SafeCallWrapper.__call__
+  File "_pydevd_bundle\pydevd_cython_win32_310_64.pyx", line 627, in _pydevd_bundle.pydevd_cython_win32_310_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_310_64.pyx", line 1103, in _pydevd_bundle.pydevd_cython_win32_310_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_310_64.pyx", line 1065, in _pydevd_bundle.pydevd_cython_win32_310_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_310_64.pyx", line 585, in _pydevd_bundle.pydevd_cython_win32_310_64.PyDBFrame.do_wait_suspend
+  File "C:\Program Files\JetBrains\PyCharm 2024.1.4\plugins\python\helpers\pydev\pydevd.py", line 1201, in do_wait_suspend
+    self._do_wait_suspend(thread, frame, event, arg, suspend_type, from_this_thread)
+  File "C:\Program Files\JetBrains\PyCharm 2024.1.4\plugins\python\helpers\pydev\pydevd.py", line 1216, in _do_wait_suspend
+    time.sleep(0.01)
+KeyboardInterrupt
+2024-11-09 12:58:32,933 [__main__] [INFO] Initializing SMIA software... line:79
+2024-11-09 12:58:32,940 [__main__] [INFO] The asset is not defined, so it is a generic AAS Manager line:55
+2024-11-09 12:58:35,585 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-09 12:58:36,679 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/936391073505069978890597987 line:935
+2024-11-09 12:58:36,949 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABs5MzYzOTEwNzM1MDUwNjk5Nzg4OTA1OTc5ODdtAAAACDAqb2QG5gBy' line:2209
+2024-11-09 12:58:37,509 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-09 12:58:38,719 [SPADE] [ERROR] Exception in the event loop: 'coroutine' object is not callable line:118
+2024-11-09 12:58:38,721 [gcis1] [INFO] client shutting down (on request) line:975
+2024-11-09 12:58:38,722 [gcis1.StanzaStream] [INFO] stopping SM stream line:2473
+2024-11-09 12:58:38,723 [gcis1] [INFO] stopping stream line:989
+2024-11-09 13:01:41,676 [__main__] [INFO] Initializing SMIA software... line:79
+2024-11-09 13:01:41,679 [__main__] [INFO] The asset is not defined, so it is a generic AAS Manager line:55
+2024-11-09 13:01:44,336 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-09 13:01:45,464 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/6953030234190895145124554114 line:935
+2024-11-09 13:01:45,745 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABw2OTUzMDMwMjM0MTkwODk1MTQ1MTI0NTU0MTE0bQAAAAh1mpilhhvUgw==' line:2209
+2024-11-09 13:01:46,331 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-09 13:01:47,322 [SPADE] [ERROR] Exception in the event loop: <coroutine object AgentServices.get_agent_service_by_id at 0x000001994DDBFB50> is not a callable object line:118
+2024-11-09 13:01:47,323 [gcis1] [INFO] client shutting down (on request) line:975
+2024-11-09 13:01:47,323 [gcis1.StanzaStream] [INFO] stopping SM stream line:2473
+2024-11-09 13:01:47,323 [gcis1] [INFO] stopping stream line:989
+2024-11-09 13:03:04,816 [__main__] [INFO] Initializing SMIA software... line:79
+2024-11-09 13:03:04,820 [__main__] [INFO] The asset is not defined, so it is a generic AAS Manager line:55
+2024-11-09 13:03:07,467 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-09 13:03:08,601 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/557585517178273198890612931 line:935
+2024-11-09 13:03:08,882 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABs1NTc1ODU1MTcxNzgyNzMxOTg4OTA2MTI5MzFtAAAACE5HQRsk+fI/' line:2209
+2024-11-09 13:03:09,459 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-09 13:03:20,580 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-09 13:03:20,581 [gcis1] [INFO] client shutting down (on request) line:975
+2024-11-09 13:05:49,783 [__main__] [INFO] Initializing SMIA software... line:79
+2024-11-09 13:05:49,787 [__main__] [INFO] The asset is not defined, so it is a generic AAS Manager line:55
+2024-11-09 13:05:52,468 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-09 13:05:53,558 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/1623507316701384520249386724 line:935
+2024-11-09 13:05:53,827 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABwxNjIzNTA3MzE2NzAxMzg0NTIwMjQ5Mzg2NzI0bQAAAAgS5jaQnxX1UA==' line:2209
+2024-11-09 13:05:54,390 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-09 13:10:03,967 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-09 13:10:03,969 [asyncio] [ERROR] Fatal read error on STARTTLS transport
+protocol: <aioxmpp.protocol.XMLStream object at 0x000001BFE2CD0730>
+transport: <aioopenssl.STARTTLSTransport object at 0x000001BFE2CCFE80> line:1758
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\aioopenssl\__init__.py", line 493, in _read_ready
+    data = self._sock.recv(self.MAX_SIZE)
+  File "C:\Python310\lib\site-packages\OpenSSL\SSL.py", line 2067, in recv
+    self._raise_ssl_error(self._ssl, result)
+  File "C:\Python310\lib\site-packages\OpenSSL\SSL.py", line 1838, in _raise_ssl_error
+    raise SysCallError(-1, "Unexpected EOF")
+OpenSSL.SSL.SysCallError: (-1, 'Unexpected EOF')
+2024-11-09 13:10:03,983 [gcis1] [INFO] client shutting down (on request) line:975
+2024-11-09 13:10:03,983 [gcis1.StanzaStream] [INFO] stopping SM stream line:2473
+2024-11-09 13:10:03,983 [gcis1] [INFO] stopping stream line:989
+2024-11-09 13:10:04,017 [asyncio] [ERROR] Task exception was never retrieved
+future: <Task finished name='Task-1' coro=<main() done, defined at C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\smia_main.py:22> exception=KeyboardInterrupt()> line:1758
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\spade\container.py", line 114, in run_container
+    container.run(main_func)
+  File "C:\Python310\lib\site-packages\spade\container.py", line 108, in run
+    self.loop.run_until_complete(coro)
+  File "C:\Program Files\JetBrains\PyCharm 2024.1.4\plugins\python\helpers-pro\pydevd_asyncio\pydevd_nest_asyncio.py", line 234, in run_until_complete
+    self._run_once()
+  File "C:\Program Files\JetBrains\PyCharm 2024.1.4\plugins\python\helpers-pro\pydevd_asyncio\pydevd_nest_asyncio.py", line 286, in _run_once
+    handle._run()
+  File "C:\Python310\lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Python310\lib\asyncio\tasks.py", line 315, in __wakeup
+    self.__step()
+  File "C:\Program Files\JetBrains\PyCharm 2024.1.4\plugins\python\helpers-pro\pydevd_asyncio\pydevd_nest_asyncio.py", line 395, in step
+    step_orig(task, exc)
+  File "C:\Python310\lib\asyncio\tasks.py", line 232, in __step
+    result = coro.send(None)
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\smia_main.py", line 60, in main
+    await smia_agent.start()
+  File "C:\Python310\lib\site-packages\spade\agent.py", line 91, in start
+    return await self._async_start(auto_register=auto_register)
+  File "C:\Python310\lib\site-packages\spade\agent.py", line 135, in _async_start
+    await self.setup()
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\agents\smia_agent.py", line 83, in setup
+    sig = inspect.signature(metodo)
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\agents\smia_agent.py", line 83, in setup
+    sig = inspect.signature(metodo)
+  File "_pydevd_bundle\pydevd_cython_win32_310_64.pyx", line 1187, in _pydevd_bundle.pydevd_cython_win32_310_64.SafeCallWrapper.__call__
+  File "_pydevd_bundle\pydevd_cython_win32_310_64.pyx", line 627, in _pydevd_bundle.pydevd_cython_win32_310_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_310_64.pyx", line 1103, in _pydevd_bundle.pydevd_cython_win32_310_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_310_64.pyx", line 1065, in _pydevd_bundle.pydevd_cython_win32_310_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_310_64.pyx", line 585, in _pydevd_bundle.pydevd_cython_win32_310_64.PyDBFrame.do_wait_suspend
+  File "C:\Program Files\JetBrains\PyCharm 2024.1.4\plugins\python\helpers\pydev\pydevd.py", line 1201, in do_wait_suspend
+    self._do_wait_suspend(thread, frame, event, arg, suspend_type, from_this_thread)
+  File "C:\Program Files\JetBrains\PyCharm 2024.1.4\plugins\python\helpers\pydev\pydevd.py", line 1215, in _do_wait_suspend
+    self.process_internal_commands()
+  File "C:\Program Files\JetBrains\PyCharm 2024.1.4\plugins\python\helpers\pydev\pydevd.py", line 820, in process_internal_commands
+    with self._main_lock:
+  File "C:\Program Files\JetBrains\PyCharm 2024.1.4\plugins\python\helpers\pydev\pydevd.py", line 230, in __exit__
+    self.release()
+KeyboardInterrupt
+2024-11-09 13:18:33,982 [__main__] [INFO] Initializing SMIA software... line:79
+2024-11-09 13:18:33,987 [__main__] [INFO] The asset is not defined, so it is a generic AAS Manager line:55
+2024-11-09 13:18:36,644 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-09 13:18:37,761 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/14266971622715567551124637058 line:935
+2024-11-09 13:18:38,037 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAAB0xNDI2Njk3MTYyMjcxNTU2NzU1MTEyNDYzNzA1OG0AAAAI7kesamDr+Eo=' line:2209
+2024-11-09 13:18:38,608 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-09 13:18:50,322 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-09 13:18:50,323 [gcis1] [INFO] client shutting down (on request) line:975
+2024-11-09 13:18:58,130 [__main__] [INFO] Initializing SMIA software... line:79
+2024-11-09 13:18:58,134 [__main__] [INFO] The asset is not defined, so it is a generic AAS Manager line:55
+2024-11-09 13:19:00,738 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-09 13:19:01,861 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/467992479665243899349411684 line:935
+2024-11-09 13:19:02,141 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABs0Njc5OTI0Nzk2NjUyNDM4OTkzNDk0MTE2ODRtAAAACMVgDVMx4rSU' line:2209
+2024-11-09 13:19:02,724 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-09 13:19:23,785 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-09 13:19:23,788 [gcis1] [INFO] client shutting down (on request) line:975
