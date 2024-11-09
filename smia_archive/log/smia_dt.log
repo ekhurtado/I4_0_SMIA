@@ -10739,3 +10739,141 @@ KeyboardInterrupt
 2024-11-09 13:19:02,724 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
 2024-11-09 13:19:23,785 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
 2024-11-09 13:19:23,788 [gcis1] [INFO] client shutting down (on request) line:975
+2024-11-09 16:24:06,796 [__main__] [INFO] Initializing SMIA software... line:79
+2024-11-09 16:24:06,800 [__main__] [INFO] The asset is not defined, so it is a generic AAS Manager line:55
+2024-11-09 16:24:09,485 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-09 16:24:10,691 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/1661600578056407026491290595 line:935
+2024-11-09 16:24:11,019 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABwxNjYxNjAwNTc4MDU2NDA3MDI2NDkxMjkwNTk1bQAAAAh853Y4b2xbgg==' line:2209
+2024-11-09 16:24:11,635 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-09 16:24:11,635 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:95
+2024-11-09 16:24:11,638 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-09 16:24:11,639 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-09 16:24:11,639 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:32
+2024-11-09 16:24:11,716 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all capabilities of the asset and the industrial agent... line:114
+2024-11-09 16:24:11,719 [spade.Web] [INFO] Serving on http://0.0.0.0:10002/ line:39
+2024-11-09 16:24:12,232 [behaviours.init_aas_model_behaviour] [INFO] Analyzing AgentCapability [Negotiation] and its associated skill [NegotiationBasedOnCriteria]... line:135
+2024-11-09 16:24:12,233 [behaviours.init_aas_model_behaviour] [INFO] Capability[urn:ehu:gcis:submodel:1:1:agentcapabilities001 / Negotiation] information saved in the global variables. line:189
+2024-11-09 16:24:12,727 [behaviours.init_aas_model_behaviour] [INFO] Analyzing AssetCapability [EfficientTransport] and its associated skill [EfficientMovement]... line:135
+2024-11-09 16:24:12,728 [behaviours.init_aas_model_behaviour] [INFO] Capability[urn:ehu:gcis:submodel:1:1:capabilities001 / CapabilityDefinitions / EfficientTransport] information saved in the global variables. line:189
+2024-11-09 16:24:12,728 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all connections of the asset... line:204
+2024-11-09 16:24:13,224 [behaviours.init_aas_model_behaviour] [INFO] All asset connections defined in the AAS model have been configured and saved. line:230
+2024-11-09 16:24:13,224 [behaviours.init_aas_model_behaviour] [INFO] AAS model initialized. line:72
+2024-11-09 16:24:13,224 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: None line:154
+2024-11-09 16:24:13,226 [states.state_booting] [INFO] gcis1@xmpp.jp agent has finished it Boot state. line:68
+2024-11-09 16:24:13,226 [spade.behaviour] [INFO] FSM transiting from BOOTING to RUNNING. line:591
+2024-11-09 16:24:13,227 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-09 16:24:13,227 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-09 16:24:13,227 [states.state_running] [INFO] This DT has negotiation capability. line:61
+2024-11-09 16:24:13,227 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-09 16:24:13,229 [behaviours.negotiating_behaviour] [INFO] NegotiationBehaviour starting... line:42
+2024-11-09 16:24:23,222 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-09 16:24:23,222 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-09 16:24:25,140 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-09 16:24:31,177 [__main__] [INFO] Initializing SMIA software... line:79
+2024-11-09 16:24:31,184 [__main__] [INFO] The asset is not defined, so it is a generic AAS Manager line:55
+2024-11-09 16:24:34,232 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-09 16:24:35,398 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/5368070158852905309125489954 line:935
+2024-11-09 16:24:35,670 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABw1MzY4MDcwMTU4ODUyOTA1MzA5MTI1NDg5OTU0bQAAAAh5LSUBpjyOug==' line:2209
+2024-11-09 16:24:36,315 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-09 16:24:36,316 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:95
+2024-11-09 16:24:41,437 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-09 16:24:41,438 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-09 16:24:41,440 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-09 16:24:41,440 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:32
+2024-11-09 16:24:41,525 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all capabilities of the asset and the industrial agent... line:114
+2024-11-09 16:24:41,526 [gcis1] [INFO] client shutting down (on request) line:975
+2024-11-09 16:24:41,526 [gcis1.StanzaStream] [INFO] stopping SM stream line:2473
+2024-11-09 16:24:41,527 [gcis1] [INFO] stopping stream line:989
+2024-11-09 16:24:41,528 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-09 16:24:41,528 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:32
+2024-11-09 16:26:03,123 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-09 16:26:03,130 [__main__] [INFO] The asset is not defined, so it is a generic AAS Manager line:55
+2024-11-09 16:26:06,223 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-09 16:26:07,452 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/977729112173178885049778884 line:935
+2024-11-09 16:26:07,756 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABs5Nzc3MjkxMTIxNzMxNzg4ODUwNDk3Nzg4ODRtAAAACAnq5agpiadZ' line:2209
+2024-11-09 16:26:08,374 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-09 16:26:08,376 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:95
+2024-11-09 16:26:10,527 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-09 16:26:10,528 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-09 16:26:10,528 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-09 16:26:10,528 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:32
+2024-11-09 16:26:10,589 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all capabilities of the asset and the industrial agent... line:114
+2024-11-09 16:26:10,591 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-09 16:26:10,591 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:32
+2024-11-09 16:39:23,283 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-09 16:39:23,288 [__main__] [INFO] The asset is not defined, so it is a generic AAS Manager line:55
+2024-11-09 16:39:26,384 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-09 16:39:27,613 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/16763986260147515414125552834 line:935
+2024-11-09 16:39:27,918 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAAB0xNjc2Mzk4NjI2MDE0NzUxNTQxNDEyNTU1MjgzNG0AAAAIa/gxvNIhxMk=' line:2209
+2024-11-09 16:39:28,536 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-09 16:39:35,033 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-09 16:39:35,035 [gcis1] [INFO] client shutting down (on request) line:975
+2024-11-09 16:40:05,204 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-09 16:40:05,209 [__main__] [INFO] The asset is not defined, so it is a generic AAS Manager line:55
+2024-11-09 16:40:08,061 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-09 16:40:09,293 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/275914027992102108049809316 line:935
+2024-11-09 16:40:09,576 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABsyNzU5MTQwMjc5OTIxMDIxMDgwNDk4MDkzMTZtAAAACHqx8+CfOLko' line:2209
+2024-11-09 16:40:10,214 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-09 16:40:14,531 [SPADE] [ERROR] Exception in the event loop: 'El servicio con identificador RAMmemory no existe en este DT.' line:118
+2024-11-09 16:40:14,533 [gcis1] [INFO] client shutting down (on request) line:975
+2024-11-09 16:40:14,916 [gcis1.StanzaStream] [INFO] stopping SM stream line:2473
+2024-11-09 16:40:14,917 [gcis1] [INFO] stopping stream line:989
+2024-11-09 16:41:03,113 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-09 16:41:03,120 [__main__] [INFO] The asset is not defined, so it is a generic AAS Manager line:55
+2024-11-09 16:41:06,020 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-09 16:41:07,249 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/1831262476931061787949810948 line:935
+2024-11-09 16:41:07,529 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABwxODMxMjYyNDc2OTMxMDYxNzg3OTQ5ODEwOTQ4bQAAAAgkTwPTlo6ARA==' line:2209
+2024-11-09 16:41:08,175 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-09 16:41:11,426 [SPADE] [ERROR] Exception in the event loop: 'El servicio con identificador Prueba_params no existe en este DT.' line:118
+2024-11-09 16:41:11,427 [gcis1] [INFO] client shutting down (on request) line:975
+2024-11-09 16:41:11,427 [gcis1.StanzaStream] [INFO] stopping SM stream line:2473
+2024-11-09 16:41:11,428 [gcis1] [INFO] stopping stream line:989
+2024-11-09 16:43:03,835 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-09 16:43:03,843 [__main__] [INFO] The asset is not defined, so it is a generic AAS Manager line:55
+2024-11-09 16:43:06,723 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-09 16:43:07,854 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/11350857022489421101125568610 line:935
+2024-11-09 16:43:08,133 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAAB0xMTM1MDg1NzAyMjQ4OTQyMTEwMTEyNTU2ODYxMG0AAAAIhBCD3Zk/dKE=' line:2209
+2024-11-09 16:43:08,800 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-09 16:43:23,521 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-09 16:43:23,523 [gcis1] [INFO] client shutting down (on request) line:975
+2024-11-09 16:43:23,523 [gcis1.StanzaStream] [INFO] stopping SM stream line:2473
+2024-11-09 16:43:23,524 [gcis1] [INFO] stopping stream line:989
+2024-11-09 16:43:23,562 [asyncio] [ERROR] Task exception was never retrieved
+future: <Task finished name='Task-1' coro=<main() done, defined at C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\smia_main.py:22> exception=KeyboardInterrupt()> line:1758
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\spade\container.py", line 114, in run_container
+    container.run(main_func)
+  File "C:\Python310\lib\site-packages\spade\container.py", line 108, in run
+    self.loop.run_until_complete(coro)
+  File "C:\Program Files\JetBrains\PyCharm 2024.1.4\plugins\python\helpers-pro\pydevd_asyncio\pydevd_nest_asyncio.py", line 234, in run_until_complete
+    self._run_once()
+  File "C:\Program Files\JetBrains\PyCharm 2024.1.4\plugins\python\helpers-pro\pydevd_asyncio\pydevd_nest_asyncio.py", line 286, in _run_once
+    handle._run()
+  File "C:\Python310\lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Python310\lib\asyncio\tasks.py", line 315, in __wakeup
+    self.__step()
+  File "C:\Program Files\JetBrains\PyCharm 2024.1.4\plugins\python\helpers-pro\pydevd_asyncio\pydevd_nest_asyncio.py", line 395, in step
+    step_orig(task, exc)
+  File "C:\Python310\lib\asyncio\tasks.py", line 232, in __step
+    result = coro.send(None)
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\smia_main.py", line 60, in main
+    await smia_agent.start()
+  File "C:\Python310\lib\site-packages\spade\agent.py", line 91, in start
+    return await self._async_start(auto_register=auto_register)
+  File "C:\Python310\lib\site-packages\spade\agent.py", line 135, in _async_start
+    await self.setup()
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\agents\smia_agent.py", line 86, in setup
+    fsm_behaviour = AASFSMBehaviour()
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\agents\smia_agent.py", line 86, in setup
+    fsm_behaviour = AASFSMBehaviour()
+  File "_pydevd_bundle\pydevd_cython_win32_310_64.pyx", line 1187, in _pydevd_bundle.pydevd_cython_win32_310_64.SafeCallWrapper.__call__
+  File "_pydevd_bundle\pydevd_cython_win32_310_64.pyx", line 627, in _pydevd_bundle.pydevd_cython_win32_310_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_310_64.pyx", line 1103, in _pydevd_bundle.pydevd_cython_win32_310_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_310_64.pyx", line 1065, in _pydevd_bundle.pydevd_cython_win32_310_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_310_64.pyx", line 585, in _pydevd_bundle.pydevd_cython_win32_310_64.PyDBFrame.do_wait_suspend
+  File "C:\Program Files\JetBrains\PyCharm 2024.1.4\plugins\python\helpers\pydev\pydevd.py", line 1201, in do_wait_suspend
+    self._do_wait_suspend(thread, frame, event, arg, suspend_type, from_this_thread)
+  File "C:\Program Files\JetBrains\PyCharm 2024.1.4\plugins\python\helpers\pydev\pydevd.py", line 1216, in _do_wait_suspend
+    time.sleep(0.01)
+KeyboardInterrupt

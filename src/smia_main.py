@@ -61,7 +61,8 @@ async def main():
 
     # In the general properties file you can select the web interface (provided by SPADE).
     web_ui = configmap_utils.get_dt_general_property('web-ui')
-    if bool(web_ui):
+    if web_ui.lower() in ('yes', 'true', 't', '1'):
+        # bool(string) cannot be used as it is true as long as the string is not empty.
         smia_agent.web.start(hostname="0.0.0.0", port="10002")
 
     # The main thread will be waiting until the agent has finished
