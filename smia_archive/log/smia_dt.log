@@ -10243,3 +10243,312 @@ aioxmpp.errors.StreamError: stream error: {urn:ietf:params:xml:ns:xmpp-streams}c
 2024-11-07 18:26:34,136 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
 2024-11-07 18:26:37,238 [aiohttp.access] [INFO] 127.0.0.1 [07/Nov/2024:17:26:37 +0000] "GET /spade HTTP/1.1" 200 12839 "http://localhost:10002/spade/behaviour/CyclicBehaviour/NegotiatingBehaviour/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0" line:206
 2024-11-07 18:26:40,416 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-08 12:07:47,509 [__main__] [INFO] Initializing SMIA software... line:79
+2024-11-08 12:07:47,522 [__main__] [INFO] The asset is not defined, so it is a generic AAS Manager line:55
+2024-11-08 12:07:50,422 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-08 12:07:51,624 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/6161917793672072870118129026 line:935
+2024-11-08 12:07:51,923 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABw2MTYxOTE3NzkzNjcyMDcyODcwMTE4MTI5MDI2bQAAAAhTrbeCmahJiA==' line:2209
+2024-11-08 12:07:52,534 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-08 12:07:52,535 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:90
+2024-11-08 12:07:52,538 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-08 12:07:52,539 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-08 12:07:52,539 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:32
+2024-11-08 12:07:52,682 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all capabilities of the asset and the industrial agent... line:101
+2024-11-08 12:07:52,683 [spade.Web] [INFO] Serving on http://0.0.0.0:10002/ line:39
+2024-11-08 12:07:53,177 [behaviours.init_aas_model_behaviour] [INFO] Analyzing AgentCapability [Negotiation] and its associated skill [NegotiationBasedOnCriteria]... line:122
+2024-11-08 12:07:53,178 [behaviours.init_aas_model_behaviour] [INFO] Capability[urn:ehu:gcis:submodel:1:1:agentcapabilities001 / Negotiation] information saved in the global variables. line:176
+2024-11-08 12:07:53,678 [behaviours.init_aas_model_behaviour] [INFO] Analyzing AssetCapability [EfficientTransport] and its associated skill [EfficientMovement]... line:122
+2024-11-08 12:07:53,679 [behaviours.init_aas_model_behaviour] [INFO] Capability[urn:ehu:gcis:submodel:1:1:capabilities001 / CapabilityDefinitions / EfficientTransport] information saved in the global variables. line:176
+2024-11-08 12:07:53,679 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all connections of the asset... line:191
+2024-11-08 12:07:54,178 [behaviours.init_aas_model_behaviour] [INFO] All asset connections defined in the AAS model have been configured and saved. line:217
+2024-11-08 12:07:54,178 [behaviours.init_aas_model_behaviour] [INFO] AAS model initialized. line:70
+2024-11-08 12:07:54,178 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: None line:154
+2024-11-08 12:07:54,188 [states.state_booting] [INFO] gcis1@xmpp.jp agent has finished it Boot state. line:68
+2024-11-08 12:07:54,188 [spade.behaviour] [INFO] FSM transiting from BOOTING to RUNNING. line:591
+2024-11-08 12:07:54,189 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-08 12:07:54,189 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-08 12:07:54,197 [states.state_running] [INFO] This DT has negotiation capability. line:61
+2024-11-08 12:07:54,198 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-08 12:07:54,198 [behaviours.negotiating_behaviour] [INFO] NegotiationBehaviour starting... line:42
+2024-11-08 12:08:04,194 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-08 12:08:04,194 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-08 12:08:14,195 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-08 12:08:14,195 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-08 12:08:18,407 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-08 12:08:18,407 [gcis1] [INFO] client shutting down (on request) line:975
+2024-11-08 12:08:18,811 [gcis1.StanzaStream] [INFO] stopping SM stream line:2473
+2024-11-08 12:08:18,811 [gcis1] [INFO] stopping stream line:989
+2024-11-09 11:53:27,786 [__main__] [INFO] Initializing SMIA software... line:79
+2024-11-09 11:53:27,791 [__main__] [INFO] The asset is not defined, so it is a generic AAS Manager line:55
+2024-11-09 11:53:32,595 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-09 11:53:33,698 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/1313648426880241850090372323 line:935
+2024-11-09 11:53:33,973 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABwxMzEzNjQ4NDI2ODgwMjQxODUwMDkwMzcyMzIzbQAAAAhauu0ywzyIwQ==' line:2209
+2024-11-09 11:53:34,539 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-09 11:53:34,541 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:90
+2024-11-09 11:53:34,544 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-09 11:53:34,544 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-09 11:53:34,544 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:32
+2024-11-09 11:54:15,434 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-09 11:54:15,436 [gcis1] [INFO] client shutting down (on request) line:975
+2024-11-09 11:54:15,437 [gcis1.StanzaStream] [INFO] stopping SM stream line:2473
+2024-11-09 11:54:15,437 [gcis1] [INFO] stopping stream line:989
+2024-11-09 11:54:15,437 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-09 11:54:15,437 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:32
+2024-11-09 11:54:15,499 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all capabilities of the asset and the industrial agent... line:110
+2024-11-09 11:54:32,337 [__main__] [INFO] Initializing SMIA software... line:79
+2024-11-09 11:54:32,342 [__main__] [INFO] The asset is not defined, so it is a generic AAS Manager line:55
+2024-11-09 11:54:35,043 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-09 11:54:36,168 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/771072418342711827790377315 line:935
+2024-11-09 11:54:36,448 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABs3NzEwNzI0MTgzNDI3MTE4Mjc3OTAzNzczMTVtAAAACNv+6mWRJnU1' line:2209
+2024-11-09 11:54:37,023 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-09 11:54:37,024 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:90
+2024-11-09 11:54:37,028 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-09 11:54:37,028 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-09 11:54:37,028 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:32
+2024-11-09 11:55:17,011 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-09 11:55:17,015 [gcis1] [INFO] client shutting down (on request) line:975
+2024-11-09 11:55:17,015 [gcis1.StanzaStream] [INFO] stopping SM stream line:2473
+2024-11-09 11:55:17,016 [gcis1] [INFO] stopping stream line:989
+2024-11-09 11:55:17,016 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-09 11:55:17,016 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:32
+2024-11-09 11:55:17,053 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all capabilities of the asset and the industrial agent... line:110
+2024-11-09 11:55:20,419 [__main__] [INFO] Initializing SMIA software... line:79
+2024-11-09 11:55:20,423 [__main__] [INFO] The asset is not defined, so it is a generic AAS Manager line:55
+2024-11-09 11:55:22,946 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-09 11:55:24,035 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/630124863090696633249263684 line:935
+2024-11-09 11:55:24,305 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABs2MzAxMjQ4NjMwOTA2OTY2MzMyNDkyNjM2ODRtAAAACEMvcENKJwR3' line:2209
+2024-11-09 11:55:24,857 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-09 11:55:24,858 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:90
+2024-11-09 11:55:24,861 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-09 11:55:24,862 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-09 11:55:24,863 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:32
+2024-11-09 11:55:24,911 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all capabilities of the asset and the industrial agent... line:110
+2024-11-09 11:55:24,911 [spade.Web] [INFO] Serving on http://0.0.0.0:10002/ line:39
+2024-11-09 11:55:25,400 [behaviours.init_aas_model_behaviour] [INFO] Analyzing AgentCapability [Negotiation] and its associated skill [NegotiationBasedOnCriteria]... line:131
+2024-11-09 11:55:25,401 [behaviours.init_aas_model_behaviour] [INFO] Capability[urn:ehu:gcis:submodel:1:1:agentcapabilities001 / Negotiation] information saved in the global variables. line:185
+2024-11-09 11:55:25,890 [behaviours.init_aas_model_behaviour] [INFO] Analyzing AssetCapability [EfficientTransport] and its associated skill [EfficientMovement]... line:131
+2024-11-09 11:55:25,891 [behaviours.init_aas_model_behaviour] [INFO] Capability[urn:ehu:gcis:submodel:1:1:capabilities001 / CapabilityDefinitions / EfficientTransport] information saved in the global variables. line:185
+2024-11-09 11:55:25,891 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all connections of the asset... line:200
+2024-11-09 11:55:26,399 [behaviours.init_aas_model_behaviour] [INFO] All asset connections defined in the AAS model have been configured and saved. line:226
+2024-11-09 11:55:26,399 [behaviours.init_aas_model_behaviour] [INFO] AAS model initialized. line:72
+2024-11-09 11:55:26,399 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: None line:154
+2024-11-09 11:55:26,400 [states.state_booting] [INFO] gcis1@xmpp.jp agent has finished it Boot state. line:68
+2024-11-09 11:55:26,401 [spade.behaviour] [INFO] FSM transiting from BOOTING to RUNNING. line:591
+2024-11-09 11:55:26,401 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-09 11:55:26,401 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-09 11:55:26,401 [states.state_running] [INFO] This DT has negotiation capability. line:61
+2024-11-09 11:55:26,401 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-09 11:55:26,401 [behaviours.negotiating_behaviour] [INFO] NegotiationBehaviour starting... line:42
+2024-11-09 11:55:36,401 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-09 11:55:36,401 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-09 11:55:46,402 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-09 11:55:46,402 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-09 11:55:56,400 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-09 11:55:56,400 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-09 11:56:05,152 [behaviours.svc_acl_handling_behaviour] [ACLINFO]          + Message received on AAS Manager Agent (ACLHandlingBehaviour) from gui_agent@xmpp.jp/4112222737470260787124243906 line:73
+2024-11-09 11:56:05,152 [behaviours.svc_acl_handling_behaviour] [ACLINFO]                  |___ Message received with content: {"serviceID": "capabilityRequest", "serviceType": "AssetRelatedService", "serviceData": {"serviceCategory": "service-request", "serviceParams": {"capabilityName": "EfficientTransport", "capabilityType": "AssetCapability", "skillInfo": {"skillName": "EfficientMovement", "smeType": "Operation"}}}} line:75
+2024-11-09 11:56:05,152 [behaviours.svc_acl_handling_behaviour] [ACLINFO] The performative of the message is Request, so the DT needs to perform some action. line:83
+2024-11-09 11:56:05,153 [behaviours.svc_acl_handling_behaviour] [ACLINFO] The agent has received a request to perform a capability line:88
+2024-11-09 11:56:05,153 [behaviours.handle_capability_behaviour] [INFO] HandleCapabilityBehaviour starting... line:42
+2024-11-09 11:56:05,154 [logic.exceptions] [ERROR] The received capability data is invalid due to missing #capabilityConstraints field in request message. line:30
+2024-11-09 11:56:05,154 [logic.exceptions] [ERROR] The received capability data is invalid due to missing #capabilityConstraints field in request message. line:48
+2024-11-09 11:56:05,154 [logic.exceptions] [INFO] Due to an incorrect execution of the capability [EfficientTransport], the requester shall be informed with a Failure message. line:50
+2024-11-09 11:56:05,695 [logic.exceptions] [INFO] Failure message sent to the requester of the capability []. line:55
+2024-11-09 11:56:05,695 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/HandleCapabilityBehaviour with exit code: 10 line:154
+2024-11-09 11:56:05,695 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/HandleCapabilityBehaviour with exit code: None line:154
+2024-11-09 11:56:06,393 [behaviours.negotiating_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour) line:155
+2024-11-09 11:56:13,183 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-09 11:56:13,184 [gcis1] [INFO] client shutting down (on request) line:975
+2024-11-09 11:56:13,184 [gcis1.StanzaStream] [INFO] stopping SM stream line:2473
+2024-11-09 11:56:13,184 [gcis1] [INFO] stopping stream line:989
+2024-11-09 11:56:13,184 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-09 11:56:13,184 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-09 11:56:13,186 [states.state_running] [INFO] This DT has negotiation capability. line:61
+2024-11-09 11:56:13,186 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-09 11:56:13,186 [behaviours.negotiating_behaviour] [INFO] NegotiationBehaviour starting... line:42
+2024-11-09 12:01:35,338 [__main__] [INFO] Initializing SMIA software... line:79
+2024-11-09 12:01:35,343 [__main__] [INFO] The asset is not defined, so it is a generic AAS Manager line:55
+2024-11-09 12:01:37,920 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-09 12:01:39,050 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/728463882773124201690400291 line:935
+2024-11-09 12:01:39,331 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABs3Mjg0NjM4ODI3NzMxMjQyMDE2OTA0MDAyOTFtAAAACAGIkrjZleRq' line:2209
+2024-11-09 12:01:39,914 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-09 12:01:39,916 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:90
+2024-11-09 12:01:39,922 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-09 12:01:39,922 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-09 12:01:39,923 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:32
+2024-11-09 12:01:43,926 [basyx.aas.adapter.xml.xml_deserialization] [ERROR] ConceptDescription[https://admin-shell.io/zvei/nameplate/2/0/Nameplate/Markings/Marking/ExplosionSafeties/ExplosionSafety/SpecificConditionsForUse] has a duplicate identifier already parsed in the document! skipping it... line:1443
+2024-11-09 12:01:43,927 [basyx.aas.adapter.xml.xml_deserialization] [ERROR] ConceptDescription[https://admin-shell.io/zvei/nameplate/2/0/Nameplate/Markings/Marking/ExplosionSafeties/ExplosionSafety/IncompleteDevice] has a duplicate identifier already parsed in the document! skipping it... line:1443
+2024-11-09 12:01:43,939 [basyx.aas.adapter.aasx] [INFO] Skipping supplementary file file:/aasx/files/logo_dark1.svg, since it seems to be an absolute URI or network-path URI reference line:254
+2024-11-09 12:01:43,940 [basyx.aas.adapter.aasx] [INFO] Skipping supplementary file file:/aasx/files/logo_dark.svg, since it seems to be an absolute URI or network-path URI reference line:254
+2024-11-09 12:01:43,940 [basyx.aas.adapter.aasx] [INFO] Skipping supplementary file file:/aasx/files/aas_suite_logo1.svg, since it seems to be an absolute URI or network-path URI reference line:254
+2024-11-09 12:01:43,940 [basyx.aas.adapter.aasx] [INFO] Skipping supplementary file file:///aasx/suppl/ml_logo_dark.svg, since it seems to be an absolute URI or network-path URI reference line:254
+2024-11-09 12:01:43,941 [basyx.aas.adapter.aasx] [INFO] Skipping supplementary file file:///aasx/suppl/ml_logo_dark.svg, since it seems to be an absolute URI or network-path URI reference line:254
+2024-11-09 12:01:54,751 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-09 12:01:54,753 [gcis1] [INFO] client shutting down (on request) line:975
+2024-11-09 12:01:54,754 [gcis1.StanzaStream] [INFO] stopping SM stream line:2473
+2024-11-09 12:01:54,754 [gcis1] [INFO] stopping stream line:989
+2024-11-09 12:01:54,754 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-09 12:01:54,755 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:32
+2024-11-09 12:01:54,803 [basyx.aas.adapter.xml.xml_deserialization] [ERROR] ConceptDescription[https://admin-shell.io/zvei/nameplate/2/0/Nameplate/Markings/Marking/ExplosionSafeties/ExplosionSafety/SpecificConditionsForUse] has a duplicate identifier already parsed in the document! skipping it... line:1443
+2024-11-09 12:01:54,803 [basyx.aas.adapter.xml.xml_deserialization] [ERROR] ConceptDescription[https://admin-shell.io/zvei/nameplate/2/0/Nameplate/Markings/Marking/ExplosionSafeties/ExplosionSafety/IncompleteDevice] has a duplicate identifier already parsed in the document! skipping it... line:1443
+2024-11-09 12:01:54,810 [basyx.aas.adapter.aasx] [INFO] Skipping supplementary file file:/aasx/files/logo_dark1.svg, since it seems to be an absolute URI or network-path URI reference line:254
+2024-11-09 12:01:54,810 [basyx.aas.adapter.aasx] [INFO] Skipping supplementary file file:/aasx/files/logo_dark.svg, since it seems to be an absolute URI or network-path URI reference line:254
+2024-11-09 12:01:54,811 [basyx.aas.adapter.aasx] [INFO] Skipping supplementary file file:/aasx/files/aas_suite_logo1.svg, since it seems to be an absolute URI or network-path URI reference line:254
+2024-11-09 12:01:54,811 [basyx.aas.adapter.aasx] [INFO] Skipping supplementary file file:///aasx/suppl/ml_logo_dark.svg, since it seems to be an absolute URI or network-path URI reference line:254
+2024-11-09 12:01:54,811 [basyx.aas.adapter.aasx] [INFO] Skipping supplementary file file:///aasx/suppl/ml_logo_dark.svg, since it seems to be an absolute URI or network-path URI reference line:254
+2024-11-09 12:01:54,812 [behaviours.init_aas_model_behaviour] [WARNING] AssetInterfacesSubmodel submodel is not defined. Make sure that this DT does not need to be connected to the asset. line:249
+2024-11-09 12:01:54,819 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all capabilities of the asset and the industrial agent... line:110
+2024-11-09 12:01:54,819 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all connections of the asset... line:200
+2024-11-09 12:01:54,821 [behaviours.init_aas_model_behaviour] [WARNING] AssetInterfacesSubmodel submodel is not defined. Make sure that this DT does not need to be connected to the asset. line:204
+2024-11-09 12:01:54,821 [behaviours.init_aas_model_behaviour] [INFO] AAS model initialized. line:72
+2024-11-09 12:01:54,821 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: None line:154
+2024-11-09 12:01:54,823 [states.state_booting] [INFO] gcis1@xmpp.jp agent has finished it Boot state. line:68
+2024-11-09 12:01:54,823 [spade.behaviour] [INFO] FSM transiting from BOOTING to RUNNING. line:591
+2024-11-09 12:01:54,824 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-09 12:01:54,824 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-09 12:01:54,825 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-09 12:02:27,930 [__main__] [INFO] Initializing SMIA software... line:79
+2024-11-09 12:02:27,933 [__main__] [INFO] The asset is not defined, so it is a generic AAS Manager line:55
+2024-11-09 12:02:30,623 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-09 12:02:31,754 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/553693571083550319415171685 line:935
+2024-11-09 12:02:32,037 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABs1NTM2OTM1NzEwODM1NTAzMTk0MTUxNzE2ODVtAAAACA3XT7cboBxX' line:2209
+2024-11-09 12:02:32,621 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-09 12:02:32,622 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:90
+2024-11-09 12:02:32,629 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-09 12:02:32,629 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-09 12:02:32,629 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:32
+2024-11-09 12:02:35,784 [basyx.aas.adapter.xml.xml_deserialization] [ERROR] ValueError: could not convert string to float: '0,408'
+ -> Failed to construct {https://admin-shell.io/aas/3/0}property on line 1 using construct_submodel_element! line:297
+2024-11-09 12:02:35,900 [basyx.aas.adapter.xml.xml_deserialization] [ERROR] ConceptDescription[https://admin-shell.io/zvei/nameplate/2/0/Nameplate/Markings/Marking/ExplosionSafeties/ExplosionSafety/SpecificConditionsForUse] has a duplicate identifier already parsed in the document! skipping it... line:1443
+2024-11-09 12:02:35,901 [basyx.aas.adapter.xml.xml_deserialization] [ERROR] ConceptDescription[https://admin-shell.io/zvei/nameplate/2/0/Nameplate/Markings/Marking/ExplosionSafeties/ExplosionSafety/IncompleteDevice] has a duplicate identifier already parsed in the document! skipping it... line:1443
+2024-11-09 12:02:35,921 [basyx.aas.adapter.aasx] [INFO] Skipping supplementary file file:/aasx/files/Emerson.png, since it seems to be an absolute URI or network-path URI reference line:254
+2024-11-09 12:02:35,923 [basyx.aas.adapter.aasx] [INFO] Skipping supplementary file file:/aasx/files/Emerson1.png, since it seems to be an absolute URI or network-path URI reference line:254
+2024-11-09 12:02:35,924 [basyx.aas.adapter.aasx] [INFO] Skipping supplementary file file:/aasx/files/00134142_hq-aventics-wegeventil-cd07.jpg, since it seems to be an absolute URI or network-path URI reference line:254
+2024-11-09 12:02:49,650 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-09 12:02:49,652 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-09 12:02:49,653 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:32
+2024-11-09 12:02:49,702 [basyx.aas.adapter.xml.xml_deserialization] [ERROR] ValueError: could not convert string to float: '0,408'
+ -> Failed to construct {https://admin-shell.io/aas/3/0}property on line 1 using construct_submodel_element! line:297
+2024-11-09 12:02:49,761 [basyx.aas.adapter.xml.xml_deserialization] [ERROR] ConceptDescription[https://admin-shell.io/zvei/nameplate/2/0/Nameplate/Markings/Marking/ExplosionSafeties/ExplosionSafety/SpecificConditionsForUse] has a duplicate identifier already parsed in the document! skipping it... line:1443
+2024-11-09 12:02:49,761 [basyx.aas.adapter.xml.xml_deserialization] [ERROR] ConceptDescription[https://admin-shell.io/zvei/nameplate/2/0/Nameplate/Markings/Marking/ExplosionSafeties/ExplosionSafety/IncompleteDevice] has a duplicate identifier already parsed in the document! skipping it... line:1443
+2024-11-09 12:02:49,769 [basyx.aas.adapter.aasx] [INFO] Skipping supplementary file file:/aasx/files/Emerson.png, since it seems to be an absolute URI or network-path URI reference line:254
+2024-11-09 12:02:49,770 [basyx.aas.adapter.aasx] [INFO] Skipping supplementary file file:/aasx/files/Emerson1.png, since it seems to be an absolute URI or network-path URI reference line:254
+2024-11-09 12:02:49,770 [basyx.aas.adapter.aasx] [INFO] Skipping supplementary file file:/aasx/files/00134142_hq-aventics-wegeventil-cd07.jpg, since it seems to be an absolute URI or network-path URI reference line:254
+2024-11-09 12:02:49,771 [behaviours.init_aas_model_behaviour] [WARNING] AssetInterfacesSubmodel submodel is not defined. Make sure that this DT does not need to be connected to the asset. line:249
+2024-11-09 12:02:49,778 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all capabilities of the asset and the industrial agent... line:110
+2024-11-09 12:02:49,779 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all connections of the asset... line:200
+2024-11-09 12:02:49,779 [behaviours.init_aas_model_behaviour] [WARNING] AssetInterfacesSubmodel submodel is not defined. Make sure that this DT does not need to be connected to the asset. line:204
+2024-11-09 12:02:49,779 [behaviours.init_aas_model_behaviour] [INFO] AAS model initialized. line:72
+2024-11-09 12:02:49,779 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: None line:154
+2024-11-09 12:02:49,780 [states.state_booting] [INFO] gcis1@xmpp.jp agent has finished it Boot state. line:68
+2024-11-09 12:02:49,780 [spade.behaviour] [INFO] FSM transiting from BOOTING to RUNNING. line:591
+2024-11-09 12:02:49,780 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-09 12:02:49,780 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-09 12:02:49,781 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-09 12:03:30,128 [__main__] [INFO] Initializing SMIA software... line:79
+2024-11-09 12:03:30,132 [__main__] [INFO] The asset is not defined, so it is a generic AAS Manager line:55
+2024-11-09 12:03:32,818 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-09 12:03:33,944 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/7118893688273699038124276514 line:935
+2024-11-09 12:03:34,227 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABw3MTE4ODkzNjg4MjczNjk5MDM4MTI0Mjc2NTE0bQAAAAieCoYqcFDO4A==' line:2209
+2024-11-09 12:03:34,814 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-09 12:03:34,816 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:90
+2024-11-09 12:03:34,823 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-09 12:03:34,824 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-09 12:03:34,824 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:32
+2024-11-09 12:03:40,614 [spade.behaviour] [ERROR] Exception running behaviour OneShotBehaviour/InitAASModelBehaviour: Not a valid AASX file: aasx-origin Relationship is missing. line:291
+2024-11-09 12:03:40,624 [spade.behaviour] [ERROR] Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\basyx\aas\adapter\aasx.py", line 142, in read_into
+    aasx_origin_part = core_rels[RELATIONSHIP_TYPE_AASX_ORIGIN][0]
+IndexError: list index out of range
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 285, in _step
+    await self._run()
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 274, in _run
+    await self.run()
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\init_aas_model_behaviour.py", line 54, in run
+    object_store = await self.read_aas_model_object_store(aas_model_serialization_format)
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\init_aas_model_behaviour.py", line 96, in read_aas_model_object_store
+    reader.read_into(object_store=object_store,
+  File "C:\Python310\lib\site-packages\basyx\aas\adapter\aasx.py", line 144, in read_into
+    raise ValueError("Not a valid AASX file: aasx-origin Relationship is missing.") from e
+ValueError: Not a valid AASX file: aasx-origin Relationship is missing.
+ line:296
+2024-11-09 12:03:40,625 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: Not a valid AASX file: aasx-origin Relationship is missing. line:154
+2024-11-09 12:03:40,625 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: None line:154
+2024-11-09 12:03:40,626 [states.state_booting] [INFO] gcis1@xmpp.jp agent has finished it Boot state. line:68
+2024-11-09 12:03:40,626 [spade.behaviour] [INFO] FSM transiting from BOOTING to RUNNING. line:591
+2024-11-09 12:03:40,627 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-09 12:03:40,627 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-09 12:03:40,629 [spade.Web] [INFO] Serving on http://0.0.0.0:10002/ line:39
+2024-11-09 12:03:40,629 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-09 12:03:50,625 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-09 12:04:00,633 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:147
+2024-11-09 12:04:02,701 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-09 12:11:19,799 [__main__] [INFO] Initializing SMIA software... line:79
+2024-11-09 12:11:19,808 [__main__] [INFO] The asset is not defined, so it is a generic AAS Manager line:55
+2024-11-09 12:11:22,525 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-09 12:11:23,649 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/1799249124078105123449285540 line:935
+2024-11-09 12:11:23,928 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABwxNzk5MjQ5MTI0MDc4MTA1MTIzNDQ5Mjg1NTQwbQAAAAgIpKjyiOmQUg==' line:2209
+2024-11-09 12:11:24,511 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-09 12:11:24,513 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:90
+2024-11-09 12:11:24,521 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-09 12:11:24,522 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-09 12:11:24,522 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:32
+2024-11-09 12:11:30,787 [behaviours.init_aas_model_behaviour] [ERROR] Failed to read AAS model: invalid AASX package. line:100
+2024-11-09 12:11:31,083 [behaviours.init_aas_model_behaviour] [ERROR] Not a valid AASX file: aasx-origin Relationship is missing. line:101
+2024-11-09 12:11:41,973 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-09 12:11:41,975 [spade.Web] [INFO] Serving on http://0.0.0.0:10002/ line:39
+2024-11-09 12:11:41,976 [gcis1] [INFO] client shutting down (on request) line:975
+2024-11-09 12:11:41,976 [gcis1.StanzaStream] [INFO] stopping SM stream line:2473
+2024-11-09 12:11:41,976 [gcis1] [INFO] stopping stream line:989
+2024-11-09 12:11:41,977 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-09 12:11:41,977 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:32
+2024-11-09 12:11:41,978 [behaviours.init_aas_model_behaviour] [ERROR] Failed to read AAS model: invalid AASX package. line:100
+2024-11-09 12:11:41,979 [behaviours.init_aas_model_behaviour] [ERROR] Not a valid AASX file: aasx-origin Relationship is missing. line:101
+2024-11-09 12:11:41,979 [behaviours.init_aas_model_behaviour] [WARNING] AssetInterfacesSubmodel submodel is not defined. Make sure that this DT does not need to be connected to the asset. line:253
+2024-11-09 12:11:41,987 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all capabilities of the asset and the industrial agent... line:114
+2024-11-09 12:11:41,987 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all connections of the asset... line:204
+2024-11-09 12:11:41,987 [behaviours.init_aas_model_behaviour] [WARNING] AssetInterfacesSubmodel submodel is not defined. Make sure that this DT does not need to be connected to the asset. line:208
+2024-11-09 12:11:41,988 [behaviours.init_aas_model_behaviour] [INFO] AAS model initialized. line:72
+2024-11-09 12:11:41,988 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: None line:154
+2024-11-09 12:11:41,989 [states.state_booting] [INFO] gcis1@xmpp.jp agent has finished it Boot state. line:68
+2024-11-09 12:11:41,989 [spade.behaviour] [INFO] FSM transiting from BOOTING to RUNNING. line:591
+2024-11-09 12:11:41,989 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-09 12:11:41,989 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-09 12:11:41,990 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-09 12:14:57,902 [__main__] [INFO] Initializing SMIA software... line:79
+2024-11-09 12:14:57,905 [__main__] [INFO] The asset is not defined, so it is a generic AAS Manager line:55
+2024-11-09 12:15:00,580 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-09 12:15:01,735 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/17446363460252477474124324002 line:935
+2024-11-09 12:15:02,032 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAAB0xNzQ0NjM2MzQ2MDI1MjQ3NzQ3NDEyNDMyNDAwMm0AAAAIrwUnbhuajxA=' line:2209
+2024-11-09 12:15:02,692 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-09 12:15:02,693 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:90
+2024-11-09 12:15:02,694 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-09 12:15:02,696 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-09 12:15:02,696 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:32
+2024-11-09 12:15:02,738 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all capabilities of the asset and the industrial agent... line:114
+2024-11-09 12:15:02,739 [spade.Web] [INFO] Serving on http://0.0.0.0:10002/ line:39
+2024-11-09 12:15:03,227 [behaviours.init_aas_model_behaviour] [INFO] Analyzing AgentCapability [Negotiation] and its associated skill [NegotiationBasedOnCriteria]... line:135
+2024-11-09 12:15:03,229 [behaviours.init_aas_model_behaviour] [INFO] Capability[urn:ehu:gcis:submodel:1:1:agentcapabilities001 / Negotiation] information saved in the global variables. line:189
+2024-11-09 12:15:03,727 [behaviours.init_aas_model_behaviour] [INFO] Analyzing AssetCapability [EfficientTransport] and its associated skill [EfficientMovement]... line:135
+2024-11-09 12:15:03,728 [behaviours.init_aas_model_behaviour] [INFO] Capability[urn:ehu:gcis:submodel:1:1:capabilities001 / CapabilityDefinitions / EfficientTransport] information saved in the global variables. line:189
+2024-11-09 12:15:03,729 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all connections of the asset... line:204
+2024-11-09 12:15:04,226 [behaviours.init_aas_model_behaviour] [INFO] All asset connections defined in the AAS model have been configured and saved. line:230
+2024-11-09 12:15:04,227 [behaviours.init_aas_model_behaviour] [INFO] AAS model initialized. line:72
+2024-11-09 12:15:04,227 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: None line:154
+2024-11-09 12:15:04,229 [states.state_booting] [INFO] gcis1@xmpp.jp agent has finished it Boot state. line:68
+2024-11-09 12:15:04,229 [spade.behaviour] [INFO] FSM transiting from BOOTING to RUNNING. line:591
+2024-11-09 12:15:04,229 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-09 12:15:04,229 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-09 12:15:04,230 [states.state_running] [INFO] This DT has negotiation capability. line:61
+2024-11-09 12:15:04,231 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-09 12:15:04,231 [behaviours.negotiating_behaviour] [INFO] NegotiationBehaviour starting... line:42
+2024-11-09 12:15:06,774 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-09 12:15:06,775 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-09 12:15:06,775 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-09 12:15:06,775 [states.state_running] [INFO] This DT has negotiation capability. line:61
+2024-11-09 12:15:06,775 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-09 12:15:06,775 [behaviours.negotiating_behaviour] [INFO] NegotiationBehaviour starting... line:42

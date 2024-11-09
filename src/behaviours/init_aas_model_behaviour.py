@@ -5,6 +5,8 @@ import time
 
 import basyx.aas.adapter.xml
 import basyx.aas.adapter.json
+from basyx.aas import model
+from basyx.aas.adapter import aasx
 from basyx.aas.model import ModelReference
 from spade.behaviour import OneShotBehaviour
 from tqdm.asyncio import tqdm
@@ -86,6 +88,17 @@ class InitAASModelBehaviour(OneShotBehaviour):
             object_store = basyx.aas.adapter.json.read_aas_json_file(configmap_utils.get_aas_model_filepath())
         elif aas_model_serialization_format == 'XML':
             object_store = basyx.aas.adapter.xml.read_aas_xml_file(configmap_utils.get_aas_model_filepath())
+        elif aas_model_serialization_format == 'AASX':
+            try:
+                with aasx.AASXReader(configmap_utils.get_aas_model_filepath()) as reader:
+                    # Read all contained AAS objects and all referenced auxiliary files
+                    object_store = model.DictObjectStore()
+                    suppl_file_store = aasx.DictSupplementaryFileContainer()
+                    reader.read_into(object_store=object_store,
+                                     file_store=suppl_file_store)
+            except ValueError as e:
+                _logger.error("Failed to read AAS model: invalid AASX package.")
+                _logger.error(e)
         if object_store is None:
             _logger.error("The AAS model is not valid. It is not possible to read and obtain elements of the AAS "
                           "metamodel.")
