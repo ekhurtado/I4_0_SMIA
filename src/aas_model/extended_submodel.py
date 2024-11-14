@@ -346,3 +346,45 @@ class ExtendedReferenceElement(ReferenceElement):
         super().print_submodel_element_information()
         print("Specific attributes of ReferenceElements:")
         # TODO
+
+
+# TODO esta es una prueba para generar clases propias para Capability, Skill y SkillInterface (de esta forma podemos
+#   añadir metodos utiles que se usen durante la ejecucion del programa y hacerlo t0do mas eficiente. Por ejemplo,
+#   un metodo podria ser obtener los parametros de una skill. Antes teniamos el problema que simplemente los teniamos
+#   a mano ya que la Skill era una operation y tiene en sus atributos sus variables input y ouput. Ahora,
+#   con la clase "SMIASkill" podemos hacer un metodo de obtener los parametros. Este metodo puede analizar de que
+#   tipo de era la Skill, y dependiendo de su clase, obtener los parametros (con una Operacion lograrlos con sus
+#   atributos, y en otros casos analizar la relacion SkillHasParameter y obtener sus parametros). Para esto,
+#   si es cierto que, durante la creacion de esta clase se deberan añadir los parametros, la maquina de estados,
+#   sus posibles interfaces, etc. ya que se necesitará t0do el modelo AAS para ello (se tendra que hacer en el
+#   init_aas_model_behav)
+class SMIASkill(ExtendedSubmodelElement, ExtendedOperation, ExtendedSubmodelElementCollection):
+
+
+    def prueba(self):
+        print("a")
+
+    def add_sme_type(self, sme_type):
+        self.sme_type = sme_type
+        if issubclass(self.sme_type, basyx.aas.model.Operation):
+            print("Antes la Skill era una Operation")
+        if issubclass(self.sme_type, basyx.aas.model.SubmodelElement):
+            print("Antes la Skill era una SubmodelElement")
+        if issubclass(self.sme_type, basyx.aas.model.SubmodelElementCollection):
+            print("Antes la Skill era una SubmodelElementCollection")
+
+    def como_convertir_un_skill_a_esta_clase(self, skill_elem):
+        # Imaginemos que tenemos un skill_elem (puede ser, p.e. un Operation)
+        basyx_class = skill_elem.__class__
+        skill_elem.__class__ = SMIASkill
+        # Ahora es de la clase SMIASkill, por lo que tiene todos sus metodos y los de sus clases extendidas (los Extended nuestros)
+        # Aun asi, tenemos que guardar de que tipo de SubmodelElement era antes de convertirlo a SMIASkill
+        self.sme_type = basyx_class
+
+        # TODO a la hora de ejecutar los metodos que se añadan, se deberá comprobar el tipo de clase que era antes, ya
+        #  que va a depender para su ejecución y para saber qué atributos tendrá en cada caso (no todos son iguales)
+        if issubclass(self.sme_type, basyx.aas.model.Operation):
+            print("Antes la Skill era una Operation")
+
+
+

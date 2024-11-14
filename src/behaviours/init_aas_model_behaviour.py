@@ -12,6 +12,7 @@ from spade.behaviour import OneShotBehaviour
 from tqdm.asyncio import tqdm
 from tqdm.contrib.logging import logging_redirect_tqdm
 
+from aas_model.extended_submodel import SMIASkill
 from assetconnection.http_asset_connection import HTTPAssetConnection
 from utilities import configmap_utils
 from utilities.capability_skill_ontology import CapabilitySkillOntology, AssetInterfacesInfo
@@ -123,6 +124,13 @@ class InitAASModelBehaviour(OneShotBehaviour):
             # relationship they are listed).
             capability_elem, skill_elem = await self.myagent.aas_model.get_cap_skill_elem_from_relationship(
                 rel_cap_skill)
+
+            # TODO BORRAR: son pruebas para proponer clases para Capability, Skill y SkillInterface
+            basyx_class = skill_elem.__class__
+            skill_elem.__class__ = SMIASkill
+            print(skill_elem.prueba())
+            # skill_elem.get_sm_element_by_semantic_id('hh')
+            skill_elem.add_sme_type(basyx_class)
 
             if capability_elem is None or skill_elem is None:
                 continue
