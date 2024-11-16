@@ -1,13 +1,62 @@
-from owlready2 import Thing, get_ontology
+from owlready2 import Thing, get_ontology, DatatypeProperty, DataPropertyClass, ThingClass, OneOf, CallbackList, \
+    DatatypeClass
 
-css_ontology = get_ontology("CSS-Ontology-module.owl")
+from capability_skill_onto_utils import get_possible_values_of_datatype
 
-with css_ontology:
-    class Capability(Thing):
+# css_ontology = get_ontology("CSS-Ontology-RDF-XML.owl")
+# css_ontology = get_ontology("CSS-ontology-module.owl")
+css_ontology = get_ontology("CSS-ontology-smia.owl")
 
 
-        def method(self):
-            print("method of capability")
+# with css_ontology:
+class Capability(Thing):
+    """
+    This class represent the OWL class for Capabilities. It contains all necessary methods to ensure the correct
+    execution of SMIA software.
+    """
+    namespace = css_ontology
 
-        def method2(self):
-            print("method2 of capability")
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        # Some attributes of Capability have limited values, so it have to be obtained
+        self.limited_values_dict = {}
+        self.seek_limited_values()
+
+    def seek_limited_values(self):
+        """
+        This method seeks possible limited values for attributes of Capability, in order to validate when the attribute
+        value is assigned. The possible values for limited attributes are stored in a global dictionary.
+        """
+        for prop in css_ontology.properties():
+            if isinstance(prop, DataPropertyClass):
+                for range_value in prop.range:
+                    if isinstance(range_value, DatatypeClass):
+                        possible_values = get_possible_values_of_datatype(range_value)
+                        if possible_values is not None:
+                            self.limited_values_dict[prop.name] = possible_values
+    def set_lifecycle(self, lifecycle):
+        # TODO
+        print(lifecycle)
+        print(self.limited_values_dict)
+
+    # TODO ELIMINAR
+    def method(self):
+        print("method of capability")
+
+    def method2(self):
+        print("method2 of capability")
+
+
+class Skill(Thing):
+    namespace = css_ontology
+
+    def method_skill(self):
+        print("method of skill")
+
+
+class CapabilityConstraint(Thing):
+    namespace = css_ontology
+
+    def a(self):
+        print()
