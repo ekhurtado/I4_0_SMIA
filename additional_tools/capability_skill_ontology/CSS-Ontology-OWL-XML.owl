@@ -1,0 +1,779 @@
+<?xml version="1.0"?>
+<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.w3id.org/hsu-aut/css"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     ontologyIRI="http://www.w3id.org/hsu-aut/css"
+     versionIRI="http://www.w3id.org/hsu-aut/css/1.0.1">
+    <Prefix name="" IRI="http://www.w3id.org/hsu-aut/css#"/>
+    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix name="xml" IRI="http://www.w3.org/XML/1998/namespace"/>
+    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Annotation>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <Literal>An ontology for the Capability, Skill and Service reference model defined by Plattform Industrie 4.0. See https://www.plattform-i40.de/IP/Redaktion/DE/Downloads/Publikation/CapabilitiesSkillsServices.html for a description of the abstract reference model.</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty abbreviatedIRI="rdfs:isDefinedBy"/>
+        <Literal>https://www.plattform-i40.de/IP/Redaktion/DE/Downloads/Publikation/CapabilitiesSkillsServices.html</Literal>
+    </Annotation>
+    <Declaration>
+        <Class IRI="#Capability"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CapabilityConstraint"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Process"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Product"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Property"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Resource"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Service"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ServiceOffer"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ServiceProvider"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ServiceRequester"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Skill"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#SkillInterface"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#SkillParameter"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#StateMachine"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#accessibleThrough"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#assures"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#behaviorConformsTo"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#controls"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#demands"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#exposes"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasInput"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasOutput"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasParameter"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#isInputFor"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#isRealizedBy"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#isRealizedBySkill"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#isRealizedBySkillParameter"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#isRestrictedBy"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#isSpecifiedBy"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#offers"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#offersUseOf"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#proposes"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#provides"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#providesCapability"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#providesSkill"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#receives"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#references"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#requiresCapability"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#requiresProduct"/>
+    </Declaration>
+    <DisjointClasses>
+        <Class IRI="#Capability"/>
+        <Class IRI="#Resource"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Capability"/>
+        <Class IRI="#ServiceOffer"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Capability"/>
+        <Class IRI="#ServiceProvider"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Capability"/>
+        <Class IRI="#ServiceRequester"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Capability"/>
+        <Class IRI="#Skill"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Capability"/>
+        <Class IRI="#SkillInterface"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Capability"/>
+        <Class IRI="#SkillParameter"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#CapabilityConstraint"/>
+        <Class IRI="#Resource"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#CapabilityConstraint"/>
+        <Class IRI="#Service"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#CapabilityConstraint"/>
+        <Class IRI="#ServiceOffer"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#CapabilityConstraint"/>
+        <Class IRI="#ServiceProvider"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#CapabilityConstraint"/>
+        <Class IRI="#ServiceRequester"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#CapabilityConstraint"/>
+        <Class IRI="#Skill"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#CapabilityConstraint"/>
+        <Class IRI="#SkillInterface"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#CapabilityConstraint"/>
+        <Class IRI="#SkillParameter"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Process"/>
+        <Class IRI="#Resource"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Process"/>
+        <Class IRI="#Service"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Process"/>
+        <Class IRI="#ServiceOffer"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Process"/>
+        <Class IRI="#ServiceProvider"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Process"/>
+        <Class IRI="#Skill"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Process"/>
+        <Class IRI="#SkillInterface"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Process"/>
+        <Class IRI="#SkillParameter"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Product"/>
+        <Class IRI="#Service"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Product"/>
+        <Class IRI="#ServiceOffer"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Product"/>
+        <Class IRI="#ServiceProvider"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Product"/>
+        <Class IRI="#ServiceRequester"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Product"/>
+        <Class IRI="#Skill"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Product"/>
+        <Class IRI="#SkillInterface"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Product"/>
+        <Class IRI="#SkillParameter"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Property"/>
+        <Class IRI="#Resource"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Property"/>
+        <Class IRI="#Service"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Property"/>
+        <Class IRI="#ServiceOffer"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Property"/>
+        <Class IRI="#ServiceProvider"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Property"/>
+        <Class IRI="#ServiceRequester"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Property"/>
+        <Class IRI="#Skill"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Property"/>
+        <Class IRI="#SkillInterface"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Resource"/>
+        <Class IRI="#Service"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Resource"/>
+        <Class IRI="#ServiceOffer"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Resource"/>
+        <Class IRI="#Skill"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Resource"/>
+        <Class IRI="#SkillInterface"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Resource"/>
+        <Class IRI="#SkillParameter"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Resource"/>
+        <Class IRI="#StateMachine"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Service"/>
+        <Class IRI="#ServiceOffer"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Service"/>
+        <Class IRI="#ServiceProvider"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Service"/>
+        <Class IRI="#ServiceRequester"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Service"/>
+        <Class IRI="#Skill"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Service"/>
+        <Class IRI="#SkillInterface"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Service"/>
+        <Class IRI="#SkillParameter"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Service"/>
+        <Class IRI="#StateMachine"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#ServiceOffer"/>
+        <Class IRI="#ServiceProvider"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#ServiceOffer"/>
+        <Class IRI="#ServiceRequester"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#ServiceOffer"/>
+        <Class IRI="#Skill"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#ServiceOffer"/>
+        <Class IRI="#SkillInterface"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#ServiceOffer"/>
+        <Class IRI="#SkillParameter"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#ServiceOffer"/>
+        <Class IRI="#StateMachine"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#ServiceProvider"/>
+        <Class IRI="#Skill"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#ServiceProvider"/>
+        <Class IRI="#SkillInterface"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#ServiceProvider"/>
+        <Class IRI="#SkillParameter"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#ServiceProvider"/>
+        <Class IRI="#StateMachine"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#ServiceRequester"/>
+        <Class IRI="#Skill"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#ServiceRequester"/>
+        <Class IRI="#SkillInterface"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#ServiceRequester"/>
+        <Class IRI="#SkillParameter"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#ServiceRequester"/>
+        <Class IRI="#StateMachine"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Skill"/>
+        <Class IRI="#SkillParameter"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#SkillInterface"/>
+        <Class IRI="#SkillParameter"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#SkillInterface"/>
+        <Class IRI="#StateMachine"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#SkillParameter"/>
+        <Class IRI="#StateMachine"/>
+    </DisjointClasses>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#isRealizedBySkill"/>
+        <ObjectProperty IRI="#isRealizedBy"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#isRealizedBySkillParameter"/>
+        <ObjectProperty IRI="#isRealizedBy"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#providesCapability"/>
+        <ObjectProperty IRI="#provides"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#providesSkill"/>
+        <ObjectProperty IRI="#provides"/>
+    </SubObjectPropertyOf>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#accessibleThrough"/>
+        <Class IRI="#Skill"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#assures"/>
+        <Class IRI="#Service"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#behaviorConformsTo"/>
+        <Class IRI="#Resource"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#behaviorConformsTo"/>
+        <Class IRI="#Skill"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#controls"/>
+        <Class IRI="#Skill"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#demands"/>
+        <Class IRI="#ServiceRequester"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#exposes"/>
+        <Class IRI="#SkillInterface"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasInput"/>
+        <Class IRI="#Process"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasOutput"/>
+        <Class IRI="#Process"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasParameter"/>
+        <Class IRI="#Skill"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#isInputFor"/>
+        <Class IRI="#Service"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#isRealizedBy"/>
+        <Class IRI="#Capability"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#isRealizedBy"/>
+        <Class IRI="#Property"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#isRealizedBySkill"/>
+        <Class IRI="#Capability"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#isRealizedBySkillParameter"/>
+        <Class IRI="#Property"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#isRestrictedBy"/>
+        <Class IRI="#Capability"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#isSpecifiedBy"/>
+        <Class IRI="#Capability"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#isSpecifiedBy"/>
+        <Class IRI="#Service"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#offers"/>
+        <Class IRI="#ServiceProvider"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#offersUseOf"/>
+        <Class IRI="#Service"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#proposes"/>
+        <Class IRI="#ServiceProvider"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#provides"/>
+        <Class IRI="#Resource"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#providesCapability"/>
+        <Class IRI="#Resource"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#providesSkill"/>
+        <Class IRI="#Resource"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#receives"/>
+        <Class IRI="#ServiceRequester"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#references"/>
+        <Class IRI="#CapabilityConstraint"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#requiresCapability"/>
+        <Class IRI="#Process"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#requiresProduct"/>
+        <Class IRI="#ServiceRequester"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#accessibleThrough"/>
+        <Class IRI="#SkillInterface"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#assures"/>
+        <Class IRI="#Product"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#behaviorConformsTo"/>
+        <Class IRI="#StateMachine"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#controls"/>
+        <Class IRI="#Process"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#demands"/>
+        <Class IRI="#Service"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#exposes"/>
+        <Class IRI="#SkillParameter"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#exposes"/>
+        <Class IRI="#StateMachine"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasInput"/>
+        <Class IRI="#Product"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasOutput"/>
+        <Class IRI="#Product"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasParameter"/>
+        <Class IRI="#SkillParameter"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#isInputFor"/>
+        <Class IRI="#ServiceOffer"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#isRealizedBy"/>
+        <Class IRI="#Skill"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#isRealizedBy"/>
+        <Class IRI="#SkillParameter"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#isRealizedBySkill"/>
+        <Class IRI="#Skill"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#isRealizedBySkillParameter"/>
+        <Class IRI="#SkillParameter"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#isRestrictedBy"/>
+        <Class IRI="#CapabilityConstraint"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#isSpecifiedBy"/>
+        <Class IRI="#Property"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#offers"/>
+        <Class IRI="#Service"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#offersUseOf"/>
+        <Class IRI="#Capability"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#proposes"/>
+        <Class IRI="#ServiceOffer"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#providesCapability"/>
+        <Class IRI="#Capability"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#providesSkill"/>
+        <Class IRI="#Skill"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#receives"/>
+        <Class IRI="#ServiceOffer"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#references"/>
+        <Class IRI="#Property"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#requiresCapability"/>
+        <Class IRI="#Capability"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#requiresProduct"/>
+        <Class IRI="#Product"/>
+    </ObjectPropertyRange>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Capability</IRI>
+        <Literal>Implementation-independent specification of a function in industrial production to achieve an effect in the physical or virtual world.
+
+Notes:
+- A capability can be restricted by constraints.
+- A capability can be specified by capability properties.
+- A capability can be realized by skills</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#CapabilityConstraint</IRI>
+        <Literal>Condition imposed on a capability that further details its applicability. 
+
+Notes:
+- A capability constraint can be formulated as one of the following three constraint types:
+▪ A precondition, i.e., a condition that must hold before a function can be executed.
+▪ A postcondition, i.e., a condition that must hold after a function has been executed.
+▪ An invariant, i.e., a condition that must hold during the execution of a
+function.
+- A capability constraint restricts the values of the properties associated with the respective capability.
+- A capability constraint can involve one or more properties</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Process</IRI>
+        <Literal>Production-relevant activity at any level of granularity that might affect materials and is performed by resources.
+
+Notes:
+- In general, a process can be decomposed into sub-processes or single activities.
+- A process can require capabilities to express that any suitable resource used for
+performing this process needs to provide compatible capabilities.
+- A process step relates to materials that constitute either input or output for the processing in this step</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Product</IRI>
+        <Literal>Physical object being used as an input or created as an output of a production process.
+
+Notes:
+- The term Product may be used for objects in various states of manufacturing and may be seen as a generic term for raw materials, work in process and finished goods. Consumable supplies such as fuel, lubricants or cleaning agents may also be regarded as products. Furthermore, both purchased parts as well as parts manufactured in-house may be regarded as products.
+- Besides the actual product, there can be additional artifacts related to that product that are created and used in different life cycle phases to specify the product.
+▪ 3D/CAD models
+▪ specifications
+▪ BOM
+- A Service Requester may use these additional artifacts to formulate requirements against products.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Property</IRI>
+        <Literal>Quality or characteristic inherent in or ascribed to any CSS model element
+
+Notes:
+- Properties may be used to describe and differentiate all kinds of PPR entities (i.e., products, process steps, resources)
+- Capabilities, services and offers are specified by properties in order to detail their description with regard to certain entities (e.g. products, process steps, resources)</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Resource</IRI>
+        <Literal>Entity capable of performing functions specified as Capabilities and potentially implemented as Skills.
+
+Notes
+- A production resource may consist of hardware, software or both
+- A production resource may only provide capabilities (i.e. when engineering a resource, for planning purposes) and may additionally provide skills for automatic execution of the specified function.
+- A human becomes a Production Resource, if that person is able to perform a function specified as a capability.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Service</IRI>
+        <Literal>Description of the commercial aspects and means of provision of offered capabilities.
+
+Notes:
+- The term “service” should be understood in the sense of economics and shall not be confused with e.g., web services.
+- The capabilities and means of provisions are specified by properties
+- A service is demanded by service requesters and provided by a service provider
+- A service is an input for an offer proposed by</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#ServiceOffer</IRI>
+        <Literal>Proposal for a binding contract from the Service Provider to execute one or more particular services that a ServiceRequester can receive and accept.
+
+Notes:
+- A ServiceOffer should determine the commercial aspects of the service provision
+and may remain valid for a certain period of time.
+- An Offer may consist of partial offers proposed by different service providers</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#ServiceProvider</IRI>
+        <Literal>Provides Services and can propose ServiceOffers to ServiceRequesters.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#ServiceRequester</IRI>
+        <Literal>Demands Services under particular commercial aspects by providing either a specification of
+services or a specification of product requirements.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Skill</IRI>
+        <Literal>Executable implementation of an encapsulated (automation) function specified by a Capability.
+
+Notes:
+- A skill must have a skill interface. 
+- One capability can be realized by more than one skill. 
+- A skill may have any number of SkillParameters. 
+- A skill’s behavior conforms to a state machine. 
+- A skill controls a process step</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#SkillInterface</IRI>
+        <Literal>Access point to configure, control and monitor a skill.
+
+Notes:
+- A skill interface exposes interaction points to be used by other external systems
+(e.g. MES, other skills).
+- A skill interface exposes the state machine of a skill so that skill states can be
+monitored and transitions triggered.
+- A skill interface exposes the parameters of a skill so that they can be written and read.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#SkillParameter</IRI>
+        <Literal>Data unit to configure, control and monitor the execution of a skill.
+
+Notes:
+- Skill parameters might be used as in- /output parameters
+- Skill parameters might be used as results
+- Skill parameters might have a relation or be equivalent to capability properties</Literal>
+    </AnnotationAssertion>
+</Ontology>
+
+
+
+<!-- Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi -->
+
