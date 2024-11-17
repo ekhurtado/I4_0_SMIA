@@ -1,11 +1,11 @@
 from owlready2 import Thing, get_ontology, DatatypeProperty, DataPropertyClass, ThingClass, OneOf, CallbackList, \
     DatatypeClass
 
-from capability_skill_onto_utils import get_possible_values_of_datatype
+from capability_skill_onto_utils import CapabilitySkillOntologyUtils
 
 # css_ontology = get_ontology("CSS-Ontology-RDF-XML.owl")
 # css_ontology = get_ontology("CSS-ontology-module.owl")
-css_ontology = get_ontology("CSS-ontology-smia.owl")
+css_ontology = get_ontology("CSS-ontology-smia-2.owl")
 
 
 # with css_ontology:
@@ -32,13 +32,23 @@ class Capability(Thing):
             if isinstance(prop, DataPropertyClass):
                 for range_value in prop.range:
                     if isinstance(range_value, DatatypeClass):
-                        possible_values = get_possible_values_of_datatype(range_value)
+                        possible_values = CapabilitySkillOntologyUtils.get_possible_values_of_datatype(range_value)
                         if possible_values is not None:
                             self.limited_values_dict[prop.name] = possible_values
-    def set_lifecycle(self, lifecycle):
-        # TODO
-        print(lifecycle)
-        print(self.limited_values_dict)
+
+    def set_lifecycle(self, lifecycle_value):
+        """
+        This method sets the lifecycle of Capability only if the given value is within the possible values for this
+        attribute.
+
+        Args:
+            lifecycle_value (str): The value of the lifecycle of Capability.
+        """
+        if 'hasLifecycle' in self.limited_values_dict:
+            if lifecycle_value not in self.limited_values_dict['hasLifecycle']:
+                print("The lifecycle value [{}] for Capabilities is not valid.".format(lifecycle_value))
+                return
+        self.lifecycle = lifecycle_value
 
     # TODO ELIMINAR
     def method(self):

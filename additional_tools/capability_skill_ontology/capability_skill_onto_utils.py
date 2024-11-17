@@ -27,3 +27,4 @@ class CapabilitySkillOntologyUtils:
         if len(possible_values) == 0:
             return None
         return possible_values
+
