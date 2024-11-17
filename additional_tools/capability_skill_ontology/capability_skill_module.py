@@ -1,7 +1,7 @@
 from owlready2 import Thing, get_ontology, DatatypeProperty, DataPropertyClass, ThingClass, OneOf, CallbackList, \
     DatatypeClass
 
-from capability_skill_onto_utils import CapabilitySkillOntologyUtils
+from capability_skill_onto_utils import CapabilitySkillOntologyUtils, CapabilitySkillOntologyNS
 
 # css_ontology = get_ontology("CSS-Ontology-RDF-XML.owl")
 # css_ontology = get_ontology("CSS-ontology-module.owl")
