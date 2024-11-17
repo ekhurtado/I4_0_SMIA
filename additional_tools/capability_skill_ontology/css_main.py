@@ -3,10 +3,11 @@ import sys
 
 from owlready2 import get_ontology, onto_path, get_namespace
 
-from capability_skill_module import Capability, Skill, CapabilityConstraint
+from capability_skill_module import Capability, Skill, CapabilityConstraint, SkillInterface
+from capability_skill_onto_utils import CapabilitySkillOntologyNS
 
 
-async def print_onto_data(onto):
+async def print_onto_data(onto, namespace):
     print("READING ONTOLOGY:")
     print("-----------------")
     print("Classes: {}".format(list(onto.classes())))
@@ -16,35 +17,44 @@ async def print_onto_data(onto):
     print("Properties: {}".format(list(onto.properties())))
     print("Namespace (base iri): {}".format(onto.base_iri))
 
-    obo = onto.get_namespace("http://www.w3id.org/hsu-aut/css#")
-    print("Capability class: {}".format(onto.Capability))
-    print("Capability class: {}".format(obo.Capability))    # CUIDADO, LA ONTOLOGIA ORIGINAL ESTA EN OTRO NAMESPACE (en el de hsu-aut)
-    print("Skill class: {}".format(onto.Skill))
-    print("Cap-Skill relationship class: {}".format(onto.isRealizedBy))
-    print("SkillInterface class: {}".format(onto.SkillInterface))
-    print("CapabilityConstraint class: {}".format(onto.CapabilityConstraint))
-    print("Skill-State Machine relationship class: {}".format(onto.behaviorConformsTo))
-
-    print("SMIA AgentCapability class: {}".format(onto.AgentCapability))
-    print("SMIA AssetCapability class: {}".format(onto.AssetCapability))
-    print("SMIA Capability hasLifecycle attribute: {}".format(onto.hasLifecycle))
+    await print_onto_ns_data(onto, namespace)
     print("-----------------")
 
 
+async def print_onto_ns_data(onto, namespace):
+    if namespace:
+        ns = onto.get_namespace(namespace)
+    else:
+        # El namespace por defecto es SMIA en esta ontologia
+        # TODO si mas adelante dejamos definir otras ontologias extendidas de la nuestra, esto habria que cambiarlo
+        ns = onto
+
+    print("Ontology namespace data:")
+    print("\tCapability class: {}".format(ns.Capability))
+    print("\tSkill class: {}".format(ns.Skill))
+    print("\tCap-Skill relationship class: {}".format(ns.isRealizedBy))
+    print("\tSkillInterface class: {}".format(ns.SkillInterface))
+    print("\tCapabilityConstraint class: {}".format(ns.CapabilityConstraint))
+    print("\tSkill-State Machine relationship class: {}".format(ns.behaviorConformsTo))
+
+    print("\tSMIA AgentCapability class: {}".format(ns.AgentCapability))
+    print("\tSMIA AssetCapability class: {}".format(ns.AssetCapability))
+    print("\tSMIA Capability hasLifecycle attribute: {}".format(ns.hasLifecycle))
+    print()
 
 
 async def main():
     print("Program to work with CSS model extended by GCIS")
 
     # Import only ontologies in RDF/XML, OWL/XML or NTriples format (otros no funciona, como p.e. Turtle)
-    onto_path.append("CSS-Ontology-RDF-XML.owl")
-
     onto = get_ontology("CSS-ontology-smia.owl")
     # onto = get_ontology("CSS-Ontology-RDF-XML.owl")
     # onto = get_ontology("CASK-RDF.owl")
     onto.load()
 
-    await print_onto_data(onto)
+    await print_onto_data(onto, None)
+    await print_onto_ns_data(onto, CapabilitySkillOntologyNS.CSS_NAMESPACE)
+    await print_onto_ns_data(onto, CapabilitySkillOntologyNS.CSS_SMIA_NAMESPACE)
 
     # CREATING CAPABILITIES
     capability1 = Capability("cap1")
@@ -71,7 +81,12 @@ async def main():
     capability1.isRealizedBy.append(skill2)
     print("SKILL: {}".format(skill2))
 
+    skill_interface1 = SkillInterface("skillInterface1")
+    skill1.accessibleThrough.append(capability1)
+    print("SKILL INTERFACE: {}".format(skill_interface1))
+
     print("CAPABILITY capability1 skills: {}".format(capability1.isRealizedBy))
+    print("SKILL skill1 skill interfaces: {}".format(skill1.accessibleThrough))
 
 
 

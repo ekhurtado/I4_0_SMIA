@@ -5,7 +5,8 @@ from capability_skill_onto_utils import CapabilitySkillOntologyUtils
 
 # css_ontology = get_ontology("CSS-Ontology-RDF-XML.owl")
 # css_ontology = get_ontology("CSS-ontology-module.owl")
-css_ontology = get_ontology("CSS-ontology-smia-2.owl")
+css_ontology = get_ontology("CSS-ontology-smia.owl")
+# css_ontology = None
 
 
 # with css_ontology:
@@ -57,6 +58,11 @@ class Capability(Thing):
     def method2(self):
         print("method2 of capability")
 
+class CapabilityConstraint(Thing):
+    namespace = css_ontology
+
+    def a(self):
+        print()
 
 class Skill(Thing):
     namespace = css_ontology
@@ -65,8 +71,8 @@ class Skill(Thing):
         print("method of skill")
 
 
-class CapabilityConstraint(Thing):
+class SkillInterface(Thing):
     namespace = css_ontology
 
-    def a(self):
-        print()
+    def method_skill_interface(self):
+        print("method of skill interface")

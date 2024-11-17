@@ -28,3 +28,10 @@ class CapabilitySkillOntologyUtils:
             return None
         return possible_values
 
+
+class CapabilitySkillOntologyNS:
+    """
+    This class contains the namespaces of the ontology of Capability-Skill.
+    """
+    CSS_NAMESPACE = 'http://www.w3id.org/hsu-aut/css#'
+    CSS_SMIA_NAMESPACE = 'http://www.w3id.org/upv-ehu/gcis/css-smia#'
