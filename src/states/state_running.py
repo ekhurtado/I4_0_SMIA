@@ -5,7 +5,7 @@ from behaviours.negotiating_behaviour import NegotiatingBehaviour
 from behaviours.svc_acl_handling_behaviour import SvcACLHandlingBehaviour
 from utilities import smia_archive_utils
 from utilities.smia_info import SMIAInfo
-from utilities.capability_skill_ontology import CapabilitySkillOntology
+from utilities.css_ontology_utils import CapabilitySkillOntologyUtils
 
 _logger = logging.getLogger(__name__)
 
@@ -54,7 +54,7 @@ class StateRunning(State):
     async def add_agent_capabilities_behaviours(self):
         behaviours_objects = []
         agent_capabilities = await self.agent.aas_model.get_capability_dict_by_type(
-            CapabilitySkillOntology.AGENT_CAPABILITY_TYPE)
+            CapabilitySkillOntologyUtils.AGENT_CAPABILITY_TYPE)
         for capability in agent_capabilities.keys():
             if capability.id_short == 'Negotiation':
                 # The negotiation behaviour has to be added to the agent

@@ -5,7 +5,7 @@ from basyx.aas.util import traversal
 
 from aas_model import extended_submodel
 from logic.exceptions import CapabilityCheckingError
-from utilities.capability_skill_ontology import CapabilitySkillOntology, CapabilitySkillACLInfo, AssetInterfacesInfo
+from utilities.css_ontology_utils import CapabilitySkillOntologyUtils, CapabilitySkillACLInfo, AssetInterfacesInfo
 
 _logger = logging.getLogger(__name__)
 
@@ -92,14 +92,14 @@ class ExtendedAASModel:
             capability_type (str): type of the capability (AgentCapabilities or AssetCapabilities).
             cap_skill_info (dict): information in form of a JSON object.
         """
-        if capability_type not in CapabilitySkillOntology.CAPABILITY_TYPE_POSSIBLE_VALUES:
+        if capability_type not in CapabilitySkillOntologyUtils.CAPABILITY_TYPE_POSSIBLE_VALUES:
             _logger.error("The capability type is not valid. The information cannot be saved.")
             return
         async with self.lock:
             try:
-                if capability_type == CapabilitySkillOntology.AGENT_CAPABILITY_TYPE:
+                if capability_type == CapabilitySkillOntologyUtils.AGENT_CAPABILITY_TYPE:
                     self.capabilities_skills_dict['AgentCapabilities'] = cap_skill_info
-                if capability_type == CapabilitySkillOntology.ASSET_CAPABILITY_TYPE:
+                if capability_type == CapabilitySkillOntologyUtils.ASSET_CAPABILITY_TYPE:
                     self.capabilities_skills_dict['AssetCapabilities'] = cap_skill_info
             except KeyError:
                 _logger.error("The capability type is not valid. The information cannot be saved.")
@@ -115,9 +115,9 @@ class ExtendedAASModel:
             dict: dictionary will the information of all capabilities of the given type.
         """
         async with self.lock:
-            if cap_type == CapabilitySkillOntology.AGENT_CAPABILITY_TYPE:
+            if cap_type == CapabilitySkillOntologyUtils.AGENT_CAPABILITY_TYPE:
                 return self.capabilities_skills_dict['AgentCapabilities']
-            if cap_type == CapabilitySkillOntology.ASSET_CAPABILITY_TYPE:
+            if cap_type == CapabilitySkillOntologyUtils.ASSET_CAPABILITY_TYPE:
                 return self.capabilities_skills_dict['AssetCapabilities']
             return {}
 
@@ -278,7 +278,7 @@ class ExtendedAASModel:
         """
         cap_constraints = []
         rels_cap_constraints = await self.get_relationship_elements_by_semantic_id(
-            CapabilitySkillOntology.SEMANTICID_REL_CAPABILITY_CAPABILITY_CONTRAINT)
+            CapabilitySkillOntologyUtils.SEMANTICID_REL_CAPABILITY_CAPABILITY_CONTRAINT)
         for rel in rels_cap_constraints:
             first_elem = await self.get_object_by_reference(rel.first)
             second_elem = await self.get_object_by_reference(rel.second)
@@ -400,7 +400,7 @@ class ExtendedAASModel:
             (basyx.aas.model.SubmodelElement): the interface of the selected skill in form of Python object (None if it does not exist).
         """
         rels_skill_interfaces = await self.get_relationship_elements_by_semantic_id(
-            CapabilitySkillOntology.SEMANTICID_REL_SKILL_SKILL_INTERFACE)
+            CapabilitySkillOntologyUtils.SEMANTICID_REL_SKILL_SKILL_INTERFACE)
         for rel in rels_skill_interfaces:
             first_elem = await self.get_object_by_reference(rel.first)
             second_elem = await self.get_object_by_reference(rel.second)
@@ -450,7 +450,7 @@ class ExtendedAASModel:
         """
         # The exposure elements can be obtained with the related relationship semanticID
         rels_params_exposed = await self.get_relationship_elements_by_semantic_id(
-            CapabilitySkillOntology.SEMANTICID_REL_SKILL_PARAMETER_SKILL_INTERFACE)
+            CapabilitySkillOntologyUtils.SEMANTICID_REL_SKILL_PARAMETER_SKILL_INTERFACE)
         for rel in rels_params_exposed:
             first_elem = await self.get_object_by_reference(rel.first)
             second_elem = await self.get_object_by_reference(rel.second)
@@ -476,7 +476,7 @@ class ExtendedAASModel:
         required_cap_name = required_capability_data[CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME]
         required_cap_type = required_capability_data[CapabilitySkillACLInfo.REQUIRED_CAPABILITY_TYPE]
         # It will be checked if the type is among the available options
-        if required_cap_type not in CapabilitySkillOntology.CAPABILITY_TYPE_POSSIBLE_VALUES:
+        if required_cap_type not in CapabilitySkillOntologyUtils.CAPABILITY_TYPE_POSSIBLE_VALUES:
             _logger.warning("The required capability does not have a valid type.")
             raise CapabilityCheckingError(required_cap_name, "The received capability does not have a valid type.")
 
@@ -510,7 +510,7 @@ class ExtendedAASModel:
         """
         # First, the postcondition constraints are obtained
         post_condition_constraints = await self.get_capability_associated_constraints_by_qualifier_data(capability_elem,
-                                                                                                        CapabilitySkillOntology.QUALIFIER_FEASIBILITY_CHECKING_TYPE,
+                                                                                                        CapabilitySkillOntologyUtils.QUALIFIER_FEASIBILITY_CHECKING_TYPE,
                                                                                                         'POSTCONDITION')
         if post_condition_constraints:
             # TODO habra que pensar como analizar las post condiciones

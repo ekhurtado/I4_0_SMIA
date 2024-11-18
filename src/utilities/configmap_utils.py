@@ -65,6 +65,18 @@ def get_aas_model_filepath():
     config_sm.read(SMIAGeneralInfo.CONFIGURATION_FOLDER_PATH + '/' + SMIAGeneralInfo.CM_GENERAL_PROPERTIES_FILENAME)
     return SMIAGeneralInfo.CONFIGURATION_FOLDER_PATH + '/' + config_sm['AAS']['aas.model.file']
 
+def get_ontology_filepath():
+    """
+    This method returns the OWL ontology file path. The file for the OWL ontology is specified in the
+    ‘general.properties’ file within the ‘ONTOLOGY’ section, with 'ontology.owl.file' attribute.
+
+    Returns:
+        str: The AAS model file path within the AAS Archive.
+    """
+    config_sm = configparser.RawConfigParser()
+    config_sm.read(SMIAGeneralInfo.CONFIGURATION_FOLDER_PATH + '/' + SMIAGeneralInfo.CM_GENERAL_PROPERTIES_FILENAME)
+    return SMIAGeneralInfo.CONFIGURATION_FOLDER_PATH + '/' + config_sm['ONTOLOGY']['ontology.owl.file']
+
 
 # --------------------------------------
 # Methods related to asset information

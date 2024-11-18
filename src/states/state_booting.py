@@ -3,6 +3,7 @@ from spade.behaviour import State
 
 from behaviours.init_aas_archive_behaviour import InitAASarchiveBehaviour
 from behaviours.init_aas_model_behaviour import InitAASModelBehaviour
+from css_ontology.capability_skill_module import Capability
 from logic import IntraAASInteractions_utils
 from utilities import smia_archive_utils
 from utilities.smia_info import SMIAInfo
@@ -34,7 +35,11 @@ class StateBooting(State):
         # First, it is ensured that the attributes of the AAS Manager are initialized
         self.agent.initialize_smia_attributes()
 
-        # The submodels also have to be initalized, so its behaviour is also added
+        # The ontology has to be initialized in order to be available during the AAS model analysis
+        await self.agent.css_ontology.initialize_ontology()
+        # TODO HACER AHORA: modificar init aas model para ir generando las capacidades, skills... dentro de la ontologia
+
+        # The submodels also have to be initialized, so its behaviour is also added
         init_aas_model_behav = InitAASModelBehaviour(self.agent)
         self.agent.add_behaviour(init_aas_model_behav)
 

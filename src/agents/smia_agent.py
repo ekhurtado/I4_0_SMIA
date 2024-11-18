@@ -5,6 +5,7 @@ from spade.agent import Agent
 import logging
 
 from aas_model.extended_aas_model import ExtendedAASModel
+from css_ontology.capability_skill_ontology import CapabilitySkillOntology
 from logic.agent_services import AgentServices
 from states.state_running import StateRunning
 from states.state_stopping import StateStopping
@@ -29,6 +30,7 @@ class AASManagerAgent(Agent):
     interaction_responses = {}  #: Dictionary to save Intra AAS interaction responses
     negotiations_data = {}  #: Dictionary to save negotiations related information
     aas_model = None  #: Object with the extended AAS model
+    css_ontology = None  #: Object with the Capability-Skill-Service ontology
     asset_connections = None  #: Class with the Asset Connection methods
     agent_services = None   #: Class with the all services of the Agent
     lock = None  #: Asyncio Lock object for secure access to shared AAS Manager objects
@@ -58,6 +60,9 @@ class AASManagerAgent(Agent):
 
         # Object to store the information related to negotiations is initialized
         self.negotiations_data = {}
+
+        # The object with the CSS ontology and useful methods is initialized
+        self.css_ontology = CapabilitySkillOntology()
 
         # The object with the Extended AAS model and useful methods is initialized
         self.aas_model = ExtendedAASModel()

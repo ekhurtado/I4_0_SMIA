@@ -3,7 +3,7 @@ import asyncio
 import owlready2
 from owlready2 import ThingClass, ObjectPropertyClass, OwlReadyInconsistentOntologyError
 
-from capability_skill_module import Capability, Skill, CapabilityConstraint, SkillInterface
+from css_ontology.capability_skill_module import Capability, Skill, CapabilityConstraint, SkillInterface
 from capability_skill_onto_utils import CapabilitySkillOntologyInfo
 from capability_skill_ontology import CapabilitySkillOntology
 

@@ -1,8 +1,13 @@
+import logging
+
 from owlready2 import get_ontology, OwlReadyOntologyParsingError, sync_reasoner_pellet, \
     OwlReadyInconsistentOntologyError, ThingClass, Ontology, ObjectPropertyClass, destroy_entity
 
-from capability_skill_onto_utils import CapabilitySkillOntologyInfo, OntologyExceptions
+from css_ontology import capability_skill_module
+from logic.exceptions import CheckingAttributeError, CheckingPropertyError
+from utilities import configmap_utils
 
+_logger = logging.getLogger(__name__)
 
 class CapabilitySkillOntology:
     """
@@ -13,64 +18,29 @@ class CapabilitySkillOntology:
         self.ontology: Ontology = None
 
     async def initialize_ontology(self):
+        """
+        This method initializes the Capability-Skill ontology loading the definition of the OWL ontology in the file
+        stored in the config folder.
+        """
 
         # Import only ontologies in RDF/XML, OWL/XML or NTriples format (others do not work, e.g. Turtle)
-        self.ontology = get_ontology(CapabilitySkillOntologyInfo.ONTOLOGY_FILE_PATH)
-        # self.ontology = get_ontology('CSS-Ontology.owl')  # ERROR invalid format
-        # self.ontology = get_ontology('CASK-RDF.owl')  # ERROR download
+        self.ontology = get_ontology(configmap_utils.get_ontology_filepath())
         try:
             self.ontology.load()
         except FileNotFoundError as e:
-            print("ERROR: The OWL file of the ontology does not exist.")
+            _logger.error("ERROR: The OWL file of the ontology does not exist.")
             self.ontology = None
             return
         except OwlReadyOntologyParsingError as e:
             if 'NTriples' in e.args[0]:
-                print("ERROR: The OWL file is invalid (only RDF/XML, OWL/XML or NTriples format are accepted).")
+                _logger.error("ERROR: The OWL file is invalid (only RDF/XML, OWL/XML or NTriples format are accepted).")
             if 'Cannot download' in e.args[0]:
-                print("ERROR: The OWL has defined imported ontologies that cannot be downloaded.")
+                _logger.error("ERROR: The OWL has defined imported ontologies that cannot be downloaded.")
             self.ontology = None
             return
         # The ontology has been loaded
-        print("CSS ontology initialized")
+        _logger.info("CSS ontology initialized")
 
-    # TODO ELIMINAR
-    async def print_onto_data(self, namespace):
-
-        print("READING ONTOLOGY:")
-        print("-----------------")
-        print("Classes: {}".format(list(self.ontology.classes())))
-        print("Object properties: {}".format(list(self.ontology.object_properties())))
-        print("Data properties: {}".format(list(self.ontology.data_properties())))
-        print("Annotation properties: {}".format(list(self.ontology.annotation_properties())))
-        print("Properties: {}".format(list(self.ontology.properties())))
-        print("Namespace (base iri): {}".format(self.ontology.base_iri))
-
-        await self.print_onto_ns_data(namespace)
-        print("-----------------")
-
-    async def print_onto_ns_data(self, namespace):
-        if namespace:
-            ns = self.ontology.get_namespace(namespace)
-        else:
-            # El namespace por defecto es SMIA en esta ontologia
-            # TODO si mas adelante dejamos definir otras ontologias extendidas de la nuestra, esto habria que cambiarlo
-            ns = self.ontology
-
-        print("Ontology namespace data:")
-        print("\tCapability class: {}".format(ns.Capability))
-        print("\tSkill class: {}".format(ns.Skill))
-        print("\tCap-Skill relationship class: {}".format(ns.isRealizedBy))
-        print("\tSkillInterface class: {}".format(ns.SkillInterface))
-        print("\tCapabilityConstraint class: {}".format(ns.CapabilityConstraint))
-        print("\tSkill-State Machine relationship class: {}".format(ns.behaviorConformsTo))
-
-        print("\tSMIA AgentCapability class: {}".format(ns.AgentCapability))
-        print("\tSMIA AssetCapability class: {}".format(ns.AssetCapability))
-        print("\tSMIA Capability hasLifecycle attribute: {}".format(ns.hasLifecycle))
-        print()
-
-    # TODO FIN DE ELIMINAR
 
     async def execute_ontology_reasoner(self, debug=False):
         """
@@ -180,8 +150,8 @@ class CapabilitySkillOntology:
             return
         try:
             instance_object.check_instance()
-        except OntologyExceptions.CheckingAttributeError as e:
+        except CheckingAttributeError as e:
             destroy_entity(e.invalid_instance)
-        except OntologyExceptions.CheckingPropertyError as e:
+        except CheckingPropertyError as e:
             getattr(instance_object, e.concerned_property_name).remove(e.invalid_instance)
 

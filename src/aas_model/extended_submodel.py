@@ -5,7 +5,7 @@ from basyx.aas.model import SubmodelElementList, SubmodelElement, Operation, Sub
     Range, Blob, File, ReferenceElement, Capability
 
 from aas_model.extended_aas import ExtendedGeneralMethods
-from utilities.capability_skill_ontology import CapabilitySkillOntology
+from utilities.css_ontology_utils import CapabilitySkillOntologyUtils
 
 _logger = logging.getLogger(__name__)
 
@@ -64,7 +64,7 @@ class ExtendedSubmodelElement(SubmodelElement):
             bool: result of the check (only True if both semanticIDs and qualifiers of Capability-Skill ontology exist).
         """
         # It will be checked if the semantic id of the skill is valid within the ontology
-        if self.check_semantic_id_exist(CapabilitySkillOntology.SEMANTICID_MANUFACTURING_SKILL) is False:
+        if self.check_semantic_id_exist(CapabilitySkillOntologyUtils.SEMANTICID_MANUFACTURING_SKILL) is False:
             _logger.error("The skill {} has not valid semanticID regarding the "
                           "Capability-Skill ontology.".format(self))
             return False
@@ -83,9 +83,9 @@ class ExtendedSubmodelElement(SubmodelElement):
         Returns:
             bool: result of the check (only True if the qualifier of Capability-Skill ontology exists).
         """
-        skill_qualifier = self.get_qualifier_by_type(CapabilitySkillOntology.QUALIFIER_SKILL_TYPE)
+        skill_qualifier = self.get_qualifier_by_type(CapabilitySkillOntologyUtils.QUALIFIER_SKILL_TYPE)
         if skill_qualifier is not None:
-            if skill_qualifier.value in CapabilitySkillOntology.QUALIFIER_SKILL_POSSIBLE_VALUES:
+            if skill_qualifier.value in CapabilitySkillOntologyUtils.QUALIFIER_SKILL_POSSIBLE_VALUES:
                 return True
         _logger.error("ERROR: the qualifier is not valid in the skill {}".format(self))
         return False
@@ -159,9 +159,9 @@ class ExtendedCapability(Capability):
         Returns:
             bool: result of the check (only True if the semanticID of Capability-Skill ontology exists).
         """
-        if ((self.check_semantic_id_exist(CapabilitySkillOntology.SEMANTICID_MANUFACTURING_CAPABILITY))
-                or (self.check_semantic_id_exist(CapabilitySkillOntology.SEMANTICID_ASSET_CAPABILITY))
-                or (self.check_semantic_id_exist(CapabilitySkillOntology.SEMANTICID_AGENT_CAPABILITY))):
+        if ((self.check_semantic_id_exist(CapabilitySkillOntologyUtils.SEMANTICID_MANUFACTURING_CAPABILITY))
+                or (self.check_semantic_id_exist(CapabilitySkillOntologyUtils.SEMANTICID_ASSET_CAPABILITY))
+                or (self.check_semantic_id_exist(CapabilitySkillOntologyUtils.SEMANTICID_AGENT_CAPABILITY))):
             return True
         else:
             _logger.error("ERROR: the capability is not valid within the ontology.")
@@ -174,9 +174,9 @@ class ExtendedCapability(Capability):
         Returns:
             bool: result of the check (only True if the qualifier of Capability-Skill ontology exists).
         """
-        capability_qualifier = self.get_qualifier_by_type(CapabilitySkillOntology.QUALIFIER_CAPABILITY_TYPE)
+        capability_qualifier = self.get_qualifier_by_type(CapabilitySkillOntologyUtils.QUALIFIER_CAPABILITY_TYPE)
         if capability_qualifier is not None:
-            if capability_qualifier.value in CapabilitySkillOntology.QUALIFIER_CAPABILITY_POSSIBLE_VALUES:
+            if capability_qualifier.value in CapabilitySkillOntologyUtils.QUALIFIER_CAPABILITY_POSSIBLE_VALUES:
                 return True
         _logger.error("ERROR: the qualifier is not valid in the capability {}".format(self))
         return False
@@ -188,12 +188,12 @@ class ExtendedCapability(Capability):
         Returns:
             str: value of the type of the capability within the Capability-Skill ontology.
         """
-        if self.check_semantic_id_exist(CapabilitySkillOntology.SEMANTICID_MANUFACTURING_CAPABILITY):
-            return CapabilitySkillOntology.MANUFACTURING_CAPABILITY_TYPE
-        elif self.check_semantic_id_exist(CapabilitySkillOntology.SEMANTICID_ASSET_CAPABILITY):
-            return CapabilitySkillOntology.ASSET_CAPABILITY_TYPE
-        elif self.check_semantic_id_exist(CapabilitySkillOntology.SEMANTICID_AGENT_CAPABILITY):
-            return CapabilitySkillOntology.AGENT_CAPABILITY_TYPE
+        if self.check_semantic_id_exist(CapabilitySkillOntologyUtils.SEMANTICID_MANUFACTURING_CAPABILITY):
+            return CapabilitySkillOntologyUtils.MANUFACTURING_CAPABILITY_TYPE
+        elif self.check_semantic_id_exist(CapabilitySkillOntologyUtils.SEMANTICID_ASSET_CAPABILITY):
+            return CapabilitySkillOntologyUtils.ASSET_CAPABILITY_TYPE
+        elif self.check_semantic_id_exist(CapabilitySkillOntologyUtils.SEMANTICID_AGENT_CAPABILITY):
+            return CapabilitySkillOntologyUtils.AGENT_CAPABILITY_TYPE
         else:
             _logger.error("ERROR: the capability type is not valid within the ontology.")
             return None
@@ -358,8 +358,7 @@ class ExtendedReferenceElement(ReferenceElement):
 #   si es cierto que, durante la creacion de esta clase se deberan añadir los parametros, la maquina de estados,
 #   sus posibles interfaces, etc. ya que se necesitará t0do el modelo AAS para ello (se tendra que hacer en el
 #   init_aas_model_behav)
-class SMIASkill(ExtendedSubmodelElement, ExtendedOperation, ExtendedSubmodelElementCollection):
-
+class SMIASkill(ExtendedSubmodelElement, ExtendedOperation):
 
     def prueba(self):
         print("a")
@@ -387,4 +386,8 @@ class SMIASkill(ExtendedSubmodelElement, ExtendedOperation, ExtendedSubmodelElem
             print("Antes la Skill era una Operation")
 
 
-
+class SMIASkillComplex(ExtendedSubmodel):
+    # TODO se ha tenido que separar las skills simples (Operation,Event...) de las complejas (Submodel). De
+    #  momento estas no se han implementado pero en el White paper de PLattform Industrie se menciona que las Skills
+    #  se pueden implementar mediante FunctionBlock (Submodelo)
+    pass

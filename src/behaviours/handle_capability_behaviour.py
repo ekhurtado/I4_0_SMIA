@@ -7,7 +7,7 @@ from spade.behaviour import OneShotBehaviour
 from logic import inter_aas_interactions_utils
 from logic.exceptions import CapabilityRequestExecutionError, CapabilityCheckingError, CapabilityDataError, \
     AssetConnectionError
-from utilities.capability_skill_ontology import CapabilitySkillACLInfo, CapabilitySkillOntology, AssetInterfacesInfo
+from utilities.css_ontology_utils import CapabilitySkillACLInfo, CapabilitySkillOntologyUtils, AssetInterfacesInfo
 from utilities.fipa_acl_info import FIPAACLInfo
 
 _logger = logging.getLogger(__name__)

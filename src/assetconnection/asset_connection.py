@@ -7,7 +7,7 @@ from jsonpath_ng import parse
 from lxml import etree
 
 from logic.exceptions import AssetConnectionError
-from utilities.capability_skill_ontology import AssetInterfacesInfo
+from utilities.css_ontology_utils import AssetInterfacesInfo
 
 
 class AssetConnection(metaclass=abc.ABCMeta):

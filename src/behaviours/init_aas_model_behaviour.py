@@ -15,7 +15,7 @@ from tqdm.contrib.logging import logging_redirect_tqdm
 from aas_model.extended_submodel import SMIASkill
 from assetconnection.http_asset_connection import HTTPAssetConnection
 from utilities import configmap_utils
-from utilities.capability_skill_ontology import CapabilitySkillOntology, AssetInterfacesInfo
+from utilities.css_ontology_utils import CapabilitySkillOntologyUtils, AssetInterfacesInfo
 
 _logger = logging.getLogger(__name__)
 
@@ -114,7 +114,7 @@ class InitAASModelBehaviour(OneShotBehaviour):
         """
         _logger.info("Reading the AAS model to get all capabilities of the asset and the industrial agent...")
         rels_cap_skill_list = await self.myagent.aas_model.get_relationship_elements_by_semantic_id(
-            CapabilitySkillOntology.SEMANTICID_REL_CAPABILITY_SKILL)
+            CapabilitySkillOntologyUtils.SEMANTICID_REL_CAPABILITY_SKILL)
         for rel_cap_skill in rels_cap_skill_list:
             # Add a new step in the progress bar
             self.progress_bar.update(1)
@@ -126,11 +126,11 @@ class InitAASModelBehaviour(OneShotBehaviour):
                 rel_cap_skill)
 
             # TODO BORRAR: son pruebas para proponer clases para Capability, Skill y SkillInterface
-            # basyx_class = skill_elem.__class__
-            # skill_elem.__class__ = SMIASkill
-            # print(skill_elem.prueba())
-            # # skill_elem.get_sm_element_by_semantic_id('hh')
-            # skill_elem.add_sme_type(basyx_class)
+            basyx_class = skill_elem.__class__
+            skill_elem.__class__ = SMIASkill
+            print(skill_elem.prueba())
+            # skill_elem.get_sm_element_by_semantic_id('hh')
+            skill_elem.add_sme_type(basyx_class)
 
             if capability_elem is None or skill_elem is None:
                 continue
@@ -181,7 +181,7 @@ class InitAASModelBehaviour(OneShotBehaviour):
             skill_interface_elem = await self.myagent.aas_model.get_skill_interface_by_skill_elem(skill_elem)
             # TODO PROXIMO PASO: habra que analizar que el SkillInterface propuesto tenga un semanticID del Submodelo
             #  AssetInterfacesDescription (https://admin-shell.io/idta/AssetInterfacesDescription/1/0/Interface)
-            if skill_interface_elem is None and capability_type != CapabilitySkillOntology.AGENT_CAPABILITY_TYPE:
+            if skill_interface_elem is None and capability_type != CapabilitySkillOntologyUtils.AGENT_CAPABILITY_TYPE:
                 _logger.error("The interface of the skill {} does not exist.".format(skill_elem))
                 continue
 
@@ -256,7 +256,7 @@ class InitAASModelBehaviour(OneShotBehaviour):
         asset_interfaces_submodel = await self.myagent.aas_model.get_submodel_by_semantic_id(
             AssetInterfacesInfo.SEMANTICID_INTERFACES_SUBMODEL)
         rels_cap_skill_list = await self.myagent.aas_model.get_relationship_elements_by_semantic_id(
-            CapabilitySkillOntology.SEMANTICID_REL_CAPABILITY_SKILL)
+            CapabilitySkillOntologyUtils.SEMANTICID_REL_CAPABILITY_SKILL)
         if not asset_interfaces_submodel:
             _logger.warning("AssetInterfacesSubmodel submodel is not defined. Make sure that this DT does not need to be"
                             " connected to the asset.")
@@ -264,4 +264,4 @@ class InitAASModelBehaviour(OneShotBehaviour):
         total_iterations = len(asset_interfaces_submodel.submodel_element) + len(rels_cap_skill_list)
         # with logging_redirect_tqdm():
         self.progress_bar = tqdm(total=total_iterations, desc='Analyzing AAS model', file=sys.stdout, ncols=75,
-                                 bar_format='{l_bar}{bar}| {n_fmt}/{total_fmt} ontology elements \n')
+                                 bar_format='{l_bar}{bar}| {n_fmt}/{total_fmt} submodel elements \n')

@@ -4,7 +4,7 @@ import logging
 from spade.behaviour import CyclicBehaviour
 
 from logic import negotiation_utils
-from utilities.capability_skill_ontology import CapabilitySkillOntology, AssetInterfacesInfo
+from utilities.css_ontology_utils import CapabilitySkillOntologyUtils, AssetInterfacesInfo
 
 _logger = logging.getLogger(__name__)
 
@@ -144,7 +144,7 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
         # First, it will be checked if the negotiation value is an asset data. To this end, it has to be checked if the
         # semanticID of the criteria appears in the AssetInterfacesDescription submodel
         criteria_semantic_id = await self.myagent.aas_model.get_concept_description_pair_value_id_by_value_name(
-            CapabilitySkillOntology.CONCEPT_DESCRIPTION_ID_NEGOTIATION_CRITERIA, self.neg_criteria)
+            CapabilitySkillOntologyUtils.CONCEPT_DESCRIPTION_ID_NEGOTIATION_CRITERIA, self.neg_criteria)
         if criteria_semantic_id is None:
             _logger.error("SemanticID for a criteria does not exist.")
             return None
