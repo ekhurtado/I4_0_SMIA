@@ -29,9 +29,27 @@ class CapabilitySkillOntologyUtils:
         return possible_values
 
 
-class CapabilitySkillOntologyNS:
+class CapabilitySkillOntologyInfo:
     """
-    This class contains the namespaces of the ontology of Capability-Skill.
+    This class contains information related to the ontology of Capability-Skill: namespaces, OWL file...
     """
+    ONTOLOGY_FILE_PATH = 'CSS-ontology-smia.owl'
     CSS_NAMESPACE = 'http://www.w3id.org/hsu-aut/css#'
     CSS_SMIA_NAMESPACE = 'http://www.w3id.org/upv-ehu/gcis/css-smia#'
+
+
+
+class OntologyExceptions:
+
+    class CheckingAttributeError(Exception):
+
+        def __init__(self, message, invalid_instance):
+            self.message = message
+            self.invalid_instance = invalid_instance
+
+    class CheckingPropertyError(Exception):
+
+        def __init__(self, message, concerned_property_name, invalid_instance):
+            self.message = message
+            self.concerned_property_name = concerned_property_name
+            self.invalid_instance = invalid_instance

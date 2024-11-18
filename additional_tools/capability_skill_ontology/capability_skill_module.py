@@ -1,16 +1,11 @@
-import inspect
+from owlready2 import Thing, get_ontology, DataPropertyClass, DatatypeClass
 
-from owlready2 import Thing, get_ontology, DatatypeProperty, DataPropertyClass, ThingClass, OneOf, CallbackList, \
-    DatatypeClass
-
-from capability_skill_onto_utils import CapabilitySkillOntologyUtils, CapabilitySkillOntologyNS
+from capability_skill_onto_utils import CapabilitySkillOntologyUtils, CapabilitySkillOntologyInfo, OntologyExceptions
 
 # css_ontology = get_ontology("CSS-Ontology-RDF-XML.owl")
 # css_ontology = get_ontology("CSS-ontology-module.owl")
-css_ontology = get_ontology("CSS-ontology-smia.owl")
-# css_ontology = None
-
-base_namespace = css_ontology.get_namespace(CapabilitySkillOntologyNS.CSS_NAMESPACE)
+css_ontology = get_ontology(CapabilitySkillOntologyInfo.ONTOLOGY_FILE_PATH)
+base_namespace = css_ontology.get_namespace(CapabilitySkillOntologyInfo.CSS_NAMESPACE)
 
 # with css_ontology:
 class Capability(Thing):
@@ -26,6 +21,9 @@ class Capability(Thing):
         # Some attributes of Capability have limited values, so it have to be obtained
         self.limited_values_dict = {}
         self.seek_limited_values()
+
+        self.has_lifecycle = None
+
 
     def seek_limited_values(self):
         """
@@ -52,7 +50,30 @@ class Capability(Thing):
             if lifecycle_value not in self.limited_values_dict['hasLifecycle']:
                 print("The lifecycle value [{}] for Capabilities is not valid.".format(lifecycle_value))
                 return
-        self.lifecycle = lifecycle_value
+        self.has_lifecycle = lifecycle_value
+
+    def check_instance(self):
+        """
+        This method checks whether the Capability instance is valid: if the required attributes are set and if all the
+        added properties are valid. In case of invalid Capability, it raises the exception related to the checking error.
+        """
+        if self.has_lifecycle is None:
+            # TODO CAMBIARLO EN SMIA (generar una excepcion custom en la que se añade la razon de que haya salido mal
+            #  el chequeo, y la clase a eliminar)
+            # raise AttributeError("has_lifecycle attribute is required in Capability instances.", self)
+            raise OntologyExceptions.CheckingAttributeError("The 'has_lifecycle' attribute is required in "
+                                                            "Capability instances.", self)
+        for skill in self.isRealizedBy:
+            if not isinstance(skill, Skill):
+                raise OntologyExceptions.CheckingPropertyError("The instance {} is added in 'isRealizedBy' and it is "
+                                                               "not a Skill".format(skill), 'isRealizedBy', skill)
+        for constraint in self.isRestrictedBy:
+            if not isinstance(constraint, CapabilityConstraint):
+                raise OntologyExceptions.CheckingPropertyError("The instance {} is added in 'isRestrictedBy' and it is"
+                                                                " not a CapabilityConstraint".format(constraint),
+                                                               'isRestrictedBy', constraint)
+
+        # TODO pensar mas tipos de validaciones
 
     # TODO ELIMINAR
     def method(self):
@@ -70,12 +91,33 @@ class CapabilityConstraint(Thing):
 class Skill(Thing):
     namespace = base_namespace
 
+    def check_instance(self):
+        """
+        This method checks whether the Skill instance is valid: if the required attributes are set and if all the added
+         properties are valid. In case of invalid Skill, it raises the exception related to the checking error.
+        """
+        if len(self.accessibleThrough) == 0:
+            raise OntologyExceptions.CheckingAttributeError("The instance {} does not have any SkillInterface "
+                                                            "associated".format(self), self)
+        # TODO pensar mas comprobaciones
+
     def method_skill(self):
         print("method of skill")
 
 
+
+
 class SkillInterface(Thing):
     namespace = base_namespace
+
+    def check_instance(self):
+        """
+        This method checks whether the SkillInterface instance is valid: if the required attributes are set and if all
+        the added properties are valid. In case of invalid SkillInterface, it raises the exception related to the
+        checking error.
+        """
+        pass
+        # TODO pensar mas comprobaciones
 
     def method_skill_interface(self):
         print("method of skill interface")

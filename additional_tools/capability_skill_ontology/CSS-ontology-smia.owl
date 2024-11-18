@@ -359,6 +359,13 @@
                 <owl:onClass rdf:resource="http://www.w3id.org/hsu-aut/css#CapabilityConstraint"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.w3id.org/upv-ehu/gcis/css-smia#hasLifecycle"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2002/07/owl#lifecycle"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <owl:disjointWith rdf:resource="http://www.w3id.org/hsu-aut/css#Resource"/>
         <owl:disjointWith rdf:resource="http://www.w3id.org/hsu-aut/css#ServiceOffer"/>
         <owl:disjointWith rdf:resource="http://www.w3id.org/hsu-aut/css#ServiceProvider"/>
