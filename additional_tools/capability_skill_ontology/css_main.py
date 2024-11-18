@@ -1,16 +1,18 @@
 import asyncio
 import sys
 
+import owlready2
 from owlready2 import get_ontology, onto_path, get_namespace, ThingClass, Ontology, DataPropertyClass, \
-    ObjectPropertyClass, sync_reasoner
+    ObjectPropertyClass, sync_reasoner, OwlReadyInconsistentOntologyError, sync_reasoner_pellet, Nothing
 
+import capability_skill_module
 from capability_skill_module import Capability, Skill, CapabilityConstraint, SkillInterface
 from capability_skill_onto_utils import CapabilitySkillOntologyNS
 
 onto: Ontology = None
 
 
-async def print_onto_data(onto, namespace):
+async def print_onto_data(namespace):
     print("READING ONTOLOGY:")
     print("-----------------")
     print("Classes: {}".format(list(onto.classes())))
@@ -20,11 +22,11 @@ async def print_onto_data(onto, namespace):
     print("Properties: {}".format(list(onto.properties())))
     print("Namespace (base iri): {}".format(onto.base_iri))
 
-    await print_onto_ns_data(onto, namespace)
+    await print_onto_ns_data(namespace)
     print("-----------------")
 
 
-async def print_onto_ns_data(onto, namespace):
+async def print_onto_ns_data(namespace):
     if namespace:
         ns = onto.get_namespace(namespace)
     else:
@@ -47,9 +49,10 @@ async def print_onto_ns_data(onto, namespace):
 
 
 async def primeras_pruebas():
-    await print_onto_data(onto, None)
-    await print_onto_ns_data(onto, CapabilitySkillOntologyNS.CSS_NAMESPACE)
-    await print_onto_ns_data(onto, CapabilitySkillOntologyNS.CSS_SMIA_NAMESPACE)
+
+    await print_onto_data(None)
+    await print_onto_ns_data(CapabilitySkillOntologyNS.CSS_NAMESPACE)
+    await print_onto_ns_data(CapabilitySkillOntologyNS.CSS_SMIA_NAMESPACE)
 
     # CREATING CAPABILITIES
     capability1 = Capability("cap1")
@@ -77,29 +80,35 @@ async def primeras_pruebas():
     print("SKILL: {}".format(skill2))
 
     skill_interface1 = SkillInterface("skillInterface1")
-    # skill1.accessibleThrough.append(capability1)
+    skill1.accessibleThrough.append(capability1)
     print("SKILL INTERFACE: {}".format(skill_interface1))
 
     print("CAPABILITY capability1 skills: {}".format(capability1.isRealizedBy))
     print("SKILL skill1 skill interfaces: {}".format(skill1.accessibleThrough))
 
-    # with onto:
-    #     sync_reasoner()
+    owlready2.reasoning.JAVA_MEMORY = 1600  # Necesario para PC laboratorio
+    try:
+        await execute_ontology_reasoner(debug_value=2)
+    except OwlReadyInconsistentOntologyError as e:
+        # Parece que hay que validar manualmente, no ofrece el elemento inconsistente (añadiendo debug=2 sí da una explicacion)
+        # TODO de momento se elimina manualmente
+        print("Removing inconsistent elements...")
+        skill1.accessibleThrough.remove(capability1)
+        print("Executing reasoner again...")
+        await execute_ontology_reasoner(None)
 
 
 async def crear_clases_desde_iris():
     # TODO las IRIs se recogeran del modelo AAS, de momento se recogen desde un diccionario
     iris_dict = {
-        "http://www.w3id.org/hsu-aut/css#Capability": "cap1",
-        "http://www.w3id.org/upv-ehu/gcis/css-smia#AgentCapability": "agentcap1",
-        "http://www.w3id.org/upv-ehu/gcis/css-smia#AssetCapability": "assetcap1",
-        "http://www.w3id.org/hsu-aut/css#Skill": "skill1",
-        "http://www.w3id.org/hsu-aut/css#SkillInterface": "skillInterface1",
-        "http://www.w3id.org/hsu-aut/css#isRealizedBy": "cap1,skill1",
-        "http://www.w3id.org/hsu-aut/css#accessibleThrough": "skill1,skillInterface1",
+        "http://www.w3id.org/hsu-aut/css#Capability": "cap01",
+        "http://www.w3id.org/upv-ehu/gcis/css-smia#AgentCapability": "agentcap01",
+        "http://www.w3id.org/upv-ehu/gcis/css-smia#AssetCapability": "assetcap01",
+        "http://www.w3id.org/hsu-aut/css#Skill": "skill01",
+        "http://www.w3id.org/hsu-aut/css#SkillInterface": "skillInterface01",
+        "http://www.w3id.org/hsu-aut/css#isRealizedBy": "cap01,skill01",
+        "http://www.w3id.org/hsu-aut/css#accessibleThrough": "skill01,skillInterface01",
         }
-
-    generated_classes = []
 
     for iri_found, name in iris_dict.items():
         result_classes = onto.search(iri=iri_found)
@@ -110,14 +119,31 @@ async def crear_clases_desde_iris():
             print("HAY MAS DE UNA CLASE CON IRI [{}], CUIDADO".format(iri_found))
         class_generator = result_classes[0]
         if isinstance(class_generator, ThingClass):
-            # TODO de momento se añade directamente en el diccionario
-            generated_classes.append(class_generator(name))
+            # Al generar una instancia, se almacena directamente en la ontologia
+            class_generator(name)
         if isinstance(class_generator, ObjectPropertyClass):
-            first_elem = await seek_elem_by_name(generated_classes, name.split(',')[0])
-            second_elem = await seek_elem_by_name(generated_classes, name.split(',')[1])
-            getattr(first_elem, class_generator.name).append(second_elem)
-    print(generated_classes)
-    for i in generated_classes:
+            first_elem = await seek_elem_by_name(name.split(',')[0])
+            second_elem = await seek_elem_by_name(name.split(',')[1])
+            if first_elem is None or second_elem is None:
+                print("ERROR: the relation is not valid")
+            else:
+                getattr(first_elem, class_generator.name).append(second_elem)
+
+    for i in onto.individuals():
+        print("{}: {}".format(i.name, i.is_a))
+
+    try:
+        await execute_ontology_reasoner(debug_value=1)
+    except OwlReadyInconsistentOntologyError as e:
+        print("ERROR...")
+
+    for i in onto.individuals():
+        if isinstance(i, Capability):
+            i.method()
+        if isinstance(i, Skill):
+            i.method_skill()
+        if isinstance(i, SkillInterface):
+            i.method_skill_interface()
         print("Properties of class {}: {}".format(i, i.get_properties()))
         for prop in i.get_properties():
             if 'isRealizedBy' == prop.name:
@@ -125,12 +151,23 @@ async def crear_clases_desde_iris():
             if 'accessibleThrough' == prop.name:
                 print("\tThe skill {} has the skill interface {}".format(i, i.accessibleThrough))
 
-    with onto:
-        sync_reasoner()
 
 
-async def seek_elem_by_name(generated_classes, name):
-    for owl_class in generated_classes:
+
+
+async def execute_ontology_reasoner(debug_value):
+    if debug_value is None:
+        debug_value = 1
+    try:
+        with onto:
+            sync_reasoner_pellet(debug=debug_value)
+    except OwlReadyInconsistentOntologyError as e:
+        print("ERROR: INCONSISTENT ONTOLOGY!")
+        print(e)
+        raise OwlReadyInconsistentOntologyError(e)
+
+async def seek_elem_by_name(name):
+    for owl_class in onto.individuals():
         if owl_class.name == name:
             return owl_class
     return None

@@ -1,3 +1,5 @@
+import inspect
+
 from owlready2 import Thing, get_ontology, DatatypeProperty, DataPropertyClass, ThingClass, OneOf, CallbackList, \
     DatatypeClass
 
@@ -8,6 +10,7 @@ from capability_skill_onto_utils import CapabilitySkillOntologyUtils, Capability
 css_ontology = get_ontology("CSS-ontology-smia.owl")
 # css_ontology = None
 
+base_namespace = css_ontology.get_namespace(CapabilitySkillOntologyNS.CSS_NAMESPACE)
 
 # with css_ontology:
 class Capability(Thing):
@@ -15,7 +18,7 @@ class Capability(Thing):
     This class represent the OWL class for Capabilities. It contains all necessary methods to ensure the correct
     execution of SMIA software.
     """
-    namespace = css_ontology
+    namespace = base_namespace
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -59,20 +62,21 @@ class Capability(Thing):
         print("method2 of capability")
 
 class CapabilityConstraint(Thing):
-    namespace = css_ontology
+    namespace = base_namespace
 
     def a(self):
         print()
 
 class Skill(Thing):
-    namespace = css_ontology
+    namespace = base_namespace
 
     def method_skill(self):
         print("method of skill")
 
 
 class SkillInterface(Thing):
-    namespace = css_ontology
+    namespace = base_namespace
 
     def method_skill_interface(self):
         print("method of skill interface")
+
