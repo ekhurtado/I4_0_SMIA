@@ -126,11 +126,11 @@ class InitAASModelBehaviour(OneShotBehaviour):
                 rel_cap_skill)
 
             # TODO BORRAR: son pruebas para proponer clases para Capability, Skill y SkillInterface
-            basyx_class = skill_elem.__class__
-            skill_elem.__class__ = SMIASkill
-            print(skill_elem.prueba())
-            # skill_elem.get_sm_element_by_semantic_id('hh')
-            skill_elem.add_sme_type(basyx_class)
+            # basyx_class = skill_elem.__class__
+            # skill_elem.__class__ = SMIASkill
+            # print(skill_elem.prueba())
+            # # skill_elem.get_sm_element_by_semantic_id('hh')
+            # skill_elem.add_sme_type(basyx_class)
 
             if capability_elem is None or skill_elem is None:
                 continue

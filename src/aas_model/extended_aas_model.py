@@ -3,6 +3,7 @@ import logging
 import basyx.aas.model.submodel
 from basyx.aas.util import traversal
 
+from aas_model import extended_submodel
 from logic.exceptions import CapabilityCheckingError
 from utilities.capability_skill_ontology import CapabilitySkillOntology, CapabilitySkillACLInfo, AssetInterfacesInfo
 
