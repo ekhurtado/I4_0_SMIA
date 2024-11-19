@@ -5,7 +5,7 @@ from basyx.aas.model import SubmodelElementList, SubmodelElement, Operation, Sub
     Range, Blob, File, ReferenceElement, Capability
 
 from aas_model.extended_aas import ExtendedGeneralMethods
-from utilities.css_ontology_utils import CapabilitySkillOntologyUtils
+from utilities.css_ontology_utils import CapabilitySkillOntologyUtils, CapabilitySkillOntologyInfo
 
 _logger = logging.getLogger(__name__)
 
@@ -198,6 +198,40 @@ class ExtendedCapability(Capability):
             _logger.error("ERROR: the capability type is not valid within the ontology.")
             return None
 
+    def get_capability_semantic_id_of_ontology(self):
+        """
+        This method gets the semanticID of the capability within the Capability-Skill ontology.
+
+        Returns:
+            str: value of the semanticID of the capability within the Capability-Skill ontology.
+        """
+        if self.check_semantic_id_exist(CapabilitySkillOntologyInfo.CSS_ONTOLOGY_CAPABILITY_IRI):
+            return CapabilitySkillOntologyInfo.CSS_ONTOLOGY_CAPABILITY_IRI
+        elif self.check_semantic_id_exist(CapabilitySkillOntologyInfo.CSS_ONTOLOGY_AGENT_CAPABILITY_IRI):
+            return CapabilitySkillOntologyInfo.CSS_ONTOLOGY_AGENT_CAPABILITY_IRI
+        elif self.check_semantic_id_exist(CapabilitySkillOntologyInfo.CSS_ONTOLOGY_ASSET_CAPABILITY_IRI):
+            return CapabilitySkillOntologyInfo.CSS_ONTOLOGY_ASSET_CAPABILITY_IRI
+        else:
+            # TODO HACER AHORA: hay que crear una excepcion para lectura del AAS Model
+            _logger.error("ERROR: the capability type is not valid within the ontology.")
+            return None
+
+    def get_qualifier_value_by_type(self, qualifier_type_value):
+        """
+        This method gets the value of the qualifier that has a given type.
+
+        Args:
+            qualifier_type_value (str): type of the qualifier.
+
+        Returns:
+            str: value of the qualifier with the given type
+        """
+        qualifier_object = self.get_qualifier_by_type(qualifier_type_value)
+        if qualifier_object is None:
+            _logger.error("The qualifier is not found by the type {} in the element {}".format(qualifier_type_value, self))
+        else:
+            return qualifier_object.value
+
 
 
 class ExtendedOperation(Operation):
@@ -369,8 +403,6 @@ class SMIASkill(ExtendedSubmodelElement, ExtendedOperation):
             print("Antes la Skill era una Operation")
         if issubclass(self.sme_type, basyx.aas.model.SubmodelElement):
             print("Antes la Skill era una SubmodelElement")
-        if issubclass(self.sme_type, basyx.aas.model.SubmodelElementCollection):
-            print("Antes la Skill era una SubmodelElementCollection")
 
     def como_convertir_un_skill_a_esta_clase(self, skill_elem):
         # Imaginemos que tenemos un skill_elem (puede ser, p.e. un Operation)

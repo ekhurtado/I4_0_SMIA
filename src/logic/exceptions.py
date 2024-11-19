@@ -106,14 +106,19 @@ class AssetConnectionError(Exception):
 
 # Capability-Skill ontology exceptions
 # ------------------------------------
-class CheckingAttributeError(Exception):
+class OntologyInstanceCreationError(Exception):
+    def __init__(self, message):
+        self.message = message
+        _logger.error(f"{self.message}")
+
+class OntologyCheckingAttributeError(Exception):
 
     def __init__(self, message, invalid_instance):
         self.message = message
         self.invalid_instance = invalid_instance
         _logger.error(f"{self.message}")
 
-class CheckingPropertyError(Exception):
+class OntologyCheckingPropertyError(Exception):
 
     def __init__(self, message, concerned_property_name, invalid_instance):
         self.message = message

@@ -301,17 +301,17 @@
     
 
 
-    <!-- http://www.w3id.org/upv-ehu/gcis/css-smia#accessibleThroughAgentService -->
+    <!-- http://www.w3id.org/upv-ehu/gcis/css-smia#accesibleThroughAgentService -->
 
-    <owl:ObjectProperty rdf:about="http://www.w3id.org/upv-ehu/gcis/css-smia#accessibleThroughAgentService">
+    <owl:ObjectProperty rdf:about="http://www.w3id.org/upv-ehu/gcis/css-smia#accesibleThroughAgentService">
         <rdfs:subPropertyOf rdf:resource="http://www.w3id.org/hsu-aut/css#accessibleThrough"/>
     </owl:ObjectProperty>
     
 
 
-    <!-- http://www.w3id.org/upv-ehu/gcis/css-smia#accessibleThroughAssetService -->
+    <!-- http://www.w3id.org/upv-ehu/gcis/css-smia#accesibleThroughAssetService -->
 
-    <owl:ObjectProperty rdf:about="http://www.w3id.org/upv-ehu/gcis/css-smia#accessibleThroughAssetService">
+    <owl:ObjectProperty rdf:about="http://www.w3id.org/upv-ehu/gcis/css-smia#accesibleThroughAssetService">
         <rdfs:subPropertyOf rdf:resource="http://www.w3id.org/hsu-aut/css#accessibleThrough"/>
     </owl:ObjectProperty>
     
@@ -341,7 +341,7 @@
     <!-- http://www.w3id.org/upv-ehu/gcis/css-smia#pruebaABorrar -->
 
     <owl:DatatypeProperty rdf:about="http://www.w3id.org/upv-ehu/gcis/css-smia#pruebaABorrar">
-        <rdfs:domain rdf:resource="http://www.w3id.org/hsu-aut/css#Skill"/>
+        <rdfs:domain rdf:resource="http://www.w3id.org/hsu-aut/css#Capability"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     </owl:DatatypeProperty>
     
@@ -650,6 +650,30 @@ Notes:
 
     <owl:Class rdf:about="http://www.w3id.org/upv-ehu/gcis/css-smia#AssetCapability">
         <rdfs:subClassOf rdf:resource="http://www.w3id.org/hsu-aut/css#Capability"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3id.org/upv-ehu/gcis/css-smia#Movement -->
+
+    <owl:Class rdf:about="http://www.w3id.org/upv-ehu/gcis/css-smia#Movement">
+        <rdfs:subClassOf rdf:resource="http://www.w3id.org/upv-ehu/gcis/css-smia#AssetCapability"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3id.org/upv-ehu/gcis/css-smia#Negotiation -->
+
+    <owl:Class rdf:about="http://www.w3id.org/upv-ehu/gcis/css-smia#Negotiation">
+        <rdfs:subClassOf rdf:resource="http://www.w3id.org/upv-ehu/gcis/css-smia#AgentCapability"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3id.org/upv-ehu/gcis/css-smia#Transport -->
+
+    <owl:Class rdf:about="http://www.w3id.org/upv-ehu/gcis/css-smia#Transport">
+        <rdfs:subClassOf rdf:resource="http://www.w3id.org/upv-ehu/gcis/css-smia#Movement"/>
     </owl:Class>
 </rdf:RDF>
 

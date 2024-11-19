@@ -185,3 +185,18 @@ class CapabilitySkillOntology:
         except OntologyExceptions.CheckingPropertyError as e:
             getattr(instance_object, e.concerned_property_name).remove(e.invalid_instance)
 
+    async def get_class_by_name(self, class_name):
+        class_object = getattr(self.ontology, class_name)
+        if class_object is None:
+            base_namespace = self.ontology.get_namespace(CapabilitySkillOntologyInfo.CSS_NAMESPACE)
+            class_object = getattr(base_namespace, class_name)
+        return class_object
+
+    async def get_all_subclasses_of_class(self, owl_class):
+        subclasses = list(owl_class.subclasses())
+        all_subclasses = subclasses[:]
+
+        for subclass in subclasses:
+            all_subclasses.extend(await self.get_all_subclasses_of_class(subclass))
+
+        return all_subclasses

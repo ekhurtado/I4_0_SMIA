@@ -4,7 +4,7 @@ from owlready2 import get_ontology, OwlReadyOntologyParsingError, sync_reasoner_
     OwlReadyInconsistentOntologyError, ThingClass, Ontology, ObjectPropertyClass, destroy_entity
 
 from css_ontology import capability_skill_module
-from logic.exceptions import CheckingAttributeError, CheckingPropertyError
+from logic.exceptions import OntologyCheckingAttributeError, OntologyCheckingPropertyError
 from utilities import configmap_utils
 
 _logger = logging.getLogger(__name__)
@@ -92,7 +92,7 @@ class CapabilitySkillOntology:
             ThingClass: created instance object.
         """
         if not isinstance(class_object, ThingClass):
-            print("ERROR: the individual cannot be created because it is not a Thing class.")
+            _logger.error("ERROR: the individual cannot be created because it is not a Thing class.")
             return None
         else:
             # The object of the class is used as constructor of the instance
@@ -150,8 +150,24 @@ class CapabilitySkillOntology:
             return
         try:
             instance_object.check_instance()
-        except CheckingAttributeError as e:
+        except OntologyCheckingAttributeError as e:
             destroy_entity(e.invalid_instance)
-        except CheckingPropertyError as e:
+        except OntologyCheckingPropertyError as e:
             getattr(instance_object, e.concerned_property_name).remove(e.invalid_instance)
 
+    async def get_all_subclasses_iris_of_class(self, owl_class):
+        """
+        This method gets all IRIs of the subclasses of a given OWL class.
+
+        Args:
+            owl_class (ThingClass): OWL class of which the subclasses are to be found.
+
+        Returns:
+            list(str): list of IRIs of the subclasses of the given OWL class.
+        """
+        subclasses = list(owl_class.subclasses())
+        all_subclasses_iris = [subclass.iri for subclass in subclasses]
+        # The method need to be executed recursively to get all existing subclasses
+        for subclass in subclasses:
+            all_subclasses_iris.extend(await self.get_all_subclasses_iris_of_class(subclass))
+        return all_subclasses_iris

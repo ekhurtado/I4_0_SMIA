@@ -8,14 +8,16 @@ import basyx.aas.adapter.json
 from basyx.aas import model
 from basyx.aas.adapter import aasx
 from basyx.aas.model import ModelReference
+from owlready2 import ThingClass
 from spade.behaviour import OneShotBehaviour
 from tqdm.asyncio import tqdm
 from tqdm.contrib.logging import logging_redirect_tqdm
 
 from aas_model.extended_submodel import SMIASkill
 from assetconnection.http_asset_connection import HTTPAssetConnection
+from logic.exceptions import OntologyInstanceCreationError
 from utilities import configmap_utils
-from utilities.css_ontology_utils import CapabilitySkillOntologyUtils, AssetInterfacesInfo
+from utilities.css_ontology_utils import CapabilitySkillOntologyUtils, AssetInterfacesInfo, CapabilitySkillOntologyInfo
 
 _logger = logging.getLogger(__name__)
 
@@ -57,6 +59,8 @@ class InitAASModelBehaviour(OneShotBehaviour):
 
         # A progress bar is used for showing how the AAS model is being read.
         await self.create_progress_bar_object()
+
+        await self.get_and_save_capabilities_information()  # TODO PRUEBAS
 
         # When the object store is created, the required values and information is obtained from the AAS model
         # Both the agent and asset capabilities are stored in the global variables of the agents, with their related
@@ -107,14 +111,62 @@ class InitAASModelBehaviour(OneShotBehaviour):
         else:
             return object_store
 
+
+    async def get_and_save_capabilities_information(self):
+        """
+        This method stores all the information related to the Capabilities. Since the data is defined in the AAS model,
+        it will be used to create the Capability instances within the proposed Capability-Skill-Service ontology.
+        """
+        _logger.info("Reading the AAS model to get all capabilities of the asset and the industrial agent...")
+        # All types of Capabilities are obtained
+        # TODO de momento se hace manualmente. Hay que pensar si queremos dejar al usuario añadir el semanticID que
+        #  quiera de la ontologia, o solo hasta el nivel de Agent o AssetCapability. Es decir, todas las capacidades
+        #  seran de esos dos tipos en el AAS Model, pero despues en la ontología se podrán estructurar las capacidades
+        #  como se quiera. Otra opcion es primero estructurar la ontologia y despues utilizar esos IDs únicos de cada
+        #  instancia para añadirlo en el AAS Model (para esta forma habria que leer el AAS model junto con la ontologia,
+        #  para primero recoger los IRIs de la ontologia y despues realizar la busqueda en el AAS model)
+        cap_iris_list = [CapabilitySkillOntologyInfo.CSS_ONTOLOGY_CAPABILITY_IRI]
+        cap_ontology_elem = await self.myagent.css_ontology.get_ontology_class_by_iri(
+            CapabilitySkillOntologyInfo.CSS_ONTOLOGY_CAPABILITY_IRI)
+        cap_iris_list.extend(
+            await self.myagent.css_ontology.get_all_subclasses_iris_of_class(cap_ontology_elem))
+
+        cap_list = await self.myagent.aas_model.get_submodel_elements_by_semantic_id_list(cap_iris_list,
+                                                                                          basyx.aas.model.Capability)
+        for cap in cap_list:
+            self.progress_bar.update(1)  # TODO cuidado
+            await asyncio.sleep(.5)  # Simulate some processing time
+
+            try:
+                # For each Capability an instance within the CSS ontology is created
+                ontology_iri = cap.get_capability_semantic_id_of_ontology()
+                ontology_class = await self.myagent.css_ontology.get_ontology_class_by_iri(ontology_iri)
+                # The class is used as constructor to build the instance of the CSS ontology
+                created_instance = await self.myagent.css_ontology.create_ontology_object_instance(ontology_class, cap.id_short)
+                if created_instance is None:
+                    raise OntologyInstanceCreationError("The capability {} does not have a valid IRI within the CSS ontology (it is not an IRI"
+                                    " of a ontology class).".format(cap.id_short))
+                # The ontology may state that it is required to add some attributes
+                ontology_required_value_names = created_instance.get_data_properties_names()
+                for required_value_name in ontology_required_value_names:
+                    required_value = cap.get_qualifier_value_by_type(required_value_name)
+                    created_instance.set_data_property_value(required_value_name, required_value)
+
+                # The Submodel Element is also added to be available to the ontology instance object in form of a
+                # reference
+                created_instance.set_aas_sme_ref(ModelReference.from_referable(cap))
+            except OntologyInstanceCreationError as e:
+                pass
+
+
     async def get_and_save_capabilities_skills_information(self):
         """
         This method saves all the information related to Capabilities and Skills defined in the AAS model into the
         agent global variables.
         """
         _logger.info("Reading the AAS model to get all capabilities of the asset and the industrial agent...")
-        rels_cap_skill_list = await self.myagent.aas_model.get_relationship_elements_by_semantic_id(
-            CapabilitySkillOntologyUtils.SEMANTICID_REL_CAPABILITY_SKILL)
+        rels_cap_skill_list = await self.myagent.aas_model.get_submodel_elements_by_semantic_id(
+            CapabilitySkillOntologyUtils.SEMANTICID_REL_CAPABILITY_SKILL, basyx.aas.model.RelationshipElement)
         for rel_cap_skill in rels_cap_skill_list:
             # Add a new step in the progress bar
             self.progress_bar.update(1)
@@ -129,7 +181,6 @@ class InitAASModelBehaviour(OneShotBehaviour):
             basyx_class = skill_elem.__class__
             skill_elem.__class__ = SMIASkill
             print(skill_elem.prueba())
-            # skill_elem.get_sm_element_by_semantic_id('hh')
             skill_elem.add_sme_type(basyx_class)
 
             if capability_elem is None or skill_elem is None:
@@ -255,13 +306,18 @@ class InitAASModelBehaviour(OneShotBehaviour):
         # The iteration number will be the sum of the possible Asset Connections and the Capability-Skill relationships.
         asset_interfaces_submodel = await self.myagent.aas_model.get_submodel_by_semantic_id(
             AssetInterfacesInfo.SEMANTICID_INTERFACES_SUBMODEL)
-        rels_cap_skill_list = await self.myagent.aas_model.get_relationship_elements_by_semantic_id(
-            CapabilitySkillOntologyUtils.SEMANTICID_REL_CAPABILITY_SKILL)
+        ontology_elements_semantic_ids = [CapabilitySkillOntologyInfo.CSS_ONTOLOGY_SKILL_IRI,
+                                          CapabilitySkillOntologyInfo.CSS_ONTOLOGY_SKILL_INTERFACE_IRI,
+                                          CapabilitySkillOntologyInfo.CSS_ONTOLOGY_CAPABILITY_IRI]
+        # All subclasses IRIs of Capabilities are also obtained
+        cap_ontology_elem = await self.myagent.css_ontology.get_ontology_class_by_iri(CapabilitySkillOntologyInfo.CSS_ONTOLOGY_CAPABILITY_IRI)
+        ontology_elements_semantic_ids.extend(await self.myagent.css_ontology.get_all_subclasses_iris_of_class(cap_ontology_elem))
+        ontology_elements_list = await self.myagent.aas_model.get_submodel_elements_by_semantic_id_list(ontology_elements_semantic_ids)
         if not asset_interfaces_submodel:
             _logger.warning("AssetInterfacesSubmodel submodel is not defined. Make sure that this DT does not need to be"
                             " connected to the asset.")
             asset_interfaces_submodel = type('obj', (object,), {'submodel_element': []})    # This is a solution to not brake the next commmand
-        total_iterations = len(asset_interfaces_submodel.submodel_element) + len(rels_cap_skill_list)
+        total_iterations = len(asset_interfaces_submodel.submodel_element) + len(ontology_elements_list)
         # with logging_redirect_tqdm():
         self.progress_bar = tqdm(total=total_iterations, desc='Analyzing AAS model', file=sys.stdout, ncols=75,
                                  bar_format='{l_bar}{bar}| {n_fmt}/{total_fmt} submodel elements \n')

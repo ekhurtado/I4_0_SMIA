@@ -141,24 +141,55 @@ class ExtendedAASModel:
         elif isinstance(reference, basyx.aas.model.ModelReference):
             return reference.resolve(self.aas_model_object_store)
 
-    async def get_relationship_elements_by_semantic_id(self, rel_semantic_id_external_ref):
+    async def get_submodel_elements_by_semantic_id(self, semantic_id_external_ref, sme_class=None):
         """
-        This method gets all Relationship SubmodelElements by the semantic id in form of an external reference.
+        This method gets all SubmodelElements by the semantic id in form of an external reference. The SubmodelElements
+        to obtain can be filtered by the meta-model class.
 
         Args:
-            rel_semantic_id_external_ref (str): semantic id in form of an external reference
+            semantic_id_external_ref (str): semantic id in form of an external reference
+            sme_class (basyx.aas.model.SubmodelElement): Submodel Element class of the elements to be found (None if no
+             filtering is required).
 
         Returns:
-            list(basyx.aas.model.RelationshipElement): list with all Relationship SubmodelElements.
+            list(basyx.aas.model.SubmodelElement): list with all SubmodelElements of the given class.
         """
+        if sme_class is None:
+            sme_class = basyx.aas.model.SubmodelElement
         rels_elements = []
         for aas_object in self.aas_model_object_store:
             if isinstance(aas_object, basyx.aas.model.Submodel):
                 for submodel_element in traversal.walk_submodel(aas_object):
-                    if isinstance(submodel_element, basyx.aas.model.RelationshipElement):
+                    if isinstance(submodel_element, sme_class):
+                    # if isinstance(submodel_element, basyx.aas.model.RelationshipElement):
                         for semantic_id in traversal.walk_semantic_ids_recursive(submodel_element):
                             for reference in semantic_id.key:
-                                if reference.value == rel_semantic_id_external_ref:
+                                if reference.value == semantic_id_external_ref:
+                                    rels_elements.append(submodel_element)
+        return rels_elements
+
+    async def get_submodel_elements_by_semantic_id_list(self, semantic_id_external_refs, sme_class=None):
+        """
+        This method obtains all the SubmodelElements that have any of the given semantic identifiers (in form of an
+        external references). The SubmodelElements to obtain can be filtered by the meta-model class.
+
+        Args:
+            semantic_id_external_refs (list(str)): semantic identifiers in form of a list of external references
+            sme_class (basyx.aas.model.SubmodelElement): Submodel Element class of the elements to be found (None if no
+             filtering is required).
+
+        Returns:
+            list(basyx.aas.model.SubmodelElement): list with all SubmodelElements of the given class.
+        """
+        if sme_class is None:
+            sme_class = basyx.aas.model.SubmodelElement
+        rels_elements = []
+        for aas_object in self.aas_model_object_store:
+            if isinstance(aas_object, basyx.aas.model.Submodel):
+                for submodel_element in traversal.walk_submodel(aas_object):
+                    if isinstance(submodel_element, sme_class):
+                        for semantic_id in semantic_id_external_refs:
+                            if submodel_element.check_semantic_id_exist(semantic_id):
                                     rels_elements.append(submodel_element)
         return rels_elements
 
@@ -277,8 +308,8 @@ class ExtendedAASModel:
             list: list with all constraints of the selected capability in form of Python objects.
         """
         cap_constraints = []
-        rels_cap_constraints = await self.get_relationship_elements_by_semantic_id(
-            CapabilitySkillOntologyUtils.SEMANTICID_REL_CAPABILITY_CAPABILITY_CONTRAINT)
+        rels_cap_constraints = await self.get_submodel_elements_by_semantic_id(
+            CapabilitySkillOntologyUtils.SEMANTICID_REL_CAPABILITY_CAPABILITY_CONTRAINT, basyx.aas.model.RelationshipElement)
         for rel in rels_cap_constraints:
             first_elem = await self.get_object_by_reference(rel.first)
             second_elem = await self.get_object_by_reference(rel.second)
@@ -399,8 +430,8 @@ class ExtendedAASModel:
         Returns:
             (basyx.aas.model.SubmodelElement): the interface of the selected skill in form of Python object (None if it does not exist).
         """
-        rels_skill_interfaces = await self.get_relationship_elements_by_semantic_id(
-            CapabilitySkillOntologyUtils.SEMANTICID_REL_SKILL_SKILL_INTERFACE)
+        rels_skill_interfaces = await self.get_submodel_elements_by_semantic_id(
+            CapabilitySkillOntologyUtils.SEMANTICID_REL_SKILL_SKILL_INTERFACE, basyx.aas.model.RelationshipElement)
         for rel in rels_skill_interfaces:
             first_elem = await self.get_object_by_reference(rel.first)
             second_elem = await self.get_object_by_reference(rel.second)
@@ -449,8 +480,8 @@ class ExtendedAASModel:
             basyx.aas.model.SubmodelElement: exposure submodel element of skill parameters.
         """
         # The exposure elements can be obtained with the related relationship semanticID
-        rels_params_exposed = await self.get_relationship_elements_by_semantic_id(
-            CapabilitySkillOntologyUtils.SEMANTICID_REL_SKILL_PARAMETER_SKILL_INTERFACE)
+        rels_params_exposed = await self.get_submodel_elements_by_semantic_id(
+            CapabilitySkillOntologyUtils.SEMANTICID_REL_SKILL_PARAMETER_SKILL_INTERFACE, basyx.aas.model.RelationshipElement)
         for rel in rels_params_exposed:
             first_elem = await self.get_object_by_reference(rel.first)
             second_elem = await self.get_object_by_reference(rel.second)

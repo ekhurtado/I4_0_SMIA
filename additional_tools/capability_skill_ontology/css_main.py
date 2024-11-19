@@ -93,6 +93,8 @@ async def crear_clases_desde_iris():
         await ontology_class.execute_ontology_reasoner(debug=True)
 
 
+    # LEYENDO LAS INSTANCIAS CREADAS...
+    print("READING ONTOLOGY INSTANCES...")
     for i in ontology_class.ontology.individuals():
         if isinstance(i, Capability):
             i.method()
@@ -106,6 +108,12 @@ async def crear_clases_desde_iris():
                 print("\tThe capability {} has the skill {}".format(i, i.isRealizedBy))
             if 'accessibleThrough' == prop.name:
                 print("\tThe skill {} has the skill interface {}".format(i, i.accessibleThrough))
+
+    print("\nGetting the IRIs of a given class and subclasses...")
+    capability_class = await ontology_class.get_class_by_name('Capability')
+    print("IRI of Capability class: {}".format(capability_class.iri))
+    for subclass in await ontology_class.get_all_subclasses_of_class(capability_class):
+        print("IRI of subclass {} class: {}".format(subclass.name,subclass.iri))
 
 
 

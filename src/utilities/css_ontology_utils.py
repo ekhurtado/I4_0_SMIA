@@ -15,17 +15,35 @@ class CapabilitySkillOntologyUtils:
             datatype (owlready2.Oneof): OWL datatype object.
 
         Returns:
-            list: possible values of datatype in form of a list of strings.
+            set: possible values of datatype in form of a list of strings.
         """
-        possible_values = []
+        possible_values = set()
         if datatype.equivalent_to:  # Comprobar si hay clases equivalentes
             for equivalent in datatype.equivalent_to:
                 if isinstance(equivalent, OneOf):
                     for value in equivalent.instances:
-                        possible_values.append(str(value))
+                        possible_values.add(str(value))
         if len(possible_values) == 0:
             return None
         return possible_values
+
+    @staticmethod
+    def check_whether_part_of_domain(owl_instance, domain):
+        """
+        This method checks whether a given instance class is part of a given domain.
+
+        Args:
+            owl_instance (ThingClass): instance of the OWL class to be checked.
+            domain (CallbackList): list of all classes within the given domain.
+
+        Returns:
+            bool: result of the check.
+        """
+        for domain_class in domain:
+            for owl_class in owl_instance.is_a:
+                if owl_class == domain_class or domain_class in owl_class.ancestors():
+                    return True
+        return False
 
     # Types of Capabilities
     MANUFACTURING_CAPABILITY_TYPE = 'ManufacturingCapability'
@@ -75,8 +93,29 @@ class CapabilitySkillOntologyInfo:
     """
     This class contains information related to the ontology of Capability-Skill: namespaces, OWL file...
     """
-    CSS_BASE_NAMESPACE = 'http://www.w3id.org/hsu-aut/css#'
-    CSS_SMIA_NAMESPACE = 'http://www.w3id.org/upv-ehu/gcis/css-smia#'
+    CSS_ONTOLOGY_BASE_NAMESPACE = 'http://www.w3id.org/hsu-aut/css#'
+    CSS_ONTOLOGY_SMIA_NAMESPACE = 'http://www.w3id.org/upv-ehu/gcis/css-smia#'
+
+    # SemanticIDs (IRIs) of Capabilities
+    CSS_ONTOLOGY_CAPABILITY_IRI = 'http://www.w3id.org/hsu-aut/css#Capability'
+    CSS_ONTOLOGY_AGENT_CAPABILITY_IRI = 'http://www.w3id.org/upv-ehu/gcis/css-smia#AgentCapability'
+    CSS_ONTOLOGY_ASSET_CAPABILITY_IRI = 'http://www.w3id.org/upv-ehu/gcis/css-smia#AssetCapability'
+    CSS_ONTOLOGY_CAPABILITY_CONSTRAINT_IRI = 'http://www.w3id.org/hsu-aut/css#CapabilityConstraint'
+
+    # SemanticIDs (IRIs) of Skills
+    CSS_ONTOLOGY_SKILL_IRI = 'http://www.w3id.org/hsu-aut/css#Skill'
+    CSS_ONTOLOGY_SKILL_INTERFACE_IRI = 'http://www.w3id.org/hsu-aut/css#SkillInterface'
+    CSS_ONTOLOGY_SKILL_PARAMETER_IRI = 'http://www.w3id.org/hsu-aut/css#SkillParameter'
+    CSS_ONTOLOGY_SKILL_STATE_MACHINE_IRI = 'http://www.w3id.org/hsu-aut/css#StateMachine'
+
+    # SemanticIDs (IRIs) of Object Properties (relationship between classes)
+    CSS_ONTOLOGY_PROP_ISREALIZEDBY_IRI = 'http://www.w3id.org/hsu-aut/css#isRealizedBy'
+    CSS_ONTOLOGY_PROP_ISRESTRICTEDBY_IRI = 'http://www.w3id.org/hsu-aut/css#isRestrictedBy'
+    CSS_ONTOLOGY_PROP_ACCESSIBLETHROUGH_IRI = 'http://www.w3id.org/hsu-aut/css#accessibleThrough'
+    CSS_ONTOLOGY_PROP_ACCESSIBLETHROUGH_ASSET_IRI = 'http://www.w3id.org/upv-ehu/gcis/css-smia#accessibleThroughAssetService'
+    CSS_ONTOLOGY_PROP_ACCESSIBLETHROUGH_AGENT_IRI = 'http://www.w3id.org/upv-ehu/gcis/css-smia#accessibleThroughAgentService'
+    CSS_ONTOLOGY_PROP_HASPARAMETER_IRI = 'http://www.w3id.org/hsu-aut/css#hasParameter'
+    CSS_ONTOLOGY_PROP_BEHAVIOURSCONFORMSTO_IRI = 'http://www.w3id.org/hsu-aut/css#behaviorConformsTo'
 
 
 class CapabilitySkillACLInfo:
