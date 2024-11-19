@@ -341,7 +341,7 @@
     <!-- http://www.w3id.org/upv-ehu/gcis/css-smia#pruebaABorrar -->
 
     <owl:DatatypeProperty rdf:about="http://www.w3id.org/upv-ehu/gcis/css-smia#pruebaABorrar">
-        <rdfs:domain rdf:resource="http://www.w3id.org/hsu-aut/css#Skill"/>
+        <rdfs:domain rdf:resource="http://www.w3id.org/hsu-aut/css#StateMachine"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     </owl:DatatypeProperty>
     

@@ -4,7 +4,8 @@ from owlready2 import get_ontology, OwlReadyOntologyParsingError, sync_reasoner_
     OwlReadyInconsistentOntologyError, ThingClass, Ontology, ObjectPropertyClass, destroy_entity
 
 from css_ontology import capability_skill_module
-from logic.exceptions import OntologyCheckingAttributeError, OntologyCheckingPropertyError
+from logic.exceptions import OntologyCheckingAttributeError, OntologyCheckingPropertyError, \
+    OntologyInstanceCreationError, OntologyReadingError
 from utilities import configmap_utils
 
 _logger = logging.getLogger(__name__)
@@ -40,7 +41,6 @@ class CapabilitySkillOntology:
             return
         # The ontology has been loaded
         _logger.info("CSS ontology initialized")
-
 
     async def execute_ontology_reasoner(self, debug=False):
         """
@@ -92,13 +92,13 @@ class CapabilitySkillOntology:
             ThingClass: created instance object.
         """
         if not isinstance(class_object, ThingClass):
-            _logger.error("ERROR: the individual cannot be created because it is not a Thing class.")
-            return None
+            raise OntologyInstanceCreationError("ERROR: the instance cannot be created because the given constructor"
+                                                " is not of ThingClass.")
         else:
             # The object of the class is used as constructor of the instance
             return class_object(instance_name)
 
-    async def seek_instance_by_name(self, instance_name):
+    async def get_ontology_instance_by_name(self, instance_name):
         """
         This method returns an object instance within the ontology by its name.
 
@@ -113,29 +113,25 @@ class CapabilitySkillOntology:
                 return instance_class
         return None
 
-    async def add_object_property_to_instances_by_iris(self, object_property, domain_object_name, range_object_name):
+    async def add_object_property_to_instances_by_names(self, object_property_name, domain_object_name, range_object_name):
         """
         This method adds a new ObjectProperty to link two instances within the ontology. Checks are performed to ensure
         that the ObjectProperty is valid to link the instances.
 
         Args:
-            object_property (ObjectPropertyClass): class of the ObjectProperty to be added.
+            object_property_name (str): name of the ObjectProperty to be added.
             domain_object_name (str): name of the instance to which the ObjectProperty will be added.
             range_object_name (str): name of the instance to be added to the domain instance within the given property.
         """
         # Preliminary checks are performed
         if domain_object_name is None or range_object_name is None:
-            print("ERROR: the object property cannot be added because the domain or range are invalid.")
-            return
-        if not isinstance(object_property, ObjectPropertyClass):
-            print("ERROR: the object property cannot be added because the domain or range are invalid.")
-            return
-        domain_instance = await self.seek_instance_by_name(domain_object_name)
-        range_instance = await self.seek_instance_by_name(range_object_name)
+            raise OntologyReadingError("The object property cannot be added because the domain or range are invalid.")
+        domain_instance = await self.get_ontology_instance_by_name(domain_object_name)
+        range_instance = await self.get_ontology_instance_by_name(range_object_name)
         try:
-            getattr(domain_instance, object_property.name).append(range_instance)
+            getattr(domain_instance, object_property_name).append(range_instance)
         except AttributeError as e:
-            print("ERROR: The class {} does not have the attribute {}".format(domain_instance, object_property))
+            raise OntologyReadingError("ERROR: The class {} does not have the attribute {}".format(domain_instance, object_property_name))
 
     async def check_instance_by_name(self, instance_name):
         """
@@ -145,7 +141,7 @@ class CapabilitySkillOntology:
         Args:
             instance_name (str): name of the instance to be checked.
         """
-        instance_object = await self.seek_instance_by_name(instance_name)
+        instance_object = await self.get_ontology_instance_by_name(instance_name)
         if instance_object is None:
             return
         try:

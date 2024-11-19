@@ -1,4 +1,4 @@
-from basyx.aas.model import Qualifier, HasSemantics, NamespaceSet
+from basyx.aas.model import Qualifier, HasSemantics
 
 
 class ExtendedQualifier(Qualifier):

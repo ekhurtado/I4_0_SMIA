@@ -5,9 +5,11 @@ from basyx.aas.model import SubmodelElementList, SubmodelElement, Operation, Sub
     Range, Blob, File, ReferenceElement, Capability
 
 from aas_model.extended_aas import ExtendedGeneralMethods
+from logic.exceptions import AASModelReadingError, AASModelOntologyError
 from utilities.css_ontology_utils import CapabilitySkillOntologyUtils, CapabilitySkillOntologyInfo
 
 _logger = logging.getLogger(__name__)
+
 
 class ExtendedSubmodel(Submodel):
     """This class contains methods to be added to Submodel class of Basyx Python SDK model."""
@@ -108,6 +110,27 @@ class ExtendedSubmodelElement(SubmodelElement):
                 parent_elem = parent_elem.parent
         return None
 
+    def get_qualifier_value_by_type(self, qualifier_type_value):
+        """
+        This method gets the value of the qualifier that has a given type.
+
+        Args:
+            qualifier_type_value (str): type of the qualifier.
+
+        Returns:
+            str: value of the qualifier with the given type
+        """
+        try:
+            qualifier_object = self.get_qualifier_by_type(qualifier_type_value)
+            if qualifier_object is None:
+                raise AASModelReadingError("Qualifier type {} not found in the element {}".format(
+                    qualifier_type_value, self), self, 'KeyError in qualifiers')
+            else:
+                return qualifier_object.value
+        except KeyError as e:
+            raise AASModelReadingError("Qualifier type {} not found in the element {}".format(
+                qualifier_type_value, self), self, 'KeyError in qualifiers')
+
 
 class ExtendedRelationshipElement(RelationshipElement):
 
@@ -198,7 +221,7 @@ class ExtendedCapability(Capability):
             _logger.error("ERROR: the capability type is not valid within the ontology.")
             return None
 
-    def get_capability_semantic_id_of_ontology(self):
+    def get_semantic_id_of_css_ontology(self):
         """
         This method gets the semanticID of the capability within the Capability-Skill ontology.
 
@@ -213,25 +236,8 @@ class ExtendedCapability(Capability):
             return CapabilitySkillOntologyInfo.CSS_ONTOLOGY_ASSET_CAPABILITY_IRI
         else:
             # TODO HACER AHORA: hay que crear una excepcion para lectura del AAS Model
-            _logger.error("ERROR: the capability type is not valid within the ontology.")
-            return None
-
-    def get_qualifier_value_by_type(self, qualifier_type_value):
-        """
-        This method gets the value of the qualifier that has a given type.
-
-        Args:
-            qualifier_type_value (str): type of the qualifier.
-
-        Returns:
-            str: value of the qualifier with the given type
-        """
-        qualifier_object = self.get_qualifier_by_type(qualifier_type_value)
-        if qualifier_object is None:
-            _logger.error("The qualifier is not found by the type {} in the element {}".format(qualifier_type_value, self))
-        else:
-            return qualifier_object.value
-
+            raise AASModelOntologyError("The capability {} does not have a valid semanticID within the "
+                                        "ontology.".format(self.id_short), self, "OntologySemanticIdMissing")
 
 
 class ExtendedOperation(Operation):
@@ -242,7 +248,6 @@ class ExtendedOperation(Operation):
         print("\t\tinputVariable: {}".format(ExtendedGeneralMethods.print_namespace_set(self.input_variable)))
         print("\t\toutputVariable: {}".format(ExtendedGeneralMethods.print_namespace_set(self.output_variable)))
         print("\t\tinoutputVariable: {}".format(ExtendedGeneralMethods.print_namespace_set(self.in_output_variable)))
-
 
     def get_variable_value_id(self, value_id):
         """
@@ -326,6 +331,7 @@ class ExtendedSubmodelElementCollection(SubmodelElementCollection):
                 if reference.value == semantic_id_ref:
                     return sm_elem
 
+
 # ------------
 # DataElements
 # ------------
@@ -392,34 +398,50 @@ class ExtendedReferenceElement(ReferenceElement):
 #   si es cierto que, durante la creacion de esta clase se deberan añadir los parametros, la maquina de estados,
 #   sus posibles interfaces, etc. ya que se necesitará t0do el modelo AAS para ello (se tendra que hacer en el
 #   init_aas_model_behav)
-class SMIASkill(ExtendedSubmodelElement, ExtendedOperation):
+class ExtendedSkill(ExtendedSubmodelElement, ExtendedOperation):
 
-    def prueba(self):
-        print("a")
+    def add_old_sme_class(self, sme_class):
+        """
+        This method adds the old Basyx SubmodelElement class to be stored to the correct execution of the software.
 
-    def add_sme_type(self, sme_type):
-        self.sme_type = sme_type
-        if issubclass(self.sme_type, basyx.aas.model.Operation):
+        Args:
+            sme_class (basyx.aas.model.SubmodelElement): old submodel element class in BaSyx Python structure.
+        """
+        self.old_sme_class = sme_class
+        if issubclass(self.old_sme_class, basyx.aas.model.Operation):
             print("Antes la Skill era una Operation")
-        if issubclass(self.sme_type, basyx.aas.model.SubmodelElement):
+        if issubclass(self.old_sme_class, basyx.aas.model.SubmodelElement):
             print("Antes la Skill era una SubmodelElement")
 
+    def check_semantic_id_of_css_ontology(self):
+        """
+        This method checks the semanticID of the skill within the Capability-Skill ontology.
+        """
+        if not self.check_semantic_id_exist(CapabilitySkillOntologyInfo.CSS_ONTOLOGY_SKILL_IRI):
+            raise AASModelOntologyError("The skill {} does not have the valid semanticID within the "
+                                        "ontology.".format(self.id_short), self, "OntologySemanticIdMissing")
     def como_convertir_un_skill_a_esta_clase(self, skill_elem):
         # Imaginemos que tenemos un skill_elem (puede ser, p.e. un Operation)
         basyx_class = skill_elem.__class__
-        skill_elem.__class__ = SMIASkill
+        skill_elem.__class__ = ExtendedSkill
         # Ahora es de la clase SMIASkill, por lo que tiene todos sus metodos y los de sus clases extendidas (los Extended nuestros)
         # Aun asi, tenemos que guardar de que tipo de SubmodelElement era antes de convertirlo a SMIASkill
-        self.sme_type = basyx_class
+        self.old_sme_class = basyx_class
 
         # TODO a la hora de ejecutar los metodos que se añadan, se deberá comprobar el tipo de clase que era antes, ya
         #  que va a depender para su ejecución y para saber qué atributos tendrá en cada caso (no todos son iguales)
-        if issubclass(self.sme_type, basyx.aas.model.Operation):
+        if issubclass(self.old_sme_class, basyx.aas.model.Operation):
             print("Antes la Skill era una Operation")
 
 
-class SMIASkillComplex(ExtendedSubmodel):
+class ExtendedComplexSkill(ExtendedSubmodel):
     # TODO se ha tenido que separar las skills simples (Operation,Event...) de las complejas (Submodel). De
     #  momento estas no se han implementado pero en el White paper de PLattform Industrie se menciona que las Skills
     #  se pueden implementar mediante FunctionBlock (Submodelo)
     pass
+
+
+class ExtendedSkillInterface(ExtendedSubmodelElementCollection):
+
+    def add_old_sme_class(self, sme_class):
+        self.old_sme_class = sme_class

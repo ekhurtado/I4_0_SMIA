@@ -161,11 +161,8 @@ class ExtendedAASModel:
             if isinstance(aas_object, basyx.aas.model.Submodel):
                 for submodel_element in traversal.walk_submodel(aas_object):
                     if isinstance(submodel_element, sme_class):
-                    # if isinstance(submodel_element, basyx.aas.model.RelationshipElement):
-                        for semantic_id in traversal.walk_semantic_ids_recursive(submodel_element):
-                            for reference in semantic_id.key:
-                                if reference.value == semantic_id_external_ref:
-                                    rels_elements.append(submodel_element)
+                        if submodel_element.check_semantic_id_exist(semantic_id_external_ref):
+                            rels_elements.append(submodel_element)
         return rels_elements
 
     async def get_submodel_elements_by_semantic_id_list(self, semantic_id_external_refs, sme_class=None):
@@ -190,7 +187,7 @@ class ExtendedAASModel:
                     if isinstance(submodel_element, sme_class):
                         for semantic_id in semantic_id_external_refs:
                             if submodel_element.check_semantic_id_exist(semantic_id):
-                                    rels_elements.append(submodel_element)
+                                rels_elements.append(submodel_element)
         return rels_elements
 
     async def get_submodel_by_semantic_id(self, sm_semantic_id):

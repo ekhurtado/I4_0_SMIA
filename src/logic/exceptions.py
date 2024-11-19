@@ -21,10 +21,37 @@ class CriticalError(Exception):
         exit(-1)
 
 
+# AAS model-related exceptions
+# ----------------------------------------
+class AASModelReadingError(Exception):
+    """
+    This exception class is defined for errors that occur during AAS model management (reading, updating...).
+    """
+    def __init__(self, message, sme_class, reason):
+        self.message = message
+        self.sme_class = sme_class
+        self.reason = reason
+        _logger.error(f"{self.message}")
+
+
+class AASModelOntologyError(Exception):
+    """
+    This exception class is defined for errors that occur during AAS model management (reading, updating...).
+    """
+    def __init__(self, message, sme_class, reason):
+        self.message = message
+        self.sme_class = sme_class
+        self.reason = reason
+        _logger.error(f"{self.message}")
+
+
+# Capability management-related exceptions
+# ----------------------------------------
 class CapabilityDataError(Exception):
     """
     This exception class is defined for errors that are related to the capability data received by the DT.
     """
+
     def __init__(self, message):
         self.message = message
         _logger.error(f"{self.message}")
@@ -37,7 +64,7 @@ class CapabilityRequestExecutionError(Exception):
     """
 
     def __init__(self, cap_name, message, behav_class):
-        self.cap_name = cap_name    # TODO pensar si en lugar de nombre de capacidad añadir el thread de la conversacion (quizas es mas identificativo)
+        self.cap_name = cap_name  # TODO pensar si en lugar de nombre de capacidad añadir el thread de la conversacion (quizas es mas identificativo)
         self.message = message
         self.behav_class = behav_class
 
@@ -92,6 +119,7 @@ class CapabilityCheckingError(Exception):
         # The behaviour for the execution of the capability must be killed
         self.behav_class.kill(exit_code=10)
 
+
 class AssetConnectionError(Exception):
     """
     This exception class is defined for errors that are related to the asset connection processes.
@@ -111,12 +139,20 @@ class OntologyInstanceCreationError(Exception):
         self.message = message
         _logger.error(f"{self.message}")
 
+
+class OntologyReadingError(Exception):
+    def __init__(self, message):
+        self.message = message
+        _logger.error(f"{self.message}")
+
+
 class OntologyCheckingAttributeError(Exception):
 
     def __init__(self, message, invalid_instance):
         self.message = message
         self.invalid_instance = invalid_instance
         _logger.error(f"{self.message}")
+
 
 class OntologyCheckingPropertyError(Exception):
 

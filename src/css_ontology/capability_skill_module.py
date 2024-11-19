@@ -17,8 +17,6 @@ css_ontology = get_ontology(configmap_utils.get_ontology_filepath())
 # onto_path.append(SMIAGeneralInfo.CONFIGURATION_FOLDER_PATH)
 base_namespace = css_ontology.get_namespace(CapabilitySkillOntologyInfo.CSS_ONTOLOGY_BASE_NAMESPACE)
 
-# TODO PENSAR SI DEFINIR UNA CLASE (ExtendedThing) CON ALGUNOS METODOS UTILES QUE PUEDAN USAR EN TODAS LAS CLASES
-#  (p.e. seek_limited_values())
 
 # with css_ontology:
 class ExtendedThing(Thing):
@@ -131,16 +129,17 @@ class Capability(Thing, ExtendedThing):
         added properties are valid. In case of invalid Capability, it raises the exception related to the checking error.
         """
         if self.has_lifecycle is None:
-            raise OntologyCheckingAttributeError("The 'has_lifecycle' attribute is required in Capability instances.",
-                                                 self)
+            raise OntologyCheckingAttributeError("The 'has_lifecycle' attribute is required in "
+                                                 "Capability instances.", self)
         for skill in self.isRealizedBy:
             if not isinstance(skill, Skill):
                 raise OntologyCheckingPropertyError("The instance {} is added in 'isRealizedBy' and it is not a "
-                                            "Skill".format(skill), 'isRealizedBy', skill)
+                                                    "Skill".format(skill), 'isRealizedBy', skill)
         for constraint in self.isRestrictedBy:
             if not isinstance(constraint, CapabilityConstraint):
                 raise OntologyCheckingPropertyError("The instance {} is added in 'isRestrictedBy' and it is not a "
-                                            "CapabilityConstraint".format(constraint),'isRestrictedBy', constraint)
+                                                    "CapabilityConstraint".format(constraint), 'isRestrictedBy',
+                                                    constraint)
         # TODO añadir validacion de que tiene una referencia de AAS valida
         # TODO pensar mas tipos de validaciones
 
@@ -151,18 +150,9 @@ class CapabilityConstraint(Thing, ExtendedThing):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        self.aas_sme_ref = None
-
-    def set_aas_sme_ref(self, aas_ref):
-        """
-        This method sets the AAS submodel element (SME) related to the instance of the Capability.
-
-        Args:
-            aas_ref (str): reference to the submodel element of the AAS model.
-        """
-        self.aas_sme_ref = aas_ref
 
     # TODO PENSAR METODOS PARA CONSTRAINTS
+
 
 class Skill(Thing, ExtendedThing):
     namespace = base_namespace
@@ -170,43 +160,22 @@ class Skill(Thing, ExtendedThing):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        self.aas_sme_ref = None
-
-    def set_aas_sme_ref(self, aas_ref):
-        """
-        This method sets the AAS submodel element (SME) related to the instance of the Capability.
-
-        Args:
-            aas_ref (str): reference to the submodel element of the AAS model.
-        """
-        self.aas_sme_ref = aas_ref
-
     def check_instance(self):
         """
         This method checks whether the Skill instance is valid: if the required attributes are set and if all the added
          properties are valid. In case of invalid Skill, it raises the exception related to the checking error.
         """
         if len(self.accessibleThrough) == 0:
-            raise OntologyCheckingAttributeError("The instance {} does not have any SkillInterface associated".format(self),
-                                                 self)
+            raise OntologyCheckingAttributeError(
+                "The instance {} does not have any SkillInterface associated".format(self), self)
         # TODO pensar mas comprobaciones
+
 
 class SkillInterface(Thing, ExtendedThing):
     namespace = base_namespace
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-
-        self.aas_sme_ref = None
-
-    def set_aas_sme_ref(self, aas_ref):
-        """
-        This method sets the AAS submodel element (SME) related to the instance of the Capability.
-
-        Args:
-            aas_ref (str): reference to the submodel element of the AAS model.
-        """
-        self.aas_sme_ref = aas_ref
 
     def check_instance(self):
         """
@@ -216,4 +185,3 @@ class SkillInterface(Thing, ExtendedThing):
         """
         pass
         # TODO pensar mas comprobaciones
-
