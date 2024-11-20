@@ -1,5 +1,7 @@
 from owlready2 import OneOf
 
+from logic.exceptions import OntologyReadingError
+
 
 class CapabilitySkillOntologyUtils:
     """This class contains all information about the proposal of the ontology based on Capability-Skill model. This
@@ -44,6 +46,35 @@ class CapabilitySkillOntologyUtils:
                 if owl_class == domain_class or domain_class in owl_class.ancestors():
                     return True
         return False
+
+    @staticmethod
+    def get_attribute_from_classes_in_object_property(object_property_class, attribute_name):
+        """
+        This method gets the required attribute of the ontology classes of a given Object Property. If the attribute
+        does not exist, it raises an exception.
+
+        Args:
+            object_property_class (ObjectPropertyClass): class object of the ObjectProperty.
+            attribute_name (str): the attribute to get from the class object within the given object property.
+
+        Returns:
+            object, object: attribute value of the domain and range ontology classes.
+        """
+        if object_property_class is None:
+            raise OntologyReadingError("The object property object {} is None".format(object_property_class))
+        if len(object_property_class.domain) == 0 or len(object_property_class.range) == 0:
+            raise OntologyReadingError("The domain or range of object property {} are "
+                                       "empty".format(object_property_class))
+        try:
+            domain_aas_class = getattr(object_property_class.domain[0], attribute_name)
+            range_aas_class = getattr(object_property_class.range[0], attribute_name)
+            if None in (domain_aas_class, range_aas_class):
+                raise OntologyReadingError("The domain or range of object property object {} does not have the associated "
+                                           "AAS model class defined".format(object_property_class))
+            return domain_aas_class, range_aas_class
+        except KeyError as e:
+            # TODO
+            pass
 
     # Types of Capabilities
     MANUFACTURING_CAPABILITY_TYPE = 'ManufacturingCapability'

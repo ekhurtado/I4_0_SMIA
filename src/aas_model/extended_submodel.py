@@ -1,3 +1,4 @@
+import abc
 import logging
 import basyx.aas.model
 from basyx.aas.model import SubmodelElementList, SubmodelElement, Operation, Submodel, RelationshipElement, \
@@ -398,7 +399,9 @@ class ExtendedReferenceElement(ReferenceElement):
 #   si es cierto que, durante la creacion de esta clase se deberan añadir los parametros, la maquina de estados,
 #   sus posibles interfaces, etc. ya que se necesitará t0do el modelo AAS para ello (se tendra que hacer en el
 #   init_aas_model_behav)
-class ExtendedSkill(ExtendedSubmodelElement, ExtendedOperation):
+# CLASSES FOR CSS ONTOLOGY-BASED EXECUTION
+# ----------------------------------------
+class ExtendedGenericCSSClass(metaclass=abc.ABCMeta):
 
     def add_old_sme_class(self, sme_class):
         """
@@ -408,12 +411,42 @@ class ExtendedSkill(ExtendedSubmodelElement, ExtendedOperation):
             sme_class (basyx.aas.model.SubmodelElement): old submodel element class in BaSyx Python structure.
         """
         self.old_sme_class = sme_class
-        if issubclass(self.old_sme_class, basyx.aas.model.Operation):
-            print("Antes la Skill era una Operation")
-        if issubclass(self.old_sme_class, basyx.aas.model.SubmodelElement):
-            print("Antes la Skill era una SubmodelElement")
+        # if issubclass(self.old_sme_class, basyx.aas.model.Operation):
+        #     print("Antes la Skill era una Operation")
+        # if issubclass(self.old_sme_class, basyx.aas.model.SubmodelElement):
+        #     print("Antes la Skill era una SubmodelElement")
 
-    def check_semantic_id_of_css_ontology(self):
+    def get_semantic_id_of_css_ontology(self):
+        """
+        This method checks the semanticID of the skill within the Capability-Skill ontology.
+        """
+        pass
+
+class ExtendedSkill(ExtendedGenericCSSClass):
+    # TODO se ha tenido que separar las skills simples (Operation,Event...) de las complejas (Submodel). De
+    #  momento estas no se han implementado pero en el White paper de PLattform Industrie se menciona que las Skills
+    #  se pueden implementar mediante FunctionBlock (Submodelo)
+    pass
+
+class ExtendedSkillInterface(ExtendedGenericCSSClass):
+    # TODO se ha tenido que separar las skills interfaces simples (Operation,Event...) de las complejas (SMC). De
+    #  momento se tienen ambas opciones ya que las interfaces de servicios de activos son SMC y las de los servicios de
+    #  agente son simples
+    pass
+
+class ExtendedCapabilityConstraint(ExtendedGenericCSSClass, ExtendedSubmodelElement, ExtendedProperty):
+
+    def get_semantic_id_of_css_ontology(self):
+        """
+        This method checks the semanticID of the skill within the Capability-Skill ontology.
+        """
+        if not self.check_semantic_id_exist(CapabilitySkillOntologyInfo.CSS_ONTOLOGY_CAPABILITY_CONSTRAINT_IRI):
+            raise AASModelOntologyError("The skill {} does not have the valid semanticID within the "
+                                        "ontology.".format(self.id_short), self, "OntologySemanticIdMissing")
+
+class ExtendedSimpleSkill(ExtendedSkill, ExtendedSubmodelElement, ExtendedOperation):
+
+    def get_semantic_id_of_css_ontology(self):
         """
         This method checks the semanticID of the skill within the Capability-Skill ontology.
         """
@@ -434,14 +467,32 @@ class ExtendedSkill(ExtendedSubmodelElement, ExtendedOperation):
             print("Antes la Skill era una Operation")
 
 
-class ExtendedComplexSkill(ExtendedSubmodel):
-    # TODO se ha tenido que separar las skills simples (Operation,Event...) de las complejas (Submodel). De
-    #  momento estas no se han implementado pero en el White paper de PLattform Industrie se menciona que las Skills
-    #  se pueden implementar mediante FunctionBlock (Submodelo)
-    pass
+class ExtendedComplexSkill(ExtendedSkill, ExtendedSubmodel):
+    def get_semantic_id_of_css_ontology(self):
+        """
+        This method checks the semanticID of the skill within the Capability-Skill ontology.
+        """
+        if not self.check_semantic_id_exist(CapabilitySkillOntologyInfo.CSS_ONTOLOGY_SKILL_IRI):
+            raise AASModelOntologyError("The skill {} does not have the valid semanticID within the "
+                                        "ontology.".format(self.id_short), self, "OntologySemanticIdMissing")
 
 
-class ExtendedSkillInterface(ExtendedSubmodelElementCollection):
+class ExtendedSimpleSkillInterface(ExtendedSkillInterface, ExtendedOperation, ExtendedSubmodelElement):
 
-    def add_old_sme_class(self, sme_class):
-        self.old_sme_class = sme_class
+    def get_semantic_id_of_css_ontology(self):
+        """
+        This method checks the semanticID of the skill within the Capability-Skill ontology.
+        """
+        if not self.check_semantic_id_exist(CapabilitySkillOntologyInfo.CSS_ONTOLOGY_SKILL_INTERFACE_IRI):
+            raise AASModelOntologyError("The skill {} does not have the valid semanticID within the "
+                                        "ontology.".format(self.id_short), self, "OntologySemanticIdMissing")
+
+class ExtendedComplexSkillInterface(ExtendedSkillInterface, ExtendedSubmodelElementCollection):
+
+    def get_semantic_id_of_css_ontology(self):
+        """
+        This method checks the semanticID of the skill within the Capability-Skill ontology.
+        """
+        if not self.check_semantic_id_exist(CapabilitySkillOntologyInfo.CSS_ONTOLOGY_SKILL_INTERFACE_IRI):
+            raise AASModelOntologyError("The skill {} does not have the valid semanticID within the "
+                                        "ontology.".format(self.id_short), self, "OntologySemanticIdMissing")

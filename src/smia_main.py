@@ -52,7 +52,7 @@ async def main():
             _logger.info("The asset is logical")
             smia_agent = AASManagerAppAgent(agent_jid, passwd)
         case _:
-            _logger.info("The asset is not defined, so it is a generic AAS Manager")
+            _logger.info("The asset is not defined, so it is a generic SMIA")
             # Create the agent object
             smia_agent = AASManagerAgent(agent_jid, passwd)
 

@@ -1,4 +1,5 @@
-from basyx.aas.model import Qualifier, HasSemantics
+import basyx
+from basyx.aas.model import Qualifier, HasSemantics, Namespace
 
 
 class ExtendedQualifier(Qualifier):
@@ -43,3 +44,19 @@ class ExtendedHasSemantics(HasSemantics):
                     return True
             return False
 
+class ExtendedNamespace(Namespace):
+
+    def check_if_element_is_structural(self):
+        """
+        This method checks whether the AAS element is of type structural (Submodel, SubmodelElementCollection or
+        SubmodelElementList).
+
+        Returns:
+            bool: result of the check
+        """
+        if isinstance(self, basyx.aas.model.Submodel) \
+                or (isinstance(self, basyx.aas.model.SubmodelElementCollection)
+                    or isinstance(self, basyx.aas.model.SubmodelElementList)):
+            return True
+        else:
+            return False

@@ -4,7 +4,7 @@ import basyx.aas.model.submodel
 from basyx.aas.util import traversal
 
 from aas_model import extended_submodel
-from logic.exceptions import CapabilityCheckingError
+from logic.exceptions import CapabilityCheckingError, AASModelReadingError
 from utilities.css_ontology_utils import CapabilitySkillOntologyUtils, CapabilitySkillACLInfo, AssetInterfacesInfo
 
 _logger = logging.getLogger(__name__)
@@ -293,6 +293,60 @@ class ExtendedAASModel:
             _logger.error(
                 "This method has been used incorrectly. This Relationship does not have a Capability element.")
             return None, None
+
+    async def get_elements_from_relationship(self, rel_element, first_elem_class=None, second_elem_class=None):
+        """
+        This method returns the objects of a given Relationship element taking into account the type of class that is
+        required for the objects referenced within the relationship. The objects will be returned in the order
+        specified by the classes, no matter in which order they are defined in the AAS model (in the case of not
+        specifying any class, it is returned in the original order).
+
+        Args:
+            rel_element (basyx.aas.model.RelationshipElement): Python object of the RelationshipElement.
+            first_elem_class (basyx.aas.model.SubmodelElement): Class required for the first element returned.
+            second_elem_class (basyx.aas.model.SubmodelElement): Class required for the second element returned.
+
+        Returns:
+            basyx.aas.model.SubmodelElement, basyx.aas.model.SubmodelElement: SME Python objects with the required format.
+        """
+        # Using the references within the relationship, both SubmodelElement are obtained
+        first_rel_elem = await self.get_object_by_reference(rel_element.first)
+        second_rel_elem = await self.get_object_by_reference(rel_element.second)
+        if first_rel_elem is None or second_rel_elem is None:
+            raise AASModelReadingError("Elements of the relationship {} does not exist in the AAS model"
+                                       "".format(rel_element.id_short), sme_class=rel_element,
+                                       reason="Relationship referenced element invalid")
+        if None in (first_rel_elem, second_rel_elem):
+            # If no one is required, it simply returns the elements
+            return first_rel_elem, second_rel_elem
+        if None not in (first_rel_elem, second_rel_elem):
+            # If both are required, both have to be checked
+            if isinstance(first_rel_elem, first_elem_class) and isinstance(second_rel_elem, second_elem_class):
+                return first_rel_elem, second_rel_elem
+            elif isinstance(first_rel_elem, second_elem_class) and isinstance(second_rel_elem, first_elem_class):
+                return second_rel_elem, first_rel_elem
+            else:
+                raise AASModelReadingError("Elements of the relationship {} are not exist of the required classes {}, "
+                                           "{}".format(rel_element.id_short, first_elem_class, second_elem_class)
+                                           , sme_class=rel_element, reason="Relationship referenced element invalid")
+        if first_elem_class is not None:
+            if isinstance(first_rel_elem, first_elem_class):
+                return first_rel_elem, second_rel_elem
+            elif isinstance(second_rel_elem, first_elem_class):
+                return second_rel_elem, first_rel_elem
+            else:
+                raise AASModelReadingError("The element {} within the relationship {} is not of the required class "
+                                           "{}".format(first_rel_elem, rel_element.id_short, first_elem_class),
+                                           sme_class=rel_element, reason="Relationship referenced element invalid")
+        if second_elem_class is not None:
+            if isinstance(first_rel_elem, second_elem_class):
+                return second_rel_elem, first_rel_elem
+            elif isinstance(second_rel_elem, second_elem_class):
+                return first_rel_elem, second_rel_elem
+            else:
+                raise AASModelReadingError("The element {} within the relationship {} is not of the required class "
+                                           "{}".format(second_rel_elem, rel_element.id_short, second_elem_class),
+                                           sme_class=rel_element, reason="Relationship referenced element invalid")
 
     async def get_capability_associated_constraints(self, capability_elem):
         """

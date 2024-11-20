@@ -13,7 +13,9 @@ from spade.behaviour import OneShotBehaviour
 from tqdm.asyncio import tqdm
 from tqdm.contrib.logging import logging_redirect_tqdm
 
-from aas_model.extended_submodel import ExtendedSkill, ExtendedSkillInterface
+from aas_model import extended_submodel
+from aas_model.extended_submodel import ExtendedSkill, ExtendedSkillInterface, ExtendedCapabilityConstraint, \
+    ExtendedComplexSkillInterface, ExtendedComplexSkill, ExtendedSimpleSkill, ExtendedSimpleSkillInterface
 from assetconnection.http_asset_connection import HTTPAssetConnection
 from logic.exceptions import OntologyInstanceCreationError, AASModelReadingError, AASModelOntologyError, \
     OntologyReadingError
@@ -47,12 +49,12 @@ class InitAASModelBehaviour(OneShotBehaviour):
         self.progress_bar = None
 
         # The counters for all type of analyzed elements are initialized
-        self.analyzed_capabilities = 0
-        self.analyzed_capability_constraints = 0
-        self.analyzed_skills = 0
-        self.analyzed_skill_interfaces = 0
-        self.analyzed_asset_connections = 0
-        self.errors_found = 0
+        self.analyzed_capabilities = []
+        self.analyzed_capability_constraints = []
+        self.analyzed_skills = []
+        self.analyzed_skill_interfaces = []
+        self.analyzed_asset_connections = []
+        self.errors_found = []
 
     async def run(self):
         """
@@ -69,9 +71,13 @@ class InitAASModelBehaviour(OneShotBehaviour):
         # A progress bar is used for showing how the AAS model is being read.
         await self.create_progress_bar_object()
 
+        _logger.info("Reading the AAS model to get all defined ontology elements...")
         await self.get_and_save_capabilities_information()  # TODO PRUEBAS (pero seran los metodo finales)
         await self.get_and_save_skills_information()  # TODO PRUEBAS
-        await self.get_and_save_relationships_information()  # TODO PRUEBAS
+
+        await asyncio.sleep(.5)
+        _logger.info("Reading the AAS model to get all relationships between ontology elements...")
+        await self.get_and_save_relationships_information()
 
         # When the object store is created, the required values and information is obtained from the AAS model
         # Both the agent and asset capabilities are stored in the global variables of the agents, with their related
@@ -79,10 +85,12 @@ class InitAASModelBehaviour(OneShotBehaviour):
         await self.get_and_save_capabilities_skills_information()
 
         # After the AAS model has been analyzed, the AssetConnection class can be specified
+        _logger.info("Reading the AAS model to get all asset connections...")
         await self.get_and_configure_asset_connections()
 
         # The progress bar is closed
-        # self.progress_bar.close()
+        self.progress_bar.close()
+        await asyncio.sleep(1)
 
         # The final results of the analysis are shown
         await self.print_analysis_result()
@@ -147,69 +155,69 @@ class InitAASModelBehaviour(OneShotBehaviour):
         cap_list = await self.myagent.aas_model.get_submodel_elements_by_semantic_id_list(cap_iris_list,
                                                                                           basyx.aas.model.Capability)
         for cap in cap_list:
-            # A new step in the progress bar is added
-            self.progress_bar.update(1)
-            await asyncio.sleep(.5)  # Simulate some processing time
+            await self.add_step_progress_bar()
 
             # For each Capability an instance within the CSS ontology is created
             ontology_iri = cap.get_semantic_id_of_css_ontology()
             await self.create_ontology_instance_from_sme_element(cap, ontology_iri)
 
             # The counter for analyzed capabilities is increased
-            self.analyzed_capabilities += 1
+            self.analyzed_capabilities.append(cap.id_short)
 
         # Once all Capabilities have been analyzed, the capability-related elements will be analyzed (i.e. constraints)
         cap_constraint_list = await self.myagent.aas_model.get_submodel_elements_by_semantic_id(
             CapabilitySkillOntologyInfo.CSS_ONTOLOGY_CAPABILITY_CONSTRAINT_IRI)
-        _logger.info("Reading the AAS model to get all capability constraints...")
         for constraint in cap_constraint_list:
             # For each Capability Constraint an instance within the CSS ontology is created
             await self.create_ontology_instance_from_sme_element(constraint,
                                                                  CapabilitySkillOntologyInfo.CSS_ONTOLOGY_CAPABILITY_CONSTRAINT_IRI)
+            # The capability constraint element will be converted from the Basyx class to the extended one
+            await self.convert_sme_class_to_extended(constraint, ExtendedCapabilityConstraint)
+
             # The counter for analyzed capability constraints is increased
-            self.analyzed_capability_constraints += 1
+            self.analyzed_capability_constraints.append(constraint.id_short)
 
     async def get_and_save_skills_information(self):
         """
         This method stores all the information related to the Skills. Since the data is defined in the AAS model,
         it will be used to create all Skill-related instances within the proposed Capability-Skill-Service ontology.
         """
-        _logger.info("Reading the AAS model to get all skills of the asset and the industrial agent...")
         # First, the Skills are analyzed
         skills_list = await self.myagent.aas_model.get_submodel_elements_by_semantic_id(
             CapabilitySkillOntologyInfo.CSS_ONTOLOGY_SKILL_IRI)
         for skill in skills_list:
-            # A new step in the progress bar is added
-            self.progress_bar.update(1)
-            await asyncio.sleep(.5)  # Simulate some processing time
+            await self.add_step_progress_bar()
 
             # For each Skill an instance within the CSS ontology is created
             await self.create_ontology_instance_from_sme_element(skill,
                                                                  CapabilitySkillOntologyInfo.CSS_ONTOLOGY_SKILL_IRI)
 
             # The skill element will be converted from the Basyx class to the extended one
-            await self.convert_sme_class_to_extended(skill, ExtendedSkill)
+            if skill.check_if_element_is_structural():
+                await self.convert_sme_class_to_extended(skill, ExtendedComplexSkill)
+            else:
+                await self.convert_sme_class_to_extended(skill, ExtendedSimpleSkill)
 
             # The counter for analyzed capabilities is increased
-            self.analyzed_skills += 1
+            self.analyzed_skills.append(skill.id_short)
         # Once all Skills have been analyzed, the skill-related elements will be analyzed (i.e. interfaces)
-        _logger.info("Reading the AAS model to get all skill interfaces...")
         skill_interfaces_list = await self.myagent.aas_model.get_submodel_elements_by_semantic_id(
             CapabilitySkillOntologyInfo.CSS_ONTOLOGY_SKILL_INTERFACE_IRI)
         for interface in skill_interfaces_list:
-            # A new step in the progress bar is added
-            self.progress_bar.update(1)
-            await asyncio.sleep(.5)  # Simulate some processing time
+            await self.add_step_progress_bar()
 
             # For each Skill an instance within the CSS ontology is created
             await self.create_ontology_instance_from_sme_element(interface,
                                                                  CapabilitySkillOntologyInfo.CSS_ONTOLOGY_SKILL_INTERFACE_IRI)
 
             # The skill interface element will be converted from the Basyx class to the extended one
-            await self.convert_sme_class_to_extended(interface, ExtendedSkillInterface)
+            if interface.check_if_element_is_structural():
+                await self.convert_sme_class_to_extended(interface, ExtendedComplexSkillInterface)
+            else:
+                await self.convert_sme_class_to_extended(interface, ExtendedSimpleSkillInterface)
 
             # The counter for analyzed capabilities is increased
-            self.analyzed_skill_interfaces += 1
+            self.analyzed_skill_interfaces.append(interface.id_short)
 
     async def get_and_save_relationships_information(self):
         """
@@ -217,28 +225,17 @@ class InitAASModelBehaviour(OneShotBehaviour):
         Since the data is defined in the AAS model, it will be used to check whether the linked elements have their
         associated ontology instance (created just before the execution of this method).
         """
-        _logger.info("Reading the AAS model to get all relationships between capabilities and skills...")
-        rels_cap_skill_list = await self.myagent.aas_model.get_submodel_elements_by_semantic_id(
-            CapabilitySkillOntologyInfo.CSS_ONTOLOGY_PROP_ISREALIZEDBY_IRI, basyx.aas.model.RelationshipElement)
-        rel_ontology_class = await self.myagent.css_ontology.get_ontology_class_by_iri(
-            CapabilitySkillOntologyInfo.CSS_ONTOLOGY_PROP_ISREALIZEDBY_IRI)
-        for rel in rels_cap_skill_list:
-            # First, the elements of capability and skill are determined (no matter in which order of the
-            # relationship they are listed).
-            try:
-                capability_elem, skill_elem = await self.myagent.aas_model.get_cap_skill_elem_from_relationship(rel)
-                # It is checked if the capability and the skill have the required semanticIDs within the ontology
-                capability_elem.get_semantic_id_of_css_ontology()
-                skill_elem.check_semantic_id_of_css_ontology()
 
-                # When both are checked, if the ontology instances exist the link is set in the ontology
-                await self.myagent.css_ontology.add_object_property_to_instances_by_names(rel_ontology_class.name,
-                                                                                          capability_elem.id_short,
-                                                                                          skill_elem.id_short)
-                # TODO VOY POR AQUI (pensar como se puede desarrollar un metodo general para todas las relaciones. P.e., que al metodo le pases dos clases, en orden de que la segunda se añadira a la priemra, y el IRI de la relacion de ambas. P.e. para saber cual es cual se podria hacer un metodo para devolver siempre las dos clases, en orden, es decir, a la que añadir la relacion la primera )
-            except (AASModelReadingError, AASModelOntologyError, OntologyReadingError) as e:
-                # TODO
-                pass
+        # The relations between Capabilities and Skills are created
+        await self.check_and_create_relationship_by_iri(CapabilitySkillOntologyInfo.CSS_ONTOLOGY_PROP_ISREALIZEDBY_IRI)
+
+        # The relations between Skills and Skills Interfaces are created
+        await self.check_and_create_relationship_by_iri(CapabilitySkillOntologyInfo.CSS_ONTOLOGY_PROP_ACCESSIBLETHROUGH_IRI)
+        await self.check_and_create_relationship_by_iri(CapabilitySkillOntologyInfo.CSS_ONTOLOGY_PROP_ACCESSIBLETHROUGH_ASSET_IRI)
+        await self.check_and_create_relationship_by_iri(CapabilitySkillOntologyInfo.CSS_ONTOLOGY_PROP_ACCESSIBLETHROUGH_AGENT_IRI)
+
+        # The relations between Capabilities and CapabilityConstraints are created
+        await self.check_and_create_relationship_by_iri(CapabilitySkillOntologyInfo.CSS_ONTOLOGY_PROP_ISRESTRICTEDBY_IRI)
 
 
     async def create_ontology_instance_from_sme_element(self, sme_elem, ontology_iri):
@@ -254,12 +251,16 @@ class InitAASModelBehaviour(OneShotBehaviour):
             # The class is used as constructor to build the instance of the CSS ontology
             created_instance = await self.myagent.css_ontology.create_ontology_object_instance(ontology_class,
                                                                                                sme_elem.id_short)
+            # TODO de momento se crean las instancias de las ontologias con el id_short, pero habria que pensar si el
+            #  id_short puede repetirse (el id_short es único dentro del submodelo)
             await self.add_ontology_required_information(sme_elem, created_instance)
         except (OntologyInstanceCreationError, AASModelReadingError) as e:
             _logger.error("The ontology instance of SubmodelElement {} cannot be created.".format(sme_elem.id_short))
-            if isinstance(e, AASModelReadingError):
-                _logger.warning("Check the Submodel Element {}. Reason of the fail: {}.".format(e.sme_class, e.reason))
-            self.errors_found += 1
+            if isinstance(e, AASModelReadingError) or isinstance(e, AASModelOntologyError):
+                _logger.warning("Check the AAS Model {}. Reason of the fail: {}.".format(e.sme_class, e.reason))
+            else:
+                _logger.warning("Check the CSS ontology definition.")
+            self.errors_found.append(sme_elem.id_short)
 
     @staticmethod
     async def add_ontology_required_information(aas_model_elem, ontology_instance):
@@ -295,6 +296,65 @@ class InitAASModelBehaviour(OneShotBehaviour):
         # The old class new to be added to the Extended class
         sme_elem.add_old_sme_class(current_class)
 
+    async def check_and_create_relationship_by_iri(self, relationship_iri):
+        """
+        This method checks the relationship between two elements and, if it is valid, it creates it (it connects the
+        related ontology instances through the appropriate ObjectProperty).
+
+        Args:
+            relationship_iri (str): identifier in form of IRI for the relationship within the CSS ontology.
+        """
+        rels_list, rel_ontology_class, domain_aas_class, range_aas_class = None, None, None, None
+        try:
+            rels_list = await self.myagent.aas_model.get_submodel_elements_by_semantic_id(
+                relationship_iri, basyx.aas.model.RelationshipElement)
+            rel_ontology_class = await self.myagent.css_ontology.get_ontology_class_by_iri(relationship_iri)
+            # The required AAS classes for the elements within this relationship is obtained from the CSS ontology
+            domain_aas_class, range_aas_class = CapabilitySkillOntologyUtils.get_attribute_from_classes_in_object_property(
+                rel_ontology_class, 'aas_sme_class')
+        except (AASModelReadingError, AASModelOntologyError, OntologyReadingError) as e:
+            if isinstance(e, AASModelReadingError) or isinstance(e, AASModelOntologyError):
+                _logger.warning("Check the AAS Model {}. Reason of the fail: {}.".format(e.sme_class, e.reason))
+            else:
+                _logger.warning("Check the CSS ontology definition.")
+
+        domain_aas_elem, range_aas_elem = None, None
+        for rel in rels_list:
+            await self.add_step_progress_bar()
+
+            # First, the elements of capability and skill are determined (no matter in which order of the
+            # relationship they are listed).
+            try:
+                domain_aas_elem, range_aas_elem = await self.myagent.aas_model.get_elements_from_relationship(rel,
+                                                                                                      domain_aas_class,
+                                                                                                      range_aas_class)
+                # It is checked if the capability and the skill have the required semanticIDs within the ontology
+                # if not domain_aas_elem.check_semantic_id_exist(domain_class_iri):
+                domain_aas_elem.get_semantic_id_of_css_ontology()
+                    # raise AASModelReadingError("The SubmodelElement {} does not have the required semanticID {}".format(
+                    #     domain_aas_elem.id_short, domain_class_iri), domain_aas_class, 'AttributeKeyError')
+                # if not range_aas_elem.check_semantic_id_exist(range_class_iri):
+                range_aas_elem.get_semantic_id_of_css_ontology()
+                    # raise AASModelReadingError("The SubmodelElement {} does not have the required semanticID {}".format(
+                    #     range_aas_class.id_short, range_class_iri), range_aas_class, 'AttributeKeyError')
+
+                # When both are checked, if the ontology instances exist the link is set in the ontology
+                await self.myagent.css_ontology.add_object_property_to_instances_by_names(rel_ontology_class.name,
+                                                                                          domain_aas_elem.id_short,
+                                                                                          range_aas_elem.id_short)
+                # _logger.info("AAS Submodel elements {} and {} linked with the relation {}".format(
+                #     domain_aas_elem.id_short, range_aas_elem.id_short, rel_ontology_class.name))
+            except (AASModelReadingError, AASModelOntologyError, OntologyReadingError) as e:
+                if isinstance(e, AASModelReadingError) or isinstance(e, AASModelOntologyError):
+                    _logger.warning("Check the AAS Model {}. Reason of the fail: {}.".format(e.sme_class, e.reason))
+                else:
+                    _logger.warning("Check the CSS ontology definition.")
+                if None not in (domain_aas_elem, range_aas_elem):
+                    self.errors_found.append("{} ({},{})".format(rel.id_short, domain_aas_elem.id_short,
+                                                                 range_aas_elem.id_short))
+                else:
+                    self.errors_found.append("{} ({},{})".format(rel.id_short, domain_aas_class, range_aas_class))
+
     async def get_and_save_capabilities_skills_information(self):
         """
         This method saves all the information related to Capabilities and Skills defined in the AAS model into the
@@ -304,9 +364,7 @@ class InitAASModelBehaviour(OneShotBehaviour):
         rels_cap_skill_list = await self.myagent.aas_model.get_submodel_elements_by_semantic_id(
             CapabilitySkillOntologyUtils.SEMANTICID_REL_CAPABILITY_SKILL, basyx.aas.model.RelationshipElement)
         for rel_cap_skill in rels_cap_skill_list:
-            # Add a new step in the progress bar
-            self.progress_bar.update(1)
-            await asyncio.sleep(.5)  # Simulate some processing time
+            await self.add_step_progress_bar()
 
             # First, the elements of capability and skill are determined (no matter in which order of the
             # relationship they are listed).
@@ -398,9 +456,7 @@ class InitAASModelBehaviour(OneShotBehaviour):
                             "be connected to the asset.")
             return
         for interface_elem in asset_interfaces_submodel.submodel_element:
-            # Add a new step in the progress bar
-            self.progress_bar.update(1)
-            await asyncio.sleep(.5)  # Simulate some processing time
+            await self.add_step_progress_bar()
 
             if interface_elem.check_semantic_id_exist(AssetInterfacesInfo.SEMANTICID_INTERFACE) is False:
                 _logger.warning("There is a submodel element inside the interfaces submodel with invalid semanticID.")
@@ -416,7 +472,7 @@ class InitAASModelBehaviour(OneShotBehaviour):
                 # TODO Hay una interfaz de tipo OPC CUA
                 pass
 
-            self.analyzed_asset_connections += 1
+            self.analyzed_asset_connections.append(interface_elem.id_short)
 
         _logger.info("All asset connections defined in the AAS model have been configured and saved.")
 
@@ -433,10 +489,11 @@ class InitAASModelBehaviour(OneShotBehaviour):
         """
         This method simply prints the result of the complete analysis of the AAS model.
         """
-        _logger.info("AAS model analysis results. Analized elements: capabilities [{}], capability constraints [{}], "
-                     "skills [{}], skill interfaces [{}], asset connections [{}]. Errors found [{}]".format(
-            self.analyzed_capabilities, self.analyzed_capability_constraints, self.analyzed_skills,
-            self.analyzed_skill_interfaces, self.analyzed_asset_connections, self.errors_found))
+        _logger.info("AAS model analysis results. \n\t- Analyzed capabilities: {}\n\t- Analyzed capability constraints"
+                     ": {}\n\t- Analyzed skills {}\n\t- Analyzed skill interfaces {}\n\t- Analyzed asset connections"
+                     " {}\n\t- Errors found {}".format(self.analyzed_capabilities,
+                                                       self.analyzed_capability_constraints, self.analyzed_skills,
+                                   self.analyzed_skill_interfaces, self.analyzed_asset_connections, self.errors_found))
 
     async def create_progress_bar_object(self):
         """
@@ -449,12 +506,19 @@ class InitAASModelBehaviour(OneShotBehaviour):
             AssetInterfacesInfo.SEMANTICID_INTERFACES_SUBMODEL)
         ontology_elements_semantic_ids = [CapabilitySkillOntologyInfo.CSS_ONTOLOGY_SKILL_IRI,
                                           CapabilitySkillOntologyInfo.CSS_ONTOLOGY_SKILL_INTERFACE_IRI,
-                                          CapabilitySkillOntologyInfo.CSS_ONTOLOGY_CAPABILITY_IRI]
+                                          CapabilitySkillOntologyInfo.CSS_ONTOLOGY_CAPABILITY_IRI,
+                                          CapabilitySkillOntologyInfo.CSS_ONTOLOGY_PROP_ISREALIZEDBY_IRI,
+                                          CapabilitySkillOntologyInfo.CSS_ONTOLOGY_PROP_ACCESSIBLETHROUGH_IRI,
+                                          CapabilitySkillOntologyInfo.CSS_ONTOLOGY_PROP_ACCESSIBLETHROUGH_ASSET_IRI,
+                                          CapabilitySkillOntologyInfo.CSS_ONTOLOGY_PROP_ACCESSIBLETHROUGH_AGENT_IRI,
+                                          CapabilitySkillOntologyInfo.CSS_ONTOLOGY_PROP_ISRESTRICTEDBY_IRI]
+
         # All subclasses IRIs of Capabilities are also obtained
         cap_ontology_elem = await self.myagent.css_ontology.get_ontology_class_by_iri(
             CapabilitySkillOntologyInfo.CSS_ONTOLOGY_CAPABILITY_IRI)
         ontology_elements_semantic_ids.extend(
             await self.myagent.css_ontology.get_all_subclasses_iris_of_class(cap_ontology_elem))
+
         ontology_elements_list = await self.myagent.aas_model.get_submodel_elements_by_semantic_id_list(
             ontology_elements_semantic_ids)
         if not asset_interfaces_submodel:
@@ -466,4 +530,12 @@ class InitAASModelBehaviour(OneShotBehaviour):
         total_iterations = len(asset_interfaces_submodel.submodel_element) + len(ontology_elements_list)
         # with logging_redirect_tqdm():
         self.progress_bar = tqdm(total=total_iterations, desc='Analyzing AAS model', file=sys.stdout, ncols=75,
-                                 bar_format='{l_bar}{bar}| {n_fmt}/{total_fmt} submodel elements \n')
+                                 bar_format='{l_bar}{bar}| {n_fmt}/{total_fmt} ontology submodel elements \n')
+
+    async def add_step_progress_bar(self):
+        """
+        This method adds a new step in the progress bar to show the status of the AAS model analysis.
+        """
+        # Add a new step in the progress bar
+        self.progress_bar.update(1)
+        await asyncio.sleep(.2)  # Simulate some processing time

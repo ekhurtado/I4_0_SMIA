@@ -3,12 +3,13 @@ execution of SMIA software. This module is associated to the OWL ontology since 
 definition of OWL. When the owlready2 package loads the ontology, it will automatically import this Python module """
 import logging
 
+import basyx.aas.model
 from owlready2 import Thing, get_ontology, DataPropertyClass, DatatypeClass, onto_path, ThingClass
 
+from aas_model import extended_submodel
 from logic.exceptions import OntologyCheckingAttributeError, OntologyCheckingPropertyError, \
     OntologyInstanceCreationError
 from utilities import configmap_utils
-from utilities.aas_general_info import SMIAGeneralInfo
 from utilities.css_ontology_utils import CapabilitySkillOntologyInfo, CapabilitySkillOntologyUtils
 
 _logger = logging.getLogger(__name__)
@@ -118,10 +119,15 @@ class Capability(Thing, ExtendedThing):
     This class represent the OWL class for Capabilities. It contains all necessary methods to ensure the correct
     execution of SMIA software.
     """
+    # The namespace of the base CSS ontology must be defined
     namespace = base_namespace
+
+    # The associated SubmodelElement class of the AAS is also defined
+    aas_sme_class = basyx.aas.model.Capability
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+
 
     def check_instance(self):
         """
@@ -145,7 +151,12 @@ class Capability(Thing, ExtendedThing):
 
 
 class CapabilityConstraint(Thing, ExtendedThing):
+    # The namespace of the base CSS ontology must be defined
     namespace = base_namespace
+
+    # The associated SubmodelElement class of the AAS is also defined
+    # aas_sme_class = basyx.aas.model.SubmodelElement
+    aas_sme_class = extended_submodel.ExtendedCapabilityConstraint
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -155,7 +166,11 @@ class CapabilityConstraint(Thing, ExtendedThing):
 
 
 class Skill(Thing, ExtendedThing):
+    # The namespace of the base CSS ontology must be defined
     namespace = base_namespace
+
+    # The associated SubmodelElement class of the AAS is also defined
+    aas_sme_class = extended_submodel.ExtendedSkill
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -172,7 +187,11 @@ class Skill(Thing, ExtendedThing):
 
 
 class SkillInterface(Thing, ExtendedThing):
+    # The namespace of the base CSS ontology must be defined
     namespace = base_namespace
+
+    # The associated SubmodelElement class of the AAS is also defined
+    aas_sme_class = extended_submodel.ExtendedSkillInterface
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
