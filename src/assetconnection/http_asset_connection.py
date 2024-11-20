@@ -4,7 +4,7 @@ from requests import ConnectTimeout
 
 from assetconnection.asset_connection import AssetConnection
 from logic.exceptions import AssetConnectionError
-from utilities.css_ontology_utils import AssetInterfacesInfo
+from css_ontology.css_ontology_utils import AssetInterfacesInfo
 
 _logger = logging.getLogger(__name__)
 

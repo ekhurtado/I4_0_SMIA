@@ -1,5 +1,5 @@
 from basyx.aas.model import AssetAdministrationShell, AssetInformation, ConceptDescription, \
-    HasSemantics, Qualifier, Capability, Namespace
+    HasSemantics, Qualifier, Capability, Namespace, Entity
 
 from aas_model.extended_aas import *
 from aas_model.extended_base import ExtendedHasSemantics, ExtendedQualifier, ExtendedNamespace

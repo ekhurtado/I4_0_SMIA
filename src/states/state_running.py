@@ -5,7 +5,7 @@ from behaviours.negotiating_behaviour import NegotiatingBehaviour
 from behaviours.svc_acl_handling_behaviour import SvcACLHandlingBehaviour
 from utilities import smia_archive_utils
 from utilities.smia_info import SMIAInfo
-from utilities.css_ontology_utils import CapabilitySkillOntologyUtils
+from css_ontology.css_ontology_utils import CapabilitySkillOntologyUtils
 
 _logger = logging.getLogger(__name__)
 

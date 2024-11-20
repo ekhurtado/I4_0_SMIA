@@ -3,9 +3,8 @@ import logging
 import basyx.aas.model.submodel
 from basyx.aas.util import traversal
 
-from aas_model import extended_submodel
 from logic.exceptions import CapabilityCheckingError, AASModelReadingError
-from utilities.css_ontology_utils import CapabilitySkillOntologyUtils, CapabilitySkillACLInfo, AssetInterfacesInfo
+from css_ontology.css_ontology_utils import CapabilitySkillOntologyUtils, CapabilitySkillACLInfo, AssetInterfacesInfo
 
 _logger = logging.getLogger(__name__)
 

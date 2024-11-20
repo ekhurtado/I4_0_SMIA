@@ -4,13 +4,13 @@ definition of OWL. When the owlready2 package loads the ontology, it will automa
 import logging
 
 import basyx.aas.model
-from owlready2 import Thing, get_ontology, DataPropertyClass, DatatypeClass, onto_path, ThingClass
+from owlready2 import Thing, get_ontology, DataPropertyClass, DatatypeClass
 
 from aas_model import extended_submodel
 from logic.exceptions import OntologyCheckingAttributeError, OntologyCheckingPropertyError, \
     OntologyInstanceCreationError
 from utilities import configmap_utils
-from utilities.css_ontology_utils import CapabilitySkillOntologyInfo, CapabilitySkillOntologyUtils
+from css_ontology.css_ontology_utils import CapabilitySkillOntologyInfo, CapabilitySkillOntologyUtils
 
 _logger = logging.getLogger(__name__)
 

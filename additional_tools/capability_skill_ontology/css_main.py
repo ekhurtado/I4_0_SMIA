@@ -42,7 +42,7 @@ async def primeras_pruebas():
     print("SKILL: {}".format(skill2))
 
     skill_interface1 = SkillInterface("skillInterface1")
-    skill1.accessibleThrough.append(capability1)
+    skill1.accessibleThrough.append(capability1)    # TODO RELACION INVALIDA !
     print("SKILL INTERFACE: {}".format(skill_interface1))
 
     print("CAPABILITY capability1 skills: {}".format(capability1.isRealizedBy))
@@ -58,6 +58,8 @@ async def primeras_pruebas():
         skill1.accessibleThrough.remove(capability1)
         print("Executing reasoner again...")
         await ontology_class.execute_ontology_reasoner()
+        print("Now the ontology is consistent!")
+        print("------------------------------")
 
 
 async def crear_clases_desde_iris():
@@ -69,10 +71,12 @@ async def crear_clases_desde_iris():
         "http://www.w3id.org/hsu-aut/css#Skill": "skill01",
         "http://www.w3id.org/hsu-aut/css#SkillInterface": "skillInterface01",
         # "http://www.w3id.org/hsu-aut/css#isRealizedBy": "cap01,skill01",
-        "http://www.w3id.org/hsu-aut/css#isRealizedBy": "cap01,cap1",
+        "http://www.w3id.org/hsu-aut/css#isRealizedBy": "cap01,cap1",   # TODO RELACION INVALIDA !
         "http://www.w3id.org/hsu-aut/css#accessibleThrough": "skill01,skillInterface01",
+        "http://www.w3id.org/hsu-aut/css#accessibleThrough": "skill01,skill1",   # TODO RELACION INVALIDA !
         }
 
+    print("Creating ontology instances from dictionary data...")
     for iri_found, name in iris_dict.items():
         class_generator = await ontology_class.get_ontology_class_by_iri(iri_found)
         if isinstance(class_generator, ThingClass):
@@ -85,6 +89,7 @@ async def crear_clases_desde_iris():
             await ontology_class.add_object_property_to_instances_by_iris(class_generator, name.split(',')[0], name.split(',')[1])
 
     try:
+        print("Analyzing ontology with new instances...")
         await ontology_class.execute_ontology_reasoner(debug=True)
     except OwlReadyInconsistentOntologyError as e:
         print("ERROR: the new ontology instances has not been added properly. The created instances need to be checked.")
@@ -92,6 +97,8 @@ async def crear_clases_desde_iris():
             await ontology_class.check_instance_by_name(name)
         await ontology_class.execute_ontology_reasoner(debug=True)
 
+    skill1 = await ontology_class.seek_instance_by_name('skill1')
+    print("skill1 sigue siendo solo del tipo 'Skill'? {}\n".format(skill1.is_a))
 
     # LEYENDO LAS INSTANCIAS CREADAS...
     print("READING ONTOLOGY INSTANCES...")

@@ -301,18 +301,22 @@
     
 
 
-    <!-- http://www.w3id.org/upv-ehu/gcis/css-smia#accesibleThroughAgentService -->
+    <!-- http://www.w3id.org/upv-ehu/gcis/css-smia#accessibleThroughAgentService -->
 
-    <owl:ObjectProperty rdf:about="http://www.w3id.org/upv-ehu/gcis/css-smia#accesibleThroughAgentService">
+    <owl:ObjectProperty rdf:about="http://www.w3id.org/upv-ehu/gcis/css-smia#accessibleThroughAgentService">
         <rdfs:subPropertyOf rdf:resource="http://www.w3id.org/hsu-aut/css#accessibleThrough"/>
+        <rdfs:domain rdf:resource="http://www.w3id.org/hsu-aut/css#Skill"/>
+        <rdfs:range rdf:resource="http://www.w3id.org/hsu-aut/css#SkillInterface"/>
     </owl:ObjectProperty>
     
 
 
-    <!-- http://www.w3id.org/upv-ehu/gcis/css-smia#accesibleThroughAssetService -->
+    <!-- http://www.w3id.org/upv-ehu/gcis/css-smia#accessibleThroughAssetService -->
 
-    <owl:ObjectProperty rdf:about="http://www.w3id.org/upv-ehu/gcis/css-smia#accesibleThroughAssetService">
+    <owl:ObjectProperty rdf:about="http://www.w3id.org/upv-ehu/gcis/css-smia#accessibleThroughAssetService">
         <rdfs:subPropertyOf rdf:resource="http://www.w3id.org/hsu-aut/css#accessibleThrough"/>
+        <rdfs:domain rdf:resource="http://www.w3id.org/hsu-aut/css#Skill"/>
+        <rdfs:range rdf:resource="http://www.w3id.org/hsu-aut/css#SkillInterface"/>
     </owl:ObjectProperty>
     
 
@@ -341,7 +345,7 @@
     <!-- http://www.w3id.org/upv-ehu/gcis/css-smia#pruebaABorrar -->
 
     <owl:DatatypeProperty rdf:about="http://www.w3id.org/upv-ehu/gcis/css-smia#pruebaABorrar">
-        <rdfs:domain rdf:resource="http://www.w3id.org/hsu-aut/css#Capability"/>
+        <rdfs:domain rdf:resource="http://www.w3id.org/hsu-aut/css#StateMachine"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     </owl:DatatypeProperty>
     
@@ -654,6 +658,14 @@ Notes:
     
 
 
+    <!-- http://www.w3id.org/upv-ehu/gcis/css-smia#Collaborate -->
+
+    <owl:Class rdf:about="http://www.w3id.org/upv-ehu/gcis/css-smia#Collaborate">
+        <rdfs:subClassOf rdf:resource="http://www.w3id.org/upv-ehu/gcis/css-smia#Socialize"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.w3id.org/upv-ehu/gcis/css-smia#Movement -->
 
     <owl:Class rdf:about="http://www.w3id.org/upv-ehu/gcis/css-smia#Movement">
@@ -662,9 +674,33 @@ Notes:
     
 
 
-    <!-- http://www.w3id.org/upv-ehu/gcis/css-smia#Negotiation -->
+    <!-- http://www.w3id.org/upv-ehu/gcis/css-smia#Negotiate -->
 
-    <owl:Class rdf:about="http://www.w3id.org/upv-ehu/gcis/css-smia#Negotiation">
+    <owl:Class rdf:about="http://www.w3id.org/upv-ehu/gcis/css-smia#Negotiate">
+        <rdfs:subClassOf rdf:resource="http://www.w3id.org/upv-ehu/gcis/css-smia#Socialize"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3id.org/upv-ehu/gcis/css-smia#Notify -->
+
+    <owl:Class rdf:about="http://www.w3id.org/upv-ehu/gcis/css-smia#Notify">
+        <rdfs:subClassOf rdf:resource="http://www.w3id.org/upv-ehu/gcis/css-smia#Talk"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3id.org/upv-ehu/gcis/css-smia#Socialize -->
+
+    <owl:Class rdf:about="http://www.w3id.org/upv-ehu/gcis/css-smia#Socialize">
+        <rdfs:subClassOf rdf:resource="http://www.w3id.org/upv-ehu/gcis/css-smia#Talk"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3id.org/upv-ehu/gcis/css-smia#Talk -->
+
+    <owl:Class rdf:about="http://www.w3id.org/upv-ehu/gcis/css-smia#Talk">
         <rdfs:subClassOf rdf:resource="http://www.w3id.org/upv-ehu/gcis/css-smia#AgentCapability"/>
     </owl:Class>
     
@@ -674,6 +710,32 @@ Notes:
 
     <owl:Class rdf:about="http://www.w3id.org/upv-ehu/gcis/css-smia#Transport">
         <rdfs:subClassOf rdf:resource="http://www.w3id.org/upv-ehu/gcis/css-smia#Movement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3id.org/upv-ehu/gcis/css-smia#TransportWithCollection -->
+
+    <owl:Class rdf:about="http://www.w3id.org/upv-ehu/gcis/css-smia#TransportWithCollection">
+        <rdfs:subClassOf rdf:resource="http://www.w3id.org/upv-ehu/gcis/css-smia#Transport"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3id.org/upv-ehu/gcis/css-smia#TransportWithCollectionAndDelivery -->
+
+    <owl:Class rdf:about="http://www.w3id.org/upv-ehu/gcis/css-smia#TransportWithCollectionAndDelivery">
+        <rdfs:subClassOf rdf:resource="http://www.w3id.org/upv-ehu/gcis/css-smia#Transport"/>
+        <rdfs:subClassOf rdf:resource="http://www.w3id.org/upv-ehu/gcis/css-smia#TransportWithCollection"/>
+        <rdfs:subClassOf rdf:resource="http://www.w3id.org/upv-ehu/gcis/css-smia#TransportWithDelivery"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3id.org/upv-ehu/gcis/css-smia#TransportWithDelivery -->
+
+    <owl:Class rdf:about="http://www.w3id.org/upv-ehu/gcis/css-smia#TransportWithDelivery">
+        <rdfs:subClassOf rdf:resource="http://www.w3id.org/upv-ehu/gcis/css-smia#Transport"/>
     </owl:Class>
 </rdf:RDF>
 

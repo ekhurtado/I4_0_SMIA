@@ -2,12 +2,12 @@ import abc
 import logging
 import basyx.aas.model
 from basyx.aas.model import SubmodelElementList, SubmodelElement, Operation, Submodel, RelationshipElement, \
-    AnnotatedRelationshipElement, BasicEventElement, Entity, SubmodelElementCollection, Property, MultiLanguageProperty, \
+    AnnotatedRelationshipElement, BasicEventElement, SubmodelElementCollection, Property, MultiLanguageProperty, \
     Range, Blob, File, ReferenceElement, Capability
 
 from aas_model.extended_aas import ExtendedGeneralMethods
 from logic.exceptions import AASModelReadingError, AASModelOntologyError
-from utilities.css_ontology_utils import CapabilitySkillOntologyUtils, CapabilitySkillOntologyInfo
+from css_ontology.css_ontology_utils import CapabilitySkillOntologyUtils, CapabilitySkillOntologyInfo
 
 _logger = logging.getLogger(__name__)
 

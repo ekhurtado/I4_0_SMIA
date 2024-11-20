@@ -61,15 +61,15 @@ class Capability(Thing):
             # TODO CAMBIARLO EN SMIA (generar una excepcion custom en la que se añade la razon de que haya salido mal
             #  el chequeo, y la clase a eliminar)
             # raise AttributeError("has_lifecycle attribute is required in Capability instances.", self)
-            raise OntologyExceptions.OntologyCheckingAttributeError("The 'has_lifecycle' attribute is required in "
+            raise OntologyExceptions.CheckingPropertyError("The 'has_lifecycle' attribute is required in "
                                                             "Capability instances.", self)
         for skill in self.isRealizedBy:
             if not isinstance(skill, Skill):
-                raise OntologyExceptions.OntologyCheckingPropertyError("The instance {} is added in 'isRealizedBy' and it is "
+                raise OntologyExceptions.CheckingPropertyError("The instance {} is added in 'isRealizedBy' and it is "
                                                                "not a Skill".format(skill), 'isRealizedBy', skill)
         for constraint in self.isRestrictedBy:
             if not isinstance(constraint, CapabilityConstraint):
-                raise OntologyExceptions.OntologyCheckingPropertyError("The instance {} is added in 'isRestrictedBy' and it is"
+                raise OntologyExceptions.CheckingPropertyError("The instance {} is added in 'isRestrictedBy' and it is"
                                                                 " not a CapabilityConstraint".format(constraint),
                                                                'isRestrictedBy', constraint)
 

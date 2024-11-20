@@ -1,7 +1,6 @@
 import asyncio
 import logging
 import sys
-import time
 
 import basyx.aas.adapter.xml
 import basyx.aas.adapter.json
@@ -11,16 +10,14 @@ from basyx.aas.model import ModelReference
 from owlready2 import ThingClass
 from spade.behaviour import OneShotBehaviour
 from tqdm.asyncio import tqdm
-from tqdm.contrib.logging import logging_redirect_tqdm
 
-from aas_model import extended_submodel
 from aas_model.extended_submodel import ExtendedSkill, ExtendedSkillInterface, ExtendedCapabilityConstraint, \
     ExtendedComplexSkillInterface, ExtendedComplexSkill, ExtendedSimpleSkill, ExtendedSimpleSkillInterface
 from assetconnection.http_asset_connection import HTTPAssetConnection
-from logic.exceptions import OntologyInstanceCreationError, AASModelReadingError, AASModelOntologyError, \
+from logic.exceptions import AASModelReadingError, AASModelOntologyError, \
     OntologyReadingError, CriticalError
 from utilities import configmap_utils
-from utilities.css_ontology_utils import CapabilitySkillOntologyUtils, AssetInterfacesInfo, CapabilitySkillOntologyInfo
+from css_ontology.css_ontology_utils import CapabilitySkillOntologyUtils, AssetInterfacesInfo, CapabilitySkillOntologyInfo
 
 _logger = logging.getLogger(__name__)
 
