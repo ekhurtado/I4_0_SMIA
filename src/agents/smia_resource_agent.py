@@ -1,6 +1,6 @@
 import logging
 
-from agents.smia_agent import AASManagerAgent
+from agents.smia_agent import SMIAAgent
 from states.state_booting_resource import StateBootingResource
 from states.state_running import StateRunning
 from states.state_stopping import StateStopping
@@ -11,7 +11,7 @@ from behaviours.aas_fsm_behaviour import AASFSMBehaviour
 _logger = logging.getLogger(__name__)
 
 
-class AASManagerResourceAgent(AASManagerAgent):
+class SMIAResourceAgent(SMIAAgent):
     """
     This is the AAS Manager Agent for physical resource assets. It extends the generic class AASManagerAgent.
     """

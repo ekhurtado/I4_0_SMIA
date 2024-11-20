@@ -6,7 +6,7 @@ from spade.behaviour import OneShotBehaviour
 
 from logic import inter_aas_interactions_utils
 from logic.exceptions import CapabilityRequestExecutionError, CapabilityCheckingError, CapabilityDataError, \
-    AssetConnectionError
+    AssetConnectionError, OntologyReadingError
 from css_ontology.css_ontology_utils import CapabilitySkillACLInfo, AssetInterfacesInfo
 from utilities.fipa_acl_info import FIPAACLInfo
 
@@ -81,6 +81,23 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
                 # The data received is checked to ensure that it contains all the necessary information.
                 await self.check_received_cap_data()
 
+                # TODO BORRAR: PRUEBA RECOGIENDO LOS DATOS CON CSS ONTOLOGY
+                cap_name = received_cap_data[CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME]
+                try:
+                    cap_ontology_elem = await self.myagent.css_ontology.get_ontology_instance_by_name(cap_name)
+                    _logger.aclinfo("Capability ontology element found for {}: {}".format(cap_name, cap_ontology_elem))
+                    skill_ontology_elems = cap_ontology_elem.isRealizedBy
+                    for skill in skill_ontology_elems:
+                        _logger.aclinfo("{} is a skill of the capability {}".format(skill.name, cap_ontology_elem.name))
+                        for interf in skill.accessibleThroughAssetService:
+                            _logger.aclinfo("{} is a skill interface with asset service of the skill {}".format(interf.name, skill.name))
+                        for interf in skill.accessibleThroughAgentService:
+                            _logger.aclinfo("{} is a skill interface with agent service of the skill {}".format(interf.name, skill.name))
+                except OntologyReadingError as e:
+                    _logger.error("The capability {} does not exist in the ontology of this DT.".format(cap_name))
+
+                # TODO BORRAR: FIN PRUEBA RECOGIENDO LOS DATOS CON CSS ONTOLOGY
+
                 # First, the skill interface elem need to be obtained. The capability element will be used for this.
                 cap_name = received_cap_data[CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME]
                 capability_elem = await self.myagent.aas_model.get_capability_by_id_short(
@@ -105,7 +122,7 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
                     # interface is located. The value need to be part of a skill parameter and the semanticID is its
                     # valueId attribute
                     skill_parameter_id_short = skill_elem.get_variable_value_id(skill_interface_elem.id)
-                    # Since the id_short of the parameter is the same key as the received value, the value can be get
+                    # Since the id_short of the parameter is the same key as the received value, the value can be got
                     skill_parameter_value = received_cap_data[CapabilitySkillACLInfo.REQUIRED_SKILL_INFO][
                         CapabilitySkillACLInfo.REQUIRED_SKILL_PARAMETERS][
                         CapabilitySkillACLInfo.REQUIRED_SKILL_INPUT_PARAMETERS][skill_parameter_id_short]
@@ -277,6 +294,10 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
         Returns:
             bool: the result of the check.
         """
+        # TODO PENSAR SI TODOS ESTOS ATRIBUTOS SON NECESARIOS: se ha pensado que quizas se podria solicitar una
+        #  capacidad sin necesidad de definir la skill (como se implementa). En este caso, el DT podria elegir
+        #  cualquiera de las skills para implementar la capacidad (eso si, habria que ver como recoger los skill
+        #  parameters necesarios)
         received_cap_data = self.svc_req_data['serviceData']['serviceParams']
         if CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME not in received_cap_data:
             raise CapabilityDataError("The received capability data is invalid due to missing #{} field in request "

@@ -275,8 +275,7 @@ class InitAASModelBehaviour(OneShotBehaviour):
         for required_value_name in ontology_required_value_names:
             required_value = aas_model_elem.get_qualifier_value_by_type(required_value_name)
             ontology_instance.set_data_property_value(required_value_name, required_value)
-        # The Submodel Element is also added to be available to the ontology instance object in form of a
-        # reference
+        # The Submodel Element is also added to be available to the ontology instance object in form of a reference
         ontology_instance.set_aas_sme_ref(ModelReference.from_referable(aas_model_elem))
 
     @staticmethod

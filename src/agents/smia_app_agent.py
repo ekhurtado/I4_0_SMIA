@@ -1,6 +1,6 @@
 import logging
 
-from agents.smia_agent import AASManagerAgent
+from agents.smia_agent import SMIAAgent
 from states.state_running import StateRunning
 from states.state_stopping import StateStopping
 from utilities.smia_info import SMIAInfo
@@ -10,7 +10,7 @@ from states.state_booting import StateBooting
 _logger = logging.getLogger(__name__)
 
 
-class AASManagerAppAgent(AASManagerAgent):
+class SMIAAppAgent(SMIAAgent):
     """
     This is the AAS Manager Agent for logical resource assets. It extends the generic class AASManagerAgent.
     """

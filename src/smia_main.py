@@ -1,9 +1,9 @@
 import logging
 import spade
 
-from agents.smia_agent import AASManagerAgent
-from agents.smia_app_agent import AASManagerAppAgent
-from agents.smia_resource_agent import AASManagerResourceAgent
+from agents.smia_agent import SMIAAgent
+from agents.smia_app_agent import SMIAAppAgent
+from agents.smia_resource_agent import SMIAResourceAgent
 from utilities import configmap_utils, smia_archive_utils
 from utilities.AASModelExtension_utils import AASModelExtensionUtils
 from utilities.general_utils import GeneralUtils
@@ -47,14 +47,14 @@ async def main():
     match aas_type:
         case "physical":
             _logger.info("The asset is physical")
-            smia_agent = AASManagerResourceAgent(agent_jid, passwd)
+            smia_agent = SMIAResourceAgent(agent_jid, passwd)
         case "digital":
             _logger.info("The asset is logical")
-            smia_agent = AASManagerAppAgent(agent_jid, passwd)
+            smia_agent = SMIAAppAgent(agent_jid, passwd)
         case _:
             _logger.info("The asset is not defined, so it is a generic SMIA")
             # Create the agent object
-            smia_agent = AASManagerAgent(agent_jid, passwd)
+            smia_agent = SMIAAgent(agent_jid, passwd)
 
     # Since the agent object has already been created, the agent will start
     await smia_agent.start()

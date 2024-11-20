@@ -17,9 +17,9 @@ from utilities.general_utils import GeneralUtils
 _logger = logging.getLogger(__name__)
 
 
-class AASManagerAgent(Agent):
+class SMIAAgent(Agent):
     """
-    This is the top level in the hierarchy of SPADE Agents. It extends the own class Agent of SPADE. The AAS Manager
+    This is the top level in the hierarchy of SPADE Agents. It extends the own class Agent of SPADE. The SMIA
     Agent will be the generic and from which all other types of AAS Managers will start.
     """
 
