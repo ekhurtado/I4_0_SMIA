@@ -18,7 +18,7 @@ from aas_model.extended_submodel import ExtendedSkill, ExtendedSkillInterface, E
     ExtendedComplexSkillInterface, ExtendedComplexSkill, ExtendedSimpleSkill, ExtendedSimpleSkillInterface
 from assetconnection.http_asset_connection import HTTPAssetConnection
 from logic.exceptions import OntologyInstanceCreationError, AASModelReadingError, AASModelOntologyError, \
-    OntologyReadingError
+    OntologyReadingError, CriticalError
 from utilities import configmap_utils
 from utilities.css_ontology_utils import CapabilitySkillOntologyUtils, AssetInterfacesInfo, CapabilitySkillOntologyInfo
 
@@ -72,12 +72,12 @@ class InitAASModelBehaviour(OneShotBehaviour):
         await self.create_progress_bar_object()
 
         _logger.info("Reading the AAS model to get all defined ontology elements...")
-        await self.get_and_save_capabilities_information()  # TODO PRUEBAS (pero seran los metodo finales)
-        await self.get_and_save_skills_information()  # TODO PRUEBAS
+        await self.get_and_save_capabilities_information()
+        await self.get_and_save_skills_information()
 
         await asyncio.sleep(.5)
         _logger.info("Reading the AAS model to get all relationships between ontology elements...")
-        await self.get_and_save_relationships_information()
+        await self.get_and_save_ontology_relationships_information()
 
         # When the object store is created, the required values and information is obtained from the AAS model
         # Both the agent and asset capabilities are stored in the global variables of the agents, with their related
@@ -126,6 +126,7 @@ class InitAASModelBehaviour(OneShotBehaviour):
             except ValueError as e:
                 _logger.error("Failed to read AAS model: invalid AASX package.")
                 _logger.error(e)
+                raise CriticalError("Failed to read AAS model: invalid AASX package.")
         if object_store is None:
             _logger.error("The AAS model is not valid. It is not possible to read and obtain elements of the AAS "
                           "metamodel.")
@@ -133,12 +134,12 @@ class InitAASModelBehaviour(OneShotBehaviour):
         else:
             return object_store
 
+
     async def get_and_save_capabilities_information(self):
         """
         This method stores all the information related to the Capabilities. Since the data is defined in the AAS model,
         it will be used to create the Capability instances within the proposed Capability-Skill-Service ontology.
         """
-        _logger.info("Reading the AAS model to get all capabilities of the asset and the industrial agent...")
         # All types of Capabilities are obtained
         # TODO de momento se hace manualmente. Hay que pensar si queremos dejar al usuario añadir el semanticID que
         #  quiera de la ontologia, o solo hasta el nivel de Agent o AssetCapability. Es decir, todas las capacidades
@@ -219,7 +220,7 @@ class InitAASModelBehaviour(OneShotBehaviour):
             # The counter for analyzed capabilities is increased
             self.analyzed_skill_interfaces.append(interface.id_short)
 
-    async def get_and_save_relationships_information(self):
+    async def get_and_save_ontology_relationships_information(self):
         """
         This method stores all the information related to the relationships between elements defined in the ontology.
         Since the data is defined in the AAS model, it will be used to check whether the linked elements have their
@@ -238,6 +239,7 @@ class InitAASModelBehaviour(OneShotBehaviour):
         await self.check_and_create_relationship_by_iri(CapabilitySkillOntologyInfo.CSS_ONTOLOGY_PROP_ISRESTRICTEDBY_IRI)
 
 
+
     async def create_ontology_instance_from_sme_element(self, sme_elem, ontology_iri):
         """
         This method creates the ontology instance from the AAS Submodel Element.
@@ -254,8 +256,7 @@ class InitAASModelBehaviour(OneShotBehaviour):
             # TODO de momento se crean las instancias de las ontologias con el id_short, pero habria que pensar si el
             #  id_short puede repetirse (el id_short es único dentro del submodelo)
             await self.add_ontology_required_information(sme_elem, created_instance)
-        except (OntologyInstanceCreationError, AASModelReadingError) as e:
-            _logger.error("The ontology instance of SubmodelElement {} cannot be created.".format(sme_elem.id_short))
+        except (AASModelReadingError, AASModelOntologyError, OntologyReadingError) as e:
             if isinstance(e, AASModelReadingError) or isinstance(e, AASModelOntologyError):
                 _logger.warning("Check the AAS Model {}. Reason of the fail: {}.".format(e.sme_class, e.reason))
             else:
@@ -292,7 +293,20 @@ class InitAASModelBehaviour(OneShotBehaviour):
             new_class: new class to which the SubmodelElement shall be converted.
         """
         current_class = sme_elem.__class__
-        sme_elem.__class__ = new_class
+        if new_class is ExtendedSkill:
+            # In this case there are two types of classes (Simple and Complex)
+            if sme_elem.check_if_element_is_structural():
+                sme_elem.__class__ = ExtendedComplexSkill
+            else:
+                sme_elem.__class__ = ExtendedSimpleSkill
+        elif new_class is ExtendedSkillInterface:
+            # In this case there are two types of classes (Simple and Complex)
+            if sme_elem.check_if_element_is_structural():
+                sme_elem.__class__ = ExtendedComplexSkillInterface
+            else:
+                sme_elem.__class__ = ExtendedSimpleSkillInterface
+        else:
+            sme_elem.__class__ = new_class
         # The old class new to be added to the Extended class
         sme_elem.add_old_sme_class(current_class)
 
@@ -448,7 +462,6 @@ class InitAASModelBehaviour(OneShotBehaviour):
         #  submodelo y configurará la interfaz (p.e. añadiendo los datos del endpoint), para dejar la interfaz lista
         #  para ser usada (se hará referencia a los SMEs dentro de "InteractionMetada" del submodelo de la interfaz,
         #  que es donde estan los datapoints)
-        _logger.info("Reading the AAS model to get all connections of the asset...")
         asset_interfaces_submodel = await self.myagent.aas_model.get_submodel_by_semantic_id(
             AssetInterfacesInfo.SEMANTICID_INTERFACES_SUBMODEL)
         if not asset_interfaces_submodel:
@@ -539,3 +552,7 @@ class InitAASModelBehaviour(OneShotBehaviour):
         # Add a new step in the progress bar
         self.progress_bar.update(1)
         await asyncio.sleep(.2)  # Simulate some processing time
+
+
+
+
