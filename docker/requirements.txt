@@ -10,7 +10,7 @@ requests == 2.31.0
 lxml == 4.9.0
 
 # Related to multi-agent system
-spade == 3.3.2
+spade == 3.3.3
 
 # Related to AAS Manager-Core interactions (Kafka)
 setuptools == 74.1.2
@@ -19,6 +19,9 @@ aiokafka == 0.10.0
 
 # Related to AAS model
 basyx-python-sdk == 1.0.0
+
+# Related to OWL ontology
+owlready2 == 0.47
 
 # Related to asset connections
 jsonpath-ng == 1.7.0

@@ -33,7 +33,8 @@ class CapabilitySkillOntologyInfo:
     """
     This class contains information related to the ontology of Capability-Skill: namespaces, OWL file...
     """
-    ONTOLOGY_FILE_PATH = 'owl_files/CSS-ontology-smia-2.owl'
+    ONTOLOGY_FILE_PATH = 'owl_files/Prueba4.tex'
+    # ONTOLOGY_FILE_PATH = 'owl_files/CSS-ontology-smia-2.owl'
     CSS_NAMESPACE = 'http://www.w3id.org/hsu-aut/css#'
     CSS_SMIA_NAMESPACE = 'http://www.w3id.org/upv-ehu/gcis/css-smia#'
 

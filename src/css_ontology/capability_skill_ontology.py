@@ -3,9 +3,9 @@ import logging
 from owlready2 import get_ontology, OwlReadyOntologyParsingError, sync_reasoner_pellet, \
     OwlReadyInconsistentOntologyError, ThingClass, Ontology, ObjectPropertyClass, destroy_entity
 
-from css_ontology import capability_skill_module
+from css_ontology.css_ontology_utils import CapabilitySkillOntologyUtils
 from logic.exceptions import OntologyCheckingAttributeError, OntologyCheckingPropertyError, \
-    OntologyInstanceCreationError, OntologyReadingError
+    OntologyInstanceCreationError, OntologyReadingError, CriticalError
 from utilities import configmap_utils
 
 _logger = logging.getLogger(__name__)
@@ -25,18 +25,18 @@ class CapabilitySkillOntology:
         """
 
         # Import only ontologies in RDF/XML, OWL/XML or NTriples format (others do not work, e.g. Turtle)
-        self.ontology = get_ontology(configmap_utils.get_ontology_filepath())
+
+        self.ontology = get_ontology(CapabilitySkillOntologyUtils.get_ontology_file_path())
         try:
             self.ontology.load()
         except FileNotFoundError as e:
-            _logger.error("ERROR: The OWL file of the ontology does not exist.")
             self.ontology = None
-            return
+            raise CriticalError("The OWL file of the ontology does not exist.")
         except OwlReadyOntologyParsingError as e:
             if 'NTriples' in e.args[0]:
-                _logger.error("ERROR: The OWL file is invalid (only RDF/XML, OWL/XML or NTriples format are accepted).")
+                raise CriticalError("ERROR: The OWL file is invalid (only RDF/XML, OWL/XML or NTriples format are accepted).")
             if 'Cannot download' in e.args[0]:
-                _logger.error("ERROR: The OWL has defined imported ontologies that cannot be downloaded.")
+                raise CriticalError("ERROR: The OWL has defined imported ontologies that cannot be downloaded.")
             self.ontology = None
             return
         # The ontology has been loaded

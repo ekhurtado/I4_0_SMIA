@@ -1,11 +1,53 @@
+import logging
+
+from basyx.aas import model
+from basyx.aas.adapter import aasx
 from owlready2 import OneOf
 
-from logic.exceptions import OntologyReadingError
+from logic.exceptions import OntologyReadingError, CriticalError
+from utilities import configmap_utils
 
+_logger = logging.getLogger(__name__)
 
 class CapabilitySkillOntologyUtils:
     """This class contains all information about the proposal of the ontology based on Capability-Skill model. This
     information groups the required semanticIDs or the qualifiers to analyze AAS models."""
+
+    @staticmethod
+    def get_ontology_file_path():
+        """
+        This method gets the valid file path of the ontology file. The file is obtained from the AASX package or from
+        the configuration folder inside the SMIA Archive, depending on the definition in the properties file.
+
+        Returns:
+            str: file path to the ontology file.
+        """
+        if configmap_utils.get_ontology_general_property("inside-aasx"):
+            aas_model_serialization_format = configmap_utils.get_aas_general_property('model.serialization')
+            if aas_model_serialization_format == 'AASX':
+                try:
+                    with aasx.AASXReader(configmap_utils.get_aas_model_filepath()) as aasx_reader:
+                        for part_name, content_type in aasx_reader.reader.list_parts():
+                            # All parts of the AASX package are analyzed
+                            # if '.owl' in part_name:
+                            if any(ext in part_name for ext in ['.owl', '.rdf', '.owx']):
+                                ontology_zip_file = aasx_reader.reader.open_part(part_name)
+                                ontology_file_bytes = ontology_zip_file.read()
+                                return configmap_utils.create_ontology_file(ontology_file_bytes)
+                        else:
+                            raise CriticalError("Failed to read ontology file inside the AASX package (FileNotFound).")
+                except ValueError as e:
+                    raise CriticalError("Failed to read AAS model: invalid file.")
+            else:
+                # The serialization format must be AASX. However, it will be checked if the ontology file defined in
+                # the properties file is valid.
+                _logger.warning("The properties file may not be well defined. The ontology file is set as is within "
+                                "AASX, but the serialization format of the AAS model is not AASX.")
+                # It will try with the file path defined in the properties file, if it does not exist, it will crash
+                # during the loading of the ontology
+                return configmap_utils.get_defined_ontology_filepath()
+        else:
+            return configmap_utils.get_defined_ontology_filepath()
 
     @staticmethod
     def get_possible_values_of_datatype(datatype):

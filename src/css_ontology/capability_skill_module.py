@@ -14,7 +14,7 @@ from css_ontology.css_ontology_utils import CapabilitySkillOntologyInfo, Capabil
 
 _logger = logging.getLogger(__name__)
 
-css_ontology = get_ontology(configmap_utils.get_ontology_filepath())
+css_ontology = get_ontology(CapabilitySkillOntologyUtils.get_ontology_file_path())
 # onto_path.append(SMIAGeneralInfo.CONFIGURATION_FOLDER_PATH)
 base_namespace = css_ontology.get_namespace(CapabilitySkillOntologyInfo.CSS_ONTOLOGY_BASE_NAMESPACE)
 

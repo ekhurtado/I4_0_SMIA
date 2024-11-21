@@ -107,27 +107,25 @@ class InitAASModelBehaviour(OneShotBehaviour):
             basyx.aas.model.DictObjectStore:  object with all Python elements of the AAS model.
         """
         object_store = None
-        # TODO HACER AHORA: AÑADIR EL PODER LEER AASX
-        if aas_model_serialization_format == 'JSON':
-            object_store = basyx.aas.adapter.json.read_aas_json_file(configmap_utils.get_aas_model_filepath())
-        elif aas_model_serialization_format == 'XML':
-            object_store = basyx.aas.adapter.xml.read_aas_xml_file(configmap_utils.get_aas_model_filepath())
-        elif aas_model_serialization_format == 'AASX':
-            try:
-                with aasx.AASXReader(configmap_utils.get_aas_model_filepath()) as reader:
-                    # Read all contained AAS objects and all referenced auxiliary files
-                    object_store = model.DictObjectStore()
-                    suppl_file_store = aasx.DictSupplementaryFileContainer()
-                    reader.read_into(object_store=object_store,
-                                     file_store=suppl_file_store)
-            except ValueError as e:
-                _logger.error("Failed to read AAS model: invalid AASX package.")
-                _logger.error(e)
-                raise CriticalError("Failed to read AAS model: invalid AASX package.")
-        if object_store is None:
-            _logger.error("The AAS model is not valid. It is not possible to read and obtain elements of the AAS "
+        try:
+            if aas_model_serialization_format == 'JSON':
+                object_store = basyx.aas.adapter.json.read_aas_json_file(configmap_utils.get_aas_model_filepath())
+            elif aas_model_serialization_format == 'XML':
+                object_store = basyx.aas.adapter.xml.read_aas_xml_file(configmap_utils.get_aas_model_filepath())
+            elif aas_model_serialization_format == 'AASX':
+                    with aasx.AASXReader(configmap_utils.get_aas_model_filepath()) as reader:
+                        # Read all contained AAS objects and all referenced auxiliary files
+                        object_store = model.DictObjectStore()
+                        suppl_file_store = aasx.DictSupplementaryFileContainer()
+                        reader.read_into(object_store=object_store,
+                                         file_store=suppl_file_store)
+        except ValueError as e:
+            _logger.error("Failed to read AAS model: invalid file.")
+            _logger.error(e)
+            raise CriticalError("Failed to read AAS model: invalid file.")
+        if object_store is None or len(object_store) == 0:
+            raise CriticalError("The AAS model is not valid. It is not possible to read and obtain elements of the AAS "
                           "metamodel.")
-            self.kill(exit_code=10)
         else:
             return object_store
 
