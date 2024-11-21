@@ -10,7 +10,6 @@ Submodules
    utilities.AASModelExtension_utils
    utilities.KafkaInfo
    utilities.aas_general_info
-   utilities.capability_skill_ontology
    utilities.configmap_utils
    utilities.fipa_acl_info
    utilities.general_utils

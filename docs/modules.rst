@@ -8,6 +8,7 @@ API documentation
    agents
    assetconnection
    behaviours
+   css_ontology
    logic
    smia_main
    states
