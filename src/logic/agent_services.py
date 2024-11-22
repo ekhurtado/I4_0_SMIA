@@ -1,5 +1,4 @@
 import asyncio
-import math
 
 import psutil
 
@@ -24,8 +23,7 @@ class AgentServices:
         self.myagent = agent_object
 
         # The services dictionary contains all available services of the agent, with its associated executable methods
-        self.services = {'RAM_memory_function': self.get_software_ram_memory,
-                         'hola': self.prueba_agent_service_con_params}    # TODO no hacerlo asi, rellenarlo de otra forma (p.e. por metodos de extension)
+        self.services = {'RAM_memory_function': self.get_software_ram_memory}    # TODO no hacerlo asi, rellenarlo de otra forma (p.e. por metodos de extension)
 
         # The Lock object is used to manage the access to global service dictionary
         self.lock = asyncio.Lock()
@@ -88,13 +86,4 @@ class AgentServices:
         """
         return psutil.virtual_memory().percent
 
-    async def prueba_agent_service_con_params(self, param1: int, param2: float, param3: bool, param4):
-        # Param1 tiene que ser un integer
-        aux = param1 + 1
-        print(f"El valor actual de param1 es {param1} y el valor siguiente {aux}")
-        aux = math.sqrt(param2)
-        print(f"El valor actual de param2 es {param2} y su raiz cuadrada {aux}")
-        aux = param3 is True
-        print(f"El param3 es un bool {param3} y se comprueba si es true {aux}")
-        print(f"El param4 es un string {param4}")
 

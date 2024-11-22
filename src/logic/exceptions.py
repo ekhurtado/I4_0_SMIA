@@ -1,10 +1,8 @@
 """
 This file contains all the classes for handling errors in exceptions that may occur during code execution.
 """
-import json
 import logging
 
-from logic import inter_aas_interactions_utils
 from utilities.fipa_acl_info import FIPAACLInfo
 
 _logger = logging.getLogger(__name__)

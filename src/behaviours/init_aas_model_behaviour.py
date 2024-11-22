@@ -92,7 +92,6 @@ class InitAASModelBehaviour(OneShotBehaviour):
         # The final results of the analysis are shown
         await self.print_analysis_result()
 
-        # TODO: pensar si faltaria comprobar mas cosas a recoger en el modelo de AAS
         _logger.info("AAS model initialized.")
         self.exit_code = 0
 
@@ -271,6 +270,8 @@ class InitAASModelBehaviour(OneShotBehaviour):
         # The ontology may state that it is required to add some attributes
         ontology_required_value_names = ontology_instance.get_data_properties_names()
         for required_value_name in ontology_required_value_names:
+            # TODO HACER AHORA: ya que los qualifiers tambien se añaden de acuerdo a la ontologia, tendrán semanticId,
+            #  por lo que hay que recoger los valores por el IRI del semanticId, no por el tipo (nombre del qualifier)
             required_value = aas_model_elem.get_qualifier_value_by_type(required_value_name)
             ontology_instance.set_data_property_value(required_value_name, required_value)
         # The Submodel Element is also added to be available to the ontology instance object in form of a reference
@@ -483,15 +484,6 @@ class InitAASModelBehaviour(OneShotBehaviour):
 
         _logger.info("All asset connections defined in the AAS model have been configured and saved.")
 
-        # capabilities_dict = await self.myagent.aas_model.get_capability_dict_by_type(CapabilitySkillOntology.ASSET_CAPABILITY_TYPE)
-        # for cap_elem, cap_info in capabilities_dict.items():
-        #     # TODO, pensar que pasaria si las capacidades tienen diferentes protocolos. De momento se ha dejado de forma sencilla, se recoge el primero
-        #     skill_interface = await self.myagent.aas_model.get_skill_interface_by_skill_elem(cap_info['skillObject'])
-        #     for semantic_id in traversal.walk_semantic_ids_recursive(skill_interface):
-        #         for reference in semantic_id.key:
-        #             if str(reference) == CapabilitySkillOntology.SEMANTICID_SKILL_INTERFACE_HTTP:
-        #                 await self.myagent.set_asset_connection(HTTPAssetConnection())
-
     async def print_analysis_result(self):
         """
         This method simply prints the result of the complete analysis of the AAS model.
@@ -511,6 +503,7 @@ class InitAASModelBehaviour(OneShotBehaviour):
         # The iteration number will be the sum of the possible Asset Connections and the Capability-Skill relationships.
         asset_interfaces_submodel = await self.myagent.aas_model.get_submodel_by_semantic_id(
             AssetInterfacesInfo.SEMANTICID_INTERFACES_SUBMODEL)
+        # TODO HACER AHORA: pensar si definir alguna lista con todos los IRIs en CapabilitySkillOntologyInfo
         ontology_elements_semantic_ids = [CapabilitySkillOntologyInfo.CSS_ONTOLOGY_SKILL_IRI,
                                           CapabilitySkillOntologyInfo.CSS_ONTOLOGY_SKILL_INTERFACE_IRI,
                                           CapabilitySkillOntologyInfo.CSS_ONTOLOGY_CAPABILITY_IRI,

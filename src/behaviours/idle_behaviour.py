@@ -29,6 +29,6 @@ class IdleBehaviour(CyclicBehaviour):
         _logger.info(str(self.agent.id) + ":     [Idle Behaviour]")
         _logger.info("         |___ Resource entering IDLE state...")
 
-        # TODO pensar el comportamiento del AAS Manager en este estado (p.e. avisar del cambio de estado al Core,
+        # TODO pensar el comportamiento del SMIA en este estado (p.e. avisar del cambio de estado al Core,
         #  si llegan mensajes ACL almacenarlos para su posterior procesamiento cuando vuelva a running...)
 

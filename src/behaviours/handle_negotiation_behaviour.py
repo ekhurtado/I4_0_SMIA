@@ -9,9 +9,6 @@ from css_ontology.css_ontology_utils import CapabilitySkillOntologyUtils, AssetI
 _logger = logging.getLogger(__name__)
 
 
-# TODO analizar clase NegotiatingBehaviour de Alejandro para ver como manejaba las negociaciones entre agentes
-
-
 class HandleNegotiationBehaviour(CyclicBehaviour):
     """
     This class implements the behaviour that handle a particular negotiation.
@@ -42,7 +39,7 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
         self.neg_requester_jid = negotiation_info['neg_requester_jid']
         self.targets = negotiation_info['targets']
         self.neg_criteria = negotiation_info['neg_criteria']
-        self.targets_processed = set()  # TODO pensar si cambiarlo a un set para evitar valores repetidos
+        self.targets_processed = set()
 
         # This event object will allow waiting for the negotiation value if it is necessary to request it from an
         # external entity (such as the AAS Core)
@@ -58,7 +55,6 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
         #  time of sending the PROPOSE and receiving that of the others it will be the same value. Therefore, if to
         #  obtain the value you have to make an Intra AAS interaction request, the behaviour will not be able to start
         #  managing the negotiation until you get the answer to that request (together with the requested value).
-        # TODO buscar una forma de dormir el behaviour hasta que neg_value deje de ser None
         await self.get_neg_value_with_criteria()
 
 
@@ -187,33 +183,6 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
         #  del submodelo para interfaces, y si es el caso, se ejecutará el método '' del AssetConnection asociado,
         #  añadiendole los datos del Skill element (con los valores en los inputs) y su Skill interface.
 
-        # intra_aas_svc_data = {
-        #     'serviceCategory': 'service-request',
-        #     'timestamp': GeneralUtils.get_current_timestamp(),
-        #     'serviceParams': {
-        #         'criteria': self.neg_criteria
-        #     }
-        # }
-        # intra_aas_req_data = Negotiation_utils.create_intra_aas_neg_req_data(
-        #     performative=self.template.metadata['performative'],
-        #     ontology=self.template.metadata['ontology'],
-        #     thread=self.thread,
-        #     service_data=intra_aas_svc_data)
-        #
-        # # A new behaviour is added to the SPADE agent to handle this specific service request
-        # intra_aas_neg_req_handling_behav = HandleSvcRequestBehaviour(self.agent,
-        #                                                              'Inter AAS interaction',
-        #                                                              intra_aas_req_data)
-        # self.myagent.add_behaviour(intra_aas_neg_req_handling_behav)
-        #
-        # # In this case, as the Intra AAS interactions are asynchronous, the behaviour will wait until the request is
-        # # answered and the negotiation value is available
-        # _logger.info(str(self.__class__.__name__) + " behaviour will be waiting for the negotiation value...")
-        # await self.neg_value_event.wait()
-        # # If the behaviour continues from this line, it means that the Intra AAS interaction has been answered and the
-        # # value is available
-        # self.neg_value_event.clear()
-        # _logger.info("The negotiation value for the negotiation with thread [" + self.thread + "] has been obtained. ")
 
     async def exit_negotiation(self, is_winner):
         """

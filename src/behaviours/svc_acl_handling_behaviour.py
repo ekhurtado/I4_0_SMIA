@@ -91,7 +91,6 @@ class SvcACLHandlingBehaviour(CyclicBehaviour):
                         capability_handling_behav = HandleCapabilityBehaviour(self.agent, svc_req_data)
                         self.myagent.add_behaviour(capability_handling_behav)
                     else:
-                        # TODO pensar mas tipos de serviceIDs
                         service_category = msg_json_body['serviceData']['serviceCategory']
                         if service_category == 'service-request':
                             # The new service request is looked up in the agent's global ACL request dictionary.

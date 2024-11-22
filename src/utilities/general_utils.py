@@ -1,6 +1,5 @@
 import calendar
 import logging
-import os
 import time
 
 from spade.message import Message
@@ -31,7 +30,7 @@ class GeneralUtils:
             if self.isEnabledFor(interaction_level_num):
                 self._log(interaction_level_num, message, args, **kwargs)
 
-        logging.Logger.interactioninfo = interactioninfo  # TODO PROXIMO PASO: CAMBIARLO POR 'assetinfo'
+        logging.Logger.interactioninfo = interactioninfo  # TODO HACER AHORA: CAMBIARLO POR 'assetinfo'
 
         def aclinfo(self, message, *args, **kwargs):
             if self.isEnabledFor(fipa_acl_level_num):

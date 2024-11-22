@@ -9,7 +9,6 @@ from owlready2 import Thing, get_ontology, DataPropertyClass, DatatypeClass
 from aas_model import extended_submodel
 from logic.exceptions import OntologyCheckingAttributeError, OntologyCheckingPropertyError, \
     OntologyInstanceCreationError
-from utilities import configmap_utils
 from css_ontology.css_ontology_utils import CapabilitySkillOntologyInfo, CapabilitySkillOntologyUtils
 
 _logger = logging.getLogger(__name__)
@@ -19,7 +18,6 @@ css_ontology = get_ontology(CapabilitySkillOntologyUtils.get_ontology_file_path(
 base_namespace = css_ontology.get_namespace(CapabilitySkillOntologyInfo.CSS_ONTOLOGY_BASE_NAMESPACE)
 
 
-# with css_ontology:
 class ExtendedThing(Thing):
 
     def __init__(self, *args, **kwargs):

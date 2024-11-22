@@ -13,9 +13,6 @@ from utilities.general_utils import GeneralUtils
 _logger = logging.getLogger(__name__)
 
 
-# TODO analizar clase NegotiatingBehaviour de Alejandro para ver como manejaba las negociaciones entre agentes
-
-
 class NegotiatingBehaviour(CyclicBehaviour):
     """
     This class implements the behaviour that handles the negotiation requests made by other standardized AAS Managers

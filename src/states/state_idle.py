@@ -1,7 +1,7 @@
 import logging
 from spade.behaviour import State
 
-from behaviours.IdleBehaviour import IdleBehaviour
+from behaviours.idle_behaviour import IdleBehaviour
 from utilities import smia_archive_utils
 
 _logger = logging.getLogger(__name__)

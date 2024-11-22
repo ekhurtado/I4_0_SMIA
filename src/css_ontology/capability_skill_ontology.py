@@ -1,12 +1,11 @@
 import logging
 
 from owlready2 import get_ontology, OwlReadyOntologyParsingError, sync_reasoner_pellet, \
-    OwlReadyInconsistentOntologyError, ThingClass, Ontology, ObjectPropertyClass, destroy_entity
+    OwlReadyInconsistentOntologyError, ThingClass, Ontology, destroy_entity
 
 from css_ontology.css_ontology_utils import CapabilitySkillOntologyUtils
 from logic.exceptions import OntologyCheckingAttributeError, OntologyCheckingPropertyError, \
     OntologyInstanceCreationError, OntologyReadingError, CriticalError
-from utilities import configmap_utils
 
 _logger = logging.getLogger(__name__)
 

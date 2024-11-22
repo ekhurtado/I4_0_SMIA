@@ -16,7 +16,6 @@ _logger = logging.getLogger(__name__)
 class HandleCapabilityBehaviour(OneShotBehaviour):
     """
     This class implements the behaviour that handles a request related to the capabilities of the Digital Twin.
-    TODO (segun se vaya desarrollando extenderlo mas)
     """
 
     def __init__(self, agent_object, svc_req_data):
@@ -67,7 +66,7 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
         """
         This method handle CallForProposal requests for the Capability.
         """
-        if self.svc_req_data['serviceID'] == 'capabilityRequest':
+        if self.svc_req_data['serviceID'] == 'capabilityRequest':   #  TODO CAMBIARLO POR LA ONTOLOGIA DEL MENSAJE ACL (ahi irá el 'CapabilityRequest')
             # First, the capability to be performed will be obtained from the internal AAS model
             # TODO, para este paso, se podrian almacenar las capacidades que se han verificado ya cuando se recibe el
             #  Query-If (se supone que otro agente debería mandar en CallForProposal despues del Query-If, pero para
@@ -86,6 +85,15 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
                 try:
                     cap_ontology_elem = await self.myagent.css_ontology.get_ontology_instance_by_name(cap_name)
                     _logger.aclinfo("Capability ontology element found for {}: {}".format(cap_name, cap_ontology_elem))
+                    # TODO HACER AHORA: No hay que buscar manualmente las relaciones entre conceptos, para ello hay que
+                    #  utilizar la ontologia. Es decir, a nosotros nos llega una capacidad requerida, una skill
+                    #  requerida y una skill interface requerida. A partir de esos elementos (que tendrán que venir en
+                    #  orden), buscaremos en la ontologia las relaciones pertinentes, para saber que atributo solicitar
+                    #  a la clase de ontologia (p.e. si me pasan una capacidad y una skill, lo cual se deberá determinar
+                    #  mediante el nombre de cada uno de momento (mas adelante si se deja al usuario desarrollar la
+                    #  ontologia se determinará mediante el IRI), el software analizará si esos conceptos estan
+                    #  relacionados, y cual es la relacion entre ambos pero siempre recogiendo esa informacion desde la
+                    #  ontología).
                     skill_ontology_elems = cap_ontology_elem.isRealizedBy
                     for skill in skill_ontology_elems:
                         _logger.aclinfo("{} is a skill of the capability {}".format(skill.name, cap_ontology_elem.name))
@@ -257,16 +265,6 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
         """
         _logger.info(await self.myagent.get_interaction_id() + str(self.svc_req_data))
 
-    async def handle_submodel_services(self):
-        """
-        This method handles Submodel Services. These services are part of I4.0 Application Component (application
-        relevant).
-
-        """
-        # TODO, en este caso tendra que comprobar que submodelo esta asociado a la peticion de servicio. Si el submodelo
-        #  es propio del AAS Manager, podra acceder directamente y, por tanto, este behaviour sera capaz de realizar el
-        #  servicio completamente. Si es un submodelo del AAS Core, tendra que solicitarselo
-        _logger.info(await self.myagent.get_interaction_id() + str(self.svc_req_data))
 
     async def send_response_msg_to_sender(self, performative, service_params):
         """

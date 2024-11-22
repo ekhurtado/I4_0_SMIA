@@ -11,12 +11,12 @@ Submodules
    behaviours.CheckPhysicalAssetBehaviour
    behaviours.HandleSvcRequestBehaviour
    behaviours.HandleSvcResponseBehaviour
-   behaviours.IdleBehaviour
    behaviours.InteractionHandlingBehaviour
    behaviours.aas_fsm_behaviour
    behaviours.end_behaviour
    behaviours.handle_capability_behaviour
    behaviours.handle_negotiation_behaviour
+   behaviours.idle_behaviour
    behaviours.init_aas_archive_behaviour
    behaviours.init_aas_model_behaviour
    behaviours.negotiating_behaviour

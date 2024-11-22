@@ -1,10 +1,7 @@
 import logging
 from spade.behaviour import State
 
-from behaviours.init_aas_archive_behaviour import InitAASarchiveBehaviour
 from behaviours.init_aas_model_behaviour import InitAASModelBehaviour
-from css_ontology.capability_skill_module import Capability
-from logic import IntraAASInteractions_utils
 from utilities import smia_archive_utils
 from utilities.smia_info import SMIAInfo
 
@@ -37,7 +34,6 @@ class StateBooting(State):
 
         # The ontology has to be initialized in order to be available during the AAS model analysis
         await self.agent.css_ontology.initialize_ontology()
-        # TODO HACER AHORA: modificar init aas model para ir generando las capacidades, skills... dentro de la ontologia
 
         # The submodels also have to be initialized, so its behaviour is also added
         init_aas_model_behav = InitAASModelBehaviour(self.agent)
@@ -48,18 +44,6 @@ class StateBooting(State):
 
         # If the initialization behaviour has completed, SMIA is in the InitializationReady status
         smia_archive_utils.update_status('InitializationReady')
-        # Change of status must be notified to the AAS core
-        # result = await IntraAASInteractions_utils.send_interaction_msg_to_core(client_id='i4-0-smia-manager',
-        #                                                                        msg_key='manager-status',
-        #                                                                        msg_data={
-        #                                                                            'status': 'InitializationReady'})
-        # TODO cuidado, en los envios de estado no se está añadiendo el interaction_id. Es necesario? Estas
-        #  interacciones son como las demas? En realidad el key es solo de estado, no de peticion ni respuesta...
-
-        # if result != "OK":
-        #     _logger.error("The AAS Manager-Core interaction is not working: " + str(result))
-        # else:
-        #     _logger.info("The AAS Manager has notified the AAS Core that its initialization has been completed.")
 
         # Wait until the AAS Core has initialized
         # _logger.info('AAS Manager is waiting until its AAS Core has initialized.')

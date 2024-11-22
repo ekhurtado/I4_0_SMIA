@@ -48,7 +48,7 @@ async def primeras_pruebas():
     print("CAPABILITY capability1 skills: {}".format(capability1.isRealizedBy))
     print("SKILL skill1 skill interfaces: {}".format(skill1.accessibleThrough))
 
-    owlready2.reasoning.JAVA_MEMORY = 1500  # Necesario para PC laboratorio
+    owlready2.reasoning.JAVA_MEMORY = 1200  # Necesario para PC laboratorio
     try:
         await ontology_class.execute_ontology_reasoner(debug=True)
     except OwlReadyInconsistentOntologyError as e:

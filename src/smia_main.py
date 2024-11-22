@@ -5,7 +5,7 @@ from agents.smia_agent import SMIAAgent
 from agents.smia_app_agent import SMIAAppAgent
 from agents.smia_resource_agent import SMIAResourceAgent
 from utilities import configmap_utils, smia_archive_utils
-from utilities.AASModelExtension_utils import AASModelExtensionUtils
+from utilities.aas_model_extension_utils import AASModelExtensionUtils
 from utilities.general_utils import GeneralUtils
 from utilities.KafkaInfo import KafkaInfo
 
@@ -15,7 +15,7 @@ from utilities.KafkaInfo import KafkaInfo
 _logger = logging.getLogger(__name__)
 
 """
-This is the launch file of the AASManager, which runs the logic of the program.
+This is the launch file of the SMIA, which runs the logic of the program.
 """
 
 

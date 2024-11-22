@@ -1,6 +1,5 @@
 import logging
 
-from basyx.aas import model
 from basyx.aas.adapter import aasx
 from owlready2 import OneOf
 
