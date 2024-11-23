@@ -22,3 +22,8 @@ After opening the program, the first step is to create a new environment in orde
   :alt: AASX Package Explorer step1
 
 
+TODO This is a test for adding a video:
+
+sphinx extension needed: sphinxcontrib.youtube
+
+https://www.youtube.com/watch?v=ToKwxUhuiRE&list=PLs6bFF_iqW3G8AiVVMPi-SpupCvgmYsyB&index=1
