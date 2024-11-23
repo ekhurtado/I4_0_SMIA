@@ -30,8 +30,6 @@ extensions = [
     'sphinx_copybutton',
     'notfound.extension',
     'sphinx_design',
-    'sphinx.ext.intersphinx',   # To add external links to other project's documentation
-    'sphinxcontrib.youtube'     # To add Youtube videos
 ]
 
 templates_path = ['_templates']
