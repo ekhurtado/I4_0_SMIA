@@ -122,11 +122,11 @@ class Capability(Thing, ExtendedThing):
     namespace = base_namespace
 
     # The associated SubmodelElement class of the AAS is also defined
-    aas_sme_class = extended_submodel.ExtendedCapability
-    # aas_sme_class = basyx.aas.model.Capability
+    # aas_sme_class = extended_submodel.ExtendedCapability
+    aas_sme_class = basyx.aas.model.Capability
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)
 
 
     def check_instance(self):
@@ -158,8 +158,8 @@ class CapabilityConstraint(Thing, ExtendedThing):
     # aas_sme_class = basyx.aas.model.SubmodelElement
     aas_sme_class = extended_submodel.ExtendedCapabilityConstraint
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)
 
 
     # TODO PENSAR METODOS PARA CONSTRAINTS
@@ -172,8 +172,8 @@ class Skill(Thing, ExtendedThing):
     # The associated SubmodelElement class of the AAS is also defined
     aas_sme_class = extended_submodel.ExtendedSkill
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)
 
     def check_instance(self):
         """
@@ -193,8 +193,8 @@ class SkillInterface(Thing, ExtendedThing):
     # The associated SubmodelElement class of the AAS is also defined
     aas_sme_class = extended_submodel.ExtendedSkillInterface
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)
 
     def check_instance(self):
         """

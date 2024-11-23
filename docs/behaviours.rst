@@ -7,7 +7,6 @@ Submodules
 .. toctree::
    :maxdepth: 4
 
-   behaviours.CheckCoreInitializationBehaviour
    behaviours.CheckPhysicalAssetBehaviour
    behaviours.HandleSvcRequestBehaviour
    behaviours.HandleSvcResponseBehaviour
