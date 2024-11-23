@@ -12,6 +12,7 @@ AASX Package Explorer
 The `AASX Package Explorer <https://github.com/eclipse-aaspe/package-explorer>`_ is is a viewer and editor for the Asset Administration Shell (:term:`AAS`). It is licensed under the Apache License 2.0 and it is available for Windows 10+ based systems.
 
 .. image:: _static/images/AASX_Package_Explorer_1.png
+  :align: center
   :width: 400
   :alt: AASX Package Explorer initialization window
 

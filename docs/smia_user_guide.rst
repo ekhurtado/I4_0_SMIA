@@ -25,8 +25,7 @@ After opening the program, the first step is to create a new environment in orde
 
 TODO This is a test for adding a video:
 
-.. youtube:: ToKwxUhuiRE
-   :width: 640
-   :height: 360
+..  youtube:: ToKwxUhuiRE
+
 
 https://www.youtube.com/watch?v=ToKwxUhuiRE&list=PLs6bFF_iqW3G8AiVVMPi-SpupCvgmYsyB&index=1
