@@ -22781,3 +22781,783 @@ OpenSSL.SSL.SysCallError: (-1, 'Unexpected EOF')
 2024-11-21 12:58:00,895 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
 2024-11-21 12:58:05,829 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
 2024-11-21 12:58:05,829 [gcis1] [INFO] client shutting down (on request) line:975
+2024-11-23 12:45:50,544 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-23 12:45:50,548 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:55
+2024-11-23 12:45:59,113 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-23 12:46:00,328 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/5015389592237940294158395459 line:935
+2024-11-23 12:46:00,634 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABw1MDE1Mzg5NTkyMjM3OTQwMjk0MTU4Mzk1NDU5bQAAAAiE186vaZDLxw==' line:2209
+2024-11-23 12:46:01,254 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-23 12:46:01,255 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-11-23 12:46:01,256 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-23 12:46:01,256 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-23 12:46:01,257 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-23 12:46:01,299 [spade.behaviour] [ERROR] Exception running state FSMBehaviour/AASFSMBehaviour: __class__ not set defining 'Capability' as css.Capability. Was __classcell__ propagated to type.__new__? line:577
+2024-11-23 12:46:01,300 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: __class__ not set defining 'Capability' as css.Capability. Was __classcell__ propagated to type.__new__? line:154
+2024-11-23 12:46:01,300 [spade.behaviour] [INFO] FSM arrived to a final state (no transitions found). Killing FSM. line:604
+2024-11-23 12:46:01,300 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 12:46:01,300 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM finished at state --> BOOTING line:18
+2024-11-23 12:46:01,301 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 12:46:01,302 [gcis1] [INFO] client shutting down (on request) line:975
+2024-11-23 12:46:01,558 [gcis1.XMLStream] [INFO] ignoring unknown top-level tag, we’re closing line:436
+2024-11-23 12:46:01,966 [gcis1.StanzaStream] [INFO] stopping SM stream line:2473
+2024-11-23 12:46:01,967 [gcis1] [INFO] stopping stream line:989
+2024-11-23 12:46:01,967 [spade.Agent] [INFO] Client disconnected. line:304
+2024-11-23 12:46:01,968 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 12:46:02,261 [SPADE] [INFO] Stopping agent gcis1@xmpp.jp line:31
+2024-11-23 12:46:24,484 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-23 12:46:24,488 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:55
+2024-11-23 12:46:27,303 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-23 12:46:28,420 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/2105001628593562261158397315 line:935
+2024-11-23 12:46:28,794 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABwyMTA1MDAxNjI4NTkzNTYyMjYxMTU4Mzk3MzE1bQAAAAgRTVa68ecj1g==' line:2209
+2024-11-23 12:46:29,386 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-23 12:46:29,386 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-11-23 12:46:29,387 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-23 12:46:29,387 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-23 12:46:29,388 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-23 12:46:29,404 [spade.behaviour] [ERROR] Exception running state FSMBehaviour/AASFSMBehaviour: __class__ not set defining 'Capability' as css.Capability. Was __classcell__ propagated to type.__new__? line:577
+2024-11-23 12:46:29,405 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: __class__ not set defining 'Capability' as css.Capability. Was __classcell__ propagated to type.__new__? line:154
+2024-11-23 12:46:29,405 [spade.behaviour] [INFO] FSM arrived to a final state (no transitions found). Killing FSM. line:604
+2024-11-23 12:46:29,405 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 12:46:29,405 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM finished at state --> BOOTING line:18
+2024-11-23 12:46:29,405 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 12:46:29,405 [gcis1] [INFO] client shutting down (on request) line:975
+2024-11-23 12:46:29,717 [gcis1.XMLStream] [INFO] ignoring unknown top-level tag, we’re closing line:436
+2024-11-23 12:46:30,099 [gcis1.StanzaStream] [INFO] stopping SM stream line:2473
+2024-11-23 12:46:30,100 [gcis1] [INFO] stopping stream line:989
+2024-11-23 12:46:30,100 [spade.Agent] [INFO] Client disconnected. line:304
+2024-11-23 12:46:30,100 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 12:46:30,403 [SPADE] [INFO] Stopping agent gcis1@xmpp.jp line:31
+2024-11-23 12:46:40,071 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-23 12:46:40,075 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:55
+2024-11-23 12:46:42,867 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-23 12:46:44,053 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/15291506129288372791216525090 line:935
+2024-11-23 12:46:44,331 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAAB0xNTI5MTUwNjEyOTI4ODM3Mjc5MTIxNjUyNTA5MG0AAAAIE1eHlp9Mnk8=' line:2209
+2024-11-23 12:46:44,950 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-23 12:46:44,951 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-11-23 12:46:44,952 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-23 12:46:44,952 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-23 12:46:44,952 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-23 12:46:44,968 [spade.behaviour] [ERROR] Exception running state FSMBehaviour/AASFSMBehaviour: __class__ not set defining 'Capability' as css.Capability. Was __classcell__ propagated to type.__new__? line:577
+2024-11-23 12:46:44,968 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: __class__ not set defining 'Capability' as css.Capability. Was __classcell__ propagated to type.__new__? line:154
+2024-11-23 12:46:44,969 [spade.behaviour] [INFO] FSM arrived to a final state (no transitions found). Killing FSM. line:604
+2024-11-23 12:46:44,969 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 12:46:44,969 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM finished at state --> BOOTING line:18
+2024-11-23 12:46:44,970 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 12:46:44,970 [gcis1] [INFO] client shutting down (on request) line:975
+2024-11-23 12:46:45,224 [gcis1.XMLStream] [INFO] ignoring unknown top-level tag, we’re closing line:436
+2024-11-23 12:46:45,604 [gcis1.StanzaStream] [INFO] stopping SM stream line:2473
+2024-11-23 12:46:45,605 [gcis1] [INFO] stopping stream line:989
+2024-11-23 12:46:45,605 [spade.Agent] [INFO] Client disconnected. line:304
+2024-11-23 12:46:45,605 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 12:46:45,958 [SPADE] [INFO] Stopping agent gcis1@xmpp.jp line:31
+2024-11-23 12:47:11,178 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-23 12:47:11,186 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:55
+2024-11-23 12:47:14,256 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-23 12:47:15,490 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/1708685797142999731790113956 line:935
+2024-11-23 12:47:15,784 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABwxNzA4Njg1Nzk3MTQyOTk5NzMxNzkwMTEzOTU2bQAAAAhjoMAHbVovWQ==' line:2209
+2024-11-23 12:47:16,408 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-23 12:47:16,408 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-11-23 12:47:16,408 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-23 12:47:16,408 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-23 12:47:16,408 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-23 12:47:27,189 [spade.behaviour] [ERROR] Exception running state FSMBehaviour/AASFSMBehaviour: __class__ not set defining 'Capability' as css.Capability. Was __classcell__ propagated to type.__new__? line:577
+2024-11-23 12:47:27,189 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: __class__ not set defining 'Capability' as css.Capability. Was __classcell__ propagated to type.__new__? line:154
+2024-11-23 12:47:27,189 [spade.behaviour] [INFO] FSM arrived to a final state (no transitions found). Killing FSM. line:604
+2024-11-23 12:47:27,189 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 12:47:27,189 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM finished at state --> BOOTING line:18
+2024-11-23 12:47:27,189 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 12:47:27,189 [gcis1] [INFO] client shutting down (on request) line:975
+2024-11-23 12:47:27,567 [gcis1.StanzaStream] [INFO] stopping SM stream line:2473
+2024-11-23 12:47:27,567 [gcis1] [INFO] stopping stream line:989
+2024-11-23 12:47:27,567 [spade.Agent] [INFO] Client disconnected. line:304
+2024-11-23 12:47:27,567 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 12:47:28,200 [SPADE] [INFO] Stopping agent gcis1@xmpp.jp line:31
+2024-11-23 12:47:37,165 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-23 12:47:37,170 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:55
+2024-11-23 12:47:40,059 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-23 12:47:41,293 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/13785541223088717938216529730 line:935
+2024-11-23 12:47:41,592 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAAB0xMzc4NTU0MTIyMzA4ODcxNzkzODIxNjUyOTczMG0AAAAIBl6aIA5oKSQ=' line:2209
+2024-11-23 12:47:42,320 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-23 12:47:42,320 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-11-23 12:47:42,320 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-23 12:47:42,320 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-23 12:47:42,320 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-23 12:47:48,835 [spade.behaviour] [ERROR] Exception running state FSMBehaviour/AASFSMBehaviour: __class__ not set defining 'Capability' as css.Capability. Was __classcell__ propagated to type.__new__? line:577
+2024-11-23 12:47:48,835 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: __class__ not set defining 'Capability' as css.Capability. Was __classcell__ propagated to type.__new__? line:154
+2024-11-23 12:47:48,835 [spade.behaviour] [INFO] FSM arrived to a final state (no transitions found). Killing FSM. line:604
+2024-11-23 12:47:48,835 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 12:47:48,835 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM finished at state --> BOOTING line:18
+2024-11-23 12:47:48,835 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 12:47:48,835 [gcis1] [INFO] client shutting down (on request) line:975
+2024-11-23 12:47:49,241 [gcis1.StanzaStream] [INFO] stopping SM stream line:2473
+2024-11-23 12:47:49,241 [gcis1] [INFO] stopping stream line:989
+2024-11-23 12:47:49,241 [spade.Agent] [INFO] Client disconnected. line:304
+2024-11-23 12:47:49,241 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 12:47:49,840 [SPADE] [INFO] Stopping agent gcis1@xmpp.jp line:31
+2024-11-23 12:47:58,163 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-23 12:47:58,169 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:55
+2024-11-23 12:48:01,152 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-23 12:48:02,384 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/1201654861339465731990116036 line:935
+2024-11-23 12:48:02,687 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABwxMjAxNjU0ODYxMzM5NDY1NzMxOTkwMTE2MDM2bQAAAAhOK7b4RezYCw==' line:2209
+2024-11-23 12:48:03,271 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-23 12:48:03,271 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-11-23 12:48:03,287 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-23 12:48:03,288 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-23 12:48:03,288 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-23 12:48:41,901 [spade.behaviour] [ERROR] Exception running state FSMBehaviour/AASFSMBehaviour: __class__ not set defining 'Capability' as css.Capability. Was __classcell__ propagated to type.__new__? line:577
+2024-11-23 12:48:41,901 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: __class__ not set defining 'Capability' as css.Capability. Was __classcell__ propagated to type.__new__? line:154
+2024-11-23 12:48:41,901 [spade.behaviour] [INFO] FSM arrived to a final state (no transitions found). Killing FSM. line:604
+2024-11-23 12:48:41,901 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 12:48:41,901 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM finished at state --> BOOTING line:18
+2024-11-23 12:48:41,901 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 12:48:41,901 [gcis1] [INFO] client shutting down (on request) line:975
+2024-11-23 12:48:42,301 [gcis1.StanzaStream] [INFO] stopping SM stream line:2473
+2024-11-23 12:48:42,301 [gcis1] [INFO] stopping stream line:989
+2024-11-23 12:48:42,301 [spade.Agent] [INFO] Client disconnected. line:304
+2024-11-23 12:48:42,301 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 12:48:42,921 [SPADE] [INFO] Stopping agent gcis1@xmpp.jp line:31
+2024-11-23 12:48:47,698 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-23 12:48:47,698 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:55
+2024-11-23 12:48:50,604 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-23 12:48:51,841 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/1647407431632197373216532546 line:935
+2024-11-23 12:48:52,156 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABwxNjQ3NDA3NDMxNjMyMTk3MzczMjE2NTMyNTQ2bQAAAAhgApbbY3SEQw==' line:2209
+2024-11-23 12:48:52,775 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-23 12:48:52,775 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-11-23 12:48:52,775 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-23 12:48:52,775 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-23 12:48:52,775 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-23 12:49:25,156 [spade.behaviour] [ERROR] Exception running state FSMBehaviour/AASFSMBehaviour: __class__ not set defining 'Capability' as css.Capability. Was __classcell__ propagated to type.__new__? line:577
+2024-11-23 12:49:25,156 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: __class__ not set defining 'Capability' as css.Capability. Was __classcell__ propagated to type.__new__? line:154
+2024-11-23 12:49:25,156 [spade.behaviour] [INFO] FSM arrived to a final state (no transitions found). Killing FSM. line:604
+2024-11-23 12:49:25,156 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 12:49:25,156 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM finished at state --> BOOTING line:18
+2024-11-23 12:49:25,156 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 12:49:25,156 [gcis1] [INFO] client shutting down (on request) line:975
+2024-11-23 12:49:25,558 [gcis1.StanzaStream] [INFO] stopping SM stream line:2473
+2024-11-23 12:49:25,558 [gcis1] [INFO] stopping stream line:989
+2024-11-23 12:49:25,558 [spade.Agent] [INFO] Client disconnected. line:304
+2024-11-23 12:49:25,558 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 12:49:26,159 [SPADE] [INFO] Stopping agent gcis1@xmpp.jp line:31
+2024-11-23 12:51:47,944 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-23 12:51:47,958 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:55
+2024-11-23 12:51:50,820 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-23 12:51:52,022 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/9438559408193176658216549218 line:935
+2024-11-23 12:51:52,307 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABw5NDM4NTU5NDA4MTkzMTc2NjU4MjE2NTQ5MjE4bQAAAAiSPK9oJnX0zw==' line:2209
+2024-11-23 12:51:52,910 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-23 12:51:52,910 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-11-23 12:51:52,910 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-23 12:51:52,910 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-23 12:51:52,910 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-23 12:52:52,089 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-23 12:52:52,094 [gcis1] [INFO] client shutting down (on request) line:975
+2024-11-23 12:53:17,496 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-23 12:53:17,496 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:55
+2024-11-23 12:53:20,350 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-23 12:53:21,678 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/6666520520795366637158417923 line:935
+2024-11-23 12:53:21,979 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABw2NjY2NTIwNTIwNzk1MzY2NjM3MTU4NDE3OTIzbQAAAAgnJDrKiyxOng==' line:2209
+2024-11-23 12:53:22,596 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-23 12:53:22,596 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-11-23 12:53:22,596 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-23 12:53:22,596 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-23 12:53:22,596 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-23 12:53:43,669 [spade.behaviour] [ERROR] Exception running state FSMBehaviour/AASFSMBehaviour: __class__ not set defining 'Capability' as css.Capability. Was __classcell__ propagated to type.__new__? line:577
+2024-11-23 12:53:43,669 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: __class__ not set defining 'Capability' as css.Capability. Was __classcell__ propagated to type.__new__? line:154
+2024-11-23 12:53:43,669 [spade.behaviour] [INFO] FSM arrived to a final state (no transitions found). Killing FSM. line:604
+2024-11-23 12:53:43,669 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 12:53:43,669 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM finished at state --> BOOTING line:18
+2024-11-23 12:53:43,669 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 12:53:43,669 [gcis1] [INFO] client shutting down (on request) line:975
+2024-11-23 12:53:44,077 [gcis1.StanzaStream] [INFO] stopping SM stream line:2473
+2024-11-23 12:53:44,077 [gcis1] [INFO] stopping stream line:989
+2024-11-23 12:53:44,077 [spade.Agent] [INFO] Client disconnected. line:304
+2024-11-23 12:53:44,077 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 12:53:44,680 [SPADE] [INFO] Stopping agent gcis1@xmpp.jp line:31
+2024-11-23 12:54:08,304 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-23 12:54:08,309 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:55
+2024-11-23 12:54:11,141 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-23 12:54:12,369 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/12110442349927801257216558178 line:935
+2024-11-23 12:54:12,677 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAAB0xMjExMDQ0MjM0OTkyNzgwMTI1NzIxNjU1ODE3OG0AAAAI4u7vWq7iWmE=' line:2209
+2024-11-23 12:54:13,245 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-23 12:54:13,246 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-11-23 12:54:13,247 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-23 12:54:13,247 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-23 12:54:13,247 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-23 12:54:13,267 [spade.behaviour] [ERROR] Exception running state FSMBehaviour/AASFSMBehaviour: __class__ not set defining 'Capability' as css.Capability. Was __classcell__ propagated to type.__new__? line:577
+2024-11-23 12:54:13,267 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: __class__ not set defining 'Capability' as css.Capability. Was __classcell__ propagated to type.__new__? line:154
+2024-11-23 12:54:13,267 [spade.behaviour] [INFO] FSM arrived to a final state (no transitions found). Killing FSM. line:604
+2024-11-23 12:54:13,268 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 12:54:13,268 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM finished at state --> BOOTING line:18
+2024-11-23 12:54:13,268 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 12:54:13,268 [gcis1] [INFO] client shutting down (on request) line:975
+2024-11-23 12:54:13,560 [gcis1.XMLStream] [INFO] ignoring unknown top-level tag, we’re closing line:436
+2024-11-23 12:54:13,941 [gcis1.StanzaStream] [INFO] stopping SM stream line:2473
+2024-11-23 12:54:13,942 [gcis1] [INFO] stopping stream line:989
+2024-11-23 12:54:13,942 [spade.Agent] [INFO] Client disconnected. line:304
+2024-11-23 12:54:13,942 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 12:54:14,265 [SPADE] [INFO] Stopping agent gcis1@xmpp.jp line:31
+2024-11-23 12:54:33,266 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-23 12:54:33,269 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:55
+2024-11-23 12:54:36,151 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-23 12:54:37,458 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/473983191259731351158423779 line:935
+2024-11-23 12:54:37,765 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABs0NzM5ODMxOTEyNTk3MzEzNTExNTg0MjM3NzltAAAACE06oZtx4MUe' line:2209
+2024-11-23 12:54:38,379 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-23 12:54:38,380 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-11-23 12:54:38,382 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-23 12:54:38,382 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-23 12:54:38,382 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-23 12:54:38,382 [utilities.configmap_utils] [ERROR] The 'general.properties' file in the ConfigMap is not valid. line:91
+2024-11-23 12:54:38,392 [utilities.configmap_utils] [ERROR] The 'general.properties' file in the ConfigMap is not valid. line:91
+2024-11-23 12:54:38,394 [spade.behaviour] [ERROR] Exception running state FSMBehaviour/AASFSMBehaviour: __class__ not set defining 'Capability' as css.Capability. Was __classcell__ propagated to type.__new__? line:577
+2024-11-23 12:54:38,394 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: __class__ not set defining 'Capability' as css.Capability. Was __classcell__ propagated to type.__new__? line:154
+2024-11-23 12:54:38,394 [spade.behaviour] [INFO] FSM arrived to a final state (no transitions found). Killing FSM. line:604
+2024-11-23 12:54:38,394 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 12:54:38,394 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM finished at state --> BOOTING line:18
+2024-11-23 12:54:38,394 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 12:54:38,394 [gcis1] [INFO] client shutting down (on request) line:975
+2024-11-23 12:54:38,687 [gcis1.XMLStream] [INFO] ignoring unknown top-level tag, we’re closing line:436
+2024-11-23 12:54:39,096 [gcis1.StanzaStream] [INFO] stopping SM stream line:2473
+2024-11-23 12:54:39,096 [gcis1] [INFO] stopping stream line:989
+2024-11-23 12:54:39,097 [spade.Agent] [INFO] Client disconnected. line:304
+2024-11-23 12:54:39,097 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 12:54:39,389 [SPADE] [INFO] Stopping agent gcis1@xmpp.jp line:31
+2024-11-23 12:55:06,426 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-23 12:55:06,431 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:55
+2024-11-23 12:55:09,207 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-23 12:55:10,432 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/1010697966338013590090133604 line:935
+2024-11-23 12:55:10,738 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABwxMDEwNjk3OTY2MzM4MDEzNTkwMDkwMTMzNjA0bQAAAAjUaRCwwFe31Q==' line:2209
+2024-11-23 12:55:11,355 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-23 12:55:11,355 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-11-23 12:55:11,356 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-23 12:55:11,356 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-23 12:55:11,356 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-23 12:55:11,357 [utilities.configmap_utils] [ERROR] The 'general.properties' file in the ConfigMap is not valid. line:91
+2024-11-23 12:55:11,369 [utilities.configmap_utils] [ERROR] The 'general.properties' file in the ConfigMap is not valid. line:91
+2024-11-23 12:55:11,370 [spade.behaviour] [ERROR] Exception running state FSMBehaviour/AASFSMBehaviour: __class__ not set defining 'Capability' as css.Capability. Was __classcell__ propagated to type.__new__? line:577
+2024-11-23 12:55:11,370 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: __class__ not set defining 'Capability' as css.Capability. Was __classcell__ propagated to type.__new__? line:154
+2024-11-23 12:55:11,370 [spade.behaviour] [INFO] FSM arrived to a final state (no transitions found). Killing FSM. line:604
+2024-11-23 12:55:11,370 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 12:55:11,370 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM finished at state --> BOOTING line:18
+2024-11-23 12:55:11,370 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 12:55:11,371 [gcis1] [INFO] client shutting down (on request) line:975
+2024-11-23 12:55:11,659 [gcis1.XMLStream] [INFO] ignoring unknown top-level tag, we’re closing line:436
+2024-11-23 12:55:12,069 [gcis1.StanzaStream] [INFO] stopping SM stream line:2473
+2024-11-23 12:55:12,069 [gcis1] [INFO] stopping stream line:989
+2024-11-23 12:55:12,070 [spade.Agent] [INFO] Client disconnected. line:304
+2024-11-23 12:55:12,070 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 12:55:12,373 [SPADE] [INFO] Stopping agent gcis1@xmpp.jp line:31
+2024-11-23 12:55:21,762 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-23 12:55:21,765 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:55
+2024-11-23 12:55:24,444 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-23 12:55:25,652 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/17824143545460625408158426563 line:935
+2024-11-23 12:55:25,941 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAAB0xNzgyNDE0MzU0NTQ2MDYyNTQwODE1ODQyNjU2M20AAAAIyIaNyz2VRbI=' line:2209
+2024-11-23 12:55:26,611 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-23 12:55:26,612 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-11-23 12:55:26,612 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-23 12:55:26,612 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-23 12:55:26,613 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-23 12:55:26,635 [spade.behaviour] [ERROR] Exception running state FSMBehaviour/AASFSMBehaviour: __class__ not set defining 'Capability' as css.Capability. Was __classcell__ propagated to type.__new__? line:577
+2024-11-23 12:55:26,635 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: __class__ not set defining 'Capability' as css.Capability. Was __classcell__ propagated to type.__new__? line:154
+2024-11-23 12:55:26,635 [spade.behaviour] [INFO] FSM arrived to a final state (no transitions found). Killing FSM. line:604
+2024-11-23 12:55:26,635 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 12:55:26,635 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM finished at state --> BOOTING line:18
+2024-11-23 12:55:26,635 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 12:55:26,636 [gcis1] [INFO] client shutting down (on request) line:975
+2024-11-23 12:55:26,898 [gcis1.XMLStream] [INFO] ignoring unknown top-level tag, we’re closing line:436
+2024-11-23 12:55:27,400 [gcis1.StanzaStream] [INFO] stopping SM stream line:2473
+2024-11-23 12:55:27,400 [gcis1] [INFO] stopping stream line:989
+2024-11-23 12:55:27,400 [spade.Agent] [INFO] Client disconnected. line:304
+2024-11-23 12:55:27,400 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 12:55:27,611 [SPADE] [INFO] Stopping agent gcis1@xmpp.jp line:31
+2024-11-23 12:57:05,017 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-23 12:57:05,021 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:55
+2024-11-23 12:57:07,890 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-23 12:57:09,115 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/8800542776850810903158433251 line:935
+2024-11-23 12:57:09,422 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABw4ODAwNTQyNzc2ODUwODEwOTAzMTU4NDMzMjUxbQAAAAivyAal/7HqYA==' line:2209
+2024-11-23 12:57:10,037 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-23 12:57:10,038 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-11-23 12:57:10,039 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-23 12:57:10,039 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-23 12:57:10,039 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-23 12:57:10,055 [spade.behaviour] [ERROR] Exception running state FSMBehaviour/AASFSMBehaviour: __class__ not set defining 'Capability' as css.Capability. Was __classcell__ propagated to type.__new__? line:577
+2024-11-23 12:57:10,055 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: __class__ not set defining 'Capability' as css.Capability. Was __classcell__ propagated to type.__new__? line:154
+2024-11-23 12:57:10,056 [spade.behaviour] [INFO] FSM arrived to a final state (no transitions found). Killing FSM. line:604
+2024-11-23 12:57:10,056 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 12:57:10,056 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM finished at state --> BOOTING line:18
+2024-11-23 12:57:10,056 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 12:57:10,057 [gcis1] [INFO] client shutting down (on request) line:975
+2024-11-23 12:57:10,343 [gcis1.XMLStream] [INFO] ignoring unknown top-level tag, we’re closing line:436
+2024-11-23 12:57:10,754 [gcis1.StanzaStream] [INFO] stopping SM stream line:2473
+2024-11-23 12:57:10,754 [gcis1] [INFO] stopping stream line:989
+2024-11-23 12:57:10,755 [spade.Agent] [INFO] Client disconnected. line:304
+2024-11-23 12:57:10,755 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 12:57:11,046 [SPADE] [INFO] Stopping agent gcis1@xmpp.jp line:31
+2024-11-23 12:57:28,357 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-23 12:57:28,361 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:55
+2024-11-23 12:57:31,235 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-23 12:57:32,463 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/11149969627147815068158435523 line:935
+2024-11-23 12:57:32,756 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAAB0xMTE0OTk2OTYyNzE0NzgxNTA2ODE1ODQzNTUyM20AAAAINrKjcyv6vXI=' line:2209
+2024-11-23 12:57:33,384 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-23 12:57:33,385 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-11-23 12:57:33,385 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-23 12:57:33,386 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-23 12:57:33,386 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-23 12:57:33,406 [spade.behaviour] [ERROR] Exception running state FSMBehaviour/AASFSMBehaviour: __class__ not set defining 'CapabilityConstraint' as css.CapabilityConstraint. Was __classcell__ propagated to type.__new__? line:577
+2024-11-23 12:57:33,406 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: __class__ not set defining 'CapabilityConstraint' as css.CapabilityConstraint. Was __classcell__ propagated to type.__new__? line:154
+2024-11-23 12:57:33,407 [spade.behaviour] [INFO] FSM arrived to a final state (no transitions found). Killing FSM. line:604
+2024-11-23 12:57:33,407 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 12:57:33,407 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM finished at state --> BOOTING line:18
+2024-11-23 12:57:33,407 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 12:57:33,407 [gcis1] [INFO] client shutting down (on request) line:975
+2024-11-23 12:57:33,692 [gcis1.XMLStream] [INFO] ignoring unknown top-level tag, we’re closing line:436
+2024-11-23 12:57:34,102 [gcis1.StanzaStream] [INFO] stopping SM stream line:2473
+2024-11-23 12:57:34,102 [gcis1] [INFO] stopping stream line:989
+2024-11-23 12:57:34,102 [spade.Agent] [INFO] Client disconnected. line:304
+2024-11-23 12:57:34,102 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 12:57:34,408 [SPADE] [INFO] Stopping agent gcis1@xmpp.jp line:31
+2024-11-23 12:58:00,679 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-23 12:58:00,679 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:55
+2024-11-23 12:58:03,584 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-23 12:58:04,786 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/8027592134598918760158438787 line:935
+2024-11-23 12:58:05,072 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABw4MDI3NTkyMTM0NTk4OTE4NzYwMTU4NDM4Nzg3bQAAAAjy0DogScfEvw==' line:2209
+2024-11-23 12:58:05,689 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-23 12:58:05,689 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-11-23 12:58:05,689 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-23 12:58:05,689 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-23 12:58:05,689 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-23 12:58:36,941 [spade.behaviour] [ERROR] Exception running state FSMBehaviour/AASFSMBehaviour: __class__ not set defining 'Capability' as css.Capability. Was __classcell__ propagated to type.__new__? line:577
+2024-11-23 12:58:36,941 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: __class__ not set defining 'Capability' as css.Capability. Was __classcell__ propagated to type.__new__? line:154
+2024-11-23 12:58:36,941 [spade.behaviour] [INFO] FSM arrived to a final state (no transitions found). Killing FSM. line:604
+2024-11-23 12:58:36,941 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 12:58:36,941 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM finished at state --> BOOTING line:18
+2024-11-23 12:58:36,941 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 12:58:36,941 [gcis1] [INFO] client shutting down (on request) line:975
+2024-11-23 12:58:37,535 [gcis1.StanzaStream] [INFO] stopping SM stream line:2473
+2024-11-23 12:58:37,535 [gcis1] [INFO] stopping stream line:989
+2024-11-23 12:58:37,535 [spade.Agent] [INFO] Client disconnected. line:304
+2024-11-23 12:58:37,535 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 12:58:37,948 [SPADE] [INFO] Stopping agent gcis1@xmpp.jp line:31
+2024-11-23 12:59:00,240 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-23 12:59:00,243 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:55
+2024-11-23 12:59:03,191 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-23 12:59:04,420 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/12598326086373848256216578946 line:935
+2024-11-23 12:59:04,726 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAAB0xMjU5ODMyNjA4NjM3Mzg0ODI1NjIxNjU3ODk0Nm0AAAAIOujMYNyYNBU=' line:2209
+2024-11-23 12:59:05,342 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-23 12:59:05,343 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-11-23 12:59:05,344 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-23 12:59:05,345 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-23 12:59:05,345 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-23 12:59:05,366 [spade.behaviour] [ERROR] Exception running state FSMBehaviour/AASFSMBehaviour: __class__ not set defining 'CapabilityConstraint' as css.CapabilityConstraint. Was __classcell__ propagated to type.__new__? line:577
+2024-11-23 12:59:05,366 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: __class__ not set defining 'CapabilityConstraint' as css.CapabilityConstraint. Was __classcell__ propagated to type.__new__? line:154
+2024-11-23 12:59:05,366 [spade.behaviour] [INFO] FSM arrived to a final state (no transitions found). Killing FSM. line:604
+2024-11-23 12:59:05,366 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 12:59:05,367 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM finished at state --> BOOTING line:18
+2024-11-23 12:59:05,367 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 12:59:05,367 [gcis1] [INFO] client shutting down (on request) line:975
+2024-11-23 12:59:05,648 [gcis1.XMLStream] [INFO] ignoring unknown top-level tag, we’re closing line:436
+2024-11-23 12:59:06,043 [gcis1.StanzaStream] [INFO] stopping SM stream line:2473
+2024-11-23 12:59:06,043 [gcis1] [INFO] stopping stream line:989
+2024-11-23 12:59:06,044 [spade.Agent] [INFO] Client disconnected. line:304
+2024-11-23 12:59:06,044 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 12:59:06,344 [SPADE] [INFO] Stopping agent gcis1@xmpp.jp line:31
+2024-11-23 13:01:03,848 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-23 13:01:03,852 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:55
+2024-11-23 13:01:06,790 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-23 13:01:08,020 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/11987487655608361987216587426 line:935
+2024-11-23 13:01:08,326 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAAB0xMTk4NzQ4NzY1NTYwODM2MTk4NzIxNjU4NzQyNm0AAAAIXeJBQvFZin8=' line:2209
+2024-11-23 13:01:08,940 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-23 13:01:08,941 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-11-23 13:01:08,941 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-23 13:01:08,942 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-23 13:01:08,942 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-23 13:01:08,968 [spade.behaviour] [ERROR] Exception running state FSMBehaviour/AASFSMBehaviour: __class__ not set defining 'Capability' as css.Capability. Was __classcell__ propagated to type.__new__? line:577
+2024-11-23 13:01:08,969 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: __class__ not set defining 'Capability' as css.Capability. Was __classcell__ propagated to type.__new__? line:154
+2024-11-23 13:01:08,969 [spade.behaviour] [INFO] FSM arrived to a final state (no transitions found). Killing FSM. line:604
+2024-11-23 13:01:08,969 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 13:01:08,969 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM finished at state --> BOOTING line:18
+2024-11-23 13:01:08,969 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 13:01:08,969 [gcis1] [INFO] client shutting down (on request) line:975
+2024-11-23 13:01:09,248 [gcis1.XMLStream] [INFO] ignoring unknown top-level tag, we’re closing line:436
+2024-11-23 13:01:09,657 [gcis1.StanzaStream] [INFO] stopping SM stream line:2473
+2024-11-23 13:01:09,657 [gcis1] [INFO] stopping stream line:989
+2024-11-23 13:01:09,657 [spade.Agent] [INFO] Client disconnected. line:304
+2024-11-23 13:01:09,657 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 13:01:09,949 [SPADE] [INFO] Stopping agent gcis1@xmpp.jp line:31
+2024-11-23 13:01:24,272 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-23 13:01:24,278 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:55
+2024-11-23 13:01:27,065 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-23 13:01:28,295 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/123267229498789347190147140 line:935
+2024-11-23 13:01:28,601 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABsxMjMyNjcyMjk0OTg3ODkzNDcxOTAxNDcxNDBtAAAACNB7id4qMKZK' line:2209
+2024-11-23 13:01:29,219 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-23 13:01:29,219 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-11-23 13:01:29,221 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-23 13:01:29,221 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-23 13:01:29,221 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-23 13:01:29,251 [css_ontology.capability_skill_ontology] [INFO] CSS ontology initialized line:42
+2024-11-23 13:01:29,319 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all defined ontology elements... line:71
+2024-11-23 13:01:29,502 [spade.behaviour] [ERROR] Exception running behaviour OneShotBehaviour/InitAASModelBehaviour: 'get_data_properties_names' property is not defined. line:291
+2024-11-23 13:01:29,525 [spade.behaviour] [ERROR] Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 285, in _step
+    await self._run()
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 274, in _run
+    await self.run()
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\init_aas_model_behaviour.py", line 72, in run
+    await self.get_and_save_capabilities_information()
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\init_aas_model_behaviour.py", line 157, in get_and_save_capabilities_information
+    await self.create_ontology_instance_from_sme_element(cap, ontology_iri)
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\init_aas_model_behaviour.py", line 252, in create_ontology_instance_from_sme_element
+    await self.add_ontology_required_information(sme_elem, created_instance)
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\init_aas_model_behaviour.py", line 271, in add_ontology_required_information
+    ontology_required_value_names = ontology_instance.get_data_properties_names()
+  File "C:\Python310\lib\site-packages\owlready2\individual.py", line 295, in __getattr__
+    raise AttributeError("'%s' property is not defined." % attr)
+AttributeError: 'get_data_properties_names' property is not defined.
+ line:296
+2024-11-23 13:01:29,526 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: 'get_data_properties_names' property is not defined. line:154
+2024-11-23 13:01:29,526 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: None line:154
+2024-11-23 13:01:29,527 [states.state_booting] [INFO] gcis1@xmpp.jp agent has finished it Boot state. line:57
+2024-11-23 13:01:29,527 [spade.behaviour] [INFO] FSM transiting from BOOTING to RUNNING. line:591
+2024-11-23 13:01:29,527 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-23 13:01:29,527 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-23 13:01:29,555 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-23 13:01:39,550 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:146
+2024-11-23 13:01:49,544 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:146
+2024-11-23 13:01:57,994 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-23 13:01:57,995 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-23 13:01:57,995 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-23 13:01:57,996 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-23 13:02:01,111 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-23 13:02:01,118 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:55
+2024-11-23 13:02:03,930 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-23 13:02:05,142 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/786387797395127649728455621 line:935
+2024-11-23 13:02:05,431 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABs3ODYzODc3OTczOTUxMjc2NDk3Mjg0NTU2MjFtAAAACA86LAKeUTB+' line:2209
+2024-11-23 13:02:06,082 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-23 13:02:06,083 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-11-23 13:02:06,084 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-23 13:02:06,084 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-23 13:02:06,084 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-23 13:02:06,109 [spade.behaviour] [ERROR] Exception running state FSMBehaviour/AASFSMBehaviour: __class__ not set defining 'Capability' as css.Capability. Was __classcell__ propagated to type.__new__? line:577
+2024-11-23 13:02:06,109 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: __class__ not set defining 'Capability' as css.Capability. Was __classcell__ propagated to type.__new__? line:154
+2024-11-23 13:02:06,109 [spade.behaviour] [INFO] FSM arrived to a final state (no transitions found). Killing FSM. line:604
+2024-11-23 13:02:06,109 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 13:02:06,109 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM finished at state --> BOOTING line:18
+2024-11-23 13:02:06,109 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 13:02:06,111 [gcis1] [INFO] client shutting down (on request) line:975
+2024-11-23 13:02:06,368 [gcis1.XMLStream] [INFO] ignoring unknown top-level tag, we’re closing line:436
+2024-11-23 13:02:06,810 [gcis1.StanzaStream] [INFO] stopping SM stream line:2473
+2024-11-23 13:02:06,810 [gcis1] [INFO] stopping stream line:989
+2024-11-23 13:02:06,810 [spade.Agent] [INFO] Client disconnected. line:304
+2024-11-23 13:02:06,810 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 13:02:07,091 [SPADE] [INFO] Stopping agent gcis1@xmpp.jp line:31
+2024-11-23 13:03:01,681 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-23 13:03:01,686 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:55
+2024-11-23 13:03:04,552 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-23 13:03:05,783 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/13909325720035527511216595778 line:935
+2024-11-23 13:03:06,088 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAAB0xMzkwOTMyNTcyMDAzNTUyNzUxMTIxNjU5NTc3OG0AAAAIHP34GhJwFdg=' line:2209
+2024-11-23 13:03:06,703 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-23 13:03:06,704 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-11-23 13:03:06,705 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-23 13:03:06,706 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-23 13:03:06,706 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-23 13:03:06,729 [spade.behaviour] [ERROR] Exception running state FSMBehaviour/AASFSMBehaviour: __class__ not set defining 'Capability' as css.Capability. Was __classcell__ propagated to type.__new__? line:577
+2024-11-23 13:03:06,729 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: __class__ not set defining 'Capability' as css.Capability. Was __classcell__ propagated to type.__new__? line:154
+2024-11-23 13:03:06,730 [spade.behaviour] [INFO] FSM arrived to a final state (no transitions found). Killing FSM. line:604
+2024-11-23 13:03:06,730 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 13:03:06,730 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM finished at state --> BOOTING line:18
+2024-11-23 13:03:06,731 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 13:03:06,731 [gcis1] [INFO] client shutting down (on request) line:975
+2024-11-23 13:03:07,012 [gcis1.XMLStream] [INFO] ignoring unknown top-level tag, we’re closing line:436
+2024-11-23 13:03:07,419 [gcis1.StanzaStream] [INFO] stopping SM stream line:2473
+2024-11-23 13:03:07,420 [gcis1] [INFO] stopping stream line:989
+2024-11-23 13:03:07,420 [spade.Agent] [INFO] Client disconnected. line:304
+2024-11-23 13:03:07,420 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 13:03:07,706 [SPADE] [INFO] Stopping agent gcis1@xmpp.jp line:31
+2024-11-23 13:03:15,796 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-23 13:03:15,801 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:55
+2024-11-23 13:03:18,566 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-23 13:03:19,811 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/12909904922679187804158458627 line:935
+2024-11-23 13:03:20,103 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAAB0xMjkwOTkwNDkyMjY3OTE4NzgwNDE1ODQ1ODYyN20AAAAIQClTr66Yik0=' line:2209
+2024-11-23 13:03:20,733 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-23 13:03:20,733 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-11-23 13:03:20,734 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-23 13:03:20,734 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-23 13:03:20,734 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-23 13:03:20,755 [spade.behaviour] [ERROR] Exception running state FSMBehaviour/AASFSMBehaviour: __class__ not set defining 'Capability' as css.Capability. Was __classcell__ propagated to type.__new__? line:577
+2024-11-23 13:03:20,755 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: __class__ not set defining 'Capability' as css.Capability. Was __classcell__ propagated to type.__new__? line:154
+2024-11-23 13:03:20,755 [spade.behaviour] [INFO] FSM arrived to a final state (no transitions found). Killing FSM. line:604
+2024-11-23 13:03:20,755 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 13:03:20,755 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM finished at state --> BOOTING line:18
+2024-11-23 13:03:20,756 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 13:03:20,756 [gcis1] [INFO] client shutting down (on request) line:975
+2024-11-23 13:03:21,038 [gcis1.XMLStream] [INFO] ignoring unknown top-level tag, we’re closing line:436
+2024-11-23 13:03:21,449 [gcis1.StanzaStream] [INFO] stopping SM stream line:2473
+2024-11-23 13:03:21,449 [gcis1] [INFO] stopping stream line:989
+2024-11-23 13:03:21,449 [spade.Agent] [INFO] Client disconnected. line:304
+2024-11-23 13:03:21,449 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 13:03:21,740 [SPADE] [INFO] Stopping agent gcis1@xmpp.jp line:31
+2024-11-23 13:04:45,175 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-23 13:04:45,180 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:55
+2024-11-23 13:04:47,978 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-23 13:04:49,208 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/15089540484661312986158462115 line:935
+2024-11-23 13:04:49,514 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAAB0xNTA4OTU0MDQ4NDY2MTMxMjk4NjE1ODQ2MjExNW0AAAAIs1EmUAo/Nes=' line:2209
+2024-11-23 13:04:50,129 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-23 13:04:50,129 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-11-23 13:04:50,132 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-23 13:04:50,132 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-23 13:04:50,132 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-23 13:04:50,154 [spade.behaviour] [ERROR] Exception running state FSMBehaviour/AASFSMBehaviour: __class__ not set defining 'Capability' as css.Capability. Was __classcell__ propagated to type.__new__? line:577
+2024-11-23 13:04:50,154 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: __class__ not set defining 'Capability' as css.Capability. Was __classcell__ propagated to type.__new__? line:154
+2024-11-23 13:04:50,154 [spade.behaviour] [INFO] FSM arrived to a final state (no transitions found). Killing FSM. line:604
+2024-11-23 13:04:50,154 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 13:04:50,154 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM finished at state --> BOOTING line:18
+2024-11-23 13:04:50,154 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 13:04:50,155 [gcis1] [INFO] client shutting down (on request) line:975
+2024-11-23 13:04:50,436 [gcis1.XMLStream] [INFO] ignoring unknown top-level tag, we’re closing line:436
+2024-11-23 13:04:50,818 [gcis1.StanzaStream] [INFO] stopping SM stream line:2473
+2024-11-23 13:04:50,818 [gcis1] [INFO] stopping stream line:989
+2024-11-23 13:04:50,818 [spade.Agent] [INFO] Client disconnected. line:304
+2024-11-23 13:04:50,818 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 13:04:51,135 [SPADE] [INFO] Stopping agent gcis1@xmpp.jp line:31
+2024-11-23 13:05:05,432 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-23 13:05:05,439 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:55
+2024-11-23 13:05:08,254 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-23 13:05:09,482 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/1481549487639724185158462691 line:935
+2024-11-23 13:05:09,761 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABwxNDgxNTQ5NDg3NjM5NzI0MTg1MTU4NDYyNjkxbQAAAAiNIL5dZhmBAg==' line:2209
+2024-11-23 13:05:10,404 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-23 13:05:10,405 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-11-23 13:05:10,405 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-23 13:05:10,405 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-23 13:05:10,405 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-23 13:05:10,433 [spade.behaviour] [ERROR] Exception running state FSMBehaviour/AASFSMBehaviour: __class__ not set defining 'Capability' as css.Capability. Was __classcell__ propagated to type.__new__? line:577
+2024-11-23 13:05:10,433 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: __class__ not set defining 'Capability' as css.Capability. Was __classcell__ propagated to type.__new__? line:154
+2024-11-23 13:05:10,433 [spade.behaviour] [INFO] FSM arrived to a final state (no transitions found). Killing FSM. line:604
+2024-11-23 13:05:10,433 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 13:05:10,433 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM finished at state --> BOOTING line:18
+2024-11-23 13:05:10,433 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 13:05:10,433 [gcis1] [INFO] client shutting down (on request) line:975
+2024-11-23 13:05:10,709 [gcis1.XMLStream] [INFO] ignoring unknown top-level tag, we’re closing line:436
+2024-11-23 13:05:11,119 [gcis1.StanzaStream] [INFO] stopping SM stream line:2473
+2024-11-23 13:05:11,119 [gcis1] [INFO] stopping stream line:989
+2024-11-23 13:05:11,119 [spade.Agent] [INFO] Client disconnected. line:304
+2024-11-23 13:05:11,119 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 13:05:11,401 [SPADE] [INFO] Stopping agent gcis1@xmpp.jp line:31
+2024-11-23 13:05:25,853 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-23 13:05:25,857 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:55
+2024-11-23 13:05:28,632 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-23 13:05:29,861 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/4102588245156746092216607458 line:935
+2024-11-23 13:05:30,166 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABw0MTAyNTg4MjQ1MTU2NzQ2MDkyMjE2NjA3NDU4bQAAAAgCKlXgdPVh5g==' line:2209
+2024-11-23 13:05:30,759 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-23 13:05:30,760 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-11-23 13:05:30,762 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-23 13:05:30,762 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-23 13:05:30,762 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-23 13:05:30,788 [spade.behaviour] [ERROR] Exception running state FSMBehaviour/AASFSMBehaviour: __class__ not set defining 'Capability' as css.Capability. Was __classcell__ propagated to type.__new__? line:577
+2024-11-23 13:05:30,788 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: __class__ not set defining 'Capability' as css.Capability. Was __classcell__ propagated to type.__new__? line:154
+2024-11-23 13:05:30,788 [spade.behaviour] [INFO] FSM arrived to a final state (no transitions found). Killing FSM. line:604
+2024-11-23 13:05:30,788 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 13:05:30,789 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM finished at state --> BOOTING line:18
+2024-11-23 13:05:30,789 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 13:05:30,789 [gcis1] [INFO] client shutting down (on request) line:975
+2024-11-23 13:05:31,089 [gcis1.XMLStream] [INFO] ignoring unknown top-level tag, we’re closing line:436
+2024-11-23 13:05:31,472 [gcis1.StanzaStream] [INFO] stopping SM stream line:2473
+2024-11-23 13:05:31,472 [gcis1] [INFO] stopping stream line:989
+2024-11-23 13:05:31,472 [spade.Agent] [INFO] Client disconnected. line:304
+2024-11-23 13:05:31,473 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 13:05:31,771 [SPADE] [INFO] Stopping agent gcis1@xmpp.jp line:31
+2024-11-23 13:05:42,130 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-23 13:05:42,146 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:55
+2024-11-23 13:05:45,008 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-23 13:05:46,244 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/11677366549957407380216609186 line:935
+2024-11-23 13:05:46,551 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAAB0xMTY3NzM2NjU0OTk1NzQwNzM4MDIxNjYwOTE4Nm0AAAAIcYQ8DLOzQo8=' line:2209
+2024-11-23 13:05:47,176 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-23 13:05:47,176 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-11-23 13:05:47,176 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-23 13:05:47,176 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-23 13:05:47,176 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-23 13:06:01,436 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-23 13:06:01,438 [gcis1] [INFO] client shutting down (on request) line:975
+2024-11-23 13:06:01,439 [gcis1] [WARNING] something is odd: failure future is already done ... line:813
+2024-11-23 13:06:01,439 [gcis1.StanzaStream] [INFO] stopping SM stream line:2473
+2024-11-23 13:06:01,439 [gcis1] [INFO] stopping stream line:989
+2024-11-23 13:06:05,552 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-23 13:06:05,567 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:55
+2024-11-23 13:06:09,618 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-23 13:06:13,068 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/9095091065735136154158467075 line:935
+2024-11-23 13:06:13,369 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABw5MDk1MDkxMDY1NzM1MTM2MTU0MTU4NDY3MDc1bQAAAAjhRaeKfNNO7Q==' line:2209
+2024-11-23 13:06:13,988 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-23 13:06:13,988 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-11-23 13:06:14,003 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-23 13:06:14,003 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-23 13:06:14,003 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-23 13:06:51,055 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-23 13:06:51,059 [gcis1] [INFO] client shutting down (on request) line:975
+2024-11-23 13:06:51,443 [gcis1.StanzaStream] [INFO] stopping SM stream line:2473
+2024-11-23 13:06:51,443 [gcis1] [INFO] stopping stream line:989
+2024-11-23 13:06:51,476 [asyncio] [ERROR] Task exception was never retrieved
+future: <Task finished name='Task-19' coro=<CyclicBehaviour._start() done, defined at C:\Python310\lib\site-packages\spade\behaviour.py:126> exception=KeyboardInterrupt()> line:1758
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\spade\container.py", line 114, in run_container
+    container.run(main_func)
+  File "C:\Python310\lib\site-packages\spade\container.py", line 108, in run
+    self.loop.run_until_complete(coro)
+  File "C:\Program Files\JetBrains\PyCharm 2024.1.4\plugins\python\helpers-pro\pydevd_asyncio\pydevd_nest_asyncio.py", line 234, in run_until_complete
+    self._run_once()
+  File "C:\Program Files\JetBrains\PyCharm 2024.1.4\plugins\python\helpers-pro\pydevd_asyncio\pydevd_nest_asyncio.py", line 286, in _run_once
+    handle._run()
+  File "C:\Python310\lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Program Files\JetBrains\PyCharm 2024.1.4\plugins\python\helpers-pro\pydevd_asyncio\pydevd_nest_asyncio.py", line 395, in step
+    step_orig(task, exc)
+  File "C:\Python310\lib\asyncio\tasks.py", line 232, in __step
+    result = coro.send(None)
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 140, in _start
+    await self._step()
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 285, in _step
+    await self._run()
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 575, in _run
+    await behaviour.run()
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\states\state_booting.py", line 22, in run
+    await self.booting_state_logic()
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\states\state_booting.py", line 36, in booting_state_logic
+    await self.agent.css_ontology.initialize_ontology()
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\css_ontology\capability_skill_ontology.py", line 28, in initialize_ontology
+    self.ontology = get_ontology(CapabilitySkillOntologyUtils.get_ontology_file_path())
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\css_ontology\css_ontology_utils.py", line 27, in get_ontology_file_path
+    try:
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\css_ontology\css_ontology_utils.py", line 27, in get_ontology_file_path
+    try:
+  File "_pydevd_bundle\pydevd_cython_win32_310_64.pyx", line 1187, in _pydevd_bundle.pydevd_cython_win32_310_64.SafeCallWrapper.__call__
+  File "_pydevd_bundle\pydevd_cython_win32_310_64.pyx", line 627, in _pydevd_bundle.pydevd_cython_win32_310_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_310_64.pyx", line 1103, in _pydevd_bundle.pydevd_cython_win32_310_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_310_64.pyx", line 1065, in _pydevd_bundle.pydevd_cython_win32_310_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_310_64.pyx", line 585, in _pydevd_bundle.pydevd_cython_win32_310_64.PyDBFrame.do_wait_suspend
+  File "C:\Program Files\JetBrains\PyCharm 2024.1.4\plugins\python\helpers\pydev\pydevd.py", line 1201, in do_wait_suspend
+    self._do_wait_suspend(thread, frame, event, arg, suspend_type, from_this_thread)
+  File "C:\Program Files\JetBrains\PyCharm 2024.1.4\plugins\python\helpers\pydev\pydevd.py", line 1216, in _do_wait_suspend
+    time.sleep(0.01)
+KeyboardInterrupt
+2024-11-23 13:06:55,611 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-23 13:06:55,611 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:55
+2024-11-23 13:06:58,440 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-23 13:06:59,665 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/745477867258796034590158820 line:935
+2024-11-23 13:06:59,960 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABs3NDU0Nzc4NjcyNTg3OTYwMzQ1OTAxNTg4MjBtAAAACAsxaMw9sszr' line:2209
+2024-11-23 13:07:00,591 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-23 13:07:00,591 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-11-23 13:07:00,591 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-23 13:07:00,591 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-23 13:07:00,591 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-23 13:07:16,893 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-23 13:07:16,896 [gcis1] [INFO] client shutting down (on request) line:975
+2024-11-23 13:07:16,897 [gcis1.StanzaStream] [INFO] stopping SM stream line:2473
+2024-11-23 13:07:16,897 [gcis1] [INFO] stopping stream line:989
+2024-11-23 13:07:16,929 [asyncio] [ERROR] Task exception was never retrieved
+future: <Task finished name='Task-19' coro=<CyclicBehaviour._start() done, defined at C:\Python310\lib\site-packages\spade\behaviour.py:126> exception=KeyboardInterrupt()> line:1758
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\spade\container.py", line 114, in run_container
+    container.run(main_func)
+  File "C:\Python310\lib\site-packages\spade\container.py", line 108, in run
+    self.loop.run_until_complete(coro)
+  File "C:\Program Files\JetBrains\PyCharm 2024.1.4\plugins\python\helpers-pro\pydevd_asyncio\pydevd_nest_asyncio.py", line 234, in run_until_complete
+    self._run_once()
+  File "C:\Program Files\JetBrains\PyCharm 2024.1.4\plugins\python\helpers-pro\pydevd_asyncio\pydevd_nest_asyncio.py", line 286, in _run_once
+    handle._run()
+  File "C:\Python310\lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Program Files\JetBrains\PyCharm 2024.1.4\plugins\python\helpers-pro\pydevd_asyncio\pydevd_nest_asyncio.py", line 395, in step
+    step_orig(task, exc)
+  File "C:\Python310\lib\asyncio\tasks.py", line 232, in __step
+    result = coro.send(None)
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 140, in _start
+    await self._step()
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 285, in _step
+    await self._run()
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 575, in _run
+    await behaviour.run()
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\states\state_booting.py", line 22, in run
+    await self.booting_state_logic()
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\states\state_booting.py", line 36, in booting_state_logic
+    await self.agent.css_ontology.initialize_ontology()
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\css_ontology\capability_skill_ontology.py", line 28, in initialize_ontology
+    self.ontology = get_ontology(CapabilitySkillOntologyUtils.get_ontology_file_path())
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\css_ontology\css_ontology_utils.py", line 24, in get_ontology_file_path
+    if configmap_utils.get_ontology_general_property("inside-aasx"):
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\utilities\configmap_utils.py", line 89, in get_ontology_general_property
+    return config_sm['ONTOLOGY']['ontology.' + property_name]
+  File "_pydevd_bundle\pydevd_cython_win32_310_64.pyx", line 1187, in _pydevd_bundle.pydevd_cython_win32_310_64.SafeCallWrapper.__call__
+  File "_pydevd_bundle\pydevd_cython_win32_310_64.pyx", line 627, in _pydevd_bundle.pydevd_cython_win32_310_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_310_64.pyx", line 1103, in _pydevd_bundle.pydevd_cython_win32_310_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_310_64.pyx", line 1096, in _pydevd_bundle.pydevd_cython_win32_310_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\pydevd_cython_win32_310_64.pyx", line 585, in _pydevd_bundle.pydevd_cython_win32_310_64.PyDBFrame.do_wait_suspend
+  File "C:\Program Files\JetBrains\PyCharm 2024.1.4\plugins\python\helpers\pydev\pydevd.py", line 1201, in do_wait_suspend
+    self._do_wait_suspend(thread, frame, event, arg, suspend_type, from_this_thread)
+  File "C:\Program Files\JetBrains\PyCharm 2024.1.4\plugins\python\helpers\pydev\pydevd.py", line 1216, in _do_wait_suspend
+    time.sleep(0.01)
+KeyboardInterrupt
+2024-11-23 13:07:56,923 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-23 13:07:56,930 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:55
+2024-11-23 13:07:59,871 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-23 13:08:01,123 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/138973977034906310158472099 line:935
+2024-11-23 13:08:01,409 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABsxMzg5NzM5NzcwMzQ5MDYzMTAxNTg0NzIwOTltAAAACJX4/2LhAKuc' line:2209
+2024-11-23 13:08:02,043 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-23 13:08:02,043 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-11-23 13:08:02,043 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-23 13:08:02,043 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-23 13:08:02,043 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-23 13:08:21,208 [spade.behaviour] [ERROR] Exception running state FSMBehaviour/AASFSMBehaviour: __class__ not set defining 'Capability' as css.Capability. Was __classcell__ propagated to type.__new__? line:577
+2024-11-23 13:08:21,224 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: __class__ not set defining 'Capability' as css.Capability. Was __classcell__ propagated to type.__new__? line:154
+2024-11-23 13:08:21,224 [spade.behaviour] [INFO] FSM arrived to a final state (no transitions found). Killing FSM. line:604
+2024-11-23 13:08:21,225 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 13:08:21,225 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM finished at state --> BOOTING line:18
+2024-11-23 13:08:21,225 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 13:08:21,225 [gcis1] [INFO] client shutting down (on request) line:975
+2024-11-23 13:08:21,574 [gcis1.XMLStream] [INFO] ignoring unknown top-level tag, we’re closing line:436
+2024-11-23 13:08:21,605 [gcis1.StanzaStream] [INFO] stopping SM stream line:2473
+2024-11-23 13:08:21,620 [gcis1] [INFO] stopping stream line:989
+2024-11-23 13:08:21,620 [spade.Agent] [INFO] Client disconnected. line:304
+2024-11-23 13:08:21,620 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 13:08:22,228 [SPADE] [INFO] Stopping agent gcis1@xmpp.jp line:31
+2024-11-23 13:08:27,115 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-23 13:08:27,120 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:55
+2024-11-23 13:08:29,986 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-23 13:08:31,161 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/9102709173573000566158473379 line:935
+2024-11-23 13:08:31,440 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABw5MTAyNzA5MTczNTczMDAwNTY2MTU4NDczMzc5bQAAAAgxoCZ+GEtUUw==' line:2209
+2024-11-23 13:08:32,111 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-23 13:08:32,111 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-11-23 13:08:32,112 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-23 13:08:32,112 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-23 13:08:32,112 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-23 13:08:32,126 [spade.behaviour] [ERROR] Exception running state FSMBehaviour/AASFSMBehaviour: __class__ not set defining 'Capability' as css.Capability. Was __classcell__ propagated to type.__new__? line:577
+2024-11-23 13:08:32,126 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: __class__ not set defining 'Capability' as css.Capability. Was __classcell__ propagated to type.__new__? line:154
+2024-11-23 13:08:32,127 [spade.behaviour] [INFO] FSM arrived to a final state (no transitions found). Killing FSM. line:604
+2024-11-23 13:08:32,127 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 13:08:32,127 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM finished at state --> BOOTING line:18
+2024-11-23 13:08:32,127 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 13:08:32,127 [gcis1] [INFO] client shutting down (on request) line:975
+2024-11-23 13:08:32,385 [gcis1.XMLStream] [INFO] ignoring unknown top-level tag, we’re closing line:436
+2024-11-23 13:08:32,769 [gcis1.StanzaStream] [INFO] stopping SM stream line:2473
+2024-11-23 13:08:32,769 [gcis1] [INFO] stopping stream line:989
+2024-11-23 13:08:32,769 [spade.Agent] [INFO] Client disconnected. line:304
+2024-11-23 13:08:32,770 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 13:08:33,122 [SPADE] [INFO] Stopping agent gcis1@xmpp.jp line:31
+2024-11-23 13:09:34,233 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-23 13:09:34,239 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:55
+2024-11-23 13:09:37,135 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-23 13:09:38,260 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/432642480820647161490163364 line:935
+2024-11-23 13:09:38,577 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABs0MzI2NDI0ODA4MjA2NDcxNjE0OTAxNjMzNjRtAAAACHG5EwdJnKlX' line:2209
+2024-11-23 13:09:39,210 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-23 13:09:39,211 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-11-23 13:09:39,213 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-23 13:09:39,213 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-23 13:09:39,214 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-23 13:09:39,229 [spade.behaviour] [ERROR] Exception running state FSMBehaviour/AASFSMBehaviour: __class__ not set defining 'Capability' as css.Capability. Was __classcell__ propagated to type.__new__? line:577
+2024-11-23 13:09:39,230 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: __class__ not set defining 'Capability' as css.Capability. Was __classcell__ propagated to type.__new__? line:154
+2024-11-23 13:09:39,230 [spade.behaviour] [INFO] FSM arrived to a final state (no transitions found). Killing FSM. line:604
+2024-11-23 13:09:39,230 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 13:09:39,230 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM finished at state --> BOOTING line:18
+2024-11-23 13:09:39,231 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 13:09:39,231 [gcis1] [INFO] client shutting down (on request) line:975
+2024-11-23 13:09:39,516 [gcis1.XMLStream] [INFO] ignoring unknown top-level tag, we’re closing line:436
+2024-11-23 13:09:39,929 [gcis1.StanzaStream] [INFO] stopping SM stream line:2473
+2024-11-23 13:09:39,930 [gcis1] [INFO] stopping stream line:989
+2024-11-23 13:09:39,930 [spade.Agent] [INFO] Client disconnected. line:304
+2024-11-23 13:09:39,931 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-23 13:09:40,228 [SPADE] [INFO] Stopping agent gcis1@xmpp.jp line:31

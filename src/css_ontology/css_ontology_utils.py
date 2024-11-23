@@ -21,7 +21,7 @@ class CapabilitySkillOntologyUtils:
         Returns:
             str: file path to the ontology file.
         """
-        if configmap_utils.get_ontology_general_property("inside-aasx"):
+        if configmap_utils.get_ontology_general_property("inside-aasx").lower() in ('yes', 'true', 't', '1'):
             aas_model_serialization_format = configmap_utils.get_aas_general_property('model.serialization')
             if aas_model_serialization_format == 'AASX':
                 try:

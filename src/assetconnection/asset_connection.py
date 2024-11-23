@@ -13,7 +13,6 @@ from css_ontology.css_ontology_utils import AssetInterfacesInfo
 class AssetConnection(metaclass=abc.ABCMeta):
     """
     This class is an abstract class for all AssetConnections.
-    TODO desarrollarlo mas
     """
 
     @unique
@@ -87,26 +86,26 @@ class AssetConnection(metaclass=abc.ABCMeta):
     # Useful methods for the configuration of the asset connection
     # ------------------------------------------------------------
     @classmethod
-    async def check_interface_element(cls, interface_elem):
-        # First, it is checked that the Interface element offered is within the Submodel 'AssetInterfacesDescription'.
-        parent_submodel = interface_elem.get_parent_submodel()
-        if not parent_submodel.check_semantic_id_exist(AssetInterfacesInfo.SEMANTICID_INTERFACES_SUBMODEL):
-            raise AssetConnectionError("The Interface element object is invalid because it is not within"
-                                       " the required submodel", "invalid interface element",
-                                       "Interface element is not within the required submodel")
-        # The semanticID of the Interface element is also checked
-        if not interface_elem.check_semantic_id_exist(AssetInterfacesInfo.SEMANTICID_INTERFACE):
-            raise AssetConnectionError("The Interface element object is invalid because it does not have"
-                                       " the required semanticID", "invalid interface element",
-                                       "Interface element does not have the required semanticID")
-        # Then, if required submodel elements are missing is checked
-        await cls.check_submodel_element_exist_by_semantic_id(interface_elem, 'title',
-                                                              AssetInterfacesInfo.SEMANTICID_INTERFACE_TITLE)
-        await cls.check_submodel_element_exist_by_semantic_id(interface_elem, 'EndpointMetadata',
-                                                              AssetInterfacesInfo.SEMANTICID_ENDPOINT_METADATA)
-        await cls.check_submodel_element_exist_by_semantic_id(interface_elem, 'InteractionMetadata',
-                                                              AssetInterfacesInfo.SEMANTICID_INTERACTION_METADATA)
-        # TODO comprobar que no haya mas atributos requeridos
+    # async def check_interface_element(cls, interface_elem):
+    #     # First, it is checked that the Interface element offered is within the Submodel 'AssetInterfacesDescription'.
+    #     parent_submodel = interface_elem.get_parent_submodel()
+    #     if not parent_submodel.check_semantic_id_exist(AssetInterfacesInfo.SEMANTICID_INTERFACES_SUBMODEL):
+    #         raise AssetConnectionError("The Interface element object is invalid because it is not within"
+    #                                    " the required submodel", "invalid interface element",
+    #                                    "Interface element is not within the required submodel")
+    #     # The semanticID of the Interface element is also checked
+    #     if not interface_elem.check_semantic_id_exist(AssetInterfacesInfo.SEMANTICID_INTERFACE):
+    #         raise AssetConnectionError("The Interface element object is invalid because it does not have"
+    #                                    " the required semanticID", "invalid interface element",
+    #                                    "Interface element does not have the required semanticID")
+    #     # Then, if required submodel elements are missing is checked
+    #     await cls.check_submodel_element_exist_by_semantic_id(interface_elem, 'title',
+    #                                                           AssetInterfacesInfo.SEMANTICID_INTERFACE_TITLE)
+    #     await cls.check_submodel_element_exist_by_semantic_id(interface_elem, 'EndpointMetadata',
+    #                                                           AssetInterfacesInfo.SEMANTICID_ENDPOINT_METADATA)
+    #     await cls.check_submodel_element_exist_by_semantic_id(interface_elem, 'InteractionMetadata',
+    #                                                           AssetInterfacesInfo.SEMANTICID_INTERACTION_METADATA)
+    #     # TODO comprobar que no haya mas atributos requeridos
 
     @classmethod
     async def check_endpoint_metadata(cls, endpoint_metadata):

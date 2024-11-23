@@ -4,12 +4,13 @@ definition of OWL. When the owlready2 package loads the ontology, it will automa
 import logging
 
 import basyx.aas.model
-from owlready2 import Thing, get_ontology, DataPropertyClass, DatatypeClass
+from owlready2 import Thing, get_ontology, DataPropertyClass, DatatypeClass, onto_path
 
 from aas_model import extended_submodel
 from logic.exceptions import OntologyCheckingAttributeError, OntologyCheckingPropertyError, \
     OntologyInstanceCreationError
 from css_ontology.css_ontology_utils import CapabilitySkillOntologyInfo, CapabilitySkillOntologyUtils
+from utilities.aas_general_info import SMIAGeneralInfo
 
 _logger = logging.getLogger(__name__)
 
@@ -121,7 +122,8 @@ class Capability(Thing, ExtendedThing):
     namespace = base_namespace
 
     # The associated SubmodelElement class of the AAS is also defined
-    aas_sme_class = basyx.aas.model.Capability
+    aas_sme_class = extended_submodel.ExtendedCapability
+    # aas_sme_class = basyx.aas.model.Capability
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

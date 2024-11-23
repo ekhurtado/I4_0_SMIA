@@ -59,6 +59,8 @@ class HTTPAssetConnection(AssetConnection):
             self.security_scheme_elem = security_definitions_elem.value
         # TODO: pensar como añadir el resto , p.e. tema de seguridad o autentificacion (bearer). De momento se ha dejado sin seguridad (nosec_sc)
 
+        # The InteractionMetadata elements
+
     async def check_asset_connection(self):
         pass
 
