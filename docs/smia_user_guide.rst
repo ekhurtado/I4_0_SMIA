@@ -18,12 +18,15 @@ The development of the AAS model will be realized using the :ref:`AASX Package E
 After opening the program, the first step is to create a new environment in order to add the desired definition of the AAS model.
 
 .. image:: _static/images/AASX_PE_step1.png
+  :align: center
   :width: 400
   :alt: AASX Package Explorer step1
 
 
 TODO This is a test for adding a video:
 
-sphinx extension needed: sphinxcontrib.youtube
+.. youtube:: ToKwxUhuiRE
+   :width: 640
+   :height: 360
 
 https://www.youtube.com/watch?v=ToKwxUhuiRE&list=PLs6bFF_iqW3G8AiVVMPi-SpupCvgmYsyB&index=1
