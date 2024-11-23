@@ -22,12 +22,3 @@ After opening the program, the first step is to create a new environment in orde
   :width: 400
   :alt: AASX Package Explorer step1
 
-
-TODO This is a test for adding a video:
-
-.. raw:: html
-
-   <iframe width="640" height="360" src="https://www.youtube.com/watch?v=ToKwxUhuiRE" frameborder="0" allowfullscreen></iframe>
-
-
-https://www.youtube.com/watch?v=ToKwxUhuiRE
