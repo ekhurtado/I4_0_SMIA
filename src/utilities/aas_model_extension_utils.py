@@ -1,8 +1,8 @@
 from basyx.aas.model import AssetAdministrationShell, AssetInformation, ConceptDescription, \
-    HasSemantics, Qualifier, Namespace, Entity
+    HasSemantics, Qualifier, Namespace, Entity, Qualifiable
 
 from aas_model.extended_aas import *
-from aas_model.extended_base import ExtendedHasSemantics, ExtendedQualifier, ExtendedNamespace
+from aas_model.extended_base import ExtendedHasSemantics, ExtendedQualifier, ExtendedNamespace, ExtendedQualifiable
 from aas_model.extended_concept_description import ExtendedConceptDescription
 from aas_model.extended_submodel import *
 
@@ -36,7 +36,8 @@ class AASModelExtensionUtils:
                                      ConceptDescription: ExtendedConceptDescription,
                                      Qualifier: ExtendedQualifier,
                                      HasSemantics: ExtendedHasSemantics,
-                                     Namespace: ExtendedNamespace
+                                     Namespace: ExtendedNamespace,
+                                     Qualifiable: ExtendedQualifiable
                                      }
         for model_class, extension_class in all_extension_classes_map.items():
             for method_name in dir(extension_class):

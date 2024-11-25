@@ -189,6 +189,26 @@ class CapabilitySkillOntologyInfo:
     CSS_ONTOLOGY_PROP_HASPARAMETER_IRI = 'http://www.w3id.org/hsu-aut/css#hasParameter'
     CSS_ONTOLOGY_PROP_BEHAVIOURSCONFORMSTO_IRI = 'http://www.w3id.org/hsu-aut/css#behaviorConformsTo'
 
+    CSS_ONTOLOGY_THING_CLASSES_IRIS = [CSS_ONTOLOGY_CAPABILITY_IRI,
+                                       CSS_ONTOLOGY_AGENT_CAPABILITY_IRI,
+                                       CSS_ONTOLOGY_ASSET_CAPABILITY_IRI,
+                                       CSS_ONTOLOGY_CAPABILITY_CONSTRAINT_IRI,
+                                       CSS_ONTOLOGY_SKILL_IRI,
+                                       CSS_ONTOLOGY_SKILL_INTERFACE_IRI,
+                                       # CSS_ONTOLOGY_SKILL_PARAMETER_IRI,
+                                       # CSS_ONTOLOGY_SKILL_STATE_MACHINE_IRI,
+                                       ]
+
+    CSS_ONTOLOGY_OBJECT_PROPERTIES_IRIS = [CSS_ONTOLOGY_PROP_ISREALIZEDBY_IRI,
+                                           CSS_ONTOLOGY_PROP_ISRESTRICTEDBY_IRI,
+                                           CSS_ONTOLOGY_PROP_ACCESSIBLETHROUGH_IRI,
+                                           CSS_ONTOLOGY_PROP_ACCESSIBLETHROUGH_ASSET_IRI,
+                                           CSS_ONTOLOGY_PROP_ACCESSIBLETHROUGH_AGENT_IRI,
+                                           # CSS_ONTOLOGY_PROP_HASPARAMETER_IRI,    #  TODO PENSAR COMO SERIA (de momento no tenemos ExtendedSkillParameter)
+                                           # CSS_ONTOLOGY_PROP_BEHAVIOURSCONFORMSTO_IRI
+                                           ]
+    # TODO HACER AHORA GENERAR TAMBIEN UNA LISTA CON LAS CLASES DE LA ONTOLOGIA Y LAS CLASES 'Extended' del AAS asociadas
+
 
 class CapabilitySkillACLInfo:
     """

@@ -24126,3 +24126,1073 @@ AttributeError: 'coroutine' object has no attribute 'value'
 2024-11-25 14:57:50,312 [gcis1] [INFO] client shutting down (on request) line:975
 2024-11-25 14:57:50,312 [gcis1.StanzaStream] [INFO] stopping SM stream line:2473
 2024-11-25 14:57:50,312 [gcis1] [INFO] stopping stream line:989
+2024-11-25 15:39:46,812 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-25 15:39:46,820 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:55
+2024-11-25 15:39:49,656 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-25 15:39:50,792 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/17427191081287269734230149922 line:935
+2024-11-25 15:39:51,077 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAAB0xNzQyNzE5MTA4MTI4NzI2OTczNDIzMDE0OTkyMm0AAAAI3JQPomdeRJw=' line:2209
+2024-11-25 15:39:51,656 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-25 15:39:51,657 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-11-25 15:39:51,659 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-25 15:39:51,660 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-25 15:39:51,660 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-25 15:39:51,689 [css_ontology.capability_skill_ontology] [INFO] CSS ontology initialized line:42
+2024-11-25 15:39:51,795 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all defined ontology elements... line:71
+2024-11-25 15:39:53,736 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-25 15:39:53,737 [gcis1] [INFO] client shutting down (on request) line:975
+2024-11-25 15:39:53,737 [gcis1.StanzaStream] [INFO] stopping SM stream line:2473
+2024-11-25 15:39:53,738 [gcis1] [INFO] stopping stream line:989
+2024-11-25 15:39:53,738 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-25 15:39:53,739 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-25 15:39:53,743 [css_ontology.capability_skill_ontology] [INFO] CSS ontology initialized line:42
+2024-11-25 15:39:58,531 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-25 15:39:58,538 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:55
+2024-11-25 15:40:01,223 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-25 15:40:02,414 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/907619655130431539730296965 line:935
+2024-11-25 15:40:02,695 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABs5MDc2MTk2NTUxMzA0MzE1Mzk3MzAyOTY5NjVtAAAACEyurR/VRfdp' line:2209
+2024-11-25 15:40:03,287 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-25 15:40:03,288 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-11-25 15:40:03,290 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-25 15:40:03,290 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-25 15:40:03,291 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-25 15:40:03,329 [spade.behaviour] [ERROR] Exception running state FSMBehaviour/AASFSMBehaviour: __class__ not set defining 'Capability' as css.Capability. Was __classcell__ propagated to type.__new__? line:577
+2024-11-25 15:40:03,329 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: __class__ not set defining 'Capability' as css.Capability. Was __classcell__ propagated to type.__new__? line:154
+2024-11-25 15:40:03,329 [spade.behaviour] [INFO] FSM arrived to a final state (no transitions found). Killing FSM. line:604
+2024-11-25 15:40:03,330 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-25 15:40:03,330 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM finished at state --> BOOTING line:18
+2024-11-25 15:40:03,331 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-25 15:40:03,331 [gcis1] [INFO] client shutting down (on request) line:975
+2024-11-25 15:40:03,567 [gcis1.XMLStream] [INFO] ignoring unknown top-level tag, we’re closing line:436
+2024-11-25 15:40:03,957 [gcis1.StanzaStream] [INFO] stopping SM stream line:2473
+2024-11-25 15:40:03,957 [gcis1] [INFO] stopping stream line:989
+2024-11-25 15:40:03,958 [spade.Agent] [INFO] Client disconnected. line:304
+2024-11-25 15:40:03,958 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-25 15:40:04,302 [SPADE] [INFO] Stopping agent gcis1@xmpp.jp line:31
+2024-11-25 15:40:17,642 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-25 15:40:17,649 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:55
+2024-11-25 15:40:20,358 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-25 15:40:21,450 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/13332853219981032442230152194 line:935
+2024-11-25 15:40:21,723 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAAB0xMzMzMjg1MzIxOTk4MTAzMjQ0MjIzMDE1MjE5NG0AAAAIXDpycNZ2wDo=' line:2209
+2024-11-25 15:40:22,277 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-25 15:40:22,278 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-11-25 15:40:22,280 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-25 15:40:22,280 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-25 15:40:22,280 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-25 15:40:22,318 [spade.behaviour] [ERROR] Exception running state FSMBehaviour/AASFSMBehaviour: __class__ not set defining 'Capability' as css.Capability. Was __classcell__ propagated to type.__new__? line:577
+2024-11-25 15:40:22,319 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: __class__ not set defining 'Capability' as css.Capability. Was __classcell__ propagated to type.__new__? line:154
+2024-11-25 15:40:22,319 [spade.behaviour] [INFO] FSM arrived to a final state (no transitions found). Killing FSM. line:604
+2024-11-25 15:40:22,319 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-25 15:40:22,319 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM finished at state --> BOOTING line:18
+2024-11-25 15:40:22,319 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-25 15:40:22,320 [gcis1] [INFO] client shutting down (on request) line:975
+2024-11-25 15:40:22,547 [gcis1.XMLStream] [INFO] ignoring unknown top-level tag, we’re closing line:436
+2024-11-25 15:40:22,925 [gcis1.StanzaStream] [INFO] stopping SM stream line:2473
+2024-11-25 15:40:22,926 [gcis1] [INFO] stopping stream line:989
+2024-11-25 15:40:22,926 [spade.Agent] [INFO] Client disconnected. line:304
+2024-11-25 15:40:22,926 [spade.behaviour] [INFO] Killing behavior FSMBehaviour/AASFSMBehaviour with exit code: None line:154
+2024-11-25 15:40:23,286 [SPADE] [INFO] Stopping agent gcis1@xmpp.jp line:31
+2024-11-25 15:40:34,075 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-25 15:40:34,082 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:55
+2024-11-25 15:40:36,698 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-25 15:40:37,844 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/11669697587852006291168532931 line:935
+2024-11-25 15:40:38,129 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAAB0xMTY2OTY5NzU4Nzg1MjAwNjI5MTE2ODUzMjkzMW0AAAAIaELKLThbMlY=' line:2209
+2024-11-25 15:40:38,713 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-25 15:40:38,713 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-11-25 15:40:38,715 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-25 15:40:38,715 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-25 15:40:38,715 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-25 15:40:38,755 [css_ontology.capability_skill_ontology] [INFO] CSS ontology initialized line:42
+2024-11-25 15:40:38,835 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all defined ontology elements... line:71
+2024-11-25 15:40:41,211 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all relationships between ontology elements... line:76
+2024-11-25 15:40:43,085 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all capabilities of the asset and the industrial agent... line:372
+2024-11-25 15:40:43,085 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all asset connections... line:85
+2024-11-25 15:40:43,272 [behaviours.init_aas_model_behaviour] [INFO] All asset connections defined in the AAS model have been configured and saved. line:485
+2024-11-25 15:40:44,273 [behaviours.init_aas_model_behaviour] [INFO] AAS model analysis results. 
+	- Analyzed capabilities: ['Negotiation', 'EfficientTransport']
+	- Analyzed capability constraints: ['NegotiationCriteriaConstraint', 'EfficientTransportConstraintLocation']
+	- Analyzed skills ['EfficientMovement', 'NegotiationBasedOnBattery', 'NegotiationBasedOnLocation', 'NegotiationBasedOnRAM']
+	- Analyzed skill interfaces ['property_battery', 'property_location', 'action_move', 'RAM_memory_function']
+	- Analyzed asset connections ['InterfaceForHTTP']
+	- Errors found [] line:491
+2024-11-25 15:40:44,273 [behaviours.init_aas_model_behaviour] [INFO] AAS model initialized. line:95
+2024-11-25 15:40:44,273 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: None line:154
+2024-11-25 15:40:44,281 [states.state_booting] [INFO] gcis1@xmpp.jp agent has finished it Boot state. line:49
+2024-11-25 15:40:44,281 [spade.behaviour] [INFO] FSM transiting from BOOTING to RUNNING. line:591
+2024-11-25 15:40:44,282 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-25 15:40:44,282 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-25 15:40:44,291 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-25 15:40:54,274 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:146
+2024-11-25 15:41:04,273 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:146
+2024-11-25 15:41:14,273 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:146
+2024-11-25 15:41:24,272 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:146
+2024-11-25 15:41:34,273 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:146
+2024-11-25 15:41:44,273 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:146
+2024-11-25 15:41:54,274 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:146
+2024-11-25 15:42:04,274 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:146
+2024-11-25 15:42:14,273 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:146
+2024-11-25 15:42:24,273 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:146
+2024-11-25 15:42:34,273 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:146
+2024-11-25 15:42:44,273 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:146
+2024-11-25 15:42:54,274 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:146
+2024-11-25 15:43:04,275 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:146
+2024-11-25 15:43:14,274 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:146
+2024-11-25 15:43:24,275 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:146
+2024-11-25 15:43:34,275 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:146
+2024-11-25 15:43:44,274 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:146
+2024-11-25 15:43:54,275 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:146
+2024-11-25 15:43:54,327 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-25 15:43:54,327 [gcis1] [INFO] client shutting down (on request) line:975
+2024-11-25 15:43:54,327 [gcis1.StanzaStream] [INFO] stopping SM stream line:2473
+2024-11-25 15:43:54,327 [gcis1] [INFO] stopping stream line:989
+2024-11-25 15:43:54,328 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-25 15:43:54,328 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-25 15:43:54,338 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-25 16:02:38,491 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-25 16:02:38,497 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:55
+2024-11-25 16:02:41,363 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-25 16:02:42,492 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/2889018652274057081230230050 line:935
+2024-11-25 16:02:42,773 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABwyODg5MDE4NjUyMjc0MDU3MDgxMjMwMjMwMDUwbQAAAAiG2MyCi8jDOQ==' line:2209
+2024-11-25 16:02:43,346 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-25 16:02:43,346 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-11-25 16:02:43,349 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-25 16:02:43,349 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-25 16:02:43,349 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-25 16:02:43,371 [css_ontology.capability_skill_ontology] [INFO] CSS ontology initialized line:42
+2024-11-25 16:02:43,451 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all defined ontology elements... line:72
+2024-11-25 16:02:43,627 [spade.behaviour] [ERROR] Exception running behaviour OneShotBehaviour/InitAASModelBehaviour: InitAASModelBehaviour.convert_sme_class_to_extended() missing 1 required positional argument: 'new_class' line:291
+2024-11-25 16:02:43,635 [spade.behaviour] [ERROR] Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 285, in _step
+    await self._run()
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 274, in _run
+    await self.run()
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\init_aas_model_behaviour.py", line 75, in run
+    await self.get_and_save_ontology_classes_information()      # TODO PRUEBAS
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\init_aas_model_behaviour.py", line 222, in get_and_save_ontology_classes_information
+    await self.check_and_create_instances_by_iri(CapabilitySkillOntologyInfo.CSS_ONTOLOGY_AGENT_CAPABILITY_IRI)
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\init_aas_model_behaviour.py", line 257, in check_and_create_instances_by_iri
+    await self.convert_sme_class_to_extended(submodel_elem)
+TypeError: InitAASModelBehaviour.convert_sme_class_to_extended() missing 1 required positional argument: 'new_class'
+ line:296
+2024-11-25 16:02:43,635 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: InitAASModelBehaviour.convert_sme_class_to_extended() missing 1 required positional argument: 'new_class' line:154
+2024-11-25 16:02:43,636 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: None line:154
+2024-11-25 16:02:43,645 [states.state_booting] [INFO] gcis1@xmpp.jp agent has finished it Boot state. line:49
+2024-11-25 16:02:43,645 [spade.behaviour] [INFO] FSM transiting from BOOTING to RUNNING. line:591
+2024-11-25 16:02:43,646 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-25 16:02:43,646 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-25 16:02:43,654 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-25 16:02:53,642 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:146
+2024-11-25 16:03:02,638 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-25 16:03:02,638 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-25 16:03:02,638 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-25 16:03:02,648 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-25 16:03:07,073 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-25 16:03:07,078 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:55
+2024-11-25 16:03:09,704 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-25 16:03:10,848 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/1325491504919066874796125604 line:935
+2024-11-25 16:03:11,132 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABwxMzI1NDkxNTA0OTE5MDY2ODc0Nzk2MTI1NjA0bQAAAAgBdU91v4+t5Q==' line:2209
+2024-11-25 16:03:11,714 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-25 16:03:11,714 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-11-25 16:03:11,717 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-25 16:03:11,717 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-25 16:03:11,717 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-25 16:03:11,745 [css_ontology.capability_skill_ontology] [INFO] CSS ontology initialized line:42
+2024-11-25 16:03:11,845 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all defined ontology elements... line:72
+2024-11-25 16:03:12,034 [spade.behaviour] [ERROR] Exception running behaviour OneShotBehaviour/InitAASModelBehaviour: 'ExtendedCapability' object has no attribute 'add_old_sme_class' line:291
+2024-11-25 16:03:12,040 [spade.behaviour] [ERROR] Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 285, in _step
+    await self._run()
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 274, in _run
+    await self.run()
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\init_aas_model_behaviour.py", line 75, in run
+    await self.get_and_save_ontology_classes_information()      # TODO PRUEBAS
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\init_aas_model_behaviour.py", line 222, in get_and_save_ontology_classes_information
+    await self.check_and_create_instances_by_iri(CapabilitySkillOntologyInfo.CSS_ONTOLOGY_AGENT_CAPABILITY_IRI)
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\init_aas_model_behaviour.py", line 257, in check_and_create_instances_by_iri
+    await self.convert_sme_class_to_extended_by_iri(submodel_elem, ontology_class_iri)
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\init_aas_model_behaviour.py", line 379, in convert_sme_class_to_extended_by_iri
+    await InitAASModelBehaviour.convert_sme_class_to_extended(sme_elem, ExtendedCapability)
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\init_aas_model_behaviour.py", line 363, in convert_sme_class_to_extended
+    sme_elem.add_old_sme_class(current_class)
+AttributeError: 'ExtendedCapability' object has no attribute 'add_old_sme_class'
+ line:296
+2024-11-25 16:03:12,040 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: 'ExtendedCapability' object has no attribute 'add_old_sme_class' line:154
+2024-11-25 16:03:12,040 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: None line:154
+2024-11-25 16:03:12,049 [states.state_booting] [INFO] gcis1@xmpp.jp agent has finished it Boot state. line:49
+2024-11-25 16:03:12,049 [spade.behaviour] [INFO] FSM transiting from BOOTING to RUNNING. line:591
+2024-11-25 16:03:12,050 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-25 16:03:12,050 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-25 16:03:12,058 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-25 16:03:20,021 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-25 16:03:20,021 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-25 16:03:20,022 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-25 16:03:20,031 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-25 16:04:20,539 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-25 16:04:20,544 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:55
+2024-11-25 16:04:23,443 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-25 16:04:24,650 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/1628828769204456203330318853 line:935
+2024-11-25 16:04:24,950 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABwxNjI4ODI4NzY5MjA0NDU2MjAzMzMwMzE4ODUzbQAAAAgTN473bEJrTw==' line:2209
+2024-11-25 16:04:25,561 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-25 16:04:25,562 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-11-25 16:04:25,564 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-25 16:04:25,564 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-25 16:04:25,564 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-25 16:04:25,587 [css_ontology.capability_skill_ontology] [INFO] CSS ontology initialized line:42
+2024-11-25 16:04:25,659 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all defined ontology elements... line:72
+2024-11-25 16:04:26,534 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all relationships between ontology elements... line:78
+2024-11-25 16:04:26,720 [logic.exceptions] [ERROR] Elements of the relationship NegBatteryCapSkillRelationship are not exist of the required classes <class 'basyx.aas.model.submodel.Capability'>, <class 'aas_model.extended_submodel.ExtendedSkill'> line:32
+2024-11-25 16:04:26,720 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:agentcapabilities001 / NegBatteryCapSkillRelationship]. Reason of the fail: Relationship referenced element invalid. line:435
+2024-11-25 16:04:26,909 [logic.exceptions] [ERROR] Elements of the relationship NegLocationCapSkillRelationship are not exist of the required classes <class 'basyx.aas.model.submodel.Capability'>, <class 'aas_model.extended_submodel.ExtendedSkill'> line:32
+2024-11-25 16:04:26,909 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:agentcapabilities001 / NegLocationCapSkillRelationship]. Reason of the fail: Relationship referenced element invalid. line:435
+2024-11-25 16:04:27,095 [logic.exceptions] [ERROR] Elements of the relationship NegRAMCapSkillRelationship are not exist of the required classes <class 'basyx.aas.model.submodel.Capability'>, <class 'aas_model.extended_submodel.ExtendedSkill'> line:32
+2024-11-25 16:04:27,095 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:agentcapabilities001 / NegRAMCapSkillRelationship]. Reason of the fail: Relationship referenced element invalid. line:435
+2024-11-25 16:04:27,283 [logic.exceptions] [ERROR] Elements of the relationship generated_submodel_list_hack_8f8a3b1eab3e11ef800000133b2f74ff are not exist of the required classes <class 'basyx.aas.model.submodel.Capability'>, <class 'aas_model.extended_submodel.ExtendedSkill'> line:32
+2024-11-25 16:04:27,283 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:capabilities001 / CapabilitySkillRelationships[0]]. Reason of the fail: Relationship referenced element invalid. line:435
+2024-11-25 16:04:27,471 [logic.exceptions] [ERROR] Elements of the relationship SkillAccesibleInterfaceRelationship are not exist of the required classes <class 'aas_model.extended_submodel.ExtendedSkill'>, <class 'aas_model.extended_submodel.ExtendedSkillInterface'> line:32
+2024-11-25 16:04:27,471 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:transportrobotskills001 / SkillAccesibleInterfaceRelationship]. Reason of the fail: Relationship referenced element invalid. line:435
+2024-11-25 16:04:27,659 [logic.exceptions] [ERROR] Elements of the relationship SkillBatteryAccesibleInterfaceRelationship are not exist of the required classes <class 'aas_model.extended_submodel.ExtendedSkill'>, <class 'aas_model.extended_submodel.ExtendedSkillInterface'> line:32
+2024-11-25 16:04:27,659 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:agentskills001 / SkillBatteryAccesibleInterfaceRelationship]. Reason of the fail: Relationship referenced element invalid. line:435
+2024-11-25 16:04:27,845 [logic.exceptions] [ERROR] Elements of the relationship SkillLocationAccesibleInterfaceRelationship are not exist of the required classes <class 'aas_model.extended_submodel.ExtendedSkill'>, <class 'aas_model.extended_submodel.ExtendedSkillInterface'> line:32
+2024-11-25 16:04:27,845 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:agentskills001 / SkillLocationAccesibleInterfaceRelationship]. Reason of the fail: Relationship referenced element invalid. line:435
+2024-11-25 16:04:28,032 [logic.exceptions] [ERROR] Elements of the relationship SkillRAMAccesibleInterfaceRelationship are not exist of the required classes <class 'aas_model.extended_submodel.ExtendedSkill'>, <class 'aas_model.extended_submodel.ExtendedSkillInterface'> line:32
+2024-11-25 16:04:28,032 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:agentskills001 / SkillRAMAccesibleInterfaceRelationship]. Reason of the fail: Relationship referenced element invalid. line:435
+2024-11-25 16:04:28,220 [logic.exceptions] [ERROR] Elements of the relationship CapabilityConstraintRelationship are not exist of the required classes <class 'basyx.aas.model.submodel.Capability'>, <class 'aas_model.extended_submodel.ExtendedCapabilityConstraint'> line:32
+2024-11-25 16:04:28,220 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:agentcapabilities001 / NegotiationConstraints / CapabilityConstraintRelationship]. Reason of the fail: Relationship referenced element invalid. line:435
+2024-11-25 16:04:28,408 [logic.exceptions] [ERROR] Elements of the relationship CapabilityConstraintRelationship are not exist of the required classes <class 'basyx.aas.model.submodel.Capability'>, <class 'aas_model.extended_submodel.ExtendedCapabilityConstraint'> line:32
+2024-11-25 16:04:28,408 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:capabilities001 / CapabilityAdditionalRelationships[0] / EfficientTransportConstraints / CapabilityConstraintRelationship]. Reason of the fail: Relationship referenced element invalid. line:435
+2024-11-25 16:04:28,408 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all capabilities of the asset and the industrial agent... line:449
+2024-11-25 16:04:28,409 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all asset connections... line:87
+2024-11-25 16:04:28,595 [behaviours.init_aas_model_behaviour] [INFO] All asset connections defined in the AAS model have been configured and saved. line:562
+2024-11-25 16:04:29,595 [behaviours.init_aas_model_behaviour] [INFO] AAS model analysis results. 
+	- Analyzed capabilities: []
+	- Analyzed capability constraints: []
+	- Analyzed skills []
+	- Analyzed skill interfaces []
+	- Analyzed asset connections ['InterfaceForHTTP']
+	- Errors found ["NegBatteryCapSkillRelationship (<class 'basyx.aas.model.submodel.Capability'>,<class 'aas_model.extended_submodel.ExtendedSkill'>)", "NegLocationCapSkillRelationship (<class 'basyx.aas.model.submodel.Capability'>,<class 'aas_model.extended_submodel.ExtendedSkill'>)", "NegRAMCapSkillRelationship (<class 'basyx.aas.model.submodel.Capability'>,<class 'aas_model.extended_submodel.ExtendedSkill'>)", "generated_submodel_list_hack_8f8a3b1eab3e11ef800000133b2f74ff (<class 'basyx.aas.model.submodel.Capability'>,<class 'aas_model.extended_submodel.ExtendedSkill'>)", "SkillAccesibleInterfaceRelationship (<class 'aas_model.extended_submodel.ExtendedSkill'>,<class 'aas_model.extended_submodel.ExtendedSkillInterface'>)", "SkillBatteryAccesibleInterfaceRelationship (<class 'aas_model.extended_submodel.ExtendedSkill'>,<class 'aas_model.extended_submodel.ExtendedSkillInterface'>)", "SkillLocationAccesibleInterfaceRelationship (<class 'aas_model.extended_submodel.ExtendedSkill'>,<class 'aas_model.extended_submodel.ExtendedSkillInterface'>)", "SkillRAMAccesibleInterfaceRelationship (<class 'aas_model.extended_submodel.ExtendedSkill'>,<class 'aas_model.extended_submodel.ExtendedSkillInterface'>)", "CapabilityConstraintRelationship (<class 'basyx.aas.model.submodel.Capability'>,<class 'aas_model.extended_submodel.ExtendedCapabilityConstraint'>)", "CapabilityConstraintRelationship (<class 'basyx.aas.model.submodel.Capability'>,<class 'aas_model.extended_submodel.ExtendedCapabilityConstraint'>)"] line:568
+2024-11-25 16:04:29,595 [behaviours.init_aas_model_behaviour] [INFO] AAS model initialized. line:97
+2024-11-25 16:04:29,595 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: None line:154
+2024-11-25 16:04:29,604 [states.state_booting] [INFO] gcis1@xmpp.jp agent has finished it Boot state. line:49
+2024-11-25 16:04:29,605 [spade.behaviour] [INFO] FSM transiting from BOOTING to RUNNING. line:591
+2024-11-25 16:04:29,605 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-25 16:04:29,605 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-25 16:04:29,613 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-25 16:04:35,679 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-25 16:04:35,679 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-25 16:04:35,679 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-25 16:04:35,687 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-25 16:04:39,611 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:146
+2024-11-25 16:04:45,658 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:146
+2024-11-25 16:04:56,185 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-25 16:04:56,193 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:55
+2024-11-25 16:04:58,937 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-25 16:05:00,036 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/1153978095998313374196128164 line:935
+2024-11-25 16:05:00,308 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABwxMTUzOTc4MDk1OTk4MzEzMzc0MTk2MTI4MTY0bQAAAAiXphnSxo6JkQ==' line:2209
+2024-11-25 16:05:00,877 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-25 16:05:00,877 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-11-25 16:05:00,881 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-25 16:05:00,881 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-25 16:05:00,881 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-25 16:05:00,917 [css_ontology.capability_skill_ontology] [INFO] CSS ontology initialized line:42
+2024-11-25 16:05:01,070 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all defined ontology elements... line:72
+2024-11-25 16:05:50,986 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all relationships between ontology elements... line:78
+2024-11-25 16:05:51,174 [logic.exceptions] [ERROR] Elements of the relationship NegBatteryCapSkillRelationship are not exist of the required classes <class 'basyx.aas.model.submodel.Capability'>, <class 'aas_model.extended_submodel.ExtendedSkill'> line:32
+2024-11-25 16:05:51,174 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:agentcapabilities001 / NegBatteryCapSkillRelationship]. Reason of the fail: Relationship referenced element invalid. line:435
+2024-11-25 16:05:51,362 [logic.exceptions] [ERROR] Elements of the relationship NegLocationCapSkillRelationship are not exist of the required classes <class 'basyx.aas.model.submodel.Capability'>, <class 'aas_model.extended_submodel.ExtendedSkill'> line:32
+2024-11-25 16:05:51,362 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:agentcapabilities001 / NegLocationCapSkillRelationship]. Reason of the fail: Relationship referenced element invalid. line:435
+2024-11-25 16:05:51,550 [logic.exceptions] [ERROR] Elements of the relationship NegRAMCapSkillRelationship are not exist of the required classes <class 'basyx.aas.model.submodel.Capability'>, <class 'aas_model.extended_submodel.ExtendedSkill'> line:32
+2024-11-25 16:05:51,550 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:agentcapabilities001 / NegRAMCapSkillRelationship]. Reason of the fail: Relationship referenced element invalid. line:435
+2024-11-25 16:05:51,738 [logic.exceptions] [ERROR] Elements of the relationship generated_submodel_list_hack_a4a03d80ab3e11ef800000133b2f74ff are not exist of the required classes <class 'basyx.aas.model.submodel.Capability'>, <class 'aas_model.extended_submodel.ExtendedSkill'> line:32
+2024-11-25 16:05:51,738 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:capabilities001 / CapabilitySkillRelationships[0]]. Reason of the fail: Relationship referenced element invalid. line:435
+2024-11-25 16:05:51,925 [logic.exceptions] [ERROR] Elements of the relationship SkillAccesibleInterfaceRelationship are not exist of the required classes <class 'aas_model.extended_submodel.ExtendedSkill'>, <class 'aas_model.extended_submodel.ExtendedSkillInterface'> line:32
+2024-11-25 16:05:51,925 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:transportrobotskills001 / SkillAccesibleInterfaceRelationship]. Reason of the fail: Relationship referenced element invalid. line:435
+2024-11-25 16:05:52,112 [logic.exceptions] [ERROR] Elements of the relationship SkillBatteryAccesibleInterfaceRelationship are not exist of the required classes <class 'aas_model.extended_submodel.ExtendedSkill'>, <class 'aas_model.extended_submodel.ExtendedSkillInterface'> line:32
+2024-11-25 16:05:52,112 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:agentskills001 / SkillBatteryAccesibleInterfaceRelationship]. Reason of the fail: Relationship referenced element invalid. line:435
+2024-11-25 16:05:52,300 [logic.exceptions] [ERROR] Elements of the relationship SkillLocationAccesibleInterfaceRelationship are not exist of the required classes <class 'aas_model.extended_submodel.ExtendedSkill'>, <class 'aas_model.extended_submodel.ExtendedSkillInterface'> line:32
+2024-11-25 16:05:52,300 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:agentskills001 / SkillLocationAccesibleInterfaceRelationship]. Reason of the fail: Relationship referenced element invalid. line:435
+2024-11-25 16:05:52,486 [logic.exceptions] [ERROR] Elements of the relationship SkillRAMAccesibleInterfaceRelationship are not exist of the required classes <class 'aas_model.extended_submodel.ExtendedSkill'>, <class 'aas_model.extended_submodel.ExtendedSkillInterface'> line:32
+2024-11-25 16:05:52,486 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:agentskills001 / SkillRAMAccesibleInterfaceRelationship]. Reason of the fail: Relationship referenced element invalid. line:435
+2024-11-25 16:05:52,674 [logic.exceptions] [ERROR] Elements of the relationship CapabilityConstraintRelationship are not exist of the required classes <class 'basyx.aas.model.submodel.Capability'>, <class 'aas_model.extended_submodel.ExtendedCapabilityConstraint'> line:32
+2024-11-25 16:05:52,674 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:agentcapabilities001 / NegotiationConstraints / CapabilityConstraintRelationship]. Reason of the fail: Relationship referenced element invalid. line:435
+2024-11-25 16:05:52,861 [logic.exceptions] [ERROR] Elements of the relationship CapabilityConstraintRelationship are not exist of the required classes <class 'basyx.aas.model.submodel.Capability'>, <class 'aas_model.extended_submodel.ExtendedCapabilityConstraint'> line:32
+2024-11-25 16:05:52,861 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:capabilities001 / CapabilityAdditionalRelationships[0] / EfficientTransportConstraints / CapabilityConstraintRelationship]. Reason of the fail: Relationship referenced element invalid. line:435
+2024-11-25 16:05:52,861 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all capabilities of the asset and the industrial agent... line:449
+2024-11-25 16:05:52,861 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all asset connections... line:87
+2024-11-25 16:05:53,049 [behaviours.init_aas_model_behaviour] [INFO] All asset connections defined in the AAS model have been configured and saved. line:562
+2024-11-25 16:05:54,033 [behaviours.init_aas_model_behaviour] [INFO] AAS model analysis results. 
+	- Analyzed capabilities: []
+	- Analyzed capability constraints: []
+	- Analyzed skills []
+	- Analyzed skill interfaces []
+	- Analyzed asset connections ['InterfaceForHTTP']
+	- Errors found ["NegBatteryCapSkillRelationship (<class 'basyx.aas.model.submodel.Capability'>,<class 'aas_model.extended_submodel.ExtendedSkill'>)", "NegLocationCapSkillRelationship (<class 'basyx.aas.model.submodel.Capability'>,<class 'aas_model.extended_submodel.ExtendedSkill'>)", "NegRAMCapSkillRelationship (<class 'basyx.aas.model.submodel.Capability'>,<class 'aas_model.extended_submodel.ExtendedSkill'>)", "generated_submodel_list_hack_a4a03d80ab3e11ef800000133b2f74ff (<class 'basyx.aas.model.submodel.Capability'>,<class 'aas_model.extended_submodel.ExtendedSkill'>)", "SkillAccesibleInterfaceRelationship (<class 'aas_model.extended_submodel.ExtendedSkill'>,<class 'aas_model.extended_submodel.ExtendedSkillInterface'>)", "SkillBatteryAccesibleInterfaceRelationship (<class 'aas_model.extended_submodel.ExtendedSkill'>,<class 'aas_model.extended_submodel.ExtendedSkillInterface'>)", "SkillLocationAccesibleInterfaceRelationship (<class 'aas_model.extended_submodel.ExtendedSkill'>,<class 'aas_model.extended_submodel.ExtendedSkillInterface'>)", "SkillRAMAccesibleInterfaceRelationship (<class 'aas_model.extended_submodel.ExtendedSkill'>,<class 'aas_model.extended_submodel.ExtendedSkillInterface'>)", "CapabilityConstraintRelationship (<class 'basyx.aas.model.submodel.Capability'>,<class 'aas_model.extended_submodel.ExtendedCapabilityConstraint'>)", "CapabilityConstraintRelationship (<class 'basyx.aas.model.submodel.Capability'>,<class 'aas_model.extended_submodel.ExtendedCapabilityConstraint'>)"] line:568
+2024-11-25 16:05:54,033 [behaviours.init_aas_model_behaviour] [INFO] AAS model initialized. line:97
+2024-11-25 16:05:54,033 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: None line:154
+2024-11-25 16:05:54,045 [states.state_booting] [INFO] gcis1@xmpp.jp agent has finished it Boot state. line:49
+2024-11-25 16:05:54,045 [spade.behaviour] [INFO] FSM transiting from BOOTING to RUNNING. line:591
+2024-11-25 16:05:54,045 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-25 16:05:54,045 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-25 16:05:54,053 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-25 16:05:54,996 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-25 16:05:54,996 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-25 16:05:54,996 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-25 16:05:55,004 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-25 16:09:15,380 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-25 16:09:15,390 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:55
+2024-11-25 16:09:18,196 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-25 16:09:19,340 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/8626846074871824687168625379 line:935
+2024-11-25 16:09:19,625 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABw4NjI2ODQ2MDc0ODcxODI0Njg3MTY4NjI1Mzc5bQAAAAh/rjC5LxP0Sw==' line:2209
+2024-11-25 16:09:20,205 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-25 16:09:20,206 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-11-25 16:09:20,208 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-25 16:09:20,209 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-25 16:09:20,209 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-25 16:09:20,230 [css_ontology.capability_skill_ontology] [INFO] CSS ontology initialized line:42
+2024-11-25 16:09:20,315 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all defined ontology elements... line:72
+2024-11-25 16:09:21,191 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all relationships between ontology elements... line:78
+2024-11-25 16:09:21,378 [logic.exceptions] [ERROR] Elements of the relationship NegBatteryCapSkillRelationship are not exist of the required classes <class 'basyx.aas.model.submodel.Capability'>, <class 'aas_model.extended_submodel.ExtendedSkill'> line:32
+2024-11-25 16:09:21,378 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:agentcapabilities001 / NegBatteryCapSkillRelationship]. Reason of the fail: Relationship referenced element invalid. line:435
+2024-11-25 16:09:21,566 [logic.exceptions] [ERROR] Elements of the relationship NegLocationCapSkillRelationship are not exist of the required classes <class 'basyx.aas.model.submodel.Capability'>, <class 'aas_model.extended_submodel.ExtendedSkill'> line:32
+2024-11-25 16:09:21,566 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:agentcapabilities001 / NegLocationCapSkillRelationship]. Reason of the fail: Relationship referenced element invalid. line:435
+2024-11-25 16:09:21,753 [logic.exceptions] [ERROR] Elements of the relationship NegRAMCapSkillRelationship are not exist of the required classes <class 'basyx.aas.model.submodel.Capability'>, <class 'aas_model.extended_submodel.ExtendedSkill'> line:32
+2024-11-25 16:09:21,753 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:agentcapabilities001 / NegRAMCapSkillRelationship]. Reason of the fail: Relationship referenced element invalid. line:435
+2024-11-25 16:09:21,941 [logic.exceptions] [ERROR] Elements of the relationship generated_submodel_list_hack_3f2982f1ab3f11ef800000133b2f74ff are not exist of the required classes <class 'basyx.aas.model.submodel.Capability'>, <class 'aas_model.extended_submodel.ExtendedSkill'> line:32
+2024-11-25 16:09:21,941 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:capabilities001 / CapabilitySkillRelationships[0]]. Reason of the fail: Relationship referenced element invalid. line:435
+2024-11-25 16:09:22,129 [logic.exceptions] [ERROR] Elements of the relationship SkillAccesibleInterfaceRelationship are not exist of the required classes <class 'aas_model.extended_submodel.ExtendedSkill'>, <class 'aas_model.extended_submodel.ExtendedSkillInterface'> line:32
+2024-11-25 16:09:22,130 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:transportrobotskills001 / SkillAccesibleInterfaceRelationship]. Reason of the fail: Relationship referenced element invalid. line:435
+2024-11-25 16:09:22,316 [logic.exceptions] [ERROR] Elements of the relationship SkillBatteryAccesibleInterfaceRelationship are not exist of the required classes <class 'aas_model.extended_submodel.ExtendedSkill'>, <class 'aas_model.extended_submodel.ExtendedSkillInterface'> line:32
+2024-11-25 16:09:22,316 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:agentskills001 / SkillBatteryAccesibleInterfaceRelationship]. Reason of the fail: Relationship referenced element invalid. line:435
+2024-11-25 16:09:22,502 [logic.exceptions] [ERROR] Elements of the relationship SkillLocationAccesibleInterfaceRelationship are not exist of the required classes <class 'aas_model.extended_submodel.ExtendedSkill'>, <class 'aas_model.extended_submodel.ExtendedSkillInterface'> line:32
+2024-11-25 16:09:22,502 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:agentskills001 / SkillLocationAccesibleInterfaceRelationship]. Reason of the fail: Relationship referenced element invalid. line:435
+2024-11-25 16:09:22,691 [logic.exceptions] [ERROR] Elements of the relationship SkillRAMAccesibleInterfaceRelationship are not exist of the required classes <class 'aas_model.extended_submodel.ExtendedSkill'>, <class 'aas_model.extended_submodel.ExtendedSkillInterface'> line:32
+2024-11-25 16:09:22,691 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:agentskills001 / SkillRAMAccesibleInterfaceRelationship]. Reason of the fail: Relationship referenced element invalid. line:435
+2024-11-25 16:09:22,878 [logic.exceptions] [ERROR] Elements of the relationship CapabilityConstraintRelationship are not exist of the required classes <class 'basyx.aas.model.submodel.Capability'>, <class 'aas_model.extended_submodel.ExtendedCapabilityConstraint'> line:32
+2024-11-25 16:09:22,878 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:agentcapabilities001 / NegotiationConstraints / CapabilityConstraintRelationship]. Reason of the fail: Relationship referenced element invalid. line:435
+2024-11-25 16:09:23,065 [logic.exceptions] [ERROR] Elements of the relationship CapabilityConstraintRelationship are not exist of the required classes <class 'basyx.aas.model.submodel.Capability'>, <class 'aas_model.extended_submodel.ExtendedCapabilityConstraint'> line:32
+2024-11-25 16:09:23,065 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:capabilities001 / CapabilityAdditionalRelationships[0] / EfficientTransportConstraints / CapabilityConstraintRelationship]. Reason of the fail: Relationship referenced element invalid. line:435
+2024-11-25 16:09:23,065 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all capabilities of the asset and the industrial agent... line:449
+2024-11-25 16:09:23,066 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all asset connections... line:87
+2024-11-25 16:09:23,253 [behaviours.init_aas_model_behaviour] [INFO] All asset connections defined in the AAS model have been configured and saved. line:562
+2024-11-25 16:09:24,238 [behaviours.init_aas_model_behaviour] [INFO] AAS model analysis results. 
+	- Analyzed capabilities: []
+	- Analyzed capability constraints: []
+	- Analyzed skills []
+	- Analyzed skill interfaces []
+	- Analyzed asset connections ['InterfaceForHTTP']
+	- Errors found ["NegBatteryCapSkillRelationship (<class 'basyx.aas.model.submodel.Capability'>,<class 'aas_model.extended_submodel.ExtendedSkill'>)", "NegLocationCapSkillRelationship (<class 'basyx.aas.model.submodel.Capability'>,<class 'aas_model.extended_submodel.ExtendedSkill'>)", "NegRAMCapSkillRelationship (<class 'basyx.aas.model.submodel.Capability'>,<class 'aas_model.extended_submodel.ExtendedSkill'>)", "generated_submodel_list_hack_3f2982f1ab3f11ef800000133b2f74ff (<class 'basyx.aas.model.submodel.Capability'>,<class 'aas_model.extended_submodel.ExtendedSkill'>)", "SkillAccesibleInterfaceRelationship (<class 'aas_model.extended_submodel.ExtendedSkill'>,<class 'aas_model.extended_submodel.ExtendedSkillInterface'>)", "SkillBatteryAccesibleInterfaceRelationship (<class 'aas_model.extended_submodel.ExtendedSkill'>,<class 'aas_model.extended_submodel.ExtendedSkillInterface'>)", "SkillLocationAccesibleInterfaceRelationship (<class 'aas_model.extended_submodel.ExtendedSkill'>,<class 'aas_model.extended_submodel.ExtendedSkillInterface'>)", "SkillRAMAccesibleInterfaceRelationship (<class 'aas_model.extended_submodel.ExtendedSkill'>,<class 'aas_model.extended_submodel.ExtendedSkillInterface'>)", "CapabilityConstraintRelationship (<class 'basyx.aas.model.submodel.Capability'>,<class 'aas_model.extended_submodel.ExtendedCapabilityConstraint'>)", "CapabilityConstraintRelationship (<class 'basyx.aas.model.submodel.Capability'>,<class 'aas_model.extended_submodel.ExtendedCapabilityConstraint'>)"] line:568
+2024-11-25 16:09:24,238 [behaviours.init_aas_model_behaviour] [INFO] AAS model initialized. line:97
+2024-11-25 16:09:24,238 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: None line:154
+2024-11-25 16:09:24,247 [states.state_booting] [INFO] gcis1@xmpp.jp agent has finished it Boot state. line:49
+2024-11-25 16:09:24,247 [spade.behaviour] [INFO] FSM transiting from BOOTING to RUNNING. line:591
+2024-11-25 16:09:24,247 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-25 16:09:24,248 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-25 16:09:24,256 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-25 16:09:25,049 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-25 16:09:25,049 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-25 16:09:25,049 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-25 16:09:25,058 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-25 16:09:42,392 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-25 16:09:42,398 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:55
+2024-11-25 16:09:45,131 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-25 16:09:46,233 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/2631827857045839030168626691 line:935
+2024-11-25 16:09:46,510 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABwyNjMxODI3ODU3MDQ1ODM5MDMwMTY4NjI2NjkxbQAAAAjScrQZPLdCTw==' line:2209
+2024-11-25 16:09:47,069 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-25 16:09:47,070 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-11-25 16:09:47,072 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-25 16:09:47,072 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-25 16:09:47,073 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-25 16:09:47,115 [css_ontology.capability_skill_ontology] [INFO] CSS ontology initialized line:42
+2024-11-25 16:09:47,252 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all defined ontology elements... line:72
+2024-11-25 16:09:48,112 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all relationships between ontology elements... line:78
+2024-11-25 16:09:48,301 [logic.exceptions] [ERROR] Elements of the relationship NegBatteryCapSkillRelationship are not exist of the required classes <class 'basyx.aas.model.submodel.Capability'>, <class 'aas_model.extended_submodel.ExtendedSkill'> line:32
+2024-11-25 16:09:48,301 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:agentcapabilities001 / NegBatteryCapSkillRelationship]. Reason of the fail: Relationship referenced element invalid. line:436
+2024-11-25 16:09:48,487 [logic.exceptions] [ERROR] Elements of the relationship NegLocationCapSkillRelationship are not exist of the required classes <class 'basyx.aas.model.submodel.Capability'>, <class 'aas_model.extended_submodel.ExtendedSkill'> line:32
+2024-11-25 16:09:48,487 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:agentcapabilities001 / NegLocationCapSkillRelationship]. Reason of the fail: Relationship referenced element invalid. line:436
+2024-11-25 16:09:48,675 [logic.exceptions] [ERROR] Elements of the relationship NegRAMCapSkillRelationship are not exist of the required classes <class 'basyx.aas.model.submodel.Capability'>, <class 'aas_model.extended_submodel.ExtendedSkill'> line:32
+2024-11-25 16:09:48,675 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:agentcapabilities001 / NegRAMCapSkillRelationship]. Reason of the fail: Relationship referenced element invalid. line:436
+2024-11-25 16:09:48,863 [logic.exceptions] [ERROR] Elements of the relationship generated_submodel_list_hack_4f35382bab3f11ef800000133b2f74ff are not exist of the required classes <class 'basyx.aas.model.submodel.Capability'>, <class 'aas_model.extended_submodel.ExtendedSkill'> line:32
+2024-11-25 16:09:48,863 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:capabilities001 / CapabilitySkillRelationships[0]]. Reason of the fail: Relationship referenced element invalid. line:436
+2024-11-25 16:09:49,050 [logic.exceptions] [ERROR] Elements of the relationship SkillAccesibleInterfaceRelationship are not exist of the required classes <class 'aas_model.extended_submodel.ExtendedSkill'>, <class 'aas_model.extended_submodel.ExtendedSkillInterface'> line:32
+2024-11-25 16:09:49,050 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:transportrobotskills001 / SkillAccesibleInterfaceRelationship]. Reason of the fail: Relationship referenced element invalid. line:436
+2024-11-25 16:09:49,238 [logic.exceptions] [ERROR] Elements of the relationship SkillBatteryAccesibleInterfaceRelationship are not exist of the required classes <class 'aas_model.extended_submodel.ExtendedSkill'>, <class 'aas_model.extended_submodel.ExtendedSkillInterface'> line:32
+2024-11-25 16:09:49,238 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:agentskills001 / SkillBatteryAccesibleInterfaceRelationship]. Reason of the fail: Relationship referenced element invalid. line:436
+2024-11-25 16:09:49,425 [logic.exceptions] [ERROR] Elements of the relationship SkillLocationAccesibleInterfaceRelationship are not exist of the required classes <class 'aas_model.extended_submodel.ExtendedSkill'>, <class 'aas_model.extended_submodel.ExtendedSkillInterface'> line:32
+2024-11-25 16:09:49,425 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:agentskills001 / SkillLocationAccesibleInterfaceRelationship]. Reason of the fail: Relationship referenced element invalid. line:436
+2024-11-25 16:09:49,614 [logic.exceptions] [ERROR] Elements of the relationship SkillRAMAccesibleInterfaceRelationship are not exist of the required classes <class 'aas_model.extended_submodel.ExtendedSkill'>, <class 'aas_model.extended_submodel.ExtendedSkillInterface'> line:32
+2024-11-25 16:09:49,614 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:agentskills001 / SkillRAMAccesibleInterfaceRelationship]. Reason of the fail: Relationship referenced element invalid. line:436
+2024-11-25 16:09:49,800 [logic.exceptions] [ERROR] Elements of the relationship CapabilityConstraintRelationship are not exist of the required classes <class 'basyx.aas.model.submodel.Capability'>, <class 'aas_model.extended_submodel.ExtendedCapabilityConstraint'> line:32
+2024-11-25 16:09:49,800 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:agentcapabilities001 / NegotiationConstraints / CapabilityConstraintRelationship]. Reason of the fail: Relationship referenced element invalid. line:436
+2024-11-25 16:09:49,988 [logic.exceptions] [ERROR] Elements of the relationship CapabilityConstraintRelationship are not exist of the required classes <class 'basyx.aas.model.submodel.Capability'>, <class 'aas_model.extended_submodel.ExtendedCapabilityConstraint'> line:32
+2024-11-25 16:09:49,988 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:capabilities001 / CapabilityAdditionalRelationships[0] / EfficientTransportConstraints / CapabilityConstraintRelationship]. Reason of the fail: Relationship referenced element invalid. line:436
+2024-11-25 16:09:49,988 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all capabilities of the asset and the industrial agent... line:450
+2024-11-25 16:09:49,989 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all asset connections... line:87
+2024-11-25 16:09:50,175 [behaviours.init_aas_model_behaviour] [INFO] All asset connections defined in the AAS model have been configured and saved. line:563
+2024-11-25 16:09:51,160 [behaviours.init_aas_model_behaviour] [INFO] AAS model analysis results. 
+	- Analyzed capabilities: []
+	- Analyzed capability constraints: []
+	- Analyzed skills []
+	- Analyzed skill interfaces []
+	- Analyzed asset connections ['InterfaceForHTTP']
+	- Errors found ["NegBatteryCapSkillRelationship (<class 'basyx.aas.model.submodel.Capability'>,<class 'aas_model.extended_submodel.ExtendedSkill'>)", "NegLocationCapSkillRelationship (<class 'basyx.aas.model.submodel.Capability'>,<class 'aas_model.extended_submodel.ExtendedSkill'>)", "NegRAMCapSkillRelationship (<class 'basyx.aas.model.submodel.Capability'>,<class 'aas_model.extended_submodel.ExtendedSkill'>)", "generated_submodel_list_hack_4f35382bab3f11ef800000133b2f74ff (<class 'basyx.aas.model.submodel.Capability'>,<class 'aas_model.extended_submodel.ExtendedSkill'>)", "SkillAccesibleInterfaceRelationship (<class 'aas_model.extended_submodel.ExtendedSkill'>,<class 'aas_model.extended_submodel.ExtendedSkillInterface'>)", "SkillBatteryAccesibleInterfaceRelationship (<class 'aas_model.extended_submodel.ExtendedSkill'>,<class 'aas_model.extended_submodel.ExtendedSkillInterface'>)", "SkillLocationAccesibleInterfaceRelationship (<class 'aas_model.extended_submodel.ExtendedSkill'>,<class 'aas_model.extended_submodel.ExtendedSkillInterface'>)", "SkillRAMAccesibleInterfaceRelationship (<class 'aas_model.extended_submodel.ExtendedSkill'>,<class 'aas_model.extended_submodel.ExtendedSkillInterface'>)", "CapabilityConstraintRelationship (<class 'basyx.aas.model.submodel.Capability'>,<class 'aas_model.extended_submodel.ExtendedCapabilityConstraint'>)", "CapabilityConstraintRelationship (<class 'basyx.aas.model.submodel.Capability'>,<class 'aas_model.extended_submodel.ExtendedCapabilityConstraint'>)"] line:569
+2024-11-25 16:09:51,160 [behaviours.init_aas_model_behaviour] [INFO] AAS model initialized. line:97
+2024-11-25 16:09:51,160 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: None line:154
+2024-11-25 16:09:51,168 [states.state_booting] [INFO] gcis1@xmpp.jp agent has finished it Boot state. line:49
+2024-11-25 16:09:51,168 [spade.behaviour] [INFO] FSM transiting from BOOTING to RUNNING. line:591
+2024-11-25 16:09:51,168 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-25 16:09:51,168 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-25 16:09:51,176 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-25 16:10:01,161 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:146
+2024-11-25 16:10:09,043 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-25 16:10:09,043 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-25 16:10:09,044 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-25 16:10:09,057 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-25 16:15:06,295 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-25 16:15:06,305 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:55
+2024-11-25 16:15:09,194 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-25 16:15:10,373 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/3156567074093710483230282114 line:935
+2024-11-25 16:15:10,666 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABwzMTU2NTY3MDc0MDkzNzEwNDgzMjMwMjgyMTE0bQAAAAh8WWQsdHJ1iw==' line:2209
+2024-11-25 16:15:11,251 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-25 16:15:11,251 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-11-25 16:15:11,251 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-25 16:15:11,261 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-25 16:15:11,261 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-25 16:15:11,311 [css_ontology.capability_skill_ontology] [INFO] CSS ontology initialized line:42
+2024-11-25 16:15:11,461 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all defined ontology elements... line:72
+2024-11-25 16:15:30,878 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-25 16:15:30,878 [gcis1] [INFO] client shutting down (on request) line:975
+2024-11-25 16:15:30,878 [gcis1.StanzaStream] [INFO] stopping SM stream line:2473
+2024-11-25 16:15:30,878 [gcis1] [INFO] stopping stream line:989
+2024-11-25 16:15:30,878 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-25 16:15:30,878 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-25 16:15:30,878 [css_ontology.capability_skill_ontology] [INFO] CSS ontology initialized line:42
+2024-11-25 16:15:44,850 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-25 16:15:44,856 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:55
+2024-11-25 16:15:47,525 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-25 16:15:48,624 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/1661219507325809783711209190 line:935
+2024-11-25 16:15:48,899 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABwxNjYxMjE5NTA3MzI1ODA5NzgzNzExMjA5MTkwbQAAAAj2S7JE/wJi/g==' line:2209
+2024-11-25 16:15:49,461 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-25 16:15:49,461 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-11-25 16:15:49,464 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-25 16:15:49,464 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-25 16:15:49,465 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-25 16:15:49,488 [css_ontology.capability_skill_ontology] [INFO] CSS ontology initialized line:42
+2024-11-25 16:15:49,572 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all defined ontology elements... line:72
+2024-11-25 16:15:49,756 [css_ontology.capability_skill_module] [WARNING] The data property does not exist in this OWL class. line:68
+2024-11-25 16:15:49,756 [css_ontology.capability_skill_module] [WARNING] The data property does not exist in this OWL class. line:68
+2024-11-25 16:15:49,942 [css_ontology.capability_skill_module] [WARNING] The data property does not exist in this OWL class. line:68
+2024-11-25 16:15:49,943 [css_ontology.capability_skill_module] [WARNING] The data property does not exist in this OWL class. line:68
+2024-11-25 16:15:50,442 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all relationships between ontology elements... line:78
+2024-11-25 16:15:50,629 [logic.exceptions] [ERROR] Elements of the relationship NegBatteryCapSkillRelationship are not exist of the required classes <class 'basyx.aas.model.submodel.Capability'>, <class 'aas_model.extended_submodel.ExtendedSkill'> line:32
+2024-11-25 16:15:50,629 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:agentcapabilities001 / NegBatteryCapSkillRelationship]. Reason of the fail: Relationship referenced element invalid. line:438
+2024-11-25 16:15:50,817 [logic.exceptions] [ERROR] Elements of the relationship NegLocationCapSkillRelationship are not exist of the required classes <class 'basyx.aas.model.submodel.Capability'>, <class 'aas_model.extended_submodel.ExtendedSkill'> line:32
+2024-11-25 16:15:50,817 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:agentcapabilities001 / NegLocationCapSkillRelationship]. Reason of the fail: Relationship referenced element invalid. line:438
+2024-11-25 16:15:51,005 [logic.exceptions] [ERROR] Elements of the relationship NegRAMCapSkillRelationship are not exist of the required classes <class 'basyx.aas.model.submodel.Capability'>, <class 'aas_model.extended_submodel.ExtendedSkill'> line:32
+2024-11-25 16:15:51,005 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:agentcapabilities001 / NegRAMCapSkillRelationship]. Reason of the fail: Relationship referenced element invalid. line:438
+2024-11-25 16:15:51,192 [logic.exceptions] [ERROR] Elements of the relationship generated_submodel_list_hack_272e4c1eab4011ef800000133b2f74ff are not exist of the required classes <class 'basyx.aas.model.submodel.Capability'>, <class 'aas_model.extended_submodel.ExtendedSkill'> line:32
+2024-11-25 16:15:51,192 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:capabilities001 / CapabilitySkillRelationships[0]]. Reason of the fail: Relationship referenced element invalid. line:438
+2024-11-25 16:15:51,379 [logic.exceptions] [ERROR] Elements of the relationship SkillAccesibleInterfaceRelationship are not exist of the required classes <class 'aas_model.extended_submodel.ExtendedSkill'>, <class 'aas_model.extended_submodel.ExtendedSkillInterface'> line:32
+2024-11-25 16:15:51,379 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:transportrobotskills001 / SkillAccesibleInterfaceRelationship]. Reason of the fail: Relationship referenced element invalid. line:438
+2024-11-25 16:15:51,568 [logic.exceptions] [ERROR] Elements of the relationship SkillBatteryAccesibleInterfaceRelationship are not exist of the required classes <class 'aas_model.extended_submodel.ExtendedSkill'>, <class 'aas_model.extended_submodel.ExtendedSkillInterface'> line:32
+2024-11-25 16:15:51,568 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:agentskills001 / SkillBatteryAccesibleInterfaceRelationship]. Reason of the fail: Relationship referenced element invalid. line:438
+2024-11-25 16:15:51,754 [logic.exceptions] [ERROR] Elements of the relationship SkillLocationAccesibleInterfaceRelationship are not exist of the required classes <class 'aas_model.extended_submodel.ExtendedSkill'>, <class 'aas_model.extended_submodel.ExtendedSkillInterface'> line:32
+2024-11-25 16:15:51,754 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:agentskills001 / SkillLocationAccesibleInterfaceRelationship]. Reason of the fail: Relationship referenced element invalid. line:438
+2024-11-25 16:15:51,942 [logic.exceptions] [ERROR] Elements of the relationship SkillRAMAccesibleInterfaceRelationship are not exist of the required classes <class 'aas_model.extended_submodel.ExtendedSkill'>, <class 'aas_model.extended_submodel.ExtendedSkillInterface'> line:32
+2024-11-25 16:15:51,942 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:agentskills001 / SkillRAMAccesibleInterfaceRelationship]. Reason of the fail: Relationship referenced element invalid. line:438
+2024-11-25 16:15:52,129 [logic.exceptions] [ERROR] Elements of the relationship CapabilityConstraintRelationship are not exist of the required classes <class 'basyx.aas.model.submodel.Capability'>, <class 'aas_model.extended_submodel.ExtendedCapabilityConstraint'> line:32
+2024-11-25 16:15:52,129 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:agentcapabilities001 / NegotiationConstraints / CapabilityConstraintRelationship]. Reason of the fail: Relationship referenced element invalid. line:438
+2024-11-25 16:15:52,317 [logic.exceptions] [ERROR] Elements of the relationship CapabilityConstraintRelationship are not exist of the required classes <class 'basyx.aas.model.submodel.Capability'>, <class 'aas_model.extended_submodel.ExtendedCapabilityConstraint'> line:32
+2024-11-25 16:15:52,317 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:capabilities001 / CapabilityAdditionalRelationships[0] / EfficientTransportConstraints / CapabilityConstraintRelationship]. Reason of the fail: Relationship referenced element invalid. line:438
+2024-11-25 16:15:52,317 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all capabilities of the asset and the industrial agent... line:452
+2024-11-25 16:15:52,318 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all asset connections... line:87
+2024-11-25 16:15:52,504 [behaviours.init_aas_model_behaviour] [INFO] All asset connections defined in the AAS model have been configured and saved. line:565
+2024-11-25 16:15:53,369 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-25 16:15:53,369 [gcis1] [INFO] client shutting down (on request) line:975
+2024-11-25 16:15:53,370 [gcis1.StanzaStream] [INFO] stopping SM stream line:2473
+2024-11-25 16:15:53,370 [gcis1] [INFO] stopping stream line:989
+2024-11-25 16:15:53,370 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-25 16:15:53,370 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-25 16:15:53,374 [css_ontology.capability_skill_ontology] [INFO] CSS ontology initialized line:42
+2024-11-25 16:15:53,452 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all defined ontology elements... line:72
+2024-11-25 16:15:53,489 [behaviours.init_aas_model_behaviour] [INFO] AAS model analysis results. 
+	- Analyzed capabilities: []
+	- Analyzed capability constraints: []
+	- Analyzed skills []
+	- Analyzed skill interfaces []
+	- Analyzed asset connections ['InterfaceForHTTP']
+	- Errors found ["NegBatteryCapSkillRelationship (<class 'basyx.aas.model.submodel.Capability'>,<class 'aas_model.extended_submodel.ExtendedSkill'>)", "NegLocationCapSkillRelationship (<class 'basyx.aas.model.submodel.Capability'>,<class 'aas_model.extended_submodel.ExtendedSkill'>)", "NegRAMCapSkillRelationship (<class 'basyx.aas.model.submodel.Capability'>,<class 'aas_model.extended_submodel.ExtendedSkill'>)", "generated_submodel_list_hack_272e4c1eab4011ef800000133b2f74ff (<class 'basyx.aas.model.submodel.Capability'>,<class 'aas_model.extended_submodel.ExtendedSkill'>)", "SkillAccesibleInterfaceRelationship (<class 'aas_model.extended_submodel.ExtendedSkill'>,<class 'aas_model.extended_submodel.ExtendedSkillInterface'>)", "SkillBatteryAccesibleInterfaceRelationship (<class 'aas_model.extended_submodel.ExtendedSkill'>,<class 'aas_model.extended_submodel.ExtendedSkillInterface'>)", "SkillLocationAccesibleInterfaceRelationship (<class 'aas_model.extended_submodel.ExtendedSkill'>,<class 'aas_model.extended_submodel.ExtendedSkillInterface'>)", "SkillRAMAccesibleInterfaceRelationship (<class 'aas_model.extended_submodel.ExtendedSkill'>,<class 'aas_model.extended_submodel.ExtendedSkillInterface'>)", "CapabilityConstraintRelationship (<class 'basyx.aas.model.submodel.Capability'>,<class 'aas_model.extended_submodel.ExtendedCapabilityConstraint'>)", "CapabilityConstraintRelationship (<class 'basyx.aas.model.submodel.Capability'>,<class 'aas_model.extended_submodel.ExtendedCapabilityConstraint'>)"] line:571
+2024-11-25 16:15:53,489 [behaviours.init_aas_model_behaviour] [INFO] AAS model initialized. line:97
+2024-11-25 16:15:53,489 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: None line:154
+2024-11-25 16:16:00,703 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-25 16:16:00,719 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:55
+2024-11-25 16:16:03,492 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-25 16:16:04,580 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/81095354218603792730327237 line:935
+2024-11-25 16:16:04,850 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABo4MTA5NTM1NDIxODYwMzc5MjczMDMyNzIzN20AAAAIHJJxti6zQD4=' line:2209
+2024-11-25 16:16:05,419 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-25 16:16:05,421 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-11-25 16:16:05,424 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-25 16:16:05,425 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-25 16:16:05,425 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-25 16:16:05,460 [css_ontology.capability_skill_ontology] [INFO] CSS ontology initialized line:42
+2024-11-25 16:16:05,617 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all defined ontology elements... line:72
+2024-11-25 16:16:11,672 [css_ontology.capability_skill_module] [WARNING] The data property does not exist in this OWL class. line:68
+2024-11-25 16:16:20,568 [css_ontology.capability_skill_module] [WARNING] The data property does not exist in this OWL class. line:68
+2024-11-25 16:16:36,945 [css_ontology.capability_skill_module] [WARNING] The data property does not exist in this OWL class. line:68
+2024-11-25 16:16:36,945 [css_ontology.capability_skill_module] [WARNING] The data property does not exist in this OWL class. line:68
+2024-11-25 16:16:37,469 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all relationships between ontology elements... line:78
+2024-11-25 16:16:44,773 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-25 16:16:44,773 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-25 16:16:44,773 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-25 16:16:44,773 [css_ontology.capability_skill_ontology] [INFO] CSS ontology initialized line:42
+2024-11-25 16:16:44,855 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all defined ontology elements... line:72
+2024-11-25 16:16:52,133 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-25 16:16:52,142 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:55
+2024-11-25 16:16:54,903 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-25 16:16:56,017 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/1194767604018744630911209702 line:935
+2024-11-25 16:16:56,291 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABwxMTk0NzY3NjA0MDE4NzQ0NjMwOTExMjA5NzAybQAAAAhyj8rCkBLsLw==' line:2209
+2024-11-25 16:16:56,870 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-25 16:16:56,872 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-11-25 16:16:56,875 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-25 16:16:56,876 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-25 16:16:56,876 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-25 16:16:56,910 [css_ontology.capability_skill_ontology] [INFO] CSS ontology initialized line:42
+2024-11-25 16:16:57,072 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all defined ontology elements... line:72
+2024-11-25 16:17:00,324 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-25 16:17:00,326 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-25 16:17:00,327 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-25 16:17:00,330 [css_ontology.capability_skill_ontology] [INFO] CSS ontology initialized line:42
+2024-11-25 16:17:00,420 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all defined ontology elements... line:72
+2024-11-25 16:17:00,605 [css_ontology.capability_skill_module] [WARNING] The data property does not exist in this OWL class. line:68
+2024-11-25 16:17:00,606 [css_ontology.capability_skill_module] [WARNING] The data property does not exist in this OWL class. line:68
+2024-11-25 16:17:00,790 [css_ontology.capability_skill_module] [WARNING] The data property does not exist in this OWL class. line:68
+2024-11-25 16:17:00,791 [css_ontology.capability_skill_module] [WARNING] The data property does not exist in this OWL class. line:68
+2024-11-25 16:17:01,291 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all relationships between ontology elements... line:78
+2024-11-25 16:17:01,479 [logic.exceptions] [ERROR] Elements of the relationship NegBatteryCapSkillRelationship are not exist of the required classes <class 'basyx.aas.model.submodel.Capability'>, <class 'aas_model.extended_submodel.ExtendedSkill'> line:32
+2024-11-25 16:17:01,479 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:agentcapabilities001 / NegBatteryCapSkillRelationship]. Reason of the fail: Relationship referenced element invalid. line:438
+2024-11-25 16:17:01,666 [logic.exceptions] [ERROR] Elements of the relationship NegLocationCapSkillRelationship are not exist of the required classes <class 'basyx.aas.model.submodel.Capability'>, <class 'aas_model.extended_submodel.ExtendedSkill'> line:32
+2024-11-25 16:17:01,666 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:agentcapabilities001 / NegLocationCapSkillRelationship]. Reason of the fail: Relationship referenced element invalid. line:438
+2024-11-25 16:17:01,853 [logic.exceptions] [ERROR] Elements of the relationship NegRAMCapSkillRelationship are not exist of the required classes <class 'basyx.aas.model.submodel.Capability'>, <class 'aas_model.extended_submodel.ExtendedSkill'> line:32
+2024-11-25 16:17:01,853 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:agentcapabilities001 / NegRAMCapSkillRelationship]. Reason of the fail: Relationship referenced element invalid. line:438
+2024-11-25 16:17:02,041 [logic.exceptions] [ERROR] Elements of the relationship generated_submodel_list_hack_516a21eeab4011ef800000133b2f74ff are not exist of the required classes <class 'basyx.aas.model.submodel.Capability'>, <class 'aas_model.extended_submodel.ExtendedSkill'> line:32
+2024-11-25 16:17:02,041 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:capabilities001 / CapabilitySkillRelationships[0]]. Reason of the fail: Relationship referenced element invalid. line:438
+2024-11-25 16:17:02,229 [logic.exceptions] [ERROR] Elements of the relationship SkillAccesibleInterfaceRelationship are not exist of the required classes <class 'aas_model.extended_submodel.ExtendedSkill'>, <class 'aas_model.extended_submodel.ExtendedSkillInterface'> line:32
+2024-11-25 16:17:02,229 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:transportrobotskills001 / SkillAccesibleInterfaceRelationship]. Reason of the fail: Relationship referenced element invalid. line:438
+2024-11-25 16:17:02,417 [logic.exceptions] [ERROR] Elements of the relationship SkillBatteryAccesibleInterfaceRelationship are not exist of the required classes <class 'aas_model.extended_submodel.ExtendedSkill'>, <class 'aas_model.extended_submodel.ExtendedSkillInterface'> line:32
+2024-11-25 16:17:02,417 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:agentskills001 / SkillBatteryAccesibleInterfaceRelationship]. Reason of the fail: Relationship referenced element invalid. line:438
+2024-11-25 16:17:02,605 [logic.exceptions] [ERROR] Elements of the relationship SkillLocationAccesibleInterfaceRelationship are not exist of the required classes <class 'aas_model.extended_submodel.ExtendedSkill'>, <class 'aas_model.extended_submodel.ExtendedSkillInterface'> line:32
+2024-11-25 16:17:02,605 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:agentskills001 / SkillLocationAccesibleInterfaceRelationship]. Reason of the fail: Relationship referenced element invalid. line:438
+2024-11-25 16:17:02,790 [logic.exceptions] [ERROR] Elements of the relationship SkillRAMAccesibleInterfaceRelationship are not exist of the required classes <class 'aas_model.extended_submodel.ExtendedSkill'>, <class 'aas_model.extended_submodel.ExtendedSkillInterface'> line:32
+2024-11-25 16:17:02,790 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:agentskills001 / SkillRAMAccesibleInterfaceRelationship]. Reason of the fail: Relationship referenced element invalid. line:438
+2024-11-25 16:17:02,978 [logic.exceptions] [ERROR] Elements of the relationship CapabilityConstraintRelationship are not exist of the required classes <class 'basyx.aas.model.submodel.Capability'>, <class 'aas_model.extended_submodel.ExtendedCapabilityConstraint'> line:32
+2024-11-25 16:17:02,978 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:agentcapabilities001 / NegotiationConstraints / CapabilityConstraintRelationship]. Reason of the fail: Relationship referenced element invalid. line:438
+2024-11-25 16:17:03,167 [logic.exceptions] [ERROR] Elements of the relationship CapabilityConstraintRelationship are not exist of the required classes <class 'basyx.aas.model.submodel.Capability'>, <class 'aas_model.extended_submodel.ExtendedCapabilityConstraint'> line:32
+2024-11-25 16:17:03,167 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:capabilities001 / CapabilityAdditionalRelationships[0] / EfficientTransportConstraints / CapabilityConstraintRelationship]. Reason of the fail: Relationship referenced element invalid. line:438
+2024-11-25 16:17:03,167 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all capabilities of the asset and the industrial agent... line:452
+2024-11-25 16:17:03,168 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all asset connections... line:87
+2024-11-25 16:17:03,353 [behaviours.init_aas_model_behaviour] [INFO] All asset connections defined in the AAS model have been configured and saved. line:565
+2024-11-25 16:23:22,221 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-25 16:23:22,229 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:55
+2024-11-25 16:23:24,993 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-25 16:23:26,126 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/2009420665234785883168661923 line:935
+2024-11-25 16:23:26,407 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABwyMDA5NDIwNjY1MjM0Nzg1ODgzMTY4NjYxOTIzbQAAAAgfv8nHh99c5g==' line:2209
+2024-11-25 16:23:27,002 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-25 16:23:27,003 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-11-25 16:23:27,005 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-25 16:23:27,006 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-25 16:23:27,006 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-25 16:23:27,047 [css_ontology.capability_skill_ontology] [INFO] CSS ontology initialized line:42
+2024-11-25 16:23:27,123 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all defined ontology elements... line:72
+2024-11-25 16:23:27,311 [spade.behaviour] [ERROR] Exception running behaviour OneShotBehaviour/InitAASModelBehaviour: 'get_property_name_by_iri' property is not defined. line:291
+2024-11-25 16:23:27,323 [spade.behaviour] [ERROR] Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 285, in _step
+    await self._run()
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 274, in _run
+    await self.run()
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\init_aas_model_behaviour.py", line 75, in run
+    await self.get_and_save_ontology_classes_information()      # TODO PRUEBAS
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\init_aas_model_behaviour.py", line 222, in get_and_save_ontology_classes_information
+    await self.check_and_create_instances_by_iri(CapabilitySkillOntologyInfo.CSS_ONTOLOGY_AGENT_CAPABILITY_IRI)
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\init_aas_model_behaviour.py", line 251, in check_and_create_instances_by_iri
+    await self.create_ontology_instance_from_sme_element(submodel_elem, ontology_class_iri)
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\init_aas_model_behaviour.py", line 309, in create_ontology_instance_from_sme_element
+    await self.add_ontology_required_information(sme_elem, created_instance)
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\init_aas_model_behaviour.py", line 335, in add_ontology_required_information
+    required_value_name = ontology_instance.get_property_name_by_iri(required_value_iri)
+  File "C:\Python310\lib\site-packages\owlready2\individual.py", line 295, in __getattr__
+    raise AttributeError("'%s' property is not defined." % attr)
+AttributeError: 'get_property_name_by_iri' property is not defined.. Did you mean: 'get_data_property_name_by_iri'?
+ line:296
+2024-11-25 16:23:27,323 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: 'get_property_name_by_iri' property is not defined. line:154
+2024-11-25 16:23:27,323 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: None line:154
+2024-11-25 16:23:27,332 [states.state_booting] [INFO] gcis1@xmpp.jp agent has finished it Boot state. line:49
+2024-11-25 16:23:27,332 [spade.behaviour] [INFO] FSM transiting from BOOTING to RUNNING. line:591
+2024-11-25 16:23:27,332 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-25 16:23:27,332 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-25 16:23:27,340 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-25 16:23:37,342 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:146
+2024-11-25 16:23:47,343 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:146
+2024-11-25 16:23:57,344 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:146
+2024-11-25 16:24:12,376 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-25 16:24:12,390 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:55
+2024-11-25 16:24:15,166 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-25 16:24:16,297 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/438369647556178965996168036 line:935
+2024-11-25 16:24:16,578 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABs0MzgzNjk2NDc1NTYxNzg5NjU5OTYxNjgwMzZtAAAACNS0MFL5ip16' line:2209
+2024-11-25 16:24:17,155 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-25 16:24:17,155 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-11-25 16:24:17,157 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-25 16:24:17,157 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-25 16:24:17,157 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-25 16:24:17,179 [css_ontology.capability_skill_ontology] [INFO] CSS ontology initialized line:42
+2024-11-25 16:24:17,285 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all defined ontology elements... line:72
+2024-11-25 16:24:18,158 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all relationships between ontology elements... line:78
+2024-11-25 16:24:18,345 [logic.exceptions] [ERROR] Elements of the relationship NegBatteryCapSkillRelationship are not exist of the required classes <class 'basyx.aas.model.submodel.Capability'>, <class 'aas_model.extended_submodel.ExtendedSkill'> line:32
+2024-11-25 16:24:18,345 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:agentcapabilities001 / NegBatteryCapSkillRelationship]. Reason of the fail: Relationship referenced element invalid. line:439
+2024-11-25 16:24:18,533 [logic.exceptions] [ERROR] Elements of the relationship NegLocationCapSkillRelationship are not exist of the required classes <class 'basyx.aas.model.submodel.Capability'>, <class 'aas_model.extended_submodel.ExtendedSkill'> line:32
+2024-11-25 16:24:18,533 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:agentcapabilities001 / NegLocationCapSkillRelationship]. Reason of the fail: Relationship referenced element invalid. line:439
+2024-11-25 16:24:18,721 [logic.exceptions] [ERROR] Elements of the relationship NegRAMCapSkillRelationship are not exist of the required classes <class 'basyx.aas.model.submodel.Capability'>, <class 'aas_model.extended_submodel.ExtendedSkill'> line:32
+2024-11-25 16:24:18,721 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:agentcapabilities001 / NegRAMCapSkillRelationship]. Reason of the fail: Relationship referenced element invalid. line:439
+2024-11-25 16:24:18,908 [logic.exceptions] [ERROR] Elements of the relationship generated_submodel_list_hack_55cbc273ab4111ef800000133b2f74ff are not exist of the required classes <class 'basyx.aas.model.submodel.Capability'>, <class 'aas_model.extended_submodel.ExtendedSkill'> line:32
+2024-11-25 16:24:18,908 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:capabilities001 / CapabilitySkillRelationships[0]]. Reason of the fail: Relationship referenced element invalid. line:439
+2024-11-25 16:24:19,095 [logic.exceptions] [ERROR] Elements of the relationship SkillAccesibleInterfaceRelationship are not exist of the required classes <class 'aas_model.extended_submodel.ExtendedSkill'>, <class 'aas_model.extended_submodel.ExtendedSkillInterface'> line:32
+2024-11-25 16:24:19,095 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:transportrobotskills001 / SkillAccesibleInterfaceRelationship]. Reason of the fail: Relationship referenced element invalid. line:439
+2024-11-25 16:24:19,282 [logic.exceptions] [ERROR] Elements of the relationship SkillBatteryAccesibleInterfaceRelationship are not exist of the required classes <class 'aas_model.extended_submodel.ExtendedSkill'>, <class 'aas_model.extended_submodel.ExtendedSkillInterface'> line:32
+2024-11-25 16:24:19,282 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:agentskills001 / SkillBatteryAccesibleInterfaceRelationship]. Reason of the fail: Relationship referenced element invalid. line:439
+2024-11-25 16:24:19,470 [logic.exceptions] [ERROR] Elements of the relationship SkillLocationAccesibleInterfaceRelationship are not exist of the required classes <class 'aas_model.extended_submodel.ExtendedSkill'>, <class 'aas_model.extended_submodel.ExtendedSkillInterface'> line:32
+2024-11-25 16:24:19,470 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:agentskills001 / SkillLocationAccesibleInterfaceRelationship]. Reason of the fail: Relationship referenced element invalid. line:439
+2024-11-25 16:24:19,657 [logic.exceptions] [ERROR] Elements of the relationship SkillRAMAccesibleInterfaceRelationship are not exist of the required classes <class 'aas_model.extended_submodel.ExtendedSkill'>, <class 'aas_model.extended_submodel.ExtendedSkillInterface'> line:32
+2024-11-25 16:24:19,657 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:agentskills001 / SkillRAMAccesibleInterfaceRelationship]. Reason of the fail: Relationship referenced element invalid. line:439
+2024-11-25 16:24:19,846 [logic.exceptions] [ERROR] Elements of the relationship CapabilityConstraintRelationship are not exist of the required classes <class 'basyx.aas.model.submodel.Capability'>, <class 'aas_model.extended_submodel.ExtendedCapabilityConstraint'> line:32
+2024-11-25 16:24:19,846 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:agentcapabilities001 / NegotiationConstraints / CapabilityConstraintRelationship]. Reason of the fail: Relationship referenced element invalid. line:439
+2024-11-25 16:24:20,034 [logic.exceptions] [ERROR] Elements of the relationship CapabilityConstraintRelationship are not exist of the required classes <class 'basyx.aas.model.submodel.Capability'>, <class 'aas_model.extended_submodel.ExtendedCapabilityConstraint'> line:32
+2024-11-25 16:24:20,034 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:capabilities001 / CapabilityAdditionalRelationships[0] / EfficientTransportConstraints / CapabilityConstraintRelationship]. Reason of the fail: Relationship referenced element invalid. line:439
+2024-11-25 16:24:20,034 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all capabilities of the asset and the industrial agent... line:453
+2024-11-25 16:24:20,035 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all asset connections... line:87
+2024-11-25 16:24:20,220 [behaviours.init_aas_model_behaviour] [INFO] All asset connections defined in the AAS model have been configured and saved. line:566
+2024-11-25 16:24:21,221 [behaviours.init_aas_model_behaviour] [INFO] AAS model analysis results. 
+	- Analyzed capabilities: []
+	- Analyzed capability constraints: []
+	- Analyzed skills []
+	- Analyzed skill interfaces []
+	- Analyzed asset connections ['InterfaceForHTTP']
+	- Errors found ["NegBatteryCapSkillRelationship (<class 'basyx.aas.model.submodel.Capability'>,<class 'aas_model.extended_submodel.ExtendedSkill'>)", "NegLocationCapSkillRelationship (<class 'basyx.aas.model.submodel.Capability'>,<class 'aas_model.extended_submodel.ExtendedSkill'>)", "NegRAMCapSkillRelationship (<class 'basyx.aas.model.submodel.Capability'>,<class 'aas_model.extended_submodel.ExtendedSkill'>)", "generated_submodel_list_hack_55cbc273ab4111ef800000133b2f74ff (<class 'basyx.aas.model.submodel.Capability'>,<class 'aas_model.extended_submodel.ExtendedSkill'>)", "SkillAccesibleInterfaceRelationship (<class 'aas_model.extended_submodel.ExtendedSkill'>,<class 'aas_model.extended_submodel.ExtendedSkillInterface'>)", "SkillBatteryAccesibleInterfaceRelationship (<class 'aas_model.extended_submodel.ExtendedSkill'>,<class 'aas_model.extended_submodel.ExtendedSkillInterface'>)", "SkillLocationAccesibleInterfaceRelationship (<class 'aas_model.extended_submodel.ExtendedSkill'>,<class 'aas_model.extended_submodel.ExtendedSkillInterface'>)", "SkillRAMAccesibleInterfaceRelationship (<class 'aas_model.extended_submodel.ExtendedSkill'>,<class 'aas_model.extended_submodel.ExtendedSkillInterface'>)", "CapabilityConstraintRelationship (<class 'basyx.aas.model.submodel.Capability'>,<class 'aas_model.extended_submodel.ExtendedCapabilityConstraint'>)", "CapabilityConstraintRelationship (<class 'basyx.aas.model.submodel.Capability'>,<class 'aas_model.extended_submodel.ExtendedCapabilityConstraint'>)"] line:572
+2024-11-25 16:24:21,221 [behaviours.init_aas_model_behaviour] [INFO] AAS model initialized. line:97
+2024-11-25 16:24:21,221 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: None line:154
+2024-11-25 16:24:21,231 [states.state_booting] [INFO] gcis1@xmpp.jp agent has finished it Boot state. line:49
+2024-11-25 16:24:21,231 [spade.behaviour] [INFO] FSM transiting from BOOTING to RUNNING. line:591
+2024-11-25 16:24:21,231 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-25 16:24:21,231 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-25 16:24:21,239 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-25 16:24:24,497 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-25 16:24:24,497 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-25 16:24:24,498 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-25 16:24:24,515 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-25 16:24:35,550 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-25 16:24:35,562 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:55
+2024-11-25 16:24:38,407 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-25 16:24:39,554 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/15958805956688030962168665379 line:935
+2024-11-25 16:24:39,838 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAAB0xNTk1ODgwNTk1NjY4ODAzMDk2MjE2ODY2NTM3OW0AAAAI+LJ6b/Znv3M=' line:2209
+2024-11-25 16:24:40,435 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-25 16:24:40,436 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-11-25 16:24:40,440 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-25 16:24:40,440 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-25 16:24:40,440 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-25 16:24:40,471 [css_ontology.capability_skill_ontology] [INFO] CSS ontology initialized line:42
+2024-11-25 16:24:40,629 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all defined ontology elements... line:72
+2024-11-25 16:24:43,724 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all relationships between ontology elements... line:78
+2024-11-25 16:24:59,244 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-25 16:24:59,244 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-25 16:24:59,248 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-25 16:24:59,248 [css_ontology.capability_skill_ontology] [INFO] CSS ontology initialized line:42
+2024-11-25 16:24:59,332 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all defined ontology elements... line:72
+2024-11-25 16:25:12,398 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-25 16:25:12,404 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:55
+2024-11-25 16:25:15,018 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-25 16:25:16,106 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/14296250055308794442230319522 line:935
+2024-11-25 16:25:16,377 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAAB0xNDI5NjI1MDA1NTMwODc5NDQ0MjIzMDMxOTUyMm0AAAAIQEzFsPaQ8s8=' line:2209
+2024-11-25 16:25:16,941 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-25 16:25:16,942 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-11-25 16:25:16,944 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-25 16:25:16,945 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-25 16:25:16,945 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-25 16:25:16,984 [css_ontology.capability_skill_ontology] [INFO] CSS ontology initialized line:42
+2024-11-25 16:25:17,073 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all defined ontology elements... line:72
+2024-11-25 16:25:17,930 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all relationships between ontology elements... line:78
+2024-11-25 16:25:18,118 [logic.exceptions] [ERROR] Elements of the relationship NegBatteryCapSkillRelationship are not exist of the required classes <class 'aas_model.extended_submodel.ExtendedCapability'>, <class 'aas_model.extended_submodel.ExtendedSkill'> line:32
+2024-11-25 16:25:18,118 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:agentcapabilities001 / NegBatteryCapSkillRelationship]. Reason of the fail: Relationship referenced element invalid. line:439
+2024-11-25 16:25:18,304 [logic.exceptions] [ERROR] Elements of the relationship NegLocationCapSkillRelationship are not exist of the required classes <class 'aas_model.extended_submodel.ExtendedCapability'>, <class 'aas_model.extended_submodel.ExtendedSkill'> line:32
+2024-11-25 16:25:18,304 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:agentcapabilities001 / NegLocationCapSkillRelationship]. Reason of the fail: Relationship referenced element invalid. line:439
+2024-11-25 16:25:18,492 [logic.exceptions] [ERROR] Elements of the relationship NegRAMCapSkillRelationship are not exist of the required classes <class 'aas_model.extended_submodel.ExtendedCapability'>, <class 'aas_model.extended_submodel.ExtendedSkill'> line:32
+2024-11-25 16:25:18,493 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:agentcapabilities001 / NegRAMCapSkillRelationship]. Reason of the fail: Relationship referenced element invalid. line:439
+2024-11-25 16:25:18,680 [logic.exceptions] [ERROR] Elements of the relationship generated_submodel_list_hack_796f0f72ab4111ef800000133b2f74ff are not exist of the required classes <class 'aas_model.extended_submodel.ExtendedCapability'>, <class 'aas_model.extended_submodel.ExtendedSkill'> line:32
+2024-11-25 16:25:18,680 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:capabilities001 / CapabilitySkillRelationships[0]]. Reason of the fail: Relationship referenced element invalid. line:439
+2024-11-25 16:25:18,867 [logic.exceptions] [ERROR] Elements of the relationship SkillAccesibleInterfaceRelationship are not exist of the required classes <class 'aas_model.extended_submodel.ExtendedSkill'>, <class 'aas_model.extended_submodel.ExtendedSkillInterface'> line:32
+2024-11-25 16:25:18,867 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:transportrobotskills001 / SkillAccesibleInterfaceRelationship]. Reason of the fail: Relationship referenced element invalid. line:439
+2024-11-25 16:25:19,055 [logic.exceptions] [ERROR] Elements of the relationship SkillBatteryAccesibleInterfaceRelationship are not exist of the required classes <class 'aas_model.extended_submodel.ExtendedSkill'>, <class 'aas_model.extended_submodel.ExtendedSkillInterface'> line:32
+2024-11-25 16:25:19,055 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:agentskills001 / SkillBatteryAccesibleInterfaceRelationship]. Reason of the fail: Relationship referenced element invalid. line:439
+2024-11-25 16:25:19,241 [logic.exceptions] [ERROR] Elements of the relationship SkillLocationAccesibleInterfaceRelationship are not exist of the required classes <class 'aas_model.extended_submodel.ExtendedSkill'>, <class 'aas_model.extended_submodel.ExtendedSkillInterface'> line:32
+2024-11-25 16:25:19,241 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:agentskills001 / SkillLocationAccesibleInterfaceRelationship]. Reason of the fail: Relationship referenced element invalid. line:439
+2024-11-25 16:25:19,430 [logic.exceptions] [ERROR] Elements of the relationship SkillRAMAccesibleInterfaceRelationship are not exist of the required classes <class 'aas_model.extended_submodel.ExtendedSkill'>, <class 'aas_model.extended_submodel.ExtendedSkillInterface'> line:32
+2024-11-25 16:25:19,430 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:agentskills001 / SkillRAMAccesibleInterfaceRelationship]. Reason of the fail: Relationship referenced element invalid. line:439
+2024-11-25 16:25:19,617 [logic.exceptions] [ERROR] Elements of the relationship CapabilityConstraintRelationship are not exist of the required classes <class 'aas_model.extended_submodel.ExtendedCapability'>, <class 'aas_model.extended_submodel.ExtendedCapabilityConstraint'> line:32
+2024-11-25 16:25:19,617 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:agentcapabilities001 / NegotiationConstraints / CapabilityConstraintRelationship]. Reason of the fail: Relationship referenced element invalid. line:439
+2024-11-25 16:25:19,805 [logic.exceptions] [ERROR] Elements of the relationship CapabilityConstraintRelationship are not exist of the required classes <class 'aas_model.extended_submodel.ExtendedCapability'>, <class 'aas_model.extended_submodel.ExtendedCapabilityConstraint'> line:32
+2024-11-25 16:25:19,805 [behaviours.init_aas_model_behaviour] [WARNING] Check the AAS Model RelationshipElement[urn:ehu:gcis:submodel:1:1:capabilities001 / CapabilityAdditionalRelationships[0] / EfficientTransportConstraints / CapabilityConstraintRelationship]. Reason of the fail: Relationship referenced element invalid. line:439
+2024-11-25 16:25:19,805 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all capabilities of the asset and the industrial agent... line:453
+2024-11-25 16:25:19,805 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all asset connections... line:87
+2024-11-25 16:25:19,992 [behaviours.init_aas_model_behaviour] [INFO] All asset connections defined in the AAS model have been configured and saved. line:566
+2024-11-25 16:25:20,976 [behaviours.init_aas_model_behaviour] [INFO] AAS model analysis results. 
+	- Analyzed capabilities: []
+	- Analyzed capability constraints: []
+	- Analyzed skills []
+	- Analyzed skill interfaces []
+	- Analyzed asset connections ['InterfaceForHTTP']
+	- Errors found ["NegBatteryCapSkillRelationship (<class 'aas_model.extended_submodel.ExtendedCapability'>,<class 'aas_model.extended_submodel.ExtendedSkill'>)", "NegLocationCapSkillRelationship (<class 'aas_model.extended_submodel.ExtendedCapability'>,<class 'aas_model.extended_submodel.ExtendedSkill'>)", "NegRAMCapSkillRelationship (<class 'aas_model.extended_submodel.ExtendedCapability'>,<class 'aas_model.extended_submodel.ExtendedSkill'>)", "generated_submodel_list_hack_796f0f72ab4111ef800000133b2f74ff (<class 'aas_model.extended_submodel.ExtendedCapability'>,<class 'aas_model.extended_submodel.ExtendedSkill'>)", "SkillAccesibleInterfaceRelationship (<class 'aas_model.extended_submodel.ExtendedSkill'>,<class 'aas_model.extended_submodel.ExtendedSkillInterface'>)", "SkillBatteryAccesibleInterfaceRelationship (<class 'aas_model.extended_submodel.ExtendedSkill'>,<class 'aas_model.extended_submodel.ExtendedSkillInterface'>)", "SkillLocationAccesibleInterfaceRelationship (<class 'aas_model.extended_submodel.ExtendedSkill'>,<class 'aas_model.extended_submodel.ExtendedSkillInterface'>)", "SkillRAMAccesibleInterfaceRelationship (<class 'aas_model.extended_submodel.ExtendedSkill'>,<class 'aas_model.extended_submodel.ExtendedSkillInterface'>)", "CapabilityConstraintRelationship (<class 'aas_model.extended_submodel.ExtendedCapability'>,<class 'aas_model.extended_submodel.ExtendedCapabilityConstraint'>)", "CapabilityConstraintRelationship (<class 'aas_model.extended_submodel.ExtendedCapability'>,<class 'aas_model.extended_submodel.ExtendedCapabilityConstraint'>)"] line:572
+2024-11-25 16:25:20,976 [behaviours.init_aas_model_behaviour] [INFO] AAS model initialized. line:97
+2024-11-25 16:25:20,976 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: None line:154
+2024-11-25 16:25:20,984 [states.state_booting] [INFO] gcis1@xmpp.jp agent has finished it Boot state. line:49
+2024-11-25 16:25:20,984 [spade.behaviour] [INFO] FSM transiting from BOOTING to RUNNING. line:591
+2024-11-25 16:25:20,984 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-25 16:25:20,984 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-25 16:25:20,993 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-25 16:25:25,243 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-25 16:25:25,243 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-25 16:25:25,243 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-25 16:25:25,253 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-25 16:25:33,244 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-25 16:25:33,258 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:55
+2024-11-25 16:25:36,081 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-25 16:25:37,306 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/4056531186759055996230322242 line:935
+2024-11-25 16:25:37,606 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABw0MDU2NTMxMTg2NzU5MDU1OTk2MjMwMzIyMjQybQAAAAgsLjBltB9tTg==' line:2209
+2024-11-25 16:25:38,237 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-25 16:25:38,241 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-11-25 16:25:38,249 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-25 16:25:38,249 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-25 16:25:38,249 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-25 16:25:38,293 [css_ontology.capability_skill_ontology] [INFO] CSS ontology initialized line:42
+2024-11-25 16:25:38,465 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all defined ontology elements... line:72
+2024-11-25 16:25:43,059 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all relationships between ontology elements... line:78
+2024-11-25 16:26:08,781 [logic.exceptions] [ERROR] Elements of the relationship NegBatteryCapSkillRelationship are not exist of the required classes <class 'aas_model.extended_submodel.ExtendedCapability'>, <class 'aas_model.extended_submodel.ExtendedSkill'> line:32
+2024-11-25 16:26:15,271 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-25 16:26:15,275 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-25 16:26:15,275 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-25 16:26:15,283 [css_ontology.capability_skill_ontology] [INFO] CSS ontology initialized line:42
+2024-11-25 16:26:15,359 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all defined ontology elements... line:72
+2024-11-25 16:26:22,543 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-25 16:26:22,559 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:55
+2024-11-25 16:26:25,446 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-25 16:26:26,594 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/1761558474622878617696172708 line:935
+2024-11-25 16:26:26,881 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABwxNzYxNTU4NDc0NjIyODc4NjE3Njk2MTcyNzA4bQAAAAh91nfqgMQhdA==' line:2209
+2024-11-25 16:26:27,473 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-25 16:26:27,473 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-11-25 16:26:27,477 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-25 16:26:27,481 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-25 16:26:27,481 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-25 16:26:27,513 [css_ontology.capability_skill_ontology] [INFO] CSS ontology initialized line:42
+2024-11-25 16:26:27,741 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all defined ontology elements... line:72
+2024-11-25 16:26:30,437 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all relationships between ontology elements... line:78
+2024-11-25 16:26:56,188 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-25 16:26:56,188 [gcis1] [INFO] client shutting down (on request) line:975
+2024-11-25 16:26:56,188 [gcis1.StanzaStream] [INFO] stopping SM stream line:2473
+2024-11-25 16:26:56,188 [gcis1] [INFO] stopping stream line:989
+2024-11-25 16:26:56,188 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-25 16:26:56,188 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-25 16:26:56,197 [css_ontology.capability_skill_ontology] [INFO] CSS ontology initialized line:42
+2024-11-25 16:26:56,278 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all defined ontology elements... line:72
+2024-11-25 16:28:35,825 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-25 16:28:35,831 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:55
+2024-11-25 16:28:38,611 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-25 16:28:39,702 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/1724697955338282621230335330 line:935
+2024-11-25 16:28:39,973 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABwxNzI0Njk3OTU1MzM4MjgyNjIxMjMwMzM1MzMwbQAAAAiRovRzMHBg/Q==' line:2209
+2024-11-25 16:28:40,527 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-25 16:28:40,528 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-11-25 16:28:40,530 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-25 16:28:40,530 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-25 16:28:40,531 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-25 16:28:40,552 [css_ontology.capability_skill_ontology] [INFO] CSS ontology initialized line:42
+2024-11-25 16:28:40,630 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all defined ontology elements... line:72
+2024-11-25 16:28:43,368 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all relationships between ontology elements... line:78
+2024-11-25 16:28:45,243 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all capabilities of the asset and the industrial agent... line:465
+2024-11-25 16:28:45,244 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all asset connections... line:87
+2024-11-25 16:28:45,431 [behaviours.init_aas_model_behaviour] [INFO] All asset connections defined in the AAS model have been configured and saved. line:578
+2024-11-25 16:28:46,431 [behaviours.init_aas_model_behaviour] [INFO] AAS model analysis results. 
+	- Analyzed capabilities: []
+	- Analyzed capability constraints: []
+	- Analyzed skills []
+	- Analyzed skill interfaces []
+	- Analyzed asset connections ['InterfaceForHTTP']
+	- Errors found [] line:584
+2024-11-25 16:28:46,431 [behaviours.init_aas_model_behaviour] [INFO] AAS model initialized. line:97
+2024-11-25 16:28:46,432 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: None line:154
+2024-11-25 16:28:46,440 [states.state_booting] [INFO] gcis1@xmpp.jp agent has finished it Boot state. line:49
+2024-11-25 16:28:46,440 [spade.behaviour] [INFO] FSM transiting from BOOTING to RUNNING. line:591
+2024-11-25 16:28:46,441 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-25 16:28:46,441 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-25 16:28:46,450 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-25 16:28:56,448 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:146
+2024-11-25 16:29:06,449 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:146
+2024-11-25 16:29:16,449 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:146
+2024-11-25 16:29:26,450 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:146
+2024-11-25 16:29:36,450 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:146
+2024-11-25 16:29:46,451 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:146
+2024-11-25 16:29:56,451 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:146
+2024-11-25 16:30:06,452 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:146
+2024-11-25 16:30:16,452 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:146
+2024-11-25 16:30:26,454 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:146
+2024-11-25 16:30:36,453 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:146
+2024-11-25 16:30:46,455 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:146
+2024-11-25 16:30:56,455 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:146
+2024-11-25 16:31:06,457 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:146
+2024-11-25 16:31:16,456 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:146
+2024-11-25 16:31:26,457 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:146
+2024-11-25 16:31:36,459 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:146
+2024-11-25 16:31:46,459 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:146
+2024-11-25 16:31:56,459 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:146
+2024-11-25 16:32:06,459 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:146
+2024-11-25 16:32:16,461 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:146
+2024-11-25 16:32:26,462 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:146
+2024-11-25 16:32:36,286 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-25 16:32:36,286 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-25 16:32:36,286 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-25 16:37:35,531 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-25 16:37:35,541 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:55
+2024-11-25 16:37:38,314 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-25 16:37:39,413 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/16912168249486951571168704707 line:935
+2024-11-25 16:37:39,684 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAAB0xNjkxMjE2ODI0OTQ4Njk1MTU3MTE2ODcwNDcwN20AAAAIX8SkNTTS7dQ=' line:2209
+2024-11-25 16:37:40,239 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-25 16:37:40,240 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-11-25 16:37:40,242 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-25 16:37:40,242 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-25 16:37:40,242 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-25 16:37:40,268 [css_ontology.capability_skill_ontology] [INFO] CSS ontology initialized line:42
+2024-11-25 16:37:40,367 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all defined ontology elements... line:72
+2024-11-25 16:37:43,102 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all relationships between ontology elements... line:78
+2024-11-25 16:37:44,975 [spade.behaviour] [ERROR] Exception running behaviour OneShotBehaviour/InitAASModelBehaviour: 'aas_sme_class' property is not defined. line:291
+2024-11-25 16:37:44,990 [spade.behaviour] [ERROR] Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 285, in _step
+    await self._run()
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 274, in _run
+    await self.run()
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\init_aas_model_behaviour.py", line 79, in run
+    await self.get_and_save_ontology_relationships_information()
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\init_aas_model_behaviour.py", line 290, in get_and_save_ontology_relationships_information
+    await self.check_and_create_relationship_by_iri(ontology_relationship_iri)
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\init_aas_model_behaviour.py", line 412, in check_and_create_relationship_by_iri
+    domain_aas_class, range_aas_class = CapabilitySkillOntologyUtils.get_attribute_from_classes_in_object_property(
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\css_ontology\css_ontology_utils.py", line 111, in get_attribute_from_classes_in_object_property
+    range_aas_class = getattr(object_property_class.range[0], attribute_name)
+  File "C:\Python310\lib\site-packages\owlready2\entity.py", line 611, in __getattr__
+    if not Prop: raise AttributeError("'%s' property is not defined." % attr)
+AttributeError: 'aas_sme_class' property is not defined.
+ line:296
+2024-11-25 16:37:44,990 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: 'aas_sme_class' property is not defined. line:154
+2024-11-25 16:37:44,991 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: None line:154
+2024-11-25 16:37:44,999 [states.state_booting] [INFO] gcis1@xmpp.jp agent has finished it Boot state. line:49
+2024-11-25 16:37:44,999 [spade.behaviour] [INFO] FSM transiting from BOOTING to RUNNING. line:591
+2024-11-25 16:37:44,999 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-25 16:37:44,999 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-25 16:37:45,008 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-25 16:37:55,009 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:146
+2024-11-25 16:38:00,390 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-25 16:38:00,390 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-25 16:38:00,391 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-25 16:38:00,399 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-25 16:39:59,877 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-25 16:39:59,884 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:55
+2024-11-25 16:40:02,772 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-25 16:40:03,979 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/609975079057958042896197188 line:935
+2024-11-25 16:40:04,279 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABs2MDk5NzUwNzkwNTc5NTgwNDI4OTYxOTcxODhtAAAACL5M+zxCcup1' line:2209
+2024-11-25 16:40:04,910 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-25 16:40:04,910 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-11-25 16:40:04,912 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-25 16:40:04,912 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-25 16:40:04,913 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-25 16:40:04,934 [css_ontology.capability_skill_ontology] [INFO] CSS ontology initialized line:42
+2024-11-25 16:40:05,012 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all defined ontology elements... line:72
+2024-11-25 16:40:07,762 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all relationships between ontology elements... line:78
+2024-11-25 16:40:07,973 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-25 16:40:07,973 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-25 16:40:07,974 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-25 16:40:07,978 [css_ontology.capability_skill_ontology] [INFO] CSS ontology initialized line:42
+2024-11-25 16:40:18,351 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-25 16:40:18,351 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:55
+2024-11-25 16:40:21,017 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-25 16:40:22,115 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/18097732466879346358168711363 line:935
+2024-11-25 16:40:22,389 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAAB0xODA5NzczMjQ2Njg3OTM0NjM1ODE2ODcxMTM2M20AAAAIjyHDEMqSprs=' line:2209
+2024-11-25 16:40:22,945 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-25 16:40:22,945 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-11-25 16:40:22,954 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-25 16:40:22,954 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-25 16:40:22,954 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-25 16:40:22,984 [css_ontology.capability_skill_ontology] [INFO] CSS ontology initialized line:42
+2024-11-25 16:40:28,220 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-25 16:40:28,220 [gcis1] [INFO] client shutting down (on request) line:975
+2024-11-25 16:40:36,101 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-25 16:40:36,119 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:55
+2024-11-25 16:40:38,949 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-25 16:40:40,044 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/15456841810483852033168713091 line:935
+2024-11-25 16:40:40,319 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAAB0xNTQ1Njg0MTgxMDQ4Mzg1MjAzMzE2ODcxMzA5MW0AAAAIzFCAiQHvDmE=' line:2209
+2024-11-25 16:40:40,884 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-25 16:40:40,884 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-11-25 16:40:40,891 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-25 16:40:40,891 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-25 16:40:40,891 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-25 16:40:40,919 [css_ontology.capability_skill_ontology] [INFO] CSS ontology initialized line:42
+2024-11-25 16:40:44,758 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-25 16:40:44,758 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-25 16:40:44,758 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-25 16:40:44,765 [css_ontology.capability_skill_ontology] [INFO] CSS ontology initialized line:42
+2024-11-25 16:40:44,870 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all defined ontology elements... line:72
+2024-11-25 16:41:08,101 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-25 16:41:08,113 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:55
+2024-11-25 16:41:11,042 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-25 16:41:12,204 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/13861839680297176428168714243 line:935
+2024-11-25 16:41:12,491 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAAB0xMzg2MTgzOTY4MDI5NzE3NjQyODE2ODcxNDI0M20AAAAIAwp7rSyfDG8=' line:2209
+2024-11-25 16:41:13,089 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-25 16:41:13,090 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-11-25 16:41:13,094 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-25 16:41:13,094 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-25 16:41:13,095 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-25 16:41:13,133 [css_ontology.capability_skill_ontology] [INFO] CSS ontology initialized line:42
+2024-11-25 16:41:27,888 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-25 16:41:27,889 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-25 16:41:27,889 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-25 16:41:27,892 [css_ontology.capability_skill_ontology] [INFO] CSS ontology initialized line:42
+2024-11-25 16:41:33,917 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-25 16:41:33,922 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:55
+2024-11-25 16:41:36,754 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-25 16:41:37,974 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/17715913107506768692168716387 line:935
+2024-11-25 16:41:38,274 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAAB0xNzcxNTkxMzEwNzUwNjc2ODY5MjE2ODcxNjM4N20AAAAIA2r3j4hiyDg=' line:2209
+2024-11-25 16:41:38,889 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-25 16:41:38,889 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-11-25 16:41:38,892 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-25 16:41:38,892 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-25 16:41:38,893 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-25 16:41:38,918 [css_ontology.capability_skill_ontology] [INFO] CSS ontology initialized line:42
+2024-11-25 16:41:38,989 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all defined ontology elements... line:72
+2024-11-25 16:41:41,735 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all relationships between ontology elements... line:78
+2024-11-25 16:41:43,610 [spade.behaviour] [ERROR] Exception running behaviour OneShotBehaviour/InitAASModelBehaviour: 'aas_sme_class' property is not defined. line:291
+2024-11-25 16:41:43,617 [spade.behaviour] [ERROR] Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 285, in _step
+    await self._run()
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 274, in _run
+    await self.run()
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\init_aas_model_behaviour.py", line 79, in run
+    await self.get_and_save_ontology_relationships_information()
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\init_aas_model_behaviour.py", line 290, in get_and_save_ontology_relationships_information
+    await self.check_and_create_relationship_by_iri(ontology_relationship_iri)
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\init_aas_model_behaviour.py", line 412, in check_and_create_relationship_by_iri
+    domain_aas_class, range_aas_class = CapabilitySkillOntologyUtils.get_attribute_from_classes_in_object_property(
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\css_ontology\css_ontology_utils.py", line 111, in get_attribute_from_classes_in_object_property
+    range_aas_class = getattr(object_property_class.range[0], attribute_name)
+  File "C:\Python310\lib\site-packages\owlready2\entity.py", line 611, in __getattr__
+    if not Prop: raise AttributeError("'%s' property is not defined." % attr)
+AttributeError: 'aas_sme_class' property is not defined.
+ line:296
+2024-11-25 16:41:43,617 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: 'aas_sme_class' property is not defined. line:154
+2024-11-25 16:41:43,618 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: None line:154
+2024-11-25 16:41:43,627 [states.state_booting] [INFO] gcis1@xmpp.jp agent has finished it Boot state. line:49
+2024-11-25 16:41:43,627 [spade.behaviour] [INFO] FSM transiting from BOOTING to RUNNING. line:591
+2024-11-25 16:41:43,628 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-25 16:41:43,628 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-25 16:41:43,636 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-25 16:41:53,609 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:146
+2024-11-25 16:42:03,610 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:146
+2024-11-25 16:42:13,612 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:146
+2024-11-25 16:42:23,611 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:146
+2024-11-25 16:42:31,901 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-25 16:42:31,902 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-25 16:42:31,902 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-25 16:42:42,472 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-25 16:42:42,484 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:55
+2024-11-25 16:42:45,384 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-25 16:42:46,590 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/7344269804144455237168719779 line:935
+2024-11-25 16:42:46,893 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABw3MzQ0MjY5ODA0MTQ0NDU1MjM3MTY4NzE5Nzc5bQAAAAgRVvW7w17zlA==' line:2209
+2024-11-25 16:42:47,513 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-25 16:42:47,513 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-11-25 16:42:47,517 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-25 16:42:47,517 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-25 16:42:47,517 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-25 16:42:47,553 [css_ontology.capability_skill_ontology] [INFO] CSS ontology initialized line:42
+2024-11-25 16:42:47,713 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all defined ontology elements... line:72
+2024-11-25 16:42:50,439 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all relationships between ontology elements... line:78
+2024-11-25 16:43:20,658 [spade.behaviour] [ERROR] Exception running behaviour OneShotBehaviour/InitAASModelBehaviour: 'aas_sme_class' property is not defined. line:291
+2024-11-25 16:43:20,658 [spade.behaviour] [ERROR] Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 285, in _step
+    await self._run()
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 274, in _run
+    await self.run()
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\init_aas_model_behaviour.py", line 79, in run
+    await self.get_and_save_ontology_relationships_information()
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\init_aas_model_behaviour.py", line 290, in get_and_save_ontology_relationships_information
+    await self.check_and_create_relationship_by_iri(ontology_relationship_iri)
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\init_aas_model_behaviour.py", line 412, in check_and_create_relationship_by_iri
+    domain_aas_class, range_aas_class = CapabilitySkillOntologyUtils.get_attribute_from_classes_in_object_property(
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\css_ontology\css_ontology_utils.py", line 111, in get_attribute_from_classes_in_object_property
+    range_aas_class = getattr(object_property_class.range[0], attribute_name)
+  File "C:\Python310\lib\site-packages\owlready2\entity.py", line 611, in __getattr__
+    if not Prop: raise AttributeError("'%s' property is not defined." % attr)
+AttributeError: 'aas_sme_class' property is not defined.
+ line:296
+2024-11-25 16:43:20,667 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: 'aas_sme_class' property is not defined. line:154
+2024-11-25 16:43:20,667 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: None line:154
+2024-11-25 16:43:20,676 [states.state_booting] [INFO] gcis1@xmpp.jp agent has finished it Boot state. line:49
+2024-11-25 16:43:20,676 [spade.behaviour] [INFO] FSM transiting from BOOTING to RUNNING. line:591
+2024-11-25 16:43:20,676 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-25 16:43:20,676 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-25 16:43:20,685 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-25 16:43:28,323 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-25 16:43:28,323 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-25 16:43:28,323 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-25 16:43:28,325 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-25 16:43:35,743 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-25 16:43:35,749 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:55
+2024-11-25 16:43:38,547 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-25 16:43:39,646 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/4569647444329788544230399554 line:935
+2024-11-25 16:43:39,917 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABw0NTY5NjQ3NDQ0MzI5Nzg4NTQ0MjMwMzk5NTU0bQAAAAh9QJCUU+7+iA==' line:2209
+2024-11-25 16:43:40,500 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-25 16:43:40,500 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-11-25 16:43:40,503 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-25 16:43:40,503 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-25 16:43:40,503 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-25 16:43:40,549 [css_ontology.capability_skill_ontology] [INFO] CSS ontology initialized line:42
+2024-11-25 16:43:40,703 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all defined ontology elements... line:72
+2024-11-25 16:43:43,442 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all relationships between ontology elements... line:78
+2024-11-25 16:44:07,881 [spade.behaviour] [ERROR] Exception running behaviour OneShotBehaviour/InitAASModelBehaviour: 'aas_sme_class' property is not defined. line:291
+2024-11-25 16:44:07,888 [spade.behaviour] [ERROR] Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 285, in _step
+    await self._run()
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 274, in _run
+    await self.run()
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\init_aas_model_behaviour.py", line 79, in run
+    await self.get_and_save_ontology_relationships_information()
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\init_aas_model_behaviour.py", line 290, in get_and_save_ontology_relationships_information
+    await self.check_and_create_relationship_by_iri(ontology_relationship_iri)
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\init_aas_model_behaviour.py", line 412, in check_and_create_relationship_by_iri
+    domain_aas_class, range_aas_class = CapabilitySkillOntologyUtils.get_attribute_from_classes_in_object_property(
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\css_ontology\css_ontology_utils.py", line 111, in get_attribute_from_classes_in_object_property
+    range_aas_class = getattr(object_property_class.range[0], attribute_name)
+  File "C:\Python310\lib\site-packages\owlready2\entity.py", line 611, in __getattr__
+    if not Prop: raise AttributeError("'%s' property is not defined." % attr)
+AttributeError: 'aas_sme_class' property is not defined.
+ line:296
+2024-11-25 16:44:07,889 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: 'aas_sme_class' property is not defined. line:154
+2024-11-25 16:44:07,889 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: None line:154
+2024-11-25 16:44:07,901 [states.state_booting] [INFO] gcis1@xmpp.jp agent has finished it Boot state. line:49
+2024-11-25 16:44:07,901 [spade.behaviour] [INFO] FSM transiting from BOOTING to RUNNING. line:591
+2024-11-25 16:44:07,901 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-11-25 16:44:07,902 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:24
+2024-11-25 16:44:07,912 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-11-25 16:44:11,984 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-25 16:44:19,089 [__main__] [INFO] Initializing SMIA software... line:80
+2024-11-25 16:44:19,099 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:55
+2024-11-25 16:44:22,051 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-11-25 16:44:23,266 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/1581545424434640899496206308 line:935
+2024-11-25 16:44:23,566 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABwxNTgxNTQ1NDI0NDM0NjQwODk5NDk2MjA2MzA4bQAAAAhG/dH48uS5bw==' line:2209
+2024-11-25 16:44:24,193 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-11-25 16:44:24,195 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-11-25 16:44:24,197 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-11-25 16:44:24,198 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-11-25 16:44:24,198 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-11-25 16:44:24,230 [css_ontology.capability_skill_ontology] [INFO] CSS ontology initialized line:42
+2024-11-25 16:44:24,383 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all defined ontology elements... line:72
+2024-11-25 16:44:27,115 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all relationships between ontology elements... line:78
+2024-11-25 16:45:47,735 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-11-25 16:45:47,735 [gcis1] [INFO] client shutting down (on request) line:975

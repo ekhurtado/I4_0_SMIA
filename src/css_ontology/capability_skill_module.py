@@ -103,6 +103,36 @@ class ExtendedThing(Thing):
             data_properties_iris.append(prop.name)
         return data_properties_iris
 
+    def get_data_properties_iris(self):
+        """
+        This method gets all IRIs of the data properties associated to the self instance class (obtained during the
+        initialization of the class).
+
+        Returns:
+            list(str): list with all IRIs of the data properties.
+        """
+        data_properties_iris = []
+        for prop in self.data_properties_dict:
+            data_properties_iris.append(prop.iri)
+        return data_properties_iris
+
+    def get_data_property_name_by_iri(self, property_iri):
+        """
+        This method gets the name of the data property associated to the self instance class (obtained during the
+        initialization of the class). It is found by its IRI.
+
+        Args:
+            property_iri (str): IRI of the data property to find.
+
+        Returns:
+            str: name of the desired data property.
+        """
+        for prop in self.data_properties_dict:
+            if prop.iri == property_iri:
+                return prop.name
+        _logger.warning("The data property with IRI {} does not exist in class {}".format(property_iri, self))
+        return None
+
     def set_aas_sme_ref(self, aas_ref):
         """
         This method sets the AAS submodel element (SME) related to this instance class.
@@ -122,8 +152,8 @@ class Capability(Thing, ExtendedThing):
     namespace = base_namespace
 
     # The associated SubmodelElement class of the AAS is also defined
-    # aas_sme_class = extended_submodel.ExtendedCapability
-    aas_sme_class = basyx.aas.model.Capability
+    aas_sme_class = extended_submodel.ExtendedCapability
+    # aas_sme_class = basyx.aas.model.Capability
 
     # def __init__(self, *args, **kwargs):
     #     super().__init__(*args, **kwargs)

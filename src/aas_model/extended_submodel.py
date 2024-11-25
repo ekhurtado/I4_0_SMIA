@@ -117,27 +117,6 @@ class ExtendedSubmodelElement(SubmodelElement):
                 parent_elem = parent_elem.parent
         return None
 
-    def get_qualifier_value_by_type(self, qualifier_type_value):
-        """
-        This method gets the value of the qualifier that has a given type.
-
-        Args:
-            qualifier_type_value (str): type of the qualifier.
-
-        Returns:
-            str: value of the qualifier with the given type
-        """
-        try:
-            qualifier_object = self.get_qualifier_by_type(qualifier_type_value)
-            if qualifier_object is None:
-                raise AASModelReadingError("Qualifier type {} not found in the element {}".format(
-                    qualifier_type_value, self), self, 'KeyError in qualifiers')
-            else:
-                return qualifier_object.value
-        except KeyError as e:
-            raise AASModelReadingError("Qualifier type {} not found in the element {}".format(
-                qualifier_type_value, self), self, 'KeyError in qualifiers')
-
 
 class ExtendedRelationshipElement(RelationshipElement):
 
@@ -153,33 +132,6 @@ class ExtendedAnnotatedRelationshipElement(AnnotatedRelationshipElement):
     def print_submodel_element_information(self):
         super().print_submodel_element_information()
         print("\t\tannotation: {}".format(self.annotation))
-
-
-class ExtendedCapability(Capability):
-    def print_submodel_element_information(self):
-        super().print_submodel_element_information()
-        print("Specific attributes of Capabilities:")
-
-    def check_cap_skill_ontology_semantics_and_qualifiers(self):
-        """
-        This method checks if the Capability has the required semanticIDs and qualifiers defined in the Capability-Skill
-        ontology, exactly for Capabilities.
-
-        Returns:
-            bool: result of the check (only True if both semanticIDs and qualifiers of Capability-Skill ontology exist).
-        """
-        # It will be checked if the semantic id of the capability is valid within the ontology
-        if self.check_cap_skill_ontology_semantic_id() is False:
-            _logger.error("The capability {} has not valid semanticID regarding the "
-                          "Capability-Skill ontology.".format(self))
-            return False
-
-        # It will also be checked if it has any of the qualifiers defined in the ontology for the capabilities
-        if self.check_cap_skill_ontology_qualifiers() is False:
-            _logger.error("The capability {} has not valid qualifiers regarding the "
-                          "Capability-Skill ontology.".format(self))
-            return False
-        return True
 
     def check_cap_skill_ontology_semantic_id(self):
         """
@@ -428,6 +380,32 @@ class ExtendedGenericCSSClass(metaclass=abc.ABCMeta):
         This method checks the semanticID of the skill within the Capability-Skill ontology.
         """
         pass
+
+class ExtendedCapability(ExtendedGenericCSSClass, Capability):
+    def print_submodel_element_information(self):
+        super().print_submodel_element_information()
+        print("Specific attributes of Capabilities:")
+
+    def check_cap_skill_ontology_semantics_and_qualifiers(self):
+        """
+        This method checks if the Capability has the required semanticIDs and qualifiers defined in the Capability-Skill
+        ontology, exactly for Capabilities.
+
+        Returns:
+            bool: result of the check (only True if both semanticIDs and qualifiers of Capability-Skill ontology exist).
+        """
+        # It will be checked if the semantic id of the capability is valid within the ontology
+        if self.check_cap_skill_ontology_semantic_id() is False:
+            _logger.error("The capability {} has not valid semanticID regarding the "
+                          "Capability-Skill ontology.".format(self))
+            return False
+
+        # It will also be checked if it has any of the qualifiers defined in the ontology for the capabilities
+        if self.check_cap_skill_ontology_qualifiers() is False:
+            _logger.error("The capability {} has not valid qualifiers regarding the "
+                          "Capability-Skill ontology.".format(self))
+            return False
+        return True
 
 class ExtendedSkill(ExtendedGenericCSSClass):
     # TODO se ha tenido que separar las skills simples (Operation,Event...) de las complejas (Submodel). De
