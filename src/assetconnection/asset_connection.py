@@ -159,7 +159,7 @@ class AssetConnection(metaclass=abc.ABCMeta):
         # If the interaction metadata has dataQuery, the dataQueryType must be appropriate
         data_query_elem = interaction_metadata.get_sm_element_by_semantic_id(AssetInterfacesInfo.SEMANTICID_INTERFACE_INTERACTION_DATA_QUERY)
         if data_query_elem is not None:
-
+            await cls.check_data_query_type(data_query_elem)
         # TODO comprobar que no haya mas atributos requeridos
 
     @classmethod
@@ -183,6 +183,19 @@ class AssetConnection(metaclass=abc.ABCMeta):
     # --------------------------------------------------------
     # Useful methods to extract information from asset message
     # --------------------------------------------------------
+    @classmethod
+    async def check_data_query_type(cls, interaction_elem_name, content_type, data_query_elem):
+        if data_query_elem is not None:
+            data_query_type = data_query_elem.get_qualifier_value_by_type('DataQueryType')
+            if (content_type == 'application/json' and data_query_elem != 'jsonpath') or \
+                (content_type == 'text/plain' and data_query_elem != 'regex'):
+                        raise AssetConnectionError("The dataQuery type of interaction metadata {} is not valid for "
+                                                   "content type {}".format(interaction_elem_name, content_type),
+                                                   'invalid data query', "{} does no have a valid data"
+                                                                         " query".format(interaction_elem_name))
+
+
+
     @classmethod
     async def get_response_content(cls, interaction_metadata, response_content):
         """

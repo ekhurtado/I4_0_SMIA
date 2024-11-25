@@ -26,4 +26,4 @@ After opening the program, the first step is to create a new environment in orde
 TODO: Test to add Youtube videos in Sphinx RTD documentation.
 
 .. youtube:: ToKwxUhuiRE
-  :align: center
+
