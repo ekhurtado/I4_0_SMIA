@@ -53,6 +53,12 @@ class ExtendedSubmodelElement(SubmodelElement):
             return None
 
     def get_parent_submodel(self):
+        """
+        This method gets the submodel where the self SubmodelElement is defined.
+
+        Returns:
+            basyx.aas.model.Submodel: parent submodel in form of a Python object.
+        """
         if isinstance(self.parent, basyx.aas.model.Submodel):
             return self.parent
         else:
@@ -331,6 +337,7 @@ class ExtendedSubmodelElementCollection(SubmodelElementCollection):
             for reference in sm_elem.semantic_id.key:
                 if reference.value == semantic_id_ref:
                     return sm_elem
+        return None
 
 
 # ------------

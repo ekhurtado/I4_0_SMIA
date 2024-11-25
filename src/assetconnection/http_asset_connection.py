@@ -22,6 +22,7 @@ class HTTPAssetConnection(AssetConnection):
         # Other data
         self.interface_title = None
         self.base = None
+        self.endpoint_metadata_elem = None
         self.security_scheme_elem = None
 
         # Data of each request
@@ -40,26 +41,32 @@ class HTTPAssetConnection(AssetConnection):
         self.interface_title = interface_aas_elem.get_sm_element_by_semantic_id(
             AssetInterfacesInfo.SEMANTICID_INTERFACE_TITLE)
         # La informacion general de la conexion con el activo se define en el SMC 'EndpointMetadata'
-        endpoint_metadata_elem = interface_aas_elem.get_sm_element_by_semantic_id(
+        self.endpoint_metadata_elem = interface_aas_elem.get_sm_element_by_semantic_id(
             AssetInterfacesInfo.SEMANTICID_ENDPOINT_METADATA)
 
         # The endpointMetadata element need to be checked
-        await self.check_endpoint_metadata(endpoint_metadata_elem)
+        await self.check_endpoint_metadata()
 
-        self.base = endpoint_metadata_elem.get_sm_element_by_semantic_id(
+        self.base = self.endpoint_metadata_elem.get_sm_element_by_semantic_id(
             AssetInterfacesInfo.SEMANTICID_INTERFACE_BASE)
-        content_type_elem = endpoint_metadata_elem.get_sm_element_by_semantic_id(
+        content_type_elem = self.endpoint_metadata_elem.get_sm_element_by_semantic_id(
             AssetInterfacesInfo.SEMANTICID_INTERFACE_CONTENT_TYPE)
         if content_type_elem is not None:
             self.request_headers['Content-Type'] = content_type_elem.value
 
-        security_definitions_elem = endpoint_metadata_elem.get_sm_element_by_semantic_id(
+        security_definitions_elem = self.endpoint_metadata_elem.get_sm_element_by_semantic_id(
             AssetInterfacesInfo.SEMANTICID_INTERFACE_SECURITY_DEFINITIONS)
         if security_definitions_elem is not None:
             self.security_scheme_elem = security_definitions_elem.value
         # TODO: pensar como añadir el resto , p.e. tema de seguridad o autentificacion (bearer). De momento se ha dejado sin seguridad (nosec_sc)
 
-        # The InteractionMetadata elements
+        # The InteractionMetadata elements also need to be checked
+        interaction_metadata_elem = interface_aas_elem.get_sm_element_by_semantic_id(
+            AssetInterfacesInfo.SEMANTICID_INTERACTION_METADATA)
+        for interaction_metadata_type in interaction_metadata_elem:
+            # Interaction metadata can be properties, actions or events
+            for interaction_element in interaction_metadata_type:
+                await self.check_interaction_metadata(interaction_element)
 
     async def check_asset_connection(self):
         pass
