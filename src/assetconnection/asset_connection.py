@@ -155,6 +155,11 @@ class AssetConnection(metaclass=abc.ABCMeta):
         await cls.check_submodel_element_exist_by_semantic_id(
             interaction_metadata.get_sm_element_by_semantic_id(AssetInterfacesInfo.SEMANTICID_INTERFACE_FORMS),
             'href', AssetInterfacesInfo.SEMANTICID_INTERFACE_HREF)
+
+        # If the interaction metadata has dataQuery, the dataQueryType must be appropriate
+        data_query_elem = interaction_metadata.get_sm_element_by_semantic_id(AssetInterfacesInfo.SEMANTICID_INTERFACE_INTERACTION_DATA_QUERY)
+        if data_query_elem is not None:
+
         # TODO comprobar que no haya mas atributos requeridos
 
     @classmethod

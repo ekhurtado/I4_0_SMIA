@@ -27,4 +27,3 @@ TODO: Test to add Youtube videos in Sphinx RTD documentation.
 
 .. youtube:: ToKwxUhuiRE
   :align: center
-  :alt: Tutorial video 1
