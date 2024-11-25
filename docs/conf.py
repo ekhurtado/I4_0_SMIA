@@ -78,8 +78,8 @@ html_logo = "_static/images/I4_0_SMIA_logo_rtd.png"
 html_favicon = "_static/images/I4_0_SMIA_favicon.svg"
 
 html_theme_options = {
-    # "light_logo": "images/Component_I4_0_logo_positive.png",
-    # "dark_logo": "images/Component_I4_0_logo_positive.png",
+    "light_logo": "_static/images/I4_0_SMIA_logo_positive.png",
+    "dark_logo": "_static/images//I4_0_SMIA_logo_negative.png",
     "light_css_variables": {
         "color-brand-primary": "#34A1E8",
         "color-brand-content": "#2980B9",
