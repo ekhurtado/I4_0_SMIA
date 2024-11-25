@@ -30,6 +30,7 @@ extensions = [
     'sphinx_copybutton',
     'notfound.extension',
     'sphinx_design',
+    'sphinxcontrib.youtube'
 ]
 
 templates_path = ['_templates']
