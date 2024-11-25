@@ -23,6 +23,9 @@ After opening the program, the first step is to create a new environment in orde
   :alt: AASX Package Explorer step1
 
 
-.. youtube:: ToKwxUhuiRE
+TODO: Test to add Youtube videos in Sphinx RTD documentation.
 
-https://www.youtube.com/watch?v=ToKwxUhuiRE&list=PLs6bFF_iqW3G8AiVVMPi-SpupCvgmYsyB&index=1
+.. youtube:: ToKwxUhuiRE
+  :align: center
+  :width: 600
+  :alt: Tutorial video 1

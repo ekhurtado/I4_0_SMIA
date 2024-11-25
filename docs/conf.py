@@ -30,7 +30,7 @@ extensions = [
     'sphinx_copybutton',
     'notfound.extension',
     'sphinx_design',
-    'sphinxembeddedvideos.youtube'
+    'sphinxembeddedvideos.youtube'  # To be able to add Youtube videos
 ]
 
 templates_path = ['_templates']
