@@ -7,7 +7,7 @@ from basyx.aas.model import SubmodelElementList, SubmodelElement, Operation, Sub
 
 from aas_model.extended_aas import ExtendedGeneralMethods
 from logic.exceptions import AASModelReadingError, AASModelOntologyError
-from css_ontology.css_ontology_utils import CapabilitySkillOntologyUtils, CapabilitySkillOntologyInfo
+from css_ontology.css_ontology_utils import CapabilitySkillOntologyInfo
 
 _logger = logging.getLogger(__name__)
 
@@ -73,7 +73,7 @@ class ExtendedSubmodelElement(SubmodelElement):
             bool: result of the check (only True if both semanticIDs and qualifiers of Capability-Skill ontology exist).
         """
         # It will be checked if the semantic id of the skill is valid within the ontology
-        if self.check_semantic_id_exist(CapabilitySkillOntologyUtils.SEMANTICID_MANUFACTURING_SKILL) is False:
+        if self.check_semantic_id_exist(CapabilitySkillOntologyInfo.CSS_ONTOLOGY_SKILL_IRI) is False:
             _logger.error("The skill {} has not valid semanticID regarding the "
                           "Capability-Skill ontology.".format(self))
             return False
@@ -92,9 +92,9 @@ class ExtendedSubmodelElement(SubmodelElement):
         Returns:
             bool: result of the check (only True if the qualifier of Capability-Skill ontology exists).
         """
-        skill_qualifier = self.get_qualifier_by_type(CapabilitySkillOntologyUtils.QUALIFIER_SKILL_TYPE)
+        skill_qualifier = self.get_qualifier_by_type('SkillImplementationType')
         if skill_qualifier is not None:
-            if skill_qualifier.value in CapabilitySkillOntologyUtils.QUALIFIER_SKILL_POSSIBLE_VALUES:
+            if skill_qualifier.value in ['STATE', 'TRIGGER', 'OPERATION', 'FUNCTIONBLOCK']:
                 return True
         _logger.error("ERROR: the qualifier is not valid in the skill {}".format(self))
         return False
@@ -141,9 +141,9 @@ class ExtendedAnnotatedRelationshipElement(AnnotatedRelationshipElement):
         Returns:
             bool: result of the check (only True if the semanticID of Capability-Skill ontology exists).
         """
-        if ((self.check_semantic_id_exist(CapabilitySkillOntologyUtils.SEMANTICID_MANUFACTURING_CAPABILITY))
-                or (self.check_semantic_id_exist(CapabilitySkillOntologyUtils.SEMANTICID_ASSET_CAPABILITY))
-                or (self.check_semantic_id_exist(CapabilitySkillOntologyUtils.SEMANTICID_AGENT_CAPABILITY))):
+        if ((self.check_semantic_id_exist(CapabilitySkillOntologyInfo.CSS_ONTOLOGY_CAPABILITY_IRI))
+                or (self.check_semantic_id_exist(CapabilitySkillOntologyInfo.CSS_ONTOLOGY_ASSET_CAPABILITY_IRI))
+                or (self.check_semantic_id_exist(CapabilitySkillOntologyInfo.CSS_ONTOLOGY_AGENT_CAPABILITY_IRI))):
             return True
         else:
             _logger.error("ERROR: the capability is not valid within the ontology.")
@@ -156,9 +156,9 @@ class ExtendedAnnotatedRelationshipElement(AnnotatedRelationshipElement):
         Returns:
             bool: result of the check (only True if the qualifier of Capability-Skill ontology exists).
         """
-        capability_qualifier = self.get_qualifier_by_type(CapabilitySkillOntologyUtils.QUALIFIER_CAPABILITY_TYPE)
+        capability_qualifier = self.get_qualifier_by_type('ExpressionSemantic')
         if capability_qualifier is not None:
-            if capability_qualifier.value in CapabilitySkillOntologyUtils.QUALIFIER_CAPABILITY_POSSIBLE_VALUES:
+            if capability_qualifier.value in ['REQUIREMENT', 'OFFER', 'ASSURANCE']:
                 return True
         _logger.error("ERROR: the qualifier is not valid in the capability {}".format(self))
         return False
@@ -170,12 +170,12 @@ class ExtendedAnnotatedRelationshipElement(AnnotatedRelationshipElement):
         Returns:
             str: value of the type of the capability within the Capability-Skill ontology.
         """
-        if self.check_semantic_id_exist(CapabilitySkillOntologyUtils.SEMANTICID_MANUFACTURING_CAPABILITY):
-            return CapabilitySkillOntologyUtils.MANUFACTURING_CAPABILITY_TYPE
-        elif self.check_semantic_id_exist(CapabilitySkillOntologyUtils.SEMANTICID_ASSET_CAPABILITY):
-            return CapabilitySkillOntologyUtils.ASSET_CAPABILITY_TYPE
-        elif self.check_semantic_id_exist(CapabilitySkillOntologyUtils.SEMANTICID_AGENT_CAPABILITY):
-            return CapabilitySkillOntologyUtils.AGENT_CAPABILITY_TYPE
+        if self.check_semantic_id_exist(CapabilitySkillOntologyInfo.CSS_ONTOLOGY_CAPABILITY_IRI):
+            return 'ManufacturingCapability'
+        elif self.check_semantic_id_exist(CapabilitySkillOntologyInfo.CSS_ONTOLOGY_ASSET_CAPABILITY_IRI):
+            return 'AssetCapability'
+        elif self.check_semantic_id_exist(CapabilitySkillOntologyInfo.CSS_ONTOLOGY_AGENT_CAPABILITY_IRI):
+            return 'AgentCapability'
         else:
             _logger.error("ERROR: the capability type is not valid within the ontology.")
             return None

@@ -107,11 +107,22 @@ class CapabilitySkillOntologyUtils:
             raise OntologyReadingError("The domain or range of object property {} are "
                                        "empty".format(object_property_class))
         try:
-            domain_aas_class = getattr(object_property_class.domain[0], attribute_name)
-            range_aas_class = getattr(object_property_class.range[0], attribute_name)
-            if None in (domain_aas_class, range_aas_class):
-                raise OntologyReadingError("The domain or range of object property object {} does not have the associated "
-                                           "AAS model class defined".format(object_property_class))
+            for domain_class in object_property_class.domain:
+                if hasattr(domain_class, 'get_associated_aas_class'):
+                    domain_aas_class = domain_class.get_associated_aas_class()
+                    break
+            else:
+                # In this case no domain class is of the defined CSS model of the SMIA approach.
+                raise OntologyReadingError("The domain of object property object {} does not have any associated "
+                                           "AAS model classes defined".format(object_property_class))
+            for range_class in object_property_class.range:
+                if hasattr(range_class, 'get_associated_aas_class'):
+                    range_aas_class = range_class.get_associated_aas_class()
+                    break
+            else:
+                # In this case no range class is of the defined CSS model of the SMIA approach.
+                raise OntologyReadingError("The range of object property object {} does not have any associated "
+                                           "AAS model classes defined".format(object_property_class))
             return domain_aas_class, range_aas_class
         except KeyError as e:
             # TODO
@@ -195,8 +206,8 @@ class CapabilitySkillOntologyInfo:
                                        CSS_ONTOLOGY_CAPABILITY_CONSTRAINT_IRI,
                                        CSS_ONTOLOGY_SKILL_IRI,
                                        CSS_ONTOLOGY_SKILL_INTERFACE_IRI,
-                                       # CSS_ONTOLOGY_SKILL_PARAMETER_IRI,
-                                       # CSS_ONTOLOGY_SKILL_STATE_MACHINE_IRI,
+                                       CSS_ONTOLOGY_SKILL_PARAMETER_IRI,
+                                       CSS_ONTOLOGY_SKILL_STATE_MACHINE_IRI,
                                        ]
 
     CSS_ONTOLOGY_OBJECT_PROPERTIES_IRIS = [CSS_ONTOLOGY_PROP_ISREALIZEDBY_IRI,
@@ -204,10 +215,29 @@ class CapabilitySkillOntologyInfo:
                                            CSS_ONTOLOGY_PROP_ACCESSIBLETHROUGH_IRI,
                                            CSS_ONTOLOGY_PROP_ACCESSIBLETHROUGH_ASSET_IRI,
                                            CSS_ONTOLOGY_PROP_ACCESSIBLETHROUGH_AGENT_IRI,
-                                           # CSS_ONTOLOGY_PROP_HASPARAMETER_IRI,    #  TODO PENSAR COMO SERIA (de momento no tenemos ExtendedSkillParameter)
-                                           # CSS_ONTOLOGY_PROP_BEHAVIOURSCONFORMSTO_IRI
+                                           CSS_ONTOLOGY_PROP_HASPARAMETER_IRI,
+                                           CSS_ONTOLOGY_PROP_BEHAVIOURSCONFORMSTO_IRI
                                            ]
+
+
+class CSSModelAASModelInfo:
+    """
+    This class contains information about the relation between the Capability-Skill-Service model and the AAS model.
+    """
+    from aas_model import extended_submodel
+
+
     # TODO HACER AHORA GENERAR TAMBIEN UNA LISTA CON LAS CLASES DE LA ONTOLOGIA Y LAS CLASES 'Extended' del AAS asociadas
+    CSS_ONTOLOGY_AAS_MODEL_LINK = {
+        CapabilitySkillOntologyInfo.CSS_ONTOLOGY_CAPABILITY_IRI: extended_submodel.ExtendedCapability,
+        CapabilitySkillOntologyInfo.CSS_ONTOLOGY_AGENT_CAPABILITY_IRI: extended_submodel.ExtendedCapability,
+        CapabilitySkillOntologyInfo.CSS_ONTOLOGY_ASSET_CAPABILITY_IRI: extended_submodel.ExtendedCapability,
+        CapabilitySkillOntologyInfo.CSS_ONTOLOGY_CAPABILITY_CONSTRAINT_IRI: extended_submodel.ExtendedCapabilityConstraint,
+        CapabilitySkillOntologyInfo.CSS_ONTOLOGY_SKILL_IRI: extended_submodel.ExtendedSkill,
+        CapabilitySkillOntologyInfo.CSS_ONTOLOGY_SKILL_INTERFACE_IRI: extended_submodel.ExtendedSkillInterface,
+        # CSS_ONTOLOGY_SKILL_PARAMETER_IRI: '',
+        # CSS_ONTOLOGY_SKILL_STATE_MACHINE_IRI: '',
+    }
 
 
 class CapabilitySkillACLInfo:
@@ -260,3 +290,4 @@ class AssetInterfacesInfo:
 
     # TODO NUEVO
     SEMANTICID_INTERFACE_INTERACTION_DATA_QUERY = 'https://admin-shell.io/idta/AssetInterfacesDescription/1/0/dataQuery'  # TODO CUIDADO, ESTE ES NUEVO, PENSAR COMO SERIA. Se ha pensado asociar este ID con un apartado de la interfaz donde se añadirá el query para extraer la informacion de la respuesta del activo (esta query debera ir en relacion con el tipo de contenido, p.e. JSONata o JSONPath para respuestas JSON)
+
