@@ -2,6 +2,7 @@
 execution of SMIA software. This module is associated to the OWL ontology since it is defined inside the file of the
 definition of OWL. When the owlready2 package loads the ontology, it will automatically import this Python module """
 import logging
+from itertools import chain
 
 import basyx.aas.model
 from owlready2 import Thing, get_ontology, DataPropertyClass, DatatypeClass, onto_path
@@ -163,6 +164,23 @@ class ExtendedThing(Thing):
         """
         self.aas_sme_ref = aas_ref
 
+    def check_and_get_relationship_with_instance(self, other_instance):
+        """
+        This method checks if there is some Object Property defined that connects the self instance class with the given
+        instance class. If the relation is valid, it also returns the ObjectProperty of this relation.
+
+        Args:
+            other_instance (ThingClass): class of the other instance.
+
+        Returns:
+            bool, ObjectPropertyClass: the result of the check, and if True, the class of the ObjectProperty
+        """
+        for prop in self.get_properties():
+            related_instances = getattr(self, prop.name)
+            if other_instance in related_instances:
+                return True, prop
+        return False, None
+
 
 class Capability(ExtendedThing):
     """
@@ -201,6 +219,17 @@ class Capability(ExtendedThing):
         # TODO añadir validacion de que tiene una referencia de AAS valida
         # TODO pensar mas tipos de validaciones
 
+    def get_associated_skill_instances(self):
+        """
+        This method gets all associated skill instances and, if there is no skill, returns the None object.
+
+        Returns:
+            IndividualValueList: generator with all associated skill instances.
+        """
+        if len(self.isRealizedBy) == 0:
+            return None
+        else:
+            return self.isRealizedBy
 
 class CapabilityConstraint(ExtendedThing):
     # The namespace of the base CSS ontology must be defined
@@ -240,6 +269,29 @@ class Skill(ExtendedThing):
                 "The instance {} does not have any SkillInterface associated".format(self), self)
         # TODO pensar mas comprobaciones
 
+    def get_associated_skill_interface_instances(self):
+        """
+        This method gets all associated skill interface instances and, if there is no one, returns the None object.
+
+        Returns:
+            IndividualValueList: generator with all associated skill interface instances.
+        """
+        if len(self.accessibleThrough) + len(self.accessibleThroughAgentService) + len(self.accessibleThroughAssetService) == 0:
+            return None
+        else:
+            return chain(self.accessibleThrough, self.accessibleThroughAgentService, self.accessibleThroughAssetService)
+
+    def get_associated_skill_parameter_instances(self):
+        """
+        This method gets all associated skill parameter instances and, if there is no one, returns the None object.
+
+        Returns:
+            IndividualValueList: generator with all associated skill parameter instances.
+        """
+        if len(self.hasParameter) == 0:
+            return None
+        else:
+            return self.hasParameter
 
 class SkillInterface(ExtendedThing):
     # The namespace of the base CSS ontology must be defined

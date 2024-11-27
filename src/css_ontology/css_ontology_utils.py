@@ -256,6 +256,7 @@ class CapabilitySkillACLInfo:
     REQUIRED_SKILL_PARAMETERS = 'skillParameters'
     REQUIRED_SKILL_INPUT_PARAMETERS = 'inputs'
     REQUIRED_SKILL_OUTPUT_PARAMETERS = 'outputs'
+    REQUIRED_SKILL_INTERFACE_NAME = 'skillInterfaceName'
     # TODO pensar si harian falta mas
 
 

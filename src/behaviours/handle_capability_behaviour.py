@@ -78,7 +78,7 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
                 # The capability checking should be also performed to ensure that the DT can perform it. In this case,
                 # the capability checking is performed in separate steps
                 # The data received is checked to ensure that it contains all the necessary information.
-                await self.check_received_cap_data()
+                await self.check_received_capability_request_data()
 
                 # TODO BORRAR: PRUEBA RECOGIENDO LOS DATOS CON CSS ONTOLOGY
                 cap_name = received_cap_data[CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME]
@@ -87,20 +87,54 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
                     _logger.aclinfo("Capability ontology element found for {}: {}".format(cap_name, cap_ontology_elem))
                     # TODO HACER AHORA: No hay que buscar manualmente las relaciones entre conceptos, para ello hay que
                     #  utilizar la ontologia. Es decir, a nosotros nos llega una capacidad requerida, una skill
-                    #  requerida y una skill interface requerida. A partir de esos elementos (que tendrán que venir en
-                    #  orden), buscaremos en la ontologia las relaciones pertinentes, para saber que atributo solicitar
+                    #  requerida y una skill interface requerida. A partir de esos elementos, buscaremos en la
+                    #  ontologia las relaciones pertinentes, para saber que atributo solicitar
                     #  a la clase de ontologia (p.e. si me pasan una capacidad y una skill, lo cual se deberá determinar
                     #  mediante el nombre de cada uno de momento (mas adelante si se deja al usuario desarrollar la
                     #  ontologia se determinará mediante el IRI), el software analizará si esos conceptos estan
                     #  relacionados, y cual es la relacion entre ambos pero siempre recogiendo esa informacion desde la
                     #  ontología).
-                    skill_ontology_elems = cap_ontology_elem.isRealizedBy
-                    for skill in skill_ontology_elems:
-                        _logger.aclinfo("{} is a skill of the capability {}".format(skill.name, cap_ontology_elem.name))
-                        for interf in skill.accessibleThroughAssetService:
-                            _logger.aclinfo("{} is a skill interface with asset service of the skill {}".format(interf.name, skill.name))
-                        for interf in skill.accessibleThroughAgentService:
-                            _logger.aclinfo("{} is a skill interface with agent service of the skill {}".format(interf.name, skill.name))
+                    if CapabilitySkillACLInfo.REQUIRED_SKILL_NAME not in received_cap_data:
+                        cap_associated_skills = cap_ontology_elem.get_associated_skill_instances()
+                        if cap_associated_skills is None:
+                            raise CapabilityRequestExecutionError(cap_name, "The capability {} does not have any "
+                                                                            "associated skill, so it cannot be "
+                                                                            "executed".format(cap_name), self)
+                        else:
+                            # En este caso no se ha determinado una skill en concreto, asi que se comprobará si alguna
+                            # skill no tiene parametros, por lo que puede ser directamente ejecutada
+                            for skill in cap_associated_skills:
+                                # TODO ESTO ES SIMPLEMENTE PARA MOSTRAR TODAS LAS SKILLS E INTERFACES
+                                _logger.aclinfo("{} is a skill of the capability "
+                                                "{}".format(skill.name, cap_ontology_elem.name))
+                                for interf in skill.get_associated_skill_interface_instances():
+                                    _logger.aclinfo("{} is a interface with agent/asset service of the skill "
+                                                    "{}".format(interf.name, skill.name))
+
+                                if skill.get_associated_skill_parameter_instances() is None:
+                                    # En este caso no tiene parametros, por lo que se puede ejecutar directamente
+                                    _logger.aclinfo("Executing capability {} with skill {} and interface "
+                                                 "{}".format(cap_name, skill.name,
+                                                 list(skill.get_associated_skill_interface_instances())[0].name))
+                                    # TODO quedaría ejecutar la lógica con una interfaz aleatoria. Se podria definir un
+                                    #  metodo de ejecutar capacidad pasandole una skill y una interfaz. Si la interfaz
+                                    #  es None, entonces se recogería una aleatoria
+                            else:
+                                # En este caso todas las skills tienen parametros, asi que hay que solicitarselos al
+                                # requester de la ejecución de la capacidad. Se devolverán todas skills con sus
+                                # parametros para que vuelva a solicitar la ejecución de la capacidad pero con una skill
+                                # especificada y con los valores necesarios de sus parametros
+                                response_svc_params = {"message": "To execute the capability {}, the skill and its "
+                                                       "parameters need to be added in the request message.".format(cap_name),
+                                                       "possibleSkills": [s.name for s in cap_associated_skills]}
+                                await self.send_response_msg_to_sender(FIPAACLInfo.FIPA_ACL_PERFORMATIVE_INFORM,
+                                                                 response_svc_params)
+
+                    else:
+                        # En este caso se ha especificado una skill, asi que primero se analizará si realmente es una
+                        # skill (si en la ontologia tiene sentido la relacion entre estos conceptos )
+                        pass
+
                 except OntologyReadingError as e:
                     _logger.error("The capability {} does not exist in the ontology of this DT.".format(cap_name))
 
@@ -229,7 +263,7 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
             # It will be checked if the DT can perform the received capability
             try:
                 # First, the received data is checked
-                await self.check_received_cap_data()
+                await self.check_received_capability_request_data()
 
                 # Then, the capability checking process can be executed
                 result = await self.myagent.aas_model.capability_checking_from_acl_request(received_cap_data)
@@ -284,13 +318,10 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
         )
         await self.send(acl_msg)
 
-    async def check_received_cap_data(self):
+    async def check_received_capability_request_data(self):
         """
         This method checks whether the data received contains the necessary information to be able to execute
-        the capability.
-
-        Returns:
-            bool: the result of the check.
+        the capability. If an error occurs, it throws a CapabilityDataError exception.
         """
         # TODO PENSAR SI TODOS ESTOS ATRIBUTOS SON NECESARIOS: se ha pensado que quizas se podria solicitar una
         #  capacidad sin necesidad de definir la skill (como se implementa). En este caso, el DT podria elegir
@@ -300,27 +331,63 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
         if CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME not in received_cap_data:
             raise CapabilityDataError("The received capability data is invalid due to missing #{} field in request "
                                       "message.".format(CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME))
-        elif CapabilitySkillACLInfo.REQUIRED_CAPABILITY_TYPE not in received_cap_data:
-            raise CapabilityDataError("The received capability data is invalid due to missing #{} field in request "
-                                      "message.".format(CapabilitySkillACLInfo.REQUIRED_CAPABILITY_TYPE))
-        elif CapabilitySkillACLInfo.REQUIRED_SKILL_INFO not in received_cap_data:
-            raise CapabilityDataError("The received capability data is invalid due to missing #{} field in request "
-                                      "message.".format(CapabilitySkillACLInfo.REQUIRED_SKILL_INFO))
-        # TODO analizar si faltan mas fields obligatorios
+        # TODO con el nuevo enfoque solo es necesario añadir la capacidad. Las demas son opcionales (skill, interfaz...)
+        #  Esto se debe a que una capacidad puede solicitarse sin definir skills (si ninguna tiene paraemtros, SMIA
+        #  ejecutaría la capacidad con una skill aleatoria). Lo que si se va a comprobar es que si se añaden datos
+        #  opcionales, sean correctos (si se especifica una skill, que realmente lo sea)
+        else:
+            cap_name = received_cap_data[CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME]
+            cap_ontology_instance = await self.myagent.css_ontology.get_ontology_instance_by_name(cap_name)
+            if cap_ontology_instance is None:
+                raise CapabilityDataError("The capability {} does not an instance defined in the ontology of this "
+                                          "DT".format(cap_name))
+        if CapabilitySkillACLInfo.REQUIRED_SKILL_NAME in received_cap_data:
+            skill_name = received_cap_data[CapabilitySkillACLInfo.REQUIRED_SKILL_NAME]
+            skill_ontology_instance = await self.myagent.css_ontology.get_ontology_instance_by_name(skill_name)
+            if skill_ontology_instance is None:
+                raise CapabilityDataError("The skill {} does not an instance defined in the ontology of this "
+                                          "DT".format(skill_name))
+            result, prop = cap_ontology_instance.check_and_get_relationship_with_instance(skill_ontology_instance)
+            if result is False:
+                raise CapabilityDataError("The capability {} and skill {} are not linked in the ontology of this "
+                                          "DT".format(cap_name, skill_name))
+            if CapabilitySkillACLInfo.REQUIRED_SKILL_INTERFACE_NAME in received_cap_data:
+                # Solo si se ha definido la skill se define la skill interface, sino no tiene significado
+                # TODO pensar la frase anterior. Realmente tiene significado o no? Si no se define la skill, podriamos
+                #  definir una interfaz que queremos utilizar si o si? En ese caso, habria que buscar una skill con esa
+                #  interfaz para ejecutarla
+                skill_interface_name = received_cap_data[CapabilitySkillACLInfo.REQUIRED_SKILL_INTERFACE_NAME]
+                skill_interface_ontology_instance = await self.myagent.css_ontology.get_ontology_instance_by_name(
+                    skill_interface_name)
+                if skill_interface_ontology_instance is None:
+                    raise CapabilityDataError("The skill {} does not an instance defined in the ontology of this "
+                                              "DT".format(skill_interface_name))
+                result, prop = skill_ontology_instance.check_and_get_relationship_with_instance(
+                    skill_interface_ontology_instance)
+                if result is False:
+                    raise CapabilityDataError("The skill {} and skill interface {} are not linked in the ontology of "
+                                              "this DT".format(skill_name, skill_interface_name))
+        # TODO pensar que hacer con el codigo viejo
+        # elif CapabilitySkillACLInfo.REQUIRED_CAPABILITY_TYPE not in received_cap_data:
+        #     raise CapabilityDataError("The received capability data is invalid due to missing #{} field in request "
+        #                               "message.".format(CapabilitySkillACLInfo.REQUIRED_CAPABILITY_TYPE))
+        # elif CapabilitySkillACLInfo.REQUIRED_SKILL_INFO not in received_cap_data:
+        #     raise CapabilityDataError("The received capability data is invalid due to missing #{} field in request "
+        #                               "message.".format(CapabilitySkillACLInfo.REQUIRED_SKILL_INFO))
         # If the capability has constraints, it will be checked if they exist within the received data
-        cap_elem = await self.myagent.aas_model.get_capability_by_id_short(
-            cap_type=received_cap_data[CapabilitySkillACLInfo.REQUIRED_CAPABILITY_TYPE],
-            cap_id_short=received_cap_data[CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME])
-        cap_constraints = await self.myagent.aas_model.get_capability_associated_constraints(cap_elem)
-        if cap_constraints:
-            if CapabilitySkillACLInfo.REQUIRED_CAPABILITY_CONSTRAINTS not in received_cap_data:
-                raise CapabilityDataError("The received capability data is invalid due to missing #{} field in request "
-                                          "message.".format(CapabilitySkillACLInfo.REQUIRED_CAPABILITY_CONSTRAINTS))
-            for constraint in cap_constraints:
-                if constraint.id_short not in received_cap_data[CapabilitySkillACLInfo.REQUIRED_CAPABILITY_CONSTRAINTS]:
-                    raise CapabilityDataError("The received capability data is invalid due to missing #{} constraint in"
-                                              " the constraint section of the request message.".format(
-                        constraint.id_short))
+        # cap_elem = await self.myagent.aas_model.get_capability_by_id_short(
+        #     cap_type=received_cap_data[CapabilitySkillACLInfo.REQUIRED_CAPABILITY_TYPE],
+        #     cap_id_short=received_cap_data[CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME])
+        # cap_constraints = await self.myagent.aas_model.get_capability_associated_constraints(cap_elem)
+        # if cap_constraints:
+        #     if CapabilitySkillACLInfo.REQUIRED_CAPABILITY_CONSTRAINTS not in received_cap_data:
+        #         raise CapabilityDataError("The received capability data is invalid due to missing #{} field in request "
+        #                                   "message.".format(CapabilitySkillACLInfo.REQUIRED_CAPABILITY_CONSTRAINTS))
+        #     for constraint in cap_constraints:
+        #         if constraint.id_short not in received_cap_data[CapabilitySkillACLInfo.REQUIRED_CAPABILITY_CONSTRAINTS]:
+        #             raise CapabilityDataError("The received capability data is invalid due to missing #{} constraint in"
+        #                                       " the constraint section of the request message.".format(
+        #                 constraint.id_short))
 
     async def check_received_skill_data(self, skill_elem):
         """
