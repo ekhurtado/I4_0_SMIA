@@ -22,4 +22,7 @@ class FIPAACLInfo:
     # Ontology values
     FIPA_ACL_ONTOLOGY_SVC_REQUEST = 'SvcRequest'
     FIPA_ACL_ONTOLOGY_SVC_RESPONSE = 'SvcResponse'
+    FIPA_ACL_ONTOLOGY_CAPABILITY_REQUEST = 'CapabilityRequest'
+    FIPA_ACL_ONTOLOGY_CAPABILITY_CHECKING = 'CapabilityChecking'
+    FIPA_ACL_ONTOLOGY_CAPABILITY_RESPONSE = 'CapabilityResponse'
     FIPA_ACL_ONTOLOGY_SVC_NEGOTIATION = 'Negotiation'

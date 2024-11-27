@@ -2,9 +2,12 @@ import calendar
 import json
 import os
 import time
+from collections import OrderedDict
+from os import getcwd
 from urllib.parse import parse_qs
 
 import spade
+from aiohttp import web
 from spade.agent import Agent
 from spade.behaviour import OneShotBehaviour, CyclicBehaviour
 from spade.message import Message
@@ -119,9 +122,29 @@ class GUIAgent(Agent):
         self.acl_sent = False  # se inicializa en False
         self.neg_sent = False  # se inicializa en False
         self.acl_msg_log = []  # se inicializa el array de mensajes ACL
+        self.web_menu_entries = OrderedDict()  # se inicializa el diccionario para añadir las entradas del menu
 
         receiver_behav = self.ReceiverBehaviour()
         self.add_behaviour(receiver_behav)
+
+    # TODO PENSAR SI MOVERLOS A UN MODULO SOLAMENTE PARA LOS METODOS DEL GUI
+    async def add_new_menu_entry(self, entry_name, entry_url, entry_icon):
+        # Primero, se crea la entrada del menu con el metodo de SPADE
+        self.web.add_menu_entry(entry_name, entry_url, entry_icon)
+
+        # Despues, se añade la informacion al atributo con el diccionario en el agente, para que este accesible cuando
+        self.web_menu_entries[entry_name] = {"url": entry_url, "icon": entry_icon}
+
+    @staticmethod
+    async def handle_favicon(request):
+        print(getcwd())
+        favicon_path = os.path.join(os.path.dirname(__file__), 'static', 'favicon.ico')
+        return web.FileResponse(favicon_path)
+
+    @staticmethod
+    def build_avatar_url(jid: str) -> str:
+        # TODO CUIDADO, este metodo se esta sobrescribiendo por el de SPADE
+        return "https://raw.githubusercontent.com/ekhurtado/I4_0_SMIA/main/images/I4_0_SMIA_logo_negative.png"
 
     async def acl_post_controller(self, request):
 
@@ -198,18 +221,29 @@ async def main():
                            "/htmls/own_programming_language_editor.html")
 
     gui_agent.web.add_get("/aas_library", hello_controller, "/htmls/aas_library.html")
-
     print("All HTMLs added.")
 
     # Since the agent object has already been created, the agent will start
     await gui_agent.start()
+
+    # Codigo para añadir el Favicon (logo pequeño en la pestaña): si no presenta error de que no lo encuentra
+    gui_agent.web.app.router.add_get('/favicon.ico', GUIAgent.handle_favicon)
+    gui_agent.web.app.router.add_static('/static/', path=str(os.path.join(os.path.dirname(__file__), 'static')))
+
     gui_agent.web.start(hostname="0.0.0.0", port="10000")  # https://spade-mas.readthedocs.io/en/latest/web.html#
-    gui_agent.web.add_menu_entry("Send ACL message", "/acl_message",
-                                 "fa fa-envelope")  # https://github.com/javipalanca/spade/blob/master/docs/web.rst#menu-entries
-    gui_agent.web.add_menu_entry("Received ACL messages", "/receive_acl_msgs", "fa fa-inbox")
-    gui_agent.web.add_menu_entry("Negotiation", "/negotiation", "fa fa-comments")
-    gui_agent.web.add_menu_entry("Programming language editor", "/editor", "fa fa-code")
-    gui_agent.web.add_menu_entry("AAS Library", "/aas_library", "fa fa-book")
+    # gui_agent.web.add_menu_entry("Send ACL message", "/acl_message",
+    #                              "fa fa-envelope")  # https://github.com/javipalanca/spade/blob/master/docs/web.rst#menu-entries
+    # gui_agent.web.add_menu_entry("Received ACL messages", "/receive_acl_msgs", "fa fa-inbox")
+    # gui_agent.web.add_menu_entry("Negotiation", "/negotiation", "fa fa-comments")
+    # gui_agent.web.add_menu_entry("Programming language editor", "/editor", "fa fa-code")
+    # gui_agent.web.add_menu_entry("AAS Library", "/aas_library", "fa fa-book")
+
+    await gui_agent.add_new_menu_entry("Send ACL message", "/acl_message", "fa fa-envelope")
+    await gui_agent.add_new_menu_entry("Received ACL messages", "/receive_acl_msgs", "fa fa-inbox")
+    await gui_agent.add_new_menu_entry("Negotiation", "/negotiation", "fa fa-comments")
+    await gui_agent.add_new_menu_entry("Programming language editor", "/editor", "fa fa-code")
+    await gui_agent.add_new_menu_entry("AAS Library", "/aas_library", "fa fa-book")
+
     # The main thread will be waiting until the agent has finished
     await spade.wait_until_finished(gui_agent)
 

@@ -83,8 +83,11 @@ class SvcACLHandlingBehaviour(CyclicBehaviour):
                     _logger.aclinfo("The performative of the message is Request, so the DT needs to perform some"
                                     " action.")
 
-                    service_id = msg_json_body['serviceID']
-                    if service_id == 'capabilityRequest':
+                    # service_id = msg_json_body['serviceID']
+                    # if service_id == 'capabilityRequest':
+                    # TODO pensar si generar un behaviour para recibir peticiones de servicios y otro para peticiones
+                    #  de capacidades
+                    if msg.get_metadata('ontology') == FIPAACLInfo.FIPA_ACL_ONTOLOGY_CAPABILITY_REQUEST:
                         _logger.aclinfo("The agent has received a request to perform a capability")
                         # The behaviour to handle this specific capability will be added to the agent
                         svc_req_data = inter_aas_interactions_utils.create_svc_json_data_from_acl_msg(msg)
@@ -133,8 +136,9 @@ class SvcACLHandlingBehaviour(CyclicBehaviour):
                     _logger.aclinfo("The performative of the message is Query-If, so the DT has been asked about some "
                                     "aspect of it.")
 
-                    service_category = msg_json_body['serviceID']
-                    if service_category == 'capabilityChecking':
+                    # service_category = msg_json_body['serviceID']
+                    # if service_category == 'capabilityChecking':
+                    if msg.get_metadata('ontology') == FIPAACLInfo.FIPA_ACL_ONTOLOGY_CAPABILITY_CHECKING:
                         _logger.info("The DT has been asked to check if it has a given capability.")
                         svc_req_data = inter_aas_interactions_utils.create_svc_json_data_from_acl_msg(msg)
                         capability_handling_behav = HandleCapabilityBehaviour(self.agent, svc_req_data)

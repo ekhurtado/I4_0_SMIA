@@ -27,9 +27,18 @@ class SMIAInfo:
     SVC_STANDARD_ACL_TEMPLATE_QUERY_IF = GeneralUtils.create_acl_template(
         performative=FIPAACLInfo.FIPA_ACL_PERFORMATIVE_QUERY_IF,
         ontology=FIPAACLInfo.FIPA_ACL_ONTOLOGY_SVC_REQUEST)
+    # TODO OJO! De momento añado las plantillas de capacidades tambien, pero la idea es hacer dos behaviour diferentes
+    CAP_STANDARD_ACL_TEMPLATE_REQUEST = GeneralUtils.create_acl_template(
+        performative=FIPAACLInfo.FIPA_ACL_PERFORMATIVE_REQUEST,
+        ontology=FIPAACLInfo.FIPA_ACL_ONTOLOGY_CAPABILITY_REQUEST)
+    CAP_STANDARD_ACL_TEMPLATE_QUERY_IF = GeneralUtils.create_acl_template(
+        performative=FIPAACLInfo.FIPA_ACL_PERFORMATIVE_QUERY_IF,
+        ontology=FIPAACLInfo.FIPA_ACL_ONTOLOGY_CAPABILITY_CHECKING)
     # The template for the service requests is the combination of the different possibilities
     SVC_STANDARD_ACL_TEMPLATE = (SVC_STANDARD_ACL_TEMPLATE_CFP | SVC_STANDARD_ACL_TEMPLATE_INFORM
-                                 | SVC_STANDARD_ACL_TEMPLATE_REQUEST | SVC_STANDARD_ACL_TEMPLATE_QUERY_IF)
+                                 | SVC_STANDARD_ACL_TEMPLATE_REQUEST | SVC_STANDARD_ACL_TEMPLATE_QUERY_IF
+                                 | CAP_STANDARD_ACL_TEMPLATE_REQUEST | CAP_STANDARD_ACL_TEMPLATE_QUERY_IF  # TODO OJO, estos son los dos las capacidades
+                                 )
 
     # Object of the standard template for service requests through ACL messages
     # -------------------------------------------------------------------------

@@ -510,12 +510,14 @@ async def main():
     recv_jid = sys.argv[1] + "@" + XMPP_SERVER
     passwd = "gcis1234"
 
+    # recv_jid = "gcis1@xmpp.jp"
+
     receiveragent = ReceiverAgent(recv_jid, passwd)
     # receiveragent.jid2 = "gcis@localhost"
     # receiveragent.jid2 = "sender@ubuntu.min.vm"
 
     await receiveragent.start(auto_register=True)
-    # await receiveragent.web.start(hostname="127.0.0.1", port="10000")  # si se quiere lanzarlo con interfaz web
+    await receiveragent.web.start(hostname="127.0.0.1", port="10001")  # si se quiere lanzarlo con interfaz web
     print("Receiver started with jid: {}".format(recv_jid))
 
     await spade.wait_until_finished(receiveragent)
