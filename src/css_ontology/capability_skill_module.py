@@ -164,21 +164,22 @@ class ExtendedThing(Thing):
         """
         self.aas_sme_ref = aas_ref
 
-    def check_and_get_relationship_with_instance(self, other_instance):
+    def check_and_get_related_instance_by_instance_name(self, other_instance_name):
         """
         This method checks if there is some Object Property defined that connects the self instance class with the given
-        instance class. If the relation is valid, it also returns the ObjectProperty of this relation.
+        instance class,i.e., if the instances are related within the ontology. If the relation is valid, it also
+        returns the related ThingClass.
 
         Args:
-            other_instance (ThingClass): class of the other instance.
+            other_instance_name (ThingClass): name of the other instance class.
 
         Returns:
-            bool, ObjectPropertyClass: the result of the check, and if True, the class of the ObjectProperty
+            bool, ThingClass: the result of the check, and if True, the class of the related instance
         """
         for prop in self.get_properties():
-            related_instances = getattr(self, prop.name)
-            if other_instance in related_instances:
-                return True, prop
+            for related_instance in getattr(self, prop.name):
+                if other_instance_name == related_instance.name:
+                    return True, related_instance
         return False, None
 
 
