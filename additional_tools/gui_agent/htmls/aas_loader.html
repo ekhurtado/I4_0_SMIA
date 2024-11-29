@@ -6,16 +6,116 @@
     <!-- Include SPADE CSS links -->
     {% include 'htmls/templates/spade_html_css_links.html' %}
     <style>
-        .form-section {
-            padding: 20px;
-            background: #f7f7f7;
-            border: 1px solid #ddd;
-            margin-bottom: 20px;
+
+
+        .box-primary {
+            padding-bottom: 5px;
         }
-        .form-subsection {
-            padding: 0 10px;
-            border: 1px solid #ddd;
-            margin-bottom: 10px;
+
+        .upload-container {
+            margin: 50px auto;
+            width: 50%;
+            padding: 20px;
+            border: 2px dashed #367FA9;
+            border-radius: 10px;
+            text-align: center;
+            transition: background-color 0.3s;
+            background-color: #f7f7f7;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .upload-container.dragover {
+            background-color: #e9f5ff;
+            border-color: #48b2ed;
+        }
+
+        .upload-container h2 {
+            margin: 0;
+            font-size: 24px;
+            color: #367FA9;
+        }
+
+        .upload-container h3 {
+            font-size: 20px;
+            color: #367FA9;
+        }
+
+        .upload-container input[type="file"] {
+            display: none;
+        }
+
+        /*.upload-container label {*/
+        /*    display: block;*/
+        /*    margin-top: 20px;*/
+        /*    cursor: pointer;*/
+        /*    font-size: 18px;*/
+        /*    color: #3C8DBC;*/
+        /*}*/
+        .upload-container label {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 14px;
+            color: #fff;
+            background-color: #2f6a8e;
+            border-radius: 3px;
+            transition: background-color 0.3s;
+        }
+
+        .upload-container label:hover {
+            background-color: #204a60;
+        }
+
+        .btn-upload {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #3C8DBC;
+            color: white;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 16px;
+            text-transform: uppercase;
+        }
+
+        .btn-upload:hover {
+            background-color: #2d688a;
+        }
+
+        .box-footer {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .file-info {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .file-info .file-icon {
+            font-size: 48px;
+            color: #1872a3;
+            vertical-align: middle;
+        }
+
+        .file-info .file-name {
+            font-size: 18px;
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+
+        /* Animation when file is dropped */
+        @keyframes drop-animation {
+            0% { background-color: #232427; }
+            /*0% { background-color: #e9f5ff; }*/
+            100% { background-color: #fff; }
+        }
+
+        .upload-container.dropped {
+            animation: drop-animation 0.5s ease-in-out;
         }
     </style>
 </head>
@@ -42,7 +142,22 @@
                             <div class="box-header with-border">
                                 <h3 class="box-title">AAS loader</h3>
                             </div>
-                            <h1>CONTENT</h1>
+                            <form id="uploadForm" action="/aas_loader/submit" method="post" enctype="multipart/form-data">
+                                <div class="upload-container" id="upload-container">
+                                    <h2>Drag and drop an AAS file here</h2>
+                                    <h3>or</h3>
+                                    <input type="file" id="fileInput" name="file" accept=".xml,.json,.aasx">
+                                    <label for="fileInput">Browse files</label>
+                                    <div class="file-info" id="fileInfo" style="display:none;">
+                                        <i class="fa fa-file file-icon"></i>
+                                        <span class="file-name" id="fileName"></span>
+                                        <span class="file-size" id="fileSize"></span>
+                                    </div>
+                                </div>
+                                <div class="box-footer">
+                                    <button type="submit" class="btn-upload" id="uploadButton">Upload</button>
+                                </div>
+                            </form>
 
                         </div>
                     </div>
@@ -52,5 +167,49 @@
     </div>
     <!-- Include SPADE scripts -->
     {% include 'htmls/templates/spade_html_scripts.html' %}
+
+    <script>
+        const uploadContainer = document.getElementById('upload-container');
+        const fileInput = document.getElementById('fileInput');
+        const uploadButton = document.getElementById('uploadButton');
+        const fileInfo = document.getElementById('fileInfo');
+        const fileName = document.getElementById('fileName');
+
+        function showFileInfo(file) {
+            fileInfo.style.display = 'block';
+            fileName.textContent = file.name;
+            fileSize.textContent = `(${(file.size / 1024).toFixed(2)} KB)`;
+        }
+
+        uploadContainer.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            uploadContainer.classList.add('dragover');
+        });
+
+        uploadContainer.addEventListener('dragleave', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            uploadContainer.classList.remove('dragover');
+        });
+
+        uploadContainer.addEventListener('drop', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            uploadContainer.classList.remove('dragover');
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                fileInput.files = files;
+                showFileInfo(files[0]);
+            }
+        });
+
+        fileInput.addEventListener('change', (e) => {
+        const files = e.target.files;
+        if (files.length > 0) {
+            showFileInfo(files[0]);
+        }
+    });
+    </script>
 </body>
 </html>
