@@ -221,6 +221,8 @@ async def main():
                            "/htmls/own_programming_language_editor.html")
 
     gui_agent.web.add_get("/aas_library", hello_controller, "/htmls/aas_library.html")
+
+    gui_agent.web.add_get("/aas_loader", hello_controller, "/htmls/aas_loader.html")
     print("All HTMLs added.")
 
     # Since the agent object has already been created, the agent will start
@@ -243,6 +245,7 @@ async def main():
     await gui_agent.add_new_menu_entry("Negotiation", "/negotiation", "fa fa-comments")
     await gui_agent.add_new_menu_entry("Programming language editor", "/editor", "fa fa-code")
     await gui_agent.add_new_menu_entry("AAS Library", "/aas_library", "fa fa-book")
+    await gui_agent.add_new_menu_entry("AAS Loader", "/aas_loader", "fa fa-file-import")
 
     # The main thread will be waiting until the agent has finished
     await spade.wait_until_finished(gui_agent)

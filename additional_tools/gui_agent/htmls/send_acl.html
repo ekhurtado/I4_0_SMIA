@@ -115,33 +115,34 @@
 <body class="sidebar-mini skin-blue">
     <div class="wrapper">
         <header class="main-header">
-            <a href="/spade" class="logo">
-                <span class="logo-mini"><b>SPD</b></span>
-                <span class="logo-lg"><b>SPADE</b></span>
-            </a>
-            <nav class="navbar navbar-static-top">
-                <div class="navbar-custom-menu">
-                    <ul class="nav navbar-nav">
-                        <li class="dropdown user user-menu">
-                            <a href="/spade" class="dropdown-toggle" data-toggle="dropdown">
-                                <img src="https://raw.githubusercontent.com/ekhurtado/I4_0_SMIA/main/images/I4_0_SMIA_logo_negative.png" class="user-image" alt="User Image">
-                                <span class="hidden-xs">{{ agent.agent_name }}</span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li class="user-header">
-                                    <img src="https://raw.githubusercontent.com/ekhurtado/I4_0_SMIA/main/images/I4_0_SMIA_logo_negative.png" class="img-circle" alt="User Image">
-                                    <p>{{ agent.jid }}</p>
-                                </li>
-                                <li class="user-footer">
-                                    <div class="pull-left">
-                                        <a href="/spade/stop" class="btn btn-default btn-flat">Stop</a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
+<!--            <a href="/spade" class="logo">-->
+<!--                <span class="logo-mini"><b>SPD</b></span>-->
+<!--                <span class="logo-lg"><b>SPADE</b></span>-->
+<!--            </a>-->
+<!--            <nav class="navbar navbar-static-top">-->
+<!--                <div class="navbar-custom-menu">-->
+<!--                    <ul class="nav navbar-nav">-->
+<!--                        <li class="dropdown user user-menu">-->
+<!--                            <a href="/spade" class="dropdown-toggle" data-toggle="dropdown">-->
+<!--                                <img src="https://raw.githubusercontent.com/ekhurtado/I4_0_SMIA/main/images/I4_0_SMIA_logo_negative.png" class="user-image" alt="User Image">-->
+<!--                                <span class="hidden-xs">{{ agent.agent_name }}</span>-->
+<!--                            </a>-->
+<!--                            <ul class="dropdown-menu">-->
+<!--                                <li class="user-header">-->
+<!--                                    <img src="https://raw.githubusercontent.com/ekhurtado/I4_0_SMIA/main/images/I4_0_SMIA_logo_negative.png" class="img-circle" alt="User Image">-->
+<!--                                    <p>{{ agent.jid }}</p>-->
+<!--                                </li>-->
+<!--                                <li class="user-footer">-->
+<!--                                    <div class="pull-left">-->
+<!--                                        <a href="/spade/stop" class="btn btn-default btn-flat">Stop</a>-->
+<!--                                    </div>-->
+<!--                                </li>-->
+<!--                            </ul>-->
+<!--                        </li>-->
+<!--                    </ul>-->
+<!--                </div>-->
+<!--            </nav>-->
+            {% include 'htmls/templates/spade_html_header.html' %}
         </header>
         <aside class="main-sidebar">
             <section class="sidebar">

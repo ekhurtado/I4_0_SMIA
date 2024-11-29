@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AAS Loader</title>
+    <!-- Include SPADE CSS links -->
+    {% include 'htmls/templates/spade_html_css_links.html' %}
+    <style>
+        .form-section {
+            padding: 20px;
+            background: #f7f7f7;
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+        .form-subsection {
+            padding: 0 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body class="sidebar-mini skin-blue">
+    <div class="wrapper">
+        <header class="main-header">
+            {% include 'htmls/templates/spade_html_header.html' %}
+        </header>
+        <aside class="main-sidebar">
+            {% include 'htmls/templates/spade_html_aside.html' %}
+        </aside>
+        <div class="content-wrapper">
+            <section class="content-header">
+                <h1>ACL Loader</h1>
+                <ol class="breadcrumb">
+                    <li><a href="/spade"><i class="fa fa-dashboard"></i> Home</a></li>
+                    <li class="active">Send ACL Message</li>
+                </ol>
+            </section>
+            <section class="content">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">AAS loader</h3>
+                            </div>
+                            <h1>CONTENT</h1>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <!-- Include SPADE scripts -->
+    {% include 'htmls/templates/spade_html_scripts.html' %}
+</body>
+</html>
