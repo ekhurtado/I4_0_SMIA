@@ -44,13 +44,6 @@
             display: none;
         }
 
-        /*.upload-container label {*/
-        /*    display: block;*/
-        /*    margin-top: 20px;*/
-        /*    cursor: pointer;*/
-        /*    font-size: 18px;*/
-        /*    color: #3C8DBC;*/
-        /*}*/
         .upload-container label {
             display: inline-block;
             margin-top: 20px;
@@ -93,6 +86,9 @@
         .file-info {
             margin-top: 20px;
             text-align: center;
+            flex-wrap: wrap;  /* Allow content to wrap */
+            width: 100%;      /* Ensure it takes the full width of the parent */
+            box-sizing: border-box;
         }
 
         .file-info .file-icon {
@@ -102,9 +98,13 @@
         }
 
         .file-info .file-name {
-            font-size: 18px;
+            font-size: 16px;
             margin-left: 10px;
             vertical-align: middle;
+            word-wrap: break-word;
+            white-space: normal;
+            flex-grow: 1;     /* Allow the name to take available space */
+            overflow: auto;
         }
 
         .file-info .file-size {
@@ -112,12 +112,25 @@
             color: #888;
             margin-left: 10px;
             vertical-align: middle;
+            width: fit-content;
         }
 
         .file-info .file-item {
             display: flex;
             align-items: center;
             margin-top: 10px;
+            /*flex-wrap: wrap;  !* Allow content to wrap *!*/
+            width: 100%;      /* Ensure it takes the full width of the parent */
+            /*box-sizing: border-box;*/
+        }
+
+        .file-info .remove-file {
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #f00;
+            cursor: pointer;
+            margin-left: 10px;
         }
 
         /* Animation when file is dropped */
@@ -192,19 +205,45 @@
 
         function showFileInfo(files) {
             fileInfo.style.display = 'block';
-            // fileName.textContent = file.name;
-            // fileSize.textContent = `(${(file.size / 1024).toFixed(2)} KB)`;
             fileInfo.innerHTML = '';  // Clear previous file info
-            for (const file of files) {
+            Array.from(files).forEach((file, index) => {
+            // for (const file of files) {
                 const fileItem = document.createElement('div');
                 fileItem.classList.add('file-item');
+                let fileIcon = '<i class="fas fa-file-alt file-icon"></i>';
+                if (file.name.includes('.aasx')) {
+                    fileIcon = '<i class="fas fa-file-archive file-icon"></i>';
+                }
                 fileItem.innerHTML = `
-                    <i class="fa fa-file file-icon"></i>
+                    ${fileIcon}
                     <span class="file-name">${file.name}</span>
                     <span class="file-size">(${(file.size / 1024).toFixed(2)} KB)</span>
+                    <button class="remove-file" data-index="${index}">&times;</button>
                 `;
                 fileInfo.appendChild(fileItem);
-            }
+            });
+            addRemoveFileListeners();
+        }
+
+        function addRemoveFileListeners() {
+            const removeFileButtons = document.querySelectorAll('.remove-file');
+            removeFileButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const index = e.target.dataset.index;
+                    removeFile(index);
+                });
+            });
+        }
+
+        function removeFile(index) {
+            const fileItems = Array.from(filesList.files);
+            fileItems.splice(index, 1);
+
+            filesList = new DataTransfer();
+            fileItems.forEach(file => filesList.items.add(file));
+
+            fileInput.files = filesList.files;
+            showFileInfo(filesList.files);
         }
 
         uploadContainer.addEventListener('dragover', (e) => {

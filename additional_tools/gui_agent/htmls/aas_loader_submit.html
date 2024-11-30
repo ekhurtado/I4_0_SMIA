@@ -29,9 +29,67 @@
             color: #3C8DBC;
         }
 
+        .container {
+            width: 100%;
+            max-width: 100%;
+        }
+
         .container h4 span {
             font-style: italic;
             color: #0d6aad;
+        }
+
+        .file-list-container {
+            margin: 5px auto;
+            width: 80%;
+            padding: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            max-width: 100%;
+        }
+
+        .file-list-header {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #367FA9;
+        }
+
+        .file-item .file-icon {
+            font-size: 24px;
+            color: #1872a3;
+            margin-right: 10px;
+        }
+
+        .file-item {
+            flex-wrap: wrap;  /* Allow content to wrap */
+            width: 100%;      /* Ensure it takes the full width of the parent */
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #f7f7f7;
+            border-radius: 5px;
+            word-break: break-all;
+        }
+
+        .file-item .file-name {
+            overflow: auto;
+            flex-grow: 1;
+            font-size: 16px;
+        }
+
+        .file-item .file-size {
+            font-size: 14px;
+            color: #888;
+        }
+
+        .box-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
         }
     </style>
 </head>
@@ -61,10 +119,27 @@
                             <div class="box-body">
                                 <div class="container">
                                     {% if agent.aas_loaded %}
-                                    <h4>AAS file <span>{{ agent.aas_loaded_files }}</span> successfully loaded in agent {{ agent.jid }}.</h4>
+                                    <div class="file-list-container">
+                                        <div class="file-list-header">Successfully uploaded AAS files</div>
+                                        <div id="fileList">
+                                            {% for file in agent.aas_loaded_files %}
+                                                <div class="file-item">
+                                                    <i class="fas fa-file-upload file-icon"></i>
+                                                    <div class="file-details">
+                                                        <span class="file-name">{{ file.name }}</span>
+                                                        <span class="file-size">(Capabilities [{{ file.size }}], asset connections [{{ file.size }}])</span>
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                    {% else %}
+                                    <h4>The AAS files cannot be uploaded.</h4>
                                     {% endif %}
-                                    <button class="btn btn-custom" onclick="window.location.href='/aas_loader'">Volver al AAS loader</button>
-                                    <button class="btn btn-custom" onclick="window.location.href='/aas_library'">Ir a la libreria</button>
+                                    <div class="box-footer">
+                                        <button class="btn btn-custom" onclick="window.location.href='/aas_loader'">Volver al AAS loader</button>
+                                        <button class="btn btn-custom" onclick="window.location.href='/aas_library'">Ir a la libreria</button>
+                                    </div>
                                 </div>
                             </div>
 

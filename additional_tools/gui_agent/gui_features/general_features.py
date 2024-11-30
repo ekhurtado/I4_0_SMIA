@@ -80,7 +80,7 @@ class GeneralGUIFeatures:
         #  subirían al servidor y se cargarían en una librería de AASs. Hay que ver como habilitar subir multiples
 
         self.myagent.aas_loaded = False  # se inicializa en False
-        self.myagent.aas_loaded_files = set()  # se inicializa la lista
+        self.myagent.aas_loaded_files = []  # se inicializa la lista
         print(request)
         reader = await request.multipart()
         # field = await reader.next()
@@ -107,7 +107,7 @@ class GeneralGUIFeatures:
                         size += len(chunk)
                         f.write(chunk)
 
-                self.myagent.aas_loaded_files.add(filename)
+                self.myagent.aas_loaded_files.append({'name': filename, 'size': size})
 
         # return web.Response(text=f'File {filename} uploaded successfully, {size} bytes received.')
         self.myagent.aas_loaded = True
