@@ -61,7 +61,7 @@
                             <div class="box-body">
                                 <div class="container">
                                     {% if agent.aas_loaded %}
-                                    <h4>AAS file <span>{{ agent.aas_loaded_file }}</span> successfully loaded in agent {{ agent.jid }}.</h4>
+                                    <h4>AAS file <span>{{ agent.aas_loaded_files }}</span> successfully loaded in agent {{ agent.jid }}.</h4>
                                     {% endif %}
                                     <button class="btn btn-custom" onclick="window.location.href='/aas_loader'">Volver al AAS loader</button>
                                     <button class="btn btn-custom" onclick="window.location.href='/aas_library'">Ir a la libreria</button>

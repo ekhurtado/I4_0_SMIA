@@ -35,15 +35,6 @@
             </key>
           </keys>
         </reference>
-        <reference>
-          <type>ModelReference</type>
-          <keys>
-            <key>
-              <type>Submodel</type>
-              <value>urn:ehu:gcis:submodel:1:1:agentservices001</value>
-            </key>
-          </keys>
-        </reference>
       </submodels>
     </assetAdministrationShell>
     <assetAdministrationShell>
@@ -92,10 +83,6 @@
   <submodels>
     <submodel>
       <idShort>AgentCapabilities</idShort>
-      <administration>
-        <version>1</version>
-        <revision>1</revision>
-      </administration>
       <id>urn:ehu:gcis:submodel:1:1:agentcapabilities001</id>
       <kind>Instance</kind>
       <submodelElements>
@@ -106,7 +93,7 @@
             <keys>
               <key>
                 <type>GlobalReference</type>
-                <value>http://www.w3id.org/upv-ehu/gcis/css-smia#AgentCapability</value>
+                <value>urn:ehu:gcis:capabilityskillontology:1:1:agentcapability</value>
               </key>
             </keys>
           </semanticId>
@@ -120,13 +107,13 @@
           </qualifiers>
         </capability>
         <relationshipElement>
-          <idShort>NegBatteryCapSkillRelationship</idShort>
+          <idShort>NegotiationCapSkillRelationship</idShort>
           <semanticId>
             <type>ExternalReference</type>
             <keys>
               <key>
                 <type>GlobalReference</type>
-                <value>http://www.w3id.org/hsu-aut/css#isRealizedBy</value>
+                <value>urn:ehu:gcis:capabilityskillontology:1:1:capabilityrealizedby</value>
               </key>
             </keys>
           </semanticId>
@@ -152,83 +139,7 @@
               </key>
               <key>
                 <type>Operation</type>
-                <value>NegotiationBasedOnBattery</value>
-              </key>
-            </keys>
-          </second>
-        </relationshipElement>
-        <relationshipElement>
-          <idShort>NegLocationCapSkillRelationship</idShort>
-          <semanticId>
-            <type>ExternalReference</type>
-            <keys>
-              <key>
-                <type>GlobalReference</type>
-                <value>http://www.w3id.org/hsu-aut/css#isRealizedBy</value>
-              </key>
-            </keys>
-          </semanticId>
-          <first>
-            <type>ModelReference</type>
-            <keys>
-              <key>
-                <type>Submodel</type>
-                <value>urn:ehu:gcis:submodel:1:1:agentcapabilities001</value>
-              </key>
-              <key>
-                <type>Capability</type>
-                <value>Negotiation</value>
-              </key>
-            </keys>
-          </first>
-          <second>
-            <type>ModelReference</type>
-            <keys>
-              <key>
-                <type>Submodel</type>
-                <value>urn:ehu:gcis:submodel:1:1:agentskills001</value>
-              </key>
-              <key>
-                <type>Operation</type>
-                <value>NegotiationBasedOnLocation</value>
-              </key>
-            </keys>
-          </second>
-        </relationshipElement>
-        <relationshipElement>
-          <idShort>NegRAMCapSkillRelationship</idShort>
-          <semanticId>
-            <type>ExternalReference</type>
-            <keys>
-              <key>
-                <type>GlobalReference</type>
-                <value>http://www.w3id.org/hsu-aut/css#isRealizedBy</value>
-              </key>
-            </keys>
-          </semanticId>
-          <first>
-            <type>ModelReference</type>
-            <keys>
-              <key>
-                <type>Submodel</type>
-                <value>urn:ehu:gcis:submodel:1:1:agentcapabilities001</value>
-              </key>
-              <key>
-                <type>Capability</type>
-                <value>Negotiation</value>
-              </key>
-            </keys>
-          </first>
-          <second>
-            <type>ModelReference</type>
-            <keys>
-              <key>
-                <type>Submodel</type>
-                <value>urn:ehu:gcis:submodel:1:1:agentskills001</value>
-              </key>
-              <key>
-                <type>Operation</type>
-                <value>NegotiationBasedOnRAM</value>
+                <value>NegotiationBasedOnCriteria</value>
               </key>
             </keys>
           </second>
@@ -243,7 +154,7 @@
                 <keys>
                   <key>
                     <type>GlobalReference</type>
-                    <value>http://www.w3id.org/hsu-aut/css#isRestrictedBy</value>
+                    <value>urn:ehu:gcis:capabilityskillontology:1:1:capabilityrestrictedby</value>
                   </key>
                 </keys>
               </semanticId>
@@ -285,7 +196,7 @@
                 <keys>
                   <key>
                     <type>GlobalReference</type>
-                    <value>http://www.w3id.org/hsu-aut/css#CapabilityConstraint</value>
+                    <value>urn:ehu:gcis:capabilityskillontology:1:1:capabilityconstraint</value>
                   </key>
                 </keys>
               </semanticId>
@@ -306,7 +217,7 @@
                   </key>
                   <key>
                     <type>Operation</type>
-                    <value>NegotiationBasedOnBattery</value>
+                    <value>NegotiationBasedOnCriteria</value>
                   </key>
                 </keys>
               </value>
@@ -346,7 +257,7 @@
               </key>
               <key>
                 <type>GlobalReference</type>
-                <value>http://www.w3id.org/hsu-aut/css#SkillInterface</value>
+                <value>urn:ehu:gcis:capabilityskillontology:1:1:skillinterface</value>
               </key>
             </keys>
           </semanticId>
@@ -950,7 +861,7 @@
                           </qualifiers>
                           <value>
                             <submodelElementCollection>
-                              <idShort>mas_info</idShort>
+                              <idShort>request_status</idShort>
                               <description>
                                 <langStringTextType>
                                   <language>en</language>
@@ -1003,7 +914,7 @@
                                     </qualifier>
                                   </qualifiers>
                                   <valueType>xs:string</valueType>
-                                  <value>keys_para_diferente_info</value>
+                                  <value>status</value>
                                 </property>
                                 <property>
                                   <idShort>type</idShort>
@@ -1047,7 +958,7 @@
                                     </qualifier>
                                   </qualifiers>
                                   <valueType>xs:string</valueType>
-                                  <value>por ejemplo, el timestamp</value>
+                                  <value>status of the request</value>
                                 </property>
                               </value>
                             </submodelElementCollection>
@@ -1172,12 +1083,6 @@
                               <type>Cardinality</type>
                               <valueType>xs:string</valueType>
                               <value>ZeroToOne</value>
-                            </qualifier>
-                            <qualifier>
-                              <kind>ValueQualifier</kind>
-                              <type>DataQueryType</type>
-                              <valueType>xs:string</valueType>
-                              <value>jsonpath</value>
                             </qualifier>
                           </qualifiers>
                           <valueType>xs:string</valueType>
@@ -2811,7 +2716,7 @@
                 <keys>
                   <key>
                     <type>GlobalReference</type>
-                    <value>http://www.w3id.org/upv-ehu/gcis/css-smia#AssetCapability</value>
+                    <value>urn:ehu:gcis:capabilityskillontology:1:1:assetcapability</value>
                   </key>
                 </keys>
               </semanticId>
@@ -2843,7 +2748,7 @@
                 <keys>
                   <key>
                     <type>GlobalReference</type>
-                    <value>http://www.w3id.org/hsu-aut/css#isRealizedBy</value>
+                    <value>urn:ehu:gcis:capabilityskillontology:1:1:capabilityrealizedby</value>
                   </key>
                 </keys>
               </semanticId>
@@ -2903,7 +2808,7 @@
                         <keys>
                           <key>
                             <type>GlobalReference</type>
-                            <value>http://www.w3id.org/hsu-aut/css#CapabilityConstraint</value>
+                            <value>urn:ehu:gcis:capabilityskillontology:1:1:capabilityconstraint</value>
                           </key>
                         </keys>
                       </semanticId>
@@ -2924,7 +2829,7 @@
                         <keys>
                           <key>
                             <type>GlobalReference</type>
-                            <value>http://www.w3id.org/hsu-aut/css#isRestrictedBy</value>
+                            <value>urn:ehu:gcis:capabilityskillontology:1:1:capabilityrestrictedby</value>
                           </key>
                         </keys>
                       </semanticId>
@@ -3058,7 +2963,7 @@
             <keys>
               <key>
                 <type>GlobalReference</type>
-                <value>http://www.w3id.org/hsu-aut/css#Skill</value>
+                <value>urn:ehu:gcis:capabilityskillontology:1:1:manufacturingskill</value>
               </key>
             </keys>
           </semanticId>
@@ -3080,7 +2985,7 @@
                     <keys>
                       <key>
                         <type>GlobalReference</type>
-                        <value>http://www.w3id.org/hsu-aut/css#SkillParameter</value>
+                        <value>urn:ehu:gcis:capabilityskillontology:1:1:skillparameter</value>
                       </key>
                     </keys>
                   </semanticId>
@@ -3097,7 +3002,7 @@
             <keys>
               <key>
                 <type>GlobalReference</type>
-                <value>http://www.w3id.org/upv-ehu/gcis/css-smia#accesibleThroughAssetService</value>
+                <value>urn:ehu:gcis:capabilityskillontology:1:1:skillaccesiblethrough</value>
               </key>
             </keys>
           </semanticId>
@@ -3155,6 +3060,10 @@
             <type>ModelReference</type>
             <keys>
               <key>
+                <type>AssetAdministrationShell</type>
+                <value>urn:ehu:gcis:aas:1:1:transportrobot001</value>
+              </key>
+              <key>
                 <type>Submodel</type>
                 <value>urn:ehu:gcis:submodel:1:1:transportrobotskills001</value>
               </key>
@@ -3195,6 +3104,14 @@
                 <type>SubmodelElementList</type>
                 <value>htv_params</value>
               </key>
+              <key>
+                <type>SubmodelElementCollection</type>
+                <value>0</value>
+              </key>
+              <key>
+                <type>Property</type>
+                <value>htv_paramName</value>
+              </key>
             </keys>
           </second>
         </relationshipElement>
@@ -3202,21 +3119,17 @@
     </submodel>
     <submodel>
       <idShort>AgentSkills</idShort>
-      <administration>
-        <version>1</version>
-        <revision>1</revision>
-      </administration>
       <id>urn:ehu:gcis:submodel:1:1:agentskills001</id>
       <kind>Instance</kind>
       <submodelElements>
         <operation>
-          <idShort>NegotiationBasedOnBattery</idShort>
+          <idShort>NegotiationBasedOnCriteria</idShort>
           <semanticId>
             <type>ExternalReference</type>
             <keys>
               <key>
                 <type>GlobalReference</type>
-                <value>http://www.w3id.org/hsu-aut/css#Skill</value>
+                <value>urn:ehu:gcis:capabilityskillontology:1:1:manufacturingskill</value>
               </key>
             </keys>
           </semanticId>
@@ -3227,7 +3140,34 @@
               <value>OPERATION</value>
             </qualifier>
           </qualifiers>
-          <inputVariables />
+          <inputVariables>
+            <operationVariable>
+              <value>
+                <property>
+                  <idShort>NegotiationCriteria</idShort>
+                  <semanticId>
+                    <type>ExternalReference</type>
+                    <keys>
+                      <key>
+                        <type>GlobalReference</type>
+                        <value>urn:ehu:gcis:capabilityskillontology:1:1:skillparameter</value>
+                      </key>
+                    </keys>
+                  </semanticId>
+                  <valueType>xs:string</valueType>
+                  <valueId>
+                    <type>ExternalReference</type>
+                    <keys>
+                      <key>
+                        <type>GlobalReference</type>
+                        <value>urn:ehu:gcis:conceptdescriptions:1:1:negotiationcriteria</value>
+                      </key>
+                    </keys>
+                  </valueId>
+                </property>
+              </value>
+            </operationVariable>
+          </inputVariables>
           <outputVariables>
             <operationVariable>
               <value>
@@ -3238,7 +3178,7 @@
                     <keys>
                       <key>
                         <type>GlobalReference</type>
-                        <value>http://www.w3id.org/hsu-aut/css#SkillParameter</value>
+                        <value>urn:ehu:gcis:capabilityskillontology:1:1:skillparameter</value>
                       </key>
                     </keys>
                   </semanticId>
@@ -3249,13 +3189,13 @@
           </outputVariables>
         </operation>
         <relationshipElement>
-          <idShort>SkillBatteryAccesibleInterfaceRelationship</idShort>
+          <idShort>SkillAccesibleInterfaceRelationship</idShort>
           <semanticId>
             <type>ExternalReference</type>
             <keys>
               <key>
                 <type>GlobalReference</type>
-                <value>http://www.w3id.org/upv-ehu/gcis/css-smia#accesibleThroughAssetService</value>
+                <value>urn:ehu:gcis:capabilityskillontology:1:1:skillaccesiblethrough</value>
               </key>
             </keys>
           </semanticId>
@@ -3264,202 +3204,20 @@
             <keys>
               <key>
                 <type>Submodel</type>
-                <value>urn:ehu:gcis:submodel:1:1:agentskills001</value>
+                <value>urn:ehu:gcis:submodel:1:1:transportrobotskills001</value>
               </key>
               <key>
                 <type>Operation</type>
-                <value>NegotiationBasedOnBattery</value>
+                <value>EfficientMovement</value>
               </key>
             </keys>
           </first>
           <second>
-            <type>ModelReference</type>
-            <keys>
-              <key>
-                <type>Submodel</type>
-                <value>https://admin-shell.io/idta/SubmodelTemplate/AssetInterfacesDescription</value>
-              </key>
-              <key>
-                <type>SubmodelElementCollection</type>
-                <value>InterfaceForHTTP</value>
-              </key>
-              <key>
-                <type>SubmodelElementCollection</type>
-                <value>InteractionMetadata</value>
-              </key>
-              <key>
-                <type>SubmodelElementCollection</type>
-                <value>properties</value>
-              </key>
-              <key>
-                <type>SubmodelElementCollection</type>
-                <value>property_battery</value>
-              </key>
-            </keys>
-          </second>
-        </relationshipElement>
-        <operation>
-          <idShort>NegotiationBasedOnLocation</idShort>
-          <semanticId>
             <type>ExternalReference</type>
             <keys>
               <key>
                 <type>GlobalReference</type>
-                <value>http://www.w3id.org/hsu-aut/css#Skill</value>
-              </key>
-            </keys>
-          </semanticId>
-          <qualifiers>
-            <qualifier>
-              <type>SkillImplementationType</type>
-              <valueType>xs:string</valueType>
-              <value>OPERATION</value>
-            </qualifier>
-          </qualifiers>
-          <inputVariables />
-          <outputVariables>
-            <operationVariable>
-              <value>
-                <property>
-                  <idShort>NegotiationWinner</idShort>
-                  <semanticId>
-                    <type>ExternalReference</type>
-                    <keys>
-                      <key>
-                        <type>GlobalReference</type>
-                        <value>http://www.w3id.org/hsu-aut/css#SkillParameter</value>
-                      </key>
-                    </keys>
-                  </semanticId>
-                  <valueType>xs:string</valueType>
-                </property>
-              </value>
-            </operationVariable>
-          </outputVariables>
-        </operation>
-        <relationshipElement>
-          <idShort>SkillLocationAccesibleInterfaceRelationship</idShort>
-          <semanticId>
-            <type>ExternalReference</type>
-            <keys>
-              <key>
-                <type>GlobalReference</type>
-                <value>http://www.w3id.org/upv-ehu/gcis/css-smia#accesibleThroughAssetService</value>
-              </key>
-            </keys>
-          </semanticId>
-          <first>
-            <type>ModelReference</type>
-            <keys>
-              <key>
-                <type>Submodel</type>
-                <value>https://admin-shell.io/idta/SubmodelTemplate/AssetInterfacesDescription</value>
-              </key>
-              <key>
-                <type>SubmodelElementCollection</type>
-                <value>InterfaceForHTTP</value>
-              </key>
-              <key>
-                <type>SubmodelElementCollection</type>
-                <value>InteractionMetadata</value>
-              </key>
-              <key>
-                <type>SubmodelElementCollection</type>
-                <value>properties</value>
-              </key>
-              <key>
-                <type>SubmodelElementCollection</type>
-                <value>property_location</value>
-              </key>
-            </keys>
-          </first>
-          <second>
-            <type>ModelReference</type>
-            <keys>
-              <key>
-                <type>Submodel</type>
-                <value>urn:ehu:gcis:submodel:1:1:agentskills001</value>
-              </key>
-              <key>
-                <type>Operation</type>
-                <value>NegotiationBasedOnLocation</value>
-              </key>
-            </keys>
-          </second>
-        </relationshipElement>
-        <operation>
-          <idShort>NegotiationBasedOnRAM</idShort>
-          <semanticId>
-            <type>ExternalReference</type>
-            <keys>
-              <key>
-                <type>GlobalReference</type>
-                <value>http://www.w3id.org/hsu-aut/css#Skill</value>
-              </key>
-            </keys>
-          </semanticId>
-          <qualifiers>
-            <qualifier>
-              <type>SkillImplementationType</type>
-              <valueType>xs:string</valueType>
-              <value>OPERATION</value>
-            </qualifier>
-          </qualifiers>
-          <inputVariables />
-          <outputVariables>
-            <operationVariable>
-              <value>
-                <property>
-                  <idShort>NegotiationWinner</idShort>
-                  <semanticId>
-                    <type>ExternalReference</type>
-                    <keys>
-                      <key>
-                        <type>GlobalReference</type>
-                        <value>http://www.w3id.org/hsu-aut/css#SkillParameter</value>
-                      </key>
-                    </keys>
-                  </semanticId>
-                  <valueType>xs:string</valueType>
-                </property>
-              </value>
-            </operationVariable>
-          </outputVariables>
-        </operation>
-        <relationshipElement>
-          <idShort>SkillRAMAccesibleInterfaceRelationship</idShort>
-          <semanticId>
-            <type>ExternalReference</type>
-            <keys>
-              <key>
-                <type>GlobalReference</type>
-                <value>http://www.w3id.org/upv-ehu/gcis/css-smia#accesibleThroughAgentService</value>
-              </key>
-            </keys>
-          </semanticId>
-          <first>
-            <type>ModelReference</type>
-            <keys>
-              <key>
-                <type>Submodel</type>
-                <value>urn:ehu:gcis:submodel:1:1:agentskills001</value>
-              </key>
-              <key>
-                <type>Operation</type>
-                <value>NegotiationBasedOnRAM</value>
-              </key>
-            </keys>
-          </first>
-          <second>
-            <type>ModelReference</type>
-            <keys>
-              <key>
-                <type>Submodel</type>
-                <value>urn:ehu:gcis:submodel:1:1:agentservices001</value>
-              </key>
-              <key>
-                <type>Operation</type>
-                <value>RAM_memory</value>
+                <value>urn:ehu:gcis:conceptdescriptions:1:1:negotiationcriteria</value>
               </key>
             </keys>
           </second>
@@ -3730,289 +3488,596 @@
         </submodelElementList>
       </submodelElements>
     </submodel>
-    <submodel>
-      <idShort>AgentServices</idShort>
+  </submodels>
+  <conceptDescriptions>
+    <conceptDescription>
+      <idShort>ManufacturingCapability</idShort>
       <administration>
         <version>1</version>
         <revision>1</revision>
       </administration>
-      <id>urn:ehu:gcis:submodel:1:1:agentservices001</id>
-      <kind>Instance</kind>
-      <submodelElements>
-        <operation>
-          <idShort>RAM_memory</idShort>
-          <inputVariables />
-          <outputVariables>
-            <operationVariable>
-              <value>
-                <property>
-                  <idShort>memory_percentage</idShort>
-                  <valueType>xs:string</valueType>
-                </property>
-              </value>
-            </operationVariable>
-          </outputVariables>
-        </operation>
-      </submodelElements>
-    </submodel>
-    <submodel>
-      <category>CONSTANT</category>
-      <idShort>SubmodelWithCapabilitySkillOntology</idShort>
-      <id>https://example.com/ids/sm/9105_9091_1142_2970</id>
-      <semanticId>
-        <type>ExternalReference</type>
-        <keys>
-          <key>
-            <type>GlobalReference</type>
-            <value></value>
-          </key>
-        </keys>
-      </semanticId>
-      <submodelElements>
-        <property>
-          <category></category>
-          <idShort>ManufacturingCapability</idShort>
-          <semanticId>
+      <id>urn:ehu:gcis:capabilityskillontology:1:1:manufacturingcapability</id>
+      <embeddedDataSpecifications>
+        <embeddedDataSpecification>
+          <dataSpecification>
             <type>ExternalReference</type>
             <keys>
               <key>
                 <type>GlobalReference</type>
-                <value>http://www.w3id.org/hsu-aut/css#Capability</value>
+                <value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0</value>
               </key>
             </keys>
-          </semanticId>
-          <valueType>xs:string</valueType>
-          <value></value>
-        </property>
-        <property>
-          <category></category>
-          <idShort>AssetCapability</idShort>
-          <semanticId>
+          </dataSpecification>
+          <dataSpecificationContent>
+            <dataSpecificationIec61360>
+              <preferredName>
+                <langStringPreferredNameTypeIec61360>
+                  <language>en</language>
+                  <text>ManufacturingCapability</text>
+                </langStringPreferredNameTypeIec61360>
+              </preferredName>
+              <dataType>STRING</dataType>
+              <definition>
+                <langStringDefinitionTypeIec61360>
+                  <language>en</language>
+                  <text>implementation-independent description of the function of a resource to achieve a certain effect in the physical or virtual world</text>
+                </langStringDefinitionTypeIec61360>
+                <langStringDefinitionTypeIec61360>
+                  <language>es</language>
+                  <text>descripción independiente de la aplicación de la función de un recurso para lograr un efecto determinado en el mundo físico o virtual</text>
+                </langStringDefinitionTypeIec61360>
+              </definition>
+            </dataSpecificationIec61360>
+          </dataSpecificationContent>
+        </embeddedDataSpecification>
+      </embeddedDataSpecifications>
+    </conceptDescription>
+    <conceptDescription>
+      <idShort>AssetCapability</idShort>
+      <administration>
+        <version>1</version>
+        <revision>1</revision>
+      </administration>
+      <id>urn:ehu:gcis:capabilityskillontology:1:1:assetcapability</id>
+      <embeddedDataSpecifications>
+        <embeddedDataSpecification>
+          <dataSpecification>
             <type>ExternalReference</type>
             <keys>
               <key>
                 <type>GlobalReference</type>
-                <value>http://www.w3id.org/upv-ehu/gcis/css-smia#AssetCapability</value>
+                <value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0</value>
               </key>
             </keys>
-          </semanticId>
-          <valueType>xs:string</valueType>
-          <value></value>
-        </property>
-        <property>
-          <category></category>
-          <idShort>AgentCapability</idShort>
-          <semanticId>
+          </dataSpecification>
+          <dataSpecificationContent>
+            <dataSpecificationIec61360>
+              <preferredName>
+                <langStringPreferredNameTypeIec61360>
+                  <language>en</language>
+                  <text>AssetCapability</text>
+                </langStringPreferredNameTypeIec61360>
+              </preferredName>
+              <dataType>STRING</dataType>
+              <definition>
+                <langStringDefinitionTypeIec61360>
+                  <language>en</language>
+                  <text>implementation-independent description of the function of a manufacturing asset to achieve a certain effect in the physical or virtual world</text>
+                </langStringDefinitionTypeIec61360>
+                <langStringDefinitionTypeIec61360>
+                  <language>es</language>
+                  <text>descripción independiente de la aplicación de la función de un activo de fabricación para lograr un efecto determinado en el mundo físico o virtual</text>
+                </langStringDefinitionTypeIec61360>
+              </definition>
+            </dataSpecificationIec61360>
+          </dataSpecificationContent>
+        </embeddedDataSpecification>
+      </embeddedDataSpecifications>
+    </conceptDescription>
+    <conceptDescription>
+      <idShort>AgentCapability</idShort>
+      <administration>
+        <version>1</version>
+        <revision>1</revision>
+      </administration>
+      <id>urn:ehu:gcis:capabilityskillontology:1:1:agentcapability</id>
+      <embeddedDataSpecifications>
+        <embeddedDataSpecification>
+          <dataSpecification>
             <type>ExternalReference</type>
             <keys>
               <key>
                 <type>GlobalReference</type>
-                <value>http://www.w3id.org/upv-ehu/gcis/css-smia#AgentCapability</value>
+                <value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0</value>
               </key>
             </keys>
-          </semanticId>
-          <valueType>xs:string</valueType>
-          <value></value>
-        </property>
-        <property>
-          <category></category>
-          <idShort>CapabilityRestrictedBy</idShort>
-          <semanticId>
+          </dataSpecification>
+          <dataSpecificationContent>
+            <dataSpecificationIec61360>
+              <preferredName>
+                <langStringPreferredNameTypeIec61360>
+                  <language>en</language>
+                  <text>AgentCapability</text>
+                </langStringPreferredNameTypeIec61360>
+              </preferredName>
+              <dataType>STRING</dataType>
+              <definition>
+                <langStringDefinitionTypeIec61360>
+                  <language>en</language>
+                  <text>implementation-independent description of the function of an industrial agent to achieve a certain effect in the physical or virtual world</text>
+                </langStringDefinitionTypeIec61360>
+                <langStringDefinitionTypeIec61360>
+                  <language>es</language>
+                  <text>descripción independiente de la aplicación de la función de un agente industrial para lograr un efecto determinado en el mundo físico o virtual</text>
+                </langStringDefinitionTypeIec61360>
+              </definition>
+            </dataSpecificationIec61360>
+          </dataSpecificationContent>
+        </embeddedDataSpecification>
+      </embeddedDataSpecifications>
+    </conceptDescription>
+    <conceptDescription>
+      <idShort>CapabilityRestrictedBy</idShort>
+      <administration>
+        <version>1</version>
+        <revision>1</revision>
+      </administration>
+      <id>urn:ehu:gcis:capabilityskillontology:1:1:capabilityrestrictedby</id>
+      <embeddedDataSpecifications>
+        <embeddedDataSpecification>
+          <dataSpecification>
             <type>ExternalReference</type>
             <keys>
               <key>
                 <type>GlobalReference</type>
-                <value>http://www.w3id.org/hsu-aut/css#isRestrictedBy</value>
+                <value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0</value>
               </key>
             </keys>
-          </semanticId>
-          <valueType>xs:string</valueType>
-          <value></value>
-        </property>
-        <property>
-          <category></category>
-          <idShort>CapabilityConstraint</idShort>
-          <semanticId>
+          </dataSpecification>
+          <dataSpecificationContent>
+            <dataSpecificationIec61360>
+              <preferredName>
+                <langStringPreferredNameTypeIec61360>
+                  <language>en</language>
+                  <text>CapabilityRestrictedBy</text>
+                </langStringPreferredNameTypeIec61360>
+              </preferredName>
+              <dataType>STRING</dataType>
+              <definition>
+                <langStringDefinitionTypeIec61360>
+                  <language>en</language>
+                  <text>relationship between the description of the capability and an associated constraint</text>
+                </langStringDefinitionTypeIec61360>
+                <langStringDefinitionTypeIec61360>
+                  <language>es</language>
+                  <text>relación entre la descripción de la capacidad y una restricción asociada</text>
+                </langStringDefinitionTypeIec61360>
+              </definition>
+            </dataSpecificationIec61360>
+          </dataSpecificationContent>
+        </embeddedDataSpecification>
+      </embeddedDataSpecifications>
+    </conceptDescription>
+    <conceptDescription>
+      <idShort>CapabilityConstraint</idShort>
+      <administration>
+        <version>1</version>
+        <revision>1</revision>
+      </administration>
+      <id>urn:ehu:gcis:capabilityskillontology:1:1:capabilityconstraint</id>
+      <embeddedDataSpecifications>
+        <embeddedDataSpecification>
+          <dataSpecification>
             <type>ExternalReference</type>
             <keys>
               <key>
                 <type>GlobalReference</type>
-                <value>http://www.w3id.org/hsu-aut/css#CapabilityConstraint</value>
+                <value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0</value>
               </key>
             </keys>
-          </semanticId>
-          <valueType>xs:string</valueType>
-          <value></value>
-        </property>
-        <property>
-          <category></category>
-          <idShort>CapabilityRealizedBy</idShort>
-          <semanticId>
+          </dataSpecification>
+          <dataSpecificationContent>
+            <dataSpecificationIec61360>
+              <preferredName>
+                <langStringPreferredNameTypeIec61360>
+                  <language>en</language>
+                  <text>CapabilityConstraint</text>
+                </langStringPreferredNameTypeIec61360>
+              </preferredName>
+              <dataType>STRING</dataType>
+              <definition>
+                <langStringDefinitionTypeIec61360>
+                  <language>en</language>
+                  <text>necessary condition for the capacity to be performed successfully</text>
+                </langStringDefinitionTypeIec61360>
+                <langStringDefinitionTypeIec61360>
+                  <language>es</language>
+                  <text>condición necesaria para que la capacidad se realice con éxito</text>
+                </langStringDefinitionTypeIec61360>
+              </definition>
+            </dataSpecificationIec61360>
+          </dataSpecificationContent>
+        </embeddedDataSpecification>
+      </embeddedDataSpecifications>
+    </conceptDescription>
+    <conceptDescription>
+      <idShort>CapabilityRealizedBy</idShort>
+      <administration>
+        <version>1</version>
+        <revision>1</revision>
+      </administration>
+      <id>urn:ehu:gcis:capabilityskillontology:1:1:capabilityrealizedby</id>
+      <embeddedDataSpecifications>
+        <embeddedDataSpecification>
+          <dataSpecification>
             <type>ExternalReference</type>
             <keys>
               <key>
                 <type>GlobalReference</type>
-                <value>http://www.w3id.org/hsu-aut/css#isRealizedBy</value>
+                <value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0</value>
               </key>
             </keys>
-          </semanticId>
-          <valueType>xs:string</valueType>
-          <value></value>
-        </property>
-        <property>
-          <category></category>
-          <idShort>ManufacturingSkill</idShort>
-          <semanticId>
+          </dataSpecification>
+          <dataSpecificationContent>
+            <dataSpecificationIec61360>
+              <preferredName>
+                <langStringPreferredNameTypeIec61360>
+                  <language>en</language>
+                  <text>CapabilityRealizedBy</text>
+                </langStringPreferredNameTypeIec61360>
+              </preferredName>
+              <dataType>STRING</dataType>
+              <definition>
+                <langStringDefinitionTypeIec61360>
+                  <language>en</language>
+                  <text>directed relationship between a capability and the skill that is realizing the capability by providing a corresponding implementation</text>
+                </langStringDefinitionTypeIec61360>
+                <langStringDefinitionTypeIec61360>
+                  <language>es</language>
+                  <text>relación directa entre una capacidad y la habilidad que la realiza, proporcionando la implementación correspondiente</text>
+                </langStringDefinitionTypeIec61360>
+              </definition>
+            </dataSpecificationIec61360>
+          </dataSpecificationContent>
+        </embeddedDataSpecification>
+      </embeddedDataSpecifications>
+    </conceptDescription>
+    <conceptDescription>
+      <idShort>ManufacturingSkill</idShort>
+      <administration>
+        <version>1</version>
+        <revision>1</revision>
+      </administration>
+      <id>urn:ehu:gcis:capabilityskillontology:1:1:manufacturingskill</id>
+      <embeddedDataSpecifications>
+        <embeddedDataSpecification>
+          <dataSpecification>
             <type>ExternalReference</type>
             <keys>
               <key>
                 <type>GlobalReference</type>
-                <value>http://www.w3id.org/hsu-aut/css#Skill</value>
+                <value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0</value>
               </key>
             </keys>
-          </semanticId>
-          <valueType>xs:string</valueType>
-          <value></value>
-        </property>
-        <property>
-          <category></category>
-          <idShort>SkillAccesibleThrough</idShort>
-          <semanticId>
+          </dataSpecification>
+          <dataSpecificationContent>
+            <dataSpecificationIec61360>
+              <preferredName>
+                <langStringPreferredNameTypeIec61360>
+                  <language>en</language>
+                  <text>ManufacturingSkill</text>
+                </langStringPreferredNameTypeIec61360>
+              </preferredName>
+              <dataType>STRING</dataType>
+              <definition>
+                <langStringDefinitionTypeIec61360>
+                  <language>en</language>
+                  <text>asset-dependent implementation of the function of a resource to achieve a certain effect in the physical or virtual world</text>
+                </langStringDefinitionTypeIec61360>
+                <langStringDefinitionTypeIec61360>
+                  <language>es</language>
+                  <text>implementación dependiente del activo de la función de un recurso para lograr un efecto determinado en el mundo físico o virtual</text>
+                </langStringDefinitionTypeIec61360>
+              </definition>
+            </dataSpecificationIec61360>
+          </dataSpecificationContent>
+        </embeddedDataSpecification>
+      </embeddedDataSpecifications>
+    </conceptDescription>
+    <conceptDescription>
+      <idShort>SkillAccesibleThrough</idShort>
+      <administration>
+        <version>1</version>
+        <revision>1</revision>
+      </administration>
+      <id>urn:ehu:gcis:capabilityskillontology:1:1:skillaccesiblethrough</id>
+      <embeddedDataSpecifications>
+        <embeddedDataSpecification>
+          <dataSpecification>
             <type>ExternalReference</type>
             <keys>
               <key>
                 <type>GlobalReference</type>
-                <value>http://www.w3id.org/hsu-aut/css#accessibleThrough</value>
+                <value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0</value>
               </key>
             </keys>
-          </semanticId>
-          <valueType>xs:string</valueType>
-          <value></value>
-        </property>
-        <property>
-          <category></category>
-          <idShort>SkillAccesibleThroughAgentService</idShort>
-          <semanticId>
+          </dataSpecification>
+          <dataSpecificationContent>
+            <dataSpecificationIec61360>
+              <preferredName>
+                <langStringPreferredNameTypeIec61360>
+                  <language>en</language>
+                  <text>SkillAccesibleThrough</text>
+                </langStringPreferredNameTypeIec61360>
+              </preferredName>
+              <dataType>STRING</dataType>
+              <definition>
+                <langStringDefinitionTypeIec61360>
+                  <language>en</language>
+                  <text>relationship between the description of the skill and the skill interface that implements the skill</text>
+                </langStringDefinitionTypeIec61360>
+                <langStringDefinitionTypeIec61360>
+                  <language>es</language>
+                  <text>relación entre la descripción de la habilidad y la interfaz de habilidad que la implementa</text>
+                </langStringDefinitionTypeIec61360>
+              </definition>
+            </dataSpecificationIec61360>
+          </dataSpecificationContent>
+        </embeddedDataSpecification>
+      </embeddedDataSpecifications>
+    </conceptDescription>
+    <conceptDescription>
+      <idShort>SkillInterface</idShort>
+      <administration>
+        <version>1</version>
+        <revision>1</revision>
+      </administration>
+      <id>urn:ehu:gcis:capabilityskillontology:1:1:skillinterface</id>
+      <embeddedDataSpecifications>
+        <embeddedDataSpecification>
+          <dataSpecification>
             <type>ExternalReference</type>
             <keys>
               <key>
                 <type>GlobalReference</type>
-                <value>http://www.w3id.org/upv-ehu/gcis/css-smia#accesibleThroughAgentService</value>
+                <value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0</value>
               </key>
             </keys>
-          </semanticId>
-          <valueType>xs:string</valueType>
-          <value></value>
-        </property>
-        <property>
-          <category></category>
-          <idShort>SkillAccesibleThroughAssetService</idShort>
-          <semanticId>
+          </dataSpecification>
+          <dataSpecificationContent>
+            <dataSpecificationIec61360>
+              <preferredName>
+                <langStringPreferredNameTypeIec61360>
+                  <language>en</language>
+                  <text>SkillInterface</text>
+                </langStringPreferredNameTypeIec61360>
+              </preferredName>
+              <dataType>STRING</dataType>
+              <definition>
+                <langStringDefinitionTypeIec61360>
+                  <language>en</language>
+                  <text>interface that offers accessibility for the skill implementation</text>
+                </langStringDefinitionTypeIec61360>
+                <langStringDefinitionTypeIec61360>
+                  <language>es</language>
+                  <text>interfaz que ofrece accesibilidad para la implementación de la habilidad</text>
+                </langStringDefinitionTypeIec61360>
+              </definition>
+            </dataSpecificationIec61360>
+          </dataSpecificationContent>
+        </embeddedDataSpecification>
+      </embeddedDataSpecifications>
+    </conceptDescription>
+    <conceptDescription>
+      <idShort>SkillHasParameter</idShort>
+      <administration>
+        <version>1</version>
+        <revision>1</revision>
+      </administration>
+      <id>urn:ehu:gcis:capabilityskillontology:1:1:skillhasparameter</id>
+      <embeddedDataSpecifications>
+        <embeddedDataSpecification>
+          <dataSpecification>
             <type>ExternalReference</type>
             <keys>
               <key>
                 <type>GlobalReference</type>
-                <value>http://www.w3id.org/upv-ehu/gcis/css-smia#accesibleThroughAssetService</value>
+                <value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0</value>
               </key>
             </keys>
-          </semanticId>
-          <valueType>xs:string</valueType>
-          <value></value>
-        </property>
-        <property>
-          <category></category>
-          <idShort>SkillInterface</idShort>
-          <semanticId>
+          </dataSpecification>
+          <dataSpecificationContent>
+            <dataSpecificationIec61360>
+              <preferredName>
+                <langStringPreferredNameTypeIec61360>
+                  <language>en</language>
+                  <text>SkillHasParameter</text>
+                </langStringPreferredNameTypeIec61360>
+              </preferredName>
+              <dataType>STRING</dataType>
+              <definition>
+                <langStringDefinitionTypeIec61360>
+                  <language>en</language>
+                  <text>relationship between the description of the skill and a related parameter necessary for its implementation</text>
+                </langStringDefinitionTypeIec61360>
+                <langStringDefinitionTypeIec61360>
+                  <language>es</language>
+                  <text>relación entre la descripción de la habilidad y un parámetro relacionado necesario para su implementación</text>
+                </langStringDefinitionTypeIec61360>
+              </definition>
+            </dataSpecificationIec61360>
+          </dataSpecificationContent>
+        </embeddedDataSpecification>
+      </embeddedDataSpecifications>
+    </conceptDescription>
+    <conceptDescription>
+      <idShort>SkillParameter</idShort>
+      <administration>
+        <version>1</version>
+        <revision>1</revision>
+      </administration>
+      <id>urn:ehu:gcis:capabilityskillontology:1:1:skillparameter</id>
+      <embeddedDataSpecifications>
+        <embeddedDataSpecification>
+          <dataSpecification>
             <type>ExternalReference</type>
             <keys>
               <key>
                 <type>GlobalReference</type>
-                <value>http://www.w3id.org/hsu-aut/css#SkillInterface</value>
+                <value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0</value>
               </key>
             </keys>
-          </semanticId>
-          <valueType>xs:string</valueType>
-          <value></value>
-        </property>
-        <property>
-          <category></category>
-          <idShort>SkillHasParameter</idShort>
-          <semanticId>
+          </dataSpecification>
+          <dataSpecificationContent>
+            <dataSpecificationIec61360>
+              <preferredName>
+                <langStringPreferredNameTypeIec61360>
+                  <language>en</language>
+                  <text>SkillParameter</text>
+                </langStringPreferredNameTypeIec61360>
+              </preferredName>
+              <dataType>STRING</dataType>
+              <definition>
+                <langStringDefinitionTypeIec61360>
+                  <language>en</language>
+                  <text>parameter necessary for the implementation of a skill</text>
+                </langStringDefinitionTypeIec61360>
+                <langStringDefinitionTypeIec61360>
+                  <language>es</language>
+                  <text>parámetro necesario para la implementación de una habilidad</text>
+                </langStringDefinitionTypeIec61360>
+              </definition>
+            </dataSpecificationIec61360>
+          </dataSpecificationContent>
+        </embeddedDataSpecification>
+      </embeddedDataSpecifications>
+    </conceptDescription>
+    <conceptDescription>
+      <idShort>SkillBehavioursConformsTo</idShort>
+      <administration>
+        <version>1</version>
+        <revision>1</revision>
+      </administration>
+      <id>urn:ehu:gcis:capabilityskillontology:1:1:skillbehavioursconformsto</id>
+      <embeddedDataSpecifications>
+        <embeddedDataSpecification>
+          <dataSpecification>
             <type>ExternalReference</type>
             <keys>
               <key>
                 <type>GlobalReference</type>
-                <value>http://www.w3id.org/hsu-aut/css#hasParameter</value>
+                <value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0</value>
               </key>
             </keys>
-          </semanticId>
-          <valueType>xs:string</valueType>
-          <value></value>
-        </property>
-        <property>
-          <category></category>
-          <idShort>SkillParameter</idShort>
-          <semanticId>
+          </dataSpecification>
+          <dataSpecificationContent>
+            <dataSpecificationIec61360>
+              <preferredName>
+                <langStringPreferredNameTypeIec61360>
+                  <language>en</language>
+                  <text>SkillBehavioursConformsTo</text>
+                </langStringPreferredNameTypeIec61360>
+              </preferredName>
+              <dataType>STRING</dataType>
+              <definition>
+                <langStringDefinitionTypeIec61360>
+                  <language>en</language>
+                  <text>relationship between the description of the skill and its related state machine</text>
+                </langStringDefinitionTypeIec61360>
+                <langStringDefinitionTypeIec61360>
+                  <language>es</language>
+                  <text>relación entre la descripción de la habilidad y su máquina de estados relacionada</text>
+                </langStringDefinitionTypeIec61360>
+              </definition>
+            </dataSpecificationIec61360>
+          </dataSpecificationContent>
+        </embeddedDataSpecification>
+      </embeddedDataSpecifications>
+    </conceptDescription>
+    <conceptDescription>
+      <idShort>SkillStateMachine</idShort>
+      <administration>
+        <version>1</version>
+        <revision>1</revision>
+      </administration>
+      <id>urn:ehu:gcis:capabilityskillontology:1:1:skillstatemachine</id>
+      <embeddedDataSpecifications>
+        <embeddedDataSpecification>
+          <dataSpecification>
             <type>ExternalReference</type>
             <keys>
               <key>
                 <type>GlobalReference</type>
-                <value>http://www.w3id.org/hsu-aut/css#SkillParameter</value>
+                <value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0</value>
               </key>
             </keys>
-          </semanticId>
-          <valueType>xs:string</valueType>
-          <value></value>
-        </property>
-        <property>
-          <category></category>
-          <idShort>SkillBehavioursConformsTo</idShort>
-          <semanticId>
+          </dataSpecification>
+          <dataSpecificationContent>
+            <dataSpecificationIec61360>
+              <preferredName>
+                <langStringPreferredNameTypeIec61360>
+                  <language>en</language>
+                  <text>SkillStateMachine</text>
+                </langStringPreferredNameTypeIec61360>
+              </preferredName>
+              <dataType>STRING</dataType>
+              <definition>
+                <langStringDefinitionTypeIec61360>
+                  <language>en</language>
+                  <text>standardized state machine of the skill, with its current state as well as possible interactions</text>
+                </langStringDefinitionTypeIec61360>
+                <langStringDefinitionTypeIec61360>
+                  <language>es</language>
+                  <text>máquina de estados estandarizada de la habilidad, con su estado actual así como las posibles interacciones</text>
+                </langStringDefinitionTypeIec61360>
+              </definition>
+            </dataSpecificationIec61360>
+          </dataSpecificationContent>
+        </embeddedDataSpecification>
+      </embeddedDataSpecifications>
+    </conceptDescription>
+    <conceptDescription>
+      <idShort>SkillParameterExposedThrough</idShort>
+      <administration>
+        <version>1</version>
+        <revision>1</revision>
+      </administration>
+      <id>urn:ehu:gcis:capabilityskillontology:1:1:skillparameterexposedthrough</id>
+      <embeddedDataSpecifications>
+        <embeddedDataSpecification>
+          <dataSpecification>
             <type>ExternalReference</type>
             <keys>
               <key>
                 <type>GlobalReference</type>
-                <value>http://www.w3id.org/hsu-aut/css#behaviorConformsTo</value>
+                <value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0</value>
               </key>
             </keys>
-          </semanticId>
-          <valueType>xs:string</valueType>
-          <value></value>
-        </property>
-        <property>
-          <category></category>
-          <idShort>SkillStateMachine</idShort>
-          <semanticId>
-            <type>ExternalReference</type>
-            <keys>
-              <key>
-                <type>GlobalReference</type>
-                <value>http://www.w3id.org/hsu-aut/css#StateMachine</value>
-              </key>
-            </keys>
-          </semanticId>
-          <valueType>xs:string</valueType>
-          <value></value>
-        </property>
-        <property>
-          <category></category>
-          <idShort>SkillParameterExposedThrough</idShort>
-          <semanticId>
-            <type>ExternalReference</type>
-            <keys>
-              <key>
-                <type>GlobalReference</type>
-                <value>urn:ehu:gcis:capabilityskillontology:1:1:skillparameterexposedthrough</value>
-              </key>
-            </keys>
-          </semanticId>
-          <valueType>xs:string</valueType>
-          <value></value>
-        </property>
-      </submodelElements>
-    </submodel>
-  </submodels>
-  <conceptDescriptions>
+          </dataSpecification>
+          <dataSpecificationContent>
+            <dataSpecificationIec61360>
+              <preferredName>
+                <langStringPreferredNameTypeIec61360>
+                  <language>en</language>
+                  <text>SkillParameterExposedThrough</text>
+                </langStringPreferredNameTypeIec61360>
+              </preferredName>
+              <dataType>STRING</dataType>
+              <definition>
+                <langStringDefinitionTypeIec61360>
+                  <language>en</language>
+                  <text>relationship between the description of the skill and the element within the skill interface that exposes the parameter. The related interface element will be where all skill parameters should be added during the request.</text>
+                </langStringDefinitionTypeIec61360>
+                <langStringDefinitionTypeIec61360>
+                  <language>es</language>
+                  <text>relación entre la descripción de la habilidad y el elemento dentro de la interfaz de la habilidad que expone el parámetro. El elemento de la interfaz relacionado será donde se deben añadir todos los parámetros de habilidad durante la solicitud.</text>
+                </langStringDefinitionTypeIec61360>
+              </definition>
+            </dataSpecificationIec61360>
+          </dataSpecificationContent>
+        </embeddedDataSpecification>
+      </embeddedDataSpecifications>
+    </conceptDescription>
     <conceptDescription>
       <idShort>NegotiationCriteriaValue</idShort>
       <administration>
@@ -4182,678 +4247,6 @@
                 <langStringDefinitionTypeIec61360>
                   <language>es</language>
                   <text>posición actual del robot en coordenadas X e Y</text>
-                </langStringDefinitionTypeIec61360>
-              </definition>
-            </dataSpecificationIec61360>
-          </dataSpecificationContent>
-        </embeddedDataSpecification>
-      </embeddedDataSpecifications>
-    </conceptDescription>
-    <conceptDescription>
-      <idShort>ManufacturingCapability</idShort>
-      <administration>
-        <version>1</version>
-        <revision>1</revision>
-      </administration>
-      <id>http://www.w3id.org/hsu-aut/css#Capability</id>
-      <embeddedDataSpecifications>
-        <embeddedDataSpecification>
-          <dataSpecification>
-            <type>ExternalReference</type>
-            <keys>
-              <key>
-                <type>GlobalReference</type>
-                <value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0</value>
-              </key>
-            </keys>
-          </dataSpecification>
-          <dataSpecificationContent>
-            <dataSpecificationIec61360>
-              <preferredName>
-                <langStringPreferredNameTypeIec61360>
-                  <language>en</language>
-                  <text>ManufacturingCapability</text>
-                </langStringPreferredNameTypeIec61360>
-              </preferredName>
-              <dataType>STRING</dataType>
-              <definition>
-                <langStringDefinitionTypeIec61360>
-                  <language>en</language>
-                  <text>implementation-independent description of the function of a resource to achieve a certain effect in the physical or virtual world</text>
-                </langStringDefinitionTypeIec61360>
-                <langStringDefinitionTypeIec61360>
-                  <language>es</language>
-                  <text>descripción independiente de la aplicación de la función de un recurso para lograr un efecto determinado en el mundo físico o virtual</text>
-                </langStringDefinitionTypeIec61360>
-              </definition>
-            </dataSpecificationIec61360>
-          </dataSpecificationContent>
-        </embeddedDataSpecification>
-      </embeddedDataSpecifications>
-    </conceptDescription>
-    <conceptDescription>
-      <idShort>AssetCapability</idShort>
-      <administration>
-        <version>1</version>
-        <revision>1</revision>
-      </administration>
-      <id>http://www.w3id.org/upv-ehu/gcis/css-smia#AssetCapability</id>
-      <embeddedDataSpecifications>
-        <embeddedDataSpecification>
-          <dataSpecification>
-            <type>ExternalReference</type>
-            <keys>
-              <key>
-                <type>GlobalReference</type>
-                <value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0</value>
-              </key>
-            </keys>
-          </dataSpecification>
-          <dataSpecificationContent>
-            <dataSpecificationIec61360>
-              <preferredName>
-                <langStringPreferredNameTypeIec61360>
-                  <language>en</language>
-                  <text>AssetCapability</text>
-                </langStringPreferredNameTypeIec61360>
-              </preferredName>
-              <dataType>STRING</dataType>
-              <definition>
-                <langStringDefinitionTypeIec61360>
-                  <language>en</language>
-                  <text>implementation-independent description of the function of a manufacturing asset to achieve a certain effect in the physical or virtual world</text>
-                </langStringDefinitionTypeIec61360>
-                <langStringDefinitionTypeIec61360>
-                  <language>es</language>
-                  <text>descripción independiente de la aplicación de la función de un activo de fabricación para lograr un efecto determinado en el mundo físico o virtual</text>
-                </langStringDefinitionTypeIec61360>
-              </definition>
-            </dataSpecificationIec61360>
-          </dataSpecificationContent>
-        </embeddedDataSpecification>
-      </embeddedDataSpecifications>
-    </conceptDescription>
-    <conceptDescription>
-      <idShort>AgentCapability</idShort>
-      <administration>
-        <version>1</version>
-        <revision>1</revision>
-      </administration>
-      <id>http://www.w3id.org/upv-ehu/gcis/css-smia#AgentCapability</id>
-      <embeddedDataSpecifications>
-        <embeddedDataSpecification>
-          <dataSpecification>
-            <type>ExternalReference</type>
-            <keys>
-              <key>
-                <type>GlobalReference</type>
-                <value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0</value>
-              </key>
-            </keys>
-          </dataSpecification>
-          <dataSpecificationContent>
-            <dataSpecificationIec61360>
-              <preferredName>
-                <langStringPreferredNameTypeIec61360>
-                  <language>en</language>
-                  <text>AgentCapability</text>
-                </langStringPreferredNameTypeIec61360>
-              </preferredName>
-              <dataType>STRING</dataType>
-              <definition>
-                <langStringDefinitionTypeIec61360>
-                  <language>en</language>
-                  <text>implementation-independent description of the function of an industrial agent to achieve a certain effect in the physical or virtual world</text>
-                </langStringDefinitionTypeIec61360>
-                <langStringDefinitionTypeIec61360>
-                  <language>es</language>
-                  <text>descripción independiente de la aplicación de la función de un agente industrial para lograr un efecto determinado en el mundo físico o virtual</text>
-                </langStringDefinitionTypeIec61360>
-              </definition>
-            </dataSpecificationIec61360>
-          </dataSpecificationContent>
-        </embeddedDataSpecification>
-      </embeddedDataSpecifications>
-    </conceptDescription>
-    <conceptDescription>
-      <idShort>CapabilityRestrictedBy</idShort>
-      <administration>
-        <version>1</version>
-        <revision>1</revision>
-      </administration>
-      <id>http://www.w3id.org/hsu-aut/css#isRestrictedBy</id>
-      <embeddedDataSpecifications>
-        <embeddedDataSpecification>
-          <dataSpecification>
-            <type>ExternalReference</type>
-            <keys>
-              <key>
-                <type>GlobalReference</type>
-                <value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0</value>
-              </key>
-            </keys>
-          </dataSpecification>
-          <dataSpecificationContent>
-            <dataSpecificationIec61360>
-              <preferredName>
-                <langStringPreferredNameTypeIec61360>
-                  <language>en</language>
-                  <text>CapabilityRestrictedBy</text>
-                </langStringPreferredNameTypeIec61360>
-              </preferredName>
-              <dataType>STRING</dataType>
-              <definition>
-                <langStringDefinitionTypeIec61360>
-                  <language>en</language>
-                  <text>relationship between the description of the capability and an associated constraint</text>
-                </langStringDefinitionTypeIec61360>
-                <langStringDefinitionTypeIec61360>
-                  <language>es</language>
-                  <text>relación entre la descripción de la capacidad y una restricción asociada</text>
-                </langStringDefinitionTypeIec61360>
-              </definition>
-            </dataSpecificationIec61360>
-          </dataSpecificationContent>
-        </embeddedDataSpecification>
-      </embeddedDataSpecifications>
-    </conceptDescription>
-    <conceptDescription>
-      <idShort>CapabilityConstraint</idShort>
-      <administration>
-        <version>1</version>
-        <revision>1</revision>
-      </administration>
-      <id>http://www.w3id.org/hsu-aut/css#CapabilityConstraint</id>
-      <embeddedDataSpecifications>
-        <embeddedDataSpecification>
-          <dataSpecification>
-            <type>ExternalReference</type>
-            <keys>
-              <key>
-                <type>GlobalReference</type>
-                <value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0</value>
-              </key>
-            </keys>
-          </dataSpecification>
-          <dataSpecificationContent>
-            <dataSpecificationIec61360>
-              <preferredName>
-                <langStringPreferredNameTypeIec61360>
-                  <language>en</language>
-                  <text>CapabilityConstraint</text>
-                </langStringPreferredNameTypeIec61360>
-              </preferredName>
-              <dataType>STRING</dataType>
-              <definition>
-                <langStringDefinitionTypeIec61360>
-                  <language>en</language>
-                  <text>necessary condition for the capacity to be performed successfully</text>
-                </langStringDefinitionTypeIec61360>
-                <langStringDefinitionTypeIec61360>
-                  <language>es</language>
-                  <text>condición necesaria para que la capacidad se realice con éxito</text>
-                </langStringDefinitionTypeIec61360>
-              </definition>
-            </dataSpecificationIec61360>
-          </dataSpecificationContent>
-        </embeddedDataSpecification>
-      </embeddedDataSpecifications>
-    </conceptDescription>
-    <conceptDescription>
-      <idShort>CapabilityRealizedBy</idShort>
-      <administration>
-        <version>1</version>
-        <revision>1</revision>
-      </administration>
-      <id>http://www.w3id.org/hsu-aut/css#isRealizedBy</id>
-      <embeddedDataSpecifications>
-        <embeddedDataSpecification>
-          <dataSpecification>
-            <type>ExternalReference</type>
-            <keys>
-              <key>
-                <type>GlobalReference</type>
-                <value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0</value>
-              </key>
-            </keys>
-          </dataSpecification>
-          <dataSpecificationContent>
-            <dataSpecificationIec61360>
-              <preferredName>
-                <langStringPreferredNameTypeIec61360>
-                  <language>en</language>
-                  <text>CapabilityRealizedBy</text>
-                </langStringPreferredNameTypeIec61360>
-              </preferredName>
-              <dataType>STRING</dataType>
-              <definition>
-                <langStringDefinitionTypeIec61360>
-                  <language>en</language>
-                  <text>directed relationship between a capability and the skill that is realizing the capability by providing a corresponding implementation</text>
-                </langStringDefinitionTypeIec61360>
-                <langStringDefinitionTypeIec61360>
-                  <language>es</language>
-                  <text>relación directa entre una capacidad y la habilidad que la realiza, proporcionando la implementación correspondiente</text>
-                </langStringDefinitionTypeIec61360>
-              </definition>
-            </dataSpecificationIec61360>
-          </dataSpecificationContent>
-        </embeddedDataSpecification>
-      </embeddedDataSpecifications>
-    </conceptDescription>
-    <conceptDescription>
-      <idShort>ManufacturingSkill</idShort>
-      <administration>
-        <version>1</version>
-        <revision>1</revision>
-      </administration>
-      <id>http://www.w3id.org/hsu-aut/css#Skill</id>
-      <embeddedDataSpecifications>
-        <embeddedDataSpecification>
-          <dataSpecification>
-            <type>ExternalReference</type>
-            <keys>
-              <key>
-                <type>GlobalReference</type>
-                <value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0</value>
-              </key>
-            </keys>
-          </dataSpecification>
-          <dataSpecificationContent>
-            <dataSpecificationIec61360>
-              <preferredName>
-                <langStringPreferredNameTypeIec61360>
-                  <language>en</language>
-                  <text>ManufacturingSkill</text>
-                </langStringPreferredNameTypeIec61360>
-              </preferredName>
-              <dataType>STRING</dataType>
-              <definition>
-                <langStringDefinitionTypeIec61360>
-                  <language>en</language>
-                  <text>asset-dependent implementation of the function of a resource to achieve a certain effect in the physical or virtual world</text>
-                </langStringDefinitionTypeIec61360>
-                <langStringDefinitionTypeIec61360>
-                  <language>es</language>
-                  <text>implementación dependiente del activo de la función de un recurso para lograr un efecto determinado en el mundo físico o virtual</text>
-                </langStringDefinitionTypeIec61360>
-              </definition>
-            </dataSpecificationIec61360>
-          </dataSpecificationContent>
-        </embeddedDataSpecification>
-      </embeddedDataSpecifications>
-    </conceptDescription>
-    <conceptDescription>
-      <idShort>SkillAccesibleThrough</idShort>
-      <administration>
-        <version>1</version>
-        <revision>1</revision>
-      </administration>
-      <id>http://www.w3id.org/hsu-aut/css#accessibleThrough</id>
-      <embeddedDataSpecifications>
-        <embeddedDataSpecification>
-          <dataSpecification>
-            <type>ExternalReference</type>
-            <keys>
-              <key>
-                <type>GlobalReference</type>
-                <value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0</value>
-              </key>
-            </keys>
-          </dataSpecification>
-          <dataSpecificationContent>
-            <dataSpecificationIec61360>
-              <preferredName>
-                <langStringPreferredNameTypeIec61360>
-                  <language>en</language>
-                  <text>SkillAccesibleThrough</text>
-                </langStringPreferredNameTypeIec61360>
-              </preferredName>
-              <dataType>STRING</dataType>
-              <definition>
-                <langStringDefinitionTypeIec61360>
-                  <language>en</language>
-                  <text>relationship between the description of the skill and the skill interface that implements the skill</text>
-                </langStringDefinitionTypeIec61360>
-                <langStringDefinitionTypeIec61360>
-                  <language>es</language>
-                  <text>relación entre la descripción de la habilidad y la interfaz de habilidad que la implementa</text>
-                </langStringDefinitionTypeIec61360>
-              </definition>
-            </dataSpecificationIec61360>
-          </dataSpecificationContent>
-        </embeddedDataSpecification>
-      </embeddedDataSpecifications>
-    </conceptDescription>
-    <conceptDescription>
-      <idShort>SkillAccesibleThroughAgentService</idShort>
-      <administration>
-        <version>1</version>
-        <revision>1</revision>
-      </administration>
-      <id>http://www.w3id.org/upv-ehu/gcis/css-smia#accesibleThroughAgentService</id>
-      <embeddedDataSpecifications>
-        <embeddedDataSpecification>
-          <dataSpecification>
-            <type>ExternalReference</type>
-            <keys>
-              <key>
-                <type>GlobalReference</type>
-                <value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0</value>
-              </key>
-            </keys>
-          </dataSpecification>
-          <dataSpecificationContent>
-            <dataSpecificationIec61360>
-              <preferredName>
-                <langStringPreferredNameTypeIec61360>
-                  <language>en</language>
-                  <text>SkillAccesibleThroughAgentService</text>
-                </langStringPreferredNameTypeIec61360>
-              </preferredName>
-              <dataType>STRING</dataType>
-              <definition>
-                <langStringDefinitionTypeIec61360>
-                  <language>en</language>
-                  <text>relationship between the description of the skill and the skill interface that implements the skill through an agent service</text>
-                </langStringDefinitionTypeIec61360>
-                <langStringDefinitionTypeIec61360>
-                  <language>es</language>
-                  <text>relación entre la descripción de la habilidad y la interfaz de habilidad que la implementa a través de un servicio de agente</text>
-                </langStringDefinitionTypeIec61360>
-              </definition>
-            </dataSpecificationIec61360>
-          </dataSpecificationContent>
-        </embeddedDataSpecification>
-      </embeddedDataSpecifications>
-    </conceptDescription>
-    <conceptDescription>
-      <idShort>SkillAccesibleThroughAssetService</idShort>
-      <administration>
-        <version>1</version>
-        <revision>1</revision>
-      </administration>
-      <id>http://www.w3id.org/upv-ehu/gcis/css-smia#accesibleThroughAssetService</id>
-      <embeddedDataSpecifications>
-        <embeddedDataSpecification>
-          <dataSpecification>
-            <type>ExternalReference</type>
-            <keys>
-              <key>
-                <type>GlobalReference</type>
-                <value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0</value>
-              </key>
-            </keys>
-          </dataSpecification>
-          <dataSpecificationContent>
-            <dataSpecificationIec61360>
-              <preferredName>
-                <langStringPreferredNameTypeIec61360>
-                  <language>en</language>
-                  <text>SkillAccesibleThroughAssetService</text>
-                </langStringPreferredNameTypeIec61360>
-              </preferredName>
-              <dataType>STRING</dataType>
-              <definition>
-                <langStringDefinitionTypeIec61360>
-                  <language>en</language>
-                  <text>relationship between the description of the skill and the skill interface that implements the skill through an asset service</text>
-                </langStringDefinitionTypeIec61360>
-                <langStringDefinitionTypeIec61360>
-                  <language>es</language>
-                  <text>relación entre la descripción de la habilidad y la interfaz de habilidad que la implementa a través de un servicio de activo</text>
-                </langStringDefinitionTypeIec61360>
-              </definition>
-            </dataSpecificationIec61360>
-          </dataSpecificationContent>
-        </embeddedDataSpecification>
-      </embeddedDataSpecifications>
-    </conceptDescription>
-    <conceptDescription>
-      <idShort>SkillInterface</idShort>
-      <administration>
-        <version>1</version>
-        <revision>1</revision>
-      </administration>
-      <id>http://www.w3id.org/hsu-aut/css#SkillInterface</id>
-      <embeddedDataSpecifications>
-        <embeddedDataSpecification>
-          <dataSpecification>
-            <type>ExternalReference</type>
-            <keys>
-              <key>
-                <type>GlobalReference</type>
-                <value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0</value>
-              </key>
-            </keys>
-          </dataSpecification>
-          <dataSpecificationContent>
-            <dataSpecificationIec61360>
-              <preferredName>
-                <langStringPreferredNameTypeIec61360>
-                  <language>en</language>
-                  <text>SkillInterface</text>
-                </langStringPreferredNameTypeIec61360>
-              </preferredName>
-              <dataType>STRING</dataType>
-              <definition>
-                <langStringDefinitionTypeIec61360>
-                  <language>en</language>
-                  <text>interface that offers accessibility for the skill implementation</text>
-                </langStringDefinitionTypeIec61360>
-                <langStringDefinitionTypeIec61360>
-                  <language>es</language>
-                  <text>interfaz que ofrece accesibilidad para la implementación de la habilidad</text>
-                </langStringDefinitionTypeIec61360>
-              </definition>
-            </dataSpecificationIec61360>
-          </dataSpecificationContent>
-        </embeddedDataSpecification>
-      </embeddedDataSpecifications>
-    </conceptDescription>
-    <conceptDescription>
-      <idShort>SkillHasParameter</idShort>
-      <administration>
-        <version>1</version>
-        <revision>1</revision>
-      </administration>
-      <id>http://www.w3id.org/hsu-aut/css#hasParameter</id>
-      <embeddedDataSpecifications>
-        <embeddedDataSpecification>
-          <dataSpecification>
-            <type>ExternalReference</type>
-            <keys>
-              <key>
-                <type>GlobalReference</type>
-                <value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0</value>
-              </key>
-            </keys>
-          </dataSpecification>
-          <dataSpecificationContent>
-            <dataSpecificationIec61360>
-              <preferredName>
-                <langStringPreferredNameTypeIec61360>
-                  <language>en</language>
-                  <text>SkillHasParameter</text>
-                </langStringPreferredNameTypeIec61360>
-              </preferredName>
-              <dataType>STRING</dataType>
-              <definition>
-                <langStringDefinitionTypeIec61360>
-                  <language>en</language>
-                  <text>relationship between the description of the skill and a related parameter necessary for its implementation</text>
-                </langStringDefinitionTypeIec61360>
-                <langStringDefinitionTypeIec61360>
-                  <language>es</language>
-                  <text>relación entre la descripción de la habilidad y un parámetro relacionado necesario para su implementación</text>
-                </langStringDefinitionTypeIec61360>
-              </definition>
-            </dataSpecificationIec61360>
-          </dataSpecificationContent>
-        </embeddedDataSpecification>
-      </embeddedDataSpecifications>
-    </conceptDescription>
-    <conceptDescription>
-      <idShort>SkillParameter</idShort>
-      <administration>
-        <version>1</version>
-        <revision>1</revision>
-      </administration>
-      <id>http://www.w3id.org/hsu-aut/css#SkillParameter</id>
-      <embeddedDataSpecifications>
-        <embeddedDataSpecification>
-          <dataSpecification>
-            <type>ExternalReference</type>
-            <keys>
-              <key>
-                <type>GlobalReference</type>
-                <value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0</value>
-              </key>
-            </keys>
-          </dataSpecification>
-          <dataSpecificationContent>
-            <dataSpecificationIec61360>
-              <preferredName>
-                <langStringPreferredNameTypeIec61360>
-                  <language>en</language>
-                  <text>SkillParameter</text>
-                </langStringPreferredNameTypeIec61360>
-              </preferredName>
-              <dataType>STRING</dataType>
-              <definition>
-                <langStringDefinitionTypeIec61360>
-                  <language>en</language>
-                  <text>parameter necessary for the implementation of a skill</text>
-                </langStringDefinitionTypeIec61360>
-                <langStringDefinitionTypeIec61360>
-                  <language>es</language>
-                  <text>parámetro necesario para la implementación de una habilidad</text>
-                </langStringDefinitionTypeIec61360>
-              </definition>
-            </dataSpecificationIec61360>
-          </dataSpecificationContent>
-        </embeddedDataSpecification>
-      </embeddedDataSpecifications>
-    </conceptDescription>
-    <conceptDescription>
-      <idShort>SkillBehavioursConformsTo</idShort>
-      <administration>
-        <version>1</version>
-        <revision>1</revision>
-      </administration>
-      <id>http://www.w3id.org/hsu-aut/css#behaviorConformsTo</id>
-      <embeddedDataSpecifications>
-        <embeddedDataSpecification>
-          <dataSpecification>
-            <type>ExternalReference</type>
-            <keys>
-              <key>
-                <type>GlobalReference</type>
-                <value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0</value>
-              </key>
-            </keys>
-          </dataSpecification>
-          <dataSpecificationContent>
-            <dataSpecificationIec61360>
-              <preferredName>
-                <langStringPreferredNameTypeIec61360>
-                  <language>en</language>
-                  <text>SkillBehavioursConformsTo</text>
-                </langStringPreferredNameTypeIec61360>
-              </preferredName>
-              <dataType>STRING</dataType>
-              <definition>
-                <langStringDefinitionTypeIec61360>
-                  <language>en</language>
-                  <text>relationship between the description of the skill and its related state machine</text>
-                </langStringDefinitionTypeIec61360>
-                <langStringDefinitionTypeIec61360>
-                  <language>es</language>
-                  <text>relación entre la descripción de la habilidad y su máquina de estados relacionada</text>
-                </langStringDefinitionTypeIec61360>
-              </definition>
-            </dataSpecificationIec61360>
-          </dataSpecificationContent>
-        </embeddedDataSpecification>
-      </embeddedDataSpecifications>
-    </conceptDescription>
-    <conceptDescription>
-      <idShort>SkillStateMachine</idShort>
-      <administration>
-        <version>1</version>
-        <revision>1</revision>
-      </administration>
-      <id>http://www.w3id.org/hsu-aut/css#StateMachine</id>
-      <embeddedDataSpecifications>
-        <embeddedDataSpecification>
-          <dataSpecification>
-            <type>ExternalReference</type>
-            <keys>
-              <key>
-                <type>GlobalReference</type>
-                <value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0</value>
-              </key>
-            </keys>
-          </dataSpecification>
-          <dataSpecificationContent>
-            <dataSpecificationIec61360>
-              <preferredName>
-                <langStringPreferredNameTypeIec61360>
-                  <language>en</language>
-                  <text>SkillStateMachine</text>
-                </langStringPreferredNameTypeIec61360>
-              </preferredName>
-              <dataType>STRING</dataType>
-              <definition>
-                <langStringDefinitionTypeIec61360>
-                  <language>en</language>
-                  <text>standardized state machine of the skill, with its current state as well as possible interactions</text>
-                </langStringDefinitionTypeIec61360>
-                <langStringDefinitionTypeIec61360>
-                  <language>es</language>
-                  <text>máquina de estados estandarizada de la habilidad, con su estado actual así como las posibles interacciones</text>
-                </langStringDefinitionTypeIec61360>
-              </definition>
-            </dataSpecificationIec61360>
-          </dataSpecificationContent>
-        </embeddedDataSpecification>
-      </embeddedDataSpecifications>
-    </conceptDescription>
-    <conceptDescription>
-      <idShort>SkillParameterExposedThrough</idShort>
-      <administration>
-        <version>1</version>
-        <revision>1</revision>
-      </administration>
-      <id>urn:ehu:gcis:capabilityskillontology:1:1:skillparameterexposedthrough</id>
-      <embeddedDataSpecifications>
-        <embeddedDataSpecification>
-          <dataSpecification>
-            <type>ExternalReference</type>
-            <keys>
-              <key>
-                <type>GlobalReference</type>
-                <value>https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0</value>
-              </key>
-            </keys>
-          </dataSpecification>
-          <dataSpecificationContent>
-            <dataSpecificationIec61360>
-              <preferredName>
-                <langStringPreferredNameTypeIec61360>
-                  <language>en</language>
-                  <text>SkillParameterExposedThrough</text>
-                </langStringPreferredNameTypeIec61360>
-              </preferredName>
-              <dataType>STRING</dataType>
-              <definition>
-                <langStringDefinitionTypeIec61360>
-                  <language>en</language>
-                  <text>relationship between the skill parameter and the element within the skill interface that exposes the parameter. If an input parameter, the related interface element will be the where it should be added during the request, and if an output parameter, where the data can be obtained.</text>
-                </langStringDefinitionTypeIec61360>
-                <langStringDefinitionTypeIec61360>
-                  <language>es</language>
-                  <text>relación entre el parámetro de destreza y el elemento de la interfaz de destreza que expone el parámetro. Si se trata de un parámetro de entrada, el elemento de la interfaz relacionado será el lugar donde debe añadirse durante la solicitud, y si se trata de un parámetro de salida, el lugar donde pueden obtenerse los datos.</text>
                 </langStringDefinitionTypeIec61360>
               </definition>
             </dataSpecificationIec61360>

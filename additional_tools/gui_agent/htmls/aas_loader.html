@@ -107,11 +107,24 @@
             vertical-align: middle;
         }
 
+        .file-info .file-size {
+            font-size: 14px;
+            color: #888;
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+
+        .file-info .file-item {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+
         /* Animation when file is dropped */
         @keyframes drop-animation {
-            0% { background-color: #232427; }
-            /*0% { background-color: #e9f5ff; }*/
-            100% { background-color: #fff; }
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
         }
 
         .upload-container.dropped {
@@ -146,12 +159,13 @@
                                 <div class="upload-container" id="upload-container">
                                     <h2>Drag and drop an AAS file here</h2>
                                     <h3>or</h3>
-                                    <input type="file" id="fileInput" name="file" accept=".xml,.json,.aasx">
+                                    <input type="file" id="fileInput" name="files" multiple accept=".xml,.json,.aasx">
+<!--                                    <input type="file" id="fileInput" name="file" accept=".xml,.json,.aasx">-->
                                     <label for="fileInput">Browse files</label>
                                     <div class="file-info" id="fileInfo" style="display:none;">
-                                        <i class="fa fa-file file-icon"></i>
-                                        <span class="file-name" id="fileName"></span>
-                                        <span class="file-size" id="fileSize"></span>
+<!--                                        <i class="fa fa-file file-icon"></i>-->
+<!--                                        <span class="file-name" id="fileName"></span>-->
+<!--                                        <span class="file-size" id="fileSize"></span>-->
                                     </div>
                                 </div>
                                 <div class="box-footer">
@@ -174,11 +188,23 @@
         const uploadButton = document.getElementById('uploadButton');
         const fileInfo = document.getElementById('fileInfo');
         const fileName = document.getElementById('fileName');
+        let filesList = new DataTransfer();  // Using DataTransfer to handle multiple files
 
-        function showFileInfo(file) {
+        function showFileInfo(files) {
             fileInfo.style.display = 'block';
-            fileName.textContent = file.name;
-            fileSize.textContent = `(${(file.size / 1024).toFixed(2)} KB)`;
+            // fileName.textContent = file.name;
+            // fileSize.textContent = `(${(file.size / 1024).toFixed(2)} KB)`;
+            fileInfo.innerHTML = '';  // Clear previous file info
+            for (const file of files) {
+                const fileItem = document.createElement('div');
+                fileItem.classList.add('file-item');
+                fileItem.innerHTML = `
+                    <i class="fa fa-file file-icon"></i>
+                    <span class="file-name">${file.name}</span>
+                    <span class="file-size">(${(file.size / 1024).toFixed(2)} KB)</span>
+                `;
+                fileInfo.appendChild(fileItem);
+            }
         }
 
         uploadContainer.addEventListener('dragover', (e) => {
@@ -197,17 +223,24 @@
             e.preventDefault();
             e.stopPropagation();
             uploadContainer.classList.remove('dragover');
+            uploadContainer.classList.add('dropped');
             const files = e.dataTransfer.files;
             if (files.length > 0) {
-                fileInput.files = files;
-                showFileInfo(files[0]);
+                for (const file of files) {
+                    filesList.items.add(file);
+                }
+                showFileInfo(filesList.files);
+                fileInput.files = filesList.files;
             }
         });
 
         fileInput.addEventListener('change', (e) => {
         const files = e.target.files;
         if (files.length > 0) {
-            showFileInfo(files[0]);
+            for (const file of files) {
+                filesList.items.add(file);
+            }
+            showFileInfo(filesList.files);
         }
     });
     </script>
