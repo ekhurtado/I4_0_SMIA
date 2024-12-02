@@ -4,7 +4,8 @@ from spade.behaviour import State
 from behaviours.negotiating_behaviour import NegotiatingBehaviour
 from behaviours.svc_acl_handling_behaviour import SvcACLHandlingBehaviour
 from utilities import smia_archive_utils
-from utilities.smia_info import SMIAInfo
+from utilities.smia_general_info import SMIAGeneralInfo
+from utilities.smia_info import SMIAInteractionInfo
 from css_ontology.css_ontology_utils import CapabilitySkillOntologyUtils
 
 _logger = logging.getLogger(__name__)
@@ -28,7 +29,7 @@ class StateRunning(State):
 
         # On the one hand, a behaviour is required to handle ACL messages
         svc_acl_handling_behav = SvcACLHandlingBehaviour(self.agent)
-        self.agent.add_behaviour(svc_acl_handling_behav, SMIAInfo.SVC_STANDARD_ACL_TEMPLATE)
+        self.agent.add_behaviour(svc_acl_handling_behav, SMIAInteractionInfo.SVC_STANDARD_ACL_TEMPLATE)
 
         # On the other hand, a behaviour is required to handle interaction messages
         # TODO revisar, ya que en el nuevo enfoque no hay AAS Core
@@ -49,7 +50,7 @@ class StateRunning(State):
 
         # If the Execution Running State has been completed, the agent can move to the next state
         _logger.info(f"{self.agent.jid} agent has finished it Running state.")
-        self.set_next_state(SMIAInfo.STOPPING_STATE_NAME)
+        self.set_next_state(SMIAGeneralInfo.STOPPING_STATE_NAME)
 
     async def add_agent_capabilities_behaviours(self):
         behaviours_objects = []
@@ -60,7 +61,7 @@ class StateRunning(State):
                 # The negotiation behaviour has to be added to the agent
                 _logger.info("This DT has negotiation capability.")
                 negotiation_behav = NegotiatingBehaviour(self.agent)
-                self.agent.add_behaviour(negotiation_behav, SMIAInfo.NEG_STANDARD_ACL_TEMPLATE)
+                self.agent.add_behaviour(negotiation_behav, SMIAInteractionInfo.NEG_STANDARD_ACL_TEMPLATE)
                 behaviours_objects.append(negotiation_behav)
             elif capability.id_short == 'OtherAgentCapability':
                 # TODO pensarlo

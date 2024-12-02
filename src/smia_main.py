@@ -1,4 +1,6 @@
 import logging
+import sys
+
 import spade
 
 from agents.smia_agent import SMIAAgent
@@ -6,8 +8,9 @@ from agents.smia_app_agent import SMIAAppAgent
 from agents.smia_resource_agent import SMIAResourceAgent
 from utilities import configmap_utils, smia_archive_utils
 from utilities.aas_model_extension_utils import AASModelExtensionUtils
-from utilities.general_utils import GeneralUtils
+from utilities.general_utils import GeneralUtils, CLIUtils
 from utilities.KafkaInfo import KafkaInfo
+from utilities.smia_general_info import SMIAGeneralInfo
 
 # XMPP_SERVER = 'worker4'
 # XMPP_SERVER = 'ejabberd'
@@ -25,6 +28,9 @@ async def main():
     asset to be represented, the associated SPADE agent type will be created. The AAS is defined in the glossary:
     :term:`AAS`.
     """
+    # First, it is checked and saved the command line arguments
+    await CLIUtils.check_and_save_cli_information(init_config, aas_model)
+
     # The AAS_ID will be set in the associated ConfigMap, within the general-information of the AAS
     aas_id = configmap_utils.get_dt_general_property('agentID')
     # aas_id = 'aasmanager001'  # For testing
@@ -71,16 +77,20 @@ async def main():
 
 if __name__ == '__main__':
 
+    # First, the BaSyx Python SDK is extended to have all new methods available
+    AASModelExtensionUtils.extend_basyx_aas_model()
+
     # Initialize SMIA archive
     smia_archive_utils.initialize_smia_archive()
+
+    # Get command line arguments
+    init_config, aas_model  = CLIUtils.get_information_from_cli(sys.argv[1:])
+    smia_archive_utils.save_cli_added_files(init_config, aas_model)
 
     # Configure logging
     GeneralUtils.configure_logging()
 
     _logger.info("Initializing SMIA software...")
-
-    # Extend BaSyx Python SDK
-    AASModelExtensionUtils.extend_basyx_aas_model()
 
     # Run main program with SPADE
     spade.run(main())

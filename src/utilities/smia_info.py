@@ -2,15 +2,8 @@ from utilities.fipa_acl_info import FIPAACLInfo
 from utilities.general_utils import GeneralUtils
 
 
-class SMIAInfo:
-    """This class contains the general information about the AAS Manager."""
-
-    # Variables related to states of the FSM
-    # --------------------------------------
-    BOOTING_STATE_NAME = 'BOOTING'
-    RUNNING_STATE_NAME = 'RUNNING'
-    STOPPING_STATE_NAME = 'STOPPING'
-    IDLE_STATE_NAME = 'IDLE'
+class SMIAInteractionInfo:
+    """This class contains the information about the SMIA interactions."""
 
     # Object of the standard template for service requests through ACL messages
     # -------------------------------------------------------------------------

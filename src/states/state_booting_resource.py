@@ -2,7 +2,7 @@ import logging
 
 from behaviours.CheckPhysicalAssetBehaviour import CheckPhysicalAssetBehaviour
 from states.state_booting import StateBooting
-from utilities.smia_info import SMIAInfo
+from utilities.smia_general_info import SMIAGeneralInfo
 
 _logger = logging.getLogger(__name__)
 
@@ -30,5 +30,5 @@ class StateBootingResource(StateBooting):
 
         _logger.info(f"{self.agent.jid} agent has finished it Boot state.")
 
-        self.set_next_state(SMIAInfo.RUNNING_STATE_NAME)
+        self.set_next_state(SMIAGeneralInfo.RUNNING_STATE_NAME)
 

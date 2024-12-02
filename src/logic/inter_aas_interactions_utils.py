@@ -4,7 +4,7 @@ import logging
 
 from spade.message import Message
 
-from utilities.smia_info import SMIAInfo
+from utilities.smia_info import SMIAInteractionInfo
 from utilities.general_utils import GeneralUtils
 
 _logger = logging.getLogger(__name__)
@@ -48,7 +48,7 @@ def create_inter_aas_request_msg(receiver, thread, service_id, service_type, ser
     """
 
     request_msg = Message(to=receiver, thread=thread)
-    request_msg.metadata = SMIAInfo.SVC_STANDARD_ACL_TEMPLATE_CFP.metadata
+    request_msg.metadata = SMIAInteractionInfo.SVC_STANDARD_ACL_TEMPLATE_CFP.metadata
 
     request_msg_body_json = {
         'serviceID': service_id,

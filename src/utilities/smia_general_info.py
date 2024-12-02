@@ -2,7 +2,14 @@ import os
 
 
 class SMIAGeneralInfo:
-    """This class contains all information about the SMIA Archive paths."""
+    """This class contains all general information about the SMIA."""
+
+    # Variables related to states of the FSM
+    # --------------------------------------
+    BOOTING_STATE_NAME = 'BOOTING'
+    RUNNING_STATE_NAME = 'RUNNING'
+    STOPPING_STATE_NAME = 'STOPPING'
+    IDLE_STATE_NAME = 'IDLE'
 
     # Path of the SMIA Archive
     SMIA_ARCHIVE_PATH = '/smia_archive'
@@ -29,7 +36,8 @@ class SMIAGeneralInfo:
 
     # ConfigMap files
     CONFIGURATION_FOLDER_PATH = SMIA_ARCHIVE_PATH + '/config'
-    CM_GENERAL_PROPERTIES_FILENAME = 'general.properties'
+    CM_GENERAL_PROPERTIES_FILENAME = 'smia-initialization.properties'
+    CM_AAS_MODEL_FILENAME = ''
     CM_AAS_PROPERTIES_FILENAME = 'aas.properties'
     CM_ASSET_PROPERTIES_FILENAME = 'asset.properties'
     CM_SM_PROPERTIES_FILENAME = 'submodels.properties'
@@ -43,3 +51,9 @@ class SMIAGeneralInfo:
     STATUS_FOLDER_PATH = SMIA_ARCHIVE_PATH + '/status'
     SMIA_STATUS_FILE_NAME = 'smia_dt.json'
     CORE_STATUS_FILE_PATH = '/aas_archive/status/aas_core.json'
+
+class SMIAGeneralUtils:
+    """This class contains general methods of the SMIA."""
+    pass
+
+

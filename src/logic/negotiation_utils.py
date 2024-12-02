@@ -6,7 +6,7 @@ import logging
 
 from spade.message import Message
 
-from utilities.smia_info import SMIAInfo
+from utilities.smia_info import SMIAInteractionInfo
 from utilities.general_utils import GeneralUtils
 
 _logger = logging.getLogger(__name__)
@@ -27,7 +27,7 @@ def create_neg_cfp_msg(thread, targets, neg_requester_jid, neg_criteria):
         spade.message.Message: SPADE message object FIPA-ACL-compliant.
     """
     cfp_msg = Message(thread=thread)
-    cfp_msg.metadata = SMIAInfo.NEG_STANDARD_ACL_TEMPLATE_CFP.metadata
+    cfp_msg.metadata = SMIAInteractionInfo.NEG_STANDARD_ACL_TEMPLATE_CFP.metadata
 
     neg_cfp_json = {
         'serviceID': 'startNegotiation',
@@ -62,7 +62,7 @@ def create_neg_propose_msg(thread, targets, neg_requester_jid, neg_criteria, neg
         spade.message.Message: SPADE message object FIPA-ACL-compliant.
     """
     propose_msg = Message(thread=thread)
-    propose_msg.metadata = SMIAInfo.NEG_STANDARD_ACL_TEMPLATE_PROPOSE.metadata
+    propose_msg.metadata = SMIAInteractionInfo.NEG_STANDARD_ACL_TEMPLATE_PROPOSE.metadata
 
     neg_propose_json = {
         'serviceID': 'proposeNegotiation',
@@ -97,7 +97,7 @@ def create_neg_response_msg(receiver, thread, service_id, service_type, winner):
         spade.message.Message: SPADE message object FIPA-ACL-compliant.
     """
     response_msg = Message(to=receiver, thread=thread)
-    response_msg.metadata = SMIAInfo.NEG_STANDARD_ACL_TEMPLATE_INFORM.metadata
+    response_msg.metadata = SMIAInteractionInfo.NEG_STANDARD_ACL_TEMPLATE_INFORM.metadata
 
     neg_response_json = {
         'serviceID': service_id,

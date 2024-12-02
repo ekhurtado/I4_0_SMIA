@@ -1,17 +1,21 @@
+import argparse
 import calendar
 import logging
 import time
 
+from basyx.aas.adapter import aasx
 from spade.message import Message
 from spade.template import Template
 
-from utilities.aas_general_info import SMIAGeneralInfo
+from logic.exceptions import CriticalError
+from utilities.smia_general_info import SMIAGeneralInfo
 
 
 class GeneralUtils:
     """
     This class contains some general utils to ben used by any module.
     """
+
 
     @staticmethod
     def configure_logging():
@@ -153,3 +157,96 @@ class GeneralUtils:
             int: current timestamp in milliseconds
         """
         return calendar.timegm(time.gmtime())
+
+
+class CLIUtils:
+    """This class contains utility methods related to the Command Line Interface."""
+
+    @staticmethod
+    def get_information_from_cli(cli_args):
+        """
+        This method gets all the information from the Command Line Interface (CLI). This information includes the
+        initial configuration properties or the AAS model or. None of them is mandatory, but they must be consistent
+        (i.e., if only the AAS model is offered, it must be an AASX which include the configuration file).
+
+        Args:
+            cli_args (list): arguments of the command line interface
+
+        Returns:
+            str, str, str: init_config, aas_model and ontology values (None if not specified).
+        """
+        parser = argparse.ArgumentParser(description='Parser for SMIA CLI arguments')
+        parser.add_argument("-m", "--model")
+        # parser.add_argument("-o", "--ontology")
+        parser.add_argument("-c", "--config")
+        args = parser.parse_args(cli_args)
+        return args.config, args.model
+
+    @staticmethod
+    async def check_and_save_cli_information(init_config, aas_model):
+        """
+        This method checks the information added in the CLI and, depending on the result of the check, it gets the
+        necessary information and saves it in the appropriate variable.
+
+        Args:
+            init_config (str): path to the initialization configuration properties file.
+            aas_model (str): path to the AAS model file.
+        """
+        # The libraries are imported locally to avoid circular import error
+        from aas_model.aas_model_utils import AASModelUtils
+        from utilities import configmap_utils, smia_archive_utils
+        import ntpath
+
+        if (init_config is None) and (aas_model is None):
+            # If all are none, the CLI information is invalid
+            raise CriticalError("The CLI information is invalid: no argument has been specified. Please specify at "
+                                "least one")
+        elif init_config is not None:
+            # If the configuration properties file is defined, its variable is updated
+            init_config_file_name = ntpath.split(init_config)[1] or ntpath.basename(ntpath.split(init_config)[0])
+            SMIAGeneralInfo.CM_GENERAL_PROPERTIES_FILENAME = init_config_file_name
+
+            if aas_model is None:
+                # If the configuration file is specified, but not the AAS model, the AAS must be defined in the file
+                # and obtained from there.
+                aas_model_folder_path = configmap_utils.get_aas_general_property('model.folder')
+                aas_model_file_name = configmap_utils.get_aas_general_property('model.file')
+                if (aas_model_file_name is None) or (aas_model_folder_path is None):
+                    raise CriticalError("The CLI information is invalid: the AAS model has not been specified either "
+                                        "in the CLI or in the configuration properties file.")
+
+                smia_archive_utils.copy_file_into_archive(aas_model_folder_path + '/' + aas_model_file_name,
+                                                          SMIAGeneralInfo.CONFIGURATION_FOLDER_PATH)
+                SMIAGeneralInfo.CM_AAS_MODEL_FILENAME = aas_model_file_name
+
+        elif aas_model is not None:
+            # If the AAS model file is defined, its variable is updated
+            aas_model_file_name = ntpath.split(aas_model)[1] or ntpath.basename(ntpath.split(aas_model)[0])
+            SMIAGeneralInfo.CM_AAS_MODEL_FILENAME = aas_model_file_name
+
+            if init_config is None:
+                # If the configuration properties file is not defined, it is obtained from inside the AASX package
+                if aas_model_file_name.split(".")[1] != 'aasx':
+                    # If it is not an AASX package, the configuration file is not specified
+                    raise CriticalError("The configuration file is not specified and is not inside the AAS model as it "
+                                        "is not an AASX package. Please specify the configuration file or add it to "
+                                        "an AASX package and pass it as an AAS model.")
+                config_file_path = await AASModelUtils.get_configuration_file_path_from_standard_submodel()
+                # smia_archive_utils.copy_file_into_archive(config_file_path,
+                #                                           SMIAGeneralInfo.CONFIGURATION_FOLDER_PATH)
+                init_config_file_name = ntpath.split(config_file_path)[1] or ntpath.basename(ntpath.split(config_file_path)[0])
+                # The file must be obtained from the AASX package
+                with aasx.AASXReader(configmap_utils.get_aas_model_filepath()) as aasx_reader:
+                    for part_name, content_type in aasx_reader.reader.list_parts():
+                        if part_name == config_file_path:
+                            config_file_bytes = aasx_reader.reader.open_part(part_name).read()
+                            with open(SMIAGeneralInfo.CONFIGURATION_FOLDER_PATH + '/' + init_config_file_name, "wb") as binary_file:
+                                # Write bytes to file
+                                binary_file.write(config_file_bytes)
+                            break
+                    else:
+                        CriticalError("The CLI information is invalid: the initialization configuration file has not "
+                                        "been specified either in the CLI or inside the AAS model.")
+                SMIAGeneralInfo.CM_GENERAL_PROPERTIES_FILENAME = init_config_file_name
+
+

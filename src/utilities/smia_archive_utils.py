@@ -2,9 +2,11 @@
 import json
 import logging
 import os
+import shutil
 import time
+from shutil import SameFileError
 
-from utilities.aas_general_info import SMIAGeneralInfo
+from utilities.smia_general_info import SMIAGeneralInfo
 from utilities.general_utils import GeneralUtils
 
 _logger = logging.getLogger(__name__)
@@ -22,7 +24,6 @@ def initialize_smia_archive():
     create_log_files()
 
     print("SMIA Archive initialized.")
-
 
 # ------------------------
 # Methods related to files
@@ -107,6 +108,34 @@ def create_log_files():
         with safe_open_file(SMIAGeneralInfo.SVC_LOG_FOLDER_PATH + '/' + log_file_name) as log_file:
             log_file.write('[]')
             log_file.close()
+
+def save_cli_added_files(init_config, aas_model):
+    """
+    This method saves the specified files in the Command Line Interface into the SMIA Archive.
+
+    Args:
+        init_config (str): path to the initialization configuration properties file.
+        aas_model (str): path to the AAS model file.
+    """
+    for cli_file in [init_config, aas_model]:
+        if cli_file is not None:
+            copy_file_into_archive(cli_file, SMIAGeneralInfo.CONFIGURATION_FOLDER_PATH)
+
+
+def copy_file_into_archive(source_file, dest_file):
+    """
+    This method copies a file into the SMIA archive.
+
+    Args:
+        source_file (str): path of the source file.
+        dest_file (str): path of the destiny file (it must be inside the SMIA archive).
+    """
+    if SMIAGeneralInfo.SMIA_ARCHIVE_PATH not in dest_file:
+        dest_file = SMIAGeneralInfo.SMIA_ARCHIVE_PATH + '/' + dest_file
+    try:
+        shutil.copy(source_file, dest_file)
+    except SameFileError as e:
+        _logger.info("The {} file is already in SMIA archive.".format(source_file))
 
 
 def get_log_file_by_service_type(svc_type):

@@ -3,7 +3,7 @@ from spade.behaviour import OneShotBehaviour
 
 from logic import IntraAASInteractions_utils
 from utilities import submodels_utils
-from utilities.aas_general_info import SMIAGeneralInfo
+from utilities.smia_general_info import SMIAGeneralInfo
 
 _logger = logging.getLogger(__name__)
 

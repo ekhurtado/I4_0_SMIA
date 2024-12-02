@@ -7,7 +7,7 @@ from behaviours.handle_negotiation_behaviour import HandleNegotiationBehaviour
 from behaviours.HandleSvcResponseBehaviour import HandleSvcResponseBehaviour
 from logic import negotiation_utils, inter_aas_interactions_utils
 from utilities.fipa_acl_info import FIPAACLInfo
-from utilities.smia_info import SMIAInfo
+from utilities.smia_info import SMIAInteractionInfo
 from utilities.general_utils import GeneralUtils
 
 _logger = logging.getLogger(__name__)
@@ -119,7 +119,7 @@ class NegotiatingBehaviour(CyclicBehaviour):
                         }
                         # The FIPA-ACL template added to this behavior ensures that you will only receive PROPOSE
                         # messages but also only with the thread of that specific thread
-                        handle_neg_template = SMIAInfo.NEG_STANDARD_ACL_TEMPLATE_PROPOSE
+                        handle_neg_template = SMIAInteractionInfo.NEG_STANDARD_ACL_TEMPLATE_PROPOSE
                         handle_neg_template.thread = msg.thread
                         handle_neg_behav = HandleNegotiationBehaviour(self.agent, behaviour_info)
                         self.myagent.add_behaviour(handle_neg_behav, handle_neg_template)

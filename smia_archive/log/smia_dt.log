@@ -29196,3 +29196,671 @@ KeyError: 'capabilityType'
 2024-11-27 17:06:33,134 [gcis1] [INFO] client shutting down (on request) line:975
 2024-11-27 17:06:33,134 [gcis1.StanzaStream] [INFO] stopping SM stream line:2473
 2024-11-27 17:06:33,134 [gcis1] [INFO] stopping stream line:989
+2024-12-02 11:26:52,273 [__main__] [INFO] Initializing SMIA software... line:80
+2024-12-02 11:26:52,281 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:55
+2024-12-02 11:26:55,217 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-12-02 11:26:56,438 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/17569927431666671163200141251 line:935
+2024-12-02 11:26:56,743 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAAB0xNzU2OTkyNzQzMTY2NjY3MTE2MzIwMDE0MTI1MW0AAAAITjAz6VD4ybs=' line:2209
+2024-12-02 11:26:57,371 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-12-02 11:26:57,372 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-12-02 11:26:57,374 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-12-02 11:26:57,374 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-12-02 11:26:57,375 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-12-02 11:26:57,400 [css_ontology.capability_skill_ontology] [INFO] CSS ontology initialized line:42
+2024-12-02 11:26:57,494 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all defined ontology elements... line:75
+2024-12-02 11:27:00,226 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all relationships between ontology elements... line:79
+2024-12-02 11:27:00,551 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-12-02 11:27:00,551 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-12-02 11:27:00,552 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-12-02 11:27:00,556 [css_ontology.capability_skill_ontology] [INFO] CSS ontology initialized line:42
+2024-12-02 13:05:57,866 [__main__] [INFO] Initializing SMIA software... line:91
+2024-12-02 13:05:57,873 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:58
+2024-12-02 13:06:00,798 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-12-02 13:06:02,015 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/6275144323055835482200449507 line:935
+2024-12-02 13:06:02,314 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABw2Mjc1MTQ0MzIzMDU1ODM1NDgyMjAwNDQ5NTA3bQAAAAgM3Lifbo2wOQ==' line:2209
+2024-12-02 13:06:02,929 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-12-02 13:06:02,930 [SPADE] [ERROR] Exception in the event loop: type object 'SMIAInteractionInfo' has no attribute 'BOOTING_STATE_NAME' line:118
+2024-12-02 13:06:02,930 [gcis1] [INFO] client shutting down (on request) line:975
+2024-12-02 13:06:02,930 [gcis1.StanzaStream] [INFO] stopping SM stream line:2473
+2024-12-02 13:06:02,931 [gcis1] [INFO] stopping stream line:989
+2024-12-02 13:07:03,404 [__main__] [INFO] Initializing SMIA software... line:91
+2024-12-02 13:07:03,411 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:58
+2024-12-02 13:07:06,265 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-12-02 13:07:07,417 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/6651545128182760851114978980 line:935
+2024-12-02 13:07:07,705 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABw2NjUxNTQ1MTI4MTgyNzYwODUxMTE0OTc4OTgwbQAAAAgkcg2PGCsKSA==' line:2209
+2024-12-02 13:07:08,289 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-12-02 13:07:08,289 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-12-02 13:07:08,291 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-12-02 13:07:08,292 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-12-02 13:07:08,292 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-12-02 13:07:08,337 [css_ontology.capability_skill_ontology] [INFO] CSS ontology initialized line:42
+2024-12-02 13:07:08,400 [basyx.aas.adapter.xml.xml_deserialization] [ERROR] ValueError: invalid literal for int() with base 10: 'initial configuration'
+ -> Failed to construct {https://admin-shell.io/aas/3/0}property on line 3937 using construct_submodel_element! line:297
+2024-12-02 13:07:08,404 [basyx.aas.adapter.xml.xml_deserialization] [ERROR] KeyError: {https://admin-shell.io/aas/3/0}language on line 4250 has no text!
+ -> Failed to construct {https://admin-shell.io/aas/3/0}value on line 4248 using construct_multi_language_text_type! line:297
+2024-12-02 13:07:08,462 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all defined ontology elements... line:76
+2024-12-02 13:07:11,187 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all relationships between ontology elements... line:80
+2024-12-02 13:07:13,063 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all asset connections... line:84
+2024-12-02 13:07:13,249 [behaviours.init_aas_model_behaviour] [INFO] All asset connections defined in the AAS model have been configured and saved. line:490
+2024-12-02 13:07:14,235 [behaviours.init_aas_model_behaviour] [INFO] AAS model analysis results. 
+	- Analyzed capabilities: ['Negotiation', 'EfficientTransport']
+	- Analyzed capability constraints: ['NegotiationCriteriaConstraint', 'EfficientTransportConstraintLocation']
+	- Analyzed skills ['EfficientMovement', 'NegotiationBasedOnBattery', 'NegotiationBasedOnLocation', 'NegotiationBasedOnRAM']
+	- Analyzed skill interfaces ['property_battery', 'property_location', 'action_move', 'RAM_memory_function']
+	- Analyzed asset connections ['InterfaceForHTTP']
+	- Errors found [] line:496
+2024-12-02 13:07:14,235 [behaviours.init_aas_model_behaviour] [INFO] AAS model initialized. line:94
+2024-12-02 13:07:14,236 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: None line:154
+2024-12-02 13:07:14,246 [states.state_booting] [INFO] gcis1@xmpp.jp agent has finished it Boot state. line:49
+2024-12-02 13:07:14,246 [spade.behaviour] [INFO] FSM transiting from BOOTING to RUNNING. line:591
+2024-12-02 13:07:14,247 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-12-02 13:07:14,248 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:25
+2024-12-02 13:07:14,256 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-12-02 13:07:24,235 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:150
+2024-12-02 13:07:34,235 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:150
+2024-12-02 13:07:44,233 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:150
+2024-12-02 13:07:54,234 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:150
+2024-12-02 13:08:04,235 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:150
+2024-12-02 13:08:14,235 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:150
+2024-12-02 13:08:22,198 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-12-02 13:08:22,198 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-12-02 13:08:22,199 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:25
+2024-12-02 13:08:22,210 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-12-02 14:20:42,243 [__main__] [INFO] Initializing SMIA software... line:93
+2024-12-02 14:20:42,245 [SPADE] [ERROR] Exception in the event loop: name 'configmap_utils' is not defined line:118
+2024-12-02 14:22:37,807 [__main__] [INFO] Initializing SMIA software... line:93
+2024-12-02 14:22:37,812 [SPADE] [ERROR] Exception in the event loop: [Errno 2] No such file or directory: 'SMIA_TransportRobot_with_OWL.aasx' line:118
+2024-12-02 14:24:33,955 [__main__] [INFO] Initializing SMIA software... line:93
+2024-12-02 14:25:16,743 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-12-02 14:25:16,795 [asyncio] [ERROR] Task exception was never retrieved
+future: <Task finished name='Task-1' coro=<main() done, defined at C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\smia_main.py:25> exception=KeyboardInterrupt()> line:1758
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\spade\container.py", line 114, in run_container
+    container.run(main_func)
+  File "C:\Python310\lib\site-packages\spade\container.py", line 108, in run
+    self.loop.run_until_complete(coro)
+  File "C:\Program Files\JetBrains\PyCharm 2023.2.1\plugins\python\helpers-pro\pydevd_asyncio\pydevd_nest_asyncio.py", line 229, in run_until_complete
+    self._run_once()
+  File "C:\Program Files\JetBrains\PyCharm 2023.2.1\plugins\python\helpers-pro\pydevd_asyncio\pydevd_nest_asyncio.py", line 281, in _run_once
+    handle._run()
+  File "C:\Python310\lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Program Files\JetBrains\PyCharm 2023.2.1\plugins\python\helpers-pro\pydevd_asyncio\pydevd_nest_asyncio.py", line 390, in step
+    step_orig(task, exc)
+  File "C:\Python310\lib\asyncio\tasks.py", line 232, in __step
+    result = coro.send(None)
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\smia_main.py", line 32, in main
+    await CLIUtils.check_and_save_cli_information(init_config, aas_model)
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\utilities\general_utils.py", line 217, in check_and_save_cli_information
+    smia_archive_utils.copy_file_into_archive(aas_model_file_path,
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\utilities\general_utils.py", line 217, in check_and_save_cli_information
+    smia_archive_utils.copy_file_into_archive(aas_model_file_path,
+  File "_pydevd_bundle\\pydevd_cython_win32_310_64.pyx", line 1187, in _pydevd_bundle.pydevd_cython_win32_310_64.SafeCallWrapper.__call__
+  File "_pydevd_bundle\\pydevd_cython_win32_310_64.pyx", line 627, in _pydevd_bundle.pydevd_cython_win32_310_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\\pydevd_cython_win32_310_64.pyx", line 1103, in _pydevd_bundle.pydevd_cython_win32_310_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\\pydevd_cython_win32_310_64.pyx", line 1065, in _pydevd_bundle.pydevd_cython_win32_310_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\\pydevd_cython_win32_310_64.pyx", line 585, in _pydevd_bundle.pydevd_cython_win32_310_64.PyDBFrame.do_wait_suspend
+  File "C:\Program Files\JetBrains\PyCharm 2023.2.1\plugins\python\helpers\pydev\pydevd.py", line 1185, in do_wait_suspend
+    self._do_wait_suspend(thread, frame, event, arg, suspend_type, from_this_thread)
+  File "C:\Program Files\JetBrains\PyCharm 2023.2.1\plugins\python\helpers\pydev\pydevd.py", line 1200, in _do_wait_suspend
+    time.sleep(0.01)
+KeyboardInterrupt
+2024-12-02 14:27:22,936 [__main__] [INFO] Initializing SMIA software... line:93
+2024-12-02 14:27:40,576 [SPADE] [ERROR] Exception in the event loop: [Errno 22] Invalid argument: 'SMIA_TransportRobot_with_OWL.aasx/C:\\\\Users\\\\839073\\\\OneDrive - UPV EHU\\\\Tesis doctoral\\\\TesisEkaitzHurtado\\\\CodeRepositories\\\\I4_0_SMIA\\\\smia_archive\\\\config' line:118
+2024-12-02 14:28:42,246 [__main__] [INFO] Initializing SMIA software... line:93
+2024-12-02 14:29:26,081 [utilities.smia_archive_utils] [INFO] The C:/Users/839073/OneDrive - UPV EHU/Tesis doctoral/TesisEkaitzHurtado/CodeRepositories/I4_0_SMIA/smia_archive/config/SMIA_TransportRobot_with_OWL.aasx file is already in SMIA archive. line:138
+2024-12-02 14:29:28,472 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:61
+2024-12-02 14:29:31,318 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-12-02 14:29:32,429 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/7867329302059554200273913986 line:935
+2024-12-02 14:29:32,704 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABw3ODY3MzI5MzAyMDU5NTU0MjAwMjczOTEzOTg2bQAAAAg22n27apAmJQ==' line:2209
+2024-12-02 14:29:33,274 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-12-02 14:29:33,275 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-12-02 14:29:33,278 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-12-02 14:29:33,278 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-12-02 14:29:33,279 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-12-02 14:29:33,313 [css_ontology.capability_skill_ontology] [INFO] CSS ontology initialized line:42
+2024-12-02 14:29:33,316 [aas_model.aas_model_utils] [ERROR] Failed to read AAS model: invalid file. line:43
+2024-12-02 14:29:33,316 [aas_model.aas_model_utils] [ERROR] ../smia_archive/configSMIA_TransportRobot_with_OWL.aasx is not a valid ECMA376-2 (OPC) file line:44
+2024-12-02 14:29:33,317 [logic.exceptions] [ERROR] Failed to read AAS model: invalid file. line:17
+2024-12-02 14:29:33,317 [logic.exceptions] [ERROR] The program must end. line:18
+2024-12-02 14:29:33,376 [asyncio] [ERROR] Task exception was never retrieved
+future: <Task finished name='Task-20' coro=<CyclicBehaviour._start() done, defined at C:\Python310\lib\site-packages\spade\behaviour.py:126> exception=SystemExit(-1)> line:1758
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\basyx\aas\adapter\aasx.py", line 76, in __init__
+    self.reader = pyecma376_2.ZipPackageReader(file)
+  File "C:\Python310\lib\site-packages\pyecma376_2\zip_package.py", line 33, in __init__
+    zipfile.ZipFile.__init__(self, file)
+  File "C:\Python310\lib\zipfile.py", line 1251, in __init__
+    self.fp = io.open(file, filemode)
+FileNotFoundError: [Errno 2] No such file or directory: '../smia_archive/configSMIA_TransportRobot_with_OWL.aasx'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\aas_model\aas_model_utils.py", line 36, in read_aas_model_object_store
+    with aasx.AASXReader(aas_model_file_path) as reader:
+  File "C:\Python310\lib\site-packages\basyx\aas\adapter\aasx.py", line 78, in __init__
+    raise ValueError("{} is not a valid ECMA376-2 (OPC) file".format(file)) from e
+ValueError: ../smia_archive/configSMIA_TransportRobot_with_OWL.aasx is not a valid ECMA376-2 (OPC) file
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Program Files\JetBrains\PyCharm 2023.2.1\plugins\python\helpers\pydev\pydevd.py", line 2218, in main
+    globals = debugger.run(setup['file'], None, None, is_module)
+  File "C:\Program Files\JetBrains\PyCharm 2023.2.1\plugins\python\helpers\pydev\pydevd.py", line 1528, in run
+    return self._exec(is_module, entry_point_fn, module_name, file, globals, locals)
+  File "C:\Program Files\JetBrains\PyCharm 2023.2.1\plugins\python\helpers\pydev\pydevd.py", line 1535, in _exec
+    pydev_imports.execfile(file, globals, locals)  # execute the script
+  File "C:\Program Files\JetBrains\PyCharm 2023.2.1\plugins\python\helpers\pydev\_pydev_imps\_pydev_execfile.py", line 18, in execfile
+    exec(compile(contents+"\n", file, 'exec'), glob, loc)
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\smia_main.py", line 96, in <module>
+    spade.run(main())
+  File "C:\Python310\lib\site-packages\spade\container.py", line 114, in run_container
+    container.run(main_func)
+  File "C:\Python310\lib\site-packages\spade\container.py", line 108, in run
+    self.loop.run_until_complete(coro)
+  File "C:\Program Files\JetBrains\PyCharm 2023.2.1\plugins\python\helpers-pro\pydevd_asyncio\pydevd_nest_asyncio.py", line 229, in run_until_complete
+    self._run_once()
+  File "C:\Program Files\JetBrains\PyCharm 2023.2.1\plugins\python\helpers-pro\pydevd_asyncio\pydevd_nest_asyncio.py", line 281, in _run_once
+    handle._run()
+  File "C:\Python310\lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Program Files\JetBrains\PyCharm 2023.2.1\plugins\python\helpers-pro\pydevd_asyncio\pydevd_nest_asyncio.py", line 390, in step
+    step_orig(task, exc)
+  File "C:\Python310\lib\asyncio\tasks.py", line 232, in __step
+    result = coro.send(None)
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 140, in _start
+    await self._step()
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 285, in _step
+    await self._run()
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 274, in _run
+    await self.run()
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\init_aas_model_behaviour.py", line 66, in run
+    object_store = await AASModelUtils.read_aas_model_object_store()
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\aas_model\aas_model_utils.py", line 45, in read_aas_model_object_store
+    raise CriticalError("Failed to read AAS model: invalid file.")
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\logic\exceptions.py", line 19, in __init__
+    exit(-1)
+  File "C:\Python310\lib\_sitebuiltins.py", line 26, in __call__
+    raise SystemExit(code)
+SystemExit: -1
+2024-12-02 14:29:57,263 [__main__] [INFO] Initializing SMIA software... line:93
+2024-12-02 14:30:08,181 [utilities.smia_archive_utils] [INFO] The C:\\Users\\839073\\OneDrive - UPV EHU\\Tesis doctoral\\TesisEkaitzHurtado\\CodeRepositories\\I4_0_SMIA\\smia_archive\\config/SMIA_TransportRobot_with_OWL.aasx file is already in SMIA archive. line:138
+2024-12-02 14:30:13,596 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:61
+2024-12-02 14:30:16,358 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-12-02 14:30:17,566 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/2642923549525892244273917666 line:935
+2024-12-02 14:30:17,865 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABwyNjQyOTIzNTQ5NTI1ODkyMjQ0MjczOTE3NjY2bQAAAAjr2nHdhVXogw==' line:2209
+2024-12-02 14:30:18,491 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-12-02 14:30:18,491 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-12-02 14:30:18,491 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-12-02 14:30:18,491 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-12-02 14:30:18,491 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-12-02 14:30:18,532 [css_ontology.capability_skill_ontology] [INFO] CSS ontology initialized line:42
+2024-12-02 14:30:18,546 [aas_model.aas_model_utils] [ERROR] Failed to read AAS model: invalid file. line:43
+2024-12-02 14:30:18,546 [aas_model.aas_model_utils] [ERROR] ../smia_archive/configSMIA_TransportRobot_with_OWL.aasx is not a valid ECMA376-2 (OPC) file line:44
+2024-12-02 14:30:18,546 [logic.exceptions] [ERROR] Failed to read AAS model: invalid file. line:17
+2024-12-02 14:30:18,546 [logic.exceptions] [ERROR] The program must end. line:18
+2024-12-02 14:30:18,607 [asyncio] [ERROR] Task exception was never retrieved
+future: <Task finished name='Task-21' coro=<CyclicBehaviour._start() done, defined at C:\Python310\lib\site-packages\spade\behaviour.py:126> exception=SystemExit(-1)> line:1758
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\basyx\aas\adapter\aasx.py", line 76, in __init__
+    self.reader = pyecma376_2.ZipPackageReader(file)
+  File "C:\Python310\lib\site-packages\pyecma376_2\zip_package.py", line 33, in __init__
+    zipfile.ZipFile.__init__(self, file)
+  File "C:\Python310\lib\zipfile.py", line 1251, in __init__
+    self.fp = io.open(file, filemode)
+FileNotFoundError: [Errno 2] No such file or directory: '../smia_archive/configSMIA_TransportRobot_with_OWL.aasx'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\aas_model\aas_model_utils.py", line 36, in read_aas_model_object_store
+    with aasx.AASXReader(aas_model_file_path) as reader:
+  File "C:\Python310\lib\site-packages\basyx\aas\adapter\aasx.py", line 78, in __init__
+    raise ValueError("{} is not a valid ECMA376-2 (OPC) file".format(file)) from e
+ValueError: ../smia_archive/configSMIA_TransportRobot_with_OWL.aasx is not a valid ECMA376-2 (OPC) file
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Program Files\JetBrains\PyCharm 2023.2.1\plugins\python\helpers\pydev\pydevd.py", line 2218, in main
+    globals = debugger.run(setup['file'], None, None, is_module)
+  File "C:\Program Files\JetBrains\PyCharm 2023.2.1\plugins\python\helpers\pydev\pydevd.py", line 1528, in run
+    return self._exec(is_module, entry_point_fn, module_name, file, globals, locals)
+  File "C:\Program Files\JetBrains\PyCharm 2023.2.1\plugins\python\helpers\pydev\pydevd.py", line 1535, in _exec
+    pydev_imports.execfile(file, globals, locals)  # execute the script
+  File "C:\Program Files\JetBrains\PyCharm 2023.2.1\plugins\python\helpers\pydev\_pydev_imps\_pydev_execfile.py", line 18, in execfile
+    exec(compile(contents+"\n", file, 'exec'), glob, loc)
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\smia_main.py", line 96, in <module>
+    spade.run(main())
+  File "C:\Python310\lib\site-packages\spade\container.py", line 114, in run_container
+    container.run(main_func)
+  File "C:\Python310\lib\site-packages\spade\container.py", line 108, in run
+    self.loop.run_until_complete(coro)
+  File "C:\Program Files\JetBrains\PyCharm 2023.2.1\plugins\python\helpers-pro\pydevd_asyncio\pydevd_nest_asyncio.py", line 229, in run_until_complete
+    self._run_once()
+  File "C:\Program Files\JetBrains\PyCharm 2023.2.1\plugins\python\helpers-pro\pydevd_asyncio\pydevd_nest_asyncio.py", line 281, in _run_once
+    handle._run()
+  File "C:\Python310\lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Program Files\JetBrains\PyCharm 2023.2.1\plugins\python\helpers-pro\pydevd_asyncio\pydevd_nest_asyncio.py", line 390, in step
+    step_orig(task, exc)
+  File "C:\Python310\lib\asyncio\tasks.py", line 232, in __step
+    result = coro.send(None)
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 140, in _start
+    await self._step()
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 285, in _step
+    await self._run()
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 274, in _run
+    await self.run()
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\init_aas_model_behaviour.py", line 66, in run
+    object_store = await AASModelUtils.read_aas_model_object_store()
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\aas_model\aas_model_utils.py", line 45, in read_aas_model_object_store
+    raise CriticalError("Failed to read AAS model: invalid file.")
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\logic\exceptions.py", line 19, in __init__
+    exit(-1)
+  File "C:\Python310\lib\_sitebuiltins.py", line 26, in __call__
+    raise SystemExit(code)
+SystemExit: -1
+2024-12-02 14:30:43,278 [__main__] [INFO] Initializing SMIA software... line:93
+2024-12-02 14:30:44,721 [utilities.smia_archive_utils] [INFO] The C:\\Users\\839073\\OneDrive - UPV EHU\\Tesis doctoral\\TesisEkaitzHurtado\\CodeRepositories\\I4_0_SMIA\\smia_archive\\config/SMIA_TransportRobot_with_OWL.aasx file is already in SMIA archive. line:138
+2024-12-02 14:30:44,725 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:61
+2024-12-02 14:30:47,690 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-12-02 14:30:48,906 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/11489257586356579017273919938 line:935
+2024-12-02 14:30:49,202 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAAB0xMTQ4OTI1NzU4NjM1NjU3OTAxNzI3MzkxOTkzOG0AAAAIMatSN22cs7c=' line:2209
+2024-12-02 14:30:49,832 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-12-02 14:30:49,832 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-12-02 14:30:49,840 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-12-02 14:30:49,840 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-12-02 14:30:49,840 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-12-02 14:30:49,872 [css_ontology.capability_skill_ontology] [INFO] CSS ontology initialized line:42
+2024-12-02 14:31:25,533 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-12-02 14:31:36,973 [__main__] [INFO] Initializing SMIA software... line:93
+2024-12-02 14:31:36,993 [utilities.smia_archive_utils] [INFO] The C:\\Users\\839073\\OneDrive - UPV EHU\\Tesis doctoral\\TesisEkaitzHurtado\\CodeRepositories\\I4_0_SMIA\\smia_archive\\config/SMIA_TransportRobot_with_OWL.aasx file is already in SMIA archive. line:138
+2024-12-02 14:31:36,993 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:61
+2024-12-02 14:31:39,816 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-12-02 14:31:40,962 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/3070903235697899921200746659 line:935
+2024-12-02 14:31:41,253 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABwzMDcwOTAzMjM1Njk3ODk5OTIxMjAwNzQ2NjU5bQAAAAhzf0y0wk9oUQ==' line:2209
+2024-12-02 14:31:41,929 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-12-02 14:31:41,939 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-12-02 14:31:41,939 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-12-02 14:31:41,939 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-12-02 14:31:41,939 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-12-02 14:31:41,969 [css_ontology.capability_skill_ontology] [INFO] CSS ontology initialized line:42
+2024-12-02 14:32:25,473 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-12-02 14:32:25,476 [asyncio] [ERROR] Task exception was never retrieved
+future: <Task finished name='Task-22' coro=<CyclicBehaviour._start() done, defined at C:\Python310\lib\site-packages\spade\behaviour.py:126> exception=KeyboardInterrupt()> line:1758
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\basyx\aas\adapter\aasx.py", line 76, in __init__
+    self.reader = pyecma376_2.ZipPackageReader(file)
+  File "C:\Python310\lib\site-packages\pyecma376_2\zip_package.py", line 33, in __init__
+    zipfile.ZipFile.__init__(self, file)
+  File "C:\Python310\lib\zipfile.py", line 1251, in __init__
+    self.fp = io.open(file, filemode)
+FileNotFoundError: [Errno 2] No such file or directory: '../smia_archive/configSMIA_TransportRobot_with_OWL.aasx'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\aas_model\aas_model_utils.py", line 36, in read_aas_model_object_store
+    with aasx.AASXReader(aas_model_file_path) as reader:
+  File "C:\Python310\lib\site-packages\basyx\aas\adapter\aasx.py", line 78, in __init__
+    raise ValueError("{} is not a valid ECMA376-2 (OPC) file".format(file)) from e
+ValueError: ../smia_archive/configSMIA_TransportRobot_with_OWL.aasx is not a valid ECMA376-2 (OPC) file
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\spade\container.py", line 114, in run_container
+    container.run(main_func)
+  File "C:\Python310\lib\site-packages\spade\container.py", line 108, in run
+    self.loop.run_until_complete(coro)
+  File "C:\Program Files\JetBrains\PyCharm 2023.2.1\plugins\python\helpers-pro\pydevd_asyncio\pydevd_nest_asyncio.py", line 229, in run_until_complete
+    self._run_once()
+  File "C:\Program Files\JetBrains\PyCharm 2023.2.1\plugins\python\helpers-pro\pydevd_asyncio\pydevd_nest_asyncio.py", line 281, in _run_once
+    handle._run()
+  File "C:\Python310\lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Program Files\JetBrains\PyCharm 2023.2.1\plugins\python\helpers-pro\pydevd_asyncio\pydevd_nest_asyncio.py", line 390, in step
+    step_orig(task, exc)
+  File "C:\Python310\lib\asyncio\tasks.py", line 232, in __step
+    result = coro.send(None)
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 140, in _start
+    await self._step()
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 285, in _step
+    await self._run()
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 274, in _run
+    await self.run()
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\init_aas_model_behaviour.py", line 66, in run
+    object_store = await AASModelUtils.read_aas_model_object_store()
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\aas_model\aas_model_utils.py", line 42, in read_aas_model_object_store
+    except ValueError as e:
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\aas_model\aas_model_utils.py", line 42, in read_aas_model_object_store
+    except ValueError as e:
+  File "_pydevd_bundle\\pydevd_cython_win32_310_64.pyx", line 1187, in _pydevd_bundle.pydevd_cython_win32_310_64.SafeCallWrapper.__call__
+  File "_pydevd_bundle\\pydevd_cython_win32_310_64.pyx", line 627, in _pydevd_bundle.pydevd_cython_win32_310_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\\pydevd_cython_win32_310_64.pyx", line 1103, in _pydevd_bundle.pydevd_cython_win32_310_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\\pydevd_cython_win32_310_64.pyx", line 1065, in _pydevd_bundle.pydevd_cython_win32_310_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\\pydevd_cython_win32_310_64.pyx", line 585, in _pydevd_bundle.pydevd_cython_win32_310_64.PyDBFrame.do_wait_suspend
+  File "C:\Program Files\JetBrains\PyCharm 2023.2.1\plugins\python\helpers\pydev\pydevd.py", line 1185, in do_wait_suspend
+    self._do_wait_suspend(thread, frame, event, arg, suspend_type, from_this_thread)
+  File "C:\Program Files\JetBrains\PyCharm 2023.2.1\plugins\python\helpers\pydev\pydevd.py", line 1200, in _do_wait_suspend
+    time.sleep(0.01)
+KeyboardInterrupt
+2024-12-02 14:32:25,540 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-12-02 14:32:25,541 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-12-02 14:32:25,544 [css_ontology.capability_skill_ontology] [INFO] CSS ontology initialized line:42
+2024-12-02 14:32:25,546 [aas_model.aas_model_utils] [ERROR] Failed to read AAS model: invalid file. line:43
+2024-12-02 14:32:25,546 [aas_model.aas_model_utils] [ERROR] ../smia_archive/configSMIA_TransportRobot_with_OWL.aasx is not a valid ECMA376-2 (OPC) file line:44
+2024-12-02 14:32:25,547 [logic.exceptions] [ERROR] Failed to read AAS model: invalid file. line:17
+2024-12-02 14:32:25,547 [logic.exceptions] [ERROR] The program must end. line:18
+2024-12-02 14:32:30,431 [__main__] [INFO] Initializing SMIA software... line:93
+2024-12-02 14:32:30,437 [utilities.smia_archive_utils] [INFO] The C:\\Users\\839073\\OneDrive - UPV EHU\\Tesis doctoral\\TesisEkaitzHurtado\\CodeRepositories\\I4_0_SMIA\\smia_archive\\config/SMIA_TransportRobot_with_OWL.aasx file is already in SMIA archive. line:138
+2024-12-02 14:32:30,442 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:61
+2024-12-02 14:32:33,176 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-12-02 14:32:34,306 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/4764131257535117459115169796 line:935
+2024-12-02 14:32:34,587 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABw0NzY0MTMxMjU3NTM1MTE3NDU5MTE1MTY5Nzk2bQAAAAiQwBmF7ALowg==' line:2209
+2024-12-02 14:32:35,162 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-12-02 14:32:35,162 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-12-02 14:32:35,164 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-12-02 14:32:35,164 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-12-02 14:32:35,164 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-12-02 14:32:35,187 [css_ontology.capability_skill_ontology] [INFO] CSS ontology initialized line:42
+2024-12-02 14:32:35,241 [basyx.aas.adapter.xml.xml_deserialization] [ERROR] ValueError: invalid literal for int() with base 10: 'initial configuration'
+ -> Failed to construct {https://admin-shell.io/aas/3/0}property on line 3937 using construct_submodel_element! line:297
+2024-12-02 14:32:35,245 [basyx.aas.adapter.xml.xml_deserialization] [ERROR] KeyError: {https://admin-shell.io/aas/3/0}language on line 4250 has no text!
+ -> Failed to construct {https://admin-shell.io/aas/3/0}value on line 4248 using construct_multi_language_text_type! line:297
+2024-12-02 14:32:35,290 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all defined ontology elements... line:73
+2024-12-02 14:32:37,953 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-12-02 14:32:37,953 [gcis1] [INFO] client shutting down (on request) line:975
+2024-12-02 14:32:38,016 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all relationships between ontology elements... line:77
+2024-12-02 14:33:30,210 [__main__] [INFO] Initializing SMIA software... line:93
+2024-12-02 14:33:30,217 [utilities.smia_archive_utils] [INFO] The C:\\Users\\839073\\OneDrive - UPV EHU\\Tesis doctoral\\TesisEkaitzHurtado\\CodeRepositories\\I4_0_SMIA\\smia_archive\\config/SMIA_TransportRobot_with_OWL.aasx file is already in SMIA archive. line:138
+2024-12-02 14:33:30,221 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:61
+2024-12-02 14:33:32,994 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-12-02 14:33:34,129 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/16735451393642896949273930882 line:935
+2024-12-02 14:33:34,412 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAAB0xNjczNTQ1MTM5MzY0Mjg5Njk0OTI3MzkzMDg4Mm0AAAAIkW5QUVMhq6c=' line:2209
+2024-12-02 14:33:34,998 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-12-02 14:33:34,998 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-12-02 14:33:35,000 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-12-02 14:33:35,000 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-12-02 14:33:35,001 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-12-02 14:33:35,024 [css_ontology.capability_skill_ontology] [INFO] CSS ontology initialized line:42
+2024-12-02 14:33:35,081 [basyx.aas.adapter.xml.xml_deserialization] [ERROR] KeyError: {https://admin-shell.io/aas/3/0}language on line 4250 has no text!
+ -> Failed to construct {https://admin-shell.io/aas/3/0}value on line 4248 using construct_multi_language_text_type! line:297
+2024-12-02 14:33:35,107 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all defined ontology elements... line:73
+2024-12-02 14:33:35,998 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-12-02 14:33:35,998 [gcis1] [INFO] client shutting down (on request) line:975
+2024-12-02 14:33:36,386 [gcis1.StanzaStream] [INFO] stopping SM stream line:2473
+2024-12-02 14:33:36,386 [gcis1] [INFO] stopping stream line:989
+2024-12-02 14:33:36,387 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: None line:154
+2024-12-02 14:33:36,396 [states.state_booting] [INFO] gcis1@xmpp.jp agent has finished it Boot state. line:49
+2024-12-02 14:33:36,396 [spade.behaviour] [INFO] FSM transiting from BOOTING to RUNNING. line:591
+2024-12-02 14:33:36,396 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-12-02 14:33:36,397 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:25
+2024-12-02 14:33:36,404 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-12-02 14:33:36,405 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-12-02 14:33:36,405 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:25
+2024-12-02 14:33:36,412 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-12-02 14:33:46,394 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:150
+2024-12-02 14:33:46,394 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:150
+2024-12-02 14:33:56,395 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:150
+2024-12-02 14:33:56,395 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:150
+2024-12-02 14:34:06,395 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:150
+2024-12-02 14:34:06,395 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:150
+2024-12-02 14:34:16,396 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:150
+2024-12-02 14:34:16,396 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:150
+2024-12-02 14:34:29,604 [__main__] [INFO] Initializing SMIA software... line:93
+2024-12-02 14:34:29,610 [utilities.smia_archive_utils] [INFO] The C:\\Users\\839073\\OneDrive - UPV EHU\\Tesis doctoral\\TesisEkaitzHurtado\\CodeRepositories\\I4_0_SMIA\\smia_archive\\config/SMIA_TransportRobot_with_OWL.aasx file is already in SMIA archive. line:138
+2024-12-02 14:34:29,614 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:61
+2024-12-02 14:34:32,416 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-12-02 14:34:33,614 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/1142688529766219479273934562 line:935
+2024-12-02 14:34:33,913 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABwxMTQyNjg4NTI5NzY2MjE5NDc5MjczOTM0NTYybQAAAAi17n4hN7Jiiw==' line:2209
+2024-12-02 14:34:34,518 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-12-02 14:34:34,519 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-12-02 14:34:34,521 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-12-02 14:34:34,521 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-12-02 14:34:34,522 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-12-02 14:34:34,545 [css_ontology.capability_skill_ontology] [INFO] CSS ontology initialized line:42
+2024-12-02 14:34:34,642 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all defined ontology elements... line:73
+2024-12-02 14:34:37,381 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all relationships between ontology elements... line:77
+2024-12-02 14:34:39,258 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all asset connections... line:81
+2024-12-02 14:34:39,445 [behaviours.init_aas_model_behaviour] [INFO] All asset connections defined in the AAS model have been configured and saved. line:487
+2024-12-02 14:34:40,444 [behaviours.init_aas_model_behaviour] [INFO] AAS model analysis results. 
+	- Analyzed capabilities: ['Negotiation', 'EfficientTransport']
+	- Analyzed capability constraints: ['NegotiationCriteriaConstraint', 'EfficientTransportConstraintLocation']
+	- Analyzed skills ['EfficientMovement', 'NegotiationBasedOnBattery', 'NegotiationBasedOnLocation', 'NegotiationBasedOnRAM']
+	- Analyzed skill interfaces ['property_battery', 'property_location', 'action_move', 'RAM_memory_function']
+	- Analyzed asset connections ['InterfaceForHTTP']
+	- Errors found [] line:493
+2024-12-02 14:34:40,444 [behaviours.init_aas_model_behaviour] [INFO] AAS model initialized. line:91
+2024-12-02 14:34:40,445 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: None line:154
+2024-12-02 14:34:40,455 [states.state_booting] [INFO] gcis1@xmpp.jp agent has finished it Boot state. line:49
+2024-12-02 14:34:40,455 [spade.behaviour] [INFO] FSM transiting from BOOTING to RUNNING. line:591
+2024-12-02 14:34:40,455 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-12-02 14:34:40,455 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:25
+2024-12-02 14:34:40,463 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-12-02 14:34:50,445 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:150
+2024-12-02 14:34:50,674 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-12-02 14:34:50,674 [gcis1] [INFO] client shutting down (on request) line:975
+2024-12-02 14:35:28,190 [__main__] [INFO] Initializing SMIA software... line:93
+2024-12-02 14:36:00,029 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-12-02 14:36:00,087 [asyncio] [ERROR] Task exception was never retrieved
+future: <Task finished name='Task-1' coro=<main() done, defined at C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\smia_main.py:25> exception=KeyboardInterrupt()> line:1758
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\spade\container.py", line 114, in run_container
+    container.run(main_func)
+  File "C:\Python310\lib\site-packages\spade\container.py", line 108, in run
+    self.loop.run_until_complete(coro)
+  File "C:\Program Files\JetBrains\PyCharm 2023.2.1\plugins\python\helpers-pro\pydevd_asyncio\pydevd_nest_asyncio.py", line 229, in run_until_complete
+    self._run_once()
+  File "C:\Program Files\JetBrains\PyCharm 2023.2.1\plugins\python\helpers-pro\pydevd_asyncio\pydevd_nest_asyncio.py", line 281, in _run_once
+    handle._run()
+  File "C:\Python310\lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Program Files\JetBrains\PyCharm 2023.2.1\plugins\python\helpers-pro\pydevd_asyncio\pydevd_nest_asyncio.py", line 390, in step
+    step_orig(task, exc)
+  File "C:\Python310\lib\asyncio\tasks.py", line 232, in __step
+    result = coro.send(None)
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\smia_main.py", line 32, in main
+    await CLIUtils.check_and_save_cli_information(init_config, aas_model)
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\utilities\general_utils.py", line 233, in check_and_save_cli_information
+    config_file_path = await AASModelUtils.get_configuration_file_path_from_standard_submodel()
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\aas_model\aas_model_utils.py", line 64, in get_configuration_file_path_from_standard_submodel
+    if soft_nameplate_config_paths is None:
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\aas_model\aas_model_utils.py", line 64, in get_configuration_file_path_from_standard_submodel
+    if soft_nameplate_config_paths is None:
+  File "_pydevd_bundle\\pydevd_cython_win32_310_64.pyx", line 1187, in _pydevd_bundle.pydevd_cython_win32_310_64.SafeCallWrapper.__call__
+  File "_pydevd_bundle\\pydevd_cython_win32_310_64.pyx", line 627, in _pydevd_bundle.pydevd_cython_win32_310_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\\pydevd_cython_win32_310_64.pyx", line 1103, in _pydevd_bundle.pydevd_cython_win32_310_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\\pydevd_cython_win32_310_64.pyx", line 1065, in _pydevd_bundle.pydevd_cython_win32_310_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\\pydevd_cython_win32_310_64.pyx", line 585, in _pydevd_bundle.pydevd_cython_win32_310_64.PyDBFrame.do_wait_suspend
+  File "C:\Program Files\JetBrains\PyCharm 2023.2.1\plugins\python\helpers\pydev\pydevd.py", line 1185, in do_wait_suspend
+    self._do_wait_suspend(thread, frame, event, arg, suspend_type, from_this_thread)
+  File "C:\Program Files\JetBrains\PyCharm 2023.2.1\plugins\python\helpers\pydev\pydevd.py", line 1200, in _do_wait_suspend
+    time.sleep(0.01)
+KeyboardInterrupt
+2024-12-02 14:36:07,020 [__main__] [INFO] Initializing SMIA software... line:93
+2024-12-02 14:37:18,702 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-12-02 14:37:33,154 [__main__] [INFO] Initializing SMIA software... line:93
+2024-12-02 14:37:58,231 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-12-02 14:37:58,296 [asyncio] [ERROR] Task exception was never retrieved
+future: <Task finished name='Task-1' coro=<main() done, defined at C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\smia_main.py:25> exception=KeyboardInterrupt()> line:1758
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\spade\container.py", line 114, in run_container
+    container.run(main_func)
+  File "C:\Python310\lib\site-packages\spade\container.py", line 108, in run
+    self.loop.run_until_complete(coro)
+  File "C:\Program Files\JetBrains\PyCharm 2023.2.1\plugins\python\helpers-pro\pydevd_asyncio\pydevd_nest_asyncio.py", line 229, in run_until_complete
+    self._run_once()
+  File "C:\Program Files\JetBrains\PyCharm 2023.2.1\plugins\python\helpers-pro\pydevd_asyncio\pydevd_nest_asyncio.py", line 281, in _run_once
+    handle._run()
+  File "C:\Python310\lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Program Files\JetBrains\PyCharm 2023.2.1\plugins\python\helpers-pro\pydevd_asyncio\pydevd_nest_asyncio.py", line 390, in step
+    step_orig(task, exc)
+  File "C:\Python310\lib\asyncio\tasks.py", line 232, in __step
+    result = coro.send(None)
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\smia_main.py", line 32, in main
+    await CLIUtils.check_and_save_cli_information(init_config, aas_model)
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\utilities\general_utils.py", line 234, in check_and_save_cli_information
+    smia_archive_utils.copy_file_into_archive(config_file_path,
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\utilities\general_utils.py", line 234, in check_and_save_cli_information
+    smia_archive_utils.copy_file_into_archive(config_file_path,
+  File "_pydevd_bundle\\pydevd_cython_win32_310_64.pyx", line 1187, in _pydevd_bundle.pydevd_cython_win32_310_64.SafeCallWrapper.__call__
+  File "_pydevd_bundle\\pydevd_cython_win32_310_64.pyx", line 627, in _pydevd_bundle.pydevd_cython_win32_310_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\\pydevd_cython_win32_310_64.pyx", line 1103, in _pydevd_bundle.pydevd_cython_win32_310_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\\pydevd_cython_win32_310_64.pyx", line 1065, in _pydevd_bundle.pydevd_cython_win32_310_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\\pydevd_cython_win32_310_64.pyx", line 585, in _pydevd_bundle.pydevd_cython_win32_310_64.PyDBFrame.do_wait_suspend
+  File "C:\Program Files\JetBrains\PyCharm 2023.2.1\plugins\python\helpers\pydev\pydevd.py", line 1185, in do_wait_suspend
+    self._do_wait_suspend(thread, frame, event, arg, suspend_type, from_this_thread)
+  File "C:\Program Files\JetBrains\PyCharm 2023.2.1\plugins\python\helpers\pydev\pydevd.py", line 1200, in _do_wait_suspend
+    time.sleep(0.01)
+KeyboardInterrupt
+2024-12-02 14:38:25,904 [__main__] [INFO] Initializing SMIA software... line:93
+2024-12-02 14:38:37,769 [SPADE] [ERROR] Exception in the event loop: [Errno 2] No such file or directory: '/aasx/config/smia-initialization.properties' line:118
+2024-12-02 14:44:08,649 [__main__] [INFO] Initializing SMIA software... line:93
+2024-12-02 14:44:31,559 [SPADE] [ERROR] Exception in the event loop: [Errno 2] No such file or directory: '/aasx/config/smia-initialization.properties' line:118
+2024-12-02 14:44:56,794 [__main__] [INFO] Initializing SMIA software... line:93
+2024-12-02 14:45:18,407 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:61
+2024-12-02 14:45:21,283 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-12-02 14:45:22,432 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/7452176032258926058200789155 line:935
+2024-12-02 14:45:22,714 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABw3NDUyMTc2MDMyMjU4OTI2MDU4MjAwNzg5MTU1bQAAAAjvy3gLI/ELtQ==' line:2209
+2024-12-02 14:45:23,300 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-12-02 14:45:23,300 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-12-02 14:45:23,308 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-12-02 14:45:23,310 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-12-02 14:45:23,310 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-12-02 14:45:23,340 [css_ontology.capability_skill_ontology] [INFO] CSS ontology initialized line:42
+2024-12-02 14:45:23,340 [aas_model.aas_model_utils] [ERROR] Failed to read AAS model: invalid file. line:43
+2024-12-02 14:45:23,340 [aas_model.aas_model_utils] [ERROR] ../smia_archive/config/SMIA_TransportRobot_with_OWL.aasx is not a valid ECMA376-2 (OPC) file line:44
+2024-12-02 14:45:23,340 [logic.exceptions] [ERROR] Failed to read AAS model: invalid file. line:17
+2024-12-02 14:45:23,348 [logic.exceptions] [ERROR] The program must end. line:18
+2024-12-02 14:45:23,421 [asyncio] [ERROR] Task exception was never retrieved
+future: <Task finished name='Task-20' coro=<CyclicBehaviour._start() done, defined at C:\Python310\lib\site-packages\spade\behaviour.py:126> exception=SystemExit(-1)> line:1758
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\basyx\aas\adapter\aasx.py", line 76, in __init__
+    self.reader = pyecma376_2.ZipPackageReader(file)
+  File "C:\Python310\lib\site-packages\pyecma376_2\zip_package.py", line 33, in __init__
+    zipfile.ZipFile.__init__(self, file)
+  File "C:\Python310\lib\zipfile.py", line 1269, in __init__
+    self._RealGetContents()
+  File "C:\Python310\lib\zipfile.py", line 1336, in _RealGetContents
+    raise BadZipFile("File is not a zip file")
+zipfile.BadZipFile: File is not a zip file
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\aas_model\aas_model_utils.py", line 36, in read_aas_model_object_store
+    with aasx.AASXReader(aas_model_file_path) as reader:
+  File "C:\Python310\lib\site-packages\basyx\aas\adapter\aasx.py", line 78, in __init__
+    raise ValueError("{} is not a valid ECMA376-2 (OPC) file".format(file)) from e
+ValueError: ../smia_archive/config/SMIA_TransportRobot_with_OWL.aasx is not a valid ECMA376-2 (OPC) file
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Program Files\JetBrains\PyCharm 2023.2.1\plugins\python\helpers\pydev\pydevd.py", line 2218, in main
+    globals = debugger.run(setup['file'], None, None, is_module)
+  File "C:\Program Files\JetBrains\PyCharm 2023.2.1\plugins\python\helpers\pydev\pydevd.py", line 1528, in run
+    return self._exec(is_module, entry_point_fn, module_name, file, globals, locals)
+  File "C:\Program Files\JetBrains\PyCharm 2023.2.1\plugins\python\helpers\pydev\pydevd.py", line 1535, in _exec
+    pydev_imports.execfile(file, globals, locals)  # execute the script
+  File "C:\Program Files\JetBrains\PyCharm 2023.2.1\plugins\python\helpers\pydev\_pydev_imps\_pydev_execfile.py", line 18, in execfile
+    exec(compile(contents+"\n", file, 'exec'), glob, loc)
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\smia_main.py", line 96, in <module>
+    spade.run(main())
+  File "C:\Python310\lib\site-packages\spade\container.py", line 114, in run_container
+    container.run(main_func)
+  File "C:\Python310\lib\site-packages\spade\container.py", line 108, in run
+    self.loop.run_until_complete(coro)
+  File "C:\Program Files\JetBrains\PyCharm 2023.2.1\plugins\python\helpers-pro\pydevd_asyncio\pydevd_nest_asyncio.py", line 229, in run_until_complete
+    self._run_once()
+  File "C:\Program Files\JetBrains\PyCharm 2023.2.1\plugins\python\helpers-pro\pydevd_asyncio\pydevd_nest_asyncio.py", line 281, in _run_once
+    handle._run()
+  File "C:\Python310\lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Program Files\JetBrains\PyCharm 2023.2.1\plugins\python\helpers-pro\pydevd_asyncio\pydevd_nest_asyncio.py", line 390, in step
+    step_orig(task, exc)
+  File "C:\Python310\lib\asyncio\tasks.py", line 232, in __step
+    result = coro.send(None)
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 140, in _start
+    await self._step()
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 285, in _step
+    await self._run()
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 274, in _run
+    await self.run()
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\init_aas_model_behaviour.py", line 66, in run
+    object_store = await AASModelUtils.read_aas_model_object_store()
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\aas_model\aas_model_utils.py", line 45, in read_aas_model_object_store
+    raise CriticalError("Failed to read AAS model: invalid file.")
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\logic\exceptions.py", line 19, in __init__
+    exit(-1)
+  File "C:\Python310\lib\_sitebuiltins.py", line 26, in __call__
+    raise SystemExit(code)
+SystemExit: -1
+2024-12-02 14:46:04,807 [__main__] [INFO] Initializing SMIA software... line:93
+2024-12-02 14:46:04,924 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:61
+2024-12-02 14:46:07,452 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-12-02 14:46:08,544 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/8870399137274704439273983778 line:935
+2024-12-02 14:46:08,816 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABw4ODcwMzk5MTM3Mjc0NzA0NDM5MjczOTgzNzc4bQAAAAhmpBT+HhqwcQ==' line:2209
+2024-12-02 14:46:09,372 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-12-02 14:46:09,373 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-12-02 14:46:09,375 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-12-02 14:46:09,376 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-12-02 14:46:09,376 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-12-02 14:46:09,402 [css_ontology.capability_skill_ontology] [INFO] CSS ontology initialized line:42
+2024-12-02 14:46:09,497 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all defined ontology elements... line:73
+2024-12-02 14:46:12,246 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all relationships between ontology elements... line:77
+2024-12-02 14:46:14,123 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all asset connections... line:81
+2024-12-02 14:46:14,309 [behaviours.init_aas_model_behaviour] [INFO] All asset connections defined in the AAS model have been configured and saved. line:487
+2024-12-02 14:46:15,293 [behaviours.init_aas_model_behaviour] [INFO] AAS model analysis results. 
+	- Analyzed capabilities: ['Negotiation', 'EfficientTransport']
+	- Analyzed capability constraints: ['NegotiationCriteriaConstraint', 'EfficientTransportConstraintLocation']
+	- Analyzed skills ['EfficientMovement', 'NegotiationBasedOnBattery', 'NegotiationBasedOnLocation', 'NegotiationBasedOnRAM']
+	- Analyzed skill interfaces ['property_battery', 'property_location', 'action_move', 'RAM_memory_function']
+	- Analyzed asset connections ['InterfaceForHTTP']
+	- Errors found [] line:493
+2024-12-02 14:46:15,293 [behaviours.init_aas_model_behaviour] [INFO] AAS model initialized. line:91
+2024-12-02 14:46:15,293 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: None line:154
+2024-12-02 14:46:15,302 [states.state_booting] [INFO] gcis1@xmpp.jp agent has finished it Boot state. line:49
+2024-12-02 14:46:15,303 [spade.behaviour] [INFO] FSM transiting from BOOTING to RUNNING. line:591
+2024-12-02 14:46:15,303 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-12-02 14:46:15,303 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:25
+2024-12-02 14:46:15,313 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-12-02 14:46:19,680 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-12-02 14:50:42,073 [__main__] [INFO] Initializing SMIA software... line:93
+2024-12-02 14:50:42,201 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:61
+2024-12-02 14:50:44,934 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-12-02 14:50:46,023 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/17977695554836911545200808291 line:935
+2024-12-02 14:50:46,294 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAAB0xNzk3NzY5NTU1NDgzNjkxMTU0NTIwMDgwODI5MW0AAAAIlVlSzrO+BZM=' line:2209
+2024-12-02 14:50:46,847 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-12-02 14:50:46,848 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-12-02 14:50:46,850 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-12-02 14:50:46,850 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-12-02 14:50:46,851 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-12-02 14:50:46,871 [css_ontology.capability_skill_ontology] [INFO] CSS ontology initialized line:42
+2024-12-02 14:50:46,960 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all defined ontology elements... line:73
+2024-12-02 14:50:49,704 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all relationships between ontology elements... line:77
+2024-12-02 14:50:51,580 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all asset connections... line:81
+2024-12-02 14:50:51,767 [behaviours.init_aas_model_behaviour] [INFO] All asset connections defined in the AAS model have been configured and saved. line:487
+2024-12-02 14:50:52,752 [behaviours.init_aas_model_behaviour] [INFO] AAS model analysis results. 
+	- Analyzed capabilities: ['Negotiation', 'EfficientTransport']
+	- Analyzed capability constraints: ['NegotiationCriteriaConstraint', 'EfficientTransportConstraintLocation']
+	- Analyzed skills ['EfficientMovement', 'NegotiationBasedOnBattery', 'NegotiationBasedOnLocation', 'NegotiationBasedOnRAM']
+	- Analyzed skill interfaces ['property_battery', 'property_location', 'action_move', 'RAM_memory_function']
+	- Analyzed asset connections ['InterfaceForHTTP']
+	- Errors found [] line:493
+2024-12-02 14:50:52,752 [behaviours.init_aas_model_behaviour] [INFO] AAS model initialized. line:91
+2024-12-02 14:50:52,753 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: None line:154
+2024-12-02 14:50:52,763 [states.state_booting] [INFO] gcis1@xmpp.jp agent has finished it Boot state. line:49
+2024-12-02 14:50:52,763 [spade.behaviour] [INFO] FSM transiting from BOOTING to RUNNING. line:591
+2024-12-02 14:50:52,763 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-12-02 14:50:52,764 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:25
+2024-12-02 14:50:52,773 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-12-02 14:50:55,204 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-12-02 14:50:55,204 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-12-02 14:50:55,205 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:25
+2024-12-02 14:50:55,216 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43

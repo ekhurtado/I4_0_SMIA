@@ -12,6 +12,7 @@ from spade.behaviour import OneShotBehaviour
 from tqdm.asyncio import tqdm
 
 from aas_model import extended_submodel
+from aas_model.aas_model_utils import AASModelUtils
 from aas_model.extended_submodel import ExtendedSkill, ExtendedSkillInterface, ExtendedCapabilityConstraint, \
     ExtendedComplexSkillInterface, ExtendedComplexSkill, ExtendedSimpleSkill, ExtendedSimpleSkillInterface, \
     ExtendedCapability
@@ -60,12 +61,9 @@ class InitAASModelBehaviour(OneShotBehaviour):
         """
         This method implements the logic of the behaviour.
         """
-        # First, the AAS model serialization format is obtained
-        aas_model_serialization_format = configmap_utils.get_aas_general_property('model.serialization')
-
         # Depending on the serialization format, the required BaSyx read method shall be executed. This will store all
         # the received elements of the model in the corresponding global object of the agent.
-        object_store = await self.read_aas_model_object_store(aas_model_serialization_format)
+        object_store = await AASModelUtils.read_aas_model_object_store()
         await self.myagent.aas_model.set_aas_model_object_store(object_store)
 
         # A progress bar is used for showing how the AAS model is being read.
@@ -92,39 +90,6 @@ class InitAASModelBehaviour(OneShotBehaviour):
 
         _logger.info("AAS model initialized.")
         self.exit_code = 0
-
-    async def read_aas_model_object_store(self, aas_model_serialization_format):
-        """
-        This method reads the AAS model according to the selected serialization format.
-
-        Args:
-            aas_model_serialization_format (str): serialization format of the AAS model.
-
-        Returns:
-            basyx.aas.model.DictObjectStore:  object with all Python elements of the AAS model.
-        """
-        object_store = None
-        try:
-            if aas_model_serialization_format == 'JSON':
-                object_store = basyx.aas.adapter.json.read_aas_json_file(configmap_utils.get_aas_model_filepath())
-            elif aas_model_serialization_format == 'XML':
-                object_store = basyx.aas.adapter.xml.read_aas_xml_file(configmap_utils.get_aas_model_filepath())
-            elif aas_model_serialization_format == 'AASX':
-                    with aasx.AASXReader(configmap_utils.get_aas_model_filepath()) as reader:
-                        # Read all contained AAS objects and all referenced auxiliary files
-                        object_store = model.DictObjectStore()
-                        suppl_file_store = aasx.DictSupplementaryFileContainer()
-                        reader.read_into(object_store=object_store,
-                                         file_store=suppl_file_store)
-        except ValueError as e:
-            _logger.error("Failed to read AAS model: invalid file.")
-            _logger.error(e)
-            raise CriticalError("Failed to read AAS model: invalid file.")
-        if object_store is None or len(object_store) == 0:
-            raise CriticalError("The AAS model is not valid. It is not possible to read and obtain elements of the AAS "
-                          "metamodel.")
-        else:
-            return object_store
 
 
     # async def get_and_save_capabilities_information(self):

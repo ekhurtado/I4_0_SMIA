@@ -4,7 +4,7 @@ import configparser
 import os.path
 
 from logic.exceptions import CriticalError
-from utilities.aas_general_info import SMIAGeneralInfo
+from utilities.smia_general_info import SMIAGeneralInfo
 
 _logger = logging.getLogger(__name__)
 
@@ -40,9 +40,10 @@ def get_aas_model_filepath():
     Returns:
         str: The AAS model file path within the SMIA Archive.
     """
-    config_sm = configparser.RawConfigParser()
-    config_sm.read(SMIAGeneralInfo.CONFIGURATION_FOLDER_PATH + '/' + SMIAGeneralInfo.CM_GENERAL_PROPERTIES_FILENAME)
-    return SMIAGeneralInfo.CONFIGURATION_FOLDER_PATH + '/' + config_sm['AAS']['aas.model.file']
+    # config_sm = configparser.RawConfigParser()
+    # config_sm.read(SMIAGeneralInfo.CONFIGURATION_FOLDER_PATH + '/' + SMIAGeneralInfo.CM_GENERAL_PROPERTIES_FILENAME)
+    # return SMIAGeneralInfo.CONFIGURATION_FOLDER_PATH + '/' + config_sm['AAS']['aas.model.file']
+    return SMIAGeneralInfo.CONFIGURATION_FOLDER_PATH + '/' + SMIAGeneralInfo.CM_AAS_MODEL_FILENAME
 
 
 # --------------------------------------

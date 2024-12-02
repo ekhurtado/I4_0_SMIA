@@ -4,7 +4,7 @@ import os
 from lxml import etree
 
 from utilities import smia_archive_utils, configmap_utils
-from utilities.aas_general_info import SMIAGeneralInfo
+from utilities.smia_general_info import SMIAGeneralInfo
 
 _logger = logging.getLogger(__name__)
 

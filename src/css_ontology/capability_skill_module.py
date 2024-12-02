@@ -12,7 +12,7 @@ from logic.exceptions import OntologyCheckingAttributeError, OntologyCheckingPro
     OntologyInstanceCreationError
 from css_ontology.css_ontology_utils import CapabilitySkillOntologyInfo, CapabilitySkillOntologyUtils, \
     CSSModelAASModelInfo
-from utilities.aas_general_info import SMIAGeneralInfo
+from utilities.smia_general_info import SMIAGeneralInfo
 
 _logger = logging.getLogger(__name__)
 

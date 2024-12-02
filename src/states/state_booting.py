@@ -3,7 +3,7 @@ from spade.behaviour import State
 
 from behaviours.init_aas_model_behaviour import InitAASModelBehaviour
 from utilities import smia_archive_utils
-from utilities.smia_info import SMIAInfo
+from utilities.smia_general_info import SMIAGeneralInfo
 
 _logger = logging.getLogger(__name__)
 
@@ -20,7 +20,7 @@ class StateBooting(State):
         """
 
         await self.booting_state_logic()
-        self.set_next_state(SMIAInfo.RUNNING_STATE_NAME)
+        self.set_next_state(SMIAGeneralInfo.RUNNING_STATE_NAME)
 
     async def booting_state_logic(self):
         """
