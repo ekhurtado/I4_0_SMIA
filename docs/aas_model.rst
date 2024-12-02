@@ -7,6 +7,7 @@ Submodules
 .. toctree::
    :maxdepth: 4
 
+   aas_model.aas_model_utils
    aas_model.extended_aas
    aas_model.extended_aas_model
    aas_model.extended_base

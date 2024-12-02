@@ -36,20 +36,30 @@
             background-color: #f5f5f5;
         }
 
-        .request-button {
-            justify-content: flex-end;
-            /*margin-right: 10px;*/
-            background-color: #97a0b3;
+        .options-container {
+            float: right;
+            display: flex;
+            gap: 10px;
+        }
+
+        .expandable {
+            cursor: pointer;
         }
 
         .expand-icon {
-            cursor: pointer;
+            /*cursor: pointer;*/
             color: #2d688a;
             float: right;
         }
 
         .expand-icon:hover {
             color: #3C8DBC;
+        }
+
+        .request-button {
+            /*justify-content: flex-end;*/
+            /*margin-right: 10px;*/
+            background-color: #97a0b3;
         }
 
         /* Subtables */
@@ -145,7 +155,10 @@
                                 </thead>
                                 <tbody>
                                     <tr data-file-id="file1">
-                                        <td>file1.json <span class="glyphicon glyphicon-chevron-down expand-icon"></span></td>
+                                        <td>
+                                            <span class="expandable">file1.json</span>
+                                            <span class="glyphicon glyphicon-chevron-down expandable expand-icon"></span>
+                                        </td>
                                     </tr>
                                     <tr class="subtable file1">
                                         <td>
@@ -159,8 +172,10 @@
                                                     <tr data-capability-id="capability1">
                                                         <td>
                                                              Capability 1
-                                                            <button class="btn btn-sm btn-primary request-button">Request</button>
-                                                            <span class="glyphicon glyphicon-chevron-down expand-icon"></span>
+                                                            <div class="options-container">
+                                                                <button class="btn btn-sm btn-primary request-button">Request</button>
+                                                                <span class="glyphicon glyphicon-chevron-down expandable expand-icon"></span>
+                                                            </div>
                                                         </td>
                                                     </tr>
                                                     <tr class="subtable capability1">
@@ -230,8 +245,10 @@
                                                     <tr data-capability-id="capability2">
                                                         <td>
                                                             Capability 2
-                                                            <button class="btn btn-sm btn-primary request-button">Request</button>
-                                                            <span class="glyphicon glyphicon-chevron-down expand-icon"></span>
+                                                            <div class="options-container">
+                                                                <button class="btn btn-sm btn-primary request-button">Request</button>
+                                                                <span class="glyphicon glyphicon-chevron-down expandable expand-icon"></span>
+                                                            </div>
                                                         </td>
                                                     </tr>
                                                     <tr class="subtable capability2">
@@ -288,9 +305,11 @@
                                                 <tbody>
                                                     <tr data-capability-id="capability3">
                                                         <td>
-                                                            Capability 3
-                                                            <button class="btn btn-sm btn-primary request-button">Request</button>
-                                                            <span class="glyphicon glyphicon-chevron-down expand-icon"></span>
+                                                            <span class="expandable">Capability 3</span>
+                                                            <div class="options-container">
+                                                                <button class="btn btn-sm btn-primary request-button">Request</button>
+                                                                <span class="glyphicon glyphicon-chevron-down expandable expand-icon"></span>
+                                                            </div>
                                                         </td>
                                                     </tr>
                                                     <tr class="subtable capability3">
@@ -354,7 +373,9 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const expandIcons = document.querySelectorAll('.expand-icon');
+            const expandIcons = document.querySelectorAll('.expandable');
+            // const expandIcons = document.querySelectorAll('.expand-icon');
+            // TODO HACER AHORA: HAY QUE ARREGLAR ESTO SI QUEREMOS USAR EXPANDABLE (tambien expandirlo clickeando el nombre)
 
             expandIcons.forEach(icon => {
                 icon.addEventListener('click', function() {
