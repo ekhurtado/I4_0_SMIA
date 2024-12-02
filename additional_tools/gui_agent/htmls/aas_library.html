@@ -4,118 +4,121 @@
     <meta charset="UTF-8">
     <title>AAS Library</title>
     <!-- Include CSS links -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
-        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.2/css/AdminLTE.css"
-        integrity="sha256-PVK9gAcsGOtzyQNV7pVrI3EiYYauwzOsXC/VjtwMXI4=" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
-        integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.8/css/skins/_all-skins.css" />
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.2/css/alt/AdminLTE-bootstrap-social.min.css"
-        integrity="sha256-i0jvUu6F0mZkrmoxDnIbXMHzXk16eHsTwPcTxB2ua/Q=" crossorigin="anonymous" />
+    {% include 'htmls/templates/spade_html_css_links.html' %}
+
     <style>
-        .form-section {
-            padding: 20px;
-            background: #f7f7f7;
-            border: 1px solid #ddd;
-            margin-bottom: 20px;
-        }
-        .form-section h3 {
-            margin-top: 0;
-        }
+        /* Main container for tables */
         .table-container {
-            margin-top: 20px;
+            margin: 20px 5px;
         }
+
+        /* Main table */
+        .table {
+            width: 100%;
+            margin-bottom: 20px;
+            border-collapse: collapse;
+            background-color: #fff;
+            border: 1px solid #ddd;
+        }
+
+        .table th, .table td {
+            padding: 8px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        .table th {
+            background-color: #f2f2f2;
+            color: #333;
+        }
+
+        .table tbody tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        .request-button {
+            justify-content: flex-end;
+            /*margin-right: 10px;*/
+            background-color: #97a0b3;
+        }
+
+        .expand-icon {
+            cursor: pointer;
+            color: #2d688a;
+            float: right;
+        }
+
+        .expand-icon:hover {
+            color: #3C8DBC;
+        }
+
+        /* Subtables */
+        .subtable {
+            display: none;
+            margin-left: 2px;
+            margin-top: 10px;
+        }
+
+        .subtable .table {
+            width: 98%;
+            margin-bottom: 10px;
+            border-collapse: collapse;
+            background-color: #fff;
+            border: 1px solid #ccc;
+        }
+
+        .subtable th, .subtable td {
+            padding: 6px;
+            border: 1px solid #ccc;
+            text-align: left;
+        }
+
+        .subtable th {
+            background-color: #e6e6e6;
+            color: #333;
+        }
+
+        .subtable tbody tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        /* Style for nested tables */
+        .table .table {
+            background-color: #fafafa;
+            border: 1px solid #e0e0e0;
+        }
+
+        .table .table th {
+            background-color: #eaeaea;
+        }
+
+        .table .table tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Style for expand/collapse icons */
+        .glyphicon {
+            font-size: 14px;
+        }
+
+        .glyphicon-chevron-down:before {
+            content: "\e114";  /* Unicode for chevron down */
+        }
+
+        .glyphicon-chevron-up:before {
+            content: "\e113";  /* Unicode for chevron up */
+        }
+
     </style>
 
-<!--    <script>-->
-<!--        $(document).ready(function () {-->
-<!--            $('#saveButton').click(function () {-->
-<!--                const content = $('#textEditor').val();-->
-<!--                alert('Content Saved: ' + content);-->
-<!--                // Here you can add your logic to save the content-->
-<!--            });-->
-
-<!--            $('#clearButton').click(function () {-->
-<!--                $('#textEditor').val('');-->
-<!--            });-->
-<!--        });-->
-<!--    </script>-->
 </head>
 <body class="sidebar-mini skin-blue">
     <div class="wrapper">
         <header class="main-header">
-            <a href="/spade" class="logo">
-                <span class="logo-mini"><b>SPD</b></span>
-                <span class="logo-lg"><b>SPADE</b></span>
-            </a>
-            <nav class="navbar navbar-static-top">
-                <div class="navbar-custom-menu">
-                    <ul class="nav navbar-nav">
-                        <li class="dropdown user user-menu">
-                            <a href="/spade" class="dropdown-toggle" data-toggle="dropdown">
-                                <img src="https://raw.githubusercontent.com/ekhurtado/I4_0_SMIA/main/images/I4_0_SMIA_logo_negative.png" class="user-image" alt="User Image">
-                                <span class="hidden-xs">{{ agent.agent_name }}</span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li class="user-header">
-                                    <img src="https://raw.githubusercontent.com/ekhurtado/I4_0_SMIA/main/images/I4_0_SMIA_logo_negative.png" class="img-circle" alt="User Image">
-                                    <p>{{ agent.jid }}</p>
-                                </li>
-                                <li class="user-footer">
-                                    <div class="pull-left">
-                                        <a href="/spade/stop" class="btn btn-default btn-flat">Stop</a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
+            {% include 'htmls/templates/spade_html_header.html' %}
         </header>
         <aside class="main-sidebar">
-            <section class="sidebar">
-                <div class="user-panel">
-                    <div class="pull-left image">
-                        <img src="https://raw.githubusercontent.com/ekhurtado/I4_0_SMIA/main/images/I4_0_SMIA_logo_negative.png" class="img-circle" alt="User Image">
-                    </div>
-                    <div class="pull-left info">
-                        <p>{{ agent.agent_name }}</p>
-                        <a href="/spade"><i class="fa fa-circle text-success"></i> Online</a>
-                    </div>
-                </div>
-                <ul class="sidebar-menu tree" data-widget="tree">
-                    <li>
-                        <a href="/spade"><i class="fa fa-id-card"></i> <span>Dashboard</span></a>
-                    </li>
-                    {% for title, entry in agent.web_menu_entries.items() %}
-                    <li class="{% if request.path == entry.url %}active{% endif %}">
-                        <a href="{{ entry.url }}"><i class="fa {{ entry.icon }}"></i> <span>{{ title }}</span></a>
-                    </li>
-                    {% endfor %}
-<!--                    <li>-->
-<!--                        <a href="/spade"><i class="fa fa-id-card"></i> <span>Dashboard</span></a>-->
-<!--                    </li>-->
-<!--                    <li>-->
-<!--                        <a href="/acl_message"><i class="fa fa-envelope"></i> <span>Send ACL message</span></a>-->
-<!--                    </li>-->
-<!--                    <li>-->
-<!--                        <a href="/receive_acl_msgs"><i class="fa fa-inbox"></i> <span>Received ACL messages</span></a>-->
-<!--                    </li>-->
-<!--                    <li>-->
-<!--                        <a href="/negotiation"><i class="fa fa-comments"></i> <span>Negotiation</span></a>-->
-<!--                    </li>-->
-<!--                    <li>-->
-<!--                        <a href="/editor"><i class="fa fa-code"></i> <span>Programming language editor</span></a>-->
-<!--                    </li>-->
-<!--                    <li class="active">-->
-<!--                        <a href="/aas_library"><i class="fa fa-book"></i> <span>AAS Library</span></a>-->
-<!--                    </li>-->
-                </ul>
-            </section>
+            {% include 'htmls/templates/spade_html_aside.html' %}
         </aside>
         <div class="content-wrapper">
             <section class="content-header">
@@ -132,35 +135,213 @@
                             <div class="box-header with-border">
                                 <h3 class="box-title">Available AASs</h3>
                             </div>
+
                             <div class="table-container">
-                                <table class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th>AAS Name</th>
-                                            <th>AAS Services</th>
-                                            <th>Service Data</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>AAS1</td>
-                                            <td>Service1</td>
-                                            <td>Data1</td>
-                                        </tr>
-                                        <tr>
-                                            <td>AAS2</td>
-                                            <td>Service2</td>
-                                            <td>Data2</td>
-                                        </tr>
-                                        <tr>
-                                            <td>AAS3</td>
-                                            <td>Service3</td>
-                                            <td>Data3</td>
-                                        </tr>
-                                        <!-- Add more rows as needed -->
-                                    </tbody>
-                                </table>
+                                <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>File Name</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-file-id="file1">
+                                        <td>file1.json <span class="glyphicon glyphicon-chevron-down expand-icon"></span></td>
+                                    </tr>
+                                    <tr class="subtable file1">
+                                        <td>
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Capability Type</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr data-capability-id="capability1">
+                                                        <td>
+                                                             Capability 1
+                                                            <button class="btn btn-sm btn-primary request-button">Request</button>
+                                                            <span class="glyphicon glyphicon-chevron-down expand-icon"></span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="subtable capability1">
+                                                        <td>
+                                                            <table class="table table-bordered">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Skill Type</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr data-skill-id="skill1">
+                                                                        <td><span class="glyphicon glyphicon-chevron-down expand-icon"></span> Skill A</td>
+                                                                    </tr>
+                                                                    <tr class="subtable skill1">
+                                                                        <td>
+                                                                            <table class="table table-bordered">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th>Interface Type</th>
+                                                                                        <th>Protocol</th>
+                                                                                        <th>Endpoint</th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <td>Interface X</td>
+                                                                                        <td>HTTP</td>
+                                                                                        <td>endpoint1.com</td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td>Interface Y</td>
+                                                                                        <td>MQTT</td>
+                                                                                        <td>endpoint2.com</td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr data-skill-id="skill2">
+                                                                        <td><span class="glyphicon glyphicon-chevron-down expand-icon"></span> Skill B</td>
+                                                                    </tr>
+                                                                    <tr class="subtable skill2">
+                                                                        <td>
+                                                                            <table class="table table-bordered">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th>Interface Type</th>
+                                                                                        <th>Protocol</th>
+                                                                                        <th>Endpoint</th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <td>Interface Z</td>
+                                                                                        <td>CoAP</td>
+                                                                                        <td>endpoint3.com</td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                    <tr data-capability-id="capability2">
+                                                        <td>
+                                                            Capability 2
+                                                            <button class="btn btn-sm btn-primary request-button">Request</button>
+                                                            <span class="glyphicon glyphicon-chevron-down expand-icon"></span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="subtable capability2">
+                                                        <td>
+                                                            <table class="table table-bordered">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Skill Type</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr data-skill-id="skill3">
+                                                                        <td><span class="glyphicon glyphicon-chevron-down expand-icon"></span> Skill C</td>
+                                                                    </tr>
+                                                                    <tr class="subtable skill3">
+                                                                        <td>
+                                                                            <table class="table table-bordered">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th>Interface Type</th>
+                                                                                        <th>Protocol</th>
+                                                                                        <th>Endpoint</th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <td>Interface W</td>
+                                                                                        <td>HTTP</td>
+                                                                                        <td>endpoint4.com</td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <tr data-file-id="file2">
+                                        <td><span class="glyphicon glyphicon-chevron-down expand-icon"></span> file2.xml</td>
+                                    </tr>
+                                    <tr class="subtable file2">
+                                        <td>
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Capability Type</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr data-capability-id="capability3">
+                                                        <td>
+                                                            Capability 3
+                                                            <button class="btn btn-sm btn-primary request-button">Request</button>
+                                                            <span class="glyphicon glyphicon-chevron-down expand-icon"></span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="subtable capability3">
+                                                        <td>
+                                                            <table class="table table-bordered">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Skill Type</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr data-skill-id="skill4">
+                                                                        <td><span class="glyphicon glyphicon-chevron-down expand-icon"></span> Skill D</td>
+                                                                    </tr>
+                                                                    <tr class="subtable skill4">
+                                                                        <td>
+                                                                            <table class="table table-bordered">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th>Interface Type</th>
+                                                                                        <th>Protocol</th>
+                                                                                        <th>Endpoint</th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <td>Interface V</td>
+                                                                                        <td>HTTP</td>
+                                                                                        <td>endpoint5.com</td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td>Interface U</td>
+                                                                                        <td>MQTT</td>
+                                                                                        <td>endpoint6.com</td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -171,5 +352,25 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.2/js/adminlte.min.js" integrity="sha256-M/+/xbAPBtc0W7JWnReOYF+oPZq4OiOUrlP9qbv7w64=" crossorigin="anonymous"></script>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const expandIcons = document.querySelectorAll('.expand-icon');
+
+            expandIcons.forEach(icon => {
+                icon.addEventListener('click', function() {
+                    const parentRow = this.closest('tr');
+                    const subtableClass = parentRow.getAttribute('data-file-id') || parentRow.getAttribute('data-capability-id') || parentRow.getAttribute('data-skill-id');
+                    const subtableRows = document.querySelectorAll(`.subtable.${subtableClass}`);
+
+                    subtableRows.forEach(row => {
+                        row.style.display = row.style.display === 'none' || row.style.display === '' ? 'table-row' : 'none';
+                    });
+
+                    this.classList.toggle('glyphicon-chevron-down');
+                    this.classList.toggle('glyphicon-chevron-up');
+                });
+            });
+        });
+    </script>
 </body>
 </html>
