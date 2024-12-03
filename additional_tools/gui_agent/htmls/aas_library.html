@@ -43,7 +43,7 @@
         }
 
         .expandable {
-            cursor: pointer;
+            cursor: pointer; /* Make the cursor pointer for the expandable elements */
         }
 
         .expand-icon {
@@ -57,9 +57,26 @@
         }
 
         .request-button {
-            /*justify-content: flex-end;*/
-            /*margin-right: 10px;*/
-            background-color: #97a0b3;
+            background-color: #7c8191;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .confirm-request-button {
+            background-color: #008000;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .request-checkbox {
+            display: none;
+            float: right;
         }
 
         /* Subtables */
@@ -155,9 +172,9 @@
                                 </thead>
                                 <tbody>
                                     <tr data-file-id="file1">
-                                        <td>
-                                            <span class="expandable">file1.json</span>
-                                            <span class="glyphicon glyphicon-chevron-down expandable expand-icon"></span>
+                                        <td class="expandable">
+                                            <span class="expandable">file1.aasx</span>
+                                            <span class="glyphicon glyphicon-chevron-down expand-icon"></span>
                                         </td>
                                     </tr>
                                     <tr class="subtable file1">
@@ -170,11 +187,11 @@
                                                 </thead>
                                                 <tbody>
                                                     <tr data-capability-id="capability1">
-                                                        <td>
-                                                             Capability 1
+                                                        <td class="expandable">
+                                                            Capability 1
                                                             <div class="options-container">
                                                                 <button class="btn btn-sm btn-primary request-button">Request</button>
-                                                                <span class="glyphicon glyphicon-chevron-down expandable expand-icon"></span>
+                                                                <span class="glyphicon glyphicon-chevron-down expand-icon"></span>
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -188,7 +205,14 @@
                                                                 </thead>
                                                                 <tbody>
                                                                     <tr data-skill-id="skill1">
-                                                                        <td><span class="glyphicon glyphicon-chevron-down expand-icon"></span> Skill A</td>
+                                                                        <td class="expandable">
+                                                                            <div>
+                                                                                Skill A
+                                                                                <input type="checkbox"
+                                                                                       class="request-checkbox">
+                                                                            </div>
+                                                                            <span class="glyphicon glyphicon-chevron-down expand-icon"></span>
+                                                                        </td>
                                                                     </tr>
                                                                     <tr class="subtable skill1">
                                                                         <td>
@@ -201,12 +225,12 @@
                                                                                     </tr>
                                                                                 </thead>
                                                                                 <tbody>
-                                                                                    <tr>
+                                                                                    <tr data-skill-interface-id="skillinterfaceZ">
                                                                                         <td>Interface X</td>
                                                                                         <td>HTTP</td>
                                                                                         <td>endpoint1.com</td>
                                                                                     </tr>
-                                                                                    <tr>
+                                                                                    <tr data-skill-interface-id="skillinterfaceZ">
                                                                                         <td>Interface Y</td>
                                                                                         <td>MQTT</td>
                                                                                         <td>endpoint2.com</td>
@@ -216,7 +240,10 @@
                                                                         </td>
                                                                     </tr>
                                                                     <tr data-skill-id="skill2">
-                                                                        <td><span class="glyphicon glyphicon-chevron-down expand-icon"></span> Skill B</td>
+                                                                        <td class="expandable">
+                                                                            Skill B
+                                                                            <span class="glyphicon glyphicon-chevron-down expand-icon"></span>
+                                                                        </td>
                                                                     </tr>
                                                                     <tr class="subtable skill2">
                                                                         <td>
@@ -229,7 +256,7 @@
                                                                                     </tr>
                                                                                 </thead>
                                                                                 <tbody>
-                                                                                    <tr>
+                                                                                    <tr data-skill-interface-id="skillinterfaceZ">
                                                                                         <td>Interface Z</td>
                                                                                         <td>CoAP</td>
                                                                                         <td>endpoint3.com</td>
@@ -243,11 +270,11 @@
                                                         </td>
                                                     </tr>
                                                     <tr data-capability-id="capability2">
-                                                        <td>
+                                                        <td class="expandable">
                                                             Capability 2
                                                             <div class="options-container">
                                                                 <button class="btn btn-sm btn-primary request-button">Request</button>
-                                                                <span class="glyphicon glyphicon-chevron-down expandable expand-icon"></span>
+                                                                <span class="glyphicon glyphicon-chevron-down expand-icon"></span>
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -261,7 +288,10 @@
                                                                 </thead>
                                                                 <tbody>
                                                                     <tr data-skill-id="skill3">
-                                                                        <td><span class="glyphicon glyphicon-chevron-down expand-icon"></span> Skill C</td>
+                                                                        <td class="expandable">
+                                                                            Skill C
+                                                                            <span class="glyphicon glyphicon-chevron-down expand-icon"></span>
+                                                                        </td>
                                                                     </tr>
                                                                     <tr class="subtable skill3">
                                                                         <td>
@@ -292,7 +322,10 @@
                                         </td>
                                     </tr>
                                     <tr data-file-id="file2">
-                                        <td><span class="glyphicon glyphicon-chevron-down expand-icon"></span> file2.xml</td>
+                                        <td class="expandable">
+                                            file2.xml
+                                            <span class="glyphicon glyphicon-chevron-down expand-icon"></span>
+                                        </td>
                                     </tr>
                                     <tr class="subtable file2">
                                         <td>
@@ -304,11 +337,11 @@
                                                 </thead>
                                                 <tbody>
                                                     <tr data-capability-id="capability3">
-                                                        <td>
-                                                            <span class="expandable">Capability 3</span>
+                                                        <td class="expandable">
+                                                            Capability 3
                                                             <div class="options-container">
                                                                 <button class="btn btn-sm btn-primary request-button">Request</button>
-                                                                <span class="glyphicon glyphicon-chevron-down expandable expand-icon"></span>
+                                                                <span class="glyphicon glyphicon-chevron-down expand-icon"></span>
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -322,7 +355,10 @@
                                                                 </thead>
                                                                 <tbody>
                                                                     <tr data-skill-id="skill4">
-                                                                        <td><span class="glyphicon glyphicon-chevron-down expand-icon"></span> Skill D</td>
+                                                                        <td class="expandable">
+                                                                            Skill D
+                                                                            <span class="glyphicon glyphicon-chevron-down expand-icon"></span>
+                                                                        </td>
                                                                     </tr>
                                                                     <tr class="subtable skill4">
                                                                         <td>
@@ -374,21 +410,77 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const expandIcons = document.querySelectorAll('.expandable');
-            // const expandIcons = document.querySelectorAll('.expand-icon');
-            // TODO HACER AHORA: HAY QUE ARREGLAR ESTO SI QUEREMOS USAR EXPANDABLE (tambien expandirlo clickeando el nombre)
 
             expandIcons.forEach(icon => {
                 icon.addEventListener('click', function() {
+
+                    // Prevent expansion if the click is on the request button
+                    if ((!event.target.classList.contains('request-button')) && (!event.target.classList.contains('confirm-request-button')) &&
+                        (!event.target.classList.contains('request-checkbox'))) {
+
+                        const parentRow = this.closest('tr');
+                        const subtableClass = parentRow.getAttribute('data-file-id') || parentRow.getAttribute('data-capability-id') || parentRow.getAttribute('data-skill-id');
+                        const subtableRows = document.querySelectorAll(`.subtable.${subtableClass}`);
+
+                        subtableRows.forEach(row => {
+                            row.style.display = row.style.display === 'none' || row.style.display === '' ? 'table-row' : 'none';
+                        });
+
+                        const icon = this.querySelector('.expand-icon');
+                        icon.classList.toggle('glyphicon-chevron-down');
+                        icon.classList.toggle('glyphicon-chevron-up');
+                    }
+                });
+            });
+
+            const requestButtons = document.querySelectorAll('.request-button');
+            requestButtons.forEach(button => {
+                button.addEventListener('click', function(event) {
                     const parentRow = this.closest('tr');
-                    const subtableClass = parentRow.getAttribute('data-file-id') || parentRow.getAttribute('data-capability-id') || parentRow.getAttribute('data-skill-id');
-                    const subtableRows = document.querySelectorAll(`.subtable.${subtableClass}`);
+                    const subtableClass = parentRow.getAttribute('data-capability-id');
+                    const subtableRows = document.querySelectorAll(`.subtable.${subtableClass} tr[data-skill-id], .subtable.${subtableClass} tr[data-skill-interface-id]`);
+                    const subtables = document.querySelectorAll(`.subtable.${subtableClass}`);
 
-                    subtableRows.forEach(row => {
-                        row.style.display = row.style.display === 'none' || row.style.display === '' ? 'table-row' : 'none';
-                    });
+                    if (this.textContent === 'Request') {
+                        this.textContent = 'Confirm Request';
+                        this.classList.remove('request-button');
+                        this.classList.add('confirm-request-button');
 
-                    this.classList.toggle('glyphicon-chevron-down');
-                    this.classList.toggle('glyphicon-chevron-up');
+                        subtableRows.forEach(row => {
+                            const cells = row.querySelectorAll('td');
+                            const newCell = document.createElement('td')
+                            const checkbox = document.createElement('input');
+                            checkbox.type = 'checkbox';
+                            newCell.append(checkbox);
+                            row.appendChild(newCell);
+
+                        });
+
+                        subtables.forEach(table => {
+                            const parentTables = table.querySelectorAll('table');
+                            parentTables.forEach(subtable => {
+                                const parentHeader = subtable.querySelector('thead');
+                                const parentHeaderTr = parentHeader.querySelector('tr');
+                                const headerCell = document.createElement('th');
+                                parentHeaderTr.appendChild(headerCell);
+
+                            });
+
+                        });
+                    } else if (this.textContent === 'Confirm Request') {
+
+                        console.log("Clicked on confirm request");
+                        // TODO HACER AHORA: comprobar que solo se recoja uno de cada y recoger los IDs de skill y skill interface
+
+                        const selectedCheckboxes = [];
+                        subtableRows.forEach(row => {
+                            const checkboxes = row.querySelectorAll('input[type="checkbox"]:checked');
+                            checkboxes.forEach(checkbox => {
+                                selectedCheckboxes.push(checkbox);
+                            });
+                        });
+                        console.log(selectedCheckboxes); // Handle the selected checkboxes as needed
+                    }
                 });
             });
         });

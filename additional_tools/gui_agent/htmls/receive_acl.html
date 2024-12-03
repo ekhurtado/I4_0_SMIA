@@ -123,74 +123,76 @@
 <body class="sidebar-mini skin-blue">
     <div class="wrapper">
         <header class="main-header">
-            <a href="/spade" class="logo">
-                <span class="logo-mini"><b>SPD</b></span>
-                <span class="logo-lg"><b>SPADE</b></span>
-            </a>
-            <nav class="navbar navbar-static-top">
-                <div class="navbar-custom-menu">
-                    <ul class="nav navbar-nav">
-                        <li class="dropdown user user-menu">
-                            <a href="/spade" class="dropdown-toggle" data-toggle="dropdown">
-                                <img src="https://raw.githubusercontent.com/ekhurtado/I4_0_SMIA/main/images/I4_0_SMIA_logo_negative.png" class="user-image" alt="User Image">
-                                <span class="hidden-xs">{{ agent.agent_name }}</span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li class="user-header">
-                                    <img src="https://raw.githubusercontent.com/ekhurtado/I4_0_SMIA/main/images/I4_0_SMIA_logo_negative.png" class="img-circle" alt="User Image">
-                                    <p>{{ agent.jid }}</p>
-                                </li>
-                                <li class="user-footer">
-                                    <div class="pull-left">
-                                        <a href="/spade/stop" class="btn btn-default btn-flat">Stop</a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
+<!--            <a href="/spade" class="logo">-->
+<!--                <span class="logo-mini"><b>SPD</b></span>-->
+<!--                <span class="logo-lg"><b>SPADE</b></span>-->
+<!--            </a>-->
+<!--            <nav class="navbar navbar-static-top">-->
+<!--                <div class="navbar-custom-menu">-->
+<!--                    <ul class="nav navbar-nav">-->
+<!--                        <li class="dropdown user user-menu">-->
+<!--                            <a href="/spade" class="dropdown-toggle" data-toggle="dropdown">-->
+<!--                                <img src="https://raw.githubusercontent.com/ekhurtado/I4_0_SMIA/main/images/I4_0_SMIA_logo_negative.png" class="user-image" alt="User Image">-->
+<!--                                <span class="hidden-xs">{{ agent.agent_name }}</span>-->
+<!--                            </a>-->
+<!--                            <ul class="dropdown-menu">-->
+<!--                                <li class="user-header">-->
+<!--                                    <img src="https://raw.githubusercontent.com/ekhurtado/I4_0_SMIA/main/images/I4_0_SMIA_logo_negative.png" class="img-circle" alt="User Image">-->
+<!--                                    <p>{{ agent.jid }}</p>-->
+<!--                                </li>-->
+<!--                                <li class="user-footer">-->
+<!--                                    <div class="pull-left">-->
+<!--                                        <a href="/spade/stop" class="btn btn-default btn-flat">Stop</a>-->
+<!--                                    </div>-->
+<!--                                </li>-->
+<!--                            </ul>-->
+<!--                        </li>-->
+<!--                    </ul>-->
+<!--                </div>-->
+<!--            </nav>-->
+            {% include 'htmls/templates/spade_html_header.html' %}
         </header>
         <aside class="main-sidebar">
-            <section class="sidebar">
-                <div class="user-panel">
-                    <div class="pull-left image">
-                        <img src="https://raw.githubusercontent.com/ekhurtado/I4_0_SMIA/main/images/I4_0_SMIA_logo_negative.png" class="img-circle" alt="User Image">
-                    </div>
-                    <div class="pull-left info">
-                        <p>{{ agent.agent_name }}</p>
-                        <a href="/spade"><i class="fa fa-circle text-success"></i> Online</a>
-                    </div>
-                </div>
-                <ul class="sidebar-menu tree" data-widget="tree">
-                    <li>
-                        <a href="/spade"><i class="fa fa-id-card"></i> <span>Dashboard</span></a>
-                    </li>
-                    {% for title, entry in agent.web_menu_entries.items() %}
-                    <li class="{% if request.path == entry.url %}active{% endif %}">
-                        <a href="{{ entry.url }}"><i class="fa {{ entry.icon }}"></i> <span>{{ title }}</span></a>
-                    </li>
-                    {% endfor %}
+<!--            <section class="sidebar">-->
+<!--                <div class="user-panel">-->
+<!--                    <div class="pull-left image">-->
+<!--                        <img src="https://raw.githubusercontent.com/ekhurtado/I4_0_SMIA/main/images/I4_0_SMIA_logo_negative.png" class="img-circle" alt="User Image">-->
+<!--                    </div>-->
+<!--                    <div class="pull-left info">-->
+<!--                        <p>{{ agent.agent_name }}</p>-->
+<!--                        <a href="/spade"><i class="fa fa-circle text-success"></i> Online</a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <ul class="sidebar-menu tree" data-widget="tree">-->
 <!--                    <li>-->
 <!--                        <a href="/spade"><i class="fa fa-id-card"></i> <span>Dashboard</span></a>-->
 <!--                    </li>-->
-<!--                    <li>-->
-<!--                        <a href="/acl_message"><i class="fa fa-envelope"></i> <span>Send ACL message</span></a>-->
+<!--                    {% for title, entry in agent.web_menu_entries.items() %}-->
+<!--                    <li class="{% if request.path == entry.url %}active{% endif %}">-->
+<!--                        <a href="{{ entry.url }}"><i class="fa {{ entry.icon }}"></i> <span>{{ title }}</span></a>-->
 <!--                    </li>-->
-<!--                    <li class="active">-->
-<!--                        <a href="/receive_acl_msgs"><i class="fa fa-inbox"></i> <span>Received ACL messages</span></a>-->
-<!--                    </li>-->
-<!--                    <li>-->
-<!--                        <a href="/negotiation"><i class="fa fa-comments"></i> <span>Negotiation</span></a>-->
-<!--                    </li>-->
-<!--                    <li>-->
-<!--                        <a href="/editor"><i class="fa fa-code"></i> <span>Programming language editor</span></a>-->
-<!--                    </li>-->
-<!--                    <li>-->
-<!--                        <a href="/aas_library"><i class="fa fa-book"></i> <span>AAS Library</span></a>-->
-<!--                    </li>-->
-                </ul>
-            </section>
+<!--                    {% endfor %}-->
+<!--&lt;!&ndash;                    <li>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <a href="/spade"><i class="fa fa-id-card"></i> <span>Dashboard</span></a>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </li>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <li>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <a href="/acl_message"><i class="fa fa-envelope"></i> <span>Send ACL message</span></a>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </li>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <li class="active">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <a href="/receive_acl_msgs"><i class="fa fa-inbox"></i> <span>Received ACL messages</span></a>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </li>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <li>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <a href="/negotiation"><i class="fa fa-comments"></i> <span>Negotiation</span></a>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </li>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <li>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <a href="/editor"><i class="fa fa-code"></i> <span>Programming language editor</span></a>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </li>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <li>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <a href="/aas_library"><i class="fa fa-book"></i> <span>AAS Library</span></a>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </li>&ndash;&gt;-->
+<!--                </ul>-->
+<!--            </section>-->
+            {% include 'htmls/templates/spade_html_aside.html' %}
         </aside>
         <div class="content-wrapper">
             <section class="content-header">
