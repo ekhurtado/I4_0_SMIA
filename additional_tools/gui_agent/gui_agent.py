@@ -35,7 +35,8 @@ class GUIAgent(Agent):
     @staticmethod
     def build_avatar_url(jid: str) -> str:
         # TODO CUIDADO, este metodo se esta sobrescribiendo por el de SPADE
-        return "https://raw.githubusercontent.com/ekhurtado/I4_0_SMIA/main/images/I4_0_SMIA_logo_negative.png"
+        return "https://raw.githubusercontent.com/ekhurtado/I4_0_SMIA/capabilityskill_tests/images/SMIA_logo_vertical.png"      # TODO HACER AHORA: modificarlo cuando se una al main branch (ahora esta con la imagen de la rama de pruebas)
+        # return "https://raw.githubusercontent.com/ekhurtado/I4_0_SMIA/main/images/I4_0_SMIA_logo_negative.png"
 
 
 async def main():
