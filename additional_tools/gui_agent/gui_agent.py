@@ -1,16 +1,9 @@
-import calendar
-import json
 import os
-import time
 from collections import OrderedDict
-from os import getcwd
-from urllib.parse import parse_qs
 
 import spade
 from aiohttp import web
 from spade.agent import Agent
-from spade.behaviour import OneShotBehaviour, CyclicBehaviour
-from spade.message import Message
 
 from gui_features.behaviours import GUIAgentBehaviours
 from gui_features.general_features import GeneralGUIFeatures
@@ -39,54 +32,10 @@ class GUIAgent(Agent):
         file2 = {'capabilities': {'capability': {'type': 'assetcap', 'skills': {'type': 'event', 'interfaces': {'type': 'MQTTinterface', 'protocol': 'MQTT', 'endpoint': 'http://localhost:5000'}}}}}
         self.files = [file1, file2]
 
-
-    # async def acl_post_controller(self, request):
-    #
-    #     self.acl_sent = False  # se inicializa en False
-    #     print("HA LLEGADO AL POST DEL AGENTE: " + str(self.jid))
-    #     print(request)
-    #     data_bytes = b''
-    #     async for line in request.content:
-    #         data_bytes = data_bytes + line
-    #     data_str = data_bytes.decode('utf-8')
-    #     print(data_str)
-    #
-    #     self.b = self.SendBehaviour()
-    #     self.b.msg_data = data_str
-    #     self.add_behaviour(self.b)
-    #     print("Behaviour added to the agent")
-    #     await self.b.join()
-    #     self.acl_sent = True
-    #
-    #     return {"status": "OK"}
-    #
-    # async def neg_post_controller(self, request):
-    #
-    #     self.neg_sent = False  # se inicializa en False
-    #     print("HA LLEGADO AL POST DEL AGENTE: " + str(self.jid))
-    #     print(request)
-    #     data_bytes = b''
-    #     async for line in request.content:
-    #         data_bytes = data_bytes + line
-    #     data_str = data_bytes.decode('utf-8')
-    #     print(data_str)
-    #
-    #     self.b = self.NegBehaviour()
-    #     self.b.msg_data = data_str
-    #     self.add_behaviour(self.b)
-    #     print("Behaviour added to the agent")
-    #     await self.b.join()
-    #     self.neg_sent = True
-    #
-    #     return {"status": "OK"}
-
     @staticmethod
     def build_avatar_url(jid: str) -> str:
         # TODO CUIDADO, este metodo se esta sobrescribiendo por el de SPADE
         return "https://raw.githubusercontent.com/ekhurtado/I4_0_SMIA/main/images/I4_0_SMIA_logo_negative.png"
-
-
-
 
 
 async def main():

@@ -21,7 +21,8 @@ class GeneralGUIFeatures:
 
     @staticmethod
     async def handle_favicon(request):
-        favicon_path = os.path.join(getcwd(), 'static', 'favicon.ico')
+        favicon_path = os.path.join(getcwd(), 'static', 'SMIA_favicon.ico')
+        # favicon_path = os.path.join(getcwd(), 'static', 'favicon.ico')
         return web.FileResponse(favicon_path)
 
     @staticmethod

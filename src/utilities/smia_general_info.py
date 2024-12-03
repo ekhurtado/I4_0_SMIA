@@ -52,8 +52,5 @@ class SMIAGeneralInfo:
     SMIA_STATUS_FILE_NAME = 'smia_dt.json'
     CORE_STATUS_FILE_PATH = '/aas_archive/status/aas_core.json'
 
-class SMIAGeneralUtils:
-    """This class contains general methods of the SMIA."""
-    pass
 
 
