@@ -92,6 +92,7 @@
             border-collapse: collapse;
             background-color: #fff;
             border: 1px solid #ccc;
+            margin-left: 2px;
         }
 
         .subtable th, .subtable td {
@@ -123,6 +124,19 @@
             background-color: #f1f1f1;
         }
 
+        .information-table {
+            width: 100%;
+            margin-bottom: 10px;
+            border-collapse: collapse;
+            background-color: #fff;
+            border: 1px solid #ddd;
+        }
+
+        .information-table i {
+            margin-left: 5px;
+            margin-right: 10px;
+        }
+
         /* Style for expand/collapse icons */
         .glyphicon {
             font-size: 14px;
@@ -135,6 +149,7 @@
         .glyphicon-chevron-up:before {
             content: "\e113";  /* Unicode for chevron up */
         }
+
 
     </style>
 
@@ -167,7 +182,7 @@
                                 <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>File Name</th>
+                                        <th>AAS Files</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -182,7 +197,7 @@
                                             <table class="table table-bordered">
                                                 <thead>
                                                     <tr>
-                                                        <th>Capability Type</th>
+                                                        <th>Capabilities</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -195,12 +210,29 @@
                                                             </div>
                                                         </td>
                                                     </tr>
+
                                                     <tr class="subtable capability1">
                                                         <td>
+                                                            <table class="information-table table-bordered">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td><i>Name:</i> Capability 1</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td><i>Type:</i> AssetCapability</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td><i>Properties:</i> prop1, prop2, prop3</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td><i>Constraints:</i> constraint1, constraint2, constraint3</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
                                                             <table class="table table-bordered">
                                                                 <thead>
                                                                     <tr>
-                                                                        <th>Skill Type</th>
+                                                                        <th>Skills</th>
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
@@ -216,10 +248,35 @@
                                                                     </tr>
                                                                     <tr class="subtable skill1">
                                                                         <td>
+                                                                            <table class="information-table table-bordered">
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <td><i>Name:</i> Skill A</td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td><i>Type:</i> Operation</td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td><i>Parameters:</i>
+                                                                                            <ul>
+                                                                                                <li class="input-skill-parameter">Param1 [IN]</li>
+                                                                                                <li>Param2 [OUT]</li>
+                                                                                                <li>Param3 [OUT]</li>
+                                                                                            </ul>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td><i>StateMachine:</i> [state1, state2, state3]</td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td><strong>SkillInterfaces</strong> </td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
                                                                             <table class="table table-bordered">
                                                                                 <thead>
                                                                                     <tr>
-                                                                                        <th>Interface Type</th>
+                                                                                        <th>Interface Name</th>
                                                                                         <th>Protocol</th>
                                                                                         <th>Endpoint</th>
                                                                                     </tr>
@@ -247,6 +304,29 @@
                                                                     </tr>
                                                                     <tr class="subtable skill2">
                                                                         <td>
+                                                                            <table class="information-table table-bordered">
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <td><i>Name:</i> Skill B</td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td><i>Type:</i> Operation</td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td><i>Parameters:</i>
+                                                                                            <ul>
+                                                                                                <li class="input-skill-parameter">Param1 [IN]</li>
+                                                                                            </ul>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td><i>StateMachine:</i> [state1, state2, state3]</td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td><strong>SkillInterfaces</strong> </td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
                                                                             <table class="table table-bordered">
                                                                                 <thead>
                                                                                     <tr>
@@ -280,10 +360,23 @@
                                                     </tr>
                                                     <tr class="subtable capability2">
                                                         <td>
+                                                            <table class="information-table table-bordered">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td><i>Name:</i> Capability 2</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td><i>Type:</i> AgentCapability</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td><i>Properties:</i> prop1</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
                                                             <table class="table table-bordered">
                                                                 <thead>
                                                                     <tr>
-                                                                        <th>Skill Type</th>
+                                                                        <th>Skills</th>
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
@@ -295,6 +388,29 @@
                                                                     </tr>
                                                                     <tr class="subtable skill3">
                                                                         <td>
+                                                                            <table class="information-table table-bordered">
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <td><i>Name:</i> Skill C</td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td><i>Type:</i> Operation</td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td><i>Parameters:</i>
+                                                                                            <ul>
+                                                                                                <li>Param1 [OUT]</li>
+                                                                                            </ul>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td><i>StateMachine:</i> [state1, state2]</td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td><strong>SkillInterfaces</strong> </td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
                                                                             <table class="table table-bordered">
                                                                                 <thead>
                                                                                     <tr>
@@ -329,10 +445,20 @@
                                     </tr>
                                     <tr class="subtable file2">
                                         <td>
+                                            <table class="information-table table-bordered">
+                                                <tbody>
+                                                    <tr>
+                                                        <td><i>Name:</i> Capability 3</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><i>Type:</i> AssetCapability</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
                                             <table class="table table-bordered">
                                                 <thead>
                                                     <tr>
-                                                        <th>Capability Type</th>
+                                                        <th>Capabilities</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -350,7 +476,7 @@
                                                             <table class="table table-bordered">
                                                                 <thead>
                                                                     <tr>
-                                                                        <th>Skill Type</th>
+                                                                        <th>Skills</th>
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
@@ -362,6 +488,26 @@
                                                                     </tr>
                                                                     <tr class="subtable skill4">
                                                                         <td>
+                                                                            <table class="information-table table-bordered">
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <td><i>Name:</i> Skill D</td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td><i>Type:</i> Operation</td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td><i>Parameters:</i>
+                                                                                            <ul>
+                                                                                                <li class="input-skill-parameter">Param1 [IN]</li>
+                                                                                            </ul>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td><strong>SkillInterfaces</strong> </td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
                                                                             <table class="table table-bordered">
                                                                                 <thead>
                                                                                     <tr>
@@ -446,27 +592,39 @@
                         this.classList.remove('request-button');
                         this.classList.add('confirm-request-button');
 
+                        // Checkboxes to select skills and skill interfaces are added
                         subtableRows.forEach(row => {
-                            const cells = row.querySelectorAll('td');
                             const newCell = document.createElement('td')
                             const checkbox = document.createElement('input');
                             checkbox.type = 'checkbox';
                             newCell.append(checkbox);
                             row.appendChild(newCell);
-
                         });
 
+                        // Since checkboxes are added as new columns withint the subtables, a new header need to be added
                         subtables.forEach(table => {
                             const parentTables = table.querySelectorAll('table');
                             parentTables.forEach(subtable => {
-                                const parentHeader = subtable.querySelector('thead');
-                                const parentHeaderTr = parentHeader.querySelector('tr');
-                                const headerCell = document.createElement('th');
-                                parentHeaderTr.appendChild(headerCell);
-
+                                if (!subtable.classList.contains('information-table')) {    // avoid information tables
+                                    const parentHeader = subtable.querySelector('thead');
+                                    const parentHeaderTr = parentHeader.querySelector('tr');
+                                    const headerCell = document.createElement('th');
+                                    parentHeaderTr.appendChild(headerCell);
+                                } else {
+                                    // For each skill input parameter, it is necessary to create an input text that
+                                    // allows to add the values of the parameters
+                                    const inputParameters = subtable.querySelectorAll('.input-skill-parameter')
+                                    inputParameters.forEach(param => {
+                                        const newInputText = document.createElement('input');
+                                        newInputText.type = 'text';
+                                        newInputText.style.marginLeft = '10px';
+                                        newInputText.placeholder = 'Add parameter value';
+                                        param.append(newInputText);
+                                    });
+                                }
                             });
-
                         });
+
                     } else if (this.textContent === 'Confirm Request') {
 
                         console.log("Clicked on confirm request");
@@ -479,11 +637,68 @@
                                 selectedCheckboxes.push(checkbox);
                             });
                         });
+                        //  TODO ELIMINAR, es para mostrar lo que se recoge
                         console.log(selectedCheckboxes); // Handle the selected checkboxes as needed
+                        // prompt(selectedCheckboxes, "prueba");
+
+                        // TODO PRUEBA CHAT-GPT
+                        const capabilityInfo = {
+                            name: 'Capability 1',
+                            skill: {
+                                name: 'Skill A',
+                                parameters: [
+                                    { name: 'param1', value: '' },
+                                    { name: 'param2', value: 'defaultValue' }
+                                ],
+                                interface: {
+                                    name: 'Interface X'
+                                }
+                            }
+                        };
+                        requestCapability(capabilityInfo);
+
                     }
                 });
             });
         });
+    </script>
+    <script>
+        function requestCapability(capabilityInfo) {
+            // Check all parameters in the skill
+            if (!checkInputParameters(capabilityInfo.skill)) {
+                // If not all parameters are valid, exit the function
+                alert("Please provide values for all required parameters.");
+                return;
+            }
+
+            // Create the confirmation message
+            let confirmationMessage = `Capability: ${capabilityInfo.name}\n\n`;
+            confirmationMessage += `  Skill: ${capabilityInfo.skill.name}\n`;
+            capabilityInfo.skill.parameters.forEach(param => {
+                confirmationMessage += `    Parameter: ${param.name} = ${param.value}\n`;
+            });
+            confirmationMessage += `    Skill Interface: ${capabilityInfo.skill.interface.name}\n`;
+
+            // TODO FALTA ENVIAR LOS DATOS POR HTTP
+            confirm(`Please confirm the following capability request:\n\n${confirmationMessage}`)
+
+        }
+
+        // Function to check if all input parameters have values
+        function checkInputParameters(skill) {
+            let allValid = true;
+            skill.parameters.forEach(param => {
+                if (!param.value) {
+                    const userInput = prompt(`Please enter a value for the parameter "${param.name}" in skill "${skill.name}":`);
+                    if (userInput) {
+                        param.value = userInput;
+                    } else {
+                        allValid = false;
+                    }
+                }
+            });
+            return allValid;
+        }
     </script>
 </body>
 </html>
