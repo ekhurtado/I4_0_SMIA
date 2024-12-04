@@ -113,3 +113,14 @@ class GeneralGUIFeatures:
         # return web.Response(text=f'File {filename} uploaded successfully, {size} bytes received.')
         self.myagent.aas_loaded = True
         return {"status": "OK"}
+
+
+    async def capability_request_controller(self, request):
+        try:
+            data = await request.json()
+            # Process the data as needed
+            print("Received data:", data)
+            return web.json_response({"status": "success", "message": "Capability requested successfully"})
+        except Exception as e:
+            print("Error handling request:", e)
+            return web.json_response({"status": "error", "message": "Failed to request capability"}, status=500)

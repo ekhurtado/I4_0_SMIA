@@ -71,9 +71,10 @@ async def main():
                            "/htmls/own_programming_language_editor.html")
 
     gui_agent.web.add_get("/aas_library", GeneralGUIFeatures.hello_controller, "/htmls/aas_library.html")
+    gui_agent.web.add_post("/capability_request", gui_agent.general_features.capability_request_controller, "/htmls/aas_library.html")
 
     gui_agent.web.add_get("/aas_loader", GeneralGUIFeatures.hello_controller, "/htmls/aas_loader.html")
-    gui_agent.web.add_post("/aas_loader/submit", gui_agent.general_features.aas_upload_controller, "/htmls/aas_loader_submit.html")
+    gui_agent.web.add_post("/aas_loader/submit", gui_agent.general_features.aas_upload_controller, None)
 
     print("All HTMLs added.")
 

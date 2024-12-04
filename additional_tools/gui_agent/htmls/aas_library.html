@@ -259,7 +259,7 @@
                                                                                     <tr>
                                                                                         <td><i>Parameters:</i>
                                                                                             <ul>
-                                                                                                <li class="input-skill-parameter">Param1 [IN]</li>
+                                                                                                <li param-name="param1" class="input-skill-parameter">Param1 [IN]</li>
                                                                                                 <li>Param2 [OUT]</li>
                                                                                                 <li>Param3 [OUT]</li>
                                                                                             </ul>
@@ -282,12 +282,12 @@
                                                                                     </tr>
                                                                                 </thead>
                                                                                 <tbody>
-                                                                                    <tr data-skill-interface-id="skillinterfaceZ">
+                                                                                    <tr data-skill-interface-id="skillinterfaceX">
                                                                                         <td>Interface X</td>
                                                                                         <td>HTTP</td>
                                                                                         <td>endpoint1.com</td>
                                                                                     </tr>
-                                                                                    <tr data-skill-interface-id="skillinterfaceZ">
+                                                                                    <tr data-skill-interface-id="skillinterfaceY">
                                                                                         <td>Interface Y</td>
                                                                                         <td>MQTT</td>
                                                                                         <td>endpoint2.com</td>
@@ -315,7 +315,7 @@
                                                                                     <tr>
                                                                                         <td><i>Parameters:</i>
                                                                                             <ul>
-                                                                                                <li class="input-skill-parameter">Param1 [IN]</li>
+                                                                                                <li param-name="param1" class="input-skill-parameter">Param1 [IN]</li>
                                                                                             </ul>
                                                                                         </td>
                                                                                     </tr>
@@ -499,7 +499,7 @@
                                                                                     <tr>
                                                                                         <td><i>Parameters:</i>
                                                                                             <ul>
-                                                                                                <li class="input-skill-parameter">Param1 [IN]</li>
+                                                                                                <li param-name="paramW" class="input-skill-parameter">ParamW [IN]</li>
                                                                                             </ul>
                                                                                         </td>
                                                                                     </tr>
@@ -588,7 +588,7 @@
                     const subtables = document.querySelectorAll(`.subtable.${subtableClass}`);
 
                     if (this.textContent === 'Request') {
-                        this.textContent = 'Confirm Request';
+                        this.textContent = 'Confirm selection';
                         this.classList.remove('request-button');
                         this.classList.add('confirm-request-button');
 
@@ -625,38 +625,47 @@
                             });
                         });
 
-                    } else if (this.textContent === 'Confirm Request') {
+                    } else if (this.textContent === 'Confirm selection') {
 
                         console.log("Clicked on confirm request");
                         // TODO HACER AHORA: comprobar que solo se recoja uno de cada y recoger los IDs de skill y skill interface
 
-                        const selectedCheckboxes = [];
+                        let capabilityInfo = {'name': subtableClass};
                         subtableRows.forEach(row => {
                             const checkboxes = row.querySelectorAll('input[type="checkbox"]:checked');
                             checkboxes.forEach(checkbox => {
-                                selectedCheckboxes.push(checkbox);
+                                if (row.hasAttribute('data-skill-id')) {
+                                    const skillID = row.getAttribute('data-skill-id');
+                                    const skillInfo = {'name': skillID};
+                                    capabilityInfo['skill'] = skillInfo;
+
+                                    // Now the values of the parameter are obtained
+                                    const inputParameters = row.nextElementSibling.querySelectorAll('.input-skill-parameter');
+                                    console.log(inputParameters);
+                                    if (inputParameters.length !== 0) {
+                                        capabilityInfo.skill['parameters'] = [];
+                                        inputParameters.forEach(param => {
+                                            const inputElem = param.querySelector('input[type="text"]');
+                                            const paramName = param.getAttribute('param-name');
+                                            capabilityInfo.skill.parameters.push({
+                                                'name': param.getAttribute('param-name'), 'value': inputElem.value});
+                                        });
+                                    }
+
+                                } else if (row.hasAttribute('data-skill-interface-id')) {
+                                    const skillInterfaceID = row.getAttribute('data-skill-interface-id');
+                                    const subtableElem = row.closest('.subtable');
+                                    const parentSkillElem = subtableElem.previousElementSibling;
+                                    if (capabilityInfo.skill.name === parentSkillElem.getAttribute('data-skill-id')) {
+                                        // Only if the interface is of the selected skill is added
+                                        capabilityInfo.skill['interface'] = {'name': skillInterfaceID};
+                                    }
+                                }
                             });
                         });
-                        //  TODO ELIMINAR, es para mostrar lo que se recoge
-                        console.log(selectedCheckboxes); // Handle the selected checkboxes as needed
-                        // prompt(selectedCheckboxes, "prueba");
 
-                        // TODO PRUEBA CHAT-GPT
-                        const capabilityInfo = {
-                            name: 'Capability 1',
-                            skill: {
-                                name: 'Skill A',
-                                parameters: [
-                                    { name: 'param1', value: '' },
-                                    { name: 'param2', value: 'defaultValue' }
-                                ],
-                                interface: {
-                                    name: 'Interface X'
-                                }
-                            }
-                        };
+                        // When all information have been obtained, the capability is requested to the agent controller
                         requestCapability(capabilityInfo);
-
                     }
                 });
             });
@@ -664,29 +673,58 @@
     </script>
     <script>
         function requestCapability(capabilityInfo) {
-            // Check all parameters in the skill
-            if (!checkInputParameters(capabilityInfo.skill)) {
-                // If not all parameters are valid, exit the function
-                alert("Please provide values for all required parameters.");
-                return;
-            }
 
             // Create the confirmation message
             let confirmationMessage = `Capability: ${capabilityInfo.name}\n\n`;
-            confirmationMessage += `  Skill: ${capabilityInfo.skill.name}\n`;
-            capabilityInfo.skill.parameters.forEach(param => {
-                confirmationMessage += `    Parameter: ${param.name} = ${param.value}\n`;
-            });
-            confirmationMessage += `    Skill Interface: ${capabilityInfo.skill.interface.name}\n`;
+            if (capabilityInfo.hasOwnProperty('skill')) {
+                // Check all parameters in the skill
+                if (!checkInputParameters(capabilityInfo.skill)) {
+                    // If not all parameters are valid, exit the function
+                    alert("Please provide values for all required parameters.");
+                    return;
+                }
+
+                confirmationMessage += `Skill: ${capabilityInfo.skill.name}\n`;
+                if (capabilityInfo.skill.hasOwnProperty('parameters')) {
+                    capabilityInfo.skill.parameters.forEach(param => {
+                        confirmationMessage += `  + Parameter: ${param.name} = ${param.value}\n`;
+                    });
+                }
+                if (capabilityInfo.skill.hasOwnProperty('interface')) {
+                    confirmationMessage += `\nSkill Interface: ${capabilityInfo.skill.interface.name}\n`;
+                }
+            }
 
             // TODO FALTA ENVIAR LOS DATOS POR HTTP
-            confirm(`Please confirm the following capability request:\n\n${confirmationMessage}`)
+            if (confirm(`Please confirm the following capability request:\n\n${confirmationMessage}`)) {
+                // Send the data via POST HTTP call if confirmed
+                fetch('/capability_request', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(capabilityInfo)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Success:', data);
+                    alert('Data has been sent successfully.');
+                    location.reload();  // The web page is reloaded in order to remove all checkboxes and selections
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    alert('An error occurred while sending data.');
+                });
+            }
 
         }
 
         // Function to check if all input parameters have values
         function checkInputParameters(skill) {
             let allValid = true;
+            if (!skill.hasOwnProperty('parameters')) {
+                return true;    // It may not have parameters
+            }
             skill.parameters.forEach(param => {
                 if (!param.value) {
                     const userInput = prompt(`Please enter a value for the parameter "${param.name}" in skill "${skill.name}":`);
@@ -699,6 +737,7 @@
             });
             return allValid;
         }
+
     </script>
 </body>
 </html>
