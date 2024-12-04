@@ -2,7 +2,7 @@ import logging
 
 from spade.behaviour import CyclicBehaviour
 
-from behaviours.HandleSvcRequestBehaviour import HandleSvcRequestBehaviour
+from behaviours.handle_svc_request_behaviour import HandleSvcRequestBehaviour
 from behaviours.HandleSvcResponseBehaviour import HandleSvcResponseBehaviour
 from logic import IntraAASInteractions_utils, inter_aas_interactions_utils
 

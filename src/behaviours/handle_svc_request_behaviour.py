@@ -3,6 +3,7 @@ import logging
 from spade.behaviour import OneShotBehaviour
 
 from logic import IntraAASInteractions_utils, negotiation_utils, inter_aas_interactions_utils
+from utilities.fipa_acl_info import FIPAACLInfo
 
 _logger = logging.getLogger(__name__)
 
@@ -72,10 +73,20 @@ class HandleSvcRequestBehaviour(OneShotBehaviour):
             case "AASservices":
                 await self.handle_aas_services()
             case "SubmodelServices":
-                await self.handle_submodel_services()
+                await self.handle_submodel_service_request()
             case _:
                 _logger.error("Service type not available.")
 
+        # TODO NUEVO ENFOQUE (usando performative)
+        match self.svc_req_data['performative']:
+            case FIPAACLInfo.FIPA_ACL_PERFORMATIVE_REQUEST:  # TODO actualizar dentro de todo el codigo los usos de performativas y ontologias de FIPA-ACL
+                await self.handle_request()
+            case FIPAACLInfo.FIPA_ACL_PERFORMATIVE_QUERY_IF:
+                await self.handle_query_if()
+            case "PensarOtro":  # TODO
+                pass
+            case _:
+                _logger.error("Performative not available for service management.")
     # ------------------------------------------
     # Methods to handle of all types of services
     # ------------------------------------------
@@ -212,11 +223,40 @@ class HandleSvcRequestBehaviour(OneShotBehaviour):
         """
         _logger.info(await self.myagent.get_interaction_id() + str(self.svc_req_data))
 
-    async def handle_submodel_services(self):
-        """
-        This method handles Submodel Services. These services are part of I4.0 Application Component (application
-        relevant).
 
+    # ------------------------------------------
+    # Methods to handle of all types of services
+    # ------------------------------------------
+    async def handle_request(self):
+        """
+        This method handle capability requests to the DT.
+        """
+        # The type is analyzed to perform the appropriate service
+        match self.svc_req_data['serviceType']:
+            case "AssetRelatedService":
+                await self.handle_asset_related_svc()   # TODO
+            case "AASInfrastructureService":
+                await self.handle_aas_infrastructure_svc()   # TODO
+            case "AASservice":
+                await self.handle_aas_services()   # TODO
+            case "SubmodelService":
+                await self.handle_submodel_service_request()
+            case _:
+                _logger.error("Service type not available.")
+
+    async def handle_query_if(self):
+        """This method handle Query-If service requests. This request is received when the DT is asked about information
+         related to a service."""
+        pass
+        # TODO FALTA POR HACER
+
+    # -----------------------------------
+    # Methods to handle specific services
+    # -----------------------------------
+    async def handle_submodel_service_request(self):
+        """
+        This method handles a Submodel Service request. These services are part of I4.0 Application Component (
+        application relevant).
         """
         # TODO, en este caso tendra que comprobar que submodelo esta asociado a la peticion de servicio. Si el submodelo
         #  es propio del AAS Manager, podra acceder directamente y, por tanto, este behaviour sera capaz de realizar el

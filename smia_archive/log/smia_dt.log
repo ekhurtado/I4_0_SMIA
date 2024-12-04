@@ -29864,3 +29864,175 @@ SystemExit: -1
 2024-12-02 14:50:55,204 [spade.behaviour] [INFO] FSM running state RUNNING line:568
 2024-12-02 14:50:55,205 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:25
 2024-12-02 14:50:55,216 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-12-04 17:47:24,947 [__main__] [INFO] Initializing SMIA software... line:93
+2024-12-04 17:47:25,077 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:61
+2024-12-04 17:47:27,965 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-12-04 17:47:29,109 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/1042398912789301783287586114 line:935
+2024-12-04 17:47:29,394 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABwxMDQyMzk4OTEyNzg5MzAxNzgzMjg3NTg2MTE0bQAAAAj20ZAa4eJmew==' line:2209
+2024-12-04 17:47:29,977 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-12-04 17:47:29,977 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-12-04 17:47:29,979 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-12-04 17:47:29,980 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-12-04 17:47:29,980 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-12-04 17:47:30,009 [css_ontology.capability_skill_ontology] [INFO] CSS ontology initialized line:42
+2024-12-04 17:47:30,121 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all defined ontology elements... line:73
+2024-12-04 17:47:30,299 [behaviours.init_aas_model_behaviour] [ACLINFO] NEW INSTANCE REF: line:172
+2024-12-04 17:47:30,299 [spade.behaviour] [ERROR] Exception running behaviour OneShotBehaviour/InitAASModelBehaviour: 'parent' property is not defined. line:291
+2024-12-04 17:47:30,320 [spade.behaviour] [ERROR] Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 285, in _step
+    await self._run()
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 274, in _run
+    await self.run()
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\init_aas_model_behaviour.py", line 74, in run
+    await self.get_and_save_ontology_classes_information()
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\init_aas_model_behaviour.py", line 103, in get_and_save_ontology_classes_information
+    await self.check_and_create_instances_by_iri(ontology_class_iri)
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\init_aas_model_behaviour.py", line 138, in check_and_create_instances_by_iri
+    await self.create_ontology_instance_from_sme_element(submodel_elem, ontology_class_iri)
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\init_aas_model_behaviour.py", line 173, in create_ontology_instance_from_sme_element
+    _logger.aclinfo(ModelReference.from_referable(created_instance))
+  File "C:\Python310\lib\site-packages\basyx\aas\model\base.py", line 1090, in from_referable
+    keys.append(Key.from_referable(ref))
+  File "C:\Python310\lib\site-packages\basyx\aas\model\base.py", line 455, in from_referable
+    elif isinstance(referable.parent, SubmodelElementList):
+  File "C:\Python310\lib\site-packages\owlready2\individual.py", line 295, in __getattr__
+    raise AttributeError("'%s' property is not defined." % attr)
+AttributeError: 'parent' property is not defined.
+ line:296
+2024-12-04 17:47:30,321 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: 'parent' property is not defined. line:154
+2024-12-04 17:47:30,321 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: None line:154
+2024-12-04 17:47:30,329 [states.state_booting] [INFO] gcis1@xmpp.jp agent has finished it Boot state. line:49
+2024-12-04 17:47:30,329 [spade.behaviour] [INFO] FSM transiting from BOOTING to RUNNING. line:591
+2024-12-04 17:47:30,330 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-12-04 17:47:30,330 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:25
+2024-12-04 17:47:30,337 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-12-04 17:47:40,330 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:159
+2024-12-04 17:47:49,226 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-12-04 17:47:57,601 [__main__] [INFO] Initializing SMIA software... line:93
+2024-12-04 17:48:16,073 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:61
+2024-12-04 17:48:18,790 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-12-04 17:48:19,948 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/5616238715246740563210910627 line:935
+2024-12-04 17:48:20,233 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAABw1NjE2MjM4NzE1MjQ2NzQwNTYzMjEwOTEwNjI3bQAAAAgCJX+ZlUZ1fg==' line:2209
+2024-12-04 17:48:20,825 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-12-04 17:48:20,825 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-12-04 17:48:20,829 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-12-04 17:48:20,829 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-12-04 17:48:20,829 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-12-04 17:48:20,859 [css_ontology.capability_skill_ontology] [INFO] CSS ontology initialized line:42
+2024-12-04 17:48:21,024 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all defined ontology elements... line:73
+2024-12-04 17:48:21,212 [behaviours.init_aas_model_behaviour] [ACLINFO] NEW INSTANCE REF: line:172
+2024-12-04 17:48:27,279 [spade.behaviour] [ERROR] Exception running behaviour OneShotBehaviour/InitAASModelBehaviour: 'traceback' object is not callable line:291
+2024-12-04 17:48:27,287 [spade.behaviour] [ERROR] Traceback (most recent call last):
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\init_aas_model_behaviour.py", line 173, in create_ontology_instance_from_sme_element
+    _logger.aclinfo(ModelReference.from_referable(created_instance))
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\init_aas_model_behaviour.py", line 173, in create_ontology_instance_from_sme_element
+    _logger.aclinfo(ModelReference.from_referable(created_instance))
+  File "_pydevd_bundle\\pydevd_cython_win32_310_64.pyx", line 1597, in _pydevd_bundle.pydevd_cython_win32_310_64.ThreadTracer.__call__
+  File "_pydevd_bundle\\pydevd_cython_win32_310_64.pyx", line 937, in _pydevd_bundle.pydevd_cython_win32_310_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\\pydevd_cython_win32_310_64.pyx", line 928, in _pydevd_bundle.pydevd_cython_win32_310_64.PyDBFrame.trace_dispatch
+  File "_pydevd_bundle\\pydevd_cython_win32_310_64.pyx", line 585, in _pydevd_bundle.pydevd_cython_win32_310_64.PyDBFrame.do_wait_suspend
+  File "C:\Program Files\JetBrains\PyCharm 2023.2.1\plugins\python\helpers\pydev\pydevd.py", line 1185, in do_wait_suspend
+    self._do_wait_suspend(thread, frame, event, arg, suspend_type, from_this_thread)
+  File "C:\Program Files\JetBrains\PyCharm 2023.2.1\plugins\python\helpers\pydev\pydevd.py", line 1200, in _do_wait_suspend
+    time.sleep(0.01)
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 285, in _step
+    await self._run()
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 274, in _run
+    await self.run()
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\init_aas_model_behaviour.py", line 74, in run
+    await self.get_and_save_ontology_classes_information()
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\init_aas_model_behaviour.py", line 103, in get_and_save_ontology_classes_information
+    await self.check_and_create_instances_by_iri(ontology_class_iri)
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\init_aas_model_behaviour.py", line 138, in check_and_create_instances_by_iri
+    await self.create_ontology_instance_from_sme_element(submodel_elem, ontology_class_iri)
+  File "C:\Users\839073\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\src\behaviours\init_aas_model_behaviour.py", line 173, in create_ontology_instance_from_sme_element
+    _logger.aclinfo(ModelReference.from_referable(created_instance))
+TypeError: 'traceback' object is not callable
+ line:296
+2024-12-04 17:48:27,287 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: 'traceback' object is not callable line:154
+2024-12-04 17:48:27,287 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: None line:154
+2024-12-04 17:48:27,295 [states.state_booting] [INFO] gcis1@xmpp.jp agent has finished it Boot state. line:49
+2024-12-04 17:48:27,299 [spade.behaviour] [INFO] FSM transiting from BOOTING to RUNNING. line:591
+2024-12-04 17:48:27,299 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-12-04 17:48:27,299 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:25
+2024-12-04 17:48:27,311 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-12-04 17:48:53,748 [__main__] [INFO] Initializing SMIA software... line:93
+2024-12-04 17:48:53,857 [__main__] [INFO] The asset is not defined, so it is a generic SMIA line:61
+2024-12-04 17:48:56,539 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2024-12-04 17:48:57,696 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/15852778101207939164210913251 line:935
+2024-12-04 17:48:57,980 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAAB0xNTg1Mjc3ODEwMTIwNzkzOTE2NDIxMDkxMzI1MW0AAAAIEv/1wlnyhAg=' line:2209
+2024-12-04 17:48:58,557 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2024-12-04 17:48:58,558 [agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:99
+2024-12-04 17:48:58,560 [behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2024-12-04 17:48:58,560 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2024-12-04 17:48:58,561 [states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2024-12-04 17:48:58,583 [css_ontology.capability_skill_ontology] [INFO] CSS ontology initialized line:42
+2024-12-04 17:48:58,672 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all defined ontology elements... line:73
+2024-12-04 17:48:58,850 [behaviours.init_aas_model_behaviour] [ACLINFO] NEW INSTANCE REF: line:172
+2024-12-04 17:48:58,850 [behaviours.init_aas_model_behaviour] [ACLINFO] ModelReference<Capability>(key=(Key(type=SUBMODEL, value=urn:ehu:gcis:submodel:1:1:agentcapabilities001), Key(type=CAPABILITY, value=Negotiation))) line:173
+2024-12-04 17:48:59,037 [behaviours.init_aas_model_behaviour] [ACLINFO] NEW INSTANCE REF: line:172
+2024-12-04 17:48:59,037 [behaviours.init_aas_model_behaviour] [ACLINFO] ModelReference<Capability>(key=(Key(type=SUBMODEL, value=urn:ehu:gcis:submodel:1:1:capabilities001), Key(type=SUBMODEL_ELEMENT_COLLECTION, value=CapabilityDefinitions), Key(type=CAPABILITY, value=EfficientTransport))) line:173
+2024-12-04 17:48:59,225 [behaviours.init_aas_model_behaviour] [ACLINFO] NEW INSTANCE REF: line:172
+2024-12-04 17:48:59,225 [behaviours.init_aas_model_behaviour] [ACLINFO] ModelReference<Property>(key=(Key(type=SUBMODEL, value=urn:ehu:gcis:submodel:1:1:agentcapabilities001), Key(type=SUBMODEL_ELEMENT_COLLECTION, value=NegotiationConstraints), Key(type=PROPERTY, value=NegotiationCriteriaConstraint))) line:173
+2024-12-04 17:48:59,411 [behaviours.init_aas_model_behaviour] [ACLINFO] NEW INSTANCE REF: line:172
+2024-12-04 17:48:59,412 [behaviours.init_aas_model_behaviour] [ACLINFO] ModelReference<Property>(key=(Key(type=SUBMODEL, value=urn:ehu:gcis:submodel:1:1:capabilities001), Key(type=SUBMODEL_ELEMENT_LIST, value=CapabilityAdditionalRelationships), Key(type=SUBMODEL_ELEMENT_COLLECTION, value=0), Key(type=SUBMODEL_ELEMENT_COLLECTION, value=EfficientTransportConstraints), Key(type=PROPERTY, value=EfficientTransportConstraintLocation))) line:173
+2024-12-04 17:48:59,597 [behaviours.init_aas_model_behaviour] [ACLINFO] NEW INSTANCE REF: line:172
+2024-12-04 17:48:59,598 [behaviours.init_aas_model_behaviour] [ACLINFO] ModelReference<Operation>(key=(Key(type=SUBMODEL, value=urn:ehu:gcis:submodel:1:1:transportrobotskills001), Key(type=OPERATION, value=EfficientMovement))) line:173
+2024-12-04 17:48:59,786 [behaviours.init_aas_model_behaviour] [ACLINFO] NEW INSTANCE REF: line:172
+2024-12-04 17:48:59,787 [behaviours.init_aas_model_behaviour] [ACLINFO] ModelReference<Operation>(key=(Key(type=SUBMODEL, value=urn:ehu:gcis:submodel:1:1:agentskills001), Key(type=OPERATION, value=NegotiationBasedOnBattery))) line:173
+2024-12-04 17:48:59,972 [behaviours.init_aas_model_behaviour] [ACLINFO] NEW INSTANCE REF: line:172
+2024-12-04 17:48:59,972 [behaviours.init_aas_model_behaviour] [ACLINFO] ModelReference<Operation>(key=(Key(type=SUBMODEL, value=urn:ehu:gcis:submodel:1:1:agentskills001), Key(type=OPERATION, value=NegotiationBasedOnLocation))) line:173
+2024-12-04 17:49:00,160 [behaviours.init_aas_model_behaviour] [ACLINFO] NEW INSTANCE REF: line:172
+2024-12-04 17:49:00,161 [behaviours.init_aas_model_behaviour] [ACLINFO] ModelReference<Operation>(key=(Key(type=SUBMODEL, value=urn:ehu:gcis:submodel:1:1:agentskills001), Key(type=OPERATION, value=NegotiationBasedOnRAM))) line:173
+2024-12-04 17:49:00,349 [behaviours.init_aas_model_behaviour] [ACLINFO] NEW INSTANCE REF: line:172
+2024-12-04 17:49:00,350 [behaviours.init_aas_model_behaviour] [ACLINFO] ModelReference<SubmodelElementCollection>(key=(Key(type=SUBMODEL, value=https://admin-shell.io/idta/SubmodelTemplate/AssetInterfacesDescription), Key(type=SUBMODEL_ELEMENT_COLLECTION, value=InterfaceForHTTP), Key(type=SUBMODEL_ELEMENT_COLLECTION, value=InteractionMetadata), Key(type=SUBMODEL_ELEMENT_COLLECTION, value=properties), Key(type=SUBMODEL_ELEMENT_COLLECTION, value=property_battery))) line:173
+2024-12-04 17:49:00,535 [behaviours.init_aas_model_behaviour] [ACLINFO] NEW INSTANCE REF: line:172
+2024-12-04 17:49:00,536 [behaviours.init_aas_model_behaviour] [ACLINFO] ModelReference<SubmodelElementCollection>(key=(Key(type=SUBMODEL, value=https://admin-shell.io/idta/SubmodelTemplate/AssetInterfacesDescription), Key(type=SUBMODEL_ELEMENT_COLLECTION, value=InterfaceForHTTP), Key(type=SUBMODEL_ELEMENT_COLLECTION, value=InteractionMetadata), Key(type=SUBMODEL_ELEMENT_COLLECTION, value=properties), Key(type=SUBMODEL_ELEMENT_COLLECTION, value=property_location))) line:173
+2024-12-04 17:49:00,724 [behaviours.init_aas_model_behaviour] [ACLINFO] NEW INSTANCE REF: line:172
+2024-12-04 17:49:00,725 [behaviours.init_aas_model_behaviour] [ACLINFO] ModelReference<SubmodelElementCollection>(key=(Key(type=SUBMODEL, value=https://admin-shell.io/idta/SubmodelTemplate/AssetInterfacesDescription), Key(type=SUBMODEL_ELEMENT_COLLECTION, value=InterfaceForHTTP), Key(type=SUBMODEL_ELEMENT_COLLECTION, value=InteractionMetadata), Key(type=SUBMODEL_ELEMENT_COLLECTION, value=actions), Key(type=SUBMODEL_ELEMENT_COLLECTION, value=action_move))) line:173
+2024-12-04 17:49:00,910 [behaviours.init_aas_model_behaviour] [ACLINFO] NEW INSTANCE REF: line:172
+2024-12-04 17:49:00,910 [behaviours.init_aas_model_behaviour] [ACLINFO] ModelReference<Operation>(key=(Key(type=SUBMODEL, value=urn:ehu:gcis:submodel:1:1:agentservices001), Key(type=OPERATION, value=RAM_memory_function))) line:173
+2024-12-04 17:49:01,410 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all relationships between ontology elements... line:77
+2024-12-04 17:49:03,287 [behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all asset connections... line:81
+2024-12-04 17:49:03,474 [behaviours.init_aas_model_behaviour] [INFO] All asset connections defined in the AAS model have been configured and saved. line:404
+2024-12-04 17:49:04,457 [behaviours.init_aas_model_behaviour] [INFO] AAS model analysis results. 
+	- Analyzed capabilities: ['Negotiation', 'EfficientTransport']
+	- Analyzed capability constraints: ['NegotiationCriteriaConstraint', 'EfficientTransportConstraintLocation']
+	- Analyzed skills ['EfficientMovement', 'NegotiationBasedOnBattery', 'NegotiationBasedOnLocation', 'NegotiationBasedOnRAM']
+	- Analyzed skill interfaces ['property_battery', 'property_location', 'action_move', 'RAM_memory_function']
+	- Analyzed asset connections ['InterfaceForHTTP']
+	- Errors found [] line:410
+2024-12-04 17:49:04,457 [behaviours.init_aas_model_behaviour] [INFO] AAS model initialized. line:91
+2024-12-04 17:49:04,457 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: None line:154
+2024-12-04 17:49:04,466 [states.state_booting] [INFO] gcis1@xmpp.jp agent has finished it Boot state. line:49
+2024-12-04 17:49:04,467 [spade.behaviour] [INFO] FSM transiting from BOOTING to RUNNING. line:591
+2024-12-04 17:49:04,467 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-12-04 17:49:04,467 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:25
+2024-12-04 17:49:04,476 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43
+2024-12-04 17:49:14,458 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:159
+2024-12-04 17:49:24,458 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:159
+2024-12-04 17:49:34,459 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:159
+2024-12-04 17:49:44,459 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:159
+2024-12-04 17:49:54,460 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:159
+2024-12-04 17:50:04,459 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:159
+2024-12-04 17:50:14,459 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:159
+2024-12-04 17:50:24,459 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:159
+2024-12-04 17:50:34,460 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:159
+2024-12-04 17:50:44,461 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:159
+2024-12-04 17:50:54,460 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:159
+2024-12-04 17:51:04,460 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:159
+2024-12-04 17:51:14,460 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:159
+2024-12-04 17:51:24,462 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:159
+2024-12-04 17:51:34,461 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:159
+2024-12-04 17:51:44,460 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:159
+2024-12-04 17:51:54,461 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:159
+2024-12-04 17:52:04,461 [behaviours.svc_acl_handling_behaviour] [INFO]          - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour) line:159
+2024-12-04 17:52:14,289 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2024-12-04 17:52:14,289 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2024-12-04 17:52:14,289 [states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:25
+2024-12-04 17:52:14,327 [behaviours.svc_acl_handling_behaviour] [INFO] SvcACLHandlingBehaviour starting... line:43

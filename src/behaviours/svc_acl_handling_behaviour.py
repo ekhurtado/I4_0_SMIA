@@ -4,7 +4,7 @@ import logging
 from spade.behaviour import CyclicBehaviour
 
 from behaviours.handle_capability_behaviour import HandleCapabilityBehaviour
-from behaviours.HandleSvcRequestBehaviour import HandleSvcRequestBehaviour
+from behaviours.handle_svc_request_behaviour import HandleSvcRequestBehaviour
 from behaviours.HandleSvcResponseBehaviour import HandleSvcResponseBehaviour
 from logic import inter_aas_interactions_utils
 from utilities.fipa_acl_info import FIPAACLInfo
@@ -86,13 +86,22 @@ class SvcACLHandlingBehaviour(CyclicBehaviour):
                     # service_id = msg_json_body['serviceID']
                     # if service_id == 'capabilityRequest':
                     # TODO pensar si generar un behaviour para recibir peticiones de servicios y otro para peticiones
-                    #  de capacidades
+                    #  de capacidades (en ese caso solo hay que comprobar la ontologia, no la performativa, ya que esta
+                    #  se analiza en los behaviours de gestion individuales)
                     if msg.get_metadata('ontology') == FIPAACLInfo.FIPA_ACL_ONTOLOGY_CAPABILITY_REQUEST:
                         _logger.aclinfo("The agent has received a request to perform a capability")
                         # The behaviour to handle this specific capability will be added to the agent
                         svc_req_data = inter_aas_interactions_utils.create_svc_json_data_from_acl_msg(msg)
                         capability_handling_behav = HandleCapabilityBehaviour(self.agent, svc_req_data)
                         self.myagent.add_behaviour(capability_handling_behav)
+                    if msg.get_metadata('ontology') == FIPAACLInfo.FIPA_ACL_ONTOLOGY_SVC_REQUEST:
+                        _logger.aclinfo("The agent has received a request to perform a service")
+                        # The behaviour to handle this specific capability will be added to the agent
+                        svc_req_data = inter_aas_interactions_utils.create_svc_json_data_from_acl_msg(msg)
+                        svc_req_handling_behav = HandleSvcRequestBehaviour(self.agent,
+                                                                           None,    # TODO ELIMINAR (es del enfoque viejo)
+                                                                           svc_req_data)
+                        self.myagent.add_behaviour(svc_req_handling_behav)
                     else:
                         service_category = msg_json_body['serviceData']['serviceCategory']
                         if service_category == 'service-request':

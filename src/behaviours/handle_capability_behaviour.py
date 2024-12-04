@@ -64,7 +64,7 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
     # ------------------------------------------
     async def handle_request(self):
         """
-        This method handle CallForProposal requests for the Capability.
+        This method handle capability requests to the DT.
         """
         if self.svc_req_data[
             'serviceID'] == 'capabilityRequest':  #  TODO CAMBIARLO POR LA ONTOLOGIA DEL MENSAJE ACL (ahi irá el 'CapabilityRequest')
