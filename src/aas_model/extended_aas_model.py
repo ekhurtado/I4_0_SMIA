@@ -134,11 +134,15 @@ class ExtendedAASModel:
         Returns:
             object: Python object of the desired element associated to the reference.
         """
-        if isinstance(reference, basyx.aas.model.ExternalReference):
-            for key in reference.key:
-                return self.aas_model_object_store.get_identifiable(key.value)
-        elif isinstance(reference, basyx.aas.model.ModelReference):
-            return reference.resolve(self.aas_model_object_store)
+        try:
+            if isinstance(reference, basyx.aas.model.ExternalReference):
+                for key in reference.key:
+                    return self.aas_model_object_store.get_identifiable(key.value)
+            elif isinstance(reference, basyx.aas.model.ModelReference):
+                return reference.resolve(self.aas_model_object_store)
+        except KeyError as e:
+            raise AASModelReadingError("The object within the AAS model with reference {} does not "
+                                       "exist".format(reference), sme_class=None, reason='AASModelObjectNotExist')
 
     async def get_submodel_elements_by_semantic_id(self, semantic_id_external_ref, sme_class=None):
         """

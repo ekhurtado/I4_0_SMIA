@@ -194,7 +194,6 @@ class ExtendedAnnotatedRelationshipElement(AnnotatedRelationshipElement):
         elif self.check_semantic_id_exist(CapabilitySkillOntologyInfo.CSS_ONTOLOGY_ASSET_CAPABILITY_IRI):
             return CapabilitySkillOntologyInfo.CSS_ONTOLOGY_ASSET_CAPABILITY_IRI
         else:
-            # TODO HACER AHORA: hay que crear una excepcion para lectura del AAS Model
             raise AASModelOntologyError("The capability {} does not have a valid semanticID within the "
                                         "ontology.".format(self.id_short), self, "OntologySemanticIdMissing")
 

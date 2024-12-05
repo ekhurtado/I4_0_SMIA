@@ -24,17 +24,17 @@ class GeneralUtils:
         readability of the console and adds new levels to the printouts related to ACL and interaction messages.
         """
 
-        interaction_level_num = 35
-        logging.addLevelName(interaction_level_num, "INTERACTIONINFO")
+        asset_level_num = 35
+        logging.addLevelName(asset_level_num, "ASSETINFO")
 
         fipa_acl_level_num = 36
         logging.addLevelName(fipa_acl_level_num, "ACLINFO")
 
-        def interactioninfo(self, message, *args, **kwargs):
-            if self.isEnabledFor(interaction_level_num):
-                self._log(interaction_level_num, message, args, **kwargs)
+        def assetinfo(self, message, *args, **kwargs):
+            if self.isEnabledFor(asset_level_num):
+                self._log(asset_level_num, message, args, **kwargs)
 
-        logging.Logger.interactioninfo = interactioninfo  # TODO HACER AHORA: CAMBIARLO POR 'assetinfo'
+        logging.Logger.assetinfo = assetinfo
 
         def aclinfo(self, message, *args, **kwargs):
             if self.isEnabledFor(fipa_acl_level_num):

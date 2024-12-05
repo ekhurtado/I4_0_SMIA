@@ -99,4 +99,3 @@ class AASModelInfo:
     SEMANTIC_ID_SOFTWARE_NAMEPLATE_CONFIG_URI = 'https://admin-shell.io/idta/SoftwareNameplate/1/0/SoftwareNameplate/SoftwareNameplateInstance/ConfigurationURI'
 
     # TODO pasar aqui todos los IDs requeridos en el AAS (p.e el de AID submodel)
-

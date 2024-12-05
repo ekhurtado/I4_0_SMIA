@@ -50,8 +50,8 @@ class InteractionHandlingBehaviour(CyclicBehaviour):
         _logger.info("The AAS Manager is listening for interaction messages from the AAS Core...")
         try:
             async for msg in kafka_consumer_core_partition:
-                _logger.interactioninfo("New AAS Core message!")
-                _logger.interactioninfo("   |__ msg: " + str(msg))
+                _logger.assetinfo("New AAS Core message!")
+                _logger.assetinfo("   |__ msg: " + str(msg))
 
                 # We get the key (as it is in bytes, we transform it into string) and the body of Kafka's message
                 msg_key = msg.key.decode("utf-8")
@@ -59,10 +59,10 @@ class InteractionHandlingBehaviour(CyclicBehaviour):
 
                 match msg_key:
                     case 'core-status':
-                        _logger.interactioninfo("The AAS Manager has received an update of the AAS Core status.")
+                        _logger.assetinfo("The AAS Manager has received an update of the AAS Core status.")
                         # TODO
                     case 'core-service-request':
-                        _logger.interactioninfo("The AAS Manager has received a service request from the AAS Core.")
+                        _logger.assetinfo("The AAS Manager has received a service request from the AAS Core.")
                         # TODO
                         # TODO, desarrollarlo junto al logical AAS Core de la aplicacion del warehouse con transportes ROS. Vendran peticiones de negociacion y de envio de mensaje ACL para ejecutar servicios
                         # The new service request is looked up in the agent's global ACL request dictionary.
@@ -71,7 +71,7 @@ class InteractionHandlingBehaviour(CyclicBehaviour):
                         else:
                             # All the information will be saved using the interactionID, but also the thread has to be
                             # saved in case an Inter AAS interaction is needed
-                            _logger.interactioninfo("A new HandleSvcRequestBehaviour to handle this specific "
+                            _logger.assetinfo("A new HandleSvcRequestBehaviour to handle this specific "
                                                     "request will be added to the agent")
 
                             # A new behaviour is added to the SPADE agent to handle this specific service request
@@ -82,8 +82,8 @@ class InteractionHandlingBehaviour(CyclicBehaviour):
 
 
                     case 'core-service-response':
-                        _logger.interactioninfo("The AAS Manager has received a service response from the AAS Core.")
-                        _logger.interactioninfo("The service with id " + str(msg_json_value['interactionID']) +
+                        _logger.assetinfo("The AAS Manager has received a service response from the AAS Core.")
+                        _logger.assetinfo("The service with id " + str(msg_json_value['interactionID']) +
                                                 " has been answered from the AAS Core to the AAS Manager. Data of the "
                                                 "response: " + str(msg_json_value))
                         # A new behaviour is added to the SPADE agent to handle this specific service request

@@ -1,9 +1,15 @@
+import json
 import logging
+from typing import Tuple
 
+import basyx.aas.model
+from basyx.aas import model
 from spade.behaviour import OneShotBehaviour
 
 from logic import IntraAASInteractions_utils, negotiation_utils, inter_aas_interactions_utils
-from utilities.fipa_acl_info import FIPAACLInfo
+from logic.exceptions import RequestDataError, ServiceRequestExecutionError, AASModelReadingError
+from logic.services_utils import SubmodelServicesUtils
+from utilities.fipa_acl_info import FIPAACLInfo, ACLJSONSchemas
 
 _logger = logging.getLogger(__name__)
 
@@ -46,37 +52,7 @@ class HandleSvcRequestBehaviour(OneShotBehaviour):
         This method implements the logic of the behaviour.
         """
 
-        # TODO modificar el concepto de como gestionar los servicios. En este behaviour (llamemosle a partir de ahora
-        #  SvcRequestsHanldingBehaviour) se gestionarán todas las peticiones de servicios via ACL, pero no gestionará
-        #  cada servicio individualmente. Por cada servicio añadira otro behaviour al agente (llamemosle
-        #  'SvcHandlingBehaviour') y este sí será el encargado de gestionar ese servicio en concreto. De esta forma,
-        #  conseguimos que los servicios se gestionen "en paralelo" (aunque no es 100% paralelo según van llegando
-        #  peticiones de servicios se van generando behaviours, así que se van gestionando todos a la vez). Gracias
-        #  a esta forma cada behaviour individual es capaz de gestionar mas facilmente su servicio (analizar si
-        #  tarda mucho en realizarse, guardar en el log cuando finalice toda la informacion que la tendra en su
-        #  propia clase, etc.). Cada behaviour individual será el que se eliminará del agente en cuanto el servicio
-        #  se haya completado (self.kill())
-
-        # TODO ACTUALIZACION: de momento se va a seguir esta idea, y por cada peticion de servicio se va a crear un
-        #  behaviour (SvcRequestHandlingBehaviour). Este se creará tanto con peticiones via ACL como peticiones via
-        #  Interaction (solicitadas por el AAS Core), ya que en ambos casos es una solicitud de un servicio al AAS
-        #  Manager. Este dentro del behaviour decidirá los pasos a seguir para llevar a cabo ese servicio (solicitar
-        #  algo por interaccion, o por ACL a otro Manager...). Para respuestas a peticiones de servicio se generará
-        #  otro behaviour diferente
-
-        # First, the service type of the request is obtained
-        match self.svc_req_data['serviceType']:
-            case "AssetRelatedService":
-                await self.handle_asset_related_svc()
-            case "AASInfrastructureServices":
-                await self.handle_aas_infrastructure_svc()
-            case "AASservices":
-                await self.handle_aas_services()
-            case "SubmodelServices":
-                await self.handle_submodel_service_request()
-            case _:
-                _logger.error("Service type not available.")
-
+        # First, the performative of the request is obtained
         # TODO NUEVO ENFOQUE (usando performative)
         match self.svc_req_data['performative']:
             case FIPAACLInfo.FIPA_ACL_PERFORMATIVE_REQUEST:  # TODO actualizar dentro de todo el codigo los usos de performativas y ontologias de FIPA-ACL
@@ -114,7 +90,7 @@ class HandleSvcRequestBehaviour(OneShotBehaviour):
             if request_result != "OK":  # TODO Pensar si añadir esto dentro del send_interaction_msg_to_core, al igual que incrementar el interactionID. Es decir, que ese metodo se encargue de enviar el mensaje por Kafka y asegurarse de que no hay problemas, y despues incrementar el id porque ha salido bien
                 _logger.error("The AAS Manager-Core interaction is not working: " + str(request_result))
             else:
-                _logger.interactioninfo("The service with interaction id [" + await self.myagent.get_interaction_id() +
+                _logger.assetinfo("The service with interaction id [" + await self.myagent.get_interaction_id() +
                                         "] to the AAS Core has been requested")
 
                 # In this case, the service request is completed, since it needs the cooperation of the AAS Core.
@@ -124,12 +100,12 @@ class HandleSvcRequestBehaviour(OneShotBehaviour):
                 await self.myagent.save_interaction_request(interaction_id=current_interaction_id,
                                                             request_data=interaction_request_json)
 
-                _logger.interactioninfo("interaction_requests shared object updated by " + str(self.__class__.__name__)
+                _logger.assetinfo("interaction_requests shared object updated by " + str(self.__class__.__name__)
                      + " responsible for interaction [" + current_interaction_id + "]. Action: request data added")
 
                 # Finally, it has to increment the interaction id as new requests has been made
                 await self.myagent.increase_interaction_id_num()    # TODO pensar muy bien donde aumentarlo (quizas dentro del propio send_interaction_msg_to_core de Interaction_utils? para no olvidarlo)
-                _logger.interactioninfo("interaction_id shared object updated by " + str(self.__class__.__name__)
+                _logger.assetinfo("interaction_id shared object updated by " + str(self.__class__.__name__)
                                         + " responsible for interaction [" + current_interaction_id +
                                         "]. Action: interaction_id increased")
 
@@ -258,7 +234,67 @@ class HandleSvcRequestBehaviour(OneShotBehaviour):
         This method handles a Submodel Service request. These services are part of I4.0 Application Component (
         application relevant).
         """
-        # TODO, en este caso tendra que comprobar que submodelo esta asociado a la peticion de servicio. Si el submodelo
-        #  es propio del AAS Manager, podra acceder directamente y, por tanto, este behaviour sera capaz de realizar el
-        #  servicio completamente. Si es un submodelo del AAS Core, tendra que solicitarselo
-        _logger.info(await self.myagent.get_interaction_id() + str(self.svc_req_data))
+        # The submodel service will be executed using a ModelReference or an ExternalReference, depending on the
+        # requested element. This information is in serviceParams TODO (de momento en serviceParams, ya veremos mas adelante)
+        try:
+            # First, the received data is checked and validated
+            await inter_aas_interactions_utils.check_received_request_data(
+                self.svc_req_data, ACLJSONSchemas.JSON_SCHEMA_SUBMODEL_SERVICE_REQUEST)
+
+            # If the data is valid, the SubmodelElement is obtained from the AAS model. For this purpose, the
+            # appropriate BaSyx object must be created
+            ref_object = None
+            if 'ModelReference' in self.svc_req_data['serviceData']['serviceParams']:
+                keys = ()
+                last_type = None
+                for key in self.svc_req_data['serviceData']['serviceParams']['ModelReference']['keys']:
+                    basyx_key_type = await SubmodelServicesUtils.get_key_type_by_string(key['type'])
+                    keys += (model.Key(basyx_key_type, key['value']),)
+                    last_type = basyx_key_type
+                ref_object = basyx.aas.model.ModelReference(
+                    key=keys, type_=await SubmodelServicesUtils.get_model_type_by_key_type(last_type))
+
+            elif 'ExternalReference' in self.svc_req_data['serviceData']['serviceParams']:
+                ref_object = model.ExternalReference((model.Key(
+                    type_=model.KeyTypes.GLOBAL_REFERENCE,
+                    value=self.svc_req_data['serviceData']['serviceParams']['ExternalReference']),))
+            # When the appropriate Reference object is created, the requested SubmodelElement can be obtained
+            requested_sme = await self.myagent.aas_model.get_object_by_reference(ref_object)
+
+            # When the AAS object has been obtained, the request is answered
+            sme_info = str(requested_sme)   # TODO de momento simplemente lo devolvemos en string (para mas adelante pensar si desarrollar un metodo que devuelva toda la informacion)
+            await self.send_response_msg_to_sender(FIPAACLInfo.FIPA_ACL_PERFORMATIVE_INFORM,
+                                                   {'requested_object': sme_info})
+            _logger.info("Management of the service with thread {} finished.".format(self.svc_req_data['thread']))
+
+        except (RequestDataError, ServiceRequestExecutionError, AASModelReadingError) as svc_request_error:
+            # todo
+            if isinstance(svc_request_error, RequestDataError):
+                svc_request_error = ServiceRequestExecutionError(self.svc_req_data['thread'],
+                                                                 svc_request_error.message, self)
+            if isinstance(svc_request_error, AASModelReadingError):
+                svc_request_error = ServiceRequestExecutionError(self.svc_req_data['thread'],
+                                                                 "{}. Reason: {}".format(svc_request_error.message,
+                                                                                         svc_request_error.reason), self)
+            await svc_request_error.handle_service_execution_error()
+            return  # killing a behaviour does not cancel its current run loop
+
+
+
+    async def send_response_msg_to_sender(self, performative, service_params):
+        """
+        This method creates and sends a FIPA-ACL message with the given serviceParams and performative.
+
+        Args:
+            performative (str): performative according to FIPA-ACL standard.
+            service_params (dict): JSON with the serviceParams to be sent in the message.
+        """
+        acl_msg = inter_aas_interactions_utils.create_inter_aas_response_msg(
+            receiver=self.svc_req_data['sender'],
+            thread=self.svc_req_data['thread'],
+            performative=performative,
+            service_id=self.svc_req_data['serviceID'],
+            service_type=self.svc_req_data['serviceType'],
+            service_params=json.dumps(service_params)
+        )
+        await self.send(acl_msg)

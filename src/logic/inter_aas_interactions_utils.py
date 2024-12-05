@@ -2,8 +2,11 @@
 import json
 import logging
 
+import jsonschema
+from jsonschema.exceptions import ValidationError
 from spade.message import Message
 
+from logic.exceptions import RequestDataError
 from utilities.smia_info import SMIAInteractionInfo
 from utilities.general_utils import GeneralUtils
 
@@ -127,3 +130,30 @@ def create_inter_aas_response_object(inter_aas_request, intra_aas_response):
     if 'serviceParams' in intra_aas_response['serviceData']:
         response_json['serviceData']['serviceParams'] = intra_aas_response['serviceData']['serviceParams']
     return response_json
+
+
+
+async def check_received_request_data(received_data, json_schema):
+    """
+    This method checks if the received data for a request is valid. The JSON object with the specific
+    data is also validated against the given associated JSON Schema. In any case, if it is invalid, it raises a
+    RequestDataError exception.
+
+    Args:
+        received_data (dict): received data in form of a JSON object.
+        json_schema (dict): JSON Schema in form of a JSON object.
+    """
+    # TODO modificarlo cuando se piense la estructura del lenguaje I4.0
+    if 'serviceData' not in received_data:
+        raise RequestDataError("The received request is invalid due to missing #serviceData field in the"
+                               "request message.")
+    if 'serviceParams' not in received_data['serviceData']:
+        raise RequestDataError("The received request is invalid due to missing #serviceParams field within "
+                               "the #serviceData section of the request message.")
+    # The received JSON object is also validated against the associated JSON Schema
+    try:
+        jsonschema.validate(instance=received_data['serviceData']['serviceParams'],
+                            schema=json_schema)
+    except ValidationError as e:
+        raise RequestDataError("The received JSON data within the request message is invalid against the required "
+                               "JSON schema. Invalid part: {}. Reason: {}.".format(e.instance, e.message))

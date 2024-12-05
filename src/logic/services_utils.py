@@ -5,6 +5,13 @@ Functional View of RAMI 4.0.
 import inspect
 import logging
 
+import basyx.aas.model
+import jsonschema
+from jsonschema.exceptions import ValidationError
+
+from logic.exceptions import RequestDataError, ServiceRequestExecutionError, AASModelReadingError
+from utilities.fipa_acl_info import ACLJSONSchemas
+
 _logger = logging.getLogger(__name__)
 
 class AgentServiceUtils:
@@ -76,3 +83,39 @@ class AgentServiceUtils:
             else:
                 raise ValueError(f"Parameter {param_name} not found in method {service_method}.")
         return adapted_params
+
+
+class SubmodelServicesUtils:
+
+    @staticmethod
+    async def get_key_type_by_string(key_type_string):
+        """
+        This method gets the KeyType defined in BaSyx SDK related to the given string.
+
+        Args:
+            key_type_string (str): string of the desired KeyType.
+
+        Returns:
+            basyx.aas.model.KeyTypes: object of the KeyType defined in BaSyx.
+        """
+        try:
+            return getattr(basyx.aas.model.KeyTypes, key_type_string)
+        except AttributeError as e:
+            raise AASModelReadingError("The KeyType with string {} does not exist in the AAS model defined"
+                                   " types".format(key_type_string), sme_class=None, reason='KeyTypeAttributeError')
+
+    @staticmethod
+    async def get_model_type_by_key_type(key_type):
+        """
+        This method gets the AAS model class by a given KeyType defined in BaSyx SDK.
+
+        Args:
+            key_type (basyx.aas.model.KeyTypes): desired KeyType.
+
+        Returns:
+            object of the AAS model class.
+        """
+        for model_class, key_type_class in basyx.aas.model.KEY_TYPES_CLASSES.items():
+            if key_type_class == key_type:
+                return model_class
+        return None

@@ -26,3 +26,53 @@ class FIPAACLInfo:
     FIPA_ACL_ONTOLOGY_CAPABILITY_CHECKING = 'CapabilityChecking'
     FIPA_ACL_ONTOLOGY_CAPABILITY_RESPONSE = 'CapabilityResponse'
     FIPA_ACL_ONTOLOGY_SVC_NEGOTIATION = 'Negotiation'
+
+
+class ACLJSONSchemas:
+    """This class contains all the JSON schemas related to ACL messages sent between SMIA agents."""
+
+    JSON_SCHEMA_SUBMODEL_SERVICE_REQUEST = {
+        "type": "object",
+        "properties": {
+            "ModelReference": {
+                "type": "object",
+                "properties": {
+                    "keys": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "type": {"type": "string"},
+                                "value": {"type": "string"}
+                            },
+                            "required": ["type", "value"]
+                        }
+                    }
+                },
+                "required": ["keys"]
+            },
+            "ExternalReference": {
+                "type": "string"
+            }
+        },
+        "oneOf": [
+            {"required": ["ModelReference"]},
+            {"required": ["ExternalReference"]}
+        ]
+    }
+
+    JSON_SCHEMA_CAPABILITY_REQUEST = {
+        "type": "object",
+        "properties": {
+            "capabilityName": {"type": "string"},
+            "skillName": {"type": "string"},
+            "skillParameterValues": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            "skillInterfaceName": {"type": "string"}
+        },
+        "required": ["capabilityName"]
+    }

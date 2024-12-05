@@ -147,7 +147,7 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
         criteria_interaction_metadata = await self.myagent.aas_model.get_asset_interface_interaction_metadata_by_value_semantic_id(criteria_semantic_id)
         if criteria_interaction_metadata:
             # In this case, the criteria is an asset data. It has to be requested
-            _logger.interactioninfo("The negotiation criteria is an asset data, so it must be requested through an asset service.")
+            _logger.assetinfo("The negotiation criteria is an asset data, so it must be requested through an asset service.")
             asset_connection_ref = criteria_interaction_metadata.get_parent_ref_by_semantic_id(AssetInterfacesInfo.SEMANTICID_INTERFACE)
             if asset_connection_ref:
                 # Once the Asset Connection reference is obtained, the associated class can be used to connect with
@@ -156,7 +156,7 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
                 # The InteractionMetadata has the complete interface to get the value, no message is necessary
                 negotiation_value = await asset_connection_class.execute_skill_by_asset_service(criteria_interaction_metadata, None)
                 if negotiation_value:
-                    _logger.interactioninfo("Negotiation criteria successfully obtained.")
+                    _logger.assetinfo("Negotiation criteria successfully obtained.")
                     _logger.info(
                         "The negotiation value for the negotiation with thread [" + self.thread + "] has been obtained. ")
                     # TODO el Submodelo AssetInterfacesDescription menciona un "type" para cada propiedad en

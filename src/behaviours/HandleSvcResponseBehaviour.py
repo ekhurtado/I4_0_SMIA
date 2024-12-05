@@ -90,13 +90,13 @@ class HandleSvcResponseBehaviour(OneShotBehaviour):
 
             # Since the request has been performed, it is removed from the global dictionary
             await self.myagent.remove_interaction_request(interaction_id=svc_interaction_id)
-            _logger.interactioninfo("interaction_requests shared object updated by " + str(self.__class__.__name__) +
+            _logger.assetinfo("interaction_requests shared object updated by " + str(self.__class__.__name__) +
                                     " responsible for interaction [" + svc_interaction_id + "]. Action: request data removed")
 
             # The information if stored in the global dictionary for the responses
             await self.myagent.save_interaction_response(interaction_id=svc_interaction_id,
                                                          response_data=self.svc_resp_data)
-            _logger.interactioninfo("interaction_responses shared object updated by " + str(self.__class__.__name__) +
+            _logger.assetinfo("interaction_responses shared object updated by " + str(self.__class__.__name__) +
                                     " responsible for interaction [" + svc_interaction_id + "]. Action: response data added")
 
             # It is also stored in the log of the AAS archive
@@ -201,13 +201,13 @@ class HandleSvcResponseBehaviour(OneShotBehaviour):
                 if request_result != "OK":  # TODO Pensar si añadir esto dentro del send_interaction_msg_to_core, al igual que incrementar el interactionID. Es decir, que ese metodo se encargue de enviar el mensaje por Kafka y asegurarse de que no hay problemas, y despues incrementar el id porque ha salido bien
                     _logger.error("The AAS Manager-Core interaction is not working: " + str(request_result))
                 else:
-                    _logger.interactioninfo("The service with interaction id ["
+                    _logger.assetinfo("The service with interaction id ["
                                             + await self.myagent.get_interaction_id() +
                                             "] to the AAS Core has been replied")
 
                 # Since the request has been performed, it is removed from the global dictionary
                 await self.myagent.remove_interaction_request(interaction_id=intra_aas_request['interactionID'])
-                _logger.interactioninfo(
+                _logger.assetinfo(
                     "interaction_requests shared object updated by " + str(self.__class__.__name__) +
                     " responsible for interaction [" + intra_aas_request[
                         'interactionID'] + "]. Action: request data removed")
@@ -215,7 +215,7 @@ class HandleSvcResponseBehaviour(OneShotBehaviour):
                 # The information is stored in the global dictionary for the responses
                 await self.myagent.save_interaction_response(interaction_id=intra_aas_request['interactionID'],
                                                              response_data=self.svc_resp_data)
-                _logger.interactioninfo(
+                _logger.assetinfo(
                     "interaction_responses shared object updated by " + str(self.__class__.__name__) +
                     " responsible for interaction [" + intra_aas_request[
                         'interactionID'] + "]. Action: response data added")

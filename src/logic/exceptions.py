@@ -18,6 +18,15 @@ class CriticalError(Exception):
         _logger.error("The program must end.")
         exit(-1)
 
+class RequestDataError(Exception):
+    """
+    This exception class is defined for errors that are related to a request received by the DT (request of a service
+    or a capability).
+    """
+
+    def __init__(self, message):
+        self.message = message
+        _logger.error(f"{self.message}")
 
 # AAS model-related exceptions
 # ----------------------------------------
@@ -43,18 +52,37 @@ class AASModelOntologyError(Exception):
         _logger.error(f"{self.message}")
 
 
-# Capability management-related exceptions
-# ----------------------------------------
-class CapabilityDataError(Exception):
+# Service management-related exceptions
+# -------------------------------------
+class ServiceRequestExecutionError(Exception):
     """
-    This exception class is defined for errors that are related to the capability data received by the DT.
+    This exception class is defined for errors that are related to the execution of a requested service. Since it has
+    been requested, this class also must response to the requester with a Failure of the execution.
     """
 
-    def __init__(self, message):
+    def __init__(self, thread, message, behav_class):
+        self.thread = thread
         self.message = message
+        self.behav_class = behav_class
+
+    async def handle_service_execution_error(self):
+        """
+        This method handles the error during an execution of a service, sending the Failure message to the requester.
+        """
         _logger.error(f"{self.message}")
 
+        _logger.info("Due to an incorrect execution of the service related to the thread [{}], the requester shall be "
+                     "informed with a Failure message.".format(self.thread))
 
+        await self.behav_class.send_response_msg_to_sender(FIPAACLInfo.FIPA_ACL_PERFORMATIVE_FAILURE,
+                                                           {'reason': self.message})
+        _logger.info("Failure message sent to the requester related to the thread [{}].".format(self.thread))
+
+        # The behaviour for the execution of the service must be killed
+        self.behav_class.kill(exit_code=10)
+
+# Capability management-related exceptions
+# ----------------------------------------
 class CapabilityRequestExecutionError(Exception):
     """
     This exception class is defined for errors that are related to the execution of a requested Capability. Since it has
@@ -77,7 +105,7 @@ class CapabilityRequestExecutionError(Exception):
 
         await self.behav_class.send_response_msg_to_sender(FIPAACLInfo.FIPA_ACL_PERFORMATIVE_FAILURE,
                                                            {'reason': self.message})
-        _logger.info("Failure message sent to the requester of the capability [].".format(self.cap_name))
+        _logger.info("Failure message sent to the requester of the capability [{}].".format(self.cap_name))
 
         # TODO Pensar si añadir un objeto global en el agente para almacenar informacion sobre errores
         # The behaviour for the execution of the capability must be killed
@@ -128,7 +156,6 @@ class AssetConnectionError(Exception):
         self.error_type = error_type
         self.reason = reason
         _logger.error(f"{self.message}")
-
 
 # Capability-Skill ontology exceptions
 # ------------------------------------

@@ -227,7 +227,10 @@ class CSSModelAASModelInfo:
     from aas_model import extended_submodel
 
 
-    # TODO HACER AHORA GENERAR TAMBIEN UNA LISTA CON LAS CLASES DE LA ONTOLOGIA Y LAS CLASES 'Extended' del AAS asociadas
+    # TODO HACER AHORA: pensar como gestionar las skill parameters. Mi idea es que sea otra clase extended mas. Se
+    #  generarian como cualquier otra clase de la ontologia (con relacion hasParameter). Solo en el caso de la clase
+    #  Operation sí habria que crear "manualmente" sus parametros y relacionarlos, ya que no existe esa relacion
+    #  hasParameter (estan dentro del objeto SubmodelElement como OperationVariable)
     CSS_ONTOLOGY_AAS_MODEL_LINK = {
         CapabilitySkillOntologyInfo.CSS_ONTOLOGY_CAPABILITY_IRI: extended_submodel.ExtendedCapability,
         CapabilitySkillOntologyInfo.CSS_ONTOLOGY_AGENT_CAPABILITY_IRI: extended_submodel.ExtendedCapability,
