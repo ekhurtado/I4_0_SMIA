@@ -4,7 +4,8 @@ import basyx.aas.model.submodel
 from basyx.aas.util import traversal
 
 from logic.exceptions import CapabilityCheckingError, AASModelReadingError
-from css_ontology.css_ontology_utils import CapabilitySkillOntologyUtils, CapabilitySkillACLInfo, AssetInterfacesInfo
+from css_ontology.css_ontology_utils import CapabilitySkillOntologyUtils, CapabilitySkillACLInfo, AssetInterfacesInfo, \
+    CapabilitySkillOntologyInfo
 
 _logger = logging.getLogger(__name__)
 
@@ -363,7 +364,7 @@ class ExtendedAASModel:
         """
         cap_constraints = []
         rels_cap_constraints = await self.get_submodel_elements_by_semantic_id(
-            CapabilitySkillOntologyUtils.SEMANTICID_REL_CAPABILITY_CAPABILITY_CONTRAINT, basyx.aas.model.RelationshipElement)
+            CapabilitySkillOntologyInfo.CSS_ONTOLOGY_PROP_ISRESTRICTEDBY_IRI, basyx.aas.model.RelationshipElement)
         for rel in rels_cap_constraints:
             first_elem = await self.get_object_by_reference(rel.first)
             second_elem = await self.get_object_by_reference(rel.second)
@@ -485,7 +486,7 @@ class ExtendedAASModel:
             (basyx.aas.model.SubmodelElement): the interface of the selected skill in form of Python object (None if it does not exist).
         """
         rels_skill_interfaces = await self.get_submodel_elements_by_semantic_id(
-            CapabilitySkillOntologyUtils.SEMANTICID_REL_SKILL_SKILL_INTERFACE, basyx.aas.model.RelationshipElement)
+            CapabilitySkillOntologyInfo.CSS_ONTOLOGY_PROP_ACCESSIBLETHROUGH_IRI, basyx.aas.model.RelationshipElement)
         for rel in rels_skill_interfaces:
             first_elem = await self.get_object_by_reference(rel.first)
             second_elem = await self.get_object_by_reference(rel.second)
@@ -535,7 +536,7 @@ class ExtendedAASModel:
         """
         # The exposure elements can be obtained with the related relationship semanticID
         rels_params_exposed = await self.get_submodel_elements_by_semantic_id(
-            CapabilitySkillOntologyUtils.SEMANTICID_REL_SKILL_PARAMETER_SKILL_INTERFACE, basyx.aas.model.RelationshipElement)
+            CapabilitySkillOntologyInfo.EXP.SEMANTICID_REL_SKILL_PARAMETER_SKILL_INTERFACE, basyx.aas.model.RelationshipElement)
         for rel in rels_params_exposed:
             first_elem = await self.get_object_by_reference(rel.first)
             second_elem = await self.get_object_by_reference(rel.second)

@@ -1,6 +1,5 @@
 import json
 import logging
-from typing import Tuple
 
 import basyx.aas.model
 from basyx.aas import model
@@ -59,8 +58,7 @@ class HandleSvcRequestBehaviour(OneShotBehaviour):
                 await self.handle_request()
             case FIPAACLInfo.FIPA_ACL_PERFORMATIVE_QUERY_IF:
                 await self.handle_query_if()
-            case "PensarOtro":  # TODO
-                pass
+            # TODO PensarOtros
             case _:
                 _logger.error("Performative not available for service management.")
     # ------------------------------------------

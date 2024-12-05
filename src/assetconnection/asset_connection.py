@@ -65,6 +65,12 @@ class AssetConnection(metaclass=abc.ABCMeta):
             object: response information defined in the interaction metadata.
         """
         pass
+    # TODO HACER AHORA: Hay que modificarlo ya que ahora solo se tendra que pasar el interaction_metadata e inputData
+    #  (esto serán los inputParams que ya habran sido validados con la ontologia y recogidos sus valores). El metodo
+    #  devolvera el resultado del asset service (si se quiere extraer algo en especifico se utiliza dataQuery). Con ese
+    #  resultado SMIA escribira en el mensaje de respuesta los outputParams, pero para esta clase, al igual que los
+    #  inputParams, es transparente. Es decir, tenemos que conseguir que la clase AssetConnection solo se centre en el
+    #  submodelo AID
 
     @abc.abstractmethod
     async def execute_asset_service(self, interaction_metadata, service_data=None):

@@ -85,6 +85,8 @@ class SMIAAgent(Agent):
         # First, the FSMBehaviour is instantiated
         fsm_behaviour = AASFSMBehaviour()
 
+        # TODO HACER AHORA PENSAR SI TIENE ESTADO IDLE SMIA GENERICO (en SMIAResource esta definido con IDLE)
+
         # A common AAS Manager has three states
         fsm_behaviour.add_state(name=SMIAGeneralInfo.BOOTING_STATE_NAME, state=StateBooting(), initial=True)
         fsm_behaviour.add_state(name=SMIAGeneralInfo.RUNNING_STATE_NAME, state=StateRunning())
@@ -167,17 +169,6 @@ class SMIAAgent(Agent):
                 return self.acl_svc_requests[thread]
             else:
                 return None
-
-    async def save_new_interaction_request(self, request_data):
-        """
-        This method adds a new Intra AAS interaction Request to the global requests dictionary of the AAS Manager for
-        this type of interaction.
-
-        Args:
-            request_data (dict): all the information of the Intra AAS interaction Request in JSON format.
-        """
-        async with self.lock:  # safe access to a shared object of the agent
-            self.interaction_requests[await self.get_interaction_id()] = request_data
 
     async def save_interaction_request(self, interaction_id, request_data):
         """

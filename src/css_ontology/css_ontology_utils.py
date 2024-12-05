@@ -89,17 +89,16 @@ class CapabilitySkillOntologyUtils:
         return False
 
     @staticmethod
-    def get_attribute_from_classes_in_object_property(object_property_class, attribute_name):
+    def get_aas_classes_from_object_property(object_property_class):
         """
-        This method gets the required attribute of the ontology classes of a given Object Property. If the attribute
-        does not exist, it raises an exception.
+        This method gets the AAS class related to the of the ontology classes of a given Object Property. If the
+        attribute of the AAS class does not exist, it raises an exception.
 
         Args:
             object_property_class (ObjectPropertyClass): class object of the ObjectProperty.
-            attribute_name (str): the attribute to get from the class object within the given object property.
 
         Returns:
-            object, object: attribute value of the domain and range ontology classes.
+            object, object: AAS class value of the domain and range ontology classes.
         """
         if object_property_class is None:
             raise OntologyReadingError("The object property object {} is None".format(object_property_class))
@@ -125,8 +124,8 @@ class CapabilitySkillOntologyUtils:
                                            "AAS model classes defined".format(object_property_class))
             return domain_aas_class, range_aas_class
         except KeyError as e:
-            # TODO
-            pass
+            raise OntologyReadingError("The domain or range of object property object {} does not have associated "
+                                           "AAS model classes defined".format(object_property_class))
 
     # Types of Capabilities
     MANUFACTURING_CAPABILITY_TYPE = 'ManufacturingCapability'
@@ -135,24 +134,7 @@ class CapabilitySkillOntologyUtils:
     CAPABILITY_TYPE_POSSIBLE_VALUES = [MANUFACTURING_CAPABILITY_TYPE, ASSET_CAPABILITY_TYPE, AGENT_CAPABILITY_TYPE]
 
     # SemanticIDs of Capabilities
-    SEMANTICID_MANUFACTURING_CAPABILITY = 'urn:ehu:gcis:capabilityskillontology:1:1:manufacturingcapability'
-    SEMANTICID_ASSET_CAPABILITY = 'urn:ehu:gcis:capabilityskillontology:1:1:assetcapability'
-    SEMANTICID_AGENT_CAPABILITY = 'urn:ehu:gcis:capabilityskillontology:1:1:agentcapability'
-    SEMANTICID_CAPABILITY_CONSTRAINT = 'urn:ehu:gcis:capabilityskillontology:1:1:capabilityconstraint'
-    SEMANTICID_CAPABILITY_PROPERTY = 'urn:ehu:gcis:capabilityskillontology:1:1:capabilityproperty'
-
-    # SemanticIDs of Skills
-    SEMANTICID_MANUFACTURING_SKILL = 'urn:ehu:gcis:capabilityskillontology:1:1:manufacturingskill'
-    SEMANTICID_SKILL_INTERFACE = 'urn:ehu:gcis:capabilityskillontology:1:1:skillinterface'
-    SEMANTICID_SKILL_PARAMETER = 'urn:ehu:gcis:capabilityskillontology:1:1:skillparameter'
-    SEMANTICID_SKILL_STATE_MACHINE = 'urn:ehu:gcis:capabilityskillontology:1:1:skillstatemachine'
-
-    # SemanticIDs of Relationships
-    SEMANTICID_REL_CAPABILITY_SKILL = 'urn:ehu:gcis:capabilityskillontology:1:1:capabilityrealizedby'
-    SEMANTICID_REL_CAPABILITY_CAPABILITY_CONTRAINT = 'urn:ehu:gcis:capabilityskillontology:1:1:capabilityrestrictedby'
-    SEMANTICID_REL_SKILL_SKILL_INTERFACE = 'urn:ehu:gcis:capabilityskillontology:1:1:skillaccesiblethrough'
-    SEMANTICID_REL_SKILL_SKILL_PARAMETER = 'urn:ehu:gcis:capabilityskillontology:1:1:skillhasparameter'
-    SEMANTICID_REL_SKILL_SKILL_STATE_MACHINE = 'urn:ehu:gcis:capabilityskillontology:1:1:skillbehavioursconformsto'
+    # TODO ESTA LA DEJO PORQUE NO SE HA UTILIZADO TODAVIA EN LA ONTOLOGIA, PERO TAMBIEN HAY QUE ELIMINARLA
     SEMANTICID_REL_SKILL_PARAMETER_SKILL_INTERFACE = 'urn:ehu:gcis:capabilityskillontology:1:1:skillparameterexposedthrough'
 
 

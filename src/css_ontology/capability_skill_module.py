@@ -5,19 +5,16 @@ import logging
 from itertools import chain
 
 import basyx.aas.model
-from owlready2 import Thing, get_ontology, DataPropertyClass, DatatypeClass, onto_path
+from owlready2 import Thing, get_ontology, DataPropertyClass, DatatypeClass
 
-from aas_model import extended_submodel
-from logic.exceptions import OntologyCheckingAttributeError, OntologyCheckingPropertyError, \
-    OntologyInstanceCreationError
 from css_ontology.css_ontology_utils import CapabilitySkillOntologyInfo, CapabilitySkillOntologyUtils, \
     CSSModelAASModelInfo
-from utilities.smia_general_info import SMIAGeneralInfo
+from logic.exceptions import OntologyCheckingAttributeError, OntologyCheckingPropertyError, \
+    OntologyInstanceCreationError
 
 _logger = logging.getLogger(__name__)
 
 css_ontology = get_ontology(CapabilitySkillOntologyUtils.get_ontology_file_path())
-# onto_path.append(SMIAGeneralInfo.CONFIGURATION_FOLDER_PATH)
 base_namespace = css_ontology.get_namespace(CapabilitySkillOntologyInfo.CSS_ONTOLOGY_BASE_NAMESPACE)
 
 
@@ -26,7 +23,6 @@ class ExtendedThing(Thing):
     # The namespace of the base CSS ontology must be defined
     namespace = base_namespace
 
-    # aas_sme_class = 1
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -188,16 +184,11 @@ class Capability(ExtendedThing):
     This class represent the OWL class for Capabilities. It contains all necessary methods to ensure the correct
     execution of SMIA software.
     """
-    # The namespace of the base CSS ontology must be defined
-    # namespace = base_namespace
 
     # The associated SubmodelElement class of the AAS is also defined
     # _aas_sme_class = 1
     # aas_sme_class = extended_submodel.ExtendedCapability
     # aas_sme_class = basyx.aas.model.Capability
-
-    # def __init__(self, *args, **kwargs):
-    #     super().__init__(*args, **kwargs)
 
 
     def check_instance(self):
@@ -233,32 +224,21 @@ class Capability(ExtendedThing):
             return self.isRealizedBy
 
 class CapabilityConstraint(ExtendedThing):
-    # The namespace of the base CSS ontology must be defined
-    # namespace = base_namespace
 
     # The associated SubmodelElement class of the AAS is also defined
     # aas_sme_class = None
     # aas_sme_class = basyx.aas.model.SubmodelElement
     # aas_sme_class = extended_submodel.ExtendedCapabilityConstraint
 
-    # def __init__(self, *args, **kwargs):
-    #     super().__init__(*args, **kwargs)
-
-
     # TODO PENSAR METODOS PARA CONSTRAINTS
     pass
 
 
 class Skill(ExtendedThing):
-    # The namespace of the base CSS ontology must be defined
-    # namespace = base_namespace
 
     # The associated SubmodelElement class of the AAS is also defined
     # aas_sme_class = None
     # aas_sme_class = extended_submodel.ExtendedSkill
-
-    # def __init__(self, *args, **kwargs):
-    #     super().__init__(*args, **kwargs)
 
     def check_instance(self):
         """
@@ -295,15 +275,10 @@ class Skill(ExtendedThing):
             return self.hasParameter
 
 class SkillInterface(ExtendedThing):
-    # The namespace of the base CSS ontology must be defined
-    # namespace = base_namespace
 
     # The associated SubmodelElement class of the AAS is also defined
     # aas_sme_class = None
     # aas_sme_class = extended_submodel.ExtendedSkillInterface
-
-    # def __init__(self, *args, **kwargs):
-    #     super().__init__(*args, **kwargs)
 
     def check_instance(self):
         """

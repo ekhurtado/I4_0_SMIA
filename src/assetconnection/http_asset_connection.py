@@ -12,7 +12,6 @@ _logger = logging.getLogger(__name__)
 class HTTPAssetConnection(AssetConnection):
     """
     This class implements the asset connection for HTTP protocol.
-    TODO desarrollarlo mas
     """
 
     def __init__(self):
@@ -58,7 +57,8 @@ class HTTPAssetConnection(AssetConnection):
             AssetInterfacesInfo.SEMANTICID_INTERFACE_SECURITY_DEFINITIONS)
         if security_definitions_elem is not None:
             self.security_scheme_elem = security_definitions_elem.value
-        # TODO: pensar como añadir el resto , p.e. tema de seguridad o autentificacion (bearer). De momento se ha dejado sin seguridad (nosec_sc)
+        # TODO: pensar como añadir el resto , p.e. tema de seguridad o autentificacion (bearer).
+        #  De momento se ha dejado sin seguridad (nosec_sc)
 
         # The InteractionMetadata elements also need to be checked
         interaction_metadata_elem = interface_aas_elem.get_sm_element_by_semantic_id(

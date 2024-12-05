@@ -6,7 +6,7 @@ from basyx.aas.model import SubmodelElementList, SubmodelElement, Operation, Sub
     Range, Blob, File, ReferenceElement, Capability
 
 from aas_model.extended_aas import ExtendedGeneralMethods
-from logic.exceptions import AASModelReadingError, AASModelOntologyError
+from logic.exceptions import AASModelOntologyError
 from css_ontology.css_ontology_utils import CapabilitySkillOntologyInfo
 
 _logger = logging.getLogger(__name__)

@@ -2,10 +2,9 @@ import asyncio
 import logging
 import sys
 
-import basyx.aas.adapter.xml
 import basyx.aas.adapter.json
+import basyx.aas.adapter.xml
 from basyx.aas import model
-from basyx.aas.adapter import aasx
 from basyx.aas.model import ModelReference
 from owlready2 import ThingClass
 from spade.behaviour import OneShotBehaviour
@@ -13,15 +12,13 @@ from tqdm.asyncio import tqdm
 
 from aas_model import extended_submodel
 from aas_model.aas_model_utils import AASModelUtils
-from aas_model.extended_submodel import ExtendedSkill, ExtendedSkillInterface, ExtendedCapabilityConstraint, \
-    ExtendedComplexSkillInterface, ExtendedComplexSkill, ExtendedSimpleSkill, ExtendedSimpleSkillInterface, \
-    ExtendedCapability
+from aas_model.extended_submodel import ExtendedSkill, ExtendedSkillInterface, ExtendedComplexSkillInterface, \
+    ExtendedComplexSkill, ExtendedSimpleSkill, ExtendedSimpleSkillInterface
 from assetconnection.http_asset_connection import HTTPAssetConnection
-from logic.exceptions import AASModelReadingError, AASModelOntologyError, \
-    OntologyReadingError, CriticalError
-from utilities import configmap_utils
 from css_ontology.css_ontology_utils import CapabilitySkillOntologyUtils, AssetInterfacesInfo, \
     CapabilitySkillOntologyInfo, CSSModelAASModelInfo
+from logic.exceptions import AASModelReadingError, AASModelOntologyError, \
+    OntologyReadingError
 
 _logger = logging.getLogger(__name__)
 
@@ -242,8 +239,8 @@ class InitAASModelBehaviour(OneShotBehaviour):
                 relationship_iri, basyx.aas.model.RelationshipElement)
             rel_ontology_class = await self.myagent.css_ontology.get_ontology_class_by_iri(relationship_iri)
             # The required AAS classes for the elements within this relationship is obtained from the CSS ontology
-            domain_aas_class, range_aas_class = CapabilitySkillOntologyUtils.get_attribute_from_classes_in_object_property(
-                rel_ontology_class, 'aas_sme_class')
+            domain_aas_class, range_aas_class = CapabilitySkillOntologyUtils.get_aas_classes_from_object_property(
+                rel_ontology_class)
         except (AASModelReadingError, AASModelOntologyError, OntologyReadingError) as e:
             if isinstance(e, AASModelReadingError) or isinstance(e, AASModelOntologyError):
                 _logger.warning("Check the AAS Model {}. Reason of the fail: {}.".format(e.sme_class, e.reason))
@@ -451,7 +448,6 @@ class InitAASModelBehaviour(OneShotBehaviour):
         Args:
             aas_elem (basyx.aas.model.SubmodelElement): analyzed SubmodelElement,
         """
-
         if isinstance(aas_elem, extended_submodel.ExtendedCapability):
             self.analyzed_capabilities.append(aas_elem.id_short)
         elif isinstance(aas_elem, extended_submodel.ExtendedSkill):

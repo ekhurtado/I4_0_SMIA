@@ -70,12 +70,7 @@ class NegotiatingBehaviour(CyclicBehaviour):
                         # TODO PROXIMO PASO: ahora la negociacion vendran solicitadas cmo una capacidad del agente
                         #  (agentCapability). Por ello, primero se comprobará si el criterio que se ha enviado para
                         #  participar en la negociacion es valido, es decir, si su valor esta entre los definidos para
-                        #  este activo. El criterio para las negociaciones es una constraint que en realidad es un SME
-                        #  Reference que apunta al skill parameter del criterio, que está en el SME de la skill, el cual es una
-                        #  operación con un input con el criterio. Esta variable de entrada 'criterio' tiene asociada
-                        #  un conceptDescription con los posibles valores. En este punto, se tendra que comprobar si el
-                        #  criterio solicitado en el mensaje ACL existe entre los valores posibles definidos en el
-                        #  conceptDescription. Si el resultado es que no, el agente deberá responder con un mensaje
+                        #  este activo. Si el resultado es que no, el agente deberá responder con un mensaje
                         #  indicando que no puede ejecutar esa capacidad, junto a la razon (p.e. con una performativa
                         #  Refuse)
                         msg_json_body['serviceData']['serviceParams']['criteria'] = msg_json_body['serviceData']['serviceParams']['NegotiationCriteria']
@@ -138,10 +133,7 @@ class NegotiatingBehaviour(CyclicBehaviour):
                                                                              svc_resp_data)
                         self.myagent.add_behaviour(svc_resp_handling_behav)
                     else:
-                        # TODO
-                        print('serviceID not available')
-
-                    # TODO pensar como se deberian gestionar este tipo de mensajes en una negociacion
+                        _logger.warning('serviceID not available')
 
                 case FIPAACLInfo.FIPA_ACL_PERFORMATIVE_FAILURE:
                     _logger.aclinfo("The agent has received a response in a negotiation: Failure")

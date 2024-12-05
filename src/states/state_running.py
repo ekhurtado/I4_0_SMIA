@@ -2,7 +2,7 @@ import logging
 from spade.behaviour import State
 
 from behaviours.negotiating_behaviour import NegotiatingBehaviour
-from behaviours.svc_acl_handling_behaviour import SvcACLHandlingBehaviour
+from behaviours.acl_handling_behaviour import ACLHandlingBehaviour
 from utilities import smia_archive_utils
 from utilities.smia_general_info import SMIAGeneralInfo
 from utilities.smia_info import SMIAInteractionInfo
@@ -28,8 +28,8 @@ class StateRunning(State):
         smia_archive_utils.update_status('Running')
 
         # On the one hand, a behaviour is required to handle ACL messages
-        svc_acl_handling_behav = SvcACLHandlingBehaviour(self.agent)
-        self.agent.add_behaviour(svc_acl_handling_behav, SMIAInteractionInfo.SVC_STANDARD_ACL_TEMPLATE)
+        acl_handling_behav = ACLHandlingBehaviour(self.agent)
+        self.agent.add_behaviour(acl_handling_behav, SMIAInteractionInfo.SVC_STANDARD_ACL_TEMPLATE)
 
         # On the other hand, a behaviour is required to handle interaction messages
         # TODO revisar, ya que en el nuevo enfoque no hay AAS Core
@@ -41,7 +41,7 @@ class StateRunning(State):
 
         # Wait until the behaviour has finished. Is a CyclicBehaviour, so it will not end until an error occurs or, if
         # desired, it can be terminated manually using "behaviour.kill()".
-        await svc_acl_handling_behav.join()
+        await acl_handling_behav.join()
         # await interaction_handling_behav.join()
         if agent_behaviours_classes:
             # TODO revisar si esto se quiere hacer asi (pensar en las transciones entre estados)

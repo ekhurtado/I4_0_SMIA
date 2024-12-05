@@ -12,6 +12,8 @@ from spade.behaviour import CyclicBehaviour, OneShotBehaviour
 from spade.message import Message
 from spade.template import Template
 
+from utilities.fipa_acl_info import FIPAACLInfo
+
 XMPP_SERVER = 'anonym.im'
 
 
@@ -90,7 +92,7 @@ class ReceiverAgent(Agent):
                         print("     =>>>  THE WINNER OF THE NEGOTIATION IS: " + str(self.agent.jid))
                         print(" Faltaria contestar al que ha pedido la negociacion")
                         response_msg = Message(to=msg.get_metadata('neg_request_jid'), thread=msg.thread, body='WINNER')
-                        response_msg.set_metadata('performative', 'INFORM')
+                        response_msg.set_metadata('performative', FIPAACLInfo.FIPA_ACL_PERFORMATIVE_INFORM)
                         response_msg.set_metadata('ontology', 'negotiation')
                         # await self.send(response_msg)
 
@@ -105,7 +107,7 @@ class ReceiverAgent(Agent):
                         agent_neg_value = await self.get_value_with_criteria(criteria)
                         # Genero el mensaje sin el receiver (es lo unico que cambia)
                         propose_msg = Message(thread=msg.thread, body=criteria + ',' + str(agent_neg_value))
-                        propose_msg.set_metadata('performative', 'PROPOSE')
+                        propose_msg.set_metadata('performative', FIPAACLInfo.FIPA_ACL_PERFORMATIVE_PROPOSE)
                         propose_msg.set_metadata('ontology', 'negotiation')
                         propose_msg.set_metadata('targets', msg.get_metadata('targets'))
                         propose_msg.set_metadata('neg_request_jid', msg.get_metadata('neg_request_jid'))
@@ -120,7 +122,7 @@ class ReceiverAgent(Agent):
                         # lista vacia para ir rellenando segun se vaya procesando valores recibidos de los targets
                         self.agent.negotiations_data[msg.thread] = {'targets': targets,
                                                                     'targets_processed': []}
-                elif msg.get_metadata('performative') == 'PROPOSE':
+                elif msg.get_metadata('performative') == FIPAACLInfo.FIPA_ACL_PERFORMATIVE_PROPOSE:
                     print("En este caso es un PROPOSE, asi que el agente {} esta en medio de una negociacion".format(
                         self.agent.jid))
                     print("El agente " + str(self.agent.jid) + " ha recibido una propuesta de " + str(msg.sender))
@@ -149,7 +151,7 @@ class ReceiverAgent(Agent):
                         print("     =>>>  THE WINNER OF THE NEGOTIATION IS: " + str(self.agent.jid))
                         print(" Faltaria contestar al que ha pedido la negociacion")
                         response_msg = Message(to=msg.get_metadata('neg_request_jid'), thread=msg.thread, body='WINNER')
-                        response_msg.set_metadata('performative', 'INFORM')
+                        response_msg.set_metadata('performative', FIPAACLInfo.FIPA_ACL_PERFORMATIVE_INFORM)
                         response_msg.set_metadata('ontology', 'negotiation')
                         # await self.send(response_msg)
 
@@ -203,7 +205,7 @@ class ReceiverAgent(Agent):
                     # response_msg = Message(to=msg.get_metadata('neg_request_jid'), thread=msg.thread, body='WINNER')
                     response_msg = Message(to=str(msg.sender),
                                            thread=msg.thread)  # With msg structure of I4.0 SMIA
-                    response_msg.set_metadata('performative', 'INFORM')
+                    response_msg.set_metadata('performative', FIPAACLInfo.FIPA_ACL_PERFORMATIVE_INFORM)
                     response_msg.set_metadata('ontology', 'negotiation')
 
                     # TODO With msg structure of I4.0 SMIA
@@ -262,7 +264,7 @@ class ReceiverAgent(Agent):
                     # Añado el comportamiento al agente (la plantilla asegura de solo recibir mensajes PROPOSE pero
                     # ademas solo con el thread de esa negociacion en concreto) Consigo mi valor dependiendo el criterio
                     handle_neg_template = Template()
-                    handle_neg_template.set_metadata("performative", "PROPOSE")
+                    handle_neg_template.set_metadata("performative", FIPAACLInfo.FIPA_ACL_PERFORMATIVE_PROPOSE)
                     handle_neg_template.set_metadata("ontology", "negotiation")
                     handle_neg_template.thread = msg.thread
                     handle_neg_behav = self.agent.HandleNegBehav(negotiation_info)
@@ -302,7 +304,7 @@ class ReceiverAgent(Agent):
             # Genero el mensaje PROPOSE
             # propose_msg = Message(thread=self.thread, body=self.neg_criteria + ',' + str(self.neg_value))
             propose_msg = Message(thread=self.thread)
-            propose_msg.set_metadata('performative', 'PROPOSE')
+            propose_msg.set_metadata('performative', FIPAACLInfo.FIPA_ACL_PERFORMATIVE_PROPOSE)
             propose_msg.set_metadata('ontology', 'negotiation')
             # propose_msg.set_metadata('targets', self.targets)
             # propose_msg.set_metadata('neg_requester_jid', self.neg_requester_jid)
@@ -381,7 +383,7 @@ class ReceiverAgent(Agent):
                     # response_msg = Message(to=msg.get_metadata('neg_request_jid'), thread=msg.thread, body='WINNER')
                     response_msg = Message(to=msg_body_json['serviceData']['serviceParams']['neg_requester_jid'],
                                            thread=msg.thread)
-                    response_msg.set_metadata('performative', 'INFORM')
+                    response_msg.set_metadata('performative', FIPAACLInfo.FIPA_ACL_PERFORMATIVE_INFORM)
                     response_msg.set_metadata('ontology', 'negotiation')
 
                     # TODO With msg structure of I4.0 SMIA
@@ -437,8 +439,8 @@ class ReceiverAgent(Agent):
             print("Building the message to send to the agent with JID: gui_agent")
             receiver = 'gui_agent' + '@' + XMPP_SERVER
             msg = Message(to=receiver, thread='pruebaMsg')
-            msg.set_metadata('performative', 'CallForProposal')
-            msg.set_metadata('ontology', 'SvcRequest')
+            msg.set_metadata('performative', FIPAACLInfo.FIPA_ACL_PERFORMATIVE_CFP)
+            msg.set_metadata('ontology', FIPAACLInfo.FIPA_ACL_ONTOLOGY_SVC_REQUEST)
 
             msg.body = '{"serviceID": "getAssetData' + \
                        '", "serviceType": "AssetRelatedService' + \
@@ -466,18 +468,18 @@ class ReceiverAgent(Agent):
         # self.add_behaviour(presenceBehav)
 
         template = Template()
-        template.set_metadata("performative", "inform")
+        template.set_metadata("performative", FIPAACLInfo.FIPA_ACL_PERFORMATIVE_INFORM)
         # template.set_metadata("conversationid", "1234")
         # template.set_metadata("ontology", "negotiation")
         # self.add_behaviour(b)
         self.add_behaviour(b, template)
 
         t1 = Template()
-        t1.set_metadata("performative", "CFP")
+        t1.set_metadata("performative", FIPAACLInfo.FIPA_ACL_PERFORMATIVE_CFP)
         t1.set_metadata("ontology", "negotiation")
 
         t2 = Template()
-        t2.set_metadata("performative", "PROPOSE")
+        t2.set_metadata("performative", FIPAACLInfo.FIPA_ACL_PERFORMATIVE_PROPOSE)
         t2.set_metadata("ontology", "negotiation")
 
         t3 = Template()
@@ -492,7 +494,7 @@ class ReceiverAgent(Agent):
 
         # Negotiation behaviour v2.0 (get from Oskar's code)
         t = Template()
-        t.set_metadata("performative", "CFP")
+        t.set_metadata("performative", FIPAACLInfo.FIPA_ACL_PERFORMATIVE_CFP)
         t.set_metadata("ontology", "negotiation")
         neg_behav = self.NegBehav_v2()
         self.add_behaviour(neg_behav, t)
