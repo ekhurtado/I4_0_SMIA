@@ -1,0 +1,1079 @@
+{
+  "$type": "Options",
+  "Records": [
+    {
+      "$type": "Record",
+      "FormTag": "GCIS",
+      "FormTitle": "GCIS/SubmodelWithCapabilitySkillOntology",
+      "FormSubmodel": {
+        "$type": "FormSubmodel",
+        "FormTitle": "Submodel",
+        "FormInfo": "",
+        "FormEditIdShort": false,
+        "FormEditDescription": false,
+        "PresetIdShort": "SubmodelWithCapabilitySkillOntology",
+        "PresetCategory": "CONSTANT",
+        "SubmodelElements": [
+          {
+            "$type": "FormProperty",
+            "FormTitle": "ManufacturingCapability",
+            "FormInfo": "implementation-independent description of the function of a resource to achieve a certain effect in the physical or virtual world",
+            "FormEditIdShort": false,
+            "FormEditDescription": false,
+            "PresetIdShort": "ManufacturingCapability",
+            "PresetCategory": "",
+            "KeySemanticId": {
+              "type": "GlobalReference",
+              "value": "http://www.w3id.org/hsu-aut/css#Capability"
+            },
+            "Multiplicity": "One",
+            "IsReadOnly": false,
+            "allowedValueTypes": [
+              "xs:string"
+            ],
+            "presetValue": ""
+          },
+          {
+            "$type": "FormProperty",
+            "FormTitle": "AssetCapability",
+            "FormInfo": "implementation-independent description of the function of a manufacturing asset to achieve a certain effect in the physical or virtual world",
+            "FormEditIdShort": false,
+            "FormEditDescription": false,
+            "PresetIdShort": "AssetCapability",
+            "PresetCategory": "",
+            "KeySemanticId": {
+              "type": "GlobalReference",
+              "value": "http://www.w3id.org/upv-ehu/gcis/css-smia#AssetCapability"
+            },
+            "Multiplicity": "One",
+            "IsReadOnly": false,
+            "allowedValueTypes": [
+              "xs:string"
+            ],
+            "presetValue": ""
+          },
+          {
+            "$type": "FormProperty",
+            "FormTitle": "AgentCapability",
+            "FormInfo": "implementation-independent description of the function of an industrial agent to achieve a certain effect in the physical or virtual world",
+            "FormEditIdShort": false,
+            "FormEditDescription": false,
+            "PresetIdShort": "AgentCapability",
+            "PresetCategory": "",
+            "KeySemanticId": {
+              "type": "GlobalReference",
+              "value": "http://www.w3id.org/upv-ehu/gcis/css-smia#AgentCapability"
+            },
+            "Multiplicity": "One",
+            "IsReadOnly": false,
+            "allowedValueTypes": [
+              "xs:string"
+            ],
+            "presetValue": ""
+          },
+          {
+            "$type": "FormProperty",
+            "FormTitle": "CapabilityRestrictedBy",
+            "FormInfo": "relationship between the description of the capability and an associated constraint",
+            "FormEditIdShort": false,
+            "FormEditDescription": false,
+            "PresetIdShort": "CapabilityRestrictedBy",
+            "PresetCategory": "",
+            "KeySemanticId": {
+              "type": "GlobalReference",
+              "value": "http://www.w3id.org/hsu-aut/css#isRestrictedBy"
+            },
+            "Multiplicity": "One",
+            "IsReadOnly": false,
+            "allowedValueTypes": [
+              "xs:string"
+            ],
+            "presetValue": ""
+          },
+          {
+            "$type": "FormProperty",
+            "FormTitle": "CapabilityConstraint",
+            "FormInfo": "necessary condition for the capacity to be performed successfully",
+            "FormEditIdShort": false,
+            "FormEditDescription": false,
+            "PresetIdShort": "CapabilityConstraint",
+            "PresetCategory": "",
+            "KeySemanticId": {
+              "type": "GlobalReference",
+              "value": "http://www.w3id.org/hsu-aut/css#CapabilityConstraint"
+            },
+            "Multiplicity": "One",
+            "IsReadOnly": false,
+            "allowedValueTypes": [
+              "xs:string"
+            ],
+            "presetValue": ""
+          },
+          {
+            "$type": "FormProperty",
+            "FormTitle": "CapabilityRealizedBy",
+            "FormInfo": "directed relationship between a capability and the skill that is realizing the capability by providing a corresponding implementation",
+            "FormEditIdShort": false,
+            "FormEditDescription": false,
+            "PresetIdShort": "CapabilityRealizedBy",
+            "PresetCategory": "",
+            "KeySemanticId": {
+              "type": "GlobalReference",
+              "value": "http://www.w3id.org/hsu-aut/css#isRealizedBy"
+            },
+            "Multiplicity": "One",
+            "IsReadOnly": false,
+            "allowedValueTypes": [
+              "xs:string"
+            ],
+            "presetValue": ""
+          },
+          {
+            "$type": "FormProperty",
+            "FormTitle": "ManufacturingSkill",
+            "FormInfo": "asset-dependent implementation of the function of a resource to achieve a certain effect in the physical or virtual world",
+            "FormEditIdShort": false,
+            "FormEditDescription": false,
+            "PresetIdShort": "ManufacturingSkill",
+            "PresetCategory": "",
+            "KeySemanticId": {
+              "type": "GlobalReference",
+              "value": "http://www.w3id.org/hsu-aut/css#Skill"
+            },
+            "Multiplicity": "One",
+            "IsReadOnly": false,
+            "allowedValueTypes": [
+              "xs:string"
+            ],
+            "presetValue": ""
+          },
+          {
+            "$type": "FormProperty",
+            "FormTitle": "SkillAccesibleThrough",
+            "FormInfo": "relationship between the description of the skill and the skill interface that implements the skill",
+            "FormEditIdShort": false,
+            "FormEditDescription": false,
+            "PresetIdShort": "SkillAccesibleThrough",
+            "PresetCategory": "",
+            "KeySemanticId": {
+              "type": "GlobalReference",
+              "value": "http://www.w3id.org/hsu-aut/css#accessibleThrough"
+            },
+            "Multiplicity": "One",
+            "IsReadOnly": false,
+            "allowedValueTypes": [
+              "xs:string"
+            ],
+            "presetValue": ""
+          },
+          {
+            "$type": "FormProperty",
+            "FormTitle": "SkillAccesibleThroughAgentService",
+            "FormInfo": "relationship between the description of the skill and the skill interface that implements the skill through an agent service",
+            "FormEditIdShort": false,
+            "FormEditDescription": false,
+            "PresetIdShort": "SkillAccesibleThroughAgentService",
+            "PresetCategory": "",
+            "KeySemanticId": {
+              "type": "GlobalReference",
+              "value": "http://www.w3id.org/upv-ehu/gcis/css-smia#accesibleThroughAgentService"
+            },
+            "Multiplicity": "One",
+            "IsReadOnly": false,
+            "allowedValueTypes": [
+              "xs:string"
+            ],
+            "presetValue": ""
+          },
+          {
+            "$type": "FormProperty",
+            "FormTitle": "SkillAccesibleThroughAssetService",
+            "FormInfo": "relationship between the description of the skill and the skill interface that implements the skill through an asset service",
+            "FormEditIdShort": false,
+            "FormEditDescription": false,
+            "PresetIdShort": "SkillAccesibleThroughAssetService",
+            "PresetCategory": "",
+            "KeySemanticId": {
+              "type": "GlobalReference",
+              "value": "http://www.w3id.org/upv-ehu/gcis/css-smia#accesibleThroughAssetService"
+            },
+            "Multiplicity": "One",
+            "IsReadOnly": false,
+            "allowedValueTypes": [
+              "xs:string"
+            ],
+            "presetValue": ""
+          },
+          {
+            "$type": "FormProperty",
+            "FormTitle": "SkillInterface",
+            "FormInfo": "interface that offers accessibility for the skill implementation",
+            "FormEditIdShort": false,
+            "FormEditDescription": false,
+            "PresetIdShort": "SkillInterface",
+            "PresetCategory": "",
+            "KeySemanticId": {
+              "type": "GlobalReference",
+              "value": "http://www.w3id.org/hsu-aut/css#SkillInterface"
+            },
+            "Multiplicity": "One",
+            "IsReadOnly": false,
+            "allowedValueTypes": [
+              "xs:string"
+            ],
+            "presetValue": ""
+          },
+          {
+            "$type": "FormProperty",
+            "FormTitle": "SkillHasParameter",
+            "FormInfo": "relationship between the description of the skill and a related parameter necessary for its implementation",
+            "FormEditIdShort": false,
+            "FormEditDescription": false,
+            "PresetIdShort": "SkillHasParameter",
+            "PresetCategory": "",
+            "KeySemanticId": {
+              "type": "GlobalReference",
+              "value": "http://www.w3id.org/hsu-aut/css#hasParameter"
+            },
+            "Multiplicity": "One",
+            "IsReadOnly": false,
+            "allowedValueTypes": [
+              "xs:string"
+            ],
+            "presetValue": ""
+          },
+          {
+            "$type": "FormProperty",
+            "FormTitle": "SkillParameter",
+            "FormInfo": "parameter necessary for the implementation of a skill",
+            "FormEditIdShort": false,
+            "FormEditDescription": false,
+            "PresetIdShort": "SkillParameter",
+            "PresetCategory": "",
+            "KeySemanticId": {
+              "type": "GlobalReference",
+              "value": "http://www.w3id.org/hsu-aut/css#SkillParameter"
+            },
+            "Multiplicity": "One",
+            "IsReadOnly": false,
+            "allowedValueTypes": [
+              "xs:string"
+            ],
+            "presetValue": ""
+          },
+          {
+            "$type": "FormProperty",
+            "FormTitle": "SkillBehavioursConformsTo",
+            "FormInfo": "relationship between the description of the skill and its related state machine",
+            "FormEditIdShort": false,
+            "FormEditDescription": false,
+            "PresetIdShort": "SkillBehavioursConformsTo",
+            "PresetCategory": "",
+            "KeySemanticId": {
+              "type": "GlobalReference",
+              "value": "http://www.w3id.org/hsu-aut/css#behaviorConformsTo"
+            },
+            "Multiplicity": "One",
+            "IsReadOnly": false,
+            "allowedValueTypes": [
+              "xs:string"
+            ],
+            "presetValue": ""
+          },
+          {
+            "$type": "FormProperty",
+            "FormTitle": "SkillStateMachine",
+            "FormInfo": "standardized state machine of the skill, with its current state as well as possible interactions",
+            "FormEditIdShort": false,
+            "FormEditDescription": false,
+            "PresetIdShort": "SkillStateMachine",
+            "PresetCategory": "",
+            "KeySemanticId": {
+              "type": "GlobalReference",
+              "value": "http://www.w3id.org/hsu-aut/css#StateMachine"
+            },
+            "Multiplicity": "One",
+            "IsReadOnly": false,
+            "allowedValueTypes": [
+              "xs:string"
+            ],
+            "presetValue": ""
+          },
+          {
+            "$type": "FormProperty",
+            "FormTitle": "SkillParameterExposedThrough",
+            "FormInfo": "relationship between the skill parameter and the element within the skill interface that exposes the parameter. If an input parameter, the related interface element will be the where it should be added during the request, and if an output parameter, where the data can be obtained.",
+            "FormEditIdShort": false,
+            "FormEditDescription": false,
+            "PresetIdShort": "SkillParameterExposedThrough",
+            "PresetCategory": "",
+            "KeySemanticId": {
+              "type": "GlobalReference",
+              "value": "urn:ehu:gcis:capabilityskillontology:1:1:skillparameterexposedthrough"
+            },
+            "Multiplicity": "One",
+            "IsReadOnly": false,
+            "allowedValueTypes": [
+              "xs:string"
+            ],
+            "presetValue": ""
+          }
+        ]
+      },
+      "ConceptDescriptions": [
+        {
+          "$type": "AasCore.Aas3_0.ConceptDescription, AasCore.Aas3_0",
+          "IdShort": "ManufacturingCapability",
+          "Administration": {
+            "$type": "AasCore.Aas3_0.AdministrativeInformation, AasCore.Aas3_0",
+            "Version": "1",
+            "Revision": "1"
+          },
+          "Id": "http://www.w3id.org/hsu-aut/css#Capability",
+          "EmbeddedDataSpecifications": [
+            {
+              "$type": "AasCore.Aas3_0.EmbeddedDataSpecification, AasCore.Aas3_0",
+              "DataSpecification": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0"
+                  }
+                ]
+              },
+              "DataSpecificationContent": {
+                "$type": "AasCore.Aas3_0.DataSpecificationIec61360, AasCore.Aas3_0",
+                "PreferredName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "ManufacturingCapability"
+                  }
+                ],
+                "DataType": "STRING",
+                "Definition": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "implementation-independent description of the function of a resource to achieve a certain effect in the physical or virtual world"
+                  },
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "es",
+                    "Text": "descripción independiente de la aplicación de la función de un recurso para lograr un efecto determinado en el mundo físico o virtual"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "$type": "AasCore.Aas3_0.ConceptDescription, AasCore.Aas3_0",
+          "IdShort": "AssetCapability",
+          "Administration": {
+            "$type": "AasCore.Aas3_0.AdministrativeInformation, AasCore.Aas3_0",
+            "Version": "1",
+            "Revision": "1"
+          },
+          "Id": "http://www.w3id.org/upv-ehu/gcis/css-smia#AssetCapability",
+          "EmbeddedDataSpecifications": [
+            {
+              "$type": "AasCore.Aas3_0.EmbeddedDataSpecification, AasCore.Aas3_0",
+              "DataSpecification": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0"
+                  }
+                ]
+              },
+              "DataSpecificationContent": {
+                "$type": "AasCore.Aas3_0.DataSpecificationIec61360, AasCore.Aas3_0",
+                "PreferredName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "AssetCapability"
+                  }
+                ],
+                "DataType": "STRING",
+                "Definition": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "implementation-independent description of the function of a manufacturing asset to achieve a certain effect in the physical or virtual world"
+                  },
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "es",
+                    "Text": "descripción independiente de la aplicación de la función de un activo de fabricación para lograr un efecto determinado en el mundo físico o virtual"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "$type": "AasCore.Aas3_0.ConceptDescription, AasCore.Aas3_0",
+          "IdShort": "AgentCapability",
+          "Administration": {
+            "$type": "AasCore.Aas3_0.AdministrativeInformation, AasCore.Aas3_0",
+            "Version": "1",
+            "Revision": "1"
+          },
+          "Id": "http://www.w3id.org/upv-ehu/gcis/css-smia#AgentCapability",
+          "EmbeddedDataSpecifications": [
+            {
+              "$type": "AasCore.Aas3_0.EmbeddedDataSpecification, AasCore.Aas3_0",
+              "DataSpecification": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0"
+                  }
+                ]
+              },
+              "DataSpecificationContent": {
+                "$type": "AasCore.Aas3_0.DataSpecificationIec61360, AasCore.Aas3_0",
+                "PreferredName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "AgentCapability"
+                  }
+                ],
+                "DataType": "STRING",
+                "Definition": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "implementation-independent description of the function of an industrial agent to achieve a certain effect in the physical or virtual world"
+                  },
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "es",
+                    "Text": "descripción independiente de la aplicación de la función de un agente industrial para lograr un efecto determinado en el mundo físico o virtual"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "$type": "AasCore.Aas3_0.ConceptDescription, AasCore.Aas3_0",
+          "IdShort": "CapabilityRestrictedBy",
+          "Administration": {
+            "$type": "AasCore.Aas3_0.AdministrativeInformation, AasCore.Aas3_0",
+            "Version": "1",
+            "Revision": "1"
+          },
+          "Id": "http://www.w3id.org/hsu-aut/css#isRestrictedBy",
+          "EmbeddedDataSpecifications": [
+            {
+              "$type": "AasCore.Aas3_0.EmbeddedDataSpecification, AasCore.Aas3_0",
+              "DataSpecification": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0"
+                  }
+                ]
+              },
+              "DataSpecificationContent": {
+                "$type": "AasCore.Aas3_0.DataSpecificationIec61360, AasCore.Aas3_0",
+                "PreferredName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "CapabilityRestrictedBy"
+                  }
+                ],
+                "DataType": "STRING",
+                "Definition": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "relationship between the description of the capability and an associated constraint"
+                  },
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "es",
+                    "Text": "relación entre la descripción de la capacidad y una restricción asociada"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "$type": "AasCore.Aas3_0.ConceptDescription, AasCore.Aas3_0",
+          "IdShort": "CapabilityConstraint",
+          "Administration": {
+            "$type": "AasCore.Aas3_0.AdministrativeInformation, AasCore.Aas3_0",
+            "Version": "1",
+            "Revision": "1"
+          },
+          "Id": "http://www.w3id.org/hsu-aut/css#CapabilityConstraint",
+          "EmbeddedDataSpecifications": [
+            {
+              "$type": "AasCore.Aas3_0.EmbeddedDataSpecification, AasCore.Aas3_0",
+              "DataSpecification": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0"
+                  }
+                ]
+              },
+              "DataSpecificationContent": {
+                "$type": "AasCore.Aas3_0.DataSpecificationIec61360, AasCore.Aas3_0",
+                "PreferredName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "CapabilityConstraint"
+                  }
+                ],
+                "DataType": "STRING",
+                "Definition": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "necessary condition for the capacity to be performed successfully"
+                  },
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "es",
+                    "Text": "condición necesaria para que la capacidad se realice con éxito"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "$type": "AasCore.Aas3_0.ConceptDescription, AasCore.Aas3_0",
+          "IdShort": "CapabilityRealizedBy",
+          "Administration": {
+            "$type": "AasCore.Aas3_0.AdministrativeInformation, AasCore.Aas3_0",
+            "Version": "1",
+            "Revision": "1"
+          },
+          "Id": "http://www.w3id.org/hsu-aut/css#isRealizedBy",
+          "EmbeddedDataSpecifications": [
+            {
+              "$type": "AasCore.Aas3_0.EmbeddedDataSpecification, AasCore.Aas3_0",
+              "DataSpecification": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0"
+                  }
+                ]
+              },
+              "DataSpecificationContent": {
+                "$type": "AasCore.Aas3_0.DataSpecificationIec61360, AasCore.Aas3_0",
+                "PreferredName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "CapabilityRealizedBy"
+                  }
+                ],
+                "DataType": "STRING",
+                "Definition": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "directed relationship between a capability and the skill that is realizing the capability by providing a corresponding implementation"
+                  },
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "es",
+                    "Text": "relación directa entre una capacidad y la habilidad que la realiza, proporcionando la implementación correspondiente"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "$type": "AasCore.Aas3_0.ConceptDescription, AasCore.Aas3_0",
+          "IdShort": "ManufacturingSkill",
+          "Administration": {
+            "$type": "AasCore.Aas3_0.AdministrativeInformation, AasCore.Aas3_0",
+            "Version": "1",
+            "Revision": "1"
+          },
+          "Id": "http://www.w3id.org/hsu-aut/css#Skill",
+          "EmbeddedDataSpecifications": [
+            {
+              "$type": "AasCore.Aas3_0.EmbeddedDataSpecification, AasCore.Aas3_0",
+              "DataSpecification": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0"
+                  }
+                ]
+              },
+              "DataSpecificationContent": {
+                "$type": "AasCore.Aas3_0.DataSpecificationIec61360, AasCore.Aas3_0",
+                "PreferredName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "ManufacturingSkill"
+                  }
+                ],
+                "DataType": "STRING",
+                "Definition": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "asset-dependent implementation of the function of a resource to achieve a certain effect in the physical or virtual world"
+                  },
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "es",
+                    "Text": "implementación dependiente del activo de la función de un recurso para lograr un efecto determinado en el mundo físico o virtual"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "$type": "AasCore.Aas3_0.ConceptDescription, AasCore.Aas3_0",
+          "IdShort": "SkillAccesibleThrough",
+          "Administration": {
+            "$type": "AasCore.Aas3_0.AdministrativeInformation, AasCore.Aas3_0",
+            "Version": "1",
+            "Revision": "1"
+          },
+          "Id": "http://www.w3id.org/hsu-aut/css#accessibleThrough",
+          "EmbeddedDataSpecifications": [
+            {
+              "$type": "AasCore.Aas3_0.EmbeddedDataSpecification, AasCore.Aas3_0",
+              "DataSpecification": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0"
+                  }
+                ]
+              },
+              "DataSpecificationContent": {
+                "$type": "AasCore.Aas3_0.DataSpecificationIec61360, AasCore.Aas3_0",
+                "PreferredName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "SkillAccesibleThrough"
+                  }
+                ],
+                "DataType": "STRING",
+                "Definition": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "relationship between the description of the skill and the skill interface that implements the skill"
+                  },
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "es",
+                    "Text": "relación entre la descripción de la habilidad y la interfaz de habilidad que la implementa"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "$type": "AasCore.Aas3_0.ConceptDescription, AasCore.Aas3_0",
+          "IdShort": "SkillAccesibleThroughAgentService",
+          "Administration": {
+            "$type": "AasCore.Aas3_0.AdministrativeInformation, AasCore.Aas3_0",
+            "Version": "1",
+            "Revision": "1"
+          },
+          "Id": "http://www.w3id.org/upv-ehu/gcis/css-smia#accesibleThroughAgentService",
+          "EmbeddedDataSpecifications": [
+            {
+              "$type": "AasCore.Aas3_0.EmbeddedDataSpecification, AasCore.Aas3_0",
+              "DataSpecification": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0"
+                  }
+                ]
+              },
+              "DataSpecificationContent": {
+                "$type": "AasCore.Aas3_0.DataSpecificationIec61360, AasCore.Aas3_0",
+                "PreferredName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "SkillAccesibleThroughAgentService"
+                  }
+                ],
+                "DataType": "STRING",
+                "Definition": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "relationship between the description of the skill and the skill interface that implements the skill through an agent service"
+                  },
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "es",
+                    "Text": "relación entre la descripción de la habilidad y la interfaz de habilidad que la implementa a través de un servicio de agente"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "$type": "AasCore.Aas3_0.ConceptDescription, AasCore.Aas3_0",
+          "IdShort": "SkillAccesibleThroughAssetService",
+          "Administration": {
+            "$type": "AasCore.Aas3_0.AdministrativeInformation, AasCore.Aas3_0",
+            "Version": "1",
+            "Revision": "1"
+          },
+          "Id": "http://www.w3id.org/upv-ehu/gcis/css-smia#accesibleThroughAssetService",
+          "EmbeddedDataSpecifications": [
+            {
+              "$type": "AasCore.Aas3_0.EmbeddedDataSpecification, AasCore.Aas3_0",
+              "DataSpecification": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0"
+                  }
+                ]
+              },
+              "DataSpecificationContent": {
+                "$type": "AasCore.Aas3_0.DataSpecificationIec61360, AasCore.Aas3_0",
+                "PreferredName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "SkillAccesibleThroughAssetService"
+                  }
+                ],
+                "DataType": "STRING",
+                "Definition": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "relationship between the description of the skill and the skill interface that implements the skill through an asset service"
+                  },
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "es",
+                    "Text": "relación entre la descripción de la habilidad y la interfaz de habilidad que la implementa a través de un servicio de activo"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "$type": "AasCore.Aas3_0.ConceptDescription, AasCore.Aas3_0",
+          "IdShort": "SkillInterface",
+          "Administration": {
+            "$type": "AasCore.Aas3_0.AdministrativeInformation, AasCore.Aas3_0",
+            "Version": "1",
+            "Revision": "1"
+          },
+          "Id": "http://www.w3id.org/hsu-aut/css#SkillInterface",
+          "EmbeddedDataSpecifications": [
+            {
+              "$type": "AasCore.Aas3_0.EmbeddedDataSpecification, AasCore.Aas3_0",
+              "DataSpecification": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0"
+                  }
+                ]
+              },
+              "DataSpecificationContent": {
+                "$type": "AasCore.Aas3_0.DataSpecificationIec61360, AasCore.Aas3_0",
+                "PreferredName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "SkillInterface"
+                  }
+                ],
+                "DataType": "STRING",
+                "Definition": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "interface that offers accessibility for the skill implementation"
+                  },
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "es",
+                    "Text": "interfaz que ofrece accesibilidad para la implementación de la habilidad"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "$type": "AasCore.Aas3_0.ConceptDescription, AasCore.Aas3_0",
+          "IdShort": "SkillHasParameter",
+          "Administration": {
+            "$type": "AasCore.Aas3_0.AdministrativeInformation, AasCore.Aas3_0",
+            "Version": "1",
+            "Revision": "1"
+          },
+          "Id": "http://www.w3id.org/hsu-aut/css#hasParameter",
+          "EmbeddedDataSpecifications": [
+            {
+              "$type": "AasCore.Aas3_0.EmbeddedDataSpecification, AasCore.Aas3_0",
+              "DataSpecification": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0"
+                  }
+                ]
+              },
+              "DataSpecificationContent": {
+                "$type": "AasCore.Aas3_0.DataSpecificationIec61360, AasCore.Aas3_0",
+                "PreferredName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "SkillHasParameter"
+                  }
+                ],
+                "DataType": "STRING",
+                "Definition": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "relationship between the description of the skill and a related parameter necessary for its implementation"
+                  },
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "es",
+                    "Text": "relación entre la descripción de la habilidad y un parámetro relacionado necesario para su implementación"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "$type": "AasCore.Aas3_0.ConceptDescription, AasCore.Aas3_0",
+          "IdShort": "SkillParameter",
+          "Administration": {
+            "$type": "AasCore.Aas3_0.AdministrativeInformation, AasCore.Aas3_0",
+            "Version": "1",
+            "Revision": "1"
+          },
+          "Id": "http://www.w3id.org/hsu-aut/css#SkillParameter",
+          "EmbeddedDataSpecifications": [
+            {
+              "$type": "AasCore.Aas3_0.EmbeddedDataSpecification, AasCore.Aas3_0",
+              "DataSpecification": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0"
+                  }
+                ]
+              },
+              "DataSpecificationContent": {
+                "$type": "AasCore.Aas3_0.DataSpecificationIec61360, AasCore.Aas3_0",
+                "PreferredName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "SkillParameter"
+                  }
+                ],
+                "DataType": "STRING",
+                "Definition": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "parameter necessary for the implementation of a skill"
+                  },
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "es",
+                    "Text": "parámetro necesario para la implementación de una habilidad"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "$type": "AasCore.Aas3_0.ConceptDescription, AasCore.Aas3_0",
+          "IdShort": "SkillBehavioursConformsTo",
+          "Administration": {
+            "$type": "AasCore.Aas3_0.AdministrativeInformation, AasCore.Aas3_0",
+            "Version": "1",
+            "Revision": "1"
+          },
+          "Id": "http://www.w3id.org/hsu-aut/css#behaviorConformsTo",
+          "EmbeddedDataSpecifications": [
+            {
+              "$type": "AasCore.Aas3_0.EmbeddedDataSpecification, AasCore.Aas3_0",
+              "DataSpecification": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0"
+                  }
+                ]
+              },
+              "DataSpecificationContent": {
+                "$type": "AasCore.Aas3_0.DataSpecificationIec61360, AasCore.Aas3_0",
+                "PreferredName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "SkillBehavioursConformsTo"
+                  }
+                ],
+                "DataType": "STRING",
+                "Definition": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "relationship between the description of the skill and its related state machine"
+                  },
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "es",
+                    "Text": "relación entre la descripción de la habilidad y su máquina de estados relacionada"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "$type": "AasCore.Aas3_0.ConceptDescription, AasCore.Aas3_0",
+          "IdShort": "SkillStateMachine",
+          "Administration": {
+            "$type": "AasCore.Aas3_0.AdministrativeInformation, AasCore.Aas3_0",
+            "Version": "1",
+            "Revision": "1"
+          },
+          "Id": "http://www.w3id.org/hsu-aut/css#StateMachine",
+          "EmbeddedDataSpecifications": [
+            {
+              "$type": "AasCore.Aas3_0.EmbeddedDataSpecification, AasCore.Aas3_0",
+              "DataSpecification": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0"
+                  }
+                ]
+              },
+              "DataSpecificationContent": {
+                "$type": "AasCore.Aas3_0.DataSpecificationIec61360, AasCore.Aas3_0",
+                "PreferredName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "SkillStateMachine"
+                  }
+                ],
+                "DataType": "STRING",
+                "Definition": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "standardized state machine of the skill, with its current state as well as possible interactions"
+                  },
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "es",
+                    "Text": "máquina de estados estandarizada de la habilidad, con su estado actual así como las posibles interacciones"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "$type": "AasCore.Aas3_0.ConceptDescription, AasCore.Aas3_0",
+          "IdShort": "SkillParameterExposedThrough",
+          "Administration": {
+            "$type": "AasCore.Aas3_0.AdministrativeInformation, AasCore.Aas3_0",
+            "Version": "1",
+            "Revision": "1"
+          },
+          "Id": "urn:ehu:gcis:capabilityskillontology:1:1:skillparameterexposedthrough",
+          "EmbeddedDataSpecifications": [
+            {
+              "$type": "AasCore.Aas3_0.EmbeddedDataSpecification, AasCore.Aas3_0",
+              "DataSpecification": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0"
+                  }
+                ]
+              },
+              "DataSpecificationContent": {
+                "$type": "AasCore.Aas3_0.DataSpecificationIec61360, AasCore.Aas3_0",
+                "PreferredName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "SkillParameterExposedThrough"
+                  }
+                ],
+                "DataType": "STRING",
+                "Definition": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "relationship between the skill parameter and the element within the skill interface that exposes the parameter. If an input parameter, the related interface element will be the where it should be added during the request, and if an output parameter, where the data can be obtained."
+                  },
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "es",
+                    "Text": "relación entre el parámetro de destreza y el elemento de la interfaz de destreza que expone el parámetro. Si se trata de un parámetro de entrada, el elemento de la interfaz relacionado será el lugar donde debe añadirse durante la solicitud, y si se trata de un parámetro de salida, el lugar donde pueden obtenerse los datos."
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

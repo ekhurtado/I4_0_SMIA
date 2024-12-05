@@ -1,0 +1,149 @@
+,
+{
+  "name": "GCIS | CapabilityQualifiers | REQUIREMENT",
+  "qualifier": {
+    "kind": "ConceptQualifier",
+    "semanticId": {
+      "type": "ExternalReference",
+      "keys": [
+        {
+          "type": "GlobalReference",
+          "value": "http://www.w3id.org/upv-ehu/gcis/css-smia#hasLifecycle"
+        }
+      ]
+    },
+    "type": "hasLifecycle",
+    "value": "REQUIREMENT",
+    "valueId": null
+  }
+},
+{
+  "name": "GCIS | CapabilityQualifiers | OFFER",
+  "qualifier": {
+    "kind": "ConceptQualifier",
+    "semanticId": {
+      "type": "ExternalReference",
+      "keys": [
+        {
+          "type": "GlobalReference",
+          "value": "http://www.w3id.org/upv-ehu/gcis/css-smia#hasLifecycle"
+        }
+      ]
+    },
+    "type": "hasLifecycle",
+    "value": "OFFER",
+    "valueId": null
+  }
+},
+{
+  "name": "GCIS | CapabilityQualifiers | ASSURANCE",
+  "qualifier": {
+    "kind": "ConceptQualifier",
+    "semanticId": {
+      "type": "ExternalReference",
+      "keys": [
+        {
+          "type": "GlobalReference",
+          "value": "http://www.w3id.org/upv-ehu/gcis/css-smia#hasLifecycle"
+        }
+      ]
+    },
+    "type": "hasLifecycle",
+    "value": "ASSURANCE",
+    "valueId": null
+  }
+},
+{
+  "name": "GCIS | SkillQualifiers | OPERATION",
+  "qualifier": {
+    "kind": "ConceptQualifier",
+    "semanticId": null,
+    "type": "SkillImplementationType",
+    "value": "OPERATION",
+    "valueId": null
+  }
+},
+{
+  "name": "GCIS | CapabilityContraintsQualifiers | PRECONDITION",
+  "qualifier": {
+    "kind": "ConceptQualifier",
+    "semanticId": {
+      "type": "ExternalReference",
+      "keys": [
+        {
+          "type": "GlobalReference",
+          "value": "http://www.w3id.org/upv-ehu/gcis/css-smia#hasCondition"
+        }
+      ]
+    },
+    "type": "hasCondition",
+    "value": "PRECONDITION",
+    "valueId": null
+  }
+},
+{
+  "name": "GCIS | CapabilityContraintsQualifiers | POSTCONDITION",
+  "qualifier": {
+    "kind": "ConceptQualifier",
+    "semanticId": {
+      "type": "ExternalReference",
+      "keys": [
+        {
+          "type": "GlobalReference",
+          "value": "http://www.w3id.org/upv-ehu/gcis/css-smia#hasCondition"
+        }
+      ]
+    },
+    "type": "hasCondition",
+    "value": "POSTCONDITION",
+    "valueId": null
+  }
+},
+{
+  "name": "GCIS | CapabilityContraintsQualifiers | INVARIANT",
+  "qualifier": {
+    "kind": "ConceptQualifier",
+    "semanticId": {
+      "type": "ExternalReference",
+      "keys": [
+        {
+          "type": "GlobalReference",
+          "value": "http://www.w3id.org/upv-ehu/gcis/css-smia#hasCondition"
+        }
+      ]
+    },
+    "type": "hasCondition",
+    "value": "INVARIANT",
+    "valueId": null
+  }
+},
+{
+  "name": "GCIS | AssetInterfaces | DataQueryQualifiers | JSONPATH",
+  "qualifier": {
+    "kind": "ValueQualifier",
+    "semanticId": null,
+    "type": "DataQueryType",
+    "value": "jsonpath",
+    "valueId": null
+  }
+},
+{
+  "name": "GCIS | AssetInterfaces | DataQueryQualifiers | XPATH",
+  "qualifier": {
+    "kind": "ValueQualifier",
+    "semanticId": null,
+    "type": "DataQueryType",
+    "value": "xpath",
+    "valueId": null
+  }
+},
+{
+  "name": "GCIS | AssetInterfaces | DataQueryQualifiers | Regex",
+  "qualifier": {
+    "kind": "ValueQualifier",
+    "semanticId": null,
+    "type": "DataQueryType",
+    "value": "regex",
+    "valueId": null
+  }
+}
