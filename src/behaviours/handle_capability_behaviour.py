@@ -6,8 +6,9 @@ from spade.behaviour import OneShotBehaviour
 
 from logic import inter_aas_interactions_utils
 from logic.exceptions import CapabilityRequestExecutionError, CapabilityCheckingError, RequestDataError, \
-    AssetConnectionError, OntologyReadingError
-from css_ontology.css_ontology_utils import CapabilitySkillACLInfo, AssetInterfacesInfo
+    AssetConnectionError, OntologyReadingError, AASModelReadingError
+from css_ontology.css_ontology_utils import CapabilitySkillACLInfo
+from utilities.smia_info import AssetInterfacesInfo
 from utilities.fipa_acl_info import FIPAACLInfo, ACLJSONSchemas
 
 _logger = logging.getLogger(__name__)
@@ -62,7 +63,7 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
     # ------------------------------------------
     # Methods to handle of all types of services
     # ------------------------------------------
-    async def handle_request(self):
+    async def handle_request_old(self):
         """
         This method handle capability requests to the DT.
         """
@@ -80,81 +81,6 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
                 # The data received is checked to ensure that it contains all the necessary information.
                 await self.check_received_capability_request_data()
                 received_cap_data = self.svc_req_data['serviceData']['serviceParams']
-
-                # TODO BORRAR: PRUEBA RECOGIENDO LOS DATOS CON CSS ONTOLOGY
-                cap_name = received_cap_data[CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME]
-                try:
-                    cap_ontology_instance = await self.myagent.css_ontology.get_ontology_instance_by_name(cap_name)
-                    _logger.aclinfo(
-                        "Capability ontology element found for {}: {}".format(cap_name, cap_ontology_instance))
-                    # TODO HACER AHORA: No hay que buscar manualmente las relaciones entre conceptos, para ello hay que
-                    #  utilizar la ontologia. Es decir, a nosotros nos llega una capacidad requerida, una skill
-                    #  requerida y una skill interface requerida. A partir de esos elementos, buscaremos en la
-                    #  ontologia las relaciones pertinentes, para saber que atributo solicitar
-                    #  a la clase de ontologia (p.e. si me pasan una capacidad y una skill, lo cual se deberá determinar
-                    #  mediante el nombre de cada uno de momento (mas adelante si se deja al usuario desarrollar la
-                    #  ontologia se determinará mediante el IRI), el software analizará si esos conceptos estan
-                    #  relacionados, y cual es la relacion entre ambos pero siempre recogiendo esa informacion desde la
-                    #  ontología).
-                    if CapabilitySkillACLInfo.REQUIRED_SKILL_NAME not in received_cap_data:
-                        cap_associated_skills = cap_ontology_instance.get_associated_skill_instances()
-                        if cap_associated_skills is None:
-                            raise CapabilityRequestExecutionError(cap_name, "The capability {} does not have any "
-                                                                            "associated skill, so it cannot be "
-                                                                            "executed".format(cap_name), self)
-                        else:
-                            # En este caso no se ha determinado una skill en concreto, asi que se comprobará si alguna
-                            # skill no tiene parametros, por lo que puede ser directamente ejecutada
-                            for skill in cap_associated_skills:
-                                # TODO ESTO ES SIMPLEMENTE PARA MOSTRAR TODAS LAS SKILLS E INTERFACES
-                                _logger.aclinfo("{} is a skill of the capability "
-                                                "{}".format(skill.name, cap_ontology_instance.name))
-                                for interf in skill.get_associated_skill_interface_instances():
-                                    _logger.aclinfo("{} is a interface with agent/asset service of the skill "
-                                                    "{}".format(interf.name, skill.name))
-
-                                if skill.get_associated_skill_parameter_instances() is None:
-                                    # En este caso no tiene parametros, por lo que se puede ejecutar directamente
-                                    _logger.aclinfo("Executing capability {} with skill {} and interface "
-                                                    "{}".format(cap_name, skill.name,
-                                                                list(skill.get_associated_skill_interface_instances())[
-                                                                    0].name))
-                                    # TODO quedaría ejecutar la lógica con una interfaz aleatoria. Se podria definir un
-                                    #  metodo de ejecutar capacidad pasandole una skill y una interfaz. Si la interfaz
-                                    #  es None, entonces se recogería una aleatoria
-                            else:
-                                # En este caso todas las skills tienen parametros, asi que hay que solicitarselos al
-                                # requester de la ejecución de la capacidad. Se devolverán todas skills con sus
-                                # parametros para que vuelva a solicitar la ejecución de la capacidad pero con una skill
-                                # especificada y con los valores necesarios de sus parametros
-                                response_svc_params = {"message": "To execute the capability {}, the skill and its "
-                                                                  "parameters need to be added in the request message.".format(
-                                    cap_name),
-                                    "possibleSkills": [s.name for s in cap_associated_skills]}
-                                await self.send_response_msg_to_sender(FIPAACLInfo.FIPA_ACL_PERFORMATIVE_INFORM,
-                                                                       response_svc_params)
-
-                    else:
-                        # En este caso se ha especificado una skill, asi que primera se analizara si tiene parametros y
-                        # si estos se han definido
-                        result, skill_ontology_instance = (cap_ontology_instance.check_and_get_related_instance_by_instance_name(
-                            received_cap_data[CapabilitySkillACLInfo.REQUIRED_SKILL_NAME]))
-                        if CapabilitySkillACLInfo.REQUIRED_SKILL_INTERFACE_NAME not in received_cap_data:
-                            # Si no se ha definido una skill interface, se recoge la primera
-                            skill_interface_ontology_instance = list(skill_ontology_instance.
-                                                                      get_associated_skill_interface_instances())[0]
-                        else:
-                            result, skill_ontology_instance = skill_ontology_instance.check_and_get_related_instance_by_instance_name(
-                                received_cap_data[CapabilitySkillACLInfo.REQUIRED_SKILL_INTERFACE_NAME])
-                        # En este punto ya se podria ejecutar la capacidad
-                        # TODO HACER AHORA: pensar como sería el codigo para ejecutar una capacidad con instancias de
-                        #  la ontologia
-                        pass    # FALTA POR HACER
-
-                except OntologyReadingError as e:
-                    _logger.error("The capability {} does not exist in the ontology of this DT.".format(cap_name))
-
-                # TODO BORRAR: FIN PRUEBA RECOGIENDO LOS DATOS CON CSS ONTOLOGY
 
                 # TODO: CUIDADO a partir de ahora es el codigo antiguo (sin tener en cuenta la ontologia)
                 # First, the skill interface elem need to be obtained. The capability element will be used for this.
@@ -211,7 +137,7 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
                         cap_name), self)
 
                 received_skill_input_parameters, received_skill_output_parameters, skill_params_exposures = \
-                    await self.get_asset_connection_skill_data(skill_elem)
+                    await self.get_asset_connection_input_data_by_skill(skill_elem)
 
                 _logger.assetinfo("The Asset connection of the Skill Interface has been obtained.")
                 _logger.assetinfo(
@@ -266,6 +192,55 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
         else:
             pass
             # TODO pensar que situaciones habria
+
+    async def handle_request(self):
+        """
+        This method handle capability requests to the DT.
+        """
+
+        # TODO, para este paso, se podrian almacenar las capacidades que se han verificado ya cuando se recibe el
+        #  Query-If (se supone que otro agente debería mandar en CallForProposal despues del Query-If, pero para
+        #  añadirle una validacion extra) Esto podria hacerse con el thread (el Query-If y CFP estarían en la misma
+        #  negociacion?). Otra opcion es siempre ejecutar aas_model.capability_checking_from_acl_request()
+        cap_name = None
+        try:
+            # The capability checking should be also performed to ensure that the DT can perform it. In this case,
+            # the capability checking is performed in separate steps
+            # First, the data received is checked to ensure that it contains all the necessary information.
+            await self.check_received_capability_request_data()
+
+            # The instances of capability, skill and skill interface are obtained depeding on the received data
+            cap_ontology_instance, skill_ontology_instance, skill_interface_ontology_instance = \
+                await self.get_ontology_instances()
+
+            # Once all the data has been checked and obtained, the capability can be executed
+            cap_execution_result = await self.execute_capability(cap_ontology_instance, skill_ontology_instance,
+                                          skill_interface_ontology_instance)
+
+            # When the skill has finished, the request is answered
+            await self.send_response_msg_to_sender(FIPAACLInfo.FIPA_ACL_PERFORMATIVE_INFORM,
+                                                   {'result': cap_execution_result})
+
+            _logger.info("Management of the capability {} finished.".format(cap_name))
+
+        except (RequestDataError, OntologyReadingError, CapabilityRequestExecutionError,
+                AASModelReadingError, AssetConnectionError) as cap_request_error:
+            if isinstance(cap_request_error, RequestDataError):
+                if 'JSON schema' in cap_request_error.message:
+                    cap_name= ''
+            if isinstance(cap_request_error, RequestDataError) or isinstance(cap_request_error, OntologyReadingError) \
+                or isinstance(cap_request_error, AASModelReadingError):
+                cap_request_error = CapabilityRequestExecutionError(cap_name, cap_request_error.__class__.__name__ +
+                                                                    ': ' + cap_request_error.message, self)
+            if isinstance(cap_request_error, AssetConnectionError):
+                cap_request_error = CapabilityRequestExecutionError(
+                    cap_name, f"The error [{cap_request_error.error_type}] has appeared during the asset "
+                              f"connection. Reason: {cap_request_error.reason}.", self)
+
+            await cap_request_error.handle_capability_execution_error()
+            return  # killing a behaviour does not cancel its current run loop
+
+
 
     async def handle_query_if(self):
         """
@@ -345,8 +320,8 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
         #  ejecutaría la capacidad con una skill aleatoria). Lo que si se va a comprobar es que si se añaden datos
         #  opcionales, sean validos (p.e. que los datos añadidos estén conformes a la ontologia CSS)
         # First, the structure and attributes of the received data are checked and validated
-        await inter_aas_interactions_utils.check_received_request_data(self.svc_req_data,
-                                                                       ACLJSONSchemas.JSON_SCHEMA_CAPABILITY_REQUEST)
+        await inter_aas_interactions_utils.check_received_request_data_structure(
+            self.svc_req_data, ACLJSONSchemas.JSON_SCHEMA_CAPABILITY_REQUEST)
         received_cap_data = self.svc_req_data['serviceData']['serviceParams']
         # if CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME not in received_cap_data:
         #     raise RequestDataError("The received capability data is invalid due to missing #{} field in request "
@@ -365,7 +340,7 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
                                           "DT, or the skill does not have an instance"
                                           ".".format(cap_name, skill_name))
             if skill_instance.get_associated_skill_parameter_instances() is not None:
-                pass    # TODO FALTA POR HACER
+                pass    # TODO HACER AHORA: FALTA POR HACER
                 # TODO comprobar que se han añadido los datos necesarios de los parametros (en este caso
                 #  solo seran necesarios los parametros de entrada)
             if CapabilitySkillACLInfo.REQUIRED_SKILL_INTERFACE_NAME in received_cap_data:
@@ -424,10 +399,113 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
                     "information section of the request message.".format(
                         CapabilitySkillACLInfo.REQUIRED_SKILL_OUTPUT_PARAMETERS))
 
-    async def get_asset_connection_skill_data(self, skill_elem):
+    async def get_ontology_instances(self):
         """
-        This method gets all the information required in the Asset Connection class in order to execute the received
-        skill request.
+        This method gets the ontology instances for the capability, skill and skill interface depending on the received
+        data. If the data is invalid or there are no available combination of three instances, it raises an Exception.
+
+        Returns:
+            capability_instance (owlready2.ThingClass), skill_instance (owlready2.ThingClass),
+            skill_interface_instance (owlready2.ThingClass): ontology instances for capability, skill and skill
+            interface.
+        """
+
+        received_cap_data = self.svc_req_data['serviceData']['serviceParams']
+        cap_name = received_cap_data[CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME]
+        cap_ontology_instance = await self.myagent.css_ontology.get_ontology_instance_by_name(cap_name)
+
+        # The CSS ontology is used to search for instances
+        if CapabilitySkillACLInfo.REQUIRED_SKILL_NAME not in received_cap_data:
+            cap_associated_skills = cap_ontology_instance.get_associated_skill_instances()
+            if cap_associated_skills is None:
+                raise CapabilityRequestExecutionError(cap_name, "The capability {} does not have any associated skill, "
+                                                                "so it cannot be executed".format(cap_name), self)
+            else:
+                # En este caso no se ha determinado una skill en concreto, asi que se comprobará si alguna
+                # skill no tiene parametros, por lo que puede ser directamente ejecutada
+                for skill in cap_associated_skills:
+                    if skill.get_associated_skill_parameter_instances() is None:
+                        # En este caso no tiene parametros, por lo que se puede ejecutar directamente
+                        if len(list(skill.get_associated_skill_interface_instances())) == 0:
+                            # If the skill does not have interfaces, it cannot be executed
+                            continue
+                        # The first skill interface is obtained to execute the capability
+                        return cap_ontology_instance, skill, list(skill.get_associated_skill_interface_instances())[0]
+                else:
+                    # En este caso todas las skills tienen parametros, asi que hay que solicitarselos al
+                    # requester de la ejecución de la capacidad. Se devolverán todas skills con sus
+                    # parametros para que vuelva a solicitar la ejecución de la capacidad pero con una skill
+                    # especificada y con los valores necesarios de sus parametros
+                    raise RequestDataError("To execute the capability {}, the skill and its parameters need to be added"
+                                           " in the request message.".format(cap_name))
+        else:
+            # En este caso se ha especificado una skill, asi que primera se analizara si tiene parametros y
+            # si estos se han definido
+            result, skill_ontology_instance = (cap_ontology_instance.check_and_get_related_instance_by_instance_name(
+                    received_cap_data[CapabilitySkillACLInfo.REQUIRED_SKILL_NAME]))
+            skill_interface_ontology_instance = None
+            if CapabilitySkillACLInfo.REQUIRED_SKILL_INTERFACE_NAME not in received_cap_data:
+                # Si no se ha definido una skill interface, se recoge la primera
+                skill_interface_ontology_instance = list(skill_ontology_instance.
+                                                         get_associated_skill_interface_instances())[0]
+                if skill_interface_ontology_instance is None:
+                    raise CapabilityRequestExecutionError(cap_name, "The capability requested by the given"
+                                                                    " skill cannot be executed because there is no skill "
+                                                                    "interface defined.", self)
+            else:
+                result, skill_interface_ontology_instance = skill_ontology_instance.check_and_get_related_instance_by_instance_name(
+                    received_cap_data[CapabilitySkillACLInfo.REQUIRED_SKILL_INTERFACE_NAME])
+                return cap_ontology_instance, skill_ontology_instance, skill_interface_ontology_instance
+
+    async def execute_capability(self, cap_instance, skill_instance, skill_interface_instance):
+        """
+        This method executes a given capability through as an implementation of a given skill through a given skill
+        interface. All the data received are instances of the CSS ontology.
+
+        Args:
+            cap_instance (owlready2.ThingClass): ontology instance of the capability to execute.
+            skill_instance (owlready2.ThingClass): ontology instance of the skill to execute.
+            skill_interface_instance (owlready2.ThingClass): ontology instance of the skill interface to use.
+
+        Returns:
+            object: result of the capability execution
+        """
+        aas_cap_elem = await self.myagent.aas_model.get_object_by_reference(cap_instance.get_aas_sme_ref())
+        aas_skill_elem = await self.myagent.aas_model.get_object_by_reference(skill_instance.get_aas_sme_ref())
+        aas_skill_interface_elem = await self.myagent.aas_model.get_object_by_reference(skill_interface_instance.get_aas_sme_ref())
+        if None in (aas_cap_elem, aas_skill_elem, aas_skill_interface_elem):
+            raise CapabilityRequestExecutionError(cap_instance.name, "The requested capability {} cannot be executed"
+                                                  " because there is no AAS element linked to the ontology "
+                                                  "instances.".format(cap_instance.name), self)
+        # The asset interface will be obtained from the skill interface SubmodelElement.
+        aas_asset_interface_elem = aas_skill_interface_elem.get_associated_asset_interface()
+        # TODO PENSAR COMO SERIA CON UN AGENT SERVICE
+        # With the AAS SubmodelElement of the asset interface the related Python class, able to connect to the asset,
+        # can be obtained.
+        asset_connection_class = await self.myagent.get_asset_connection_class(aas_asset_interface_elem)
+        _logger.assetinfo("The Asset connection of the Skill Interface has been obtained.")
+        # Now the capability can be executed through the Asset Connection class related to the given skill. The required
+        # input data can be obtained from the received message, since it has already been verified as containing such data
+        # TODO FALTA DESARROLLARLO EN EL METODO DE CHEQUEO DEL MENSAJE
+        _logger.assetinfo("Executing skill of the capability through an asset service...")
+        received_skill_input_data = self.svc_req_data['serviceData']['serviceParams'][
+            CapabilitySkillACLInfo.REQUIRED_SKILL_PARAMETERS_VALUES]
+        skill_execution_result = await asset_connection_class.execute_asset_service(
+            interaction_metadata=aas_skill_interface_elem,
+            service_input_data=received_skill_input_data)
+        _logger.assetinfo("Skill of the capability successfully executed.")
+
+        # TODO SI LA SKILL TIENE OUTPUT PARAMETERS, HAY QUE RECOGERLOS DEL skill_execution_result. En ese caso, se
+        #  sobreescribirá el skill_execution_result con la variable output y su valor (el cual será lo que devolverá el
+        #  metodo del asset connnection class)
+
+        return skill_execution_result
+
+
+    async def get_asset_connection_input_data_by_skill(self, skill_elem):
+        """
+        This method gets all the input data required in the Asset Connection class by a given skill, in order to
+        execute the received capability request.
 
         Args:
             skill_elem (basyx.aas.model.SubmodelElement): skill Python object in form of a SubmodelElement.

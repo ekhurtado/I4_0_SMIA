@@ -15,8 +15,8 @@ from aas_model.aas_model_utils import AASModelUtils
 from aas_model.extended_submodel import ExtendedSkill, ExtendedSkillInterface, ExtendedComplexSkillInterface, \
     ExtendedComplexSkill, ExtendedSimpleSkill, ExtendedSimpleSkillInterface
 from assetconnection.http_asset_connection import HTTPAssetConnection
-from css_ontology.css_ontology_utils import CapabilitySkillOntologyUtils, AssetInterfacesInfo, \
-    CapabilitySkillOntologyInfo, CSSModelAASModelInfo
+from css_ontology.css_ontology_utils import CapabilitySkillOntologyUtils, CapabilitySkillOntologyInfo, CSSModelAASModelInfo
+from utilities.smia_info import AssetInterfacesInfo
 from logic.exceptions import AASModelReadingError, AASModelOntologyError, \
     OntologyReadingError
 

@@ -1,3 +1,4 @@
+import signal
 import sys
 import time
 
@@ -116,6 +117,17 @@ def get_service_result(service_id):
         service_result = asset_integration.get_processed_service(service_id)
     return service_result
 
+
+def handler(sig_num, frame):
+    # print("Gestor de señales llamado con la señal " + str(sig_num))
+    # print("Comprueba el número de señal en https://en.wikipedia.org/wiki/Signal_%28IPC%29#Default_action")
+
+    print('Exiting the program')
+    sys.exit(0)
+
+
 if __name__ == '__main__':
+    signal.signal(signal.SIGINT, handler)
+    print("Program started. Type Ctrl-C to exit.\n")
     app.run(host='0.0.0.0')
 

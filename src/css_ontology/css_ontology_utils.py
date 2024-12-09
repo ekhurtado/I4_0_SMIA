@@ -239,41 +239,10 @@ class CapabilitySkillACLInfo:
     REQUIRED_SKILL_NAME = 'skillName'
     REQUIRED_SKILL_ELEMENT_TYPE = 'smeType'
     REQUIRED_SKILL_PARAMETERS = 'skillParameters'
+    REQUIRED_SKILL_PARAMETERS_VALUES = 'skillParameterValues'
     REQUIRED_SKILL_INPUT_PARAMETERS = 'inputs'
     REQUIRED_SKILL_OUTPUT_PARAMETERS = 'outputs'
     REQUIRED_SKILL_INTERFACE_NAME = 'skillInterfaceName'
     # TODO pensar si harian falta mas
 
-
-class AssetInterfacesInfo:
-    """This class contains the information related to Asset Interfaces submodel (AssetInterfacesDescription submodel of
-    IDTA)."""
-
-    # SemanticIDs of Asset Interfaces
-    SEMANTICID_INTERFACES_SUBMODEL = 'https://admin-shell.io/idta/AssetInterfacesDescription/1/0/Submodel'
-    SEMANTICID_INTERFACE = 'https://admin-shell.io/idta/AssetInterfacesDescription/1/0/Interface'
-    SEMANTICID_ENDPOINT_METADATA = 'https://admin-shell.io/idta/AssetInterfacesDescription/1/0/EndpointMetadata'
-    SEMANTICID_INTERACTION_METADATA = 'https://admin-shell.io/idta/AssetInterfacesDescription/1/0/InteractionMetadata'
-    SEMANTICID_VALUE_SEMANTICS = 'https://admin-shell.io/idta/AssetInterfacesDescription/1/0/valueSemantics'
-
-    # SemanticIDs of W3 2011
-    SUPPL_SEMANTICID_HTTP = 'http://www.w3.org/2011/http'
-    SEMANTICID_INTERFACE_INTERACTION_TYPE = 'https://www.w3.org/1999/02/22-rdf-syntax-ns#type'
-
-    # SemanticIDs of Web of Things (WoT) ontology
-    SEMANTICID_INTERFACE_TITLE = 'https://www.w3.org/2019/wot/td#title'
-    SEMANTICID_INTERFACE_BASE = 'https://www.w3.org/2019/wot/td#baseURI'
-    SEMANTICID_INTERFACE_CONTENT_TYPE = 'https://www.w3.org/2019/wot/hypermedia#forContentType'
-
-    SEMANTICID_INTERFACE_SECURITY_DEFINITIONS = 'https://www.w3.org/2019/wot/td#definesSecurityScheme'
-    SEMANTICID_INTERFACE_NO_SECURITY_SCHEME = 'https://www.w3.org/2019/wot/security#NoSecurityScheme'
-
-    SEMANTICID_INTERFACE_PROPERTY = 'https://www.w3.org/2019/wot/td#PropertyAffordance'
-    SEMANTICID_INTERFACE_ACTION = 'https://www.w3.org/2019/wot/td#ActionAffordance'
-
-    SEMANTICID_INTERFACE_FORMS = 'https://www.w3.org/2019/wot/td#hasForm'
-    SEMANTICID_INTERFACE_HREF = 'https://www.w3.org/2019/wot/hypermedia#hasTarget'
-
-    # TODO NUEVO
-    SEMANTICID_INTERFACE_INTERACTION_DATA_QUERY = 'https://admin-shell.io/idta/AssetInterfacesDescription/1/0/dataQuery'  # TODO CUIDADO, ESTE ES NUEVO, PENSAR COMO SERIA. Se ha pensado asociar este ID con un apartado de la interfaz donde se añadirá el query para extraer la informacion de la respuesta del activo (esta query debera ir en relacion con el tipo de contenido, p.e. JSONata o JSONPath para respuestas JSON)
 

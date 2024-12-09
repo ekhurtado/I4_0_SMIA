@@ -4,8 +4,9 @@ import basyx.aas.model.submodel
 from basyx.aas.util import traversal
 
 from logic.exceptions import CapabilityCheckingError, AASModelReadingError
-from css_ontology.css_ontology_utils import CapabilitySkillOntologyUtils, CapabilitySkillACLInfo, AssetInterfacesInfo, \
+from css_ontology.css_ontology_utils import CapabilitySkillOntologyUtils, CapabilitySkillACLInfo, \
     CapabilitySkillOntologyInfo
+from utilities.smia_info import AssetInterfacesInfo
 
 _logger = logging.getLogger(__name__)
 
@@ -536,7 +537,7 @@ class ExtendedAASModel:
         """
         # The exposure elements can be obtained with the related relationship semanticID
         rels_params_exposed = await self.get_submodel_elements_by_semantic_id(
-            CapabilitySkillOntologyInfo.EXP.SEMANTICID_REL_SKILL_PARAMETER_SKILL_INTERFACE, basyx.aas.model.RelationshipElement)
+            CapabilitySkillOntologyUtils.SEMANTICID_REL_SKILL_PARAMETER_SKILL_INTERFACE, basyx.aas.model.RelationshipElement)
         for rel in rels_params_exposed:
             first_elem = await self.get_object_by_reference(rel.first)
             second_elem = await self.get_object_by_reference(rel.second)

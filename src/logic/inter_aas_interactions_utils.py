@@ -133,7 +133,7 @@ def create_inter_aas_response_object(inter_aas_request, intra_aas_response):
 
 
 
-async def check_received_request_data(received_data, json_schema):
+async def check_received_request_data_structure(received_data, json_schema):
     """
     This method checks if the received data for a request is valid. The JSON object with the specific
     data is also validated against the given associated JSON Schema. In any case, if it is invalid, it raises a

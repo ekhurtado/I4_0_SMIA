@@ -6,8 +6,9 @@ from basyx.aas.model import SubmodelElementList, SubmodelElement, Operation, Sub
     Range, Blob, File, ReferenceElement, Capability
 
 from aas_model.extended_aas import ExtendedGeneralMethods
-from logic.exceptions import AASModelOntologyError
+from logic.exceptions import AASModelOntologyError, AASModelReadingError
 from css_ontology.css_ontology_utils import CapabilitySkillOntologyInfo
+from utilities.smia_info import AssetInterfacesInfo
 
 _logger = logging.getLogger(__name__)
 
@@ -416,7 +417,15 @@ class ExtendedSkillInterface(ExtendedGenericCSSClass):
     # TODO se ha tenido que separar las skills interfaces simples (Operation,Event...) de las complejas (SMC). De
     #  momento se tienen ambas opciones ya que las interfaces de servicios de activos son SMC y las de los servicios de
     #  agente son simples
-    pass
+
+    def get_associated_asset_interface(self):
+        """
+        This method gets the asset interface AAS SubmodelElement associated with this skill interface.
+
+        Returns:
+            basyx.aas.model.SubmodelElement: submodel element of the asset interface.
+        """
+        pass
 
 class ExtendedCapabilityConstraint(ExtendedGenericCSSClass, ExtendedSubmodelElement, ExtendedProperty):
 
@@ -480,3 +489,20 @@ class ExtendedComplexSkillInterface(ExtendedSkillInterface, ExtendedSubmodelElem
         if not self.check_semantic_id_exist(CapabilitySkillOntologyInfo.CSS_ONTOLOGY_SKILL_INTERFACE_IRI):
             raise AASModelOntologyError("The skill {} does not have the valid semanticID within the "
                                         "ontology.".format(self.id_short), self, "OntologySemanticIdMissing")
+
+    def get_associated_asset_interface(self):
+        """
+        This method gets the asset interface AAS SubmodelElement associated with this skill interface.
+
+        Returns:
+            basyx.aas.model.SubmodelElement: submodel element of the asset interface.
+        """
+        #
+        asset_interface_elem = self.get_parent_ref_by_semantic_id(AssetInterfacesInfo.SEMANTICID_INTERFACE)
+        if asset_interface_elem is None:
+            raise AASModelReadingError("The skill interface is not inside the AssetInterfaceSubmodel.", self,
+                                       "SubmodelElementNotInValidSubmodel")
+        return asset_interface_elem
+
+
+

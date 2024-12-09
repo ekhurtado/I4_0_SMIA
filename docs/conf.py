@@ -75,7 +75,8 @@ html_theme = 'furo'
 # Configuration of Furo HTML theme
 # All color definitions: https://github.com/pradyunsg/furo/blob/main/src/furo/assets/styles/variables/_colors.scss
 # html_logo = "_static/images/I4_0_SMIA_logo_rtd.png"
-html_favicon = "_static/images/I4_0_SMIA_favicon.svg"
+# html_favicon = "_static/images/I4_0_SMIA_favicon.svg"
+html_favicon = "_static/images/SMIA_favicon.ico"
 
 html_theme_options = {
     "light_logo": "images/I4_0_SMIA_logo_positive.png",

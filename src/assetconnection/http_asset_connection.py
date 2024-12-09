@@ -1,10 +1,11 @@
 import logging
 import requests
-from requests import ConnectTimeout
+from basyx.aas.util import traversal
+from requests import ConnectTimeout, ConnectionError
 
 from assetconnection.asset_connection import AssetConnection
 from logic.exceptions import AssetConnectionError
-from css_ontology.css_ontology_utils import AssetInterfacesInfo
+from utilities.smia_info import AssetInterfacesInfo
 
 _logger = logging.getLogger(__name__)
 
@@ -96,10 +97,26 @@ class HTTPAssetConnection(AssetConnection):
             return await self.get_response_content(interaction_metadata, http_response.text)
         return None
 
-    async def execute_asset_service(self, interaction_metadata, service_data=None):
+    async def execute_asset_service(self, interaction_metadata, service_input_data = None):
+        if interaction_metadata is None:
+            raise AssetConnectionError("The skill cannot be executed by asset service because the given "
+                                       "InteractionMetadata object is None", "invalid method parameter",
+                                       "InteractionMetadata object is None")
+
         await self.extract_general_interaction_metadata(interaction_metadata)
-        # TODO hacer
-        pass
+
+        # Then, the data of the skill is added in the required field. To do that, the 'SkillParameterExposedThrough'
+        # relationship should be obtained, which indicates where the parameter data should be added
+        if service_input_data is not None:
+            await self.add_asset_service_data(interaction_metadata, service_input_data)
+
+        # At this point, the HTTP request is performed
+        http_response = await self.send_http_request()
+        if http_response:
+            if http_response.status_code != 200:
+                _logger.warning("The HTTP request has not been answered correctly.")
+            return await self.get_response_content(interaction_metadata, http_response.text)
+        return None
 
     async def receive_msg_from_asset(self):
         pass
@@ -178,30 +195,32 @@ class HTTPAssetConnection(AssetConnection):
         if method_name_elem:
             self.request_method = method_name_elem.value
 
-    async def add_asset_service_data(self, skill_params_exposure_elem, skill_input_params):
+    async def add_asset_service_data(self, interaction_metadata, service_input_data):
         """
         This method adds the required data of the asset service, using the skill params information (exposure element
         and skill input data). The information is saved in the global variables of the class.
 
         Args:
-            skill_params_exposure_elem (basyx.aas.model.submodelElement): SubmodelElement within the skill interface that exposes the skill parameters.
-            skill_input_params (dict): dictionary containing the skill input data.
+            interaction_metadata (basyx.aas.model.SubmodelElementCollection): SubmodelElement of interactionMetadata.
+            service_input_data (dict): dictionary containing the input data of the asset service.
         """
-        if skill_params_exposure_elem:
-            if skill_params_exposure_elem.check_semantic_id_exist(
-                    HTTPAssetInterfaceSemantics.SEMANTICID_HTTP_INTERFACE_PARAMS):
+        for submodel_element in traversal.walk_submodel(interaction_metadata):
+            # TODO AQUI QUEDA COMPROBAR QUE EXISTE EL SEMANTICID PARA DETERMINAR DONDE HAY QUE AÑADIR LOS DATOS (hay que
+            #  pensar el nombre, pero algo estilo 'InputDataLocation')
+            # TODO DE MOMENTO SE DEJA CON SOLO PARAMS DE HTTP
+            if submodel_element.check_semantic_id_exist(HTTPAssetInterfaceSemantics.SEMANTICID_HTTP_INTERFACE_PARAMS):
                 request_params = {}
-                for param_smc_elem in skill_params_exposure_elem.value:
-                    param_name = param_smc_elem.get_sm_element_by_semantic_id(
-                        HTTPAssetInterfaceSemantics.SEMANTICID_HTTP_INTERFACE_PARAM_NAME).value
-                    # TODO CUIDADO, LOS PARAMETROS SE AÑADEN DE UNO EN UNO DESDE LOS SKILL PARAMS (quizas habria que obligar
-                    #  a que los nombres de los skill params sean los mismo que necesita la interfaz, y de esa forma directamente añadirlos)
-                    request_params[param_name] = skill_input_params[param_name]
+                param_name = submodel_element.get_sm_element_by_semantic_id(
+                    HTTPAssetInterfaceSemantics.SEMANTICID_HTTP_INTERFACE_PARAM_NAME).value
+                request_params[param_name] = service_input_data[param_name]
                 self.request_params = request_params
-            else:
-                # TODO pensar como se haria si no hay que añadirlo en los parametros (p.e. en el body)
-                print("Interface skill parameters exposure not with HTTP params field")
-                # TODO PENSAR EN MAS OPCIONES DE AÑADIR LOS PARAMETROS (P.E. EN LA URI)
+                break
+            # TODO pensar como se haria si no hay que añadirlo en los parametros (p.e. en el body)
+            # TODO PENSAR EN MAS OPCIONES DE AÑADIR LOS PARAMETROS (P.E. EN LA URI)
+        else:
+            AssetConnectionError("The interface need input data but there is no location defined for it.",
+                                 'Invalid interface SubmodelElement', 'MissingAttribute')
+
 
     async def send_http_request(self):
         """
@@ -229,10 +248,13 @@ class HTTPAssetConnection(AssetConnection):
             elif self.request_method == 'PUT':
                 # TODO a probar
                 return requests.put(url=self.request_uri, headers=self.request_headers, params=self.request_params)
-        except ConnectTimeout as e:
-            _logger.error(e)
-            raise AssetConnectionError("The request to asset timed out, so the asset is not available.",
-                                       "Asset not available", "The asset connection timed out")
+        except (ConnectTimeout, ConnectionError) as connection_error:
+            if isinstance(connection_error, ConnectTimeout):
+                raise AssetConnectionError("The request to asset timed out, so the asset is not available.",
+                                           "AssetConnectTimeout", "The asset connection timed out")
+            if isinstance(connection_error, ConnectionError):
+                raise AssetConnectionError("The connection with the asset has raised an exception.",
+                                           connection_error.__class__.__name__, connection_error.args[0].reason)
 
 
 class HTTPAssetInterfaceSemantics:

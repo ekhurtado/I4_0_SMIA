@@ -4,7 +4,8 @@ import logging
 from spade.behaviour import CyclicBehaviour
 
 from logic import negotiation_utils
-from css_ontology.css_ontology_utils import CapabilitySkillOntologyUtils, AssetInterfacesInfo
+from css_ontology.css_ontology_utils import CapabilitySkillOntologyUtils
+from utilities.smia_info import AssetInterfacesInfo
 
 _logger = logging.getLogger(__name__)
 

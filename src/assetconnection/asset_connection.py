@@ -7,7 +7,7 @@ from jsonpath_ng import parse
 from lxml import etree
 
 from logic.exceptions import AssetConnectionError
-from css_ontology.css_ontology_utils import AssetInterfacesInfo
+from utilities.smia_info import AssetInterfacesInfo
 
 
 class AssetConnection(metaclass=abc.ABCMeta):
@@ -73,7 +73,7 @@ class AssetConnection(metaclass=abc.ABCMeta):
     #  submodelo AID
 
     @abc.abstractmethod
-    async def execute_asset_service(self, interaction_metadata, service_data=None):
+    async def execute_asset_service(self, interaction_metadata, service_input_data=None):
         """
         This method sends a message to the asset and returns the response. The connection of the interface of the asset
         is already configured in 'configure_connection_by_aas_model' method, but the interaction metadata is provided
@@ -81,7 +81,7 @@ class AssetConnection(metaclass=abc.ABCMeta):
 
         Args:
             interaction_metadata (basyx.aas.model.SubmodelElement): element of the AAS model with all metadata for the interaction with the asset.
-            service_data: object with the data of the service
+            service_input_data: object with the input data of the service
 
         Returns:
             object: response information defined in the interaction metadata.
@@ -257,7 +257,7 @@ class AssetConnection(metaclass=abc.ABCMeta):
         # First, if 'dataQuery' attribute is set has to be analyzed
         data_query_elem = interaction_metadata.get_sm_element_by_semantic_id(
             AssetInterfacesInfo.SEMANTICID_INTERFACE_INTERACTION_DATA_QUERY)
-        if data_query_elem:
+        if data_query_elem is not None:
             # The type of the content must be obtained
             forms_elem = interaction_metadata.get_sm_element_by_semantic_id(
                 AssetInterfacesInfo.SEMANTICID_INTERFACE_FORMS)
@@ -317,6 +317,8 @@ class AssetConnection(metaclass=abc.ABCMeta):
                 return int(content_data)
             case 'boolean':
                 return bool(content_data)
+            case 'object':
+                return json.loads(content_data)
             case _:
                 return content_data
 

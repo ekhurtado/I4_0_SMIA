@@ -7,6 +7,7 @@ import logging
 from aas_model.extended_aas_model import ExtendedAASModel
 from css_ontology.capability_skill_ontology import CapabilitySkillOntology
 from logic.agent_services import AgentServices
+from logic.exceptions import AASModelReadingError
 from states.state_running import StateRunning
 from states.state_stopping import StateStopping
 from utilities.smia_general_info import SMIAGeneralInfo
@@ -258,6 +259,8 @@ class SMIAAgent(Agent):
             for conn_ref, conn_class in self.asset_connections.items():
                 if conn_ref == asset_connection_ref:
                     return conn_class
+            raise AASModelReadingError("There is not asset connection class linked to {}".format(asset_connection_ref),
+                                       asset_connection_ref, "MissingAssetConnectionClass")
 
     async def get_all_asset_connections(self):
         """
