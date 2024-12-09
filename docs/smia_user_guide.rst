@@ -50,7 +50,16 @@ To do this, simply click on the AAS to be added, and use either the keyboard sho
   :width: 400
   :alt: AASX Package Explorer step3
 
-Developing CCS-based the AAS model
+IDTA template submodels will be added following the same process (**Asset Interfaces Description** and **Nameplate for Software in Manufacturing**).
+
+.. tip::
+
+    It is not limited to which AAS need the submodels be included, but the following structure is recommended:
+
+        * Asset Interfaces Description :octicon:`arrow-right;1em` AAS for asset
+        * Nameplate for Software in Manufacturing :octicon:`arrow-right;1em` AAS for SMIA
+
+Developing CSS-based the AAS model
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. TODO FALTA POR HACER

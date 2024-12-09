@@ -37,15 +37,40 @@ AASX Package Explorer allows adding custom submodel templates in the form of plu
 
 In the case of the SMIA approach, a submodel has been developed with all necessary semantic identifiers to easily import all ConceptDescriptions with semantic identifiers related to the Capability-Skill-Service ontology used at runtime.
 
-To do so, first the JSON object with the submodel template definition will be collected, available in the `GitHub as additional tool link <"https://raw.githubusercontent.com/ekhurtado/I4_0_SMIA/capabilityskill_tests/additional_tools/aasx_package_explorer_resources/SMIA-css-semantic-ids-sm.add-options.json>`_.
+To do so, first the JSON object with the submodel template definition will be collected, available in the `GitHub as additional tool link <https://raw.githubusercontent.com/ekhurtado/I4_0_SMIA/capabilityskill_tests/additional_tools/aasx_package_explorer_resources/SMIA-css-semantic-ids-sm.add-options.json>`_.
 
 .. TODO CUIDADO, CUANDO SE PASE ESTE BRANCH AL MAIN ACTUALIZAR LOS LINKS AL GITHUB
 
 When the JSON object is obtained, it is necessary to copy it to the following path, relative to where the AASX Package Explorer has been installed:
 
-    * <path to AASX Package Installation>/plugins/AasxPluginGenericForms/
+    *<path to AASX Package Installation>/plugins/AasxPluginGenericForms/*
 
 Once the file is copied there, the next time the program is initialized, the submodel can be easily created from the options: ``Workspace > Create ... > New Submodel from plugin``, or by pressing ``Ctrl + Shift + M``.
+
+The same has to be done with the IDTA submodel templates, in order to add them to the AASX Package Software tool. To be as clear as possible, all JSON files to be copied as plugins are added in the dropdown below.
+
+.. dropdown:: Links to all JSON objects to be added as plugins
+       :octicon:`link;1em;sd-text-primary`
+
+       .. button-link:: https://raw.githubusercontent.com/ekhurtado/I4_0_SMIA/capabilityskill_tests/additional_tools/aasx_package_explorer_resources/SMIA-css-semantic-ids-sm.add-options.json
+            :color: primary
+            :outline:
+
+            :octicon:`mark-github;1em` JSON object of the CSS ontology submodel template
+
+       .. button-link:: https://raw.githubusercontent.com/ekhurtado/I4_0_SMIA/capabilityskill_tests/additional_tools/aasx_package_explorer_resources/SMIA-css-semantic-ids-sm.add-options.json
+            :color: primary
+            :outline:
+
+            :octicon:`mark-github;1em` JSON object of the Asset Interfaces Description IDTA submodel template
+
+       .. button-link:: https://raw.githubusercontent.com/ekhurtado/I4_0_SMIA/capabilityskill_tests/additional_tools/aasx_package_explorer_resources/SMIA-css-semantic-ids-sm.add-options.json
+            :color: primary
+            :outline:
+
+            :octicon:`mark-github;1em` JSON object of the Nameplate for Software in Manufacturing IDTA submodel template
+
+.. TODO REPASAR LOS LINKS
 
 Adding the qualifier templates
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

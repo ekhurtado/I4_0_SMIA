@@ -96,7 +96,7 @@ Therefore, it is necessary to classify what type of message the Kafka subscriber
         * service-response
 
 .. dropdown:: Examples of some message keys for the AAS Manager
-       :octicon:`check-circle;1em;sd-text-info`
+       :octicon:`check-circle;1em;sd-text-primary`
 
        manager-status
 
@@ -105,7 +105,7 @@ Therefore, it is necessary to classify what type of message the Kafka subscriber
        manager-service-response
 
 .. dropdown:: Examples of some message keys for the AAS Core
-       :octicon:`check-circle;1em;sd-text-info`
+       :octicon:`check-circle;1em;sd-text-primary`
 
        core-status
 
