@@ -54,13 +54,21 @@ IDTA template submodels will be added following the same process (**Asset Interf
 
 .. tip::
 
-    It is not limited to which AAS need the submodels be included, but the following structure is recommended:
+    It is not limited to which AAS the submodels should be included, but the following structure is recommended:
 
         * Asset Interfaces Description :octicon:`arrow-right;1em` AAS for asset
         * Nameplate for Software in Manufacturing :octicon:`arrow-right;1em` AAS for SMIA
 
+Defining asset interfaces
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+All interfaces of the asset will be defined in the ``AssetInterfacesDescription`` submodel, proposed by IDTA. The `specification document <https://industrialdigitaltwin.org/en/wp-content/uploads/sites/2/2024/01/IDTA-02017-1-0_Submodel_Asset-Interfaces-Description.pdf>`_, as well as the `GitHub repository <https://github.com/admin-shell-io/submodel-templates/tree/main/published/Asset%20Interfaces%20Description/1/0>`_ of the submodel template, are available in the offered links.
+
+
 Developing CSS-based the AAS model
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
 
 .. TODO FALTA POR HACER
 
