@@ -99,7 +99,8 @@ class ExtendedQualifiable(Qualifiable):
         try:
             if len(self.qualifier) == 0:
                 raise AASModelReadingError("Qualifier not found in the element {} because the element has no "
-                                           "qualifier.".format(self), self, 'KeyError in qualifiers')
+                                           "qualifier with semanticID {}.".format(self, qualifier_semantic_id),
+                                           self, 'KeyError in qualifiers')
             for qualifier in self.qualifier:
                 if qualifier.check_semantic_id_exist(qualifier_semantic_id) is True:
                     return qualifier.value

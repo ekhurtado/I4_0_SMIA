@@ -62,7 +62,7 @@ class CapabilitySkillOntologyUtils:
             set: possible values of datatype in form of a list of strings.
         """
         possible_values = set()
-        if datatype.equivalent_to:  # Comprobar si hay clases equivalentes
+        if datatype.equivalent_to:  # Check for equivalent classes
             for equivalent in datatype.equivalent_to:
                 if isinstance(equivalent, OneOf):
                     for value in equivalent.instances:
@@ -70,6 +70,24 @@ class CapabilitySkillOntologyUtils:
         if len(possible_values) == 0:
             return None
         return possible_values
+
+    @staticmethod
+    def check_and_get_xsd_datatypes(datatype):
+        """
+        This method checks whether the given OWL data type is one of those defined in XSD and, if true, returns the
+        associated data type. If false, it returns None.
+
+        Args:
+            datatype (owlready2.Oneof): OWL datatype object.
+
+        Returns:
+            object: value of datatype defined in XSD (None if it is not found).
+        """
+        if datatype.equivalent_to:  # Check for equivalent classes
+            for equivalent in datatype.equivalent_to:
+                if equivalent == str:
+                    return str
+            return None
 
     @staticmethod
     def check_whether_part_of_domain(owl_instance, domain):

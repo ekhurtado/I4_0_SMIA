@@ -59,6 +59,14 @@
     
 
 
+    <!-- http://www.w3.org/2002/07/owl#implementationType -->
+
+    <rdfs:Datatype rdf:about="http://www.w3.org/2002/07/owl#implementationType">
+        <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </rdfs:Datatype>
+    
+
+
     <!-- http://www.w3.org/2002/07/owl#lifecycle -->
 
     <rdfs:Datatype rdf:about="http://www.w3.org/2002/07/owl#lifecycle">
@@ -407,6 +415,15 @@
     <owl:DatatypeProperty rdf:about="http://www.w3id.org/upv-ehu/gcis/css-smia#hasCondition">
         <rdfs:domain rdf:resource="http://www.w3id.org/hsu-aut/css#CapabilityConstraint"/>
         <rdfs:range rdf:resource="http://www.w3.org/2002/07/owl#constraintCondition"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.w3id.org/upv-ehu/gcis/css-smia#hasImplementationType -->
+
+    <owl:DatatypeProperty rdf:about="http://www.w3id.org/upv-ehu/gcis/css-smia#hasImplementationType">
+        <rdfs:domain rdf:resource="http://www.w3id.org/hsu-aut/css#Skill"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2002/07/owl#implementationType"/>
     </owl:DatatypeProperty>
     
 

@@ -73,10 +73,10 @@ class CapabilitySkillOntology:
         """
         result_classes = self.ontology.search(iri=class_iri)
         if len(result_classes) == 0:
-            print("ERROR: clase no encontrada con IRI [{}]".format(class_iri))
+            _logger.error("ERROR: class not found with IRI [{}]".format(class_iri))
             return None
         if len(result_classes) > 1:
-            print("WARNING: HAY MAS DE UNA CLASE CON IRI [{}], CUIDADO".format(class_iri))
+            _logger.warning("WARNING: THERE IS MORE THAN ONE CLASS WITH IRI [{}], BE CAREFUL".format(class_iri))
         return result_classes[0]
 
     async def create_ontology_object_instance(self, class_object, instance_name):

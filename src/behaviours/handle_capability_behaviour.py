@@ -215,7 +215,7 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
 
             # Once all the data has been checked and obtained, the capability can be executed
             cap_execution_result = await self.execute_capability(cap_ontology_instance, skill_ontology_instance,
-                                          skill_interface_ontology_instance)
+                                                                 skill_interface_ontology_instance)
 
             # When the skill has finished, the request is answered
             await self.send_response_msg_to_sender(FIPAACLInfo.FIPA_ACL_PERFORMATIVE_INFORM,
@@ -227,9 +227,9 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
                 AASModelReadingError, AssetConnectionError) as cap_request_error:
             if isinstance(cap_request_error, RequestDataError):
                 if 'JSON schema' in cap_request_error.message:
-                    cap_name= ''
+                    cap_name = ''
             if isinstance(cap_request_error, RequestDataError) or isinstance(cap_request_error, OntologyReadingError) \
-                or isinstance(cap_request_error, AASModelReadingError):
+                    or isinstance(cap_request_error, AASModelReadingError):
                 cap_request_error = CapabilityRequestExecutionError(cap_name, cap_request_error.__class__.__name__ +
                                                                     ': ' + cap_request_error.message, self)
             if isinstance(cap_request_error, AssetConnectionError):
@@ -239,8 +239,6 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
 
             await cap_request_error.handle_capability_execution_error()
             return  # killing a behaviour does not cancel its current run loop
-
-
 
     async def handle_query_if(self):
         """
@@ -331,18 +329,33 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
         cap_ontology_instance = await self.myagent.css_ontology.get_ontology_instance_by_name(cap_name)
         if cap_ontology_instance is None:
             raise RequestDataError("The capability {} does not an instance defined in the ontology of this "
-                                      "DT".format(cap_name))
+                                   "DT".format(cap_name))
         if CapabilitySkillACLInfo.REQUIRED_SKILL_NAME in received_cap_data:
             skill_name = received_cap_data[CapabilitySkillACLInfo.REQUIRED_SKILL_NAME]
             result, skill_instance = cap_ontology_instance.check_and_get_related_instance_by_instance_name(skill_name)
             if result is False:
                 raise RequestDataError("The capability {} and skill {} are not linked in the ontology of this "
-                                          "DT, or the skill does not have an instance"
-                                          ".".format(cap_name, skill_name))
+                                       "DT, or the skill does not have an instance"
+                                       ".".format(cap_name, skill_name))
             if skill_instance.get_associated_skill_parameter_instances() is not None:
-                pass    # TODO HACER AHORA: FALTA POR HACER
+                pass  # TODO HACER AHORA: FALTA POR HACER
                 # TODO comprobar que se han añadido los datos necesarios de los parametros (en este caso
                 #  solo seran necesarios los parametros de entrada)
+                skill_params = skill_instance.get_associated_skill_parameter_instances()
+                for param in skill_params:
+                    if param.is_skill_parameter_type(['INPUT', 'INOUTPUT']):
+                        # If there is a parameter of type INPUT or INOUTPUT the value of the parameter need to be
+                        # specified in the request message
+                        if CapabilitySkillACLInfo.REQUIRED_SKILL_PARAMETERS_VALUES not in received_cap_data:
+                            raise RequestDataError("The received request is invalid due to missing #{} field in the"
+                                                   "request message because the requested skill need value for an input"
+                                                   " parameter ({}).".format(
+                                CapabilitySkillACLInfo.REQUIRED_SKILL_PARAMETERS_VALUES, param.name))
+                        if param.name not in received_cap_data[CapabilitySkillACLInfo.REQUIRED_SKILL_PARAMETERS_VALUES].keys():
+                            raise RequestDataError("The received request is invalid due to missing #{} field in the"
+                                                   "request message because the requested skill need value for an input"
+                                                   " parameter ({}).".format(
+                                CapabilitySkillACLInfo.REQUIRED_SKILL_PARAMETERS_VALUES, param.name))
             if CapabilitySkillACLInfo.REQUIRED_SKILL_INTERFACE_NAME in received_cap_data:
                 # Solo si se ha definido la skill se define la skill interface, sino no tiene significado
                 # TODO pensar la frase anterior. Realmente tiene significado o no? Si no se define la skill, podriamos
@@ -352,8 +365,8 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
                 result, instance = skill_instance.check_and_get_related_instance_by_instance_name(skill_interface_name)
                 if result is False:
                     raise RequestDataError("The skill {} and skill interface {} are not linked in the ontology of "
-                                              "this DT, or the skill interface does not have an instance"
-                                              ".".format(skill_name, skill_interface_name))
+                                           "this DT, or the skill interface does not have an instance"
+                                           ".".format(skill_name, skill_interface_name))
 
     async def check_received_skill_data(self, skill_elem):
         """
@@ -442,7 +455,7 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
             # En este caso se ha especificado una skill, asi que primera se analizara si tiene parametros y
             # si estos se han definido
             result, skill_ontology_instance = (cap_ontology_instance.check_and_get_related_instance_by_instance_name(
-                    received_cap_data[CapabilitySkillACLInfo.REQUIRED_SKILL_NAME]))
+                received_cap_data[CapabilitySkillACLInfo.REQUIRED_SKILL_NAME]))
             skill_interface_ontology_instance = None
             if CapabilitySkillACLInfo.REQUIRED_SKILL_INTERFACE_NAME not in received_cap_data:
                 # Si no se ha definido una skill interface, se recoge la primera
@@ -455,7 +468,7 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
             else:
                 result, skill_interface_ontology_instance = skill_ontology_instance.check_and_get_related_instance_by_instance_name(
                     received_cap_data[CapabilitySkillACLInfo.REQUIRED_SKILL_INTERFACE_NAME])
-                return cap_ontology_instance, skill_ontology_instance, skill_interface_ontology_instance
+            return cap_ontology_instance, skill_ontology_instance, skill_interface_ontology_instance
 
     async def execute_capability(self, cap_instance, skill_instance, skill_interface_instance):
         """
@@ -472,11 +485,12 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
         """
         aas_cap_elem = await self.myagent.aas_model.get_object_by_reference(cap_instance.get_aas_sme_ref())
         aas_skill_elem = await self.myagent.aas_model.get_object_by_reference(skill_instance.get_aas_sme_ref())
-        aas_skill_interface_elem = await self.myagent.aas_model.get_object_by_reference(skill_interface_instance.get_aas_sme_ref())
+        aas_skill_interface_elem = await self.myagent.aas_model.get_object_by_reference(
+            skill_interface_instance.get_aas_sme_ref())
         if None in (aas_cap_elem, aas_skill_elem, aas_skill_interface_elem):
             raise CapabilityRequestExecutionError(cap_instance.name, "The requested capability {} cannot be executed"
-                                                  " because there is no AAS element linked to the ontology "
-                                                  "instances.".format(cap_instance.name), self)
+                                                                     " because there is no AAS element linked to the ontology "
+                                                                     "instances.".format(cap_instance.name), self)
         # The asset interface will be obtained from the skill interface SubmodelElement.
         aas_asset_interface_elem = aas_skill_interface_elem.get_associated_asset_interface()
         # TODO PENSAR COMO SERIA CON UN AGENT SERVICE
@@ -500,7 +514,6 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
         #  metodo del asset connnection class)
 
         return skill_execution_result
-
 
     async def get_asset_connection_input_data_by_skill(self, skill_elem):
         """

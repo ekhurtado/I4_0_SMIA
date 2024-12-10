@@ -109,6 +109,10 @@ class InitAASModelBehaviour(OneShotBehaviour):
         for ontology_relationship_iri in CapabilitySkillOntologyInfo.CSS_ONTOLOGY_OBJECT_PROPERTIES_IRIS:
             await self.check_and_create_relationship_by_iri(ontology_relationship_iri)
 
+        # Skills that are of type Operation SubmodelElement are a special case, because their OperationVariables are
+        # related SkillParameters, but there is no relation between them.
+        await self.check_and_create_operation_relationships()
+
     async def check_and_create_instances_by_iri(self, ontology_class_iri):
         """
         This method checks the relationship between two elements and, if it is valid, it creates it (it connects the
@@ -273,6 +277,36 @@ class InitAASModelBehaviour(OneShotBehaviour):
                                                                  range_aas_elem.id_short))
                 else:
                     self.errors_found.append("{} ({},{})".format(rel.id_short, domain_aas_class, range_aas_class))
+
+    async def check_and_create_operation_relationships(self):
+        """
+        This method checks the relationship between OperationVariables and their related Operation SubmodelElement and,
+        if they are included in the CSS ontology (by semanticIDs), the related ontology instances are linked through
+        the appropriate ObjectProperty.
+        """
+        skill_list = await self.myagent.aas_model.get_submodel_elements_by_semantic_id(
+            CapabilitySkillOntologyInfo.CSS_ONTOLOGY_SKILL_IRI)
+        rel_ontology_class = await self.myagent.css_ontology.get_ontology_class_by_iri(
+            CapabilitySkillOntologyInfo.CSS_ONTOLOGY_PROP_HASPARAMETER_IRI)
+        for skill in skill_list:
+            if isinstance(skill, model.Operation):
+                variable = None
+                try:
+                    if skill.check_semantic_id_exist(CapabilitySkillOntologyInfo.CSS_ONTOLOGY_SKILL_IRI):
+                        operation_variables = skill.get_operation_variables_by_semantic_id(
+                            CapabilitySkillOntologyInfo.CSS_ONTOLOGY_SKILL_PARAMETER_IRI)
+                        for variable in operation_variables:
+                            # When both are checked, if the ontology instances exist the link is set in the ontology
+                            await self.myagent.css_ontology.add_object_property_to_instances_by_names(
+                                rel_ontology_class.name, skill.id_short, variable.id_short)
+                except OntologyReadingError as error:
+                    _logger.warning("Check the CSS ontology definition.")
+                    if None not in (skill, variable):
+                        self.errors_found.append("{} ({},{})".format('hasParameter', skill.id_short,
+                                                                     variable.id_short))
+                    else:
+                        self.errors_found.append("{} ({},{})".format('hasParameter', 'Operation', 'OperationVariable'))
+
 
     # async def get_and_save_capabilities_skills_information(self):
     #     """

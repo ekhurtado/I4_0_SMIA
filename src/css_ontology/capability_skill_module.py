@@ -67,8 +67,11 @@ class ExtendedThing(Thing):
                     for range_value in prop.range:
                         if isinstance(range_value, DatatypeClass):
                             possible_values = CapabilitySkillOntologyUtils.get_possible_values_of_datatype(range_value)
+                            xsd_value_type = CapabilitySkillOntologyUtils.check_and_get_xsd_datatypes(range_value)
                             if possible_values is not None:
                                 self.data_properties_types_dict[prop.name] = possible_values
+                            elif xsd_value_type is not None:
+                                self.data_properties_types_dict[prop.name] = xsd_value_type
                         else:
                             self.data_properties_types_dict[prop.name] = range_value
 
@@ -83,7 +86,8 @@ class ExtendedThing(Thing):
             data_property_value (str): the value of the data property to be checked.
         """
         if data_property_name not in self.data_properties_types_dict:
-            _logger.warning("The data property does not exist in this OWL class.")
+            _logger.warning("The data property {} does not exist in this OWL class ({}).".format(data_property_name,
+                                                                                                 self))
         else:
             data_property_type = self.data_properties_types_dict[data_property_name]
             if isinstance(data_property_type, set):
@@ -285,6 +289,7 @@ class Skill(ExtendedThing):
         else:
             return self.hasParameter
 
+
 class SkillInterface(ExtendedThing):
 
     # The associated SubmodelElement class of the AAS is also defined
@@ -302,7 +307,27 @@ class SkillInterface(ExtendedThing):
 
 
 class SkillParameter(ExtendedThing):
-    pass
+
+    def is_skill_parameter_type(self, parameter_type_values):
+        """
+        This method checks whether the SkillParameter instance has one of the given values for the related DataType.
+
+        Args:
+            parameter_type_values: the values to check the SkillParameter instance for.
+
+        Returns:
+            bool: True if the SkillParameter instance has one of the given values for the related DataType.
+        """
+        # First, if only one value is passed, a list is created.
+        if not isinstance(parameter_type_values, list):
+            parameter_type_values = [parameter_type_values]
+        for values in self.data_properties_types_dict.values():
+            for value in values:
+                if value in parameter_type_values:
+                    return True
+        return False
+
+
 
 class StateMachine(ExtendedThing):
     pass
