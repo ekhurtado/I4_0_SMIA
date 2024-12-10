@@ -8,6 +8,7 @@ from utilities import configmap_utils
 
 _logger = logging.getLogger(__name__)
 
+
 class CapabilitySkillOntologyUtils:
     """This class contains all information about the proposal of the ontology based on Capability-Skill model. This
     information groups the required semanticIDs or the qualifiers to analyze AAS models."""
@@ -220,7 +221,7 @@ class CSSModelAASModelInfo:
         CapabilitySkillOntologyInfo.CSS_ONTOLOGY_CAPABILITY_CONSTRAINT_IRI: extended_submodel.ExtendedCapabilityConstraint,
         CapabilitySkillOntologyInfo.CSS_ONTOLOGY_SKILL_IRI: extended_submodel.ExtendedSkill,
         CapabilitySkillOntologyInfo.CSS_ONTOLOGY_SKILL_INTERFACE_IRI: extended_submodel.ExtendedSkillInterface,
-        # CSS_ONTOLOGY_SKILL_PARAMETER_IRI: '',
+        CapabilitySkillOntologyInfo.CSS_ONTOLOGY_SKILL_PARAMETER_IRI: extended_submodel.ExtendedSkillParameter,
         # CSS_ONTOLOGY_SKILL_STATE_MACHINE_IRI: '',
     }
 

@@ -227,6 +227,24 @@ class ExtendedOperation(Operation):
                             return var.id_short
         return None
 
+    def get_operation_variables_by_semantic_id(self, semantic_id):
+        """
+        This method gets all operation variables that have the given semanticID.
+
+        Args:
+            semantic_id (str):  semantic identifier of the operation variables to find.
+
+        Returns:
+            list: all valid operation variables in form of a list of SubmodelElements.
+        """
+        operation_variables = []
+        all_var_sets = [self.input_variable, self.output_variable, self.in_output_variable]
+        for var_set in all_var_sets:
+            for operation_variable in var_set:
+                if operation_variable.check_semantic_id_exist(semantic_id):
+                    operation_variables.append(operation_variable)
+        return operation_variables
+
 
 class ExtendedBasicEventElement(BasicEventElement):
 
@@ -348,17 +366,7 @@ class ExtendedReferenceElement(ReferenceElement):
         # TODO
 
 
-# TODO esta es una prueba para generar clases propias para Capability, Skill y SkillInterface (de esta forma podemos
-#   añadir metodos utiles que se usen durante la ejecucion del programa y hacerlo t0do mas eficiente. Por ejemplo,
-#   un metodo podria ser obtener los parametros de una skill. Antes teniamos el problema que simplemente los teniamos
-#   a mano ya que la Skill era una operation y tiene en sus atributos sus variables input y ouput. Ahora,
-#   con la clase "SMIASkill" podemos hacer un metodo de obtener los parametros. Este metodo puede analizar de que
-#   tipo de era la Skill, y dependiendo de su clase, obtener los parametros (con una Operacion lograrlos con sus
-#   atributos, y en otros casos analizar la relacion SkillHasParameter y obtener sus parametros). Para esto,
-#   si es cierto que, durante la creacion de esta clase se deberan añadir los parametros, la maquina de estados,
-#   sus posibles interfaces, etc. ya que se necesitará t0do el modelo AAS para ello (se tendra que hacer en el
-#   init_aas_model_behav)
-# CLASSES FOR CSS ONTOLOGY-BASED EXECUTION
+# CLASSES FOR CSS ONTOLOGY-BASED SOFTWARE
 # ----------------------------------------
 class ExtendedGenericCSSClass(metaclass=abc.ABCMeta):
 
@@ -380,6 +388,7 @@ class ExtendedGenericCSSClass(metaclass=abc.ABCMeta):
         This method checks the semanticID of the skill within the Capability-Skill ontology.
         """
         pass
+
 
 class ExtendedCapability(ExtendedGenericCSSClass, Capability):
     def print_submodel_element_information(self):
@@ -407,11 +416,13 @@ class ExtendedCapability(ExtendedGenericCSSClass, Capability):
             return False
         return True
 
+
 class ExtendedSkill(ExtendedGenericCSSClass):
     # TODO se ha tenido que separar las skills simples (Operation,Event...) de las complejas (Submodel). De
     #  momento estas no se han implementado pero en el White paper de PLattform Industrie se menciona que las Skills
     #  se pueden implementar mediante FunctionBlock (Submodelo)
     pass
+
 
 class ExtendedSkillInterface(ExtendedGenericCSSClass):
     # TODO se ha tenido que separar las skills interfaces simples (Operation,Event...) de las complejas (SMC). De
@@ -427,6 +438,7 @@ class ExtendedSkillInterface(ExtendedGenericCSSClass):
         """
         pass
 
+
 class ExtendedCapabilityConstraint(ExtendedGenericCSSClass, ExtendedSubmodelElement, ExtendedProperty):
 
     def get_semantic_id_of_css_ontology(self):
@@ -437,6 +449,7 @@ class ExtendedCapabilityConstraint(ExtendedGenericCSSClass, ExtendedSubmodelElem
             raise AASModelOntologyError("The skill {} does not have the valid semanticID within the "
                                         "ontology.".format(self.id_short), self, "OntologySemanticIdMissing")
 
+
 class ExtendedSimpleSkill(ExtendedSkill, ExtendedSubmodelElement, ExtendedOperation):
 
     def get_semantic_id_of_css_ontology(self):
@@ -446,18 +459,6 @@ class ExtendedSimpleSkill(ExtendedSkill, ExtendedSubmodelElement, ExtendedOperat
         if not self.check_semantic_id_exist(CapabilitySkillOntologyInfo.CSS_ONTOLOGY_SKILL_IRI):
             raise AASModelOntologyError("The skill {} does not have the valid semanticID within the "
                                         "ontology.".format(self.id_short), self, "OntologySemanticIdMissing")
-    def como_convertir_un_skill_a_esta_clase(self, skill_elem):
-        # Imaginemos que tenemos un skill_elem (puede ser, p.e. un Operation)
-        basyx_class = skill_elem.__class__
-        skill_elem.__class__ = ExtendedSkill
-        # Ahora es de la clase SMIASkill, por lo que tiene todos sus metodos y los de sus clases extendidas (los Extended nuestros)
-        # Aun asi, tenemos que guardar de que tipo de SubmodelElement era antes de convertirlo a SMIASkill
-        self.old_sme_class = basyx_class
-
-        # TODO a la hora de ejecutar los metodos que se añadan, se deberá comprobar el tipo de clase que era antes, ya
-        #  que va a depender para su ejecución y para saber qué atributos tendrá en cada caso (no todos son iguales)
-        if issubclass(self.old_sme_class, basyx.aas.model.Operation):
-            print("Antes la Skill era una Operation")
 
 
 class ExtendedComplexSkill(ExtendedSkill, ExtendedSubmodel):
@@ -470,6 +471,10 @@ class ExtendedComplexSkill(ExtendedSkill, ExtendedSubmodel):
                                         "ontology.".format(self.id_short), self, "OntologySemanticIdMissing")
 
 
+class ExtendedSkillParameter(ExtendedGenericCSSClass, ExtendedProperty):
+    pass
+
+
 class ExtendedSimpleSkillInterface(ExtendedSkillInterface, ExtendedOperation, ExtendedSubmodelElement):
 
     def get_semantic_id_of_css_ontology(self):
@@ -479,6 +484,7 @@ class ExtendedSimpleSkillInterface(ExtendedSkillInterface, ExtendedOperation, Ex
         if not self.check_semantic_id_exist(CapabilitySkillOntologyInfo.CSS_ONTOLOGY_SKILL_INTERFACE_IRI):
             raise AASModelOntologyError("The skill {} does not have the valid semanticID within the "
                                         "ontology.".format(self.id_short), self, "OntologySemanticIdMissing")
+
 
 class ExtendedComplexSkillInterface(ExtendedSkillInterface, ExtendedSubmodelElementCollection):
 

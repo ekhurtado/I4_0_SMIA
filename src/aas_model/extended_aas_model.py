@@ -168,6 +168,10 @@ class ExtendedAASModel:
                     if isinstance(submodel_element, sme_class):
                         if submodel_element.check_semantic_id_exist(semantic_id_external_ref):
                             rels_elements.append(submodel_element)
+                        if isinstance(submodel_element, basyx.aas.model.Operation):
+                            # In case of Operation, OperationVariables need to be analyzed
+                            rels_elements.extend(submodel_element.get_operation_variables_by_semantic_id(
+                                semantic_id_external_ref))
         return rels_elements
 
     async def get_submodel_elements_by_semantic_id_list(self, semantic_id_external_refs, sme_class=None):
@@ -193,6 +197,10 @@ class ExtendedAASModel:
                         for semantic_id in semantic_id_external_refs:
                             if submodel_element.check_semantic_id_exist(semantic_id):
                                 rels_elements.append(submodel_element)
+                            if isinstance(submodel_element, basyx.aas.model.Operation):
+                                # In case of Operation, OperationVariables need to be analyzed
+                                rels_elements.extend(submodel_element.get_operation_variables_by_semantic_id(
+                                    semantic_id))
         return rels_elements
 
     async def get_submodel_by_semantic_id(self, sm_semantic_id):

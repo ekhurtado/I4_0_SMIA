@@ -9,6 +9,7 @@ from logic.exceptions import OntologyCheckingAttributeError, OntologyCheckingPro
 
 _logger = logging.getLogger(__name__)
 
+
 class CapabilitySkillOntology:
     """
     This class contains related methods of the Capability-Skill ontology.
