@@ -39,10 +39,10 @@ SMIA can be started using the Command-Line Interface (CLI).
 
 
 Configuration via Docker
-~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. TODO FALTA POR HACER
 
 Configuration via Python package
-~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

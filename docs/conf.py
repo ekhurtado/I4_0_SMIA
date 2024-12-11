@@ -6,9 +6,11 @@ import datetime
 import os
 import sys
 
-import smia
+# import smia
 
-sys.path.insert(0, os.path.abspath('../smia'))
+sys.path.insert(0, os.path.abspath(os.path.join('..', 'src')))
+# sys.path.insert(0, os.path.abspath('..'))
+# sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'smia')))
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
@@ -16,8 +18,10 @@ sys.path.insert(0, os.path.abspath('../smia'))
 project = 'I4.0 SMIA'
 copyright = str(datetime.datetime.now().year) + ', Ekaitz Hurtado'
 author = 'Ekaitz Hurtado'
-version = smia.__version__   # The short X.Y version.
-release = smia.__version__   # The full version, including alpha/beta/rc tags.
+# version = smia.__version__   # The short X.Y version.
+version = '0.2.0'   # The short X.Y version.
+# release = smia.__version__   # The full version, including alpha/beta/rc tags.
+release = '0.2.0'  # The full version, including alpha/beta/rc tags.
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration

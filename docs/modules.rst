@@ -9,7 +9,7 @@ Source code documentation
    assetconnection
    behaviours
    css_ontology
+   launchers
    logic
-   smia_main
    states
    utilities

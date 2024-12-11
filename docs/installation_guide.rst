@@ -109,7 +109,7 @@ SPADE
 SPADE is a multi-agent system platform on which the SMIA software has been built. An official installation guide is available at `<https://spade-mas.readthedocs.io/en/latest/installation.html>`_.
 
 OWLReady2
-^^^^^
+^^^^^^^^^
 
 OWLReady2 is used by SMIA to manage the OWL-based CSS ontology in Python. An official installation guide is available at `<https://owlready2.readthedocs.io/en/v0.47/install.html>`_.
 
