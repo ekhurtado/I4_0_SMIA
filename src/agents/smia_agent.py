@@ -245,7 +245,7 @@ class SMIAAgent(Agent):
         async with self.lock:  # safe access to a shared object of the agent
             self.asset_connections[interface_reference] = asset_connection
 
-    async def get_asset_connection_class(self, asset_connection_ref):
+    async def get_asset_connection_class_by_ref(self, asset_connection_ref):
         """
         This method gets the asset connection class using its reference.
 

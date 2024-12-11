@@ -5,10 +5,12 @@ import basyx.aas.model
 from basyx.aas import model
 from spade.behaviour import OneShotBehaviour
 
+from aas_model.aas_model_utils import AASModelUtils
 from logic import IntraAASInteractions_utils, negotiation_utils, inter_aas_interactions_utils
-from logic.exceptions import RequestDataError, ServiceRequestExecutionError, AASModelReadingError
+from logic.exceptions import RequestDataError, ServiceRequestExecutionError, AASModelReadingError, AssetConnectionError
 from logic.services_utils import SubmodelServicesUtils
 from utilities.fipa_acl_info import FIPAACLInfo, ACLJSONSchemas
+from utilities.smia_info import AssetInterfacesInfo
 
 _logger = logging.getLogger(__name__)
 
@@ -208,7 +210,8 @@ class HandleSvcRequestBehaviour(OneShotBehaviour):
         # The type is analyzed to perform the appropriate service
         match self.svc_req_data['serviceType']:
             case "AssetRelatedService":
-                await self.handle_asset_related_svc()   # TODO
+                # await self.handle_asset_related_svc()   # TODO
+                await self.handle_asset_related_service_request()
             case "AASInfrastructureService":
                 await self.handle_aas_infrastructure_svc()   # TODO
             case "AASservice":
@@ -227,10 +230,71 @@ class HandleSvcRequestBehaviour(OneShotBehaviour):
     # -----------------------------------
     # Methods to handle specific services
     # -----------------------------------
+    async def handle_asset_related_service_request(self):
+        """
+        This method handles a Asset Related Service request. These services are part of I4.0 Application Component
+        (application relevant).
+        """
+        # TODO In this case, AssetRelatedService and AssetService are considered equivalent.
+        # The asset related service will be executed using a ModelReference to the related SubmodelElement within the
+        # AssetInterfacesDefinition submodel. This information is in serviceParams TODO (de momento en serviceParams, ya veremos mas adelante)
+        try:
+            # First, the received data is checked and validated
+            await inter_aas_interactions_utils.check_received_request_data_structure(
+                self.svc_req_data, ACLJSONSchemas.JSON_SCHEMA_ASSET_SERVICE_REQUEST)
+            service_params = self.svc_req_data['serviceData']['serviceParams']
+
+            # If the received data is valid, the AAS Reference object need to be created
+            aas_asset_service_ref = await AASModelUtils.create_aas_reference_object(
+                'ModelReference', service_params['ModelReference']['keys'])
+            aas_asset_service_elem = await self.myagent.aas_model.get_object_by_reference(aas_asset_service_ref)
+
+            # The asset connection class is also required to execute the asset related service. It is obtained from the
+            # AAS asset service Reference object
+            aas_asset_interface_ref = aas_asset_service_elem.get_parent_ref_by_semantic_id(
+                AssetInterfacesInfo.SEMANTICID_INTERFACE)
+            if aas_asset_service_elem is None:
+                raise ServiceRequestExecutionError(self.svc_req_data['thread'], "The added ModelReference is not "
+                                                   " inside the AssetInterfacesDescription submodel, so it is "
+                                                   "not an AssetService.", self)
+            asset_connection_class = await self.myagent.get_asset_connection_class_by_ref(aas_asset_interface_ref)
+
+            # With all necessary information obtained, the asset related service can be executed
+            _logger.assetinfo("Executing skill of the capability through an asset service...")
+            received_input_data = None
+            if 'serviceParameterValues' in service_params:
+                received_input_data = service_params['serviceParameterValues']
+            asset_service_execution_result = await asset_connection_class.execute_asset_service(
+                interaction_metadata=aas_asset_service_elem,
+                service_input_data=received_input_data)
+            _logger.assetinfo("Skill of the capability successfully executed.")
+
+            # The result will be sent to the requester
+            await self.send_response_msg_to_sender(FIPAACLInfo.FIPA_ACL_PERFORMATIVE_INFORM,
+                                                   {'result': asset_service_execution_result})
+            _logger.info("Management of the service with thread {} finished.".format(self.svc_req_data['thread']))
+
+
+        except (RequestDataError, ServiceRequestExecutionError,
+                AASModelReadingError, AssetConnectionError) as svc_request_error:
+            if isinstance(svc_request_error, RequestDataError):
+                svc_request_error = ServiceRequestExecutionError(self.svc_req_data['thread'],
+                                                                 svc_request_error.message, self)
+            if isinstance(svc_request_error, AASModelReadingError):
+                svc_request_error = ServiceRequestExecutionError(self.svc_req_data['thread'],"{}. Reason: "
+                                                                 "{}".format(svc_request_error.message,
+                                                                 svc_request_error.reason), self)
+            if isinstance(svc_request_error, AssetConnectionError):
+                svc_request_error = ServiceRequestExecutionError(self.svc_req_data['thread'],
+                              f"The error [{svc_request_error.error_type}] has appeared during the asset "
+                              f"connection. Reason: {svc_request_error.reason}.", self)
+            await svc_request_error.handle_service_execution_error()
+            return  # killing a behaviour does not cancel its current run loop
+
     async def handle_submodel_service_request(self):
         """
-        This method handles a Submodel Service request. These services are part of I4.0 Application Component (
-        application relevant).
+        This method handles a Submodel Service request. These services are part of I4.0 Application Component
+        (application relevant).
         """
         # The submodel service will be executed using a ModelReference or an ExternalReference, depending on the
         # requested element. This information is in serviceParams TODO (de momento en serviceParams, ya veremos mas adelante)
@@ -243,19 +307,25 @@ class HandleSvcRequestBehaviour(OneShotBehaviour):
             # appropriate BaSyx object must be created
             ref_object = None
             if 'ModelReference' in self.svc_req_data['serviceData']['serviceParams']:
-                keys = ()
-                last_type = None
-                for key in self.svc_req_data['serviceData']['serviceParams']['ModelReference']['keys']:
-                    basyx_key_type = await SubmodelServicesUtils.get_key_type_by_string(key['type'])
-                    keys += (model.Key(basyx_key_type, key['value']),)
-                    last_type = basyx_key_type
-                ref_object = basyx.aas.model.ModelReference(
-                    key=keys, type_=await SubmodelServicesUtils.get_model_type_by_key_type(last_type))
-
+                ref_object = await AASModelUtils.create_aas_reference_object(
+                    'ModelReference', self.svc_req_data['serviceData']['serviceParams']['ModelReference']['keys'])
             elif 'ExternalReference' in self.svc_req_data['serviceData']['serviceParams']:
-                ref_object = model.ExternalReference((model.Key(
-                    type_=model.KeyTypes.GLOBAL_REFERENCE,
-                    value=self.svc_req_data['serviceData']['serviceParams']['ExternalReference']),))
+                ref_object = await AASModelUtils.create_aas_reference_object(
+                    'ExternalReference', self.svc_req_data['serviceData']['serviceParams']['ExternalReference'])
+            # if 'ModelReference' in self.svc_req_data['serviceData']['serviceParams']:
+            #     keys = ()
+            #     last_type = None
+            #     for key in self.svc_req_data['serviceData']['serviceParams']['ModelReference']['keys']:
+            #         basyx_key_type = await SubmodelServicesUtils.get_key_type_by_string(key['type'])
+            #         keys += (model.Key(basyx_key_type, key['value']),)
+            #         last_type = basyx_key_type
+            #     ref_object = basyx.aas.model.ModelReference(
+            #         key=keys, type_=await SubmodelServicesUtils.get_model_type_by_key_type(last_type))
+            #
+            # elif 'ExternalReference' in self.svc_req_data['serviceData']['serviceParams']:
+            #     ref_object = model.ExternalReference((model.Key(
+            #         type_=model.KeyTypes.GLOBAL_REFERENCE,
+            #         value=self.svc_req_data['serviceData']['serviceParams']['ExternalReference']),))
             # When the appropriate Reference object is created, the requested SubmodelElement can be obtained
             requested_sme = await self.myagent.aas_model.get_object_by_reference(ref_object)
 
@@ -266,7 +336,6 @@ class HandleSvcRequestBehaviour(OneShotBehaviour):
             _logger.info("Management of the service with thread {} finished.".format(self.svc_req_data['thread']))
 
         except (RequestDataError, ServiceRequestExecutionError, AASModelReadingError) as svc_request_error:
-            # todo
             if isinstance(svc_request_error, RequestDataError):
                 svc_request_error = ServiceRequestExecutionError(self.svc_req_data['thread'],
                                                                  svc_request_error.message, self)

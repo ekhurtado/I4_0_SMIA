@@ -31,26 +31,28 @@ class FIPAACLInfo:
 class ACLJSONSchemas:
     """This class contains all the JSON schemas related to ACL messages sent between SMIA agents."""
 
+    JSON_SCHEMA_AAS_MODEL_REFERENCE = {
+        "type": "object",
+        "properties": {
+            "keys": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "type": {"type": "string"},
+                        "value": {"type": "string"}
+                    },
+                    "required": ["type", "value"]
+                }
+            }
+        },
+        "required": ["keys"]
+    }
+
     JSON_SCHEMA_SUBMODEL_SERVICE_REQUEST = {
         "type": "object",
         "properties": {
-            "ModelReference": {
-                "type": "object",
-                "properties": {
-                    "keys": {
-                        "type": "array",
-                        "items": {
-                            "type": "object",
-                            "properties": {
-                                "type": {"type": "string"},
-                                "value": {"type": "string"}
-                            },
-                            "required": ["type", "value"]
-                        }
-                    }
-                },
-                "required": ["keys"]
-            },
+            "ModelReference": JSON_SCHEMA_AAS_MODEL_REFERENCE,
             "ExternalReference": {
                 "type": "string"
             }
@@ -59,6 +61,18 @@ class ACLJSONSchemas:
             {"required": ["ModelReference"]},
             {"required": ["ExternalReference"]}
         ]
+    }
+
+    JSON_SCHEMA_ASSET_SERVICE_REQUEST = {
+        "type": "object",
+        "properties": {
+            "serviceParameterValues": {
+                "type": "object",
+                "additionalProperties": {"type": "string"}
+            },
+            "ModelReference": JSON_SCHEMA_AAS_MODEL_REFERENCE,
+        },
+        "required": ["ModelReference"]
     }
 
     JSON_SCHEMA_CAPABILITY_REQUEST = {

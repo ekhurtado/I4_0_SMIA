@@ -266,10 +266,11 @@ class AssetConnection(metaclass=abc.ABCMeta):
             # The general method for all Asset Connections will be used
             response_content = await cls.extract_information_with_data_query(content_type, response_content,
                                                                              data_query_elem.value)
-        # Now, if the type of the interaction element of the interface is added, it needs a transformation of data type
+            return response_content
+        # If the type of the interaction element of the interface is added, it needs a transformation of data type
         data_type = interaction_metadata.get_sm_element_by_semantic_id(
                 AssetInterfacesInfo.SEMANTICID_INTERFACE_INTERACTION_TYPE)
-        if data_type:
+        if data_type is not None:
             return await cls.transform_data_by_type(response_content, data_type.value)
         else:
             return response_content
@@ -318,7 +319,9 @@ class AssetConnection(metaclass=abc.ABCMeta):
             case 'boolean':
                 return bool(content_data)
             case 'object':
-                return json.loads(content_data)
+                if isinstance(content_data, str):
+                    return json.loads(content_data)
+                return content_data
             case _:
                 return content_data
 

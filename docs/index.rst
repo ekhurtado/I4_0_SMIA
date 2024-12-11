@@ -8,8 +8,9 @@ Welcome to I4.0 SMIA's documentation!
 
 .. toctree::
    :maxdepth: 1
-   :caption: Contents:
+   :caption: Table of Contents:
 
+   getting_started
    installation_guide
    smia_user_guide/smia_user_guide
    aas_developer_guide
@@ -17,6 +18,7 @@ Welcome to I4.0 SMIA's documentation!
    glossary
    recommended_links
 
+.. TODO faltaria añadir paginas para: contributing, code of conduct
 
 Indices and tables
 ==================

@@ -6,7 +6,8 @@ from basyx.aas import model
 from basyx.aas.adapter import aasx
 from basyx.aas.util import traversal
 
-from logic.exceptions import CriticalError
+from logic.exceptions import CriticalError, AASModelReadingError
+from logic.services_utils import SubmodelServicesUtils
 from utilities import configmap_utils
 from utilities.smia_general_info import SMIAGeneralInfo
 
@@ -89,6 +90,68 @@ class AASModelUtils:
                             if elem.check_semantic_id_exist(AASModelInfo.SEMANTIC_ID_SOFTWARE_NAMEPLATE_CONFIG_PATHS):
                                 return elem
         return None
+
+    @staticmethod
+    async def get_key_type_by_string(key_type_string):
+        """
+        This method gets the KeyType defined in BaSyx SDK related to the given string.
+
+        Args:
+            key_type_string (str): string of the desired KeyType.
+
+        Returns:
+            basyx.aas.model.KeyTypes: object of the KeyType defined in BaSyx.
+        """
+        try:
+            return getattr(basyx.aas.model.KeyTypes, key_type_string)
+        except AttributeError as e:
+            raise AASModelReadingError("The KeyType with string {} does not exist in the AAS model defined"
+                                       " types".format(key_type_string), sme_class=None, reason='KeyTypeAttributeError')
+
+    @staticmethod
+    async def get_model_type_by_key_type(key_type):
+        """
+        This method gets the AAS model class by a given KeyType defined in BaSyx SDK.
+
+        Args:
+            key_type (basyx.aas.model.KeyTypes): desired KeyType.
+
+        Returns:
+            object of the AAS model class.
+        """
+        for model_class, key_type_class in basyx.aas.model.KEY_TYPES_CLASSES.items():
+            if key_type_class == key_type:
+                return model_class
+        return None
+
+    @staticmethod
+    async def create_aas_reference_object(reference_type, keys_dict=None, external_ref=None):
+        """
+        This method creates the AAS BaSyx Reference Python object. Depending on the reference type to create (ModelReference or ExternalReference), some information is required. If a Reference cannot be created, it returns None.
+
+        Args:
+            reference_type (str): type of the reference to be created (ModelReference or ExternalReference).
+            keys_dict (dict): if ModelReference is selected, the required keys information in form of a JSON object.
+            external_ref (str): if ExternalReference is selected, the required globally unique identifier.
+
+        Returns:
+           basyx.aas.model.Reference: BaSyx Python object of the AAS Reference.
+        """
+        ref_object = None
+        if 'ModelReference' == reference_type:
+            keys = ()
+            last_type = None
+            for key in keys_dict:
+                basyx_key_type = await AASModelUtils.get_key_type_by_string(key['type'])
+                keys += (model.Key(basyx_key_type, key['value']),)
+                last_type = basyx_key_type
+            ref_object = basyx.aas.model.ModelReference(
+                key=keys, type_=await AASModelUtils.get_model_type_by_key_type(last_type))
+
+        elif 'ExternalReference' == reference_type:
+            ref_object = model.ExternalReference((model.Key(type_=model.KeyTypes.GLOBAL_REFERENCE,
+                                                            value=external_ref),))
+        return ref_object
 
 
 class AASModelInfo:

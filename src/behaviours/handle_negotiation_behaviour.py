@@ -153,7 +153,7 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
             if asset_connection_ref:
                 # Once the Asset Connection reference is obtained, the associated class can be used to connect with
                 # the asset
-                asset_connection_class = await self.myagent.get_asset_connection_class(asset_connection_ref)
+                asset_connection_class = await self.myagent.get_asset_connection_class_by_ref(asset_connection_ref)
                 # The InteractionMetadata has the complete interface to get the value, no message is necessary
                 negotiation_value = await asset_connection_class.execute_skill_by_asset_service(criteria_interaction_metadata, None)
                 if negotiation_value:

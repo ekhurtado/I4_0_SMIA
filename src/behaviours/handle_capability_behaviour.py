@@ -130,7 +130,7 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
                     AssetInterfacesInfo.SEMANTICID_INTERFACE)
                 # Once the Asset Connection reference is obtained, the associated class can be used to
                 # connect with the asset
-                asset_connection_class = await self.myagent.get_asset_connection_class(asset_connection_ref)
+                asset_connection_class = await self.myagent.get_asset_connection_class_by_ref(asset_connection_ref)
                 if not asset_connection_ref:
                     raise CapabilityRequestExecutionError(cap_name, "The capability {} could not be executed because "
                                                                     "the asset connection of its skill interface element was not found.".format(
@@ -496,7 +496,7 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
         # TODO PENSAR COMO SERIA CON UN AGENT SERVICE
         # With the AAS SubmodelElement of the asset interface the related Python class, able to connect to the asset,
         # can be obtained.
-        asset_connection_class = await self.myagent.get_asset_connection_class(aas_asset_interface_elem)
+        asset_connection_class = await self.myagent.get_asset_connection_class_by_ref(aas_asset_interface_elem)
         _logger.assetinfo("The Asset connection of the Skill Interface has been obtained.")
         # Now the capability can be executed through the Asset Connection class related to the given skill. The required
         # input data can be obtained from the received message, since it has already been verified as containing such data
@@ -505,8 +505,7 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
         received_skill_input_data = self.svc_req_data['serviceData']['serviceParams'][
             CapabilitySkillACLInfo.REQUIRED_SKILL_PARAMETERS_VALUES]
         skill_execution_result = await asset_connection_class.execute_asset_service(
-            interaction_metadata=aas_skill_interface_elem,
-            service_input_data=received_skill_input_data)
+            interaction_metadata=aas_skill_interface_elem, service_input_data=received_skill_input_data)
         _logger.assetinfo("Skill of the capability successfully executed.")
 
         # TODO SI LA SKILL TIENE OUTPUT PARAMETERS, HAY QUE RECOGERLOS DEL skill_execution_result. En ese caso, se

@@ -96,7 +96,7 @@ html_theme_options = {
         "color-problematic": "DodgerBlue",
         "color-api-background": "#383838",
         "color-api-background-hover": "#5e5e5e",
-    }
+    },
 }
 
 pygments_dark_style = "monokai"
