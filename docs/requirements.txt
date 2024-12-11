@@ -15,3 +15,4 @@ tdqm==0.0.1
 jsonpath-ng==1.7.0
 psutil==6.1.0
 owlready2==0.47
+jsonschema==4.22.0

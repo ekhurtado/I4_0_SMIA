@@ -28,3 +28,6 @@ jsonpath-ng == 1.7.0
 
 # Related to agent services
 psutil == 6.1.0
+
+# Related to JSON-based objects
+jsonschema==4.22.0
