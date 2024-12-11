@@ -2,19 +2,22 @@
 #
 # For the full list of built-in configuration values, see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
-
+import datetime
 import os
 import sys
 
-sys.path.insert(0, os.path.abspath('../src'))
+import smia
+
+sys.path.insert(0, os.path.abspath('../smia'))
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = 'I4.0 SMIA'
-copyright = '2024, Ekaitz Hurtado'
+copyright = str(datetime.datetime.now().year) + ', Ekaitz Hurtado'
 author = 'Ekaitz Hurtado'
-release = '0.2.0'
+version = smia.__version__   # The short X.Y version.
+release = smia.__version__   # The full version, including alpha/beta/rc tags.
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration

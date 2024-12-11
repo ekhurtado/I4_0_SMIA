@@ -10,5 +10,7 @@ SMIA is a software that implementas an AAS-compliant Digital Twin (DT) that is b
 Getting started pages examples
 
 `<https://faaast-service.readthedocs.io/en/latest/basics/getting-started.html>`_
+
 `<https://ranchermanager.docs.rancher.com/getting-started/overview>`_
+
 `<https://kubernetes.io/docs/setup/>`_
