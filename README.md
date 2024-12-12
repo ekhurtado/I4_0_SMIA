@@ -9,10 +9,13 @@
 
 The I4.0 Standardized Microservice-based Industrial Agent (I4.0 SMIA) is a proposal for the concept of the I4.0 Component from the Reference Architectural Model Industrie 4.0 (RAMI 4.0). The features of the I4.0 SMIA include:
 
-- free & open-source (add license)
+- free & open-source
+- AAS-compliant: standardized approach
+- Ontology-based
 - easily customizable and configurable
+- self-configuration at software startup
+- easy to usage
 - containerized solution
-- Standardized AASs based on SPADE agents.
 
 > [!TIP]
 > For more details on I4.0 Standardized Microservice-based Industrial Agent see the [:blue_book: **full documentation**](https://i4-0-smia.readthedocs.io/en/latest/).
@@ -21,11 +24,10 @@ The I4.0 Standardized Microservice-based Industrial Agent (I4.0 SMIA) is a propo
 
 The repository of the I4.0 SMIA project is structured as follows:
 
-- [additional_tools](https://github.com/ekhurtado/Component_I4_0/tree/main/additional_tools): additional tools developed related to the I4.0 SMIA (i.e. a SPADE agent with a graphical interface that allows sending FIPA-ACL messages in a user-friendly way).
-- [deploy](https://github.com/ekhurtado/Component_I4_0/tree/main/deploy): all the necessary resources for the deployment of the solution. As the execution platform is Kubernetes, these files are in YAML format.
-- [src](https://github.com/ekhurtado/Component_I4_0/tree/main/src): the entire source code of the I4.0 SMIA. It is divided into two main subfolders:
-  - [AAS_Cores](https://github.com/ekhurtado/Component_I4_0/tree/main/src/AAS_Cores): the code developed for the AAS Cores of the different use cases.
-  - [AAS_Manager](https://github.com/ekhurtado/Component_I4_0/tree/main/src/AAS_Manager): the source code for the standardized AAS Manager.
+- [additional_tools](https://github.com/ekhurtado/I4_0_SMIA/tree/main/additional_tools): additional tools developed related to the I4.0 SMIA (i.e. a SPADE agent with a graphical interface that allows sending FIPA-ACL messages in a user-friendly way).
+- [deploy](https://github.com/ekhurtado/I4_0_SMIA/tree/main/deploy): all the necessary resources for the deployment of the solution. As the execution platform is Kubernetes, these files are in YAML format.
+- [src](https://github.com/ekhurtado/I4_0_SMIA/tree/main/src): the entire source code of the I4.0 SMIA.
+  - [smia](https://github.com/ekhurtado/I4_0_SMIA/tree/main/src/smia): the main Python package for the entire source code of the I4.0 SMIA.
 
 ## Usage
 
@@ -34,6 +36,41 @@ The repository of the I4.0 SMIA project is structured as follows:
 > The project is currently under development.
 > Therefore, I4.0 SMIA is not a ready-to-use implementation.
 > New features and bug fixes will be uploaded during development.
+ 
+Multiple ways of running SMIA software are available. 
+
+### Download source code
+
+The source code inside the ``src`` folder can be downloaded, and there are two launchers to run the software easily.
+
+```
+python3 smia_cli_starter.py --model <path to AASX package>
+```
+
+> [!NOTE]
+> ``smia_starter.py`` specifies the AAS model manually, so the code must be modified.
+
+```
+python3 smia_starter.py
+```
+
+### Install as pip package
+
+The SMIA approach is also available as Python package in PyPI. It can be easily installed using [pip](https://pip.pypa.io/en/stable/):
+
+```
+pip install smia
+```
+[//]: # (TODO actualizar con el nombre cuando se publique)
+
+### Run as Docker container
+
+The SMIA approach is also available as Docker image in DockerHub. To run SMIA software the AAS model should be passed as environmental variable:
+
+```
+docker run -e model=<path to AASX package> ehu-gcis/smia
+```
+[//]: # (TODO actualizar con el nombre cuando se publique)
 
 ## Discussions
 
