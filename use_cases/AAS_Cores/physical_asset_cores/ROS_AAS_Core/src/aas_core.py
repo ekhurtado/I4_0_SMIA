@@ -7,10 +7,10 @@ import rospy
 from std_msgs.msg import String
 
 import assetRelatedMethods
-from utilities import Interactions_utils, AASArchive_utils
-from utilities.AASArchive_utils import file_to_json
-from utilities.Interactions_utils import make_gateway_request, create_response_json_object, add_svc_finished_status
-from utilities.KafkaInfo import KafkaInfo
+from smia.utilities import Interactions_utils, AASArchive_utils
+from smia.utilities import file_to_json
+from smia.utilities import make_gateway_request, create_response_json_object, add_svc_finished_status
+from smia.utilities.KafkaInfo import KafkaInfo
 
 
 class AASCore:

@@ -1,13 +1,10 @@
 import time
-from threading import Thread
-from opcua import Client
 
 from aas_core import AASCore
-from utilities import AASArchive_utils
-from utilities.AASArchive_utils import printFile
-from utilities.Interactions_utils import get_next_svc_request, add_new_svc_response, \
+from smia.utilities import printFile
+from smia.utilities import get_next_svc_request, add_new_svc_response, \
     create_response_json_object
-from utilities.OPC_UA_utils import sendDataOPCUA
+from smia.utilities import sendDataOPCUA
 
 # Some variables needed by this AAS Core
 state = 'IDLE'

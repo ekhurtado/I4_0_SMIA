@@ -1,1 +1,1 @@
-sphinx-apidoc -f -e ..\smia -o .
+sphinx-apidoc -f -e -d 3 -o ./apidoc ../src/smia

@@ -12,7 +12,7 @@ from spade.behaviour import CyclicBehaviour, OneShotBehaviour
 from spade.message import Message
 from spade.template import Template
 
-from utilities.fipa_acl_info import FIPAACLInfo
+from smia.utilities import FIPAACLInfo
 
 XMPP_SERVER = 'anonym.im'
 

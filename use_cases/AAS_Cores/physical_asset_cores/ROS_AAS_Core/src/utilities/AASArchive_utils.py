@@ -6,7 +6,7 @@ import logging
 import os
 import time
 
-from utilities.AASarchiveInfo import AASarchiveInfo
+from smia.utilities import AASarchiveInfo
 
 _logger = logging.getLogger(__name__)
 

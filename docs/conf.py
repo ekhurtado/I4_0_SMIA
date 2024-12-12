@@ -6,11 +6,17 @@ import datetime
 import os
 import sys
 
-# import smia
 
-sys.path.insert(0, os.path.abspath(os.path.join('..', 'src')))
+
+# sys.path.insert(0, os.path.abspath(os.path.join('..', 'src')))
 # sys.path.insert(0, os.path.abspath('..'))
-# sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'smia')))
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src')))
+print("sys.path:", sys.path)
+
+import smia.agents.smia_resource_agent
+# import smia.launchers.smia_cli_starter
+print(smia.agents.smia_resource_agent)
+# print(smia.launchers.smia_cli_starter)
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information

@@ -3,11 +3,11 @@ from threading import Thread
 
 from opcua import Client
 
-from utilities import Interactions_utils
-from utilities.AASArchive_utils import printFile
-from utilities.Interactions_utils import create_response_json_object
-from utilities.KafkaInfo import KafkaInfo
-from utilities.OPC_UA_utils import sendDataOPCUA
+from smia.utilities import Interactions_utils
+from smia.utilities import printFile
+from smia.utilities import create_response_json_object
+from smia.utilities.KafkaInfo import KafkaInfo
+from smia.utilities import sendDataOPCUA
 
 
 class AASCore:

@@ -1,9 +1,7 @@
 #!/usr/bin/env python
-import rospy
-from std_msgs.msg import String
 
 from aas_core import AASCore
-from utilities import AASArchive_utils
+from smia.utilities import AASArchive_utils
 
 
 def main():

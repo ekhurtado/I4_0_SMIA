@@ -11,11 +11,12 @@ import ntpath
 
 import spade
 
-from aas_model.aas_model_utils import AASModelUtils
-from utilities.aas_model_extension_utils import AASModelExtensionUtils
-from utilities import smia_archive_utils, configmap_utils
-from utilities.general_utils import GeneralUtils
-from utilities.smia_general_info import SMIAGeneralInfo
+from .aas_model.aas_model_utils import AASModelUtils
+from .utilities.aas_model_extension_utils import AASModelExtensionUtils
+from .utilities import configmap_utils, smia_archive_utils
+from .utilities.general_utils import GeneralUtils
+from .utilities.smia_general_info import SMIAGeneralInfo
+
 
 
 def initial_self_configuration():

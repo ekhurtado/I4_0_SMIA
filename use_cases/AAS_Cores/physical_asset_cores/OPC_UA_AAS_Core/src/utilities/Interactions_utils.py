@@ -8,9 +8,9 @@ import time
 from kafka import KafkaConsumer, TopicPartition, KafkaProducer
 from kafka.errors import KafkaError
 
-from utilities.AASArchive_utils import file_to_json, update_json_file
-from utilities.AASarchiveInfo import AASarchiveInfo
-from utilities.KafkaInfo import KafkaInfo
+from smia.utilities import file_to_json, update_json_file
+from smia.utilities import AASarchiveInfo
+from smia.utilities.KafkaInfo import KafkaInfo
 
 
 def get_next_svc_request():

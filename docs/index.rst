@@ -7,14 +7,14 @@ Welcome to I4.0 SMIA's documentation!
 =======================================
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
    :caption: Table of Contents:
 
    getting_started
    installation_guide
    smia_user_guide/smia_user_guide
    aas_developer_guide
-   modules
+   apidoc/modules
    glossary
    recommended_links
 
