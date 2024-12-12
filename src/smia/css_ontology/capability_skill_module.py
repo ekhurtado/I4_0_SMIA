@@ -16,6 +16,8 @@ _logger = logging.getLogger(__name__)
 
 css_ontology = get_ontology(CapabilitySkillOntologyUtils.get_ontology_file_path())
 base_namespace = css_ontology.get_namespace(CapabilitySkillOntologyInfo.CSS_ONTOLOGY_BASE_NAMESPACE)
+# css_ontology = None   # It is necessary to build Sphinx documentation without errors.
+# base_namespace = None   # It is necessary to build Sphinx documentation without errors.
 
 
 class ExtendedThing(Thing):
