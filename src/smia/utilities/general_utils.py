@@ -192,7 +192,7 @@ class CLIUtils:
             aas_model (str): path to the AAS model file.
         """
         # The libraries are imported locally to avoid circular import error
-        from aas_model.aas_model_utils import AASModelUtils
+        from smia.aas_model.aas_model_utils import AASModelUtils
         from smia.utilities import smia_archive_utils
         from smia.utilities import configmap_utils
         import ntpath

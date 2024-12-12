@@ -11,7 +11,7 @@
     <owl:Ontology rdf:about="http://www.w3id.org/upv-ehu/gcis/css-smia">
         <owl:versionIRI rdf:resource="http://www.w3id.org/upv-ehu/gcis/css-smia/1.0"/>
         <owl:imports rdf:resource="http://www.lesfleursdunormal.fr/static/_downloads/owlready_ontology.owl"/>
-        <owlready_ontology:python_module>css_ontology.capability_skill_module</owlready_ontology:python_module>
+        <owlready_ontology:python_module>smia.css_ontology.capability_skill_module</owlready_ontology:python_module>
         <rdfs:comment>An ontology for the Capability, Skill and Service reference model defined by Plattform Industrie 4.0. See https://www.plattform-i40.de/IP/Redaktion/DE/Downloads/Publikation/CapabilitiesSkillsServices.html for a description of the abstract reference model.</rdfs:comment>
         <rdfs:isDefinedBy>https://www.plattform-i40.de/IP/Redaktion/DE/Downloads/Publikation/CapabilitiesSkillsServices.html</rdfs:isDefinedBy>
     </owl:Ontology>

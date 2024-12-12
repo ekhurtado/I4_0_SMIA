@@ -1,7 +1,7 @@
 import logging
 import sys
 
-from smia import launchers
+import smia
 from smia.agents.smia_agent import SMIAAgent
 from smia.agents.smia_app_agent import SMIAAppAgent
 from smia.agents.smia_resource_agent import SMIAResourceAgent
@@ -51,12 +51,12 @@ def main():
             # Create the agent object
             smia_agent = SMIAAgent(agent_jid, passwd)
 
-    launchers.run(smia_agent)
+    smia.run(smia_agent)
 
 if __name__ == '__main__':
 
     # First, the initial configuration must be executed
-    launchers.initial_self_configuration()
+    smia.initial_self_configuration()
     _logger.info("Initializing SMIA software...")
 
     # Run main program with SPADE
