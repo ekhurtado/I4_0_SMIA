@@ -1,4 +1,4 @@
-# I4.0 Standardized Microservice-based Industrial Agent: I4.0 SMIA 
+# Self-configurable Manufacturing Industrial Agent: SMIA 
 
 [![Docker badge](https://img.shields.io/docker/pulls/ekhurtado/aas-manager.svg)](https://hub.docker.com/r/ekhurtado/aas-manager/) ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/ekhurtado/I4_0_SMIA?sort=semver) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/e87506fff1bb4a438c20e11bb7295f51)](https://app.codacy.com/gh/ekhurtado/I4_0_SMIA/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade) [![Documentation Status](https://readthedocs.org/projects/i4-0-smia/badge/?version=latest)](https://i4-0-GITsmia.readthedocs.io/en/latest/)
 
@@ -7,7 +7,7 @@
 
 [//]: # (//Dependiendo del modo de GitHub oscuro o claro se añade una imagen u otra&#41;)
 
-The I4.0 Standardized Microservice-based Industrial Agent (I4.0 SMIA) is a proposal for the concept of the I4.0 Component from the Reference Architectural Model Industrie 4.0 (RAMI 4.0). The features of the I4.0 SMIA include:
+The Self-configurable Manufacturing Industrial Agent (SMIA) is a proposal for the implementation of the concept of the I4.0 Component from the Reference Architectural Model Industrie 4.0 (RAMI 4.0) as an AAS-compliant agent-based Digital Twin (DT). The features of the SMIA approach include:
 
 - free & open-source
 - AAS-compliant: standardized approach
@@ -18,11 +18,11 @@ The I4.0 Standardized Microservice-based Industrial Agent (I4.0 SMIA) is a propo
 - containerized solution
 
 > [!TIP]
-> For more details on I4.0 Standardized Microservice-based Industrial Agent see the [:blue_book: **full documentation**](https://i4-0-smia.readthedocs.io/en/latest/).
+> For more details on Self-configurable Manufacturing Industrial Agent see the [:blue_book: **full documentation**](https://i4-0-smia.readthedocs.io/en/latest/).
 
 ## Project structure
 
-The repository of the I4.0 SMIA project is structured as follows:
+The repository of the SMIA project is structured as follows:
 
 - [additional_tools](https://github.com/ekhurtado/I4_0_SMIA/tree/main/additional_tools): additional tools developed related to the I4.0 SMIA (i.e. a SPADE agent with a graphical interface that allows sending FIPA-ACL messages in a user-friendly way).
 - [deploy](https://github.com/ekhurtado/I4_0_SMIA/tree/main/deploy): all the necessary resources for the deployment of the solution. As the execution platform is Kubernetes, these files are in YAML format.

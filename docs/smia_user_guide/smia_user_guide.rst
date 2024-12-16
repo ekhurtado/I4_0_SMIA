@@ -1,6 +1,8 @@
 SMIA User Guide
 ===============
 
+.. _SMIA User Guide:
+
 This guide is a comprehensive resource for using the :term:`SMIA` software. For a better understanding of the software, the guide is divided into several subguides, each of which focuses on one step of the process.
 
 .. toctree::

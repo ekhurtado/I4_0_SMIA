@@ -1,6 +1,8 @@
 Installation guide
 ==================
 
+.. _Installation guide:
+
 This guide is a comprehensive utility to properly install and configure the necessary tools for the :term:`SMIA` software. For a better understanding of the software, the guide is divided into several subsections, each showing one of the tools.
 
 

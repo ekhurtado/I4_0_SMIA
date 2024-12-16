@@ -1,0 +1,38 @@
+#CAPABILITY CHEKING:
+Performative: Query-If
+Ontology: SvcRequest
+serviceID: capabilityChecking
+{"capabilityName": "Negotiation", "capabilityType": "AgentCapability", "skillInfo": {"skillName": "NegotiationBasedOnCriteria", "smeType": "Operation", "skillParameters": {"input": "NegotiationCriteria", "output": "NegotiationWinner"}}}
+
+# CAPABILITY REQUEST (negotiate)
+Performative: CallForProposal
+Ontology: Negotiation
+serviceID: capabilityRequest
+{"serviceData": {"serviceParams": "NegotiationCriteria": "battery", "targets": "transportrobot001@ejabberd,transportrobot002@ejabberd"}}
+
+{"capabilityName": "Negotiation", "capabilityType": "AgentCapability", "skillInfo": {"skillName": "NegotiationBasedOnCriteria", "smeType": "Operation", "skillParameters": {"inputs": {"NegotiationCriteria": "battery"}, "outputs": "NegotiationWinner"}}}
+
+
+# CAPABILITY REQUEST (transport)
+Performative: CallForProposal
+Ontology: SvcRequest
+serviceID: capabilityChecking
+{"capabilityName": "EfficientTransport", "capabilityType": "AssetCapability", "capabilityConstraints": {"preCondition": "EfficientTransportConstraintLocation"}, "skillInfo": {"skillName": "EfficientMovement", "smeType": "Operation", "skillParameters": {"input": "DestinationCoordinates"}}}
+
+# CAPABILITY REQUEST (transport)
+Performative: CallForProposal
+Ontology: SvcRequest
+serviceID: capabilityRequest
+{"capabilityName": "EfficientTransport", "capabilityType": "AssetCapability", "capabilityConstraints": {"EfficientTransportConstraintLocation": "-1.65,-0.56"}, "skillInfo": {"skillName": "EfficientMovement", "smeType": "Operation", "skillParameters": {"inputs": {"destinationcoordinates": "1.43,0.59"}}}}
+
+
+
+
+PRUEBAS CON NUEVO ENFOQUE (ONTOLOGIA): solo hay que definir los nombres de las clases y sus valores si necesitan, la relacion se define en la ontologia
+{"capabilityName": "EfficientTransport"}
+{"capabilityName": "EfficientTransport", "skillName": "EfficientMovement"}
+{"capabilityName": "EfficientTransport", "skillName": "EfficientMovement", "skillInterfaceName": "action_move"}
+
+{"capabilityName": "EfficientTransport", "skillName": "EfficientMovement", "skillParameterValues":{"destinationcoordinates": "1.43,0.59"}, "skillInterfaceName": "action_move"}
+
+
