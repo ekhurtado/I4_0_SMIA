@@ -25,7 +25,6 @@ class ExtendedThing(Thing):
     # The namespace of the base CSS ontology must be defined
     namespace = base_namespace
 
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
@@ -157,7 +156,6 @@ class ExtendedThing(Thing):
         _logger.warning("The data property with IRI {} does not exist in class {}".format(property_iri, self))
         return None
 
-
     def get_aas_sme_ref(self):
         """
         This method gets the AAS submodel element (SME) related to this instance class.
@@ -166,7 +164,6 @@ class ExtendedThing(Thing):
             aas_ref (str): reference to the submodel element of the AAS model.
         """
         return self.aas_sme_ref
-
 
     def set_aas_sme_ref(self, aas_ref):
         """

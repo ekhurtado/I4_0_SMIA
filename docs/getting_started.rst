@@ -18,6 +18,44 @@ The features of the SMIA approach include:
     - easy to usage
     - containerized solution
 
+Additional tools
+----------------
+
+There are some additional tools offered within the SMIA approach. All of these tools are available in the GitHub repository.
+
+    .. button-link:: https://github.com/ekhurtado/I4_0_SMIA/tree/main/additional_tools/aas_ontology_reader/
+            :color: primary
+            :outline:
+
+            :octicon:`mark-github;1em` AAS ontology reader
+
+    This tool contains the source code of a reader capable of analyzing an AAS model based on a given OWL ontology.
+
+    .. button-link:: https://github.com/ekhurtado/I4_0_SMIA/tree/main/additional_tools/aasx_package_explorer_resources/
+            :color: primary
+            :outline:
+
+            :octicon:`mark-github;1em` AASX Package Explorer Resources
+
+    This tool contains the JSON files to extend the AASX Package Explorer software with the Capability-Skill-Service (CSS) model.
+
+    .. button-link:: https://github.com/ekhurtado/I4_0_SMIA/tree/main/additional_tools/capability_skill_ontology/
+            :color: primary
+            :outline:
+
+            :octicon:`mark-github;1em` CSS ontology model
+
+    This tool contains the ontology for the Capability-Skill-Service (CSS) model in an OWL file. It also provides some ExtendedClasses implemented in Python.
+
+    .. button-link:: https://github.com/ekhurtado/I4_0_SMIA/tree/main/additional_tools/gui_agent/
+            :color: primary
+            :outline:
+
+            :octicon:`mark-github;1em` GUI Agent
+
+    This tool provides a SPADE agent with an easy-to-use graphical interface. This agent provides several useful functionalities for SMIA usage and execution.
+
+
 Documentation project structure
 -------------------------------
 

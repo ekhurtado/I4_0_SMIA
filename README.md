@@ -24,10 +24,14 @@ The Self-configurable Manufacturing Industrial Agent (SMIA) is a proposal for th
 
 The repository of the SMIA project is structured as follows:
 
-- [additional_tools](https://github.com/ekhurtado/I4_0_SMIA/tree/main/additional_tools): additional tools developed related to the I4.0 SMIA (i.e. a SPADE agent with a graphical interface that allows sending FIPA-ACL messages in a user-friendly way).
+- [additional_tools](https://github.com/ekhurtado/I4_0_SMIA/tree/main/additional_tools): additional tools developed related to the SMIA.
+  - [aas_ontology_reader](https://github.com/ekhurtado/I4_0_SMIA/tree/main/additional_tools/aas_ontology_reader): this tool contains the source code of a reader capable of analyzing an AAS model based on a given OWL ontology.
+  - [aasx_package_explorer_resources](https://github.com/ekhurtado/I4_0_SMIA/tree/main/additional_tools/aasx_package_explorer_resources): this tool contains the JSON files to extend the AASX Package Explorer software with the Capability-Skill-Service (CSS) model.
+  - [capability_skill_ontology](https://github.com/ekhurtado/I4_0_SMIA/tree/main/additional_tools/capability_skill_ontology): this tool contains the ontology for the Capability-Skill-Service (CSS) model in an OWL file. It also provides some ExtendedClasses implemented in Python.
+  - [gui_agent](https://github.com/ekhurtado/I4_0_SMIA/tree/main/additional_tools/gui_agent): this tool provides a SPADE agent with an easy-to-use graphical interface. This agent provides several useful functionalities for SMIA usage and execution.
 - [deploy](https://github.com/ekhurtado/I4_0_SMIA/tree/main/deploy): all the necessary resources for the deployment of the solution. As the execution platform is Kubernetes, these files are in YAML format.
 - [src](https://github.com/ekhurtado/I4_0_SMIA/tree/main/src): the entire source code of the I4.0 SMIA.
-  - [smia](https://github.com/ekhurtado/I4_0_SMIA/tree/main/src/smia): the main Python package for the entire source code of the I4.0 SMIA.
+  - [smia](https://github.com/ekhurtado/I4_0_SMIA/tree/main/src/smia): the main Python package for the entire source code of the SMIA.
 
 ## Usage
 

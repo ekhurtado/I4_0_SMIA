@@ -254,9 +254,8 @@ class InitAASModelBehaviour(OneShotBehaviour):
             # First, the elements of capability and skill are determined (no matter in which order of the
             # relationship they are listed).
             try:
-                domain_aas_elem, range_aas_elem = await self.myagent.aas_model.get_elements_from_relationship(rel,
-                                                                                                              domain_aas_class,
-                                                                                                              range_aas_class)
+                domain_aas_elem, range_aas_elem = await self.myagent.aas_model.get_elements_from_relationship(
+                    rel, domain_aas_class, range_aas_class)
                 # It is checked if the capability and the skill have the required semanticIDs within the ontology
                 # if not domain_aas_elem.check_semantic_id_exist(domain_class_iri):
                 domain_aas_elem.get_semantic_id_of_css_ontology()
