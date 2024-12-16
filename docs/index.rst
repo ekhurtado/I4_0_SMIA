@@ -13,7 +13,8 @@ Welcome to I4.0 SMIA's documentation!
    getting_started
    installation_guide
    smia_user_guide/smia_user_guide
-   aas_developer_guide
+   .. aas_developer_guide
+
    apidoc/modules
    glossary
    recommended_links
