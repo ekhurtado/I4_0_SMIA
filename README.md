@@ -32,9 +32,9 @@ The repository of the SMIA project is structured as follows:
 ## Usage
 
 > [!IMPORTANT]
-> At the moment there is no final version available for the I4.0 SMIA.
+> At the moment there is no final version available for the SMIA.
 > The project is currently under development.
-> Therefore, I4.0 SMIA is not a ready-to-use implementation.
+> Therefore, SMIA is not a ready-to-use implementation.
 > New features and bug fixes will be uploaded during development.
  
 Multiple ways of running SMIA software are available. 
@@ -61,6 +61,9 @@ The SMIA approach is also available as Python package in PyPI. It can be easily 
 ```
 pip install smia
 ```
+
+The PyPI project is available at https://test.pypi.org/project/smia/.
+
 [//]: # (TODO actualizar con el nombre cuando se publique)
 
 ### Run as Docker container
