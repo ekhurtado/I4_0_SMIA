@@ -7,7 +7,7 @@ This guide is focused on the development of the :term:`AAS` model.
 
 .. important::
 
-   If the necessary tools for SMIA have not been installed and configured correctly, please follow the guide :ref:`installation_guide` before proceeding.
+   If the necessary tools for SMIA have not been installed and configured correctly, please follow the guide :ref:`Installation guide` before proceeding.
 
 
 The development of the AAS model will be realized using the :ref:`AASX Package Explorer`, so it is necessary to open this program.
@@ -33,7 +33,7 @@ The next step is to enable edit mode, which can be found in ``Workspace > Edit``
   :width: 400
   :alt: AASX Package Explorer step2
 
-Now we can add the SMIA submodel to import all semantic identifiers based on the CSS ontology (which has been pre-added in the installation of the tool as shown in :ref:`installation_guide`).
+Now we can add the SMIA submodel to import all semantic identifiers based on the CSS ontology (which has been pre-added in the installation of the tool as shown in :ref:`Installation guide`).
 
 To do this, simply click on the AAS to be added, and use either the keyboard shortcut (``Ctrl + Shift + M``) or the program interface (``Workspace > Create ... > New Submodel from plugin``). In either case, a list of submodels to import will appear, from which **GCIS/SubmodelWithCapabilitySkillOntology** must be chosen.
 
@@ -62,18 +62,18 @@ Defining asset interfaces
 All interfaces of the asset will be defined in the ``AssetInterfacesDescription`` submodel, proposed by IDTA. The `specification document <https://industrialdigitaltwin.org/en/wp-content/uploads/sites/2/2024/01/IDTA-02017-1-0_Submodel_Asset-Interfaces-Description.pdf>`_, as well as the `GitHub repository <https://github.com/admin-shell-io/submodel-templates/tree/main/published/Asset%20Interfaces%20Description/1/0>`_ of the submodel template, are available in the offered links.
 
 
-Developing CSS-based the AAS model
-----------------------------------
+.. Developing CSS-based the AAS model
+.. ----------------------------------
 
 
 
 .. TODO FALTA POR HACER
 
 
-Youtube videos test
--------------------
+.. Youtube videos test
+.. -------------------
 
-TODO: Test to add Youtube videos in Sphinx RTD documentation.
+.. TODO: Test to add Youtube videos in Sphinx RTD documentation.
 
-.. youtube:: ToKwxUhuiRE
+.. .. youtube:: ToKwxUhuiRE
 

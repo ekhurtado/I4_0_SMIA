@@ -6,14 +6,14 @@ Glossary
 .. glossary::
    :sorted:
 
-   TODO
-       This is a test to add a glossary of terms used in this project. We still need to add more and check how they link to Sphinx in the API documentation.
+   .. TODO
+   ..    This is a test to add a glossary of terms used in this project. We still need to add more and check how they link to Sphinx in the API documentation.
 
-   Sphinx : GroupA
-       Sphinx is a tool that makes it easy to create intelligent and beautiful documentation. It was originally created for the Python documentation, and it has excellent facilities for the documentation of software projects in a range of languages.
+   ..  Sphinx : GroupA
+       .. Sphinx is a tool that makes it easy to create intelligent and beautiful documentation. It was originally created for the Python documentation, and it has excellent facilities for the documentation of software projects in a range of languages.
 
-   RST : GroupB
-       |RST| is an easy-to-read, what-you-see-is-what-you-get plain text markup syntax and parser system. It is useful for in-line program documentation (such as Python docstrings), for quickly creating simple web pages, and for standalone documents. |RST| is designed for extensibility for specific application domains. The |RST| parser is a component of Docutils.
+   .. RST : GroupB
+       .. |RST| is an easy-to-read, what-you-see-is-what-you-get plain text markup syntax and parser system. It is useful for in-line program documentation (such as Python docstrings), for quickly creating simple web pages, and for standalone documents. |RST| is designed for extensibility for specific application domains. The |RST| parser is a component of Docutils.
 
    API
        Application Programming Interface. A set of routines, protocols, and tools for building software applications.
@@ -36,20 +36,18 @@ Glossary
    Variable
        A storage location identified by a memory address and a symbolic name, which contains some known or unknown quantity of information referred to as a value.
 
+   Asset
+      Physical, digital or intangible entity that has value to an individual, an organisation or a government (`IEC 63278-1 <https://webstore.iec.ch/en/publication/65628>`_).
+
    AAS
        The Asset Administration Shell or AAS is the standardized digital representation of an asset (adapted from `Plattform I4.0 glossary <https://www.plattform-i40.de/IP/Navigation/EN/Industrie40/Glossary/glossary.html>`_).
 
-   AAS Manager
-       The AAS Manager is the common part of the AAS for all AAS types. It is responsible for managing the AAS and representing it in the I4.0 System and it is implemented as a :term:`Industrial Agent`. This agent will be part of a :term:`Multi-Agent System` composed of other AASs, each with their corresponding AAS Managers. The AAS Manager is provided by the platform in this approach, so the user only has to parameterise it.
+   Digital representation
+       Information and services representing an entity from a given point of view (`IEC 63278-1 <https://webstore.iec.ch/en/publication/65628>`_).
 
-   AAS Core
-       The AAS Core is the specific part of the AAS that is closely related to the asset which the AAS is representing. The assets can be either logical or physical. The AAS Core is developed by the user for each case.
+   .. Inter AAS Interaction
+      ..  Interaction type that takes place between I4.0 Components, i.e. between AASs (and therefore between AAS Managers). These interactions will follow FIPA-ACL, i.e. an AAS can request a service from another AAS.
 
-   Inter AAS Interaction
-       Interaction type that takes place between I4.0 Components, i.e. between AASs (and therefore between AAS Managers). These interactions will follow FIPA-ACL, i.e. an AAS can request a service from another AAS.
-
-   Intra AAS Interaction
-       Interaction within each I4.0 Component, that is, between the AAS Manager and the AAS Core. This interaction will occur when one of the two has to perform a task that it is not capable of by itself, so it will have to request it to the other entity. I.e. the AAS Manager can request a service from its associated AAS Core.
 
    Industrial Agent
        An industrial agent is defined as a key enabler for industrial applications, focusing on core functionalities relevant to the application while often neglecting security and privacy aspects, especially in the context of cyber-physical systems and their utilization in industrial environments (see `ScienceDirect <https://www.sciencedirect.com/topics/computer-science/industrial-agent>`_).
@@ -57,4 +55,9 @@ Glossary
    Multi-Agent System
         A multi-agent system (MAS) is a computerized system composed of multiple interacting intelligent agents, capable of perceiving their environment and taking decisions based on it. Typically agents refers to software agents, but could equally well be robots, humans or human teams. The work toward a common goal that goes beyond their individual goals, increasing the adaptability and robustness.
 
+   SMIA
+        The Self-configurable Manufacturing Industrial Agent approach: an AAS-compliant agent-based :term:`Digital Twin` (DT).
+
+   Digital Twin
+        Digital representation, sufficient to meet the requirements of a set of use cases (`Specification of the AAS Part 1: Metamodel <https://industrialdigitaltwin.org/en/content-hub/aasspecifications/specification-of-the-asset-administration-shell-part-1-metamodel-idta-number-01001-3-0-1>`_).
 
