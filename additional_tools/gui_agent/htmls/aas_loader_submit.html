@@ -72,7 +72,17 @@
             padding: 10px;
             background-color: #f7f7f7;
             border-radius: 5px;
-            word-break: break-all;
+            /*word-break: break-all;*/
+        }
+
+        .file-icon {
+            margin-right: 10px; /* Adds space between the icon and file details */
+            flex-shrink: 0;     /* Prevents the icon from shrinking */
+        }
+
+        .file-details {
+            display: flex;
+            flex-direction: column; /* Stacks file-name and file-size vertically */
         }
 
         .file-item .file-name {
@@ -83,6 +93,8 @@
 
         .file-item .file-size {
             font-size: 14px;
+            word-break: break-all;
+            white-space: normal; /* Allows the file size to break into multiple lines */
             color: #888;
         }
 
@@ -127,7 +139,7 @@
                                                     <i class="fas fa-file-upload file-icon"></i>
                                                     <div class="file-details">
                                                         <span class="file-name">{{ file.name }}</span>
-                                                        <span class="file-size">(Capabilities [{{ file.size }}], asset connections [{{ file.size }}])</span>
+                                                        <span class="file-size">(Capabilities {{ file.capabilities }}, asset connections {{ file.assetconnections }})</span>
                                                     </div>
                                                 </div>
                                             {% endfor %}
@@ -137,8 +149,8 @@
                                     <h4>The AAS files cannot be uploaded.</h4>
                                     {% endif %}
                                     <div class="box-footer">
-                                        <button class="btn btn-custom" onclick="window.location.href='/aas_loader'">Volver al AAS loader</button>
-                                        <button class="btn btn-custom" onclick="window.location.href='/aas_library'">Ir a la libreria</button>
+                                        <button class="btn btn-custom" onclick="window.location.href='/aas_loader'">Back to AAS Loader</button>
+                                        <button class="btn btn-custom" onclick="window.location.href='/aas_library'">Go to the AAS Library</button>
                                     </div>
                                 </div>
                             </div>

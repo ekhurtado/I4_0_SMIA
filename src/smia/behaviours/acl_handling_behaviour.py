@@ -72,7 +72,7 @@ class ACLHandlingBehaviour(CyclicBehaviour):
                         svc_req_data = inter_aas_interactions_utils.create_svc_json_data_from_acl_msg(msg)
                         capability_handling_behav = HandleCapabilityBehaviour(self.agent, svc_req_data)
                         self.myagent.add_behaviour(capability_handling_behav)
-                    if msg.get_metadata('ontology') == FIPAACLInfo.FIPA_ACL_ONTOLOGY_SVC_REQUEST:
+                    elif msg.get_metadata('ontology') == FIPAACLInfo.FIPA_ACL_ONTOLOGY_SVC_REQUEST:
                         _logger.aclinfo("The agent has received a request to perform a service")
                         # The behaviour to handle this specific capability will be added to the agent
                         svc_req_data = inter_aas_interactions_utils.create_svc_json_data_from_acl_msg(msg)

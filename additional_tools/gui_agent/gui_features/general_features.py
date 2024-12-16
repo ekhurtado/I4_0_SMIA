@@ -1,3 +1,4 @@
+import json
 import os
 from os import getcwd
 
@@ -108,18 +109,48 @@ class GeneralGUIFeatures:
                         size += len(chunk)
                         f.write(chunk)
 
-                self.myagent.aas_loaded_files.append({'name': filename, 'size': size})
+                if 'SMIA_TransportRobot_with_OWL' in filename:
+                    self.myagent.aas_loaded_files.append({'name': filename, 'size': size,
+                                                          'capabilities': ['Negotiation', 'EfficientTransport'],
+                                                          'assetconnections': ['InterfaceForHTTP']})
+                else:
+                    self.myagent.aas_loaded_files.append({'name': filename, 'size': size,
+                                                          'capabilities': [], 'assetconnections': []})
 
         # return web.Response(text=f'File {filename} uploaded successfully, {size} bytes received.')
         self.myagent.aas_loaded = True
         return {"status": "OK"}
-
 
     async def capability_request_controller(self, request):
         try:
             data = await request.json()
             # Process the data as needed
             print("Received data:", data)
+
+            # TODO manual test
+            cap_request_data = {'capabilityName': data['name'],
+                                'skillName': data['skill']['name'],
+                                'skillParameterValues': {data['skill']['parameters'][0]['name']: data['skill']['parameters'][0]['value']},
+                                'skillInterfaceName': data['skill']['interface']['name']}
+            acl_data = {'receiver': 'gcis1',
+                        'server': 'xmpp.jp',
+                        'performative': 'Request',
+                        'ontology': 'CapabilityRequest',
+                        'thread': 'cap-request-1',
+                        'messageType': 'acl',
+                        'serviceID': 'capabilityRequest',
+                        'serviceType': 'AssetRelatedService',
+                        'serviceCategory': 'service-request',
+                        'serviceParams': json.dumps(cap_request_data),
+                        }
+
+            self.myagent.cap_request_send_behav = GUIAgentBehaviours.SendBehaviour()
+            self.myagent.cap_request_send_behav.msg_data = acl_data
+            self.myagent.add_behaviour(self.myagent.cap_request_send_behav)
+            print("Behaviour added to the agent")
+            await self.myagent.cap_request_send_behav.join()
+            self.myagent.acl_sent = True
+
             return web.json_response({"status": "success", "message": "Capability requested successfully"})
         except Exception as e:
             print("Error handling request:", e)

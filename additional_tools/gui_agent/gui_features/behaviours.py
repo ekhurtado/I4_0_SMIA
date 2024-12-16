@@ -12,7 +12,10 @@ class GUIAgentBehaviours:
     class SendBehaviour(OneShotBehaviour):
         async def run(self):
             # Prepare the ACL message
-            data_json = {k: v[0] if len(v) == 1 else v for k, v in parse_qs(self.msg_data).items()}
+            if isinstance(self.msg_data, str):
+                data_json = {k: v[0] if len(v) == 1 else v for k, v in parse_qs(self.msg_data).items()}
+            else:
+                data_json = self.msg_data
             print(data_json)
 
             # Create the Message object
@@ -24,7 +27,8 @@ class GUIAgentBehaviours:
 
             if data_json['messageType'] == 'normal':  # message body with normal format
                 msg.body = data_json['normalMessage']
-            elif len(data_json['messageType']) == 2:
+            elif 'acl' in data_json['messageType']:
+            # elif len(data_json['messageType']) == 2:
                 msg_body_json = {'serviceID': data_json['serviceID'],
                                  'serviceType': data_json['serviceType'],
                                  'serviceData': {

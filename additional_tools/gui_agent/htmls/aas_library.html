@@ -186,9 +186,292 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <tr data-file-id="transportRobot1">
+                                        <td class="expandable">
+                                            SMIA_TransportRobot_with_OWL.aasx
+                                            <span class="glyphicon glyphicon-chevron-down expand-icon"></span>
+                                        </td>
+                                    </tr>
+                                    <tr class="subtable transportRobot1">
+                                        <td>
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Capabilities</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr data-capability-id="negotiationcapability">
+                                                        <td class="expandable">
+                                                            Negotiation
+                                                            <div class="options-container">
+                                                                <button class="btn btn-sm btn-primary request-button">Request</button>
+                                                                <span class="glyphicon glyphicon-chevron-down expand-icon"></span>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="subtable negotiationcapability">
+                                                        <td>
+                                                            <table class="information-table table-bordered">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td><i>Name:</i> Negotiation</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td><i>Type:</i> AgentCapability</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                            <table class="table table-bordered">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Skills</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr data-skill-id="negskill1">
+                                                                        <td class="expandable">
+                                                                            <div>
+                                                                                NegotiationBasedOnBattery
+                                                                                <input type="checkbox"
+                                                                                       class="request-checkbox">
+                                                                            </div>
+                                                                            <span class="glyphicon glyphicon-chevron-down expand-icon"></span>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="subtable negskill1">
+                                                                        <td>
+                                                                            <table class="information-table table-bordered">
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <td><i>Name:</i> NegotiationBasedOnBattery</td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td><i>Type:</i> Operation</td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td><i>Parameters:</i>
+                                                                                            <ul>
+                                                                                                <li>NegotiationWinner [OUT]</li>
+                                                                                            </ul>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td><strong>SkillInterfaces</strong> </td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                            <table class="table table-bordered">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th>Interface Name</th>
+                                                                                        <th>Protocol</th>
+                                                                                        <th>Endpoint</th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                    <tr data-skill-interface-id="property_battery">
+                                                                                        <td>property_battery</td>
+                                                                                        <td>HTTP</td>
+                                                                                        <td>http://192.168.1.2:5000</td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr data-skill-id="negskill2">
+                                                                        <td class="expandable">
+                                                                            <div>
+                                                                                NegotiationBasedOnLocation
+                                                                                <input type="checkbox"
+                                                                                       class="request-checkbox">
+                                                                            </div>
+                                                                            <span class="glyphicon glyphicon-chevron-down expand-icon"></span>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="subtable negskill2">
+                                                                        <td>
+                                                                            <table class="information-table table-bordered">
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <td><i>Name:</i> NegotiationBasedOnLocation</td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td><i>Type:</i> Operation</td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td><i>Parameters:</i>
+                                                                                            <ul>
+                                                                                                <li>NegotiationWinner [OUT]</li>
+                                                                                            </ul>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td><strong>SkillInterfaces</strong> </td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                            <table class="table table-bordered">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th>Interface Name</th>
+                                                                                        <th>Protocol</th>
+                                                                                        <th>Endpoint</th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                    <tr data-skill-interface-id="property_location">
+                                                                                        <td>property_location</td>
+                                                                                        <td>HTTP</td>
+                                                                                        <td>http://192.168.1.2:5000</td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr data-skill-id="negskill3">
+                                                                        <td class="expandable">
+                                                                            <div>
+                                                                                NegotiationBasedOnRAM
+                                                                                <input type="checkbox"
+                                                                                       class="request-checkbox">
+                                                                            </div>
+                                                                            <span class="glyphicon glyphicon-chevron-down expand-icon"></span>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="subtable negskill3">
+                                                                        <td>
+                                                                            <table class="information-table table-bordered">
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <td><i>Name:</i> NegotiationBasedOnRAM</td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td><i>Type:</i> Operation</td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td><i>Parameters:</i>
+                                                                                            <ul>
+                                                                                                <li>NegotiationWinner [OUT]</li>
+                                                                                            </ul>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td><strong>SkillInterfaces</strong> </td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                            <table class="table table-bordered">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th>Interface Name</th>
+                                                                                        <th>Protocol</th>
+                                                                                        <th>Endpoint</th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                    <tr data-skill-interface-id="RAM_memory_function">
+                                                                                        <td>RAM_memory_function</td>
+                                                                                        <td>Agent Service</td>
+                                                                                        <td>Internal</td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                    <tr data-capability-id="EfficientTransport">
+                                                        <td class="expandable">
+                                                            EfficientTransport
+                                                            <div class="options-container">
+                                                                <button class="btn btn-sm btn-primary request-button">Request</button>
+                                                                <span class="glyphicon glyphicon-chevron-down expand-icon"></span>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="subtable EfficientTransport">
+                                                        <td>
+                                                            <table class="information-table table-bordered">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td><i>Name:</i> EfficientTransport</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td><i>Type:</i> AssetCapability</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                            <table class="table table-bordered">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Skills</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr data-skill-id="EfficientMovement">
+                                                                        <td class="expandable">
+                                                                            <div>
+                                                                                EfficientMovement
+                                                                                <input type="checkbox"
+                                                                                       class="request-checkbox">
+                                                                            </div>
+                                                                            <span class="glyphicon glyphicon-chevron-down expand-icon"></span>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="subtable EfficientMovement">
+                                                                        <td>
+                                                                            <table class="information-table table-bordered">
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <td><i>Name:</i> EfficientMovement</td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td><i>Type:</i> Operation</td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td><i>Parameters:</i>
+                                                                                            <ul>
+                                                                                                <li param-name="destinationcoordinates" class="input-skill-parameter">Destination Coordinates [IN]</li>
+                                                                                            </ul>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td><strong>SkillInterfaces</strong> </td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                            <table class="table table-bordered">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th>Interface Name</th>
+                                                                                        <th>Protocol</th>
+                                                                                        <th>Endpoint</th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                    <tr data-skill-interface-id="action_move">
+                                                                                        <td>action_move</td>
+                                                                                        <td>HTTP</td>
+                                                                                        <td>http://192.168.1.2:5000</td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
                                     <tr data-file-id="file1">
                                         <td class="expandable">
-                                            <span class="expandable">file1.aasx</span>
+                                            <span class="expandable">examplefile1.aasx</span>
                                             <span class="glyphicon glyphicon-chevron-down expand-icon"></span>
                                         </td>
                                     </tr>
@@ -439,7 +722,7 @@
                                     </tr>
                                     <tr data-file-id="file2">
                                         <td class="expandable">
-                                            file2.xml
+                                            examplefile2.xml
                                             <span class="glyphicon glyphicon-chevron-down expand-icon"></span>
                                         </td>
                                     </tr>
