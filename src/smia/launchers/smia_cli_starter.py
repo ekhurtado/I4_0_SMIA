@@ -1,5 +1,8 @@
 import logging
+import os
 import sys
+
+# sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))    # To run in CLI (executing in 'src' folder)
 
 import smia
 from smia.agents.smia_agent import SMIAAgent

@@ -109,7 +109,7 @@ class GeneralGUIFeatures:
                         size += len(chunk)
                         f.write(chunk)
 
-                if 'SMIA_TransportRobot_with_OWL' in filename:
+                if 'SMIA' in filename:
                     self.myagent.aas_loaded_files.append({'name': filename, 'size': size,
                                                           'capabilities': ['Negotiation', 'EfficientTransport'],
                                                           'assetconnections': ['InterfaceForHTTP']})
