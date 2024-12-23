@@ -97,6 +97,8 @@ class SMIAAgent(Agent):
         This method performs the common setup of all types of Managers. It defines the Finite State Machine (FSM) of
         the general AAS Manager Agent.
         """
+        _logger.info(f"Setting up {self.jid} SMIA...")
+
         # First, the FSMBehaviour is instantiated
         fsm_behaviour = AASFSMBehaviour()
 

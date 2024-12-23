@@ -18,7 +18,6 @@ from .utilities.general_utils import GeneralUtils
 from .utilities.smia_general_info import SMIAGeneralInfo
 
 
-
 def initial_self_configuration():
     """
     This method executes the initial configuration of the SMIA software.
@@ -57,6 +56,7 @@ def run(agent_object):
 
     spade.run(main())
 
+
 def load_aas_model(file_path):
     """
     This method loads the AAS model using a given path to the AASX package file.
@@ -83,4 +83,3 @@ def load_aas_model(file_path):
     with open(SMIAGeneralInfo.CONFIGURATION_FOLDER_PATH + '/' + init_config_file_name, "wb") as binary_file:
         binary_file.write(config_file_bytes)  # Write bytes to file
     SMIAGeneralInfo.CM_GENERAL_PROPERTIES_FILENAME = init_config_file_name
-

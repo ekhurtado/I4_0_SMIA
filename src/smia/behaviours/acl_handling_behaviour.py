@@ -48,7 +48,7 @@ class ACLHandlingBehaviour(CyclicBehaviour):
             timeout=10)  # Timeout set to 10 seconds so as not to continuously execute the behavior.
         if msg:
             # An ACL message has been received by the agent
-            _logger.aclinfo("         + Message received on AAS Manager Agent (ACLHandlingBehaviour)"
+            _logger.aclinfo("         + Message received on SMIA (ACLHandlingBehaviour)"
                             " from {}".format(msg.sender))
             _logger.aclinfo("                 |___ Message received with content: {}".format(msg.body))
 
