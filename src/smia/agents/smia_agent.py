@@ -35,9 +35,9 @@ class SMIAAgent(Agent):
     css_ontology = None  #: Object with the Capability-Skill-Service ontology
     asset_connections = None  #: Class with the Asset Connection methods
     agent_services = None   #: Class with the all services of the Agent
-    lock = None  #: Asyncio Lock object for secure access to shared AAS Manager objects
+    lock = None  #: Asyncio Lock object for secure access to shared SMIA objects
 
-    def __init__(self, jid: str = None, password: str = None, verify_security: bool = False):
+    def __init__(self, jid: str = None, password: str = None, port: int = 5222, verify_security: bool = False):
 
         # The AAS_ID will be set in the associated ConfigMap, within the general-information of the AAS
         if jid is None:
@@ -52,6 +52,7 @@ class SMIAAgent(Agent):
             password = configmap_utils.get_dt_general_property('password')
 
         super().__init__(jid, password, verify_security)
+        # super().__init__(jid, password, port, verify_security)      # For v4.0.0 and more
 
         # The banner of the program is printed
         GeneralUtils.print_smia_banner()

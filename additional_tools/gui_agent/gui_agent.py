@@ -49,6 +49,7 @@ async def main():
     if 'KUBERNETES_PORT' not in os.environ:
         # agent_jid = "gui_agent@anonym.im"
         agent_jid = "gui_agent@xmpp.jp"
+        # agent_jid = "gui_agent@localhost"
         passwd = "gcis1234"
 
     gui_agent = GUIAgent(agent_jid, passwd)

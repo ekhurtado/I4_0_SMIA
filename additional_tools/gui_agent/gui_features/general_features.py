@@ -133,7 +133,7 @@ class GeneralGUIFeatures:
                                 'skillParameterValues': {data['skill']['parameters'][0]['name']: data['skill']['parameters'][0]['value']},
                                 'skillInterfaceName': data['skill']['interface']['name']}
             acl_data = {'receiver': 'gcis1',
-                        'server': 'xmpp.jp',
+                        'server': 'localhost',
                         'performative': 'Request',
                         'ontology': 'CapabilityRequest',
                         'thread': 'cap-request-1',

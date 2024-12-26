@@ -134,4 +134,4 @@ class ACLHandlingBehaviour(CyclicBehaviour):
                     _logger.error("ACL performative type not available.")
 
         else:
-            _logger.info("         - No message received within 10 seconds on AAS Manager Agent (ACLHandlingBehaviour)")
+            _logger.info("         - No message received within 10 seconds on SMIA (ACLHandlingBehaviour)")
