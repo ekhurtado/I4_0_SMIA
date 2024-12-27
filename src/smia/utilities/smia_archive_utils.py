@@ -25,6 +25,7 @@ def initialize_smia_archive():
 
     print("SMIA Archive initialized.")
 
+
 # ------------------------
 # Methods related to files
 # ------------------------
@@ -108,6 +109,7 @@ def create_log_files():
         with safe_open_file(SMIAGeneralInfo.SVC_LOG_FOLDER_PATH + '/' + log_file_name) as log_file:
             log_file.write('[]')
             log_file.close()
+
 
 def save_cli_added_files(init_config, aas_model):
     """
