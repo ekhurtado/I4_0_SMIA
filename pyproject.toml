@@ -1,0 +1,33 @@
+[build-system]
+requires = [
+    "setuptools>=61.0",
+    "wheel",
+    "build"
+    ]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "smia2"   # cambiar cuando funcione
+version = '0.2.0.3'  # cambiar cuando funcione a 0.2.1
+authors = [{ name="Ekaitz Hurtado", email="ekaitz.hurtado@ehu.eus" },]
+description = "Self-configurable Manufacturing Industrial Agent (SMIA)."
+readme = 'README_pypi.md'
+license= {text="GNU Affero General Public License v3"}
+keywords=['smia', 'dt', 'aas', 'i4.0']
+requires-python = ">=3.10"
+classifiers = [
+    'Development Status :: 2 - Pre-Alpha',
+    'Intended Audience :: Developers',
+    'License :: OSI Approved :: GNU Affero General Public License v3',
+    'Natural Language :: English',
+    'Programming Language :: Python :: 3.10',
+]
+
+[project.urls]
+Homepage = "https://github.com/ekhurtado/I4_0_SMIA"
+Documentation = "https://i4-0-smia.readthedocs.io/en/latest/"
+Repository = "https://github.com/ekhurtado/I4_0_SMIA"
+Issues = "https://github.com/ekhurtado/I4_0_SMIA/discussions"
+
+[tool.setuptools.dynamic]
+dependencies = {file = "docker/requirements.txt"}

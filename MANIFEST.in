@@ -1,0 +1,4 @@
+include docker/requirements.txt
+include README_pypi.md
+
+recursive-include images *

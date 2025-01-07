@@ -6,6 +6,8 @@ __author__ = """Ekaitz Hurtado"""
 __email__ = "ekaitz.hurtado@ehu.eus"
 __version__ = '0.2.0'
 
+__all__ = ['launchers', 'agents', 'utilities', 'assetconnection']
+
 import logging
 import ntpath
 
