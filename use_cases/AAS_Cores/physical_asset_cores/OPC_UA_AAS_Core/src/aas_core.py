@@ -6,7 +6,7 @@ from opcua import Client
 from smia.utilities import Interactions_utils
 from smia.utilities import printFile
 from smia.utilities import create_response_json_object
-from smia.utilities.KafkaInfo import KafkaInfo
+from smia.utilities.kafka_info import KafkaInfo
 from smia.utilities import sendDataOPCUA
 
 

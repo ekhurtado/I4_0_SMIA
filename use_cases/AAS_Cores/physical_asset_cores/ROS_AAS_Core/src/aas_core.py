@@ -10,7 +10,7 @@ import assetRelatedMethods
 from smia.utilities import Interactions_utils, AASArchive_utils
 from smia.utilities import file_to_json
 from smia.utilities import make_gateway_request, create_response_json_object, add_svc_finished_status
-from smia.utilities.KafkaInfo import KafkaInfo
+from smia.utilities.kafka_info import KafkaInfo
 
 
 class AASCore:

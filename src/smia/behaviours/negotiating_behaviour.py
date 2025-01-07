@@ -4,7 +4,7 @@ import logging
 from spade.behaviour import CyclicBehaviour
 
 from smia.behaviours.handle_negotiation_behaviour import HandleNegotiationBehaviour
-from smia.behaviours.HandleSvcResponseBehaviour import HandleSvcResponseBehaviour
+from smia.behaviours.handle_svc_response_behaviour import HandleSvcResponseBehaviour
 from smia.logic import negotiation_utils, inter_aas_interactions_utils
 from smia.utilities.fipa_acl_info import FIPAACLInfo
 from smia.utilities.smia_info import SMIAInteractionInfo

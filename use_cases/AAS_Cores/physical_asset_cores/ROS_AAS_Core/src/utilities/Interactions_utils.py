@@ -10,7 +10,7 @@ from kafka.errors import KafkaError
 
 from smia.utilities import file_to_json, update_json_file
 from smia.utilities import AASarchiveInfo
-from smia.utilities.KafkaInfo import KafkaInfo
+from smia.utilities.kafka_info import KafkaInfo
 
 internal_interaction_id = 0
 

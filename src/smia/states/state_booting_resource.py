@@ -1,6 +1,6 @@
 import logging
 
-from smia.behaviours.CheckPhysicalAssetBehaviour import CheckPhysicalAssetBehaviour
+from smia.behaviours.check_physical_asset_behaviour import CheckPhysicalAssetBehaviour
 from smia.states.state_booting import StateBooting
 from smia.utilities.general_utils import SMIAGeneralInfo
 

@@ -5,7 +5,7 @@ from spade.behaviour import CyclicBehaviour
 
 from smia.behaviours.handle_capability_behaviour import HandleCapabilityBehaviour
 from smia.behaviours.handle_svc_request_behaviour import HandleSvcRequestBehaviour
-from smia.behaviours.HandleSvcResponseBehaviour import HandleSvcResponseBehaviour
+from smia.behaviours.handle_svc_response_behaviour import HandleSvcResponseBehaviour
 from smia.logic import inter_aas_interactions_utils
 from smia.utilities.fipa_acl_info import FIPAACLInfo
 from smia.utilities.general_utils import GeneralUtils

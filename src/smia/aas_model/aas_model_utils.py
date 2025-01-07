@@ -12,6 +12,7 @@ from smia.utilities.smia_general_info import SMIAGeneralInfo
 
 _logger = logging.getLogger(__name__)
 
+
 class AASModelUtils:
     """This class contains utility methods related to the AAS model."""
 
@@ -33,19 +34,19 @@ class AASModelUtils:
             elif aas_model_file_extension == '.xml':
                 object_store = basyx.aas.adapter.xml.read_aas_xml_file(aas_model_file_path)
             elif aas_model_file_extension == '.aasx':
-                    with aasx.AASXReader(aas_model_file_path) as reader:
-                        # Read all contained AAS objects and all referenced auxiliary files
-                        object_store = model.DictObjectStore()
-                        suppl_file_store = aasx.DictSupplementaryFileContainer()
-                        reader.read_into(object_store=object_store,
-                                         file_store=suppl_file_store)
+                with aasx.AASXReader(aas_model_file_path) as reader:
+                    # Read all contained AAS objects and all referenced auxiliary files
+                    object_store = model.DictObjectStore()
+                    suppl_file_store = aasx.DictSupplementaryFileContainer()
+                    reader.read_into(object_store=object_store,
+                                     file_store=suppl_file_store)
         except ValueError as e:
             _logger.error("Failed to read AAS model: invalid file.")
             _logger.error(e)
             raise CriticalError("Failed to read AAS model: invalid file.")
         if object_store is None or len(object_store) == 0:
             raise CriticalError("The AAS model is not valid. It is not possible to read and obtain elements of the AAS "
-                          "metamodel.")
+                                "metamodel.")
         else:
             return object_store
 
@@ -77,7 +78,8 @@ class AASModelUtils:
         object_store = AASModelUtils.read_aas_model_object_store()
         soft_nameplate_config_paths = AASModelUtils.get_elem_of_software_nameplate_by_semantic_id(object_store)
         if soft_nameplate_config_paths is None:
-            raise CriticalError("Configuration of SMIA is required and it is not defined within the Software Nameplate submodel.")
+            raise CriticalError(
+                "Configuration of SMIA is required and it is not defined within the Software Nameplate submodel.")
         for config_path_elem in soft_nameplate_config_paths:
             if config_path_elem.get_sm_element_by_semantic_id(
                     AASModelInfo.SEMANTIC_ID_SOFTWARE_NAMEPLATE_CONFIG_TYPE).value == 'initial configuration':
