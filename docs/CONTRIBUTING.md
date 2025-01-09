@@ -43,7 +43,7 @@ One of the main objectives of the main contributors of the SMIA project is to pr
 
 In case of using additional dependencies please be sure that the licenses of these dependencies are compliant with the SMIA open-source license.
 
-## Get Started
+## Get Started!
 
 Ready to contribute? If there are any suggestions for improvement, a new issue can be opened or ``smia`` can be configured for local development. Here is how to do it:
 
@@ -65,5 +65,4 @@ Ready to contribute? If there are any suggestions for improvement, a new issue c
     git commit -m "feat: <The detailed description of the changes>"
     git push origin name-of-the-bugfix-or-new-feature
     ```
-   
 5. Submit a pull request through the GitHub repository or contact with one of the previous mentioned mechanisms.

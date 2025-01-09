@@ -28,14 +28,17 @@ class GUIAgent(Agent):
         self.add_behaviour(receiver_behav)
 
         # TODO BORRAR
-        file1 = {'capabilities': {'capability': {'type': 'agentcap', 'skills': {'type': 'operation', 'interfaces': {'type': 'HTTPinterface', 'protocol': 'HTTP', 'endpoint': 'http://localhost:5000'}}}}}
-        file2 = {'capabilities': {'capability': {'type': 'assetcap', 'skills': {'type': 'event', 'interfaces': {'type': 'MQTTinterface', 'protocol': 'MQTT', 'endpoint': 'http://localhost:5000'}}}}}
+        file1 = {'capabilities': {'capability': {'type': 'agentcap', 'skills': {'type': 'operation',
+                 'interfaces': {'type': 'HTTPinterface', 'protocol': 'HTTP', 'endpoint': 'http://localhost:5000'}}}}}
+        file2 = {'capabilities': {'capability': {'type': 'assetcap', 'skills': {'type': 'event',
+                 'interfaces': {'type': 'MQTTinterface', 'protocol': 'MQTT', 'endpoint': 'http://localhost:5000'}}}}}
         self.files = [file1, file2]
 
     @staticmethod
     def build_avatar_url(jid: str) -> str:
         # TODO CUIDADO, este metodo se esta sobrescribiendo por el de SPADE
-        return "https://raw.githubusercontent.com/ekhurtado/I4_0_SMIA/capabilityskill_tests/images/SMIA_logo_vertical.png"      # TODO HACER AHORA: modificarlo cuando se una al main branch (ahora esta con la imagen de la rama de pruebas)
+        return ("https://raw.githubusercontent.com/ekhurtado/I4_0_SMIA/capabilityskill_tests/images/SMIA_logo_vertical"
+                ".png")      # TODO HACER AHORA: modificarlo cuando se una al main branch (ahora esta con la imagen de la rama de pruebas)
         # return "https://raw.githubusercontent.com/ekhurtado/I4_0_SMIA/main/images/I4_0_SMIA_logo_negative.png"
 
 

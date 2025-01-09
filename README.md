@@ -66,7 +66,7 @@ The SMIA approach is also available as Python package in PyPI. It can be easily 
 pip install smia
 ```
 
-The PyPI project is available at https://test.pypi.org/project/smia/.
+The PyPI project is available at <https://test.pypi.org/project/smia/>.
 
 [//]: # (TODO actualizar con el nombre cuando se publique)
 

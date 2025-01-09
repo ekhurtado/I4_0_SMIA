@@ -130,7 +130,6 @@ The SMIA software requires the following Python packages to be installed to run 
 
 [//]: # (TODO actualizar con los que sean)
 
-
 ## License
 
 GNU General Public License v3.0. See `LICENSE` for more information.

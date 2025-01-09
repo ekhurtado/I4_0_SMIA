@@ -38,6 +38,7 @@ extensions = [
     'sphinx.ext.autosummary',  # It generates function/method/attribute summary lists
     # 'sphinx_rtd_theme',
     'sphinx_inline_tabs',   # Add inline tabbed content to your Sphinx documentation (.. tab::)
+    'myst_parser',  # To be able to add Markdown files (.md)
     'sphinx_copybutton',
     'notfound.extension',
     'sphinx_design',

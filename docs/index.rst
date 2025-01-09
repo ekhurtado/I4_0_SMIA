@@ -17,6 +17,8 @@ Welcome to I4.0 SMIA's documentation!
 
    apidoc/modules
    glossary
+   CONTRIBUTING.md
+   about_the_project
    recommended_links
 
 .. TODO faltaria añadir paginas para: contributing, code of conduct
