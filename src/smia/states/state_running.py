@@ -6,7 +6,7 @@ from smia.behaviours.acl_handling_behaviour import ACLHandlingBehaviour
 from smia.utilities import smia_archive_utils
 from smia.utilities.general_utils import SMIAGeneralInfo
 from smia.utilities.smia_info import SMIAInteractionInfo
-from smia.css_ontology.css_ontology_utils import CapabilitySkillOntologyUtils
+from smia.css_ontology.css_ontology_utils import CapabilitySkillOntologyUtils, CapabilitySkillOntologyInfo
 
 _logger = logging.getLogger(__name__)
 
@@ -54,16 +54,16 @@ class StateRunning(State):
 
     async def add_agent_capabilities_behaviours(self):
         behaviours_objects = []
-        agent_capabilities = await self.agent.aas_model.get_capability_dict_by_type(
-            CapabilitySkillOntologyUtils.AGENT_CAPABILITY_TYPE)
-        for capability in agent_capabilities.keys():
-            if capability.id_short == 'Negotiation':
+        agent_capabilities = await self.agent.css_ontology.get_ontology_instances_by_class_iri(
+            CapabilitySkillOntologyInfo.CSS_ONTOLOGY_AGENT_CAPABILITY_IRI)
+        for capability_instance in agent_capabilities:
+            if capability_instance.name == 'Negotiation':
                 # The negotiation behaviour has to be added to the agent
                 _logger.info("This DT has negotiation capability.")
                 negotiation_behav = NegotiatingBehaviour(self.agent)
                 self.agent.add_behaviour(negotiation_behav, SMIAInteractionInfo.NEG_STANDARD_ACL_TEMPLATE)
                 behaviours_objects.append(negotiation_behav)
-            elif capability.id_short == 'OtherAgentCapability':
+            elif capability_instance.name == 'OtherAgentCapability':
                 # TODO pensarlo
                 pass
         return behaviours_objects

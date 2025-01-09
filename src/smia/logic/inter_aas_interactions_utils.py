@@ -67,7 +67,7 @@ def create_inter_aas_request_msg(receiver, thread, service_id, service_type, ser
     return request_msg
 
 
-def create_inter_aas_response_msg(receiver, thread, performative, service_id=None, service_type=None,
+def create_inter_aas_response_msg(receiver, thread, performative, ontology, service_id=None, service_type=None,
                                   service_params=None):
     """
     This method creates the Inter AAS interaction response object.
@@ -76,6 +76,7 @@ def create_inter_aas_response_msg(receiver, thread, performative, service_id=Non
         receiver (str): the JID of the receiver of the ACL message from which the service is requested.
         thread (str): the thread of the ACL message.
         performative (str): the performative of the ACL message.
+        ontology (str): the ontology of the ACL message.
         service_id (str): the serviceID of the ACL message.
         service_type (str): the serviceType of the ACL message.
         service_params (str): the serviceParams of the "serviceData" section of the ACL message.
@@ -86,7 +87,8 @@ def create_inter_aas_response_msg(receiver, thread, performative, service_id=Non
 
     request_msg = Message(to=receiver, thread=thread)
     request_msg.set_metadata('performative', performative)
-    request_msg.set_metadata('ontology', 'SvcResponse')
+    request_msg.set_metadata('ontology', ontology)
+    # request_msg.set_metadata('ontology', 'SvcResponse')
 
     request_msg_body_json = {
         'serviceID': service_id,

@@ -233,6 +233,7 @@ class HandleSvcRequestBehaviour(OneShotBehaviour):
             receiver=self.svc_req_data['sender'],
             thread=self.svc_req_data['thread'],
             performative=performative,
+            ontology='SvcResponse',
             service_id=self.svc_req_data['serviceID'],
             service_type=self.svc_req_data['serviceType'],
             service_params=json.dumps(service_params)

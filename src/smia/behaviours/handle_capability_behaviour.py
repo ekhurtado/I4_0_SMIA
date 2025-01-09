@@ -302,6 +302,7 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
             receiver=self.svc_req_data['sender'],
             thread=self.svc_req_data['thread'],
             performative=performative,
+            ontology='CapabilityResponse',
             service_id=self.svc_req_data['serviceID'],
             service_type=self.svc_req_data['serviceType'],
             service_params=json.dumps(service_params)
@@ -338,9 +339,8 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
                                        "DT, or the skill does not have an instance"
                                        ".".format(cap_name, skill_name))
             if skill_instance.get_associated_skill_parameter_instances() is not None:
-                pass  # TODO HACER AHORA: FALTA POR HACER
-                # TODO comprobar que se han añadido los datos necesarios de los parametros (en este caso
-                #  solo seran necesarios los parametros de entrada)
+                # It is checked that the necessary parameter data have been added (in this case only the input
+                # parameters will be necessary).
                 skill_params = skill_instance.get_associated_skill_parameter_instances()
                 for param in skill_params:
                     if param.is_skill_parameter_type(['INPUT', 'INOUTPUT']):
@@ -491,26 +491,43 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
             raise CapabilityRequestExecutionError(cap_instance.name, "The requested capability {} cannot be executed"
                                                                      " because there is no AAS element linked to the ontology "
                                                                      "instances.".format(cap_instance.name), self)
-        # The asset interface will be obtained from the skill interface SubmodelElement.
-        aas_asset_interface_elem = aas_skill_interface_elem.get_associated_asset_interface()
-        # TODO PENSAR COMO SERIA CON UN AGENT SERVICE
-        # With the AAS SubmodelElement of the asset interface the related Python class, able to connect to the asset,
-        # can be obtained.
-        asset_connection_class = await self.myagent.get_asset_connection_class_by_ref(aas_asset_interface_elem)
-        _logger.assetinfo("The Asset connection of the Skill Interface has been obtained.")
-        # Now the capability can be executed through the Asset Connection class related to the given skill. The required
-        # input data can be obtained from the received message, since it has already been verified as containing such data
-        # TODO FALTA DESARROLLARLO EN EL METODO DE CHEQUEO DEL MENSAJE
-        _logger.assetinfo("Executing skill of the capability through an asset service...")
-        received_skill_input_data = self.svc_req_data['serviceData']['serviceParams'][
-            CapabilitySkillACLInfo.REQUIRED_SKILL_PARAMETERS_VALUES]
-        skill_execution_result = await asset_connection_class.execute_asset_service(
-            interaction_metadata=aas_skill_interface_elem, service_input_data=received_skill_input_data)
-        _logger.assetinfo("Skill of the capability successfully executed.")
 
-        # TODO SI LA SKILL TIENE OUTPUT PARAMETERS, HAY QUE RECOGERLOS DEL skill_execution_result. En ese caso, se
-        #  sobreescribirá el skill_execution_result con la variable output y su valor (el cual será lo que devolverá el
-        #  metodo del asset connnection class)
+        parent_submodel = aas_skill_interface_elem.get_parent_submodel()
+        if parent_submodel.check_semantic_id_exist(AssetInterfacesInfo.SEMANTICID_INTERFACES_SUBMODEL):
+            # In this case, the capability need to be executed through an asset service
+            # The asset interface will be obtained from the skill interface SubmodelElement.
+            aas_asset_interface_elem = aas_skill_interface_elem.get_associated_asset_interface()
+            # TODO PENSAR COMO SERIA CON UN AGENT SERVICE
+            # With the AAS SubmodelElement of the asset interface the related Python class, able to connect to the asset,
+            # can be obtained.
+            asset_connection_class = await self.myagent.get_asset_connection_class_by_ref(aas_asset_interface_elem)
+            _logger.assetinfo("The Asset connection of the Skill Interface has been obtained.")
+            # Now the capability can be executed through the Asset Connection class related to the given skill. The required
+            # input data can be obtained from the received message, since it has already been verified as containing such data
+            # TODO FALTA DESARROLLARLO EN EL METODO DE CHEQUEO DEL MENSAJE
+            _logger.assetinfo("Executing skill of the capability through an asset service...")
+            received_skill_input_data = self.svc_req_data['serviceData']['serviceParams'][
+                CapabilitySkillACLInfo.REQUIRED_SKILL_PARAMETERS_VALUES]
+            skill_execution_result = await asset_connection_class.execute_asset_service(
+                interaction_metadata=aas_skill_interface_elem, service_input_data=received_skill_input_data)
+            _logger.assetinfo("Skill of the capability successfully executed.")
+
+            # TODO SI LA SKILL TIENE OUTPUT PARAMETERS, HAY QUE RECOGERLOS DEL skill_execution_result. En ese caso, se
+            #  sobreescribirá el skill_execution_result con la variable output y su valor (el cual será lo que devolverá el
+            #  metodo del asset connnection class)
+        else:
+            # In this case, the capability need to be executed through an agent service
+            # TODO FALTA COMPROBAR QUE FUNCIONA
+            try:
+                received_skill_input_data = self.svc_req_data['serviceData']['serviceParams'][
+                    CapabilitySkillACLInfo.REQUIRED_SKILL_PARAMETERS_VALUES]
+                skill_execution_result = await self.myagent.agent_services.execute_agent_service_by_id(
+                    aas_skill_interface_elem.id_short, **received_skill_input_data)
+            except (KeyError, ValueError) as e:
+                raise CapabilityRequestExecutionError(cap_instance.name, "The requested capability {} cannot be "
+                                                      "executed because the agent service {} cannot be successfully "
+                                                      "executed.".format(cap_instance.name,
+                                                      aas_skill_interface_elem.id_short), self)
 
         return skill_execution_result
 

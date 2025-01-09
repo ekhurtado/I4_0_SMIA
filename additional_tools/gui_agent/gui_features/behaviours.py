@@ -74,6 +74,7 @@ class GUIAgentBehaviours:
                 # msg.set_metadata('targets', str(receivers_jid))
                 # msg.body = data_json['criteria']
 
+                # Now the negotiation are sent as request of an AgentCapability
                 # TODO Msg structure of I4.0 SMIA
                 msg_body_json = {
                     'serviceID': 'startNegotiation',
@@ -83,7 +84,8 @@ class GUIAgentBehaviours:
                         'timestamp': calendar.timegm(time.gmtime()),
                         'serviceParams': {
                             'neg_requester_jid': str(self.agent.jid),
-                            'criteria': data_json['criteria'],
+                            'capabilityName': 'Negotiation',
+                            'skillName': data_json['criteria'],
                             'targets': ','.join(receivers_jid)
                         }
                     }

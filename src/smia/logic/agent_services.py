@@ -47,6 +47,17 @@ class AgentServices:
             else:
                 return self.services[service_id]
 
+    async def add_new_agent_service(self, service_id, service_method):
+        """
+        This method adds a new agent service with a given identifier and the associated execution method.
+
+        Args:
+            service_id (str): unique identifier of the agent service.
+            service_method: execution method associated to the agent service.
+        """
+        async with self.lock:
+            self.services[service_id] = service_method
+
     async def execute_agent_service_by_id(self, service_id, **kwargs):
         """
         This method executes the agent service by its identifier. The parameters of the method with their values are

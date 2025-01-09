@@ -4,6 +4,5 @@
 dist/
 *.egg-info/
 
-
 # Sphinx related files
 docs/_build/

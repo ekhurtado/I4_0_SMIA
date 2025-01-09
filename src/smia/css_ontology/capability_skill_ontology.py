@@ -113,6 +113,26 @@ class CapabilitySkillOntology:
                 return instance_class
         return None
 
+    async def get_ontology_instances_by_class_iri(self, class_iri):
+        """
+        This method gets all the instances within the ontology with a given class IRI.
+
+        Args:
+            class_iri (str): the IRI of the class to be found.
+
+        Returns:
+            list: list of ontology instance objects.
+        """
+        instances_list = []
+        for instance in self.ontology.individuals():
+            for parent_class in instance.is_a:
+                if parent_class.iri == class_iri:
+                    instances_list.append(instance)
+        if len(instances_list) == 0:
+            return None
+        return instances_list
+
+
     async def add_object_property_to_instances_by_names(self, object_property_name, domain_object_name, range_object_name):
         """
         This method adds a new ObjectProperty to link two instances within the ontology. Checks are performed to ensure

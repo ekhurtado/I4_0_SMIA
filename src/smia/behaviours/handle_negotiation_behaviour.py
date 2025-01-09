@@ -3,8 +3,9 @@ import logging
 
 from spade.behaviour import CyclicBehaviour
 
-from smia.logic import negotiation_utils
-from smia.css_ontology.css_ontology_utils import CapabilitySkillOntologyUtils
+from smia.logic import negotiation_utils, inter_aas_interactions_utils
+from smia.logic.exceptions import CapabilityRequestExecutionError
+from smia.utilities.fipa_acl_info import FIPAACLInfo
 from smia.utilities.smia_info import AssetInterfacesInfo
 
 _logger = logging.getLogger(__name__)
@@ -52,27 +53,31 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
         """
         _logger.info("HandleNegotiationBehaviour starting...")
 
-        #  The value of the criterion must be obtained just before starting to manage the negotiation, so that at the
-        #  time of sending the PROPOSE and receiving that of the others it will be the same value. Therefore, if to
-        #  obtain the value you have to make an Intra AAS interaction request, the behaviour will not be able to start
-        #  managing the negotiation until you get the answer to that request (together with the requested value).
-        await self.get_neg_value_with_criteria()
+        try:
+            #  The value of the criterion must be obtained just before starting to manage the negotiation, so that at the
+            #  time of sending the PROPOSE and receiving that of the others it will be the same value. Therefore, if to
+            #  obtain the value you have to make an Intra AAS interaction request, the behaviour will not be able to start
+            #  managing the negotiation until you get the answer to that request (together with the requested value).
+            await self.get_neg_value_with_criteria()
 
 
-        # Once the negotiation value is reached, the negotiation management can begin. The first step is to send the
-        # PROPOSE message with your own value to the other participants in the negotiation.
-        acl_propose_msg = negotiation_utils.create_neg_propose_msg(thread=self.thread,
-                                                                   targets=self.targets,
-                                                                   neg_requester_jid=self.neg_requester_jid,
-                                                                   neg_criteria=self.neg_criteria,
-                                                                   neg_value=str(self.neg_value))
-        # This PROPOSE FIPA-ACL message is sent to all participants of the negotiation (except for this AAS Manager)
-        for jid_target in self.targets.split(','):
-            if jid_target != str(self.agent.jid):
-                acl_propose_msg.to = jid_target
-                await self.send(acl_propose_msg)
-                _logger.aclinfo("ACL PROPOSE negotiation message sent to " + jid_target +
-                                " on negotiation with thread [" + self.thread + "]")
+            # Once the negotiation value is reached, the negotiation management can begin. The first step is to send the
+            # PROPOSE message with your own value to the other participants in the negotiation.
+            acl_propose_msg = negotiation_utils.create_neg_propose_msg(thread=self.thread,
+                                                                       targets=self.targets,
+                                                                       neg_requester_jid=self.neg_requester_jid,
+                                                                       neg_criteria=self.neg_criteria,
+                                                                       neg_value=str(self.neg_value))
+            # This PROPOSE FIPA-ACL message is sent to all participants of the negotiation (except for this AAS Manager)
+            for jid_target in self.targets.split(','):
+                if jid_target != str(self.agent.jid):
+                    acl_propose_msg.to = jid_target
+                    await self.send(acl_propose_msg)
+                    _logger.aclinfo("ACL PROPOSE negotiation message sent to " + jid_target +
+                                    " on negotiation with thread [" + self.thread + "]")
+        except (CapabilityRequestExecutionError) as e:
+            await e.handle_capability_execution_error()
+            return  # killing a behaviour does not cancel its current run loop
 
     async def run(self):
         """
@@ -112,14 +117,17 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
                 _logger.info("The AAS has won the negotiation with thread [" + msg.thread + "]")
 
                 # As the winner, it will reply to the sender with the result of the negotiation
-                acl_response_msg = negotiation_utils.create_neg_response_msg(receiver=self.neg_requester_jid,
-                                                                             thread=self.thread,
-                                                                             service_id='negotiationResult', # TODO pensar como llamarlo
-                                                                             service_type='AssetRelatedService',
-                                                                             # TODO ojo si decidimos que es de otro tipo
-                                                                             winner=str(self.myagent.jid)
-                                                                             )
-                await self.send(acl_response_msg)
+                # acl_response_msg = negotiation_utils.create_neg_response_msg(receiver=self.neg_requester_jid,
+                #                                                              thread=self.thread,
+                #                                                              service_id='negotiationResult', # TODO pensar como llamarlo
+                #                                                              service_type='AssetRelatedService',
+                #                                                              # TODO ojo si decidimos que es de otro tipo
+                #                                                              winner=str(self.myagent.jid)
+                #                                                              )
+                # await self.send(acl_response_msg)
+                await self.send_response_msg_to_sender(FIPAACLInfo.FIPA_ACL_PERFORMATIVE_INFORM,
+                                                       {'winner': str(self.myagent.jid)})
+
                 _logger.aclinfo("ACL response sent for the result of the negotiation request with thread ["
                                 + msg.thread + "]")
 
@@ -129,6 +137,7 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
         else:
             _logger.info("         - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour)")
 
+
     async def get_neg_value_with_criteria(self):
         """
         This method gets the negotiation value based on a given criteria.
@@ -136,53 +145,118 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
         Returns:
             int: value of the negotiation
         """
-        _logger.info("Getting the neg value with Intra AAS interaction...")
+        _logger.info("Getting the negotiation value for []...".format(self.thread))
 
-        # First, it will be checked if the negotiation value is an asset data. To this end, it has to be checked if the
-        # semanticID of the criteria appears in the AssetInterfacesDescription submodel
-        criteria_semantic_id = await self.myagent.aas_model.get_concept_description_pair_value_id_by_value_name(
-            CapabilitySkillOntologyUtils.CONCEPT_DESCRIPTION_ID_NEGOTIATION_CRITERIA, self.neg_criteria)
-        if criteria_semantic_id is None:
-            _logger.error("SemanticID for a criteria does not exist.")
-            return None
-        criteria_interaction_metadata = await self.myagent.aas_model.get_asset_interface_interaction_metadata_by_value_semantic_id(criteria_semantic_id)
-        if criteria_interaction_metadata:
-            # In this case, the criteria is an asset data. It has to be requested
-            _logger.assetinfo("The negotiation criteria is an asset data, so it must be requested through an asset service.")
-            asset_connection_ref = criteria_interaction_metadata.get_parent_ref_by_semantic_id(AssetInterfacesInfo.SEMANTICID_INTERFACE)
-            if asset_connection_ref:
-                # Once the Asset Connection reference is obtained, the associated class can be used to connect with
-                # the asset
-                asset_connection_class = await self.myagent.get_asset_connection_class_by_ref(asset_connection_ref)
-                # The InteractionMetadata has the complete interface to get the value, no message is necessary
-                negotiation_value = await asset_connection_class.execute_skill_by_asset_service(criteria_interaction_metadata, None)
-                if negotiation_value:
-                    _logger.assetinfo("Negotiation criteria successfully obtained.")
-                    _logger.info(
-                        "The negotiation value for the negotiation with thread [" + self.thread + "] has been obtained. ")
-                    # TODO el Submodelo AssetInterfacesDescription menciona un "type" para cada propiedad en
-                    #  "InteractionMetadata". Si ahí definen que la bateria es una float o un integer, se podría
-                    #  utilizar esto para convertir el valor de string al tipo que se defina
-                    self.neg_value = float(negotiation_value)
-                else:
-                    _logger.warning("Failed to get the negotiation criteria.")
+        # Since negotiation is a capability of the agent, it is necessary to analyze which skill has been defined. The
+        # associated skill interface will be the one from which the value of negotiation can be obtained.
+        # Thus, skill is the negotiation criterion for which the ontological instance will be obtained.
+        neg_skill_instance = await self.myagent.css_ontology.get_ontology_instance_by_name(self.neg_criteria)
+
+        # The related skill interface will be obtained
+        skill_interface = list(neg_skill_instance.get_associated_skill_interface_instances())[0]
+        # The AAS element of the skill interface will be used to analyze the skill implementation
+        aas_skill_interface_elem = await self.myagent.aas_model.get_object_by_reference(
+            skill_interface.get_aas_sme_ref())
+
+        parent_submodel = aas_skill_interface_elem.get_parent_submodel()
+        if parent_submodel.check_semantic_id_exist(AssetInterfacesInfo.SEMANTICID_INTERFACES_SUBMODEL):
+            # In this case, the value need to be obtained through an asset service
+            # With the AAS SubmodelElement of the asset interface the related Python class, able to connect to the
+            # asset, can be obtained.
+            aas_asset_interface_elem = aas_skill_interface_elem.get_associated_asset_interface()
+            asset_connection_class = await self.myagent.get_asset_connection_class_by_ref(aas_asset_interface_elem)
+            _logger.assetinfo("The Asset connection of the Skill Interface has been obtained.")
+            # Now the negotiation value can be obtained through an asset service
+            _logger.assetinfo("Obtaining the negotiation value for [{}] through an asset service...".format(self.thread))
+            neg_value = await asset_connection_class.execute_asset_service(
+                interaction_metadata=aas_skill_interface_elem)
+            _logger.assetinfo("Negotiation value for [{}] through an obtained.".format(self.thread))
+            if not isinstance(neg_value, float):
+                try:
+                    svc_execution_result = float(neg_value)
+                except ValueError as e:
+                    # TODO PENSAR OTRAS EXCEPCIONES EN NEGOCIACIONES (durante el asset connection...)
+                    raise CapabilityRequestExecutionError('Negotiation', "The requested negotiation {} cannot be "
+                                                          "executed because the negotiation value returned by the asset does"
+                                                          " not have a valid format.".format(self.thread), self)
         else:
-            # TODO pensar como recoger valores que no son del activo (tener un diccionario de criterias junto con su metodo para conseguirlos?)
-            return None
+            # In this case, the value need to be obtained through an agent service
+            try:
+                neg_value = await self.myagent.agent_services.execute_agent_service_by_id(aas_skill_interface_elem.id_short)
+            except (KeyError, ValueError) as e:
+                raise CapabilityRequestExecutionError('Negotiation', "The requested negotiation {} cannot be "
+                                                      "executed because the negotiation value cannot be obtained through"
+                                                      " the agent service {}.".format(self.thread,
+                                                      aas_skill_interface_elem.id_short), self)
 
-        # self.neg_value = random.uniform(0.0, 100.0)
-        # _logger.info("The negotiation value for the negotiation with thread [" + self.thread + "] has been obtained. ")
-        # TODO pensar como hacerlo, ya que ahora no existe el AAS Core
-        # TODO PROXIMO PASO: ahora la negociacion vendran solicitadas cmo una capacidad del agente (agentCapability). En
-        #  este punto ya se ha comprobado que el criterio requerido está entre los posibles valores definidos en el
-        #  ConceptDescription para criterios. Por ello, en este caso, habra que analizar si el criterio seleccionado
-        #  es un valor del activo, por lo que habria que solicitarselo a traves de su interfaz. Para ello, durante la
-        #  lectura del modelo AAS, se habrá añadido entre la información del SkillParameter (NegotiationCriteria en
-        #  este caso), la referencia al SkillInterface de cada parametro, dependiendo su valor. P.e. si el valor es
-        #  battery, se habrá añadido la referencia a la propiedad battery de (en su 'valueSemantics') dentro del submodelo
-        #  AssetInterfacesDescription. De esta forma, se comprobará si el criterio requerido tiene una referencia dentro
-        #  del submodelo para interfaces, y si es el caso, se ejecutará el método '' del AssetConnection asociado,
-        #  añadiendole los datos del Skill element (con los valores en los inputs) y su Skill interface.
+        return neg_value
+
+
+        # # First, it will be checked if the negotiation value is an asset data. To this end, it has to be checked if the
+        # # semanticID of the criteria appears in the AssetInterfacesDescription submodel
+        # criteria_semantic_id = await self.myagent.aas_model.get_concept_description_pair_value_id_by_value_name(
+        #     CapabilitySkillOntologyUtils.CONCEPT_DESCRIPTION_ID_NEGOTIATION_CRITERIA, self.neg_criteria)
+        # if criteria_semantic_id is None:
+        #     _logger.error("SemanticID for a criteria does not exist.")
+        #     return None
+        # criteria_interaction_metadata = await self.myagent.aas_model.get_asset_interface_interaction_metadata_by_value_semantic_id(criteria_semantic_id)
+        # if criteria_interaction_metadata:
+        #     # In this case, the criteria is an asset data. It has to be requested
+        #     _logger.assetinfo("The negotiation criteria is an asset data, so it must be requested through an asset service.")
+        #     asset_connection_ref = criteria_interaction_metadata.get_parent_ref_by_semantic_id(AssetInterfacesInfo.SEMANTICID_INTERFACE)
+        #     if asset_connection_ref:
+        #         # Once the Asset Connection reference is obtained, the associated class can be used to connect with
+        #         # the asset
+        #         asset_connection_class = await self.myagent.get_asset_connection_class_by_ref(asset_connection_ref)
+        #         # The InteractionMetadata has the complete interface to get the value, no message is necessary
+        #         negotiation_value = await asset_connection_class.execute_skill_by_asset_service(criteria_interaction_metadata, None)
+        #         if negotiation_value:
+        #             _logger.assetinfo("Negotiation criteria successfully obtained.")
+        #             _logger.info(
+        #                 "The negotiation value for the negotiation with thread [" + self.thread + "] has been obtained. ")
+        #             # TODO el Submodelo AssetInterfacesDescription menciona un "type" para cada propiedad en
+        #             #  "InteractionMetadata". Si ahí definen que la bateria es una float o un integer, se podría
+        #             #  utilizar esto para convertir el valor de string al tipo que se defina
+        #             self.neg_value = float(negotiation_value)
+        #         else:
+        #             _logger.warning("Failed to get the negotiation criteria.")
+        # else:
+        #     # TODO pensar como recoger valores que no son del activo (tener un diccionario de criterias junto con su metodo para conseguirlos?)
+        #     return None
+        #
+        # # self.neg_value = random.uniform(0.0, 100.0)
+        # # _logger.info("The negotiation value for the negotiation with thread [" + self.thread + "] has been obtained. ")
+        # # TODO pensar como hacerlo, ya que ahora no existe el AAS Core
+        # # TODO PROXIMO PASO: ahora la negociacion vendran solicitadas cmo una capacidad del agente (agentCapability). En
+        # #  este punto ya se ha comprobado que el criterio requerido está entre los posibles valores definidos en el
+        # #  ConceptDescription para criterios. Por ello, en este caso, habra que analizar si el criterio seleccionado
+        # #  es un valor del activo, por lo que habria que solicitarselo a traves de su interfaz. Para ello, durante la
+        # #  lectura del modelo AAS, se habrá añadido entre la información del SkillParameter (NegotiationCriteria en
+        # #  este caso), la referencia al SkillInterface de cada parametro, dependiendo su valor. P.e. si el valor es
+        # #  battery, se habrá añadido la referencia a la propiedad battery de (en su 'valueSemantics') dentro del submodelo
+        # #  AssetInterfacesDescription. De esta forma, se comprobará si el criterio requerido tiene una referencia dentro
+        # #  del submodelo para interfaces, y si es el caso, se ejecutará el método '' del AssetConnection asociado,
+        # #  añadiendole los datos del Skill element (con los valores en los inputs) y su Skill interface.
+
+
+    async def send_response_msg_to_sender(self, performative, service_params):
+        """
+        This method creates and sends a FIPA-ACL message with the given serviceParams and performative.
+
+        Args:
+            performative (str): performative according to FIPA-ACL standard.
+            service_params (dict): JSON with the serviceParams to be sent in the message.
+        """
+        acl_msg = inter_aas_interactions_utils.create_inter_aas_response_msg(
+            receiver=self.neg_requester_jid,
+            thread=self.thread,
+            performative=performative,
+            ontology=FIPAACLInfo.FIPA_ACL_ONTOLOGY_SVC_NEGOTIATION,  # TODO pensar si definir un NegRequest y NegResponse
+            service_id='negotiationResult',  # TODO pensar como llamarlo
+            service_type='AssetRelatedService',  # TODO ojo si decidimos que es de otro tipo
+            service_params=json.dumps(service_params)
+        )
+        await self.send(acl_msg)
 
 
     async def exit_negotiation(self, is_winner):
