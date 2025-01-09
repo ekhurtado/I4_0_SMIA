@@ -1,1 +1,9 @@
 .idea
+
+# PyPI related files
+dist/
+*.egg-info/
+
+
+# Sphinx related files
+docs/_build/
