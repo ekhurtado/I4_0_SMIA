@@ -27,7 +27,7 @@ classifiers = [
 Homepage = "https://github.com/ekhurtado/I4_0_SMIA"
 Documentation = "https://i4-0-smia.readthedocs.io/en/latest/"
 Repository = "https://github.com/ekhurtado/I4_0_SMIA"
-Issues = "https://github.com/ekhurtado/I4_0_SMIA/discussions"
+Issues = "https://github.com/ekhurtado/I4_0_SMIA/issues"
 
 [tool.setuptools.dynamic]
 dependencies = {file = "docker/requirements.txt"}
