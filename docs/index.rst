@@ -20,6 +20,7 @@ Welcome to I4.0 SMIA's documentation!
    CONTRIBUTING.md
    about_the_project
    recommended_links
+   CODE_OF_CONDUCT.md
    release_notes
 
 .. TODO faltaria añadir paginas para: contributing, code of conduct
