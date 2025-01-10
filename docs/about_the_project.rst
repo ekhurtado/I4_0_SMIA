@@ -20,5 +20,7 @@ The PhD student responsible of the project, and therefore the development lead, 
 .. admonition:: Contact information
     :class: seealso
 
-    - **E-mail:** `ekaitz.hurtado@ehu.eus <ekaitz.hurtado@ehu.eus>`_
-    - **GitHub account:** `<https://github.com/ekhurtado>`_
+    :octicon:`mail;1em` **E-mail:** `ekaitz.hurtado@ehu.eus <ekaitz.hurtado@ehu.eus>`_
+
+    :octicon:`mark-github;1em` **GitHub account:** `<https://github.com/ekhurtado>`_
+
