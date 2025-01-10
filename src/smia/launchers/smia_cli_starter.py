@@ -2,8 +2,6 @@ import logging
 import os
 import sys
 
-import spade
-
 # sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))    # To run in CLI (executing in 'src' folder)
 
 import smia

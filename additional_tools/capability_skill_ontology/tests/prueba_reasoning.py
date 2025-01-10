@@ -1,4 +1,4 @@
-from owlready2 import get_ontology, sync_reasoner, Thing, OwlReadyInconsistentOntologyError
+from owlready2 import get_ontology, sync_reasoner
 
 
 def main():

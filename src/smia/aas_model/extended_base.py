@@ -46,6 +46,7 @@ class ExtendedHasSemantics(HasSemantics):
                     return True
             return False
 
+
 class ExtendedNamespace(Namespace):
 
     def check_if_element_is_structural(self):
@@ -62,6 +63,7 @@ class ExtendedNamespace(Namespace):
             return True
         else:
             return False
+
 
 class ExtendedQualifiable(Qualifiable):
 

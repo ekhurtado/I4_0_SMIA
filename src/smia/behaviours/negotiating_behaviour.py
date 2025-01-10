@@ -7,7 +7,7 @@ from smia.behaviours.handle_negotiation_behaviour import HandleNegotiationBehavi
 from smia.behaviours.handle_svc_response_behaviour import HandleSvcResponseBehaviour
 from smia.css_ontology.css_ontology_utils import CapabilitySkillACLInfo
 from smia.logic import negotiation_utils, inter_aas_interactions_utils
-from smia.logic.exceptions import RequestDataError, CapabilityRequestExecutionError
+from smia.logic.exceptions import RequestDataError
 from smia.utilities.fipa_acl_info import FIPAACLInfo, ACLJSONSchemas
 from smia.utilities.smia_info import SMIAInteractionInfo
 from smia.utilities.general_utils import GeneralUtils

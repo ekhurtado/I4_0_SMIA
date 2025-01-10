@@ -199,6 +199,7 @@ class OntologyUtils:
             getattr(domain_instance, object_property_name).append(range_instance)
         except AttributeError as e:
             print("ERROR: The class {} does not have the attribute {}".format(domain_instance, object_property_name))
+            print(e)
 
     @staticmethod
     def check_whether_part_of_domain(owl_instance, domain):

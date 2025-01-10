@@ -121,6 +121,7 @@ class AASModelUtils:
         try:
             return getattr(basyx.aas.model.KeyTypes, key_type_string)
         except AttributeError as e:
+            _logger.error(e)
             raise AASModelReadingError("The KeyType with string {} does not exist in the AAS model defined"
                                        " types".format(key_type_string), sme_class=None, reason='KeyTypeAttributeError')
 

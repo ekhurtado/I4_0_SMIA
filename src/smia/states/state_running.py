@@ -6,7 +6,7 @@ from smia.behaviours.acl_handling_behaviour import ACLHandlingBehaviour
 from smia.utilities import smia_archive_utils
 from smia.utilities.general_utils import SMIAGeneralInfo
 from smia.utilities.smia_info import SMIAInteractionInfo
-from smia.css_ontology.css_ontology_utils import CapabilitySkillOntologyUtils, CapabilitySkillOntologyInfo
+from smia.css_ontology.css_ontology_utils import CapabilitySkillOntologyInfo
 
 _logger = logging.getLogger(__name__)
 

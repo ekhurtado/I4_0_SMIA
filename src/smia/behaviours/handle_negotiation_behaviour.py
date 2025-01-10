@@ -97,7 +97,7 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
             msg_json_body = json.loads(msg.body)
 
             # The negotiation information is obtained from the message
-            criteria = msg_json_body['serviceData']['serviceParams']['criteria']
+            # criteria = msg_json_body['serviceData']['serviceParams']['criteria']
             sender_agent_neg_value = msg_json_body['serviceData']['serviceParams']['neg_value']
 
             # The value of this AAS Manager and the received value are compared
@@ -137,7 +137,6 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
         else:
             _logger.info("         - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour)")
 
-
     async def get_neg_value_with_criteria(self):
         """
         This method gets the negotiation value based on a given criteria.
@@ -145,7 +144,7 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
         Returns:
             int: value of the negotiation
         """
-        _logger.info("Getting the negotiation value for []...".format(self.thread))
+        _logger.info("Getting the negotiation value for [{}]...".format(self.thread))
 
         # Since negotiation is a capability of the agent, it is necessary to analyze which skill has been defined. The
         # associated skill interface will be the one from which the value of negotiation can be obtained.
@@ -176,6 +175,7 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
                     svc_execution_result = float(neg_value)
                 except ValueError as e:
                     # TODO PENSAR OTRAS EXCEPCIONES EN NEGOCIACIONES (durante el asset connection...)
+                    _logger.error(e)
                     raise CapabilityRequestExecutionError('Negotiation', "The requested negotiation {} cannot be "
                                                           "executed because the negotiation value returned by the asset does"
                                                           " not have a valid format.".format(self.thread), self)
@@ -184,6 +184,7 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
             try:
                 neg_value = await self.myagent.agent_services.execute_agent_service_by_id(aas_skill_interface_elem.id_short)
             except (KeyError, ValueError) as e:
+                _logger.error(e)
                 raise CapabilityRequestExecutionError('Negotiation', "The requested negotiation {} cannot be "
                                                       "executed because the negotiation value cannot be obtained through"
                                                       " the agent service {}.".format(self.thread,

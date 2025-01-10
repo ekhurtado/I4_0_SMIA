@@ -4,7 +4,7 @@ import logging
 from spade.behaviour import OneShotBehaviour
 
 from smia.aas_model.aas_model_utils import AASModelUtils
-from smia.logic import intra_aas_interactions_utils, negotiation_utils, inter_aas_interactions_utils
+from smia.logic import inter_aas_interactions_utils
 from smia.logic.exceptions import RequestDataError, ServiceRequestExecutionError, AASModelReadingError, \
     AssetConnectionError
 from smia.utilities.fipa_acl_info import FIPAACLInfo, ACLJSONSchemas

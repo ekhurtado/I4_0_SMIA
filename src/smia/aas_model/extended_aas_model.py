@@ -143,6 +143,7 @@ class ExtendedAASModel:
             elif isinstance(reference, basyx.aas.model.ModelReference):
                 return reference.resolve(self.aas_model_object_store)
         except KeyError as e:
+            _logger.error(e)
             raise AASModelReadingError("The object within the AAS model with reference {} does not "
                                        "exist".format(reference), sme_class=None, reason='AASModelObjectNotExist')
 
@@ -215,7 +216,6 @@ class ExtendedAASModel:
         """
         for aas_object in self.aas_model_object_store:
             if isinstance(aas_object, basyx.aas.model.Submodel) and aas_object.semantic_id is not None:
-                a = aas_object.semantic_id
                 for reference in aas_object.semantic_id.key:
                     if reference.value == sm_semantic_id:
                         return aas_object

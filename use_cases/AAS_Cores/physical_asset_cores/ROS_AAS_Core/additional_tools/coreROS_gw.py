@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 import os
 import subprocess
-from threading import Thread
 
 import rospy
 from std_msgs.msg import String

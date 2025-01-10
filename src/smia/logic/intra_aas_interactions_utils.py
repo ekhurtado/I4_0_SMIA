@@ -6,7 +6,7 @@ from datetime import datetime
 
 from aiokafka import AIOKafkaConsumer, TopicPartition
 
-from smia.utilities.general_utils import SMIAGeneralInfo, GeneralUtils
+from smia.utilities.general_utils import SMIAGeneralInfo
 from smia.utilities.smia_archive_utils import file_to_json, update_json_file
 from smia.utilities.kafka_info import KafkaInfo
 

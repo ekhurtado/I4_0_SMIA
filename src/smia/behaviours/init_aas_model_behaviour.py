@@ -6,7 +6,6 @@ import basyx.aas.adapter.json
 import basyx.aas.adapter.xml
 from basyx.aas import model
 from basyx.aas.model import ModelReference
-from owlready2 import ThingClass
 from spade.behaviour import OneShotBehaviour
 from tqdm.asyncio import tqdm
 

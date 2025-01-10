@@ -357,7 +357,7 @@ class ReceiverAgent(Agent):
                 # sender_agent_neg_value = msg.body.split(',')[1]
                 # TODO With msg structure of I4.0 SMIA
                 msg_body_json = json.loads(msg.body)
-                criteria = msg_body_json['serviceData']['serviceParams']['criteria']
+                # criteria = msg_body_json['serviceData']['serviceParams']['criteria']
                 sender_agent_neg_value = msg_body_json['serviceData']['serviceParams']['neg_value']
 
                 print("El valor del agente " + str(self.agent.jid) + " es " + str(self.neg_value))

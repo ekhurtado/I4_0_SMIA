@@ -2,7 +2,6 @@ import os
 from collections import OrderedDict
 
 import spade
-from aiohttp import web
 from spade.agent import Agent
 
 from gui_features.behaviours import GUIAgentBehaviours
