@@ -17,6 +17,9 @@ def initialize_smia_archive():
     This method initializes the SMIA Archive, performing the necessary actions to let the archive in the initial
     necessary conditions to start the software.
     """
+    # Create the required folders
+    create_archive_folders()
+
     # Create the status file
     create_status_file()
 
@@ -40,6 +43,16 @@ def safe_open_file(file_path):
         return open(file_path, 'x')
     except FileExistsError as e:
         return open(file_path, 'w')
+
+def create_archive_folders():
+    """
+    This method ensures that all main folders of the archive exist, as well ass the parent archive folder.
+    """
+    required_folders_paths = [SMIAGeneralInfo.SMIA_ARCHIVE_PATH, SMIAGeneralInfo.CONFIGURATION_FOLDER_PATH,
+                              SMIAGeneralInfo.STATUS_FOLDER_PATH, SMIAGeneralInfo.LOG_FOLDER_PATH]
+    for folder_path in required_folders_paths:
+        if not os.path.exists(folder_path):
+            os.makedirs(folder_path)
 
 
 def create_status_file():
@@ -132,6 +145,10 @@ def copy_file_into_archive(source_file, dest_file):
         source_file (str): path of the source file.
         dest_file (str): path of the destiny file (it must be inside the SMIA archive).
     """
+    # If the archive does not exist, it must be initialized
+    if not os.path.exists(SMIAGeneralInfo.SMIA_ARCHIVE_PATH):
+        create_archive_folders()
+
     if SMIAGeneralInfo.SMIA_ARCHIVE_PATH not in dest_file:
         dest_file = SMIAGeneralInfo.SMIA_ARCHIVE_PATH + '/' + dest_file
     try:
