@@ -76,8 +76,10 @@ def load_aas_model(file_path):
     aas_model_file_name = ntpath.split(file_path)[1] or ntpath.basename(ntpath.split(file_path)[0])
     SMIAGeneralInfo.CM_AAS_MODEL_FILENAME = aas_model_file_name
 
-    # TODO Arreglar este metodo. el file_path no se usa para leer el AASX (o bien leemos el archivo del path que nos
-    #  pasa el usuario o bien copiamos el AASX al config del smia archive)
+    # The file will be copied into the SMIA archive
+    smia_archive_utils.copy_file_into_archive(file_path, SMIAGeneralInfo.CONFIGURATION_FOLDER_PATH)
+
+    # When the AAS model is inside the SMIA archive, it will be checked if it is valid
     config_file_path = AASModelUtils.get_configuration_file_path_from_standard_submodel()
     init_config_file_name = ntpath.split(config_file_path)[1] or ntpath.basename(ntpath.split(config_file_path)[0])
     config_file_bytes = AASModelUtils.get_file_bytes_from_aasx_by_path(config_file_path)
