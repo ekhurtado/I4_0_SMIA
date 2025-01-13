@@ -26,7 +26,7 @@ def initialize_smia_archive():
     # Create log file
     create_log_files()
 
-    print("SMIA Archive initialized.")
+    _logger.info("SMIA Archive initialized.")
 
 
 # ------------------------

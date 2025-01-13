@@ -66,6 +66,9 @@ def load_aas_model(file_path):
     Args:
         file_path (str): path to the AASX package file.
     """
+    # If the user has not run the initial self-configuration method, it is now executed
+    initial_self_configuration()
+
     _logger = logging.getLogger(__name__)
     # TODO At the moment it only collects models in AASX, think about whether to leave option to XML and JSON as well.
 
