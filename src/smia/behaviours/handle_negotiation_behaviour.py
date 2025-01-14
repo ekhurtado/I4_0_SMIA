@@ -4,7 +4,7 @@ import logging
 from spade.behaviour import CyclicBehaviour
 
 from smia.logic import negotiation_utils, inter_aas_interactions_utils
-from smia.logic.exceptions import CapabilityRequestExecutionError
+from smia.logic.exceptions import CapabilityRequestExecutionError, AssetConnectionError
 from smia.utilities.fipa_acl_info import FIPAACLInfo
 from smia.utilities.smia_info import AssetInterfacesInfo
 
@@ -75,9 +75,15 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
                     await self.send(acl_propose_msg)
                     _logger.aclinfo("ACL PROPOSE negotiation message sent to " + jid_target +
                                     " on negotiation with thread [" + self.thread + "]")
-        except (CapabilityRequestExecutionError) as e:
-            await e.handle_capability_execution_error()
+        except (CapabilityRequestExecutionError, AssetConnectionError) as cap_neg_error:
+            if isinstance(cap_neg_error, AssetConnectionError):
+                cap_neg_error = CapabilityRequestExecutionError('Negotiation', f"The error "
+                                                                f"[{cap_neg_error.error_type}] has appeared during the"
+                                                                f" asset connection. Reason: {cap_neg_error.reason}.", self)
+
+            await cap_neg_error.handle_capability_execution_error()
             return  # killing a behaviour does not cancel its current run loop
+
 
     async def run(self):
         """

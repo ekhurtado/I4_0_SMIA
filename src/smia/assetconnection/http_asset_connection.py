@@ -1,7 +1,8 @@
 import logging
-import requests
+
+import aiohttp
+from aiohttp import ClientConnectorError, ClientConnectionError
 from basyx.aas.util import traversal
-from requests import ConnectTimeout, ConnectionError
 
 from smia.assetconnection.asset_connection import AssetConnection
 from smia.logic.exceptions import AssetConnectionError
@@ -75,7 +76,8 @@ class HTTPAssetConnection(AssetConnection):
     async def connect_with_asset(self):
         pass
 
-    async def execute_skill_by_asset_service(self, interaction_metadata, skill_params_exposure_elem=None, skill_input_params= None, skill_output_params=None):
+    async def execute_skill_by_asset_service(self, interaction_metadata, skill_params_exposure_elem=None,
+                                             skill_input_params= None, skill_output_params=None):
 
         if not interaction_metadata:
             raise AssetConnectionError("The skill cannot be executed by asset service because the given "
@@ -92,9 +94,9 @@ class HTTPAssetConnection(AssetConnection):
         # At this point, the HTTP request is performed
         http_response = await self.send_http_request()
         if http_response:
-            if http_response.status_code != 200:
+            if http_response.status != 200:
                 _logger.warning("The HTTP request has not been answered correctly.")
-            return await self.get_response_content(interaction_metadata, http_response.text)
+            return await self.get_response_content(interaction_metadata, await http_response.text())
         return None
 
     async def execute_asset_service(self, interaction_metadata, service_input_data = None):
@@ -113,9 +115,9 @@ class HTTPAssetConnection(AssetConnection):
         # At this point, the HTTP request is performed
         http_response = await self.send_http_request()
         if http_response:
-            if http_response.status_code != 200:
+            if http_response.status != 200:
                 _logger.warning("The HTTP request has not been answered correctly.")
-            return await self.get_response_content(interaction_metadata, http_response.text)
+            return await self.get_response_content(interaction_metadata, await http_response.text())
         return None
 
     async def receive_msg_from_asset(self):
@@ -228,33 +230,39 @@ class HTTPAssetConnection(AssetConnection):
          the global variables of the class.
 
         Returns:
-            requests.Response: response of the asset.
+            aiohttp.ClientResponse: response of the asset.
         """
-        try:
-            if self.request_method == 'GET':
-                return requests.get(url=self.request_uri, headers=self.request_headers, params=self.request_params)
-            elif self.request_method == 'DELETE':
-                # TODO a probar
-                return requests.delete(url=self.request_uri, headers=self.request_headers, params=self.request_params)
-            elif self.request_method == 'HEAD':
-                # TODO a probar
-                return requests.head(url=self.request_uri, headers=self.request_headers, params=self.request_params)
-            elif self.request_method == 'PATCH':
-                # TODO a probar
-                return requests.patch(url=self.request_uri, headers=self.request_headers, params=self.request_params)
-            elif self.request_method == 'POST':
-                # TODO a probar
-                return requests.post(url=self.request_uri, headers=self.request_headers, data=self.request_body)
-            elif self.request_method == 'PUT':
-                # TODO a probar
-                return requests.put(url=self.request_uri, headers=self.request_headers, params=self.request_params)
-        except (ConnectTimeout, ConnectionError) as connection_error:
-            if isinstance(connection_error, ConnectTimeout):
-                raise AssetConnectionError("The request to asset timed out, so the asset is not available.",
-                                           "AssetConnectTimeout", "The asset connection timed out")
-            if isinstance(connection_error, ConnectionError):
-                raise AssetConnectionError("The connection with the asset has raised an exception.",
-                                           connection_error.__class__.__name__, connection_error.args[0].reason)
+        async with aiohttp.ClientSession(headers=self.request_headers) as session:
+            try:
+                # async with session.get(url=self.request_uri, params=self.request_params) as resp:
+                #     await resp.text()   # The content is saved in ClientResponse object
+                #     return resp
+                if self.request_method == 'GET':
+                    response = await session.get(url=self.request_uri, params=self.request_params)
+                elif self.request_method == 'DELETE':
+                    # TODO a probar
+                    response = await session.delete(url=self.request_uri, params=self.request_params)
+                elif self.request_method == 'HEAD':
+                    # TODO a probar
+                    response = await session.head(url=self.request_uri, params=self.request_params)
+                elif self.request_method == 'PATCH':
+                    # TODO a probar
+                    response = await session.patch(url=self.request_uri, params=self.request_params)
+                elif self.request_method == 'POST':
+                    # TODO a probar
+                    response = await session.post(url=self.request_uri, params=self.request_params)
+                elif self.request_method == 'PUT':
+                    # TODO a probar
+                    response = await session.put(url=self.request_uri, params=self.request_params)
+                await response.text()   # The content is saved in ClientResponse object
+                return response
+            except (ClientConnectorError, ClientConnectionError) as connection_error:
+                if isinstance(connection_error, ClientConnectorError):
+                    raise AssetConnectionError("The request to asset timed out, so the asset is not available.",
+                                               "AssetConnectTimeout", "The asset connection timed out")
+                if isinstance(connection_error, ClientConnectionError):
+                    raise AssetConnectionError("The connection with the asset has raised an exception.",
+                                               connection_error.__class__.__name__, connection_error.args[0].reason)
 
 
 class HTTPAssetInterfaceSemantics:

@@ -25,6 +25,7 @@ owlready2 == 0.47
 
 # Related to asset connections
 jsonpath-ng == 1.7.0
+aiohttp == 3.11.11
 
 # Related to agent services
 psutil == 6.1.0
