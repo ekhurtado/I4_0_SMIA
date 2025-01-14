@@ -56,6 +56,10 @@ IDTA template submodels will be added following the same process (**Asset Interf
         * Asset Interfaces Description :octicon:`arrow-right;1em` AAS for asset
         * Nameplate for Software in Manufacturing :octicon:`arrow-right;1em` AAS for SMIA
 
+.. Las siguientes imagenes deben ir juntas:
+.. step4 a step7
+.. step8 a step13
+
 Defining asset interfaces
 -------------------------
 

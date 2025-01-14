@@ -1,7 +1,5 @@
-Source code documentation
-=========================
-
-.. _Source code documentation:
+API documentation
+=================
 
 .. toctree::
    :maxdepth: 3

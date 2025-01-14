@@ -95,8 +95,8 @@ Python is the base programming language of SMIA. In order to install Python envi
 
     SMIA works with Python 3.7, 3.8 and 3.9, but `version 3.10 <https://www.python.org/downloads/release/python-31011/>`_ is recommended.
 
-Python modules
-~~~~~~~~~~~~~~
+Dependency modules
+~~~~~~~~~~~~~~~~~~
 
 SMIA is built in top of some required Python modules. ``Pip``, as the package installer for Python, can be used to install them.
 
@@ -115,3 +115,32 @@ OWLReady2
 
 OWLReady2 is used by SMIA to manage the OWL-based CSS ontology in Python. An official installation guide is available at `<https://owlready2.readthedocs.io/en/v0.47/install.html>`_.
 
+.. dropdown:: Recommended version for all modules
+    :octicon:`package-dependencies;1em;sd-text-primary`
+
+    .. code:: bash
+
+        pip install basyx-python-sdk==1.1.0
+
+    .. code:: bash
+
+        pip install spade==3.3.3
+
+    .. code:: bash
+
+        pip install owlready2==0.47
+
+SMIA source code
+~~~~~~~~~~~~~~~~
+
+There are two ways to install the SMIA source code. In addition to the dependency modules, it can be installed using pip, as it is available in the PyPI repository, by running:
+
+.. code:: bash
+
+    pip install smia
+
+The alternative is to download the entire source code from the official SMIA GitHub repository. It can be obtained by clicking on :bdg-primary:`<> Code` and then ``Download ZIP`` or it can be cloned using ``Git``, by executing:
+
+.. code:: bash
+
+    git clone https://github.com/ekhurtado/I4_0_SMIA.git
