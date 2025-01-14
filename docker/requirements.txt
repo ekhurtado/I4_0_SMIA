@@ -30,4 +30,4 @@ jsonpath-ng == 1.7.0
 psutil == 6.1.0
 
 # Related to JSON-based objects
-jsonschema==4.22.0
+jsonschema == 4.22.0

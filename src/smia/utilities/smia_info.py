@@ -48,8 +48,8 @@ class SMIAInteractionInfo:
         performative=FIPAACLInfo.FIPA_ACL_PERFORMATIVE_INFORM,
         ontology=FIPAACLInfo.FIPA_ACL_ONTOLOGY_SVC_NEGOTIATION)
     # The template for the negotiations is the combination of the different possibilities
-    NEG_STANDARD_ACL_TEMPLATE = (NEG_STANDARD_ACL_TEMPLATE_CFP | NEG_STANDARD_ACL_TEMPLATE_PROPOSE
-                                 | NEG_STANDARD_ACL_TEMPLATE_FAILURE | NEG_STANDARD_ACL_TEMPLATE_INFORM)
+    NEG_STANDARD_ACL_TEMPLATE = (NEG_STANDARD_ACL_TEMPLATE_CFP | NEG_STANDARD_ACL_TEMPLATE_FAILURE |
+                                 NEG_STANDARD_ACL_TEMPLATE_INFORM)
 
 
 class AssetInterfacesInfo:

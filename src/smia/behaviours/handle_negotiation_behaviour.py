@@ -167,12 +167,12 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
             _logger.assetinfo("The Asset connection of the Skill Interface has been obtained.")
             # Now the negotiation value can be obtained through an asset service
             _logger.assetinfo("Obtaining the negotiation value for [{}] through an asset service...".format(self.thread))
-            neg_value = await asset_connection_class.execute_asset_service(
+            current_neg_value = await asset_connection_class.execute_asset_service(
                 interaction_metadata=aas_skill_interface_elem)
             _logger.assetinfo("Negotiation value for [{}] through an obtained.".format(self.thread))
-            if not isinstance(neg_value, float):
+            if not isinstance(current_neg_value, float):
                 try:
-                    svc_execution_result = float(neg_value)
+                    svc_execution_result = float(current_neg_value)
                 except ValueError as e:
                     # TODO PENSAR OTRAS EXCEPCIONES EN NEGOCIACIONES (durante el asset connection...)
                     _logger.error(e)
@@ -182,7 +182,7 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
         else:
             # In this case, the value need to be obtained through an agent service
             try:
-                neg_value = await self.myagent.agent_services.execute_agent_service_by_id(aas_skill_interface_elem.id_short)
+                current_neg_value = await self.myagent.agent_services.execute_agent_service_by_id(aas_skill_interface_elem.id_short)
             except (KeyError, ValueError) as e:
                 _logger.error(e)
                 raise CapabilityRequestExecutionError('Negotiation', "The requested negotiation {} cannot be "
@@ -190,7 +190,7 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
                                                       " the agent service {}.".format(self.thread,
                                                       aas_skill_interface_elem.id_short), self)
 
-        return neg_value
+        self.neg_value = current_neg_value
 
 
         # # First, it will be checked if the negotiation value is an asset data. To this end, it has to be checked if the

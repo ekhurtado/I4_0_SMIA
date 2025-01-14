@@ -21,7 +21,8 @@ def main():
     # smia.load_aas_model('../smia_archive/config/SMIA_TransportRobot_with_OWL.aasx')
 
     # Create the agent object
-    smia_agent = SMIAAgent()
+    smia_agent = SMIAAgent("gcis2@xmpp.jp", "gcis1234")
+    # smia_agent = SMIAAgent()
     smia.run(smia_agent)
 
 if __name__ == '__main__':

@@ -75,6 +75,7 @@ def load_aas_model(file_path):
     if file_path is None:
         _logger.error("The file path to the AAS model is None, so it cannot be loaded.")
         return
+
     # The variable with the AAS model file name is updated
     aas_model_file_name = ntpath.split(file_path)[1] or ntpath.basename(ntpath.split(file_path)[0])
     SMIAGeneralInfo.CM_AAS_MODEL_FILENAME = aas_model_file_name

@@ -50,7 +50,7 @@ class NegotiatingBehaviour(CyclicBehaviour):
             timeout=10)  # Timeout set to 10 seconds so as not to continuously execute the behavior.
         if msg:
             # An ACL message has been received by the agent
-            _logger.aclinfo("         + Message received on SMIA (NegotiatingBehaviour)")
+            _logger.aclinfo("         + Message received on SMIA (NegotiatingBehaviour) from {}".format(msg.sender))
             _logger.aclinfo("                 |___ Message received with content: {}".format(msg.body))
 
             # The msg body will be parsed to a JSON object
@@ -77,12 +77,14 @@ class NegotiatingBehaviour(CyclicBehaviour):
                             receiver=GeneralUtils.get_sender_from_acl_msg(msg),
                             thread=msg.thread,
                             performative=FIPAACLInfo.FIPA_ACL_PERFORMATIVE_FAILURE,
-                            service_id=msg_json_body['serviceData']['serviceID'],
-                            service_type=msg_json_body['serviceData']['serviceType'],
+                            ontology=FIPAACLInfo.FIPA_ACL_ONTOLOGY_SVC_NEGOTIATION,   # TODO pensar si definir un NegRequest y NegResponse
+                            service_id=msg_json_body['serviceID'],
+                            service_type=msg_json_body['serviceType'],
                             service_params=json.dumps({'reason': cap_request_error.message})
                         )
                         await self.send(acl_msg)
-                        _logger.warning("Capability request with thread [] has invalid data, therefore the requester has been informed")
+                        _logger.warning("Capability request with thread [{}] has invalid data, therefore the requester"
+                                        " has been informed".format(msg.thread))
                         return  # The run method is terminated to restart checking for new messages.
 
                     # First, some useful information is obtained from the msg
