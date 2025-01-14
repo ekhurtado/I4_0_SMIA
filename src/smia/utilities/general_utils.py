@@ -22,11 +22,15 @@ class GeneralUtils:
         This method configures the logging to be used by all modules. It specifies different colors to improve the
         readability of the console and adds new levels to the printouts related to ACL and interaction messages.
         """
-
         asset_level_num = 35
-        logging.addLevelName(asset_level_num, "ASSETINFO")
-
         fipa_acl_level_num = 36
+
+        if ((logging.getLevelName("ASSETINFO")) == asset_level_num or
+                (logging.getLevelName("ACLINFO") == fipa_acl_level_num)):
+            # In this case the logging is already configured
+            return
+
+        logging.addLevelName(asset_level_num, "ASSETINFO")
         logging.addLevelName(fipa_acl_level_num, "ACLINFO")
 
         def assetinfo(self, message, *args, **kwargs):

@@ -18,7 +18,7 @@ wheel == 0.44.0
 aiokafka == 0.10.0
 
 # Related to AAS model
-basyx-python-sdk == 1.0.0
+basyx-python-sdk == 1.1.0
 
 # Related to OWL ontology
 owlready2 == 0.47
