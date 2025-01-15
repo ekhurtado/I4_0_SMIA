@@ -16,3 +16,4 @@ WORKDIR /
 EXPOSE 7000
 
 CMD ["python3", "-u", "aas_manager.py"]
+CMD ["python3", "-u", "aas_manager.py"]

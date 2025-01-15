@@ -1,0 +1,24 @@
+FROM python:3.10-alpine
+
+RUN pip install --upgrade pip
+
+# aiokafka library requires installing these packages
+#RUN apk add --no-cache gcc gpgme-dev libc-dev
+
+# All required Python packages are installed
+#COPY requirements.txt .
+#RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install -i https://test.pypi.org/simple/ smia --upgrade
+
+#COPY src /
+COPY SMIA_TransportRobot_with_OWL.aasx /
+
+WORKDIR /
+
+EXPOSE 7000
+
+#CMD ["python3", "-u", "aas_manager.py"]
+#CMD ["python3", "-u", "smia.launcher.smia_cli_starter.py", "--model", "/SMIA_TransportRobot_with_OWL.aasx"]
+
+# Para mantener el contenedor arrancado:
+CMD [ "tail", "-f", "/dev/null"]

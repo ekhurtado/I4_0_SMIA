@@ -11,6 +11,6 @@ services:
   aas-manager:
     build:
       context: ./docker/AAS_Manager/
-      dockerfile: Dockerfile_AAS_Manager
+      dockerfile: Dockerfile_SMIA
     image: ekhurtado/aas-manager:0.1.1
     container_name: aas-manager
