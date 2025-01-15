@@ -4,10 +4,12 @@ import logging
 import basyx.aas.model
 from spade.behaviour import OneShotBehaviour
 
+from smia import GeneralUtils
 from smia.logic import inter_aas_interactions_utils
 from smia.logic.exceptions import CapabilityRequestExecutionError, CapabilityCheckingError, RequestDataError, \
     AssetConnectionError, OntologyReadingError, AASModelReadingError
 from smia.css_ontology.css_ontology_utils import CapabilitySkillACLInfo
+from smia.utilities import smia_archive_utils
 from smia.utilities.smia_info import AssetInterfacesInfo
 from smia.utilities.fipa_acl_info import FIPAACLInfo, ACLJSONSchemas
 
@@ -34,6 +36,8 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
         # The SPADE agent object is stored as a variable of the behaviour class
         self.myagent = agent_object
         self.svc_req_data = svc_req_data
+
+        self.requested_timestamp = GeneralUtils.get_current_timestamp()
 
     async def on_start(self):
         """
@@ -212,6 +216,7 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
             # The instances of capability, skill and skill interface are obtained depeding on the received data
             cap_ontology_instance, skill_ontology_instance, skill_interface_ontology_instance = \
                 await self.get_ontology_instances()
+            cap_name = cap_ontology_instance.name
 
             # Once all the data has been checked and obtained, the capability can be executed
             cap_execution_result = await self.execute_capability(cap_ontology_instance, skill_ontology_instance,
@@ -222,6 +227,14 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
                                                    {'result': cap_execution_result})
 
             _logger.info("Management of the capability {} finished.".format(cap_name))
+
+            # The information will be stored in the log
+            execution_info = {'capName': cap_name, 'capType': str(cap_ontology_instance.is_a),
+                              'result': str(cap_execution_result)}
+            smia_archive_utils.save_completed_svc_log_info(self.requested_timestamp,
+                                                           GeneralUtils.get_current_timestamp(),
+                                                           self.svc_req_data, execution_info,
+                                                           self.svc_req_data['serviceType'])
 
         except (RequestDataError, OntologyReadingError, CapabilityRequestExecutionError,
                 AASModelReadingError, AssetConnectionError) as cap_request_error:
@@ -246,6 +259,8 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
         information related to a capability.
 
         """
+        # TODO modificar el codigo para usar la ontologia (sigue con el enfoque antiguo)
+
         if self.svc_req_data['serviceID'] == 'capabilityChecking':
             # The DT has been asked if it has a given capability.
             # First, the information about the received capability is obtained
@@ -258,6 +273,15 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
 
                 # Then, the capability checking process can be executed
                 result = await self.myagent.aas_model.capability_checking_from_acl_request(received_cap_data)
+
+                # The information will be stored in the log
+                execution_info = {'capName': received_cap_data[CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME],
+                                  # 'capType': str(cap_ontology_instance.is_a),  # TODO modificar el codigo para usar ontologia
+                                  'result': str(result)}
+                smia_archive_utils.save_completed_svc_log_info(self.requested_timestamp,
+                                                               GeneralUtils.get_current_timestamp(),
+                                                               self.svc_req_data, execution_info,
+                                                               self.svc_req_data['serviceType'])
             except (RequestDataError, CapabilityCheckingError) as cap_checking_error:
                 if isinstance(cap_checking_error, RequestDataError):
                     if CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME in received_cap_data:
@@ -290,6 +314,9 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
         """
         _logger.info(await self.myagent.get_interaction_id() + str(self.svc_req_data))
 
+
+    # Internal logic methods
+    # ----------------------
     async def send_response_msg_to_sender(self, performative, service_params):
         """
         This method creates and sends a FIPA-ACL message with the given serviceParams and performative.

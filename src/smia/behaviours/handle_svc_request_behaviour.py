@@ -3,11 +3,13 @@ import logging
 
 from spade.behaviour import OneShotBehaviour
 
+from smia import GeneralUtils
 from smia.aas_model.aas_model_utils import AASModelUtils
 from smia.logic import inter_aas_interactions_utils
 from smia.logic.exceptions import RequestDataError, ServiceRequestExecutionError, AASModelReadingError, \
     AssetConnectionError
-from smia.utilities.fipa_acl_info import FIPAACLInfo, ACLJSONSchemas
+from smia.utilities import smia_archive_utils
+from smia.utilities.fipa_acl_info import FIPAACLInfo, ACLJSONSchemas, ServiceTypes
 from smia.utilities.smia_info import AssetInterfacesInfo
 
 _logger = logging.getLogger(__name__)
@@ -40,6 +42,8 @@ class HandleSvcRequestBehaviour(OneShotBehaviour):
         self.svc_req_interaction_type = svc_req_interaction_type
         self.svc_req_data = svc_req_data
 
+        self.requested_timestamp = GeneralUtils.get_current_timestamp()
+
     async def on_start(self):
         """
         This method implements the initialization process of this behaviour.
@@ -71,14 +75,14 @@ class HandleSvcRequestBehaviour(OneShotBehaviour):
         """
         # The type is analyzed to perform the appropriate service
         match self.svc_req_data['serviceType']:
-            case "AssetRelatedService":
+            case ServiceTypes.ASSET_RELATED_SERVICE:
                 # await self.handle_asset_related_svc()   # TODO
                 await self.handle_asset_related_service_request()
-            case "AASInfrastructureService":
+            case ServiceTypes.AAS_INFRASTRUCTURE_SERVICE:
                 await self.handle_aas_infrastructure_svc_request()  # TODO
-            case "AASservice":
+            case ServiceTypes.AAS_SERVICE:
                 await self.handle_aas_services_request()  # TODO
-            case "SubmodelService":
+            case ServiceTypes.SUBMODEL_SERVICE:
                 await self.handle_submodel_service_request()
             case _:
                 _logger.error("Service type not available.")
@@ -117,8 +121,9 @@ class HandleSvcRequestBehaviour(OneShotBehaviour):
                 AssetInterfacesInfo.SEMANTICID_INTERFACE)
             if aas_asset_service_elem is None:
                 raise ServiceRequestExecutionError(self.svc_req_data['thread'], "The added ModelReference is not "
-                                                                                " inside the AssetInterfacesDescription submodel, so it is "
-                                                                                "not an AssetService.", self)
+                                                                                " inside the AssetInterfacesDescription "
+                                                                                "submodel, so it is not an AssetService.",
+                                                   self.svc_req_data['serviceType'], self)
             asset_connection_class = await self.myagent.get_asset_connection_class_by_ref(aas_asset_interface_ref)
 
             # With all necessary information obtained, the asset related service can be executed
@@ -136,21 +141,28 @@ class HandleSvcRequestBehaviour(OneShotBehaviour):
                                                    {'result': asset_service_execution_result})
             _logger.info("Management of the service with thread {} finished.".format(self.svc_req_data['thread']))
 
+            # The information will be stored in the log
+            smia_archive_utils.save_completed_svc_log_info(self.requested_timestamp,
+                                                           GeneralUtils.get_current_timestamp(),
+                                                           self.svc_req_data, str(asset_service_execution_result),
+                                                           self.svc_req_data['serviceType'])
+
         except (RequestDataError, ServiceRequestExecutionError,
                 AASModelReadingError, AssetConnectionError) as svc_request_error:
             if isinstance(svc_request_error, RequestDataError):
                 svc_request_error = ServiceRequestExecutionError(self.svc_req_data['thread'],
-                                                                 svc_request_error.message, self)
+                                                                 svc_request_error.message,
+                                                                 self.svc_req_data['serviceType'], self)
             if isinstance(svc_request_error, AASModelReadingError):
                 svc_request_error = ServiceRequestExecutionError(self.svc_req_data['thread'], "{}. Reason: "
                                                                                               "{}".format(
                     svc_request_error.message,
-                    svc_request_error.reason), self)
+                    svc_request_error.reason), self.svc_req_data['serviceType'], self)
             if isinstance(svc_request_error, AssetConnectionError):
                 svc_request_error = ServiceRequestExecutionError(self.svc_req_data['thread'],
                                                                  f"The error [{svc_request_error.error_type}] has appeared during the asset "
                                                                  f"connection. Reason: {svc_request_error.reason}.",
-                                                                 self)
+                                                                 self.svc_req_data['serviceType'], self)
             await svc_request_error.handle_service_execution_error()
             return  # killing a behaviour does not cancel its current run loop
 
@@ -209,15 +221,22 @@ class HandleSvcRequestBehaviour(OneShotBehaviour):
                                                    {'requested_object': sme_info})
             _logger.info("Management of the service with thread {} finished.".format(self.svc_req_data['thread']))
 
+            # The information will be stored in the log
+            smia_archive_utils.save_completed_svc_log_info(self.requested_timestamp,
+                                                           GeneralUtils.get_current_timestamp(),
+                                                           self.svc_req_data, str(sme_info),
+                                                           self.svc_req_data['serviceType'])
+
         except (RequestDataError, ServiceRequestExecutionError, AASModelReadingError) as svc_request_error:
             if isinstance(svc_request_error, RequestDataError):
                 svc_request_error = ServiceRequestExecutionError(self.svc_req_data['thread'],
-                                                                 svc_request_error.message, self)
+                                                                 svc_request_error.message,
+                                                                 self.svc_req_data['serviceType'], self)
             if isinstance(svc_request_error, AASModelReadingError):
                 svc_request_error = ServiceRequestExecutionError(self.svc_req_data['thread'],
                                                                  "{}. Reason: {}".format(svc_request_error.message,
                                                                                          svc_request_error.reason),
-                                                                 self)
+                                                                 self.svc_req_data['serviceType'], self)
             await svc_request_error.handle_service_execution_error()
             return  # killing a behaviour does not cancel its current run loop
 
@@ -239,3 +258,4 @@ class HandleSvcRequestBehaviour(OneShotBehaviour):
             service_params=json.dumps(service_params)
         )
         await self.send(acl_msg)
+

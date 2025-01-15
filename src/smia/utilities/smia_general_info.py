@@ -28,11 +28,15 @@ class SMIAGeneralInfo:
     # Paths for log files
     LOG_FOLDER_PATH = SMIA_ARCHIVE_PATH + '/log'
     SMIA_LOG_FILENAME = 'smia_dt.log'
+
     SVC_LOG_FOLDER_PATH = LOG_FOLDER_PATH + '/services'
+    ERROR_LOG_FOLDER_PATH = LOG_FOLDER_PATH + '/errors'
+
     ASSET_RELATED_SVC_LOG_FILENAME = 'assetRelatedSvcHistory.log'
     AAS_INFRASTRUCTURE_SVC_LOG_FILENAME = 'aasInfrastructureSvcHistory.log'
     AAS_SERVICES_LOG_FILENAME = 'aasServicesHistory.log'
     SUBMODEL_SERVICES_LOG_FILENAME = 'submodelServicesHistory.log'
+    SUBMODEL_CSS_LOG_FILENAME = 'capabilitySkillHistory.log'
 
     # ConfigMap files
     CONFIGURATION_FOLDER_PATH = SMIA_ARCHIVE_PATH + '/config'

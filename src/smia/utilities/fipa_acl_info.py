@@ -27,6 +27,15 @@ class FIPAACLInfo:
     FIPA_ACL_ONTOLOGY_CAPABILITY_RESPONSE = 'CapabilityResponse'
     FIPA_ACL_ONTOLOGY_SVC_NEGOTIATION = 'Negotiation'
 
+class ServiceTypes:
+    """
+    This class contains all service types defined in the Functional View of RAMI 4.0.
+    """
+    ASSET_RELATED_SERVICE = 'AssetRelatedService'
+    AAS_INFRASTRUCTURE_SERVICE = 'AASInfrastructureService'
+    AAS_SERVICE = 'AASservice'
+    SUBMODEL_SERVICE = 'SubmodelService'
+    CSS_RELATED_SERVICE = 'CSSRelatedService'   # TODO duda con este ya que contiene el concepto de service dentro, y no es lo mismo
 
 class ACLJSONSchemas:
     """This class contains all the JSON schemas related to ACL messages sent between SMIA agents."""

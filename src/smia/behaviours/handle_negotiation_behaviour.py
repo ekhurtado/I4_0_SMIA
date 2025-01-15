@@ -3,9 +3,12 @@ import logging
 
 from spade.behaviour import CyclicBehaviour
 
+from smia import GeneralUtils
+from smia.css_ontology.css_ontology_utils import CapabilitySkillOntologyUtils
 from smia.logic import negotiation_utils, inter_aas_interactions_utils
 from smia.logic.exceptions import CapabilityRequestExecutionError, AssetConnectionError
-from smia.utilities.fipa_acl_info import FIPAACLInfo
+from smia.utilities import smia_archive_utils
+from smia.utilities.fipa_acl_info import FIPAACLInfo, ServiceTypes
 from smia.utilities.smia_info import AssetInterfacesInfo
 
 _logger = logging.getLogger(__name__)
@@ -24,11 +27,13 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
     targets_processed = set()  #: targets that their values have been processed
     neg_value_event = None
 
-    def __init__(self, agent_object, negotiation_info):
+    def __init__(self, agent_object, negotiation_info, neg_req_data):
         """
         The constructor method is rewritten to add the object of the agent
         Args:
-            agent_object (spade.Agent): the SPADE agent object of the AAS Manager agent.
+            agent_object (spade.Agent): the SPADE agent object of the SMIA agent.
+            negotiation_info (dict): all the required information to perform the negotiation.
+            neg_req_data (dict): all the information related to the FIPA-ACL negotiation request.
         """
 
         # The constructor of the inherited class is executed.
@@ -42,6 +47,10 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
         self.targets = negotiation_info['targets']
         self.neg_criteria = negotiation_info['neg_criteria']
         self.targets_processed = set()
+
+        self.svc_req_data = neg_req_data
+
+        self.requested_timestamp = GeneralUtils.get_current_timestamp()
 
         # This event object will allow waiting for the negotiation value if it is necessary to request it from an
         # external entity (such as the AAS Core)
@@ -288,6 +297,13 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
                                                                    neg_criteria=self.neg_criteria,
                                                                    is_winner=is_winner)
         await self.myagent.save_negotiation_data(thread=self.thread, neg_data=neg_data_json)
+
+        # The information will be stored in the log
+        execution_info = {'capName': 'Negotiation', 'capType': CapabilitySkillOntologyUtils.AGENT_CAPABILITY_TYPE,
+                          'participants': self.targets, 'criteria': self.neg_criteria, 'winner': str(is_winner)}
+        smia_archive_utils.save_completed_svc_log_info(self.requested_timestamp, GeneralUtils.get_current_timestamp(),
+                                                       self.svc_req_data, execution_info,
+                                                       ServiceTypes.CSS_RELATED_SERVICE)
 
         # In order to correctly complete the negotiation process, this behavior is removed from the agent.
         self.kill(exit_code=10)

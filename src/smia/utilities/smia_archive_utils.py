@@ -6,6 +6,7 @@ import shutil
 import time
 from shutil import SameFileError
 
+from smia.utilities.fipa_acl_info import ServiceTypes
 from smia.utilities.smia_general_info import SMIAGeneralInfo
 from smia.utilities.general_utils import GeneralUtils
 
@@ -110,18 +111,21 @@ def create_log_files():
         # If necessary, the status folder is created
         os.mkdir(SMIAGeneralInfo.LOG_FOLDER_PATH)
 
-    if not os.path.exists(SMIAGeneralInfo.SVC_LOG_FOLDER_PATH):
-        # If necessary, the folder for services log is also created
-        os.mkdir(SMIAGeneralInfo.SVC_LOG_FOLDER_PATH)
+    all_log_folders = [SMIAGeneralInfo.SVC_LOG_FOLDER_PATH, SMIAGeneralInfo.ERROR_LOG_FOLDER_PATH]
 
     # Then the log files are added in each folder
     all_svc_log_file_names = [SMIAGeneralInfo.ASSET_RELATED_SVC_LOG_FILENAME,
                               SMIAGeneralInfo.AAS_INFRASTRUCTURE_SVC_LOG_FILENAME,
-                              SMIAGeneralInfo.AAS_SERVICES_LOG_FILENAME, SMIAGeneralInfo.SUBMODEL_SERVICES_LOG_FILENAME]
-    for log_file_name in all_svc_log_file_names:
-        with safe_open_file(SMIAGeneralInfo.SVC_LOG_FOLDER_PATH + '/' + log_file_name) as log_file:
-            log_file.write('[]')
-            log_file.close()
+                              SMIAGeneralInfo.AAS_SERVICES_LOG_FILENAME, SMIAGeneralInfo.SUBMODEL_SERVICES_LOG_FILENAME,
+                              SMIAGeneralInfo.SUBMODEL_CSS_LOG_FILENAME]
+    for log_folder in all_log_folders:
+        if not os.path.exists(log_folder):
+            # If necessary, folders are also created for each log
+            os.mkdir(log_folder)
+        for log_file_name in all_svc_log_file_names:
+            with safe_open_file(log_folder + '/' + log_file_name) as log_file:
+                log_file.write('[]')
+                log_file.close()
 
 
 def save_cli_added_files(init_config, aas_model):
@@ -157,47 +161,102 @@ def copy_file_into_archive(source_file, dest_file):
         _logger.info("The {} file is already in SMIA archive.".format(source_file))
 
 
-def get_log_file_by_service_type(svc_type):
+# ----------------------
+# Methods related to log
+# ----------------------
+def get_log_file_by_service_type(log_type, svc_type):
     """
     This method obtains the path to the log file associated to the type of the service.
     Args:
+        log_type (str): the type of the log.
         svc_type (str): type of the service.
 
     Returns:
         str: path to the log file
     """
     log_file_path = None
+    if log_type == 'services':
+        log_folder_path = SMIAGeneralInfo.SVC_LOG_FOLDER_PATH
+    elif log_type == 'errors':
+        log_folder_path = SMIAGeneralInfo.ERROR_LOG_FOLDER_PATH
+    else:
+        _logger.error("Log type not available.")
+        return None
+
     match svc_type:
-        case "AssetRelatedService":
-            log_file_path = SMIAGeneralInfo.SVC_LOG_FOLDER_PATH + '/' + SMIAGeneralInfo.ASSET_RELATED_SVC_LOG_FILENAME
-        case "AASInfrastructureServices":
-            log_file_path = SMIAGeneralInfo.SVC_LOG_FOLDER_PATH + '/' + SMIAGeneralInfo.AAS_INFRASTRUCTURE_SVC_LOG_FILENAME
-        case "AASservices":
-            log_file_path = SMIAGeneralInfo.SVC_LOG_FOLDER_PATH + '/' + SMIAGeneralInfo.AAS_SERVICES_LOG_FILENAME
-        case "SubmodelServices":
-            log_file_path = SMIAGeneralInfo.SVC_LOG_FOLDER_PATH + '/' + SMIAGeneralInfo.SUBMODEL_SERVICES_LOG_FILENAME
+        case ServiceTypes.ASSET_RELATED_SERVICE:
+            log_file_path = log_folder_path + '/' + SMIAGeneralInfo.ASSET_RELATED_SVC_LOG_FILENAME
+        case ServiceTypes.AAS_INFRASTRUCTURE_SERVICE:
+            log_file_path = log_folder_path + '/' + SMIAGeneralInfo.AAS_INFRASTRUCTURE_SVC_LOG_FILENAME
+        case ServiceTypes.AAS_SERVICE:
+            log_file_path = log_folder_path + '/' + SMIAGeneralInfo.AAS_SERVICES_LOG_FILENAME
+        case ServiceTypes.SUBMODEL_SERVICE:
+            log_file_path = log_folder_path + '/' + SMIAGeneralInfo.SUBMODEL_SERVICES_LOG_FILENAME
+        case ServiceTypes.CSS_RELATED_SERVICE:
+            log_file_path = log_folder_path + '/' + SMIAGeneralInfo.SUBMODEL_CSS_LOG_FILENAME
         case _:
             _logger.error("Service type not available.")
     return log_file_path
 
 
-def save_svc_log_info(svc_info, svc_type):
+def save_completed_svc_log_info(started_timestamp, finished_timestamp, acl_info, result, svc_type):
     """
     This method saves the information about a realized service in the log file associated to the type of the service.
 
     Args:
-        svc_info (dict): the information of the service in JSON format.
+        started_timestamp (int): the timestamp when the service has been requested.
+        finished_timestamp (int): the timestamp when the service has finished.
+        acl_info (dict): JSON object with the information of the service request.
+        result: the result of the service execution.
         svc_type (str): type of the service.
     """
     # First, the required paths are obtained
-    log_file_path = get_log_file_by_service_type(svc_type)
+    log_file_path = get_log_file_by_service_type('services', svc_type)
 
-    # Then, the new information is added
+    # Then, the information object is built and added
+    svc_log_info = {
+        'startedTimestamp': started_timestamp,
+        'finishedTimestamp': finished_timestamp,
+        'status': 'Completed',
+        'requestInfo': acl_info,
+        'result': result
+    }
     log_file_json = file_to_json(log_file_path)
-    log_file_json.append(svc_info)
+    log_file_json.append(svc_log_info)
 
     # Finally, the file is updated
     update_json_file(log_file_path, log_file_json)
+
+    _logger.info("Saved new completed service information in the log.")
+
+
+def save_svc_error_log_info(occurrence_timestamp, acl_info, reason, svc_type):
+    """
+    This method saves the information about a realized service in the log file associated to the type of the service.
+
+    Args:
+        occurrence_timestamp (int): the timestamp when the error occurred.
+        acl_info (dict): JSON object with the information of the service request.
+        reason (str): the reason of the error.
+        svc_type (str): type of the service.
+    """
+    # First, the required paths are obtained
+    log_file_path = get_log_file_by_service_type('errors', svc_type)
+
+    # Then, the information object is built and added
+    svc_log_info = {
+        'timestamp': occurrence_timestamp,
+        'status': 'Error',
+        'requestInfo': acl_info,
+        'reason': reason
+    }
+    log_file_json = file_to_json(log_file_path)
+    log_file_json.append(svc_log_info)
+
+    # Finally, the file is updated
+    update_json_file(log_file_path, log_file_json)
+
+    _logger.info("Saved new completed service information in the log.")
 
 
 # -------------------------

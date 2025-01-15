@@ -3,7 +3,7 @@ This file contains all the classes for handling errors in exceptions that may oc
 """
 import logging
 
-from smia.utilities.fipa_acl_info import FIPAACLInfo
+from smia.utilities.fipa_acl_info import FIPAACLInfo, ServiceTypes
 
 _logger = logging.getLogger(__name__)
 
@@ -60,9 +60,10 @@ class ServiceRequestExecutionError(Exception):
     been requested, this class also must response to the requester with a Failure of the execution.
     """
 
-    def __init__(self, thread, message, behav_class):
+    def __init__(self, thread, message, svc_type, behav_class):
         self.thread = thread
         self.message = message
+        self.svc_type = svc_type
         self.behav_class = behav_class
 
     async def handle_service_execution_error(self):
@@ -77,6 +78,19 @@ class ServiceRequestExecutionError(Exception):
         await self.behav_class.send_response_msg_to_sender(FIPAACLInfo.FIPA_ACL_PERFORMATIVE_FAILURE,
                                                            {'reason': self.message})
         _logger.info("Failure message sent to the requester related to the thread [{}].".format(self.thread))
+
+        # The information about the error is also saved in the log
+        from smia.behaviours.handle_svc_request_behaviour import HandleSvcRequestBehaviour
+        from smia.behaviours.handle_capability_behaviour import HandleCapabilityBehaviour
+        from smia import GeneralUtils  # Local imports to avoid circular import error
+        from smia.utilities import smia_archive_utils
+
+        if isinstance(self.behav_class, (HandleSvcRequestBehaviour, HandleCapabilityBehaviour)):
+            acl_info = self.behav_class.svc_req_data
+        else:
+            acl_info = {'thread': self.thread}
+        smia_archive_utils.save_svc_error_log_info(GeneralUtils.get_current_timestamp(), acl_info, self.message,
+                                                   self.svc_type)
 
         # The behaviour for the execution of the service must be killed
         self.behav_class.kill(exit_code=10)
@@ -107,7 +121,21 @@ class CapabilityRequestExecutionError(Exception):
                                                            {'reason': self.message})
         _logger.info("Failure message sent to the requester of the capability [{}].".format(self.cap_name))
 
-        # TODO Pensar si añadir un objeto global en el agente para almacenar informacion sobre errores
+        # The information about the error is also saved in the log
+        from smia.behaviours.handle_svc_request_behaviour import HandleSvcRequestBehaviour
+        from smia.behaviours.handle_capability_behaviour import HandleCapabilityBehaviour
+        from smia.behaviours.handle_negotiation_behaviour import HandleNegotiationBehaviour
+        from smia.utilities import smia_archive_utils
+        from smia import GeneralUtils  # Local imports to avoid circular import error
+
+        if isinstance(self.behav_class, (HandleSvcRequestBehaviour, HandleCapabilityBehaviour,
+                                         HandleNegotiationBehaviour)):
+            acl_info = self.behav_class.svc_req_data
+        else:
+            acl_info = {}
+        smia_archive_utils.save_svc_error_log_info(GeneralUtils.get_current_timestamp(), acl_info, self.message,
+                                                   ServiceTypes.CSS_RELATED_SERVICE)
+
         # The behaviour for the execution of the capability must be killed
         self.behav_class.kill(exit_code=10)
 

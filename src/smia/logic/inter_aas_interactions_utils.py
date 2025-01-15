@@ -28,7 +28,7 @@ def create_svc_json_data_from_acl_msg(acl_msg):
         'ontology': acl_msg.get_metadata('ontology'),
         'thread': acl_msg.thread,
         'sender': GeneralUtils.get_sender_from_acl_msg(acl_msg),
-        'receiver': acl_msg.to,
+        'receiver': str(acl_msg.to),
     }
     # The body of the ACL message contains the rest of the information
     svc_req_data_json.update(json.loads(acl_msg.body))

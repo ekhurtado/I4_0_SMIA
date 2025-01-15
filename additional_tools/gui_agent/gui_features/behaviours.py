@@ -78,7 +78,7 @@ class GUIAgentBehaviours:
                 # TODO Msg structure of I4.0 SMIA
                 msg_body_json = {
                     'serviceID': 'startNegotiation',
-                    'serviceType': 'AssetRelatedService',   # TODO pensar que tipo de servicio es el de negociacion
+                    'serviceType': 'CSSRelatedService',   # TODO pensar que tipo de servicio es el de negociacion
                     'serviceData': {
                         'serviceCategory': 'service-request',
                         'timestamp': calendar.timegm(time.gmtime()),

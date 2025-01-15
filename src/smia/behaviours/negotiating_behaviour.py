@@ -5,10 +5,11 @@ from spade.behaviour import CyclicBehaviour
 
 from smia.behaviours.handle_negotiation_behaviour import HandleNegotiationBehaviour
 from smia.behaviours.handle_svc_response_behaviour import HandleSvcResponseBehaviour
-from smia.css_ontology.css_ontology_utils import CapabilitySkillACLInfo
+from smia.css_ontology.css_ontology_utils import CapabilitySkillACLInfo, CapabilitySkillOntologyUtils
 from smia.logic import negotiation_utils, inter_aas_interactions_utils
 from smia.logic.exceptions import RequestDataError
-from smia.utilities.fipa_acl_info import FIPAACLInfo, ACLJSONSchemas
+from smia.utilities import smia_archive_utils
+from smia.utilities.fipa_acl_info import FIPAACLInfo, ACLJSONSchemas, ServiceTypes
 from smia.utilities.smia_info import SMIAInteractionInfo
 from smia.utilities.general_utils import GeneralUtils
 
@@ -93,7 +94,7 @@ class NegotiatingBehaviour(CyclicBehaviour):
                     neg_criteria = cap_req_data['serviceData']['serviceParams'][CapabilitySkillACLInfo.REQUIRED_SKILL_NAME]
                     if len(targets_list) == 1:
                         # There is only one target available (therefore, it is the only one, so it is the winner)
-                        _logger.info("The AAS has won the negotiation with thread [" + msg.thread + "]")
+                        _logger.info("The SMIA has won the negotiation with thread [" + msg.thread + "]")
 
                         # As the winner, it will reply to the sender with the result of the negotiation
                         acl_response_msg = negotiation_utils.create_neg_response_msg(
@@ -106,7 +107,18 @@ class NegotiatingBehaviour(CyclicBehaviour):
                         _logger.aclinfo("ACL response sent for the result of the negotiation request with thread ["
                                         + msg.thread + "]")
 
+                        # The information will be stored in the log
+                        execution_info = {'capName': 'Negotiation',
+                                          'capType': CapabilitySkillOntologyUtils.AGENT_CAPABILITY_TYPE,
+                                          'participants': str(self.myagent.jid), 'criteria': neg_criteria,
+                                          'winner': 'True'}
+                        smia_archive_utils.save_completed_svc_log_info(
+                            GeneralUtils.get_current_timestamp(), GeneralUtils.get_current_timestamp(),
+                            inter_aas_interactions_utils.create_svc_json_data_from_acl_msg(msg), execution_info,
+                            ServiceTypes.CSS_RELATED_SERVICE)
+
                         # Finally, the data is stored in the AAS Manager
+                        # TODO pensar si esto es necesario (ya se almacena todo en el JSON del Archive)
                         neg_data_json = negotiation_utils.create_neg_json_to_store(
                             neg_requester_jid=neg_requester_jid,
                             participants=msg_json_body['serviceData']['serviceParams']['targets'],
@@ -128,7 +140,8 @@ class NegotiatingBehaviour(CyclicBehaviour):
                         # messages but also only with the thread of that specific thread
                         handle_neg_template = SMIAInteractionInfo.NEG_STANDARD_ACL_TEMPLATE_PROPOSE
                         handle_neg_template.thread = msg.thread
-                        handle_neg_behav = HandleNegotiationBehaviour(self.agent, behaviour_info)
+                        neg_req_data = inter_aas_interactions_utils.create_svc_json_data_from_acl_msg(msg)
+                        handle_neg_behav = HandleNegotiationBehaviour(self.agent, behaviour_info, neg_req_data)
                         self.myagent.add_behaviour(handle_neg_behav, handle_neg_template)
 
                 case FIPAACLInfo.FIPA_ACL_PERFORMATIVE_INFORM:
