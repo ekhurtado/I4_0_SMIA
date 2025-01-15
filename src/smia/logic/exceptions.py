@@ -80,8 +80,8 @@ class ServiceRequestExecutionError(Exception):
         _logger.info("Failure message sent to the requester related to the thread [{}].".format(self.thread))
 
         # The information about the error is also saved in the log
-        from smia.behaviours.handle_svc_request_behaviour import HandleSvcRequestBehaviour
-        from smia.behaviours.handle_capability_behaviour import HandleCapabilityBehaviour
+        from smia.behaviours.specific_handle_behaviours.handle_svc_request_behaviour import HandleSvcRequestBehaviour
+        from smia.behaviours.specific_handle_behaviours.handle_capability_behaviour import HandleCapabilityBehaviour
         from smia import GeneralUtils  # Local imports to avoid circular import error
         from smia.utilities import smia_archive_utils
 
@@ -122,9 +122,9 @@ class CapabilityRequestExecutionError(Exception):
         _logger.info("Failure message sent to the requester of the capability [{}].".format(self.cap_name))
 
         # The information about the error is also saved in the log
-        from smia.behaviours.handle_svc_request_behaviour import HandleSvcRequestBehaviour
-        from smia.behaviours.handle_capability_behaviour import HandleCapabilityBehaviour
-        from smia.behaviours.handle_negotiation_behaviour import HandleNegotiationBehaviour
+        from smia.behaviours.specific_handle_behaviours.handle_svc_request_behaviour import HandleSvcRequestBehaviour
+        from smia.behaviours.specific_handle_behaviours.handle_capability_behaviour import HandleCapabilityBehaviour
+        from smia.behaviours.specific_handle_behaviours.handle_negotiation_behaviour import HandleNegotiationBehaviour
         from smia.utilities import smia_archive_utils
         from smia import GeneralUtils  # Local imports to avoid circular import error
 

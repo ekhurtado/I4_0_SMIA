@@ -3,9 +3,9 @@ import logging
 
 from spade.behaviour import CyclicBehaviour
 
-from smia.behaviours.handle_capability_behaviour import HandleCapabilityBehaviour
-from smia.behaviours.handle_svc_request_behaviour import HandleSvcRequestBehaviour
-from smia.behaviours.handle_svc_response_behaviour import HandleSvcResponseBehaviour
+from smia.behaviours.specific_handle_behaviours.handle_capability_behaviour import HandleCapabilityBehaviour
+from smia.behaviours.specific_handle_behaviours.handle_svc_request_behaviour import HandleSvcRequestBehaviour
+from smia.behaviours.specific_handle_behaviours.handle_svc_response_behaviour import HandleSvcResponseBehaviour
 from smia.logic import inter_aas_interactions_utils
 from smia.utilities.fipa_acl_info import FIPAACLInfo
 from smia.utilities.general_utils import GeneralUtils
@@ -23,7 +23,7 @@ class ACLHandlingBehaviour(CyclicBehaviour):
         """
         The constructor method is rewritten to add the object of the agent
         Args:
-            agent_object (spade.Agent): the SPADE agent object of the AAS Manager agent.
+            agent_object (spade.Agent): the SPADE agent object of the SMIA agent.
         """
 
         # The constructor of the inherited class is executed.

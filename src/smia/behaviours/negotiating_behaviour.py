@@ -3,8 +3,8 @@ import logging
 
 from spade.behaviour import CyclicBehaviour
 
-from smia.behaviours.handle_negotiation_behaviour import HandleNegotiationBehaviour
-from smia.behaviours.handle_svc_response_behaviour import HandleSvcResponseBehaviour
+from smia.behaviours.specific_handle_behaviours.handle_negotiation_behaviour import HandleNegotiationBehaviour
+from smia.behaviours.specific_handle_behaviours.handle_svc_response_behaviour import HandleSvcResponseBehaviour
 from smia.css_ontology.css_ontology_utils import CapabilitySkillACLInfo, CapabilitySkillOntologyUtils
 from smia.logic import negotiation_utils, inter_aas_interactions_utils
 from smia.logic.exceptions import RequestDataError
@@ -26,7 +26,7 @@ class NegotiatingBehaviour(CyclicBehaviour):
         """
         The constructor method is rewritten to add the object of the agent
         Args:
-            agent_object (spade.Agent): the SPADE agent object of the AAS Manager agent.
+            agent_object (spade.Agent): the SPADE agent object of the SMIA agent.
         """
 
         # The constructor of the inherited class is executed.
