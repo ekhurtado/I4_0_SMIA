@@ -68,7 +68,7 @@ Properties file: ONTOLOGY section
 AAS model configuration
 -----------------------
 
-The AAS model can be defined following the :octicon:`link;1em` :ref:`AAS Development Guide`. If it is decided to use AASX as the serialisation format, both the ontology file and the properties file can be added to the package.
+The AAS model can be defined following the :octicon:`repo;1em` :ref:`AAS Development Guide`. If it is decided to use AASX as the serialisation format, both the ontology file and the properties file can be added to the package.
 
 .. TODO falta la guia de como añadir los ficheros dentro del AASX
 

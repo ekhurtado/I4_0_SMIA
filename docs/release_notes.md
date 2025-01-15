@@ -1,5 +1,7 @@
 # Release Notes
 
+(Release Notes)=
+
 ## v0.2.0
 
 This release of I4.0 Self-Configurable Manufacturing Industrial Agent comes with a new approach for the solution. That is the reason why the software has been upgraded to version 0.2.x. Similar to the other releases, it is available with the  source code in a ZIP file. Content of ``SMIA.source.code.zip`` file:

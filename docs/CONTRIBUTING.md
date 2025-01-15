@@ -1,5 +1,7 @@
 # Contributing
 
+(Contributing)=
+
 Contributions are what make it possible for the open source community to collaborate to build better solutions. All contributions are welcome and **greatly appreciated**. Everything helps the development of knowledge, and credit will always be given.
 
 There are multiple ways to contribute:

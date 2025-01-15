@@ -18,6 +18,30 @@ The features of the SMIA approach include:
     - easy to usage
     - containerized solution
 
+Documentation project structure
+-------------------------------
+
+The SMIA project documentation repository is structured as follows:
+
+    :octicon:`repo;1em` :ref:`SMIA User Guide`: these guides helps with the usage of SMIA software and related tools.
+
+    .. :octicon:`repo;1em` :ref:`AAS Developer Guide`: this guide helps with the development of the :term:`AAS model`, that is the basis for SMIA self-configuration.
+
+    :octicon:`code-review;1em` :ref:`API documentation`: the entire documented source code of SMIA software.
+
+    :octicon:`book;1em` :ref:`Glossary`: the glossary shows the list of terms relating to the SMIA approach.
+
+    :octicon:`versions;1em` :ref:`Contributing`: shows the different ways to contribute to the SMIA approach.
+
+    :octicon:`info;1em` :ref:`About the Project`: general information about the SMIA approach (e.g. contact information).
+
+    :octicon:`link-external;1em` :ref:`Recommended Links`: information related to SMIA approach is available in this section.
+
+    :octicon:`code-of-conduct;1em` :ref:`Code of Conduct`: the definition of community standards for the participation of the contributors.
+
+    :octicon:`tag;1em` :ref:`Release Notes`: notes about all the releases and pre-releases of SMIA software development.
+
+
 Additional tools
 ----------------
 
@@ -56,24 +80,7 @@ There are some additional tools offered within the SMIA approach. All of these t
     This tool provides a SPADE agent with an easy-to-use graphical interface. This agent provides several useful functionalities for SMIA usage and execution.
 
 
-Documentation project structure
--------------------------------
 
-The SMIA project documentation repository is structured as follows:
-
-    :octicon:`repo;1em` :ref:`Installation guide`: this guide helps with the installation of the necessary resources to run SMIA.
-
-    :octicon:`repo;1em` :ref:`SMIA User Guide`: this guide helps with the usage of SMIA software and related tools.
-
-    .. :octicon:`repo;1em` :ref:`AAS Developer Guide`: this guide helps with the development of the :term:`AAS model`, that is the basis for SMIA self-configuration.
-
-    :octicon:`code-review;1em` :ref:`Source code documentation`: the entire documented source code of SMIA software.
-
-    :octicon:`book;1em` :ref:`Glossary`: the glossary shows the list of terms relating to the SMIA approach.
-
-    :octicon:`link-external;1em` :ref:`Recommended Links`: information related to SMIA approach is available in this section.
-
-..    :octicon:`link;1em` :ref:`Recommended Links`: information related to SMIA approach is available in this section.
 
 
 
