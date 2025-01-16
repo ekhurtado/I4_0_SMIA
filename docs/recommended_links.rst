@@ -5,6 +5,34 @@ Recommended Links
 
 This page contains various documents of interest, articles related to this project where different results have been published and links to additional resources (e.g. demonstration videos):
 
+SMIA own links
+--------------
+
+These links refer to all the own resources of the SMIA approach.
+
+.. button-link:: https://github.com/ekhurtado/I4_0_SMIA
+            :color: primary
+            :outline:
+
+            :octicon:`package;1em` Official SMIA GitHub repository.
+
+.. button-link:: https://test.pypi.org/project/smia/
+            :color: primary
+            :outline:
+
+            :octicon:`mark-github;1em` Official SMIA PyPI project.
+
+.. button-link:: https://test.pypi.org/project/smia/
+            :color: primary
+            :outline:
+
+            :octicon:`container;1em` Official SMIA Docker Hub repository.
+
+External links
+--------------
+
+These links refer to external resources (articles, standards...) that have been used during the development of the SMIA approach.
+
 - `Asset Administration Shell Specifications <https://industrialdigitaltwin.org/en/content-hub/aasspecifications>`_: Specifications define the software structure, interface and semantics of the Asset Administration Shell.
 
     - `Specification of the Asset Administration Shell Part 1: Metamodel <https://industrialdigitaltwin.org/en/content-hub/aasspecifications/specification-of-the-asset-administration-shell-part-1-metamodel-idta-number-01001-3-0-1>`_ (V3.0): This part of the document focuses on how information needs to be processed and structured in the AAS. In order to define these specifications, the document formally stipulates some structural principles of the Administration Shell.

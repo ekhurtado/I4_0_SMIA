@@ -66,7 +66,8 @@ The SMIA approach is also available as Python package in PyPI. It can be easily 
 pip install smia
 ```
 
-The PyPI project is available at <https://test.pypi.org/project/smia/>.
+> [!NOTE]
+> The PyPI project is available at <https://test.pypi.org/project/smia/>.
 
 [//]: # (TODO actualizar con el nombre cuando se publique)
 
@@ -75,9 +76,12 @@ The PyPI project is available at <https://test.pypi.org/project/smia/>.
 The SMIA approach is also available as Docker image in DockerHub. To run SMIA software the AAS model should be passed as environmental variable:
 
 ```
-docker run -e model=<path to AASX package> ehu-gcis/smia
+docker run -e model=<path to AASX package> ehu-gcis/smia:alpine-latest
 ```
 [//]: # (TODO actualizar con el nombre cuando se publique)
+
+> [!NOTE]
+> The SMIA Docker Hub repository is available at <https://hub.docker.com/r/ekhurtado/smia>.
 
 ## Discussions
 
