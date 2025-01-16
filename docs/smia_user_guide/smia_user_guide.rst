@@ -11,6 +11,7 @@ These guides are a comprehensive resource for using the :term:`SMIA` software. F
     installation_guide
     aas_development_guide
     smia_configuration_guide
+    start_up_guide
 
 Installation of required resources
 ----------------------------------
@@ -34,24 +35,21 @@ Once the AAS model has been defined, SMIA can be configured so that it is ready 
 
     The guide is available at :octicon:`repo;1em` :ref:`SMIA Configuration Guide`.
 
-Starting SMIA
--------------
+Running SMIA
+------------
+
+SMIA can be start-up and run through several methods, so they are detailed one by one.
+
+    The guide is available at :octicon:`repo;1em` :ref:`SMIA Start-up Guide`.
 
 .. TODO esto pasarlo a otra subguia dedicada explicitamente al arranque
 
-Starting via CLI
-~~~~~~~~~~~~~~~~
 
-SMIA can be started using the Command-Line Interface (CLI).
-
-.. TODO FALTA POR HACER
-
-
-Configuration via Docker
-~~~~~~~~~~~~~~~~~~~~~~~~
+.. Configuration via Docker
+.. ~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. TODO FALTA POR HACER
 
-Configuration via Python package
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. Configuration via Python package
+.. ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

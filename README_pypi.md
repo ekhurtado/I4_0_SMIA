@@ -57,44 +57,50 @@ The SMIA approach offers different facilities for its use:
 Create and run an ``SMIAAgent``:
 ```python
 import smia
-from smia.agents.extendible_agent import ExtendibleAgent  # Import from the SMIA package
+from smia.agents.smia_agent import SMIAAgent
 
-extendible_agent = ExtendibleAgent()
-smia.run(extendible_agent)
+smia.load_aas_model('<path to the AASX package containing the AAS model>')
+my_agent = SMIAAgent()
+
+smia.run(my_agent)
 ```
 
-Load an ``AAS model`` to ``SMIAAgent``:
+#### Extensibility examples
+
+Create an ``ExtensibleSMIAAgent``:
 ```python
 import smia
+from smia.agents.extensible_smia_agent import ExtensibleSMIAAgent
 
-smia.load_aas_model('<path to the AAS model>')
+smia.load_aas_model('<path to the AASX package containing the AAS model>')
+my_agent = ExtensibleSMIAAgent()
 ```
 
-Add new ``Agent Capability`` to ``SMIAAgent``:
+Add new ``Agent Capability`` to ``ExtensibleSMIAAgent``:
 ```python
-from smia.agents.extendible_agent import ExtendibleAgent  # Import from the SMIA package
+import spade
+from smia.agents.extensible_smia_agent import ExtensibleSMIAAgent  # Import from the SMIA package
 
 new_capability = spade.behaviour
-extendible_agent.add_agent_capability(new_capability)
+my_extensible_agent.add_new_agent_capability(new_capability)
 ```
 
-Add new ``Agent Service`` to ``SMIAAgent``:
+Add new ``Agent Service`` to ``ExtensibleSMIAAgent``:
 ```python
-from smia.agents.extendible_agent import ExtendibleAgent  # Import from the SMIA package
+from smia.agents.extensible_smia_agent import ExtensibleSMIAAgent  # Import from the SMIA package
 
-extendible_agent.add_agent_service(new_service_method)
+my_extensible_agent.add_new_agent_service(new_service_method)
 ```
 
-#### Complete example
+Complete example of an Extensible SMIA agent:
 
 ```python
 import smia
 import asyncio
 from spade.behaviour import CyclicBehaviour
-from smia.agents.extendible_agent import ExtendibleAgent  # Import from the SMIA package
+from smia.agents.extensible_smia_agent import ExtensibleSMIAAgent  # Import from the SMIA package
 
 class MyBehaviour(CyclicBehaviour):
-
     async def on_start(self):
         print("MyBehaviour started")
         self.iteration = 0
@@ -108,13 +114,13 @@ def new_service_method():
     print("This is a new service to be added to SMIA.")
     
 def main():
-    extendible_agent = ExtendibleAgent()
+    my_extensible_agent = ExtensibleSMIAAgent()
     smia.load_aas_model('<path to the AAS model>')
     
-    extendible_agent.add_agent_capability(MyBehaviour)
-    extendible_agent.add_agent_service(new_service_method)
+    my_extensible_agent.add_new_agent_capability(MyBehaviour)
+    my_extensible_agent.add_new_agent_service(new_service_method)
     
-    smia.run(extendible_agent)
+    smia.run(my_extensible_agent)
 
 if __name__ == '__main__':
     main()
@@ -122,7 +128,7 @@ if __name__ == '__main__':
 
 ## Dependencies
 
-The SMIA software requires the following Python packages to be installed to run correctly. These dependencies are listed in ``setup.py`` so that they are automatically obtained when installing with ``pip``:
+The SMIA software requires the following Python packages to be installed to run correctly. These dependencies are listed in ``pyproject.toml`` so that they are automatically obtained when installing with ``pip``:
 
 - ``spade`` (MIT license)
 - ``basyx-python-sdk`` (MIT license)

@@ -45,29 +45,34 @@ Multiple ways of running SMIA software are available.
 
 ### Download source code
 
-The source code inside the ``src`` folder can be downloaded, and there are two launchers to run the software easily.
+The source code inside the ``src`` folder can be downloaded, and there are two launchers to run the software easily. If the folder where the launchers are located is accessed, it is possible to run SMIA using the following command:
 
-```
-python3 smia_cli_starter.py --model <path to AASX package>
+```bash
+python3 smia_cli_starter.py --model "<path to AASX package>"
 ```
 
-> [!NOTE]
-> ``smia_starter.py`` specifies the AAS model manually, so the code must be modified.
-
-```
-python3 smia_starter.py
-```
+> [!TIP]
+> The launcher ``smia_starter.py`` specifies the AAS model manually, so the code must be modified. Just change the line that specifies the path to the AASX package that contains the AAS model. Then it can be executed:
+>```bash
+>python3 smia_starter.py
+>```
 
 ### Install as pip package
 
 The SMIA approach is also available as Python package in PyPI. It can be easily installed using [pip](https://pip.pypa.io/en/stable/):
 
-```
+```bash
 pip install smia
 ```
 
 > [!NOTE]
 > The PyPI project is available at <https://test.pypi.org/project/smia/>.
+
+The PyPI SMIA package contains all the source code and there are determined the necessary dependencies, so they can be automatically installed by pip, so it can run SMIA directly by:
+
+```bash
+python3 -m smia.launchers.smia_cli_starter --model "<path to AASX package>"
+```
 
 [//]: # (TODO actualizar con el nombre cuando se publique)
 
@@ -75,7 +80,7 @@ pip install smia
 
 The SMIA approach is also available as Docker image in DockerHub. To run SMIA software the AAS model should be passed as environmental variable:
 
-```
+```bash
 docker run -e model=<path to AASX package> ehu-gcis/smia:alpine-latest
 ```
 [//]: # (TODO actualizar con el nombre cuando se publique)
