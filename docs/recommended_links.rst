@@ -22,7 +22,7 @@ These links refer to all the own resources of the SMIA approach.
 
             :octicon:`mark-github;1em` Official SMIA PyPI project.
 
-.. button-link:: https://test.pypi.org/project/smia/
+.. button-link:: https://hub.docker.com/r/ekhurtado/smia
             :color: primary
             :outline:
 
