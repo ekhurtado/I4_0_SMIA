@@ -1,0 +1,19 @@
+FROM python:3.10-alpine
+# This image of SMIA is built with the alpine official Python image
+
+RUN pip install --upgrade pip
+
+#RUN apk add --no-cache --virtual .build-deps gcc python3-dev musl-dev linux-headers
+
+# The required Python SMIA package is installed. As it is an alpine image, some compilation tools are required. Besides,
+# the package is installed from TestPyPI, but dependencies must be allowed to be looked up in PyPI as well.
+#    + '--extra-index-url' option is for pip to look for missing dependencies in PyPI (and not in TestPyPI).
+# To keep the image lightweight, the compilation tools are removed after installing the Python dependencies
+RUN apk add --no-cache gcc python3-dev musl-dev linux-headers \
+    && pip install -i https://test.pypi.org/simple/ smia==0.2.0.12 --extra-index-url https://pypi.org/simple \
+    && apk del gcc python3-dev musl-dev linux-headers
+
+WORKDIR /
+
+#EXPOSE 5222
+

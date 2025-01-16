@@ -1,16 +1,37 @@
-version: "2"
+#version: "2"
 
 services:
 
-  aas-core:
+  smia-alpine-base:
     build:
-      context: ./docker/AAS_Core/
-      dockerfile: Dockerfile_AAS_Core
-    image: ekhurtado/aas-core:0.1.1
-    container_name: aas-core
-  aas-manager:
+      context: .
+      dockerfile: Dockerfile_SMIA_base
+    image: ekhurtado/smia:alpine-base-latest
+    container_name: smia-alpine-base
+
+  smia-full-base:
     build:
-      context: ./docker/AAS_Manager/
+      context: .
+      dockerfile: Dockerfile_SMIA_full_base
+    image: ekhurtado/smia:full-base-latest
+    container_name: smia-full-base
+
+  smia-alpine:
+    build:
+      context: .
       dockerfile: Dockerfile_SMIA
-    image: ekhurtado/aas-manager:0.1.1
-    container_name: aas-manager
+    image: ekhurtado/smia:alpine-latest
+    container_name: smia-alpine
+    depends_on:
+      - smia-alpine-base
+
+  smia-full:
+    build:
+      context: .
+      dockerfile: Dockerfile_SMIA_full
+    image: ekhurtado/smia:full-latest
+    container_name: smia-full
+    depends_on:
+      - smia-full-base
+
+

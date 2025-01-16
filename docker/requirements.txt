@@ -20,12 +20,15 @@ aiokafka == 0.10.0
 # Related to AAS model
 basyx-python-sdk == 1.1.0
 
+# Related to progress bar
+tqdm == 4.67.1
+
 # Related to OWL ontology
 owlready2 == 0.47
 
 # Related to asset connections
 jsonpath-ng == 1.7.0
-aiohttp == 3.11.11
+aiohttp == 3.10.5
 
 # Related to agent services
 psutil == 6.1.0

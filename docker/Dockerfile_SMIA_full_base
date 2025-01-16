@@ -1,0 +1,12 @@
+FROM python:3.10
+# This image of SMIA is built with the complete official Python image
+
+RUN pip install --upgrade pip
+
+# The required SMIA Python package is installed.
+RUN pip install -i https://test.pypi.org/simple/ smia==0.2.0.12 --extra-index-url https://pypi.org/simple
+
+WORKDIR /
+
+#EXPOSE 5222
+

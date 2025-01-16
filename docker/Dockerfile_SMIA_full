@@ -1,0 +1,8 @@
+FROM ekhurtado/smia:full-base-latest
+
+COPY SMIA_TransportRobot_with_OWL.aasx /
+
+CMD ["python3", "-m", "smia.launchers.smia_cli_starter", "--model", "/SMIA_TransportRobot_with_OWL.aasx"]
+
+## Para mantener el contenedor arrancado:
+#CMD [ "tail", "-f", "/dev/null"]
