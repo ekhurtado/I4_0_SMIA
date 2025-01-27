@@ -91,9 +91,9 @@ Python
 
 Python is the base programming language of SMIA. In order to install Python environment it is available at the `official web page <https://www.python.org/downloads/>`_.
 
-.. tip::
+.. note::
 
-    SMIA works with Python 3.7, 3.8 and 3.9, but `version 3.10 <https://www.python.org/downloads/release/python-31011/>`_ is recommended.
+    SMIA works with Python 3.10, 3.11 and 3.12.
 
 Dependency modules
 ~~~~~~~~~~~~~~~~~~
