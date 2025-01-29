@@ -27,3 +27,9 @@
 2025-01-14 11:02:35,676 [__main__] [INFO] Initializing SMIA software... line:17
 2025-01-14 11:03:14,320 [__main__] [INFO] Initializing SMIA software... line:17
 2025-01-14 11:03:14,371 [smia.utilities.smia_archive_utils] [INFO] SMIA Archive initialized. line:29
+2025-01-29 15:53:51,441 [__main__] [INFO] Initializing SMIA software... line:19
+2025-01-29 15:54:20,160 [__main__] [INFO] Initializing SMIA software... line:19
+2025-01-29 15:54:20,160 [__main__] [ERROR] The environment variable 'AAS_MODEL_NAME' for the AAS model is not set, so SMIA cannot start. Please add the information and restart the container. line:24
+2025-01-29 15:54:34,084 [__main__] [INFO] Initializing SMIA software... line:19
+2025-01-29 15:57:09,192 [__main__] [INFO] Initializing SMIA software... line:19
+2025-01-29 15:57:27,906 [__main__] [ERROR] The environment variable 'AAS_MODEL_NAME' for the AAS model is not set, so SMIA cannot start. Please add the information and restart the container. line:24

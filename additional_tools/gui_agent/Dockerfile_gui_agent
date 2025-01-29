@@ -8,6 +8,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY gui_agent.py /
 COPY htmls /htmls
+COPY gui_features /gui_features
+COPY static /static
 
 WORKDIR /
 

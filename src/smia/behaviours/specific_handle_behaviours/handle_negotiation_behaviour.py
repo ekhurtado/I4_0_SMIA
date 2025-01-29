@@ -48,6 +48,8 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
         self.neg_criteria = negotiation_info['neg_criteria']
         self.targets_processed = set()
 
+        self.myagent.tie_break = True   # In case of equal value neg is set as tie-breaker TODO check these cases (which need to be tie-breaker?)
+
         self.svc_req_data = neg_req_data
 
         self.requested_timestamp = GeneralUtils.get_current_timestamp()
