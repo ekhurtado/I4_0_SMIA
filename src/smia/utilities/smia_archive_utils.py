@@ -50,7 +50,8 @@ def create_archive_folders():
     This method ensures that all main folders of the archive exist, as well ass the parent archive folder.
     """
     required_folders_paths = [SMIAGeneralInfo.SMIA_ARCHIVE_PATH, SMIAGeneralInfo.CONFIGURATION_FOLDER_PATH,
-                              SMIAGeneralInfo.STATUS_FOLDER_PATH, SMIAGeneralInfo.LOG_FOLDER_PATH]
+                              SMIAGeneralInfo.CONFIGURATION_AAS_FOLDER_PATH, SMIAGeneralInfo.STATUS_FOLDER_PATH,
+                              SMIAGeneralInfo.LOG_FOLDER_PATH]
     for folder_path in required_folders_paths:
         if not os.path.exists(folder_path):
             os.makedirs(folder_path)
@@ -128,7 +129,7 @@ def create_log_files():
                 log_file.close()
 
 
-def save_cli_added_files(init_config, aas_model):
+def save_cli_added_files(init_config=None, aas_model=None):
     """
     This method saves the specified files in the Command Line Interface into the SMIA Archive.
 
@@ -136,9 +137,15 @@ def save_cli_added_files(init_config, aas_model):
         init_config (str): path to the initialization configuration properties file.
         aas_model (str): path to the AAS model file.
     """
-    for cli_file in [init_config, aas_model]:
-        if cli_file is not None:
-            copy_file_into_archive(cli_file, SMIAGeneralInfo.CONFIGURATION_FOLDER_PATH)
+    # for cli_file in [init_config, aas_model]:
+    #     if cli_file is not None:
+    #         copy_file_into_archive(cli_file, SMIAGeneralInfo.CONFIGURATION_FOLDER_PATH)
+    # The initialization configuration properties file is stored in the main configuration folder of the SMIA Archive
+    if init_config is not None:
+        copy_file_into_archive(init_config, SMIAGeneralInfo.CONFIGURATION_FOLDER_PATH)
+    # The AAS model file is stored in the AAS-related configuration folder of the SMIA Archive
+    if aas_model is not None:
+        copy_file_into_archive(aas_model, SMIAGeneralInfo.CONFIGURATION_AAS_FOLDER_PATH)
 
 
 def copy_file_into_archive(source_file, dest_file):

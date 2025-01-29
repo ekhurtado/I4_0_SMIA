@@ -43,7 +43,7 @@ def get_aas_model_filepath():
     # config_sm = configparser.RawConfigParser()
     # config_sm.read(SMIAGeneralInfo.CONFIGURATION_FOLDER_PATH + '/' + SMIAGeneralInfo.CM_GENERAL_PROPERTIES_FILENAME)
     # return SMIAGeneralInfo.CONFIGURATION_FOLDER_PATH + '/' + config_sm['AAS']['aas.model.file']
-    return SMIAGeneralInfo.CONFIGURATION_FOLDER_PATH + '/' + SMIAGeneralInfo.CM_AAS_MODEL_FILENAME
+    return SMIAGeneralInfo.CONFIGURATION_AAS_FOLDER_PATH + '/' + SMIAGeneralInfo.CM_AAS_MODEL_FILENAME
 
 
 # --------------------------------------

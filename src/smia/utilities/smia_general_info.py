@@ -40,6 +40,7 @@ class SMIAGeneralInfo:
 
     # ConfigMap files
     CONFIGURATION_FOLDER_PATH = SMIA_ARCHIVE_PATH + '/config'
+    CONFIGURATION_AAS_FOLDER_PATH = CONFIGURATION_FOLDER_PATH + '/aas'
     CM_GENERAL_PROPERTIES_FILENAME = 'smia-initialization.properties'
     CM_AAS_MODEL_FILENAME = ''
     CM_AAS_PROPERTIES_FILENAME = 'aas.properties'
