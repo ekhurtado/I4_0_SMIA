@@ -1,0 +1,66 @@
+#version: "2"
+
+services:
+
+  smia-1:
+    image: ekhurtado/smia:alpine-latest
+    container_name: smia-1
+    environment:
+      - AAS_MODEL_NAME=SMIA_TransportRobot_with_OWL.aasx
+      - AGENT_ID=gcis1@ejabberd
+      - AGENT_PSSWD=gcis1234
+    depends_on:
+      xmpp-server:
+        condition: service_healthy
+    volumes:
+      - ./aas:/smia_archive/config/aas
+
+  smia-2:
+    image: ekhurtado/smia:alpine-latest
+    container_name: smia-2
+    environment:
+      - AAS_MODEL_NAME=SMIA_TransportRobot_with_OWL.aasx
+      - AGENT_ID=gcis2@ejabberd
+      - AGENT_PSSWD=gcis1234
+    depends_on:
+      xmpp-server:
+        condition: service_healthy
+    volumes:
+      - ./aas:/smia_archive/config/aas
+
+  smia-tool-gui:
+    image: ekhurtado/i4-0-smia-tools:gui-agent
+    container_name: smia-gui-agent
+    environment:
+      - AGENT_ID=smia_gui@ejabberd
+      - AGENT_PSSWD=gcis1234
+    depends_on:
+      xmpp-server:
+        condition: service_healthy
+    ports:
+      - 10000:10000
+
+  xmpp-server:
+    image: ghcr.io/processone/ejabberd
+    container_name: ejabberd
+    environment:
+      - ERLANG_NODE_ARG=admin@ejabberd
+      - ERLANG_COOKIE=dummycookie123
+      - CTL_ON_CREATE=! register admin localhost asd
+    ports:
+      - "5222:5222"
+      - "5269:5269"
+      - "5280:5280"
+      - "5443:5443"
+    volumes:
+      - ./xmpp_server/ejabberd.yml:/opt/ejabberd/conf/ejabberd.yml
+    healthcheck:
+      test: netstat -nl | grep -q 5222
+      start_period: 5s
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+
+
+
