@@ -81,7 +81,7 @@ def load_aas_model(file_path):
     SMIAGeneralInfo.CM_AAS_MODEL_FILENAME = aas_model_file_name
 
     # The file will be copied into the SMIA archive
-    smia_archive_utils.copy_file_into_archive(file_path, SMIAGeneralInfo.CONFIGURATION_FOLDER_PATH)
+    smia_archive_utils.copy_file_into_archive(file_path, SMIAGeneralInfo.CONFIGURATION_AAS_FOLDER_PATH)
 
     # When the AAS model is inside the SMIA archive, it will be checked if it is valid
     config_file_path = AASModelUtils.get_configuration_file_path_from_standard_submodel()
