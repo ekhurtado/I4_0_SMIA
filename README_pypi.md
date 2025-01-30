@@ -92,6 +92,7 @@ my_extensible_agent.add_new_agent_capability(new_capability)
 ```
 
 Add new ``Agent Service`` to ``ExtensibleSMIAAgent``:
+
 ```python
 from smia.agents.extensible_smia_agent import ExtensibleSMIAAgent  # Import from the SMIA package
 

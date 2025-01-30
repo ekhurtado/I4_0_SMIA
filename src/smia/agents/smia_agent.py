@@ -83,11 +83,13 @@ class SMIAAgent(Agent):
         # The object with the Extended AAS model and useful methods is initialized
         self.aas_model = ExtendedAASModel()
 
-        # The object with the AssetConnection class is initialized. At this point, as a empty JSON
-        self.asset_connections = {}
+        # The object with the AssetConnection class is initialized. At this point, as an empty JSON
+        if self.asset_connections is None:  # With ExtensibleSMIA asset connections can be added before
+            self.asset_connections = {}
 
         # The class with all AgentServices is initialized
-        self.agent_services = AgentServices(self)
+        if self.agent_services is None:  # With ExtensibleSMIA asset connections can be added before
+            self.agent_services = AgentServices(self)
 
         # The Lock object is used to manage the access to global agent attributes (request and response dictionaries,
         # interaction id number...)
@@ -253,7 +255,7 @@ class SMIAAgent(Agent):
         async with self.lock:  # safe access to a shared object of the agent
             self.negotiations_data[thread] = neg_data
 
-    async def _add_new_asset_connection_class(self, interface_reference, asset_connection):
+    async def save_asset_connection_class(self, interface_reference, asset_connection):
         """
         This method adds a new asset connection to the global variable of the agent.
 

@@ -4,6 +4,7 @@ Functional View of RAMI 4.0.
 """
 import inspect
 import logging
+import types
 
 _logger = logging.getLogger(__name__)
 
@@ -62,6 +63,10 @@ class AgentServiceUtils:
         adapted_params = {}
 
         # The received parameters with the values are available in kwargs
+        if len(required_params_info) != 0 and ((kwargs is None) or (len(kwargs) == 0)):
+            raise ValueError(f"The service method cannot be executed because the required parameters have not been "
+                             f"provided.")
+
         for param_name, value in kwargs.items():
             if param_name in required_params_info:
                 tipo = required_params_info[param_name]['type']
@@ -76,6 +81,24 @@ class AgentServiceUtils:
             else:
                 raise ValueError(f"Parameter {param_name} not found in method {service_method}.")
         return adapted_params
+
+    @staticmethod
+    async def safe_execute_agent_service(service_method, **kwargs):
+        """
+        This method executes the agent service securely, regardless of the execution method, synchronous or
+        asynchronous.
+
+        Args:
+            service_method: executable method of the agent service.
+            **kwargs: in case the execution method has parameters, they are passed as kwargs.
+
+        Returns:
+            result of the execution of the agent service.
+        """
+        if inspect.iscoroutinefunction(service_method):
+            return await service_method(**kwargs)
+        else:
+            return service_method(**kwargs)
 
 
 class SubmodelServicesUtils:

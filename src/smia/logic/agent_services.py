@@ -1,4 +1,5 @@
 import asyncio
+import types
 
 import psutil
 
@@ -23,10 +24,12 @@ class AgentServices:
         self.myagent = agent_object
 
         # The services dictionary contains all available services of the agent, with its associated executable methods
-        self.services = {'RAM_memory_function': self.get_software_ram_memory}    # TODO no hacerlo asi, rellenarlo de otra forma (p.e. por metodos de extension)
+        self.services = {}
 
         # The Lock object is used to manage the access to global service dictionary
         self.lock = asyncio.Lock()
+
+        asyncio.run(self.save_agent_service('RAM_memory_function', self.get_software_ram_memory))   # TODO no hacerlo asi, rellenarlo de otra forma (p.e. por metodos de extension)
 
     # ------------------------
     # Services general methods
@@ -47,7 +50,7 @@ class AgentServices:
             else:
                 return self.services[service_id]
 
-    async def add_new_agent_service(self, service_id, service_method):
+    async def save_agent_service(self, service_id, service_method):
         """
         This method adds a new agent service with a given identifier and the associated execution method.
 
@@ -55,8 +58,11 @@ class AgentServices:
             service_id (str): unique identifier of the agent service.
             service_method: execution method associated to the agent service.
         """
+        # If it is an external function, it is bounded as a method of AgentServices class. This ensures that self is
+        # automatically passed when the method is called
+        service_method = types.MethodType(service_method, self)
         async with self.lock:
-            self.services[service_id] = service_method
+            self.services[service_id] = service_method.__func__     # The executable function is saved
 
     async def execute_agent_service_by_id(self, service_id, **kwargs):
         """
@@ -79,7 +85,7 @@ class AgentServices:
             adapted_params = await AgentServiceUtils.get_adapted_service_parameters(service_method, **kwargs)
 
             # Eventually, the method with the transformed arguments is called, and it is waited for the result
-            result = await service_method(**adapted_params)
+            result = await AgentServiceUtils.safe_execute_agent_service(service_method, **adapted_params)
             if result is not None:
                 return result
             else:
