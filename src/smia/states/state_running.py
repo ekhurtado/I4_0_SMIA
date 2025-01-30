@@ -53,17 +53,33 @@ class StateRunning(State):
         self.set_next_state(SMIAGeneralInfo.STOPPING_STATE_NAME)
 
     async def add_agent_capabilities_behaviours(self):
-        behaviours_objects = []
+        """
+        This method adds all the behaviors associated to the agent capabilities. In case of being an ExtensibleAgent,
+        it is necessary to analyze if new behaviors have been added through the extension mechanisms.
+
+        Returns:
+            behaviours_instances: all instances of behavior to know that these are part of the Running state.
+        """
+        behaviours_instances = []
         agent_capabilities = await self.agent.css_ontology.get_ontology_instances_by_class_iri(
             CapabilitySkillOntologyInfo.CSS_ONTOLOGY_AGENT_CAPABILITY_IRI)
         for capability_instance in agent_capabilities:
             if capability_instance.name == 'Negotiation':
                 # The negotiation behaviour has to be added to the agent
-                _logger.info("This DT has negotiation capability.")
+                _logger.info("This SMIA has negotiation capability.")
                 negotiation_behav = NegotiatingBehaviour(self.agent)
                 self.agent.add_behaviour(negotiation_behav, SMIAInteractionInfo.NEG_STANDARD_ACL_TEMPLATE)
-                behaviours_objects.append(negotiation_behav)
+                behaviours_instances.append(negotiation_behav)
             elif capability_instance.name == 'OtherAgentCapability':
                 # TODO pensarlo
                 pass
-        return behaviours_objects
+
+        from smia.agents.extensible_smia_agent import ExtensibleSMIAAgent  # Local import to avoid circular import error
+        if isinstance(self.agent, ExtensibleSMIAAgent):
+            if len(self.agent.extended_agent_capabilities) != 0:
+                _logger.info("Extended agent capabilities will be added for the ExtensibleSMIAAgent.")
+                for behav_instance in self.agent.extended_agent_capabilities:
+                    self.agent.add_behaviour(behav_instance)
+                    behaviours_instances.append(behav_instance)
+
+        return behaviours_instances

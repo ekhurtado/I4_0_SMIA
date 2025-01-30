@@ -253,12 +253,12 @@ class SMIAAgent(Agent):
         async with self.lock:  # safe access to a shared object of the agent
             self.negotiations_data[thread] = neg_data
 
-    async def add_new_asset_connection(self, interface_reference, asset_connection):
+    async def _add_new_asset_connection_class(self, interface_reference, asset_connection):
         """
         This method adds a new asset connection to the global variable of the agent.
 
         Args:
-            interface_reference (str): reference of the interface of the AssetConnection
+            interface_reference (basyx.aas.model.ModelReference): reference of the interface of the AssetConnection
             asset_connection: class with all information about the AssetConnection
         """
         async with self.lock:  # safe access to a shared object of the agent

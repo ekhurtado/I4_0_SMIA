@@ -417,7 +417,7 @@ class InitAASModelBehaviour(OneShotBehaviour):
                 http_connection_class = HTTPAssetConnection()
                 await http_connection_class.configure_connection_by_aas_model(interface_elem)
                 interface_model_ref = ModelReference.from_referable(interface_elem)
-                await self.myagent.add_new_asset_connection(interface_model_ref, http_connection_class)
+                await self.myagent._add_new_asset_connection_class(interface_model_ref, http_connection_class)
             if interface_elem.check_suppl_semantic_id_exist('id de opc ua'):
                 # TODO Hay una interfaz de tipo OPC CUA
                 pass
