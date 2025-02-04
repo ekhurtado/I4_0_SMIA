@@ -2,11 +2,11 @@
 
 services:
 
-  smia-1:
+  smia-robot-1:
     image: ekhurtado/smia:alpine-latest
-    container_name: smia-1
+    container_name: smia-robot-1
     environment:
-      - AAS_MODEL_NAME=SMIA_TransportRobot_with_OWL.aasx
+      - AAS_MODEL_NAME=SMIA_TransportRobot_article.aasx
       - AGENT_ID=gcis1@ejabberd
       - AGENT_PSSWD=gcis1234
     depends_on:
@@ -15,11 +15,11 @@ services:
     volumes:
       - ./aas:/smia_archive/config/aas
 
-  smia-2:
+  smia-robot-2:
     image: ekhurtado/smia:alpine-latest
-    container_name: smia-2
+    container_name: smia-robot-2
     environment:
-      - AAS_MODEL_NAME=SMIA_TransportRobot_with_OWL.aasx
+      - AAS_MODEL_NAME=SMIA_TransportRobot_article.aasx
       - AGENT_ID=gcis2@ejabberd
       - AGENT_PSSWD=gcis1234
     depends_on:
@@ -28,11 +28,13 @@ services:
     volumes:
       - ./aas:/smia_archive/config/aas
 
-  smia-tool-gui:
-    image: ekhurtado/i4-0-smia-tools:gui-agent
-    container_name: smia-gui-agent
+  smia-operator:
+    image: ekhurtado/smia:alpine-latest
+#    image: ekhurtado/i4-0-smia-tools:gui-agent
+    container_name: smia-operator
     environment:
-      - AGENT_ID=smia_gui@ejabberd
+      - AAS_MODEL_NAME=SMIA_Operator_article.aasx
+      - AGENT_ID=operator1@ejabberd
       - AGENT_PSSWD=gcis1234
     depends_on:
       xmpp-server:

@@ -24,7 +24,7 @@ def main():
         _logger.error("The environment variable 'AAS_MODEL_NAME' for the AAS model is not set, so SMIA cannot start. "
                       "Please add the information and restart the container.")
         return
-
+    _logger.info('Loaded AAS model: {}'.format(aas_model_name))
     aas_model_path = SMIAGeneralInfo.CONFIGURATION_AAS_FOLDER_PATH + '/' + aas_model_name
 
     # When the AAS model path has been obtained, it is added to SMIA
