@@ -8,6 +8,7 @@ Submodules
    :maxdepth: 3
 
    smia.launchers.smia_cli_starter
+   smia.launchers.smia_docker_starter
    smia.launchers.smia_starter
 
 Module contents

@@ -6,7 +6,10 @@ import datetime
 import os
 import sys
 
-
+# A variable is added to fix the problem with the 'capability_skill_module' module (used for the Python object of the
+# ontology).
+import builtins
+builtins.__sphinx_build__ = True
 
 # sys.path.insert(0, os.path.abspath(os.path.join('..', 'src')))
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src')))
@@ -23,9 +26,9 @@ project = 'I4.0 SMIA'
 copyright = str(datetime.datetime.now().year) + ', Ekaitz Hurtado'
 author = 'Ekaitz Hurtado'
 # version = smia.__version__   # The short X.Y version.
-version = '0.2.0'   # The short X.Y version.
+version = '0.2.1'   # The short X.Y version.
 # release = smia.__version__   # The full version, including alpha/beta/rc tags.
-release = '0.2.0'  # The full version, including alpha/beta/rc tags.
+release = '0.2.1'  # The full version, including alpha/beta/rc tags.
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration

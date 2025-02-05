@@ -14,8 +14,17 @@ from smia.logic.exceptions import OntologyCheckingAttributeError, OntologyChecki
 
 _logger = logging.getLogger(__name__)
 
-css_ontology = get_ontology(CapabilitySkillOntologyUtils.get_ontology_file_path())
-base_namespace = css_ontology.get_namespace(CapabilitySkillOntologyInfo.CSS_ONTOLOGY_BASE_NAMESPACE)
+import builtins
+if hasattr(builtins, '__sphinx_build__'):
+    print("Sphinx build is running, so, to correctly import this module the ontology and namespace must be initialized.")
+    css_ontology = None  # It is necessary to build Sphinx documentation without errors.
+    base_namespace = None   # It is necessary to build Sphinx documentation without errors.
+else:
+    css_ontology = get_ontology(CapabilitySkillOntologyUtils.get_ontology_file_path())
+    base_namespace = css_ontology.get_namespace(CapabilitySkillOntologyInfo.CSS_ONTOLOGY_BASE_NAMESPACE)
+
+# css_ontology = get_ontology(CapabilitySkillOntologyUtils.get_ontology_file_path())
+# base_namespace = css_ontology.get_namespace(CapabilitySkillOntologyInfo.CSS_ONTOLOGY_BASE_NAMESPACE)
 # css_ontology = None   # It is necessary to build Sphinx documentation without errors.
 # base_namespace = None   # It is necessary to build Sphinx documentation without errors.
 
