@@ -1,6 +1,7 @@
 import argparse
 import calendar
 import logging
+import os
 import time
 
 from spade.message import Message
@@ -8,7 +9,6 @@ from spade.template import Template
 
 from smia.logic.exceptions import CriticalError
 from smia.utilities.smia_general_info import SMIAGeneralInfo
-
 
 class GeneralUtils:
     """
@@ -250,4 +250,24 @@ class CLIUtils:
                     binary_file.write(config_file_bytes)
                 SMIAGeneralInfo.CM_GENERAL_PROPERTIES_FILENAME = init_config_file_name
 
+_logger = logging.getLogger(__name__)
 
+class DockerUtils:
+    """This class contains utility methods related to SMIA execution in Docker containers."""
+
+    @staticmethod
+    def get_aas_model_from_env_var():
+        """
+        This method returns the AAS model path, obtained from the required 'AAS_MODEL_NAME' environmental variable.
+
+        Returns:
+            str: path to the AAS model to be loaded.
+        """
+        aas_model_name = os.environ.get('AAS_MODEL_NAME')
+        if aas_model_name is None:
+            _logger.error("The environment variable 'AAS_MODEL_NAME' for the AAS model is not set, so SMIA cannot start. "
+                          "Please add the information and restart the container.")
+            return
+        _logger.info('Loaded AAS model: {}'.format(aas_model_name))
+        aas_model_path = SMIAGeneralInfo.CONFIGURATION_AAS_FOLDER_PATH + '/' + aas_model_name
+        return aas_model_path

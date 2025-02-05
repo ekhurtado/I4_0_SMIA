@@ -1,15 +1,13 @@
-"""
-This is the SMIA launch file for Docker, which runs the program logic inside a virtualization container.
-"""
-
 import logging
 import os
 
 import smia
+from smia import SMIAGeneralInfo
 from smia.agents.smia_agent import SMIAAgent
 from smia.utilities.general_utils import DockerUtils
 
 _logger = logging.getLogger(__name__)
+
 
 def main():
     # First, the initial configuration must be executed

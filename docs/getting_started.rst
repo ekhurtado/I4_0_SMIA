@@ -13,9 +13,9 @@ The features of the SMIA approach include:
     - free & open-source
     - AAS-compliant: standardized approach
     - Ontology-based
-    - easily customizable and configurable
+    - easily customizable and extendable
     - self-configuration at software startup
-    - easy to usage
+    - easy to start-up
     - containerized solution
 
 Documentation project structure

@@ -1,5 +1,9 @@
-import logging
+"""
+This is the SMIA launch file, which executes the program logic from the command and gets the AAS model by the provided
+Python methods.
+"""
 
+import logging
 
 import smia
 from smia.agents.extensible_smia_agent import ExtensibleSMIAAgent
@@ -7,11 +11,6 @@ from smia.agents.smia_agent import SMIAAgent
 from smia.assetconnection.asset_connection import AssetConnection
 
 _logger = logging.getLogger(__name__)
-
-"""
-This is the launch file of the SMIA, which runs the logic of the program.
-"""
-
 
 
 def nuevo_svc():

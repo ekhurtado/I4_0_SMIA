@@ -1,3 +1,8 @@
+"""
+This is the SMIA launch file for CLI, which executes the program logic from the command and gets the AAS model from the
+arguments.
+"""
+
 import logging
 import os
 import sys
@@ -16,11 +21,6 @@ from smia.utilities.general_utils import CLIUtils
 # XMPP_SERVER = 'ejabberd'
 
 _logger = logging.getLogger(__name__)
-
-"""
-This is the launch file of the SMIA, which runs the logic of the program.
-"""
-
 
 def main():
     # First, the command line arguments are obtained
