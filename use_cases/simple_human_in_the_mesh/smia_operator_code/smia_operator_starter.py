@@ -2,8 +2,7 @@ import logging
 import os
 
 import smia
-from smia import SMIAGeneralInfo
-from smia.agents.smia_agent import SMIAAgent
+from smia.agents.extensible_smia_agent import ExtensibleSMIAAgent
 from smia.utilities.general_utils import DockerUtils
 
 _logger = logging.getLogger(__name__)
@@ -26,7 +25,7 @@ def main():
     smia_psswd = os.environ.get('AGENT_PASSWD')
 
     # Create the agent object
-    smia_agent = SMIAAgent(smia_jid, smia_psswd)
+    smia_agent = ExtensibleSMIAAgent(smia_jid, smia_psswd)
     smia.run(smia_agent)
 
 if __name__ == '__main__':

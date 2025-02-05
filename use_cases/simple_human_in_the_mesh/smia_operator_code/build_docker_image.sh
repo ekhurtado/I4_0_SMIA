@@ -1,0 +1,1 @@
+docker build -t ekhurtado/smia-use-cases:operator-latest .
