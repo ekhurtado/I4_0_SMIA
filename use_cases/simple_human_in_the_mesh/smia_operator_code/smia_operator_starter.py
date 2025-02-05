@@ -4,6 +4,7 @@ import os
 import smia
 from smia.agents.extensible_smia_agent import ExtensibleSMIAAgent
 from smia.utilities.general_utils import DockerUtils
+from gui_logic import OperatorGUIBehaviour
 
 _logger = logging.getLogger(__name__)
 
@@ -25,8 +26,12 @@ def main():
     smia_psswd = os.environ.get('AGENT_PASSWD')
 
     # Create the agent object
-    smia_agent = ExtensibleSMIAAgent(smia_jid, smia_psswd)
-    smia.run(smia_agent)
+    smia_extensible_agent = ExtensibleSMIAAgent(smia_jid, smia_psswd)
+
+    operator_behaviour = OperatorGUIBehaviour()
+    smia_extensible_agent.add_new_agent_capability(operator_behaviour)
+
+    smia.run(smia_extensible_agent)
 
 if __name__ == '__main__':
 
