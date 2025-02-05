@@ -1,10 +1,13 @@
 import abc
 import logging
+import types
+
 import basyx.aas.model
 from basyx.aas.model import SubmodelElementList, SubmodelElement, Operation, Submodel, RelationshipElement, \
     AnnotatedRelationshipElement, BasicEventElement, SubmodelElementCollection, Property, MultiLanguageProperty, \
     Range, Blob, File, ReferenceElement, Capability
 
+from smia import AASModelExtensionUtils
 from smia.aas_model.extended_aas import ExtendedGeneralMethods
 from smia.logic.exceptions import AASModelOntologyError, AASModelReadingError
 from smia.css_ontology.css_ontology_utils import CapabilitySkillOntologyInfo
@@ -372,7 +375,8 @@ class ExtendedGenericCSSClass(metaclass=abc.ABCMeta):
 
     def add_old_sme_class(self, sme_class):
         """
-        This method adds the old Basyx SubmodelElement class to be stored to the correct execution of the software.
+        This method adds the old Basyx SubmodelElement class to be stored to the correct execution of the software. It
+        also adds the inheritance to the Extended SMIA class with the method 'add_inheritance_of_extended_class'.
 
         Args:
             sme_class (basyx.aas.model.SubmodelElement): old submodel element class in BaSyx Python structure.
@@ -382,6 +386,21 @@ class ExtendedGenericCSSClass(metaclass=abc.ABCMeta):
         #     print("Antes la Skill era una Operation")
         # if issubclass(self.old_sme_class, basyx.aas.model.SubmodelElement):
         #     print("Antes la Skill era una SubmodelElement")
+
+        # The inheritance to the associated Extended SMIA class is also added
+        self.add_inheritance_of_extended_class()
+
+    def add_inheritance_of_extended_class(self):
+        """
+        This method adds inheritance to SMIA Extended classes from the original BaSyx classes, to add the SMIA methods
+        specific to the associated class. To do so, it uses the old_sme_class attribute added during the creation of
+        any ExtendedGenericCSSClass.
+        """
+        associated_extended_class = AASModelExtensionUtils.get_extension_classes_dict()[self.old_sme_class]
+        if associated_extended_class != self.__class__:
+            new_bases = (self.__class__, associated_extended_class)
+            new_class = types.new_class(self.__class__.__name__, new_bases, {})
+            self.__class__ = new_class
 
     def get_semantic_id_of_css_ontology(self):
         """
@@ -439,7 +458,8 @@ class ExtendedSkillInterface(ExtendedGenericCSSClass):
         pass
 
 
-class ExtendedCapabilityConstraint(ExtendedGenericCSSClass, ExtendedSubmodelElement, ExtendedProperty):
+class ExtendedCapabilityConstraint(ExtendedGenericCSSClass, ExtendedSubmodelElement):
+# class ExtendedCapabilityConstraint(ExtendedGenericCSSClass, ExtendedSubmodelElement, ExtendedProperty):
 
     def get_semantic_id_of_css_ontology(self):
         """
@@ -450,7 +470,8 @@ class ExtendedCapabilityConstraint(ExtendedGenericCSSClass, ExtendedSubmodelElem
                                         "ontology.".format(self.id_short), self, "OntologySemanticIdMissing")
 
 
-class ExtendedSimpleSkill(ExtendedSkill, ExtendedSubmodelElement, ExtendedOperation):
+class ExtendedSimpleSkill(ExtendedSkill, ExtendedSubmodelElement):
+# class ExtendedSimpleSkill(ExtendedSkill, ExtendedSubmodelElement, ExtendedOperation):
 
     def get_semantic_id_of_css_ontology(self):
         """
@@ -471,11 +492,13 @@ class ExtendedComplexSkill(ExtendedSkill, ExtendedSubmodel):
                                         "ontology.".format(self.id_short), self, "OntologySemanticIdMissing")
 
 
-class ExtendedSkillParameter(ExtendedGenericCSSClass, ExtendedProperty):
+class ExtendedSkillParameter(ExtendedGenericCSSClass):
+# class ExtendedSkillParameter(ExtendedGenericCSSClass, ExtendedProperty):
     pass
 
 
-class ExtendedSimpleSkillInterface(ExtendedSkillInterface, ExtendedOperation, ExtendedSubmodelElement):
+class ExtendedSimpleSkillInterface(ExtendedSkillInterface, ExtendedSubmodelElement):
+# class ExtendedSimpleSkillInterface(ExtendedSkillInterface, ExtendedOperation, ExtendedSubmodelElement):
 
     def get_semantic_id_of_css_ontology(self):
         """

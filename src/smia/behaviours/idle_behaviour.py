@@ -13,7 +13,7 @@ class IdleBehaviour(CyclicBehaviour):
         """
         The constructor method is rewritten to add the object of the agent
         Args:
-            agent_object (spade.Agent): the SPADE agent object of the AAS Manager agent.
+            agent_object (spade.Agent): the SPADE agent object of the SMIA agent.
         """
 
         # The constructor of the inherited class is executed.

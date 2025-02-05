@@ -10,12 +10,12 @@ _logger = logging.getLogger(__name__)
 
 class StateBooting(State):
     """
-    This class contains the Boot state of the common AAS Manager.
+    This class contains the Boot state of the common SMIA.
     """
 
     async def run(self):
         """
-        This method implements the boot state of the common AAS Manager. Here all the required initialization tasks
+        This method implements the boot state of the common SMIA. Here all the required initialization tasks
         are performed.
         """
 
@@ -24,12 +24,12 @@ class StateBooting(State):
 
     async def booting_state_logic(self):
         """
-        This method contains the logic of the boot state of the common AAS Manager. This method can be used by any
+        This method contains the logic of the boot state of the common SMIA. This method can be used by any
         inherited class.
         """
         _logger.info("## STATE 1: BOOTING ##  (Initial state)")
 
-        # First, it is ensured that the attributes of the AAS Manager are initialized
+        # First, it is ensured that the attributes of the SMIA are initialized
         self.agent.initialize_smia_attributes()
 
         # The ontology has to be initialized in order to be available during the AAS model analysis

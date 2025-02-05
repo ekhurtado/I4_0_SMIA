@@ -13,13 +13,13 @@ _logger = logging.getLogger(__name__)
 
 class StateRunning(State):
     """
-    This class contains the Running state of the common AAS Manager.
+    This class contains the Running state of the common SMIA.
     """
 
     async def run(self):
         """
-        This method implements the running state of the common AAS Manager. Here all requests services are handled,
-        both from ACL of another AAS Manager or from the AAS Core.
+        This method implements the running state of the common SMIA. Here all requests services are handled,
+        from ACL of another SMIA.
         """
 
         _logger.info("## STATE 2: RUNNING ##  (Initial state)")

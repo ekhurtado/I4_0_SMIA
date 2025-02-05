@@ -13,19 +13,19 @@ _logger = logging.getLogger(__name__)
 
 class SMIAResourceAgent(SMIAAgent):
     """
-    This is the AAS Manager Agent for physical resource assets. It extends the generic class AASManagerAgent.
+    This is the SMIA Agent for physical resource assets. It extends the generic class AASManagerAgent.
     """
 
     async def setup(self):
         """
         This method performs the setup of physical resource type of Managers. It defines the Finite State Machine (FSM)
-        of the AAS Manager Agent.
+        of the SMIA Agent.
         """
 
         # First, the FSMBehaviour is instantiated
         fsm_behaviour = AASFSMBehaviour()
 
-        # A common AAS Manager has three states
+        # A common SMIA has three states
         fsm_behaviour.add_state(name=SMIAGeneralInfo.BOOTING_STATE_NAME, state=StateBootingResource(), initial=True)
         fsm_behaviour.add_state(name=SMIAGeneralInfo.RUNNING_STATE_NAME, state=StateRunning())
         fsm_behaviour.add_state(name=SMIAGeneralInfo.STOPPING_STATE_NAME, state=StateStopping())

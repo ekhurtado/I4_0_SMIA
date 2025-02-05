@@ -207,6 +207,7 @@ class InitAASModelBehaviour(OneShotBehaviour):
         """
         current_class = sme_elem.__class__
         new_class = CSSModelAASModelInfo.CSS_ONTOLOGY_AAS_MODEL_LINK[ontology_iri]
+        # TODO comprobar si con el nuevo metodo de extension en 'add_old_sme_class' se evita el problema del Simple y Complex de skill e interfaz
         if new_class is ExtendedSkill:
             # In this case there are two types of classes (Simple and Complex)
             if sme_elem.check_if_element_is_structural():

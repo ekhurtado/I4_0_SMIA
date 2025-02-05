@@ -9,16 +9,16 @@ _logger = logging.getLogger(__name__)
 
 class StateBootingResource(StateBooting):
     """
-    This class contains the Boot state of the common AAS Manager.
+    This class contains the Boot state of the common SMIA.
     """
 
     async def run(self):
         """
-        This method implements the boot state of the AAS Manager of type resource. Here all the required initialization
+        This method implements the boot state of the SMIA of type resource. Here all the required initialization
         tasks are performed.
         """
 
-        # First the common initialization tasks perfomed by any AAS Manager will be executed
+        # First the common initialization tasks perfomed by any SMIA will be executed
         await super().booting_state_logic()
 
         # In the booting state of type resource the physical asset has to be checked

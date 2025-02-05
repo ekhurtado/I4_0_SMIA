@@ -7,7 +7,7 @@ _logger = logging.getLogger(__name__)
 
 class HandleSvcResponseBehaviour(OneShotBehaviour):
     """
-    This class implements the behaviour that handles all the service responses that the AAS Manager has received. This
+    This class implements the behaviour that handles all the service responses that the SMIA has received. This
     response can arrive from an FIPA-ACL message or from the AAS Core as an interaction message. This is a
     OneShotBehaviour because it handles an individual service response and then kills itself.
     """
@@ -120,6 +120,6 @@ class HandleSvcResponseBehaviour(OneShotBehaviour):
 
         """
         # TODO, en este caso tendra que comprobar que submodelo esta asociado a la peticion de servicio. Si el submodelo
-        #  es propio del AAS Manager, podra acceder directamente y, por tanto, este behaviour sera capaz de realizar el
+        #  es propio del SMIA, podra acceder directamente y, por tanto, este behaviour sera capaz de realizar el
         #  servicio completamente. Si es un submodelo del AAS Core, tendra que solicitarselo
         _logger.info(await self.myagent.get_interaction_id() + str(self.svc_resp_data))

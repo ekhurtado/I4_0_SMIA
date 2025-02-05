@@ -4,7 +4,7 @@ This is the main package of SMIA, that includes all source code and all subpacka
 
 __author__ = """Ekaitz Hurtado"""
 __email__ = "ekaitz.hurtado@ehu.eus"
-__version__ = '0.2.0'
+__version__ = '0.2.1'
 
 __all__ = ['launchers', 'agents', 'utilities', 'assetconnection']
 
@@ -82,6 +82,7 @@ def load_aas_model(file_path):
 
     # The file will be copied into the SMIA archive
     smia_archive_utils.copy_file_into_archive(file_path, SMIAGeneralInfo.CONFIGURATION_AAS_FOLDER_PATH)
+    _logger.info("AAS model {} copied to the SMIA Archive.".format(SMIAGeneralInfo.CM_AAS_MODEL_FILENAME))
 
     # When the AAS model is inside the SMIA archive, it will be checked if it is valid
     config_file_path = AASModelUtils.get_configuration_file_path_from_standard_submodel()

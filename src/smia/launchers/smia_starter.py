@@ -28,7 +28,9 @@ def main():
     _logger.info("Initializing SMIA software...")
 
     # Then, the AASX model is added
-    smia.load_aas_model('../examples/SMIA_TransportRobot_with_OWL.aasx')
+    # smia.load_aas_model('../examples/SMIA_Operator_article.aasx')
+    smia.load_aas_model('../examples/SMIA_TransportRobot_article.aasx')
+    # smia.load_aas_model('../examples/SMIA_TransportRobot_with_OWL.aasx')
     # smia.load_aas_model('../smia_archive/config/SMIA_TransportRobot_with_OWL.aasx')
 
     # Create the agent object

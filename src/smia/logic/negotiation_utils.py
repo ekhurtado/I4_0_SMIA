@@ -1,5 +1,5 @@
 """
-This class contains methods related to negotiation management of the AAS Manager.
+This class contains methods related to negotiation management of the SMIA.
 """
 import json
 import logging
@@ -49,7 +49,7 @@ def create_neg_cfp_msg(thread, targets, neg_requester_jid, neg_criteria):
 def create_neg_propose_msg(thread, targets, neg_requester_jid, neg_criteria, neg_value):
     """
     This method creates the FIPA-ACL propose message that will be sent to all participants in a negotiation to check
-    their negotiation values against the value of this AAS Manager.
+    their negotiation values against the value of this SMIA.
 
     Args:
         thread (str): the thread of the ACL message.
@@ -117,14 +117,14 @@ def create_neg_response_msg(receiver, thread, service_id, service_type, winner):
 
 def create_neg_json_to_store(neg_requester_jid, participants, neg_criteria, is_winner):
     """
-    This method creates the JSON object to be stored in the global object of the AAS Manager for the information of all
+    This method creates the JSON object to be stored in the global object of the SMIA for the information of all
     negotiations in which it has participated.
 
     Args:
         neg_requester_jid (str):  the JID of the SPADE agent that has requested the negotiation.
         participants (str): JIDs of the SPADE agents that have participated in the negotiation. Is it a string that has the JIDs divided by ','
         neg_criteria (str): criteria of the negotiation.
-        is_winner (bool): it determines whether the AAS Manager has been the winner of the negotiation.
+        is_winner (bool): it determines whether the SMIA has been the winner of the negotiation.
 
     Returns:
         dict: object with all the information of the negotiation in JSON format.
@@ -168,7 +168,7 @@ def add_value_and_unlock_neg_handling_behaviour(agent, thread, neg_value):
     with its logic.
 
     Args:
-        agent (spade.agent.Agent): the SPADE agent object that represents the AAS Manager.
+        agent (spade.agent.Agent): the SPADE agent object that represents the SMIA.
         thread (str): the thread of the negotiation, which is its identifier.
         neg_value (int): value of the AAS in the negotiation-
     """
@@ -189,7 +189,7 @@ def get_neg_intra_aas_request_by_thread(agent, thread):
     """
     This method gets the data of an Intra AAS Interaction using the thread value.
     Args:
-        agent (agents.smia_agent): the SPADE agent object that represents the AAS Manager.
+        agent (agents.smia_agent): the SPADE agent object that represents the SMIA.
         thread (str): the thread of the negotiation, which is its identifier.
 
     Returns:

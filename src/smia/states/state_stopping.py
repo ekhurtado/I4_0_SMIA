@@ -9,14 +9,14 @@ _logger = logging.getLogger(__name__)
 
 class StateStopping(State):
     """
-    This class contains the Stop state of the common AAS Manager.
+    This class contains the Stop state of the common SMIA.
     """
 
     # TODO sin acabar
 
     async def run(self):
         """
-        This method implements the stop state of the common AAS Manager.
+        This method implements the stop state of the common SMIA.
         """
         _logger.info("## STATE 3: STOPPING ##")
         # sb = StoppingBehaviour(self.agent)

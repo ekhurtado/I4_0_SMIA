@@ -18,7 +18,7 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
     """
     This class implements the behaviour that handle a particular negotiation.
     """
-    myagent = None  #: the SPADE agent object of the AAS Manager agent.
+    myagent = None  #: the SPADE agent object of the SMIA agent.
     thread = None  #: thread of the negotiation
     neg_requester_jid = None  #: JID of the SPADE agent that has requested the negotiation
     targets = None  #: targets of the negotiation
@@ -79,7 +79,7 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
                                                                        neg_requester_jid=self.neg_requester_jid,
                                                                        neg_criteria=self.neg_criteria,
                                                                        neg_value=str(self.neg_value))
-            # This PROPOSE FIPA-ACL message is sent to all participants of the negotiation (except for this AAS Manager)
+            # This PROPOSE FIPA-ACL message is sent to all participants of the negotiation (except for this SMIA)
             for jid_target in self.targets.split(','):
                 if jid_target != str(self.agent.jid):
                     acl_propose_msg.to = jid_target
@@ -106,7 +106,7 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
             timeout=10)  # Timeout set to 10 seconds so as not to continuously execute the behavior.
         if msg:
             # An ACL message has been received by the agent
-            _logger.aclinfo("         + PROPOSE Message received on AAS Manager Agent (HandleNegotiationBehaviour "
+            _logger.aclinfo("         + PROPOSE Message received on SMIA Agent (HandleNegotiationBehaviour "
                             "in charge of the negotiation with thread [" + self.thread + "])")
             _logger.aclinfo("                 |___ Message received with content: {}".format(msg.body))
 
@@ -117,20 +117,20 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
             # criteria = msg_json_body['serviceData']['serviceParams']['criteria']
             sender_agent_neg_value = msg_json_body['serviceData']['serviceParams']['neg_value']
 
-            # The value of this AAS Manager and the received value are compared
+            # The value of this SMIA and the received value are compared
             if float(sender_agent_neg_value) > self.neg_value:
-                # As the received value is higher than this AAS Manager value, it must exit the negotiation.
+                # As the received value is higher than this SMIA value, it must exit the negotiation.
                 await self.exit_negotiation(is_winner=False)
                 return  # killing a behaviour does not cancel its current run loop
             if (float(sender_agent_neg_value) == self.neg_value) and not self.agent.tie_break:
-                # In this case the negotiation is tied but this AAS Manager is not the tie breaker.
+                # In this case the negotiation is tied but this SMIA is not the tie breaker.
                 await self.exit_negotiation(is_winner=False)
                 return  # killing a behaviour does not cancel its current run loop
             # The target is added as processed in the local object (as it is a Python 'set' object there is no problem
             # of duplicate agents)
             self.targets_processed.add(str(msg.sender))
             if len(self.targets_processed) == len(self.targets.split(',')) - 1:
-                # In this case all the values have already been received, so the value of this AAS Manager is the best
+                # In this case all the values have already been received, so the value of this SMIA is the best
                 _logger.info("The AAS has won the negotiation with thread [" + msg.thread + "]")
 
                 # As the winner, it will reply to the sender with the result of the negotiation
@@ -152,7 +152,7 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
                 await self.exit_negotiation(is_winner=True)
 
         else:
-            _logger.info("         - No message received within 10 seconds on AAS Manager Agent (NegotiatingBehaviour)")
+            _logger.info("         - No message received within 10 seconds on SMIA Agent (NegotiatingBehaviour)")
 
     async def get_neg_value_with_criteria(self):
         """
@@ -285,7 +285,7 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
          identifier of each one of them.
 
         Args:
-            is_winner (bool): it determines whether the AAS Manager has been the winner of the negotiation.
+            is_winner (bool): it determines whether the SMIA has been the winner of the negotiation.
 
         """
         if is_winner:
@@ -293,7 +293,7 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
         else:
             _logger.info("The AAS has finished the negotiation with thread [" + self.thread + "] not as the winner")
 
-        # The negotiation information is stored in the global object of the AAS Manager
+        # The negotiation information is stored in the global object of the SMIA
         neg_data_json = negotiation_utils.create_neg_json_to_store(neg_requester_jid=self.neg_requester_jid,
                                                                    participants=self.targets,
                                                                    neg_criteria=self.neg_criteria,

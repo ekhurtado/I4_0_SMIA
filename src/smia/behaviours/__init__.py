@@ -1,3 +1,3 @@
 """
-This package includes all possible behaviours of AAS Manager SPADE agents.
+This package includes all possible behaviours of SMIA SPADE agents.
 """

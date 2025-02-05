@@ -58,8 +58,8 @@ def create_archive_folders():
 
 
 def create_status_file():
-    """This method creates the status file of the AAS Manager and sets it to "initializing". If the file exists because
-    the AAS Manager has been restarted without terminating the Pod where it is running, the status file will be
+    """This method creates the status file of the SMIA and sets it to "initializing". If the file exists because
+    the SMIA has been restarted without terminating the Pod where it is running, the status file will be
     rewritten."""
     # The status information file will be a list of all the statuses the software has gone through.
     initial_status_info = [{'name': 'SMIA', 'status': 'Initializing',
@@ -271,10 +271,10 @@ def save_svc_error_log_info(occurrence_timestamp, acl_info, reason, svc_type):
 # -------------------------
 def update_status(new_status):
     """
-    This method updated the status of an AAS Manager instance.
+    This method updated the status of an SMIA instance.
 
     Args:
-        new_status (str): the new status of the AAS Manager instance.
+        new_status (str): the new status of the SMIA instance.
     """
     status_file_path = SMIAGeneralInfo.STATUS_FOLDER_PATH + '/' + SMIAGeneralInfo.SMIA_STATUS_FILE_NAME
     status_file_json = file_to_json(status_file_path)
@@ -308,7 +308,7 @@ def check_core_initialization():
             if file_to_json(SMIAGeneralInfo.CORE_STATUS_FILE_PATH)['status'] != "Initializing":
                 break
         time.sleep(1)  # waits 1s
-    _logger.info('AAS Core has initialized, so the AAS Manager is starting.')
+    _logger.info('AAS Core has initialized, so the SMIA is starting.')
 
 
 # ------------------------

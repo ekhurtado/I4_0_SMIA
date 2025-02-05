@@ -18,7 +18,7 @@ _logger = logging.getLogger(__name__)
 
 class NegotiatingBehaviour(CyclicBehaviour):
     """
-    This class implements the behaviour that handles the negotiation requests made by other standardized AAS Managers
+    This class implements the behaviour that handles the negotiation requests made by other standardized SMIAs
     through ACL messages in the I4.0 System.
     """
 
@@ -117,7 +117,7 @@ class NegotiatingBehaviour(CyclicBehaviour):
                             inter_aas_interactions_utils.create_svc_json_data_from_acl_msg(msg), execution_info,
                             ServiceTypes.CSS_RELATED_SERVICE)
 
-                        # Finally, the data is stored in the AAS Manager
+                        # Finally, the data is stored in the SMIA
                         # TODO pensar si esto es necesario (ya se almacena todo en el JSON del Archive)
                         neg_data_json = negotiation_utils.create_neg_json_to_store(
                             neg_requester_jid=neg_requester_jid,
@@ -127,7 +127,7 @@ class NegotiatingBehaviour(CyclicBehaviour):
                         await self.myagent.save_negotiation_data(thread=msg.thread, neg_data=neg_data_json)
 
                     else:
-                        # If there are more targets, a management behavior is added to the AAS Manager, which will be
+                        # If there are more targets, a management behavior is added to the SMIA, which will be
                         # in charge of this particular negotiation. To this end, some information has to be passed to
                         # the behaviour
                         behaviour_info = {

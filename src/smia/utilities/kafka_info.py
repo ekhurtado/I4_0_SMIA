@@ -3,7 +3,7 @@ class KafkaInfo:
     interactions."""
 
     # Kafka broker related information
-    KAFKA_SERVER_IP = 'mi-cluster-mensajeria-kafka-bootstrap.kafka-ns'  # TODO think how to pass to AAS Manager (in AAS XML definition???)
+    KAFKA_SERVER_IP = 'mi-cluster-mensajeria-kafka-bootstrap.kafka-ns'  # TODO think how to pass to SMIA (in AAS XML definition???)
 
     # Kafka topic related information
     KAFKA_TOPIC = 'i4-0-smia-test'  # TODO check if it is the ID of the AAS

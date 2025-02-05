@@ -17,7 +17,7 @@ class AgentServices:
         The constructor method adds the object of the agent to have access to its information.
 
         Args:
-            agent_object (spade.Agent): the SPADE agent object of the AAS Manager agent.
+            agent_object (spade.Agent): the SPADE agent object of the SMIA agent.
         """
 
         # The SPADE agent object is stored as a variable of the behaviour class

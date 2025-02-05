@@ -154,7 +154,7 @@ class GeneralUtils:
     @staticmethod
     def get_current_timestamp():
         """
-        This method returns the current timestamp of the AAS Manager.
+        This method returns the current timestamp of the SMIA.
 
         Returns:
             int: current timestamp in milliseconds
