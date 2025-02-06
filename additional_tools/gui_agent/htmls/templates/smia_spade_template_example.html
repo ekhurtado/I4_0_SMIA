@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Add your title]</title>
+    <!-- Include SPADE CSS links -->
+    {% include 'htmls/templates/spade_html_css_links.html' %}
+    <style>
+
+        .box-primary {
+            padding-bottom: 5px;
+        }
+
+        .box-primary h2 {
+            margin-left: 10px;
+        }
+
+        .inner h1, .inner h2, .inner h3 {
+            /*Code to break lines long sentences in inner (used in small boxes)*/
+            word-wrap: break-word;
+            word-break: break-all;
+            overflow-wrap: break-word;
+            white-space: normal;
+        }
+
+        /*Add your own CSS style code*/
+    </style>
+</head>
+<body class="sidebar-mini skin-blue" style="height: auto; min-height: 100%;">
+    <div class="wrapper" style="height: auto; min-height: 100%;">
+        <header class="main-header">
+            {% include 'htmls/templates/spade_html_header.html' %}
+        </header>
+        <aside class="main-sidebar">
+            {% include 'htmls/templates/spade_html_aside.html' %}
+        </aside>
+        <div class="content-wrapper" style="min-height: 960px;">
+            <section class="content-header">
+                <h1>[Add your title]</h1>
+                <ol class="breadcrumb">
+                    <li><a href="/spade"><i class="fa fa-dashboard"></i> Home</a></li>
+                    <li class="active">[Add your title]</li>
+                </ol>
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <!-- Example of row with only one box-->
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <!-- col-md-X : determines the horizontal size of the box (X higher, wider box) -->
+                        <!-- col-md-offset-X : determines the padding-left of the box (X higher, bigger space) -->
+                        <div class="box box-primary">
+                            <!-- box-primary : determines the color of the line. Options:
+                            box-secondary (grey), box-success (green), box-danger (red), box-warning (yellow),
+                            box-info (cyan)... https://getbootstrap.com/docs/4.0/utilities/colors/ -->
+                            <div class="box-header with-border">
+                                <h3 class="box-title">[Add your title]</h3>
+
+                                <div class="box-tools pull-right">
+                                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                            class="fa fa-minus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <h2>[Add your HTML content here]</h2>
+                                <p>&emsp;</p>
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- ./row -->
+
+                <!-- Example of row with two boxes -->
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-1">
+                        <div class="box box-success">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">[Add your left title]</h3>
+
+                                <div class="box-tools pull-right">
+                                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                            class="fa fa-minus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <h3>[Add your left HTML content here]</h3>
+                                <p>&emsp;</p>
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-md-offset-2">
+                        <div class="box box-danger">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">[Add your right title]</h3>
+
+                                <div class="box-tools pull-right">
+                                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                            class="fa fa-minus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <h4>This is an example of a "danger" box</h4>
+                                <h3>[Add your right HTML content here]</h3>
+                                <p>&emsp;</p>
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- ./row -->
+
+                <!-- Example of row with small boxes -->
+                <div class="row">
+                    <div class="col-lg-2 col-xs-6">
+                        <!-- small box -->
+                        <div class="small-box bg-green">
+                        <!-- There are multiple colors: https://basscss.com/v7/docs/background-colors/ -->
+                            <div class="inner">
+                                <h3>Green small box</h3>
+                                <p>Mailbox example</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fa fa-envelope"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ./col -->
+                    <div class="col-lg-2 col-xs-6">
+                        <!-- small box -->
+                        <div class="small-box bg-aqua">
+                            <div class="inner">
+                                <h3>Aqua small box</h3>
+                                <p>File code icon</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fa fa-file-code-o"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ./col -->
+                    <div class="col-lg-2 col-xs-6">
+                        <!-- small box -->
+                        <div class="small-box bg-gray">
+                            <div class="inner">
+                                <h3>Navy small box</h3>
+                                <p>Sign out icon</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fa fa-sign-out-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ./col -->
+                    <div class="col-lg-2 col-xs-6">
+                        <!-- small box -->
+                        <div class="small-box bg-orange">
+                            <div class="inner">
+                                <h3>Orange small box</h3>
+                                <p>project-diagram icon</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fa fa-project-diagram"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ./col -->
+                </div>
+                <!-- ./row -->
+
+            </section>
+            <!-- /.content -->
+        </div>
+
+        <footer class="main-footer">
+            <div class="pull-right hidden-xs">
+                <b>Version</b> 0.2.1
+            </div>
+            <strong>Copyright © {% now 'local', '%Y' %} <a href="https://github.com/ekhurtado/I4_0_SMIA">SMIA</a>.</strong>
+        </footer>
+
+    </div>
+    <!-- Include SPADE scripts -->
+    {% include 'htmls/templates/spade_html_scripts.html' %}
+
+</body>
+</html>
