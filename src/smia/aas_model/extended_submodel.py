@@ -492,7 +492,7 @@ class ExtendedCapabilityConstraint(ExtendedGenericCSSClass, ExtendedSubmodelElem
 
     def check_constraint(self, constraint_data):
         """
-        This method checks the Capacity Constraint against the given data to ensure that it is valid.
+        This method checks the Capability Constraint against the given data to ensure that it is valid.
 
         Args:
             constraint_data: data to be checked with the Capability Constraint

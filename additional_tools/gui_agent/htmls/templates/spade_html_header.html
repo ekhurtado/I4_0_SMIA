@@ -5,6 +5,49 @@
 <nav class="navbar navbar-static-top">
     <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
+            <!-- Messages: style can be found in dropdown.less-->
+            <li class="dropdown messages-menu">
+                        <!-- Menu toggle button -->
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-envelope"></i>
+                            <span class="label label-success">{{ agent.traces.received().__len__() }}</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="header">You have {{ agent.traces.received().__len__() }} messages</li>
+                            <li>
+                                <!-- inner menu: contains the messages -->
+                                <ul class="menu">
+                                    {% for date, msg in messages %}
+                                    <li>
+                                        <!-- start message -->
+                                        <a href="#">
+                                            <!-- Message title -->
+                                            <h4>
+                                                <p>{{ msg.sender }}</p>
+                                            </h4>
+                                            <div class="pull-left">
+                                                <!-- User Image -->
+                                                <img src="{{ agent.build_avatar_url(msg.sender) }}" class="img-circle" alt="User Image">
+                                            </div>
+                                            <!-- The message -->
+                                            <p>{% filter escape %}{{ msg.body }}{% endfilter %}</p>
+                                            <p><small class="pull-right">
+                                                <i class="fa fa-clock-o"></i> {{ date }}
+                                                </small>
+                                            </p>
+                                        </a>
+                                    </li>
+                                    {% endfor %}
+                                    <!-- end message -->
+                                </ul>
+                                <!-- /.menu -->
+                            </li>
+                            <li class="footer"><a href="/spade/messages/">See All Messages</a></li>
+                        </ul>
+                    </li>
+            <!-- /.messages-menu -->
+
+            <!-- User Account Menu -->
             <li class="dropdown user user-menu">
                 <a href="/spade" class="dropdown-toggle" data-toggle="dropdown">
                     <img src={{ agent.avatar }} class="user-image" alt="User Image">
