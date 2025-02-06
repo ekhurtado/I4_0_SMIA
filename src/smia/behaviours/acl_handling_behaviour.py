@@ -65,12 +65,14 @@ class ACLHandlingBehaviour(CyclicBehaviour):
                     # TODO pensar si generar un behaviour para recibir peticiones de servicios y otro para peticiones
                     #  de capacidades (en ese caso solo hay que comprobar la ontologia, no la performativa, ya que esta
                     #  se analiza en los behaviours de gestion individuales)
-                    if msg.get_metadata('ontology') == FIPAACLInfo.FIPA_ACL_ONTOLOGY_CAPABILITY_REQUEST:
-                        _logger.aclinfo("The agent has received a request to perform a capability")
+                    if ((msg.get_metadata('ontology') == FIPAACLInfo.FIPA_ACL_ONTOLOGY_CAPABILITY_REQUEST) or
+                            (msg.get_metadata('ontology') == FIPAACLInfo.FIPA_ACL_ONTOLOGY_CAPABILITY_CHECKING)):
+                        _logger.aclinfo("The agent has received a request related to Capability-Skill model")
                         # The behaviour to handle this specific capability will be added to the agent
                         svc_req_data = inter_aas_interactions_utils.create_svc_json_data_from_acl_msg(msg)
                         capability_handling_behav = HandleCapabilityBehaviour(self.agent, svc_req_data)
                         self.myagent.add_behaviour(capability_handling_behav)
+
                     elif msg.get_metadata('ontology') == FIPAACLInfo.FIPA_ACL_ONTOLOGY_SVC_REQUEST:
                         _logger.aclinfo("The agent has received a request to perform a service")
                         # The behaviour to handle this specific capability will be added to the agent

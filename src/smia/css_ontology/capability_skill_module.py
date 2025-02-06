@@ -246,6 +246,18 @@ class Capability(ExtendedThing):
         else:
             return self.isRealizedBy
 
+    def get_associated_constraint_instances(self):
+        """
+        This method gets all associated constraint instances and, if there is no one, returns the None object.
+
+        Returns:
+            IndividualValueList: generator with all associated constraint instances.
+        """
+        if len(self.isRestrictedBy) == 0:
+            return None
+        else:
+            return self.isRestrictedBy
+
 class CapabilityConstraint(ExtendedThing):
 
     # The associated SubmodelElement class of the AAS is also defined

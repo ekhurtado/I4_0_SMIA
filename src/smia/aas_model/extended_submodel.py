@@ -343,6 +343,27 @@ class ExtendedRange(Range):
         print("Specific attributes of Ranges:")
         # TODO
 
+    def check_value_within_range(self, value):
+        """
+        This method checks whether a given value is within the range defined in this element.
+
+        Args:
+            value: data to be checked.
+
+        Returns:
+            bool: the result of the check.
+        """
+        try:
+            formatted_value = value
+            if issubclass(self.value_type, basyx.aas.model.datatypes.Float):
+                formatted_value = float(value)
+            elif issubclass(self.value_type, basyx.aas.model.datatypes.Int):
+                formatted_value = int(value)
+            # TODO Think about more types
+            return True if self.min <= formatted_value <= self.max else False
+        except ValueError as e:
+            _logger.error("Value error with data {} of type {} in Range {}".format(value, self,value, self))
+            return False
 
 class ExtendedBlob(Blob):
 
@@ -468,6 +489,28 @@ class ExtendedCapabilityConstraint(ExtendedGenericCSSClass, ExtendedSubmodelElem
         if not self.check_semantic_id_exist(CapabilitySkillOntologyInfo.CSS_ONTOLOGY_CAPABILITY_CONSTRAINT_IRI):
             raise AASModelOntologyError("The skill {} does not have the valid semanticID within the "
                                         "ontology.".format(self.id_short), self, "OntologySemanticIdMissing")
+
+    def check_constraint(self, constraint_data):
+        """
+        This method checks the Capacity Constraint against the given data to ensure that it is valid.
+
+        Args:
+            constraint_data: data to be checked with the Capability Constraint
+
+        Returns:
+            bool: the result of the check
+        """
+        # Initially, the result is set to invalid.
+        result = False
+        if isinstance(self, ExtendedRange):
+            result = self.check_value_within_range(constraint_data)
+            if not result:
+                _logger.warning("The data ({}) is invalid in the Capability Constraint {} because it is not within "
+                                "the defined range values.".format(constraint_data, self))
+        # TODO Think about more types of constraints (properties, references...)
+        _logger.info('The Capability Constraint {} has been checked with data ({}), resulting in {}'.format(
+            self, constraint_data, result))
+        return result
 
 
 class ExtendedSimpleSkill(ExtendedSkill, ExtendedSubmodelElement):

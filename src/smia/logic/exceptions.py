@@ -147,12 +147,9 @@ class CapabilityCheckingError(Exception):
     capability checking as well as the reason of it.
     """
 
-    def __init__(self, cap_name, reason):
+    def __init__(self, cap_name, reason, behav_class):
         self.cap_name = cap_name
         self.reason = reason
-        self.behav_class = None
-
-    def add_behav_class(self, behav_class):
         self.behav_class = behav_class
 
     async def handle_capability_checking_error(self):
