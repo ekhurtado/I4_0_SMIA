@@ -197,6 +197,48 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
             pass
             # TODO pensar que situaciones habria
 
+    async def handle_query_if_old(self):
+        if self.svc_req_data['serviceID'] == 'capabilityChecking':
+            # The DT has been asked if it has a given capability.
+            # First, the information about the received capability is obtained
+            received_cap_data = self.svc_req_data['serviceData']['serviceParams']
+
+            # It will be checked if the DT can perform the received capability
+            try:
+                # First, the received data is checked
+                await self.check_received_capability_request_data()
+
+                # Then, the capability checking process can be executed
+                result = await self.myagent.aas_model.capability_checking_from_acl_request(received_cap_data)
+
+                # The information will be stored in the log
+                execution_info = {'capName': received_cap_data[CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME],
+                                  # 'capType': str(cap_ontology_instance.is_a),  # TODO modificar el codigo para usar ontologia
+                                  'result': str(result)}
+                smia_archive_utils.save_completed_svc_log_info(self.requested_timestamp,
+                                                               GeneralUtils.get_current_timestamp(),
+                                                               self.svc_req_data, execution_info,
+                                                               self.svc_req_data['serviceType'])
+            except (RequestDataError, CapabilityCheckingError) as cap_checking_error:
+                if isinstance(cap_checking_error, RequestDataError):
+                    if CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME in received_cap_data:
+                        cap_checking_error = CapabilityCheckingError(
+                            received_cap_data[CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME],
+                            cap_checking_error.message)
+                    else:
+                        cap_checking_error = CapabilityCheckingError('', cap_checking_error.message)
+
+                cap_checking_error.add_behav_class(self)
+                await cap_checking_error.handle_capability_checking_error()
+                return  # killing a behaviour does not cancel its current run loop
+
+            await self.send_response_msg_to_sender(FIPAACLInfo.FIPA_ACL_PERFORMATIVE_INFORM, {'result': result})
+            _logger.info("The Capability [{}] has been checked, with result: {}.".format(
+                received_cap_data[CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME], result))
+        else:
+            # TODO pensar otras categorias para capabilities
+            pass
+
     async def handle_request(self):
         """
         This method handle capability requests to the DT.
@@ -208,8 +250,6 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
         #  negociacion?). Otra opcion es siempre ejecutar aas_model.capability_checking_from_acl_request()
         cap_name = None
         try:
-            # The capability checking should be also performed to ensure that the DT can perform it. In this case,
-            # the capability checking is performed in separate steps
             # First, the data received is checked to ensure that it contains all the necessary information.
             await self.check_received_capability_request_data()
 
@@ -217,6 +257,14 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
             cap_ontology_instance, skill_ontology_instance, skill_interface_ontology_instance = \
                 await self.get_ontology_instances()
             cap_name = cap_ontology_instance.name
+
+            # Before executing the capability, the capability checking should be also performed to ensure that SMIA
+            # can perform it.
+            result, reason = await self.execute_capability_checking()
+            if not result:
+                raise CapabilityRequestExecutionError(
+                    cap_name,f"The capability {cap_name} cannot be executed because the capability checking "
+                             f"result is invalid. Reason: {reason}.", self)
 
             # Once all the data has been checked and obtained, the capability can be executed
             cap_execution_result = await self.execute_capability(cap_ontology_instance, skill_ontology_instance,
@@ -277,8 +325,8 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
             _logger.info("Checking of the capability {} finished with result {}.".format(cap_name, result))
 
             # The information will be stored in the log
-            execution_info = {'taskType': 'CapabilityChecking', 'capName': cap_name, 'capType': str(cap_ontology_instance.is_a),
-                              'result': str(result), 'reason': reason}
+            execution_info = {'capName': cap_name, 'capType': str(cap_ontology_instance.is_a),
+                              'result': str(result), 'reason': reason, 'taskType': 'CapabilityChecking'}
             smia_archive_utils.save_completed_svc_log_info(self.requested_timestamp,
                                                            GeneralUtils.get_current_timestamp(),
                                                            self.svc_req_data, execution_info,
@@ -292,47 +340,6 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
                                                                 ': ' + cap_checking_error.message, self)
             await cap_checking_error.handle_capability_checking_error()
             return  # killing a behaviour does not cancel its current run loop
-
-        # if self.svc_req_data['serviceID'] == 'capabilityChecking':
-        #     # The DT has been asked if it has a given capability.
-        #     # First, the information about the received capability is obtained
-        #     received_cap_data = self.svc_req_data['serviceData']['serviceParams']
-        #
-        #     # It will be checked if the DT can perform the received capability
-        #     try:
-        #         # First, the received data is checked
-        #         await self.check_received_capability_request_data()
-        #
-        #         # Then, the capability checking process can be executed
-        #         result = await self.myagent.aas_model.capability_checking_from_acl_request(received_cap_data)
-        #
-        #         # The information will be stored in the log
-        #         execution_info = {'capName': received_cap_data[CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME],
-        #                           # 'capType': str(cap_ontology_instance.is_a),  # TODO modificar el codigo para usar ontologia
-        #                           'result': str(result)}
-        #         smia_archive_utils.save_completed_svc_log_info(self.requested_timestamp,
-        #                                                        GeneralUtils.get_current_timestamp(),
-        #                                                        self.svc_req_data, execution_info,
-        #                                                        self.svc_req_data['serviceType'])
-        #     except (RequestDataError, CapabilityCheckingError) as cap_checking_error:
-        #         if isinstance(cap_checking_error, RequestDataError):
-        #             if CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME in received_cap_data:
-        #                 cap_checking_error = CapabilityCheckingError(
-        #                     received_cap_data[CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME],
-        #                     cap_checking_error.message)
-        #             else:
-        #                 cap_checking_error = CapabilityCheckingError('', cap_checking_error.message)
-        #
-        #         cap_checking_error.add_behav_class(self)
-        #         await cap_checking_error.handle_capability_checking_error()
-        #         return  # killing a behaviour does not cancel its current run loop
-        #
-        #     await self.send_response_msg_to_sender(FIPAACLInfo.FIPA_ACL_PERFORMATIVE_INFORM, {'result': result})
-        #     _logger.info("The Capability [{}] has been checked, with result: {}.".format(
-        #         received_cap_data[CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME], result))
-        # else:
-        #     # TODO pensar otras categorias para capabilities
-        #     pass
 
     async def handle_inform(self):
         """
