@@ -2,6 +2,52 @@
 
 (Release Notes)=
 
+## v0.2.1
+
+This release of I4.0 Self-Configurable Manufacturing Industrial Agent comes with an upgrade of the new approach added in version 0.2.0 of the solution. Similar to the other releases, it is available with the  source code in a ZIP file. Content of ``SMIA.source.code.zip`` file:
+
+> SMIA: All Python files structured in Python modules.
+> - It includes two launcher files to run the software in the ``launchers`` module: _smia_cli_starter.py_ and _smia_starter.py_.
+
+### Features
+
+- Information about the software during runtime is now stored in the Archive.  
+  - The log has been structured to store different types of information (status of executions and errors).  
+  - The status of completed requests for services and capabilities is also stored. 
+    - Information about errors occurred during requests is also stored with the type of the error. 
+- There are new ways to run the software  
+  - PyPI package to install SMIA and run it directly (accessible on TestPyPI) 
+  - Docker container with SMIA installed to run it passing only the AAS model as environment variable. 
+    - Los Dockerfiles con los que se han generado están disponibles en la carpeta ``docker`` 
+    - Two types of images are provided: a lightweight image based on Python Alpine (``smia/alpine-*``) and a full image based on generic Python (``smia/full-*``).   
+  - Docker Compose for efficient deployment with all required infrastructure 
+    - Comes with an XMPP server that can be used to communicate with different SMIAs  
+- Now it is possible to extend the software through extension methods that allow you to add your own code to the SMIA base.  
+  - It is offered through a new agent called ``ExtensibleSMIAAgent``.  
+  - It is accessible through the PyPI package or by downloading the source code.  
+- New guides have been added to the associated ReadTheDocs documentation platform to help developers and users get integrated into the SMIA ecosystem  
+  - A SMIA start-up guide has been developed. 
+
+### Major Changes 
+
+- The code of the negotiation capability has been modified with the new approach (the one added in version ``v0.2.0``). 
+  - Negotiation is now an agent capability and is managed as such. 
+- The open source project has been completed with the remaining files such as contributing, release notes, about the project, code of conduct or templates for issues. 
+  - Both on GitHub and on ReadTheDocs 
+- Progress has been made in the removal of old code related to the AAS Manager-Core approach (prior to version ``v0.2.0``). 	
+
+### Fixed errors
+
+- Changed library for HTTPAssetConnection from ``requests`` to ``aiohttp``. 
+  - Requests is a library for synchronous program, so it was blocking all software waiting for server response. 
+  - With aiohttp now software is able to perform other tasks while waiting for HTTP server response (e.g. pick up other ACL requests) 
+- Fixed a bug in the ``load_aas_model`` method of the smia package: it did not use the file passed, now it copies the file into the archive to use it as AAS model 
+  - Did not allow to start correctly the code 
+- Fixed problem with ``capability_skill_module`` module during Sphinx documentation generation due to ontology Python object 
+  - A condition has been added to fix the problem during Sphinx generation. 
+- Fixed problem with inheritance of SMIA extended classes from Basyx AAS classes
+
+
 ## v0.2.0
 
 This release of I4.0 Self-Configurable Manufacturing Industrial Agent comes with a new approach for the solution. That is the reason why the software has been upgraded to version 0.2.x. Similar to the other releases, it is available with the  source code in a ZIP file. Content of ``SMIA.source.code.zip`` file:
