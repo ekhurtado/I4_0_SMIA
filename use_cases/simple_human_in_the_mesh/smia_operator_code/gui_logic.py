@@ -20,7 +20,7 @@ class OperatorGUIBehaviour(OneShotBehaviour):
         # First, the dictionary is initialized to add the menu entries that are required in runtime. The name of the
         # SMIA SPADE agent is also initialized to be used in the added HTMLs templates
         self.agent.web_menu_entries = OrderedDict()
-        self.agent.agent_name = str(self.agent.jid).split('@')[0]
+        # self.agent.agent_name = str(self.agent.jid).split('@')[0]  # tambien se puede lograr mediante agent.jid.localpart
         self.agent.build_avatar_url = GUIFeatures.build_avatar_url
         self.agent.avatar
         _logger.warning("HOLAAAA: {}".format(self.agent.avatar))
