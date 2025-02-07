@@ -1,5 +1,6 @@
 import json
 import os
+import time
 from os import getcwd
 
 from aiohttp import web
@@ -157,10 +158,44 @@ class GeneralGUIFeatures:
             return web.json_response({"status": "error", "message": "Failed to request capability"}, status=500)
 
 
-    async def operator_request_controller(self, request):
-        print(request)
-        a = await request.post()
-        # b = a.getall('checkbox')
-        print(a)
 
-        return web.json_response({'status': 'OK'})
+    # OPERATOR METHODS
+    # --------------
+    async def operator_load_controller(self, request):
+        print(request)
+
+        time.sleep(10)
+
+        return {"status": "success", "reason": "success reason"}
+        # return {"status": "errpr", "reason": "error reason"}
+
+    async def operator_request_controller(self, request):
+
+        data = await request.post()
+
+        # Extract arrays for each field
+        smia_id_list = data.getall('smia_id[]', [])
+        asset_id_list = data.getall('asset_id[]', [])
+        selected = data.getall('checkbox[]', [])
+        capability = data.get('capability', None)   # Default if missing
+        constraint_name = data.get('constraint_name', None)
+        constraint_value = data.get('constraint_value', None)
+        skill = data.get('skill', None)
+
+        # Group data by row index
+        processed_data = []
+        for idx, row_id in enumerate(smia_id_list):
+            if row_id in selected:
+                processed_data.append({
+                    "smiaID": row_id,
+                    "assetID": asset_id_list[idx],
+                })
+        print("Requested SMIAs: {}".format(processed_data))
+
+        if len(processed_data) > 1:
+            print("There are multiple SMIAs: negotiation is required")
+        else:
+            print("There is only one SMIA. Requesting [{}] capability...".format(capability))
+
+        # return web.json_response({'status': 'OK'})
+        return {'status': 'OK'}

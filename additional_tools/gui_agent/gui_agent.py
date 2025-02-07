@@ -113,6 +113,7 @@ async def main():
 
     gui_agent.web.add_get("/smia_operator", GeneralGUIFeatures.hello_controller, "/htmls/smia_operator.html")
     gui_agent.web.add_post("/smia_operator/submit", gui_agent.general_features.operator_request_controller, "/htmls/smia_operator_submit.html")
+    gui_agent.web.add_get("/smia_operator/load", gui_agent.general_features.operator_load_controller, None)
     await gui_agent.general_features.add_new_menu_entry("SMIA operator", "/smia_operator", "fa fa-user-cog")
 
 

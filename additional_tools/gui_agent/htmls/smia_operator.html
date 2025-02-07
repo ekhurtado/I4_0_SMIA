@@ -76,6 +76,10 @@
             margin: 20px 5px;
         }
 
+        .hidden {
+            display: none;
+        }
+
         /* Main table */
         .table {
             width: 100%;
@@ -217,7 +221,7 @@
                                         <div class="small-box bg-green">
                                         <!-- There are multiple colors: https://basscss.com/v7/docs/background-colors/ -->
                                             <div class="inner">
-                                                <h3>2</h3>
+                                                <h3>0</h3>
                                                 <p>Detected AAS models</p>
                                             </div>
                                             <div class="icon">
@@ -230,7 +234,7 @@
                                         <!-- small box -->
                                         <div class="small-box bg-aqua">
                                             <div class="inner">
-                                                <h3>2</h3>
+                                                <h3>0</h3>
                                                 <p>Available SMIAs</p>
                                             </div>
                                             <div class="icon">
@@ -243,7 +247,7 @@
                                         <!-- small box -->
                                         <div class="small-box bg-orange">
                                             <div class="inner">
-                                                <h3>2</h3>
+                                                <h3>0</h3>
                                                 <p>Obtained capabilities</p>
                                             </div>
                                             <div class="icon">
@@ -256,7 +260,7 @@
                                         <!-- small box -->
                                         <div class="small-box bg-yellow">
                                             <div class="inner">
-                                                <h3>3</h3>
+                                                <h3>0</h3>
                                                 <p>Obtained skills</p>
                                             </div>
                                             <div class="icon">
@@ -269,9 +273,9 @@
                                 <!-- ./row -->
 
                                 <div class="smia-loader-footer">
-                                    <span class="process-text"><em>Loading SMIAs...</em></span>
+                                    <span class="hidden process-text"><em>Loading SMIAs...</em></span>
 <!--                                    <div id="loading"></div>-->
-                                    <img src="static/loading_line.gif" alt="Processing..." class="process-gif">
+                                    <img src="static/loading_line.gif" alt="Processing..." class="process-gif hidden">
                                     <button type="button" id="loader-button" class="btn btn-primary process-button">Load</button>
                                 </div>
                             </div>
@@ -379,7 +383,13 @@
                             <div class="box-body">
                                 <h5>Candidates for the [Efficient Transportation] capability are as follows:</h5>
 
-                                <form id="requestForm" action="/smia_operator/submit" method="POST">
+                                <form id="requestForm" action="/smia_operator/submit" method="POST" onsubmit="return validateForm()">
+
+                                    <input type="hidden" name="capability" value="EfficientTransport" required>
+                                    <input type="hidden" name="constraint_name" value="Weight" required>
+                                    <input type="hidden" name="constraint_value" value="4.5" required>
+                                    <input type="hidden" name="skill" value="EfficientMovement" required>
+
                                     <table class="table table-bordered">
                                         <thead>
                                             <tr>
@@ -390,17 +400,29 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td>gcis1</td>
-                                                <td>TransportRobot1</td>
                                                 <td>
-                                                    <input name="checkbox" type="checkbox" class="request-checkbox">
+                                                    gcis1
+                                                    <input type="hidden" name="smia_id[]" value="gcis1">
+                                                </td>
+                                                <td>
+                                                    TransportRobot1
+                                                    <input type="hidden" name="asset_id[]" value="TransportRobot1">
+                                                </td>
+                                                <td>
+                                                    <input name="checkbox[]" value="gcis1" type="checkbox" class="request-checkbox">
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td>gcis2</td>
-                                                <td>TransportRobot2</td>
                                                 <td>
-                                                    <input name="checkbox" type="checkbox" class="request-checkbox">
+                                                    gcis2
+                                                    <input type="hidden" name="smia_id[]" value="gcis2">
+                                                </td>
+                                                <td>
+                                                    TransportRobot2
+                                                    <input type="hidden" name="asset_id[]" value="TransportRobot2">
+                                                </td>
+                                                <td>
+                                                    <input name="checkbox[]" value="gcis2" type="checkbox" class="request-checkbox">
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -437,10 +459,40 @@
 
     <script>
         const loaderButton = document.getElementById('loader-button');
+        loaderButton.addEventListener('click', async function(event) {
 
-        loaderButton.addEventListener('click', function(event) {
-            console.log("Button clicked")
-            alert('SMIAs will be loaded.');
+            $('.hidden').removeClass('hidden');
+
+            // Send data as JSON using fetch
+            try {
+                const response = await fetch('/smia_operator/load', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+
+                const json = await response.json();
+
+                if (json.status === 'success') {
+                    alert('SMIAs loaded.');
+
+                    // TODO BORRAR
+                    const graphics = document.querySelectorAll('.inner h3');
+                    graphics.forEach(graphic => {
+                        // graphic.style.display = '';
+                        graphic.textContent = '2';
+                    });
+
+                } else {
+                    alert(`Failed to load SMIAs due to reason: ${json.reason}.`);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Failed to load SMIAs. Error: .' + error);
+            }
+
+            location.reload();  // The web page is reloaded in order to obtain all new data
         });
 
         document.addEventListener('DOMContentLoaded', function() {
@@ -528,21 +580,18 @@
                 }
             }
 
-            const requestButton = document.querySelector('.request-button');
-            requestButton.addEventListener('click', function(event) {
-                const parentBoxBody =  this.closest('div.box-body');
-                const candidatesRows =  parentBoxBody.querySelectorAll('tbody tr');
-                let candidates = []
-                candidatesRows.forEach(row => {
-                        const checkedBoxes = row.querySelector('input[type="checkbox"]:checked');
-                        if (checkedBoxes !== null) {
-                            candidates.push(row.cells[0].textContent + '@ejabberd');
-                        }
-                    });
-                prompt(`Se va a solicitar una capacidad a los SMIAs: ${candidates.join(", ")}`);
-            });
-
         });
+
+        function validateForm() {
+            let checkboxes = document.querySelectorAll('.request-checkbox');
+            for (let checkbox of checkboxes) {
+                if (checkbox.checked) {
+                    return true; // Allow submission
+                }
+            }
+            alert("Please select at least one SMIA.");
+            return false; // Prevent form submission
+        }
 
     </script>
 
