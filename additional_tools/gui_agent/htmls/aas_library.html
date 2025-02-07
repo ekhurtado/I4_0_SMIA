@@ -56,7 +56,7 @@
             color: #3C8DBC;
         }
 
-        .request-button {
+        .select-button {
             background-color: #7c8191;
             color: #fff;
             border: none;
@@ -862,7 +862,7 @@
                 });
             });
 
-            const requestButtons = document.querySelectorAll('.request-button');
+            const requestButtons = document.querySelectorAll('.select-button');
             requestButtons.forEach(button => {
                 button.addEventListener('click', function(event) {
                     const parentRow = this.closest('tr');
@@ -884,7 +884,7 @@
                             row.appendChild(newCell);
                         });
 
-                        // Since checkboxes are added as new columns withint the subtables, a new header need to be added
+                        // Since checkboxes are added as new columns within the subtables, a new header need to be added
                         subtables.forEach(table => {
                             const parentTables = table.querySelectorAll('table');
                             parentTables.forEach(subtable => {

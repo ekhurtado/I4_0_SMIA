@@ -155,3 +155,12 @@ class GeneralGUIFeatures:
         except Exception as e:
             print("Error handling request:", e)
             return web.json_response({"status": "error", "message": "Failed to request capability"}, status=500)
+
+
+    async def operator_request_controller(self, request):
+        print(request)
+        a = await request.post()
+        # b = a.getall('checkbox')
+        print(a)
+
+        return web.json_response({'status': 'OK'})
