@@ -82,8 +82,7 @@ async def main():
     gui_agent.web.add_post("/capability_request", gui_agent.general_features.capability_request_controller,
                            "/htmls/aas_library.html")
 
-    gui_agent.web.add_get("/aas_loader", GeneralGUIFeatures.hello_controller, "/htmls/templates/smia_spade_template_example.html")
-    # gui_agent.web.add_get("/aas_loader", GeneralGUIFeatures.hello_controller, "/htmls/aas_loader.html")
+    gui_agent.web.add_get("/aas_loader", GeneralGUIFeatures.hello_controller, "/htmls/aas_loader.html")
     gui_agent.web.add_post("/aas_loader/submit", gui_agent.general_features.aas_upload_controller,
                            "/htmls/aas_loader_submit.html")
 
@@ -106,6 +105,16 @@ async def main():
     await gui_agent.general_features.add_new_menu_entry("Programming language editor", "/editor", "fa fa-code")
     await gui_agent.general_features.add_new_menu_entry("AAS Library", "/aas_library", "fa fa-book")
     await gui_agent.general_features.add_new_menu_entry("AAS Loader", "/aas_loader", "fa fa-file-import")
+
+    # todo borrar
+    gui_agent.web.add_get("/smia_template", GeneralGUIFeatures.hello_controller,
+                          "/htmls/templates/smia_spade_template_example.html")
+    await gui_agent.general_features.add_new_menu_entry("SMIA template", "/smia_template", "fa fa-terminal")
+
+    gui_agent.web.add_get("/smia_operator", GeneralGUIFeatures.hello_controller, "/htmls/smia_operator.html")
+    gui_agent.web.add_post("/smia_operator/submit", gui_agent.general_features.operator_request_controller, "/htmls/smia_operator_submit.html")
+    await gui_agent.general_features.add_new_menu_entry("SMIA operator", "/smia_operator", "fa fa-user-cog")
+
 
     gui_agent.web.start(hostname="0.0.0.0", port="10000")  # https://spade-mas.readthedocs.io/en/latest/web.html#
     print("GUI started.")
