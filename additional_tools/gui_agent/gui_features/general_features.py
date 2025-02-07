@@ -3,7 +3,9 @@ import os
 import time
 from os import getcwd
 
+import aioxmpp
 from aiohttp import web
+from aioxmpp import PresenceState, JID, disco
 
 from gui_features.behaviours import GUIAgentBehaviours
 
@@ -164,10 +166,26 @@ class GeneralGUIFeatures:
     async def operator_load_controller(self, request):
         print(request)
 
-        time.sleep(10)
+        # PRUEBA PARA DESCUBRIR AGENTES
+        # Conectar al servidor XMPP
+        async with self.myagent.client.connected():
+            # Crear un objeto de servicio de descubrimiento
+            disco_client = self.myagent.client.summon(aioxmpp.DiscoClient)
+
+            # Obtener los elementos (agentes) registrados en el servidor
+            result = await disco_client.query_items(
+                JID.fromstr(self.myagent.jid.domain)  # Dominio del servidor
+            )
+
+            # Extraer los JIDs de los agentes
+            agents = [str(item.jid) for item in result.items]
+            print(agents)
+        # --- fin de la prueba
+
+
 
         return {"status": "success", "reason": "success reason"}
-        # return {"status": "errpr", "reason": "error reason"}
+        # return {"status": "error", "reason": "error reason"}
 
     async def operator_request_controller(self, request):
 

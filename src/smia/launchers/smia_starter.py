@@ -33,11 +33,11 @@ def main():
     # smia.load_aas_model('../smia_archive/config/SMIA_TransportRobot_with_OWL.aasx')
 
     # Create the agent object
-    # smia_agent = SMIAAgent("gcis2@xmpp.jp", "gcis1234")
+    smia_agent = SMIAAgent("gcis2@xmpp.jp", "gcis1234")
     # smia_agent = SMIAAgent()
-    smia_agent = ExtensibleSMIAAgent()
 
-    smia_agent.add_new_agent_service('newSvc', nuevo_svc_params)
+    # smia_agent = ExtensibleSMIAAgent()
+    # smia_agent.add_new_agent_service('newSvc', nuevo_svc_params)
 
     smia.run(smia_agent)
 
