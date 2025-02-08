@@ -3,11 +3,13 @@ import ntpath
 import os
 from collections import OrderedDict
 
-import aioxmpp
 import basyx
 from aiohttp import web
 from basyx.aas import model
 from basyx.aas.adapter import aasx
+from smia.behaviours.init_aas_model_behaviour import InitAASModelBehaviour
+
+from smia.css_ontology.css_ontology_utils import CapabilitySkillOntologyInfo, CapabilitySkillOntologyUtils
 
 from smia import SMIAGeneralInfo
 from spade.behaviour import OneShotBehaviour
@@ -37,7 +39,7 @@ class OperatorGUIBehaviour(OneShotBehaviour):
         _logger.info("Added SMIA Favicon to the web interface.")
 
         # The controllers class is also created offering the agent object
-        self.operator_gui_controllers = GUIControllers(self)
+        self.operator_gui_controllers = GUIControllers(self.agent)
 
         # Then, the required HTML webpages are added to the SMIA SPADE web module
         self.agent.web.add_get('/smia_operator', self.operator_gui_controllers.hello_controller,
@@ -90,6 +92,16 @@ class GUIControllers:
                     _logger.aclinfo("Analyzing SMIA with AAS model: {}".format(file.name))
                     aas_object_store = await GUIFeatures.read_aasx_file_object_store(file.path)
                     _logger.aclinfo("Object SMIA with AAS model: {}".format(aas_object_store))
+                    _logger.aclinfo("Object SMIA : {}".format(self.myagent))
+                    smia_info_dict = await GUIFeatures.analyze_aas_model_store(self.myagent, aas_object_store)
+                    self.myagent.loaded_smias[file.path] = smia_info_dict   # TODO pensar si almacenarlo por el JID de esos AASX
+
+        # TODO BORRAR
+        for file_path, info_dict in self.myagent.loaded_smias.items():
+            _logger.assetinfo("Information about the AASX: {}".format(file_path))
+            _logger.assetinfo("Info dict: {}".format(info_dict))
+            for rel, aas_elems in info_dict.items():
+                _logger.assetinfo("  - Obtained relationship [{}] between [{}]".format(rel, aas_elems))
 
         # TODO
 
@@ -142,7 +154,7 @@ class GUIFeatures:
         This method adds a new entry to the SPADE web interface menu.
 
         Args:
-            agent (spade.agent.Agent): SMIA SPADE agent object.
+            agent (smia.agents.smia_agent.SMIAAgent): SMIA SPADE agent object.
             entry_name (str): name of the new entry.
             entry_url (str): url to access the new entry.
             entry_icon (str): icon identifier from Font Awesome collection.
@@ -223,3 +235,70 @@ class GUIFeatures:
                                 "metamodel.")
         else:
             return object_store
+
+
+    @staticmethod
+    async def analyze_aas_model_store(agent_object, aas_model_store):
+        """
+        This method parses an AAS model store (BaSyx Python object for storing AAS models) to get information such as
+        the CSS model.
+
+        Args:
+            agent_object (smia.agents.smia_agent.SMIAAgent): SMIA SPADE agent object.
+            aas_model_store (basyx.aas.model.DictObjectStore): Python object with the AAS model.
+
+        Returns:
+            dict: information about the AAS.
+        """
+
+        # First, the AAS model store of SMIA operator is subtracted from it in order to be able to use the Extended AAS Model methods.
+        operator_aas_model_store = await agent_object.aas_model.get_aas_model_object_store()
+        _logger.aclinfo("Store SMIA operator [{}]".format(await agent_object.aas_model.get_aas_model_object_store()))  # TODO BORRAR
+        await agent_object.aas_model.set_aas_model_object_store(aas_model_store)
+        ontology_instances_dict = {}
+        smia_info_dict = {}
+
+        # First, the ontology instances are obtained
+        for ontology_class_iri in CapabilitySkillOntologyInfo.CSS_ONTOLOGY_THING_CLASSES_IRIS:
+
+            try:
+                sme_list = await agent_object.aas_model.get_submodel_elements_by_semantic_id(ontology_class_iri)
+                for submodel_elem in sme_list:
+                    await InitAASModelBehaviour.convert_sme_class_to_extended_by_iri(submodel_elem, ontology_class_iri)
+                    ontology_instances_dict[ontology_class_iri] = sme_list
+                    _logger.aclinfo("For IRI [{}] obtained [{}]".format(ontology_class_iri, submodel_elem))   # TODO BORRAR
+            except Exception as e:
+                _logger.error("An exception occurred with the ontology class {}. Error: {}".format(ontology_class_iri, e))
+        # Then, the ontology instances are related between each other
+        for ontology_relationship_iri in CapabilitySkillOntologyInfo.CSS_ONTOLOGY_OBJECT_PROPERTIES_IRIS:
+            try:
+                rels_list = await agent_object.aas_model.get_submodel_elements_by_semantic_id(
+                    ontology_relationship_iri, basyx.aas.model.RelationshipElement)
+                _logger.aclinfo("For relationship IRI [{}] obtained [{}]".format(ontology_relationship_iri, rels_list))  # TODO BORRAR
+                rel_ontology_class = await agent_object.css_ontology.get_ontology_class_by_iri(ontology_relationship_iri)
+                domain_aas_class, range_aas_class = CapabilitySkillOntologyUtils.get_aas_classes_from_object_property(
+                    rel_ontology_class)
+                for rel in rels_list:
+                    domain_aas_elem, range_aas_elem = None, None
+                    try:
+                        domain_aas_elem, range_aas_elem = await agent_object.aas_model.get_elements_from_relationship(
+                            rel, domain_aas_class, range_aas_class)
+                        _logger.aclinfo("Analyzing relationship [{}] with AAS [{},{}]".format(rel, domain_aas_elem,
+                                                                                              range_aas_elem))  # TODO BORRAR
+                        domain_aas_elem.get_semantic_id_of_css_ontology()
+                        range_aas_elem.get_semantic_id_of_css_ontology()
+
+                        # At this point the relationship is valid
+                        smia_info_dict[rel_ontology_class] = {domain_aas_elem, range_aas_elem}
+                    except Exception as e:
+                        _logger.error("An exception occurred with the ontology relationship {} between [{},{}]. "
+                                      "Error: {}".format(ontology_relationship_iri, domain_aas_elem,range_aas_elem, e))
+            except Exception as e:
+                _logger.error("An exception occurred with the ontology relationship {}. Error: {}".format(ontology_relationship_iri, e))
+
+        # Lastly, the AAS model store of SMIA operator is set again
+        await agent_object.aas_model.set_aas_model_object_store(operator_aas_model_store)
+
+        _logger.aclinfo("Store restablished [{}]".format(await agent_object.aas_model.get_aas_model_object_store()))  # TODO BORRAR
+
+        return smia_info_dict
