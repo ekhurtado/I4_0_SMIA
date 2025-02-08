@@ -10,7 +10,7 @@ RUN pip install --upgrade pip
 #    + '--extra-index-url' option is for pip to look for missing dependencies in PyPI (and not in TestPyPI).
 # To keep the image lightweight, the compilation tools are removed after installing the Python dependencies
 RUN apk add --no-cache gcc python3-dev musl-dev linux-headers \
-    && pip install -i https://test.pypi.org/simple/ smia==0.2.1.2 --extra-index-url https://pypi.org/simple \
+    && pip install -i https://test.pypi.org/simple/ smia==0.2.1.3 --extra-index-url https://pypi.org/simple \
     && apk del gcc python3-dev musl-dev linux-headers
 
 WORKDIR /

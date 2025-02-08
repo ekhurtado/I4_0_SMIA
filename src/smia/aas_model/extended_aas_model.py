@@ -2,6 +2,7 @@ import asyncio
 import logging
 import basyx.aas.model.submodel
 from basyx.aas.util import traversal
+from smia.aas_model.aas_model_utils import AASModelInfo
 
 from smia.logic.exceptions import CapabilityCheckingError, AASModelReadingError
 from smia.css_ontology.css_ontology_utils import CapabilitySkillOntologyUtils, CapabilitySkillACLInfo, \
@@ -57,6 +58,40 @@ class ExtendedAASModel:
         """
         async with self.lock:
             return self.aas_model_object_store
+
+    # ---------------
+    # General methods
+    # ---------------
+    async def execute_general_analysis(self, smia_agent):
+        """
+        This method performs the general analysis on the AAS model to check if it is a valid AAS model for SMIA
+        software, and provides information to the user via console or log file.
+
+        Args:
+            smia_agent(spade.agent.Agent): SMIA SPADE agent object.
+        """
+        # If standardized submodels are added is checked
+        asset_interfaces_submodel = await self.get_submodel_by_semantic_id(
+            AssetInterfacesInfo.SEMANTICID_INTERFACES_SUBMODEL)
+        if not asset_interfaces_submodel:
+            _logger.warning("AssetInterfacesSubmodel submodel is not defined. Make sure that this SMIA does not need to "
+                            "be connected to the asset via any communication protocols.")
+        software_nameplate_submodel = await self.get_submodel_by_semantic_id(
+            AASModelInfo.SEMANTICID_SOFTWARE_NAMEPLATE_SUBMODEL)
+        if not software_nameplate_submodel:
+            _logger.warning("SoftwareNameplate submodel is not defined. This can lead to errors during SMIA runtime.")
+        else:
+            # Checks if the instance name defined in the AAS matches the one defined in the agent during start-up.
+            for software_nameplate_instance in software_nameplate_submodel.submodel_element:
+                aas_smia_instance_name = software_nameplate_instance.get_sm_element_by_semantic_id(AASModelInfo.SEMANTICID_SOFTWARE_NAMEPLATE_INSTANCE_NAME)
+                if aas_smia_instance_name is not None:
+                    if aas_smia_instance_name.value != smia_agent.jid.localpart:
+                        _logger.warning(
+                            "The SMIA instance name defined in the SoftwareNameplate submodel [{}] and the identifier "
+                            "used to start the agent [{}] do not match. This can result in errors during SMIA runtime."
+                            "".format(aas_smia_instance_name.value, smia_agent.jid.localpart))
+        # TODO Add more checks
+
 
     # -------------------------------------------
     # Methods related to capability skills object

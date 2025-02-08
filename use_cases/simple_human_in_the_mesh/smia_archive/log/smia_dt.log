@@ -554,3 +554,124 @@ AttributeError: 'ExtensibleSMIAAgent' object has no attribute 'web_menu_entries'
 2025-02-05 17:28:14,137 [smia.utilities.smia_archive_utils] [INFO] SMIA Archive initialized. line:30
 2025-02-05 17:28:14,137 [smia] [ERROR] The file path to the AAS model is None, so it cannot be loaded. line:76
 2025-02-05 17:28:14,168 [smia.agents.extensible_smia_agent] [INFO] Added a new agent capability to SMIA: OneShotBehaviour/OperatorGUIBehaviour line:44
+2025-02-08 13:34:13,679 [__main__] [INFO] Initializing SMIA software... line:15
+2025-02-08 13:34:13,682 [smia.utilities.general_utils] [ERROR] The environment variable 'AAS_MODEL_NAME' for the AAS model is not set, so SMIA cannot start. Please add the information and restart the container. line:268
+2025-02-08 13:34:13,703 [smia.utilities.smia_archive_utils] [INFO] SMIA Archive initialized. line:30
+2025-02-08 13:34:13,704 [smia] [ERROR] The file path to the AAS model is None, so it cannot be loaded. line:76
+2025-02-08 13:34:13,734 [smia.agents.extensible_smia_agent] [INFO] Added a new agent capability to SMIA: OneShotBehaviour/OperatorGUIBehaviour line:44
+2025-02-08 13:34:16,390 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2025-02-08 13:34:17,477 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2025-02-08 13:34:17,484 [gcis1] [INFO] client shutting down (on request) line:975
+2025-02-08 13:34:17,485 [gcis1] [INFO] stopping stream line:989
+2025-02-08 13:35:30,859 [__main__] [INFO] Initializing SMIA software... line:15
+2025-02-08 13:35:30,861 [smia.utilities.general_utils] [ERROR] The environment variable 'AAS_MODEL_NAME' for the AAS model is not set, so SMIA cannot start. Please add the information and restart the container. line:268
+2025-02-08 13:35:30,892 [smia.utilities.smia_archive_utils] [INFO] SMIA Archive initialized. line:30
+2025-02-08 13:35:30,894 [smia] [ERROR] The file path to the AAS model is None, so it cannot be loaded. line:76
+2025-02-08 13:35:30,919 [smia.utilities.smia_archive_utils] [INFO] SMIA Archive initialized. line:30
+2025-02-08 13:35:43,130 [__main__] [INFO] Initializing SMIA software... line:15
+2025-02-08 13:35:43,131 [smia.utilities.general_utils] [ERROR] The environment variable 'AAS_MODEL_NAME' for the AAS model is not set, so SMIA cannot start. Please add the information and restart the container. line:268
+2025-02-08 13:35:43,143 [smia.utilities.smia_archive_utils] [INFO] SMIA Archive initialized. line:30
+2025-02-08 13:35:43,143 [smia] [ERROR] The file path to the AAS model is None, so it cannot be loaded. line:76
+2025-02-08 13:36:13,169 [__main__] [INFO] Initializing SMIA software... line:15
+2025-02-08 13:36:13,171 [smia.utilities.general_utils] [ERROR] The environment variable 'AAS_MODEL_NAME' for the AAS model is not set, so SMIA cannot start. Please add the information and restart the container. line:268
+2025-02-08 13:36:13,193 [smia.utilities.smia_archive_utils] [INFO] SMIA Archive initialized. line:30
+2025-02-08 13:36:13,194 [smia] [ERROR] The file path to the AAS model is None, so it cannot be loaded. line:76
+2025-02-08 13:36:13,214 [smia.utilities.smia_archive_utils] [INFO] SMIA Archive initialized. line:30
+2025-02-08 13:36:13,216 [smia.utilities.smia_archive_utils] [INFO] The ../smia_archive/config/aas/SMIA_Operator_article.aasx file is already in SMIA archive. line:168
+2025-02-08 13:36:13,217 [smia] [INFO] AAS model SMIA_Operator_article.aasx copied to the SMIA Archive. line:85
+2025-02-08 13:36:13,290 [smia.agents.extensible_smia_agent] [INFO] Added a new agent capability to SMIA: OneShotBehaviour/OperatorGUIBehaviour line:44
+2025-02-08 13:36:15,843 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2025-02-08 13:36:16,378 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2025-02-08 13:36:16,416 [asyncio] [ERROR] Future exception was never retrieved
+future: <Future finished exception=StreamError("stream error: {urn:ietf:params:xml:ns:xmpp-streams}unsupported-stanza-type ('unsupported stanza: {urn:ietf:params:xml:ns:xmpp-sasl}success')")> line:1758
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\aioxmpp\protocol.py", line 555, in data_received
+    self._rx_feed(blob)
+  File "C:\Python310\lib\site-packages\aioxmpp\protocol.py", line 491, in _rx_feed
+    self._parser.feed(blob)
+  File "C:\Python310\lib\xml\sax\expatreader.py", line 217, in feed
+    self._parser.Parse(data, isFinal)
+  File "D:\a\1\s\Modules\pyexpat.c", line 470, in EndElement
+  File "C:\Python310\lib\xml\sax\expatreader.py", line 381, in end_element_ns
+    self._cont_handler.endElementNS(pair, None)
+  File "C:\Python310\lib\site-packages\aioxmpp\xml.py", line 1041, in endElementNS
+    self._end_element_exception_handling()
+  File "C:\Python310\lib\site-packages\aioxmpp\xml.py", line 1018, in _end_element_exception_handling
+    self.on_exception(exc)
+  File "C:\Python310\lib\site-packages\aioxmpp\protocol.py", line 440, in _rx_exception
+    raise errors.StreamError(
+aioxmpp.errors.StreamError: stream error: {urn:ietf:params:xml:ns:xmpp-streams}unsupported-stanza-type ('unsupported stanza: {urn:ietf:params:xml:ns:xmpp-sasl}success')
+2025-02-08 13:36:31,608 [__main__] [INFO] Initializing SMIA software... line:15
+2025-02-08 13:36:31,609 [smia.utilities.general_utils] [ERROR] The environment variable 'AAS_MODEL_NAME' for the AAS model is not set, so SMIA cannot start. Please add the information and restart the container. line:268
+2025-02-08 13:36:31,621 [smia.utilities.smia_archive_utils] [INFO] SMIA Archive initialized. line:30
+2025-02-08 13:36:31,621 [smia] [ERROR] The file path to the AAS model is None, so it cannot be loaded. line:76
+2025-02-08 13:36:31,635 [smia.utilities.smia_archive_utils] [INFO] SMIA Archive initialized. line:30
+2025-02-08 13:36:31,636 [smia.utilities.smia_archive_utils] [INFO] The ../smia_archive/config/aas/SMIA_Operator_article.aasx file is already in SMIA archive. line:168
+2025-02-08 13:36:31,636 [smia] [INFO] AAS model SMIA_Operator_article.aasx copied to the SMIA Archive. line:85
+2025-02-08 13:36:31,683 [smia.agents.extensible_smia_agent] [INFO] Added a new agent capability to SMIA: OneShotBehaviour/OperatorGUIBehaviour line:44
+2025-02-08 13:36:34,213 [aiosasl.scram] [INFO] attempting SCRAM-SHA-1 mechanism (using SCRAMHashInfo(hashfun_name='sha1', quality=1, minimum_iteration_count=4096) hashfun) line:150
+2025-02-08 13:36:35,328 [gcis1] [INFO] bound to jid: gcis1@xmpp.jp/149721428269265313372671859811 line:935
+2025-02-08 13:36:35,601 [gcis1.StanzaStream] [INFO] SM started: resumable=True, stream id='g2gCbQAAAB4xNDk3MjE0MjgyNjkyNjUzMTMzNzI2NzE4NTk4MTFtAAAACC4mZBZchohf' line:2209
+2025-02-08 13:36:36,178 [spade.Agent] [INFO] Agent gcis1@xmpp.jp connected and authenticated. line:163
+2025-02-08 13:36:36,178 [smia.agents.smia_agent] [INFO] Setting up gcis1@xmpp.jp SMIA... line:105
+2025-02-08 13:36:36,180 [smia.agents.smia_agent] [INFO] gcis1@xmpp.jp setup finished correctly. line:125
+2025-02-08 13:36:36,181 [smia.behaviours.aas_fsm_behaviour] [INFO]     ** FSM starting at initial state --> BOOTING line:14
+2025-02-08 13:36:36,182 [spade.behaviour] [INFO] FSM running state BOOTING line:568
+2025-02-08 13:36:36,183 [smia.states.state_booting] [INFO] ## STATE 1: BOOTING ##  (Initial state) line:30
+2025-02-08 13:36:36,233 [smia.css_ontology.capability_skill_ontology] [INFO] CSS ontology initialized line:43
+2025-02-08 13:36:36,259 [smia.aas_model.extended_aas_model] [WARNING] AssetInterfacesSubmodel submodel is not defined. Make sure that this SMIA does not need to be connected to the asset via any communication protocols. line:77
+2025-02-08 13:36:36,259 [smia.aas_model.extended_aas_model] [WARNING] The SMIA instance name defined in the SoftwareNameplate submodel [SMIA for operator] and the identifier used to start the agent [gcis1] do not match. This can result in errors during SMIA runtime. line:89
+2025-02-08 13:36:36,262 [smia.behaviours.init_aas_model_behaviour] [WARNING] AssetInterfacesSubmodel submodel is not defined. Make sure that this DT does not need to be connected to the asset. line:458
+2025-02-08 13:36:36,273 [smia.behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all defined ontology elements... line:74
+2025-02-08 13:36:37,178 [smia.behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all relationships between ontology elements... line:78
+2025-02-08 13:36:37,375 [smia.behaviours.init_aas_model_behaviour] [INFO] Reading the AAS model to get all asset connections... line:82
+2025-02-08 13:36:37,375 [smia.behaviours.init_aas_model_behaviour] [WARNING] AssetInterfacesSubmodel submodel is not defined. Make sure that this DT does not need to be connected to the asset. line:409
+2025-02-08 13:36:38,377 [smia.behaviours.init_aas_model_behaviour] [INFO] AAS model analysis results. 
+	- Analyzed capabilities: ['GUICapability']
+	- Analyzed capability constraints: []
+	- Analyzed skills: ['GUISkill']
+	- Analyzed skill interfaces: []
+	- Analyzed skill parameters: []
+	- Analyzed asset connections: []
+	[91m- Errors found: [][0m line:437
+2025-02-08 13:36:38,378 [smia.behaviours.init_aas_model_behaviour] [INFO] AAS model initialized. line:92
+2025-02-08 13:36:38,378 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/InitAASModelBehaviour with exit code: None line:154
+2025-02-08 13:36:38,380 [smia.states.state_booting] [INFO] gcis1@xmpp.jp agent has finished it Boot state. line:49
+2025-02-08 13:36:38,380 [spade.behaviour] [INFO] FSM transiting from BOOTING to RUNNING. line:591
+2025-02-08 13:36:38,381 [spade.behaviour] [INFO] FSM running state RUNNING line:568
+2025-02-08 13:36:38,381 [smia.states.state_running] [INFO] ## STATE 2: RUNNING ##  (Initial state) line:25
+2025-02-08 13:36:38,384 [smia.states.state_running] [INFO] Extended agent capabilities will be added for the ExtensibleSMIAAgent. line:80
+2025-02-08 13:36:38,385 [smia.behaviours.acl_handling_behaviour] [INFO] ACLHandlingBehaviour starting... line:39
+2025-02-08 13:36:38,385 [gui_logic] [INFO] SMIA SPADE web interface required resources initialized. line:31
+2025-02-08 13:36:38,386 [spade.behaviour] [ERROR] Exception running behaviour OneShotBehaviour/OperatorGUIBehaviour: '/htmls/static' does not exist line:291
+2025-02-08 13:36:38,412 [spade.behaviour] [ERROR] Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\aiohttp\web_urldispatcher.py", line 567, in __init__
+    directory = Path(directory).expanduser().resolve(strict=True)
+  File "C:\Python310\lib\pathlib.py", line 1077, in resolve
+    s = self._accessor.realpath(self, strict=strict)
+  File "C:\Python310\lib\ntpath.py", line 689, in realpath
+    path = _getfinalpathname(path)
+FileNotFoundError: [WinError 3] El sistema no puede encontrar la ruta especificada: '\\htmls\\static'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 285, in _step
+    await self._run()
+  File "C:\Python310\lib\site-packages\spade\behaviour.py", line 274, in _run
+    await self.run()
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\use_cases\simple_human_in_the_mesh\smia_operator_code\gui_logic.py", line 34, in run
+    await GUIFeatures.add_custom_favicon(self.agent)
+  File "C:\Users\ekait\OneDrive - UPV EHU\Tesis doctoral\TesisEkaitzHurtado\CodeRepositories\I4_0_SMIA\use_cases\simple_human_in_the_mesh\smia_operator_code\gui_logic.py", line 187, in add_custom_favicon
+    agent.web.app.router.add_static('/static/', path=favicon_folder_path)
+  File "C:\Python310\lib\site-packages\aiohttp\web_urldispatcher.py", line 1206, in add_static
+    resource = StaticResource(
+  File "C:\Python310\lib\site-packages\aiohttp\web_urldispatcher.py", line 569, in __init__
+    raise ValueError(f"'{directory}' does not exist") from error
+ValueError: '/htmls/static' does not exist
+ line:296
+2025-02-08 13:36:38,412 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/OperatorGUIBehaviour with exit code: '/htmls/static' does not exist line:154
+2025-02-08 13:36:38,412 [spade.behaviour] [INFO] Killing behavior OneShotBehaviour/OperatorGUIBehaviour with exit code: None line:154
+2025-02-08 13:36:48,375 [smia.behaviours.acl_handling_behaviour] [INFO]          - No message received within 10 seconds on SMIA (ACLHandlingBehaviour) line:138
+2025-02-08 13:36:51,747 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
+2025-02-08 13:36:51,750 [gcis1] [INFO] client shutting down (on request) line:975

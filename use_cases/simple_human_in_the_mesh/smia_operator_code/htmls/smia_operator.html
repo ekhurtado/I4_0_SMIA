@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SMIA Operator</title>
+    <!-- Include SPADE CSS links -->
+    {% include 'htmls/templates/spade_html_css_links.html' %}
+    <style>
+
+        .box-primary {
+            padding-bottom: 5px;
+        }
+
+        .box-primary h2 {
+            margin-left: 10px;
+        }
+
+        .inner h1, .inner h2, .inner h3 {
+            /*Code to break lines long sentences in inner (used in small boxes)*/
+            word-wrap: break-word;
+            word-break: break-all;
+            overflow-wrap: break-word;
+            white-space: normal;
+        }
+
+        /*Add your own CSS style code*/
+        .small-boxes-div {
+            padding: 5px 10px;
+        }
+
+        .smia-loader-footer {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            width: 100%;
+            padding: 20px;
+        }
+
+        .process-text {
+            position: absolute;
+            left: 10px;
+            padding-left: 20px;
+            font-style: italic;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .process-gif {
+            margin: auto;
+        }
+
+        .process-button {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 16px;
+            text-transform: uppercase;
+        }
+
+        .process-button:hover {
+            background-color: #218838;
+        }
+
+        /*CSS for Capability-Skill table*/
+        .table-container {
+            margin: 20px 5px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Main table */
+        .table {
+            width: 100%;
+            margin-bottom: 20px;
+            border-collapse: collapse;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            margin-top: 10px;
+        }
+
+        .table th, .table td {
+            padding: 8px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        .table th {
+            background-color: #f2f2f2;
+            color: #333;
+        }
+
+        .table tbody tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        .options-container {
+            float: right;
+            display: flex;
+            gap: 10px;
+        }
+
+        .expandable {
+            cursor: pointer; /* Make the cursor pointer for the expandable elements */
+        }
+
+        .expand-icon {
+            /*cursor: pointer;*/
+            color: #2d688a;
+            float: right;
+        }
+
+        .expand-icon:hover {
+            color: #3C8DBC;
+        }
+
+        .select-button {
+            background-color: #d16c18;
+            border: none;
+            color: white;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            text-transform: uppercase;
+        }
+
+        .select-button:hover {
+            background-color: #8c4711;
+        }
+
+        .subtable {
+            display: none;
+            margin-left: 2px;
+            margin-top: 10px;
+        }
+
+        .subtable .capability-info {
+            width: 98%;
+            margin-bottom: 10px;
+            border-collapse: collapse;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            margin-left: 2px;
+        }
+
+        .request-checkbox {
+            float: right;
+        }
+
+        .request-div {
+            margin-top: 10px;
+        }
+
+        .request-button {
+            background-color: #3C8DBC;
+            color: white;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 16px;
+            text-transform: uppercase;
+        }
+
+        .request-button:hover {
+            background-color: #2d688a;
+        }
+
+    </style>
+</head>
+<body class="sidebar-mini skin-blue" style="height: auto; min-height: 100%;">
+    <div class="wrapper" style="height: auto; min-height: 100%;">
+        <header class="main-header">
+            {% include 'htmls/templates/spade_html_header.html' %}
+        </header>
+        <aside class="main-sidebar">
+            {% include 'htmls/templates/spade_html_aside.html' %}
+        </aside>
+        <div class="content-wrapper" style="min-height: 960px;">
+            <section class="content-header">
+                <h1>SMIA Operator GUI</h1>
+                <ol class="breadcrumb">
+                    <li><a href="/spade"><i class="fa fa-dashboard"></i> Home</a></li>
+                    <li class="active">SMIA operator</li>
+                </ol>
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <!-- Row with small boxes with information about SMIAs-->
+                <div class="row">
+                    <div class="col-md-7 col-md-offset-2">
+                        <div class="box box-success">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">External SMIAs loader</h3>
+
+                                <div class="box-tools pull-right">
+                                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                            class="fa fa-minus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <h4>All available SMIAs can be detected and analyzed.</h4>
+
+                                <div class="row small-boxes-div">
+                                    <div class="col-lg-3 col-xs-7">
+                                        <!-- small box -->
+                                        <div class="small-box bg-green">
+                                        <!-- There are multiple colors: https://basscss.com/v7/docs/background-colors/ -->
+                                            <div class="inner">
+                                                <h3>0</h3>
+                                                <p>Detected AAS models</p>
+                                            </div>
+                                            <div class="icon">
+                                                <i class="fa fa-project-diagram"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- ./col -->
+                                    <div class="col-lg-3 col-xs-7">
+                                        <!-- small box -->
+                                        <div class="small-box bg-aqua">
+                                            <div class="inner">
+                                                <h3>0</h3>
+                                                <p>Available SMIAs</p>
+                                            </div>
+                                            <div class="icon">
+                                                <i class="fas fa-code"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- ./col -->
+                                    <div class="col-lg-3 col-xs-7">
+                                        <!-- small box -->
+                                        <div class="small-box bg-orange">
+                                            <div class="inner">
+                                                <h3>0</h3>
+                                                <p>Obtained capabilities</p>
+                                            </div>
+                                            <div class="icon">
+<!--                                                <i class="fa fa-sign-out-alt"></i>-->
+                                                <i class="fas fa-stream"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- ./col -->
+                                    <div class="col-lg-3 col-xs-7">
+                                        <!-- small box -->
+                                        <div class="small-box bg-yellow">
+                                            <div class="inner">
+                                                <h3>0</h3>
+                                                <p>Obtained skills</p>
+                                            </div>
+                                            <div class="icon">
+                                                <i class="fas fa-indent"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- ./col -->
+                                </div>
+                                <!-- ./row -->
+
+                                <div class="smia-loader-footer">
+                                    <span class="hidden process-text"><em>Loading SMIAs...</em></span>
+<!--                                    <div id="loading"></div>-->
+                                    <img src="static/loading_line.gif" alt="Processing..." class="process-gif hidden">
+                                    <button type="button" id="loader-button" class="btn btn-primary process-button">Load</button>
+                                </div>
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- ./row -->
+
+                <!-- Row with features to request capabilities-->
+                <div class="row">
+                    <div class="col-md-5 col-md-offset-1">
+                        <div class="box box-warning">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Available capabilities and skills</h3>
+
+                                <div class="box-tools pull-right">
+                                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                            class="fa fa-minus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Type</th>
+                                            <th>Description</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="expandable" data-capability-id="capability1">
+                                            <td>Efficient Transport</td>
+                                            <td>AssetCapability</td>
+                                            <td>Efficient transport up to a given weight.</td>
+                                            <td>
+                                                <div class="options-container">
+                                                    <button class="btn btn-sm btn-primary select-button">Select</button>
+                                                    <span class="glyphicon glyphicon-chevron-down expand-icon"></span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr class="subtable capability1">
+                                            <td colspan="4">
+                                                <div class="capability-info">
+                                                    <ul>
+                                                        <li><i>Constraint:</i> Weight</li>
+                                                        <li><i>Skills: </i>
+                                                            <ul>
+                                                                <li>EfficientMovement</li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr class="expandable" data-capability-id="capability2">
+                                            <td>Negotiation</td>
+                                            <td>AgentCapability</td>
+                                            <td>Efficient negotiation.</td>
+                                            <td>
+                                                <div class="options-container">
+                                                    <button class="btn btn-sm btn-primary select-button">Select</button>
+                                                    <span class="glyphicon glyphicon-chevron-down expand-icon"></span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr class="subtable capability2">
+                                            <td colspan="4">
+                                                <div class="capability-info">
+                                                    <ul>
+                                                        <li><i>Skills: </i>
+                                                            <ul>
+                                                                <li>NegotiationByRAM</li>
+                                                                <li>NegotiationByBattery</li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-md-offset-1">
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">SMIA candidates</h3>
+
+                                <div class="box-tools pull-right">
+                                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                            class="fa fa-minus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <h5>Candidates for the [Efficient Transportation] capability are as follows:</h5>
+
+                                <form id="requestForm" action="/smia_operator/submit" method="POST" onsubmit="return validateForm()">
+
+                                    <input type="hidden" name="capability" value="EfficientTransport" required>
+                                    <input type="hidden" name="constraint_name" value="Weight" required>
+                                    <input type="hidden" name="constraint_value" value="4.5" required>
+                                    <input type="hidden" name="skill" value="EfficientMovement" required>
+
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>SMIA identifier</th>
+                                                <th>Asset identifier</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    gcis1
+                                                    <input type="hidden" name="smia_id[]" value="gcis1">
+                                                </td>
+                                                <td>
+                                                    TransportRobot1
+                                                    <input type="hidden" name="asset_id[]" value="TransportRobot1">
+                                                </td>
+                                                <td>
+                                                    <input name="checkbox[]" value="gcis1" type="checkbox" class="request-checkbox">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    gcis2
+                                                    <input type="hidden" name="smia_id[]" value="gcis2">
+                                                </td>
+                                                <td>
+                                                    TransportRobot2
+                                                    <input type="hidden" name="asset_id[]" value="TransportRobot2">
+                                                </td>
+                                                <td>
+                                                    <input name="checkbox[]" value="gcis2" type="checkbox" class="request-checkbox">
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </form>
+
+<!--                                <div class="box-tools pull-right request-div">-->
+<!--                                    <button class="btn btn-sm btn-primary request-button">Request</button>-->
+<!--                                </div>-->
+
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- ./row -->
+
+            </section>
+            <!-- /.content -->
+        </div>
+
+        <footer class="main-footer">
+            <div class="pull-right hidden-xs">
+                <b>Version</b> 0.2.1
+            </div>
+            <strong>Copyright © {% now 'local', '%Y' %} <a href="https://github.com/ekhurtado/I4_0_SMIA">SMIA</a>.</strong>
+        </footer>
+
+    </div>
+    <!-- Include SPADE scripts -->
+    {% include 'htmls/templates/spade_html_scripts.html' %}
+
+    <script>
+        const loaderButton = document.getElementById('loader-button');
+        loaderButton.addEventListener('click', async function(event) {
+
+            $('.hidden').removeClass('hidden');
+
+            // Send data as JSON using fetch
+            try {
+                const response = await fetch('/smia_operator/load', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+
+                const json = await response.json();
+
+                if (json.status === 'success') {
+                    alert('SMIAs loaded.');
+
+                    // TODO BORRAR
+                    const graphics = document.querySelectorAll('.inner h3');
+                    graphics.forEach(graphic => {
+                        // graphic.style.display = '';
+                        graphic.textContent = '2';
+                    });
+
+                } else {
+                    alert(`Failed to load SMIAs due to reason: ${json.reason}.`);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Failed to load SMIAs. Error: .' + error);
+            }
+
+            location.reload();  // The web page is reloaded in order to obtain all new data
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const expandIcons = document.querySelectorAll('.expandable');
+            expandIcons.forEach(icon => {
+                icon.addEventListener('click', function() {
+
+                    // Prevent expansion if the click is on the request button
+                    if (!event.target.classList.contains('request-button')) {
+
+                        const parentRow = this.closest('tr');
+                        const subtableClass = parentRow.getAttribute('data-file-id') || parentRow.getAttribute('data-capability-id') || parentRow.getAttribute('data-skill-id');
+                        const subtableRows = document.querySelectorAll(`.subtable.${subtableClass}`);
+
+                        subtableRows.forEach(row => {
+                            row.style.display = row.style.display === 'none' || row.style.display === '' ? 'table-row' : 'none';
+                        });
+
+                        const icon = this.querySelector('.expand-icon');
+                        icon.classList.toggle('glyphicon-chevron-down');
+                        icon.classList.toggle('glyphicon-chevron-up');
+                    }
+                });
+            });
+
+            const selectButtons = document.querySelectorAll('.select-button');
+            selectButtons.forEach(button => {
+                button.addEventListener('click', function(event) {
+
+                    const parentRow = this.closest('tr');
+                    const subtableClass = parentRow.getAttribute('data-capability-id');
+                    const divCapInfo = document.querySelector(`.subtable.${subtableClass} td div.capability-info`);
+                    const infoRows = divCapInfo.querySelectorAll('li');
+
+                    let requestInfo = '';
+                    let selectedSkill = null;
+                    let constraintName = null;
+                    let constraintValue = null;
+                    infoRows.forEach(row => {
+                        const attrib = row.textContent.split(": ")[0];
+                        if (attrib === 'Constraint') {
+                            constraintName = row.textContent.split(": ")[1];
+                            constraintValue = getConstraintValue();
+                        } else if (attrib === 'Skills') {
+                            const availableSkills = row.querySelector('ul');
+                            const availableSkillsRows = availableSkills.querySelectorAll('li');
+                            selectedSkill = getSelectedSkill(availableSkillsRows);
+                        }
+                    });
+                    requestInfo += `Capability: ${subtableClass}\n`;
+                    if (constraintValue !== null) {
+                        requestInfo += `  - Constraint [${constraintName}] with value ${constraintValue}\n`;
+                    }
+                    requestInfo += `Skill:${selectedSkill}`;
+                    alert(`Quiere seleccionar esta capacidad:\n\n${requestInfo}\n`);
+                });
+            });
+
+            function getConstraintValue() {
+                let constraintValue = prompt(`Please enter a value for the constraint in capability:`);
+                if (constraintValue === null) {
+                    return getConstraintValue();
+                }
+                return constraintValue;
+            }
+
+            function getSelectedSkill(availableSkillsRows) {
+                if (availableSkillsRows.length > 1) {
+                    let skillDict = []
+                    availableSkillsRows.forEach(skillRow => {
+                        skillDict.push(skillRow.textContent.trim());
+                    });
+
+                    let userChoice;
+                    do {
+                        userChoice = prompt("Please enter one of the options:\n\n  " + skillDict.join("\n  ") +
+                            "\n\nClick cancel button to use a random skill.");
+                        if (userChoice === null) return availableSkillsRows[0].textContent; // If user cancels prompt
+
+                    } while (!skillDict.includes(userChoice.trim()));  // Keep asking if input is invalid
+                    return userChoice
+
+                } else {
+                    return availableSkillsRows[0].textContent;
+                }
+            }
+
+        });
+
+        function validateForm() {
+            let checkboxes = document.querySelectorAll('.request-checkbox');
+            for (let checkbox of checkboxes) {
+                if (checkbox.checked) {
+                    return true; // Allow submission
+                }
+            }
+            alert("Please select at least one SMIA.");
+            return false; // Prevent form submission
+        }
+
+    </script>
+
+</body>
+</html>

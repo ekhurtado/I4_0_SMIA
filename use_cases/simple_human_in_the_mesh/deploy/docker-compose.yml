@@ -6,8 +6,8 @@ services:
     image: ekhurtado/smia:alpine-latest
     container_name: smia-robot-1
     environment:
-      - AAS_MODEL_NAME=SMIA_TransportRobot_article.aasx
-      - AGENT_ID=gcis1@ejabberd
+      - AAS_MODEL_NAME=SMIA_TransportRobot_article_1.aasx
+      - AGENT_ID=transportrobot001@ejabberd
       - AGENT_PSSWD=gcis1234
     depends_on:
       xmpp-server:
@@ -19,8 +19,8 @@ services:
     image: ekhurtado/smia:alpine-latest
     container_name: smia-robot-2
     environment:
-      - AAS_MODEL_NAME=SMIA_TransportRobot_article.aasx
-      - AGENT_ID=gcis2@ejabberd
+      - AAS_MODEL_NAME=SMIA_TransportRobot_article_2.aasx
+      - AGENT_ID=transportrobot002@ejabberd
       - AGENT_PSSWD=gcis1234
     depends_on:
       xmpp-server:
@@ -34,7 +34,7 @@ services:
     container_name: smia-operator
     environment:
       - AAS_MODEL_NAME=SMIA_Operator_article.aasx
-      - AGENT_ID=operator1@ejabberd
+      - AGENT_ID=operator001@ejabberd
       - AGENT_PSSWD=gcis1234
     depends_on:
       xmpp-server:

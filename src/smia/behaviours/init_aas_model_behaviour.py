@@ -64,6 +64,9 @@ class InitAASModelBehaviour(OneShotBehaviour):
         object_store = AASModelUtils.read_aas_model_object_store()
         await self.myagent.aas_model.set_aas_model_object_store(object_store)
 
+        # First, the initial general analysis is performed on the AAS model.
+        await self.myagent.aas_model.execute_general_analysis(self.myagent)
+
         # A progress bar is used for showing how the AAS model is being read.
         await self.create_progress_bar_object()
 

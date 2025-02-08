@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SMIA Operator</title>
+    <!-- Include SPADE CSS links -->
+    {% include 'htmls/templates/spade_html_css_links.html' %}
+    <style>
+
+        .box-primary {
+            padding-bottom: 5px;
+        }
+
+        .box-primary h2 {
+            margin-left: 10px;
+        }
+
+        .inner h1, .inner h2, .inner h3 {
+            /*Code to break lines long sentences in inner (used in small boxes)*/
+            word-wrap: break-word;
+            word-break: break-all;
+            overflow-wrap: break-word;
+            white-space: normal;
+        }
+
+        /*Add your own CSS style code*/
+        .href-button {
+            margin-top: 10px;
+            background-color: #3C8DBC;
+            color: white;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 16px;
+            text-transform: uppercase;
+        }
+
+        .href-button:hover {
+            background-color: #2d688a;
+        }
+
+
+    </style>
+</head>
+<body class="sidebar-mini skin-blue" style="height: auto; min-height: 100%;">
+    <div class="wrapper" style="height: auto; min-height: 100%;">
+        <header class="main-header">
+            {% include 'htmls/templates/spade_html_header.html' %}
+        </header>
+        <aside class="main-sidebar">
+            {% include 'htmls/templates/spade_html_aside.html' %}
+        </aside>
+        <div class="content-wrapper" style="min-height: 960px;">
+            <section class="content-header">
+                <h1>SMIA Operator GUI</h1>
+                <ol class="breadcrumb">
+                    <li><a href="/spade"><i class="fa fa-dashboard"></i> Home</a></li>
+                    <li class="active">SMIA operator</li>
+                </ol>
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <!-- Example of row with only one box-->
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">SMIA request information</h3>
+
+                                <div class="box-tools pull-right">
+                                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                            class="fa fa-minus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+
+                                <div class="negotiation-info">
+                                    <h4>If there is a required negotiation, the information about it need to be added here:</h4>
+                                    <h5>Negotiation candidates:</h5>
+                                    <ul>
+                                        <li> gcis1@ejabberd</li>
+                                        <li> gcis2@ejabberd</li>
+                                    </ul>
+                                    <h5>Negotiation winner: gcis1@ejabberd</h5>
+                                </div>
+
+                                <h3>The capability request has been sent to: gcis1@ejabberd</h3>
+
+                                <h4>To see the result, check the received messages at the top right by clicking on the message icon or by going to "Received messages".</h4>
+                                <p>&emsp;</p>
+                                <button class="btn btn-custom href-button" onclick="window.location.href='/smia_operator'">Back to dashboard</button>
+                                <button class="btn btn-custom href-button" onclick="window.location.href='/receive_acl_msgs'">Go to Received messages</button>
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- ./row -->
+
+
+            </section>
+            <!-- /.content -->
+        </div>
+
+        <footer class="main-footer">
+            <div class="pull-right hidden-xs">
+                <b>Version</b> 0.2.1
+            </div>
+            <strong>Copyright © {% now 'local', '%Y' %} <a href="https://github.com/ekhurtado/I4_0_SMIA">SMIA</a>.</strong>
+        </footer>
+
+    </div>
+    <!-- Include SPADE scripts -->
+    {% include 'htmls/templates/spade_html_scripts.html' %}
+
+</body>
+</html>

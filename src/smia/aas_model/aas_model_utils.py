@@ -174,6 +174,8 @@ class AASModelUtils:
 class AASModelInfo:
     """This class contains the information related to AAS model."""
     SEMANTICID_SOFTWARE_NAMEPLATE_SUBMODEL = 'https://admin-shell.io/idta/SoftwareNameplate/1/0'
+    SEMANTICID_SOFTWARE_NAMEPLATE_INSTANCE_NAME = ('https://admin-shell.io/idta/SoftwareNameplate/1/0/SoftwareNameplate'
+                                              '/SoftwareNameplateInstance/InstanceName')
     SEMANTIC_ID_SOFTWARE_NAMEPLATE_CONFIG_PATHS = ('https://admin-shell.io/idta/SoftwareNameplate/1/0'
                                                    '/SoftwareNameplate/SoftwareNameplateInstance/ConfigurationPaths')
     SEMANTIC_ID_SOFTWARE_NAMEPLATE_CONFIG_TYPE = ('https://admin-shell.io/idta/SoftwareNameplate/1/0/SoftwareNameplate'
