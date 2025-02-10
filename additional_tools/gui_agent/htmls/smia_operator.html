@@ -50,7 +50,7 @@
             margin: auto;
         }
 
-        .process-button {
+        .load-button {
             position: absolute;
             right: 10px;
             top: 50%;
@@ -67,7 +67,7 @@
             text-transform: uppercase;
         }
 
-        .process-button:hover {
+        .load-button:hover {
             background-color: #218838;
         }
 
@@ -83,11 +83,13 @@
         /* Main table */
         .table {
             width: 100%;
+            max-width: 100%;
             margin-bottom: 20px;
-            border-collapse: collapse;
+            border-collapse: collapse;  /* Remove spacing between cells */
             background-color: #fff;
             border: 1px solid #ddd;
             margin-top: 10px;
+            table-layout: fixed;  /* Force consistent column sizing */
         }
 
         .table th, .table td {
@@ -109,6 +111,8 @@
             float: right;
             display: flex;
             gap: 10px;
+            width: fit-content;
+            max-width: 100%;
         }
 
         .expandable {
@@ -221,7 +225,8 @@
                                         <div class="small-box bg-green">
                                         <!-- There are multiple colors: https://basscss.com/v7/docs/background-colors/ -->
                                             <div class="inner">
-                                                <h3>0</h3>
+                                                <h3>{{ agent.loaded_statistics }}</h3>
+<!--                                                <h3>0</h3>-->
                                                 <p>Detected AAS models</p>
                                             </div>
                                             <div class="icon">
@@ -234,7 +239,8 @@
                                         <!-- small box -->
                                         <div class="small-box bg-aqua">
                                             <div class="inner">
-                                                <h3>0</h3>
+                                                <h3>{{ agent.loaded_statistics }}</h3>
+<!--                                                <h3>0</h3>-->
                                                 <p>Available SMIAs</p>
                                             </div>
                                             <div class="icon">
@@ -247,7 +253,8 @@
                                         <!-- small box -->
                                         <div class="small-box bg-orange">
                                             <div class="inner">
-                                                <h3>0</h3>
+                                                <h3>{{ agent.loaded_statistics }}</h3>
+<!--                                                <h3>0</h3>-->
                                                 <p>Obtained capabilities</p>
                                             </div>
                                             <div class="icon">
@@ -261,7 +268,8 @@
                                         <!-- small box -->
                                         <div class="small-box bg-yellow">
                                             <div class="inner">
-                                                <h3>0</h3>
+                                                <h3>{{ agent.loaded_statistics }}</h3>
+<!--                                                <h3>0</h3>-->
                                                 <p>Obtained skills</p>
                                             </div>
                                             <div class="icon">
@@ -277,7 +285,7 @@
                                     <span class="hidden process-text"><em>Loading SMIAs...</em></span>
 <!--                                    <div id="loading"></div>-->
                                     <img src="static/loading_line.gif" alt="Processing..." class="process-gif hidden">
-                                    <button type="button" id="loader-button" class="btn btn-primary process-button">Load</button>
+                                    <button type="button" id="loader-button" class="btn btn-primary load-button">Load</button>
                                 </div>
                             </div>
                             <!-- /.box-body -->
@@ -311,7 +319,11 @@
                                             <th></th>
                                         </tr>
                                     </thead>
+                                    {% if agent.loaded_statistics == 0 %}
+                                    <tbody class="hidden">
+                                    {% elif agent.loaded_statistics == 2 %}
                                     <tbody>
+                                    {% endif %}
                                         <tr class="expandable" data-capability-id="capability1">
                                             <td>Efficient Transport</td>
                                             <td>AssetCapability</td>
@@ -384,7 +396,7 @@
                             <div class="box-body">
                                 <h5>Candidates for the [Efficient Transportation] capability are as follows:</h5>
 
-                                <form id="requestForm" action="/smia_operator/submit" method="POST" onsubmit="return validateForm()">
+                                <form id="requestForm" class="hidden" action="/smia_operator/submit" method="POST" onsubmit="return validateForm()">
 
                                     <input type="hidden" name="capability" value="EfficientTransport" required>
                                     <input type="hidden" name="constraint_name" value="Weight" required>
@@ -428,7 +440,7 @@
                                             </tr>
                                         </tbody>
                                     </table>
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary request-button">Request</button>
                                 </form>
 
 <!--                                <div class="box-tools pull-right request-div">-->
@@ -462,7 +474,8 @@
         const loaderButton = document.getElementById('loader-button');
         loaderButton.addEventListener('click', async function(event) {
 
-            $('.hidden').removeClass('hidden');
+            $('.process-gif').removeClass('hidden');
+            $('.process-text').removeClass('hidden');
 
             // Send data as JSON using fetch
             try {
@@ -522,6 +535,8 @@
             const selectButtons = document.querySelectorAll('.select-button');
             selectButtons.forEach(button => {
                 button.addEventListener('click', function(event) {
+
+                    $('#requestForm').removeClass('hidden');
 
                     const parentRow = this.closest('tr');
                     const subtableClass = parentRow.getAttribute('data-capability-id');

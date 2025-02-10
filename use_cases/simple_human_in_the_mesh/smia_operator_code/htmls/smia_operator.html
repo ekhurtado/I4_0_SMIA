@@ -50,12 +50,12 @@
             margin: auto;
         }
 
-        .process-button {
+        .load-button {
             position: absolute;
             right: 10px;
             top: 50%;
             transform: translateY(-50%);
-            padding: 10px 20px;
+            padding: 5px 10px;
             background-color: #28a745;
             color: white;
             font-weight: bold;
@@ -63,11 +63,12 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s;
-            font-size: 16px;
+            font-size: 18px;
             text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .process-button:hover {
+        .load-button:hover {
             background-color: #218838;
         }
 
@@ -88,12 +89,18 @@
             background-color: #fff;
             border: 1px solid #ddd;
             margin-top: 10px;
+            table-layout: fixed;  /* Force consistent column sizing */
         }
 
         .table th, .table td {
             padding: 8px;
             border: 1px solid #ddd;
             text-align: left;
+
+            word-wrap: break-word;
+            word-break: break-all;
+            overflow-wrap: break-word;
+            white-space: normal;
         }
 
         .table th {
@@ -129,6 +136,7 @@
             background-color: #d16c18;
             border: none;
             color: white;
+            font-size: 12px;
             font-weight: bold;
             transition: background-color 0.3s;
             text-transform: uppercase;
@@ -169,8 +177,9 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s;
-            font-size: 16px;
+            font-size: 18px;
             text-transform: uppercase;
+            padding: 5px 10px;
         }
 
         .request-button:hover {
@@ -281,7 +290,7 @@
                                     <span class="hidden process-text"><em>Loading SMIAs...</em></span>
 <!--                                    <div id="loading"></div>-->
                                     <img src="static/loading_line.gif" alt="Processing..." class="process-gif hidden">
-                                    <button type="button" id="loader-button" class="btn btn-primary process-button">Load</button>
+                                    <button type="button" id="loader-button" class="btn btn-primary load-button">Load</button>
                                 </div>
                             </div>
                             <!-- /.box-body -->
@@ -316,10 +325,11 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="expandable" data-capability-id="capability1">
-                                            <td>Efficient Transport</td>
-                                            <td>AssetCapability</td>
-                                            <td>Efficient transport up to a given weight.</td>
+                                        {% for cap_id, cap_info in agent.css_elems_info.items() %}
+                                        <tr class="expandable" data-capability-id="{{ cap_id }}">
+                                            <td>{{ cap_info['capName'] }}</td>
+                                            <td>{{ cap_info['capType'] }}</td>
+                                            <td>{{ cap_info['capDescription'] }}</td>
                                             <td>
                                                 <div class="options-container">
                                                     <button class="btn btn-sm btn-primary select-button">Select</button>
@@ -327,45 +337,80 @@
                                                 </div>
                                             </td>
                                         </tr>
-                                        <tr class="subtable capability1">
+                                        <tr class="subtable {{ cap_id }}">
                                             <td colspan="4">
                                                 <div class="capability-info">
                                                     <ul>
-                                                        <li><i>Constraint:</i> Weight</li>
+                                                        <li><i>Constraints: </i>
+                                                            <ul>
+                                                                {% for const in cap_info['capConstraints'] %}
+                                                                <li>{{ const }}</li>
+                                                                {% endfor %}
+                                                            </ul>
+                                                        </li>
                                                         <li><i>Skills: </i>
                                                             <ul>
-                                                                <li>EfficientMovement</li>
+                                                                {% for skill in cap_info['skills'] %}
+                                                                <li>{{ skill }}</li>
+                                                                {% endfor %}
                                                             </ul>
                                                         </li>
                                                     </ul>
                                                 </div>
                                             </td>
                                         </tr>
-                                        <tr class="expandable" data-capability-id="capability2">
-                                            <td>Negotiation</td>
-                                            <td>AgentCapability</td>
-                                            <td>Efficient negotiation.</td>
-                                            <td>
-                                                <div class="options-container">
-                                                    <button class="btn btn-sm btn-primary select-button">Select</button>
-                                                    <span class="glyphicon glyphicon-chevron-down expand-icon"></span>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr class="subtable capability2">
-                                            <td colspan="4">
-                                                <div class="capability-info">
-                                                    <ul>
-                                                        <li><i>Skills: </i>
-                                                            <ul>
-                                                                <li>NegotiationByRAM</li>
-                                                                <li>NegotiationByBattery</li>
-                                                            </ul>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                        {% endfor %}
+
+<!--                                        <tr class="expandable" data-capability-id="capability1">-->
+<!--                                            <td>Efficient Transport</td>-->
+<!--                                            <td>AssetCapability</td>-->
+<!--                                            <td>Efficient transport up to a given weight.</td>-->
+<!--                                            <td>-->
+<!--                                                <div class="options-container">-->
+<!--                                                    <button class="btn btn-sm btn-primary select-button">Select</button>-->
+<!--                                                    <span class="glyphicon glyphicon-chevron-down expand-icon"></span>-->
+<!--                                                </div>-->
+<!--                                            </td>-->
+<!--                                        </tr>-->
+<!--                                        <tr class="subtable capability1">-->
+<!--                                            <td colspan="4">-->
+<!--                                                <div class="capability-info">-->
+<!--                                                    <ul>-->
+<!--                                                        <li><i>Constraint:</i> Weight</li>-->
+<!--                                                        <li><i>Skills: </i>-->
+<!--                                                            <ul>-->
+<!--                                                                <li>EfficientMovement</li>-->
+<!--                                                            </ul>-->
+<!--                                                        </li>-->
+<!--                                                    </ul>-->
+<!--                                                </div>-->
+<!--                                            </td>-->
+<!--                                        </tr>-->
+<!--                                        <tr class="expandable" data-capability-id="capability2">-->
+<!--                                            <td>Negotiation</td>-->
+<!--                                            <td>AgentCapability</td>-->
+<!--                                            <td>Efficient negotiation.</td>-->
+<!--                                            <td>-->
+<!--                                                <div class="options-container">-->
+<!--                                                    <button class="btn btn-sm btn-primary select-button">Select</button>-->
+<!--                                                    <span class="glyphicon glyphicon-chevron-down expand-icon"></span>-->
+<!--                                                </div>-->
+<!--                                            </td>-->
+<!--                                        </tr>-->
+<!--                                        <tr class="subtable capability2">-->
+<!--                                            <td colspan="4">-->
+<!--                                                <div class="capability-info">-->
+<!--                                                    <ul>-->
+<!--                                                        <li><i>Skills: </i>-->
+<!--                                                            <ul>-->
+<!--                                                                <li>NegotiationByRAM</li>-->
+<!--                                                                <li>NegotiationByBattery</li>-->
+<!--                                                            </ul>-->
+<!--                                                        </li>-->
+<!--                                                    </ul>-->
+<!--                                                </div>-->
+<!--                                            </td>-->
+<!--                                        </tr>-->
                                     </tbody>
                                 </table>
                             </div>
@@ -386,14 +431,45 @@
                             </div>
                             <!-- /.box-header -->
                             <div class="box-body">
-                                <h5>Candidates for the [Efficient Transportation] capability are as follows:</h5>
+                                {% if agent.available_smia_selection|length > 0 %}
+
 
                                 <form id="requestForm" action="/smia_operator/submit" method="POST" onsubmit="return validateForm()">
 
-                                    <input type="hidden" name="capability" value="EfficientTransport" required>
-                                    <input type="hidden" name="constraint_name" value="Weight" required>
-                                    <input type="hidden" name="constraint_value" value="4.5" required>
-                                    <input type="hidden" name="skill" value="EfficientMovement" required>
+                                    <h5>The selection made is:</h5>
+                                        <ul>
+                                            <li><i>Capability:</i> {{ agent.available_smia_selection[0]['Capability'] }}</li>
+                                            <input type="hidden" name="capability" value="{{ agent.available_smia_selection[0]['Capability'] }}" required>
+                                            <li><i>Skill:</i> {{ agent.available_smia_selection[0]['Skill'] }}</li>
+
+                                            {% if 'skillParameters' in agent.available_smia_selection[0] %}
+                                            <li><i>Skill parameters: </i>
+                                                <input type="hidden" name="skillParams" value="{{ agent.available_smia_selection[0]['skillParameters'] }}" required>
+                                                <ul>
+                                                    {% for skill_param in agent.available_smia_selection[0]['skillParameters'] %}
+                                                    <li>{{ skill_param }}: <input type="text" id="{{ skill_param }}" name="{{ skill_param }}" required/></li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </li>
+                                            {% endif %}
+
+                                            {% if 'CapConstraints' in agent.available_smia_selection[0] %}
+                                            <li><i>Constraints: </i>
+                                                <ul>
+                                                    {% for con_name, con_val in agent.available_smia_selection[0]['CapConstraints'].items() %}
+                                                    <li>{{ con_name }}: {{ con_val }}</li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </li>
+                                            {% endif %}
+                                        </ul>
+                                    <h5>Candidates for the selected capability are as follows:</h5>
+
+<!--                                    <input type="hidden" name="capability" value="{{ agent.available_smia_selection[0]['Capability'] }}" required>-->
+                                    {% if 'CapConstraints' in agent.available_smia_selection[0] %}
+                                        <input type="hidden" name="constraints" value="{{ agent.available_smia_selection[0]['CapConstraints'] }}" required>
+                                    {% endif %}
+                                    <input type="hidden" name="skill" value="{{ agent.available_smia_selection[0]['Skill'] }}" required>
 
                                     <table class="table table-bordered">
                                         <thead>
@@ -404,41 +480,56 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            {% for available_smia in agent.available_smia_selection %}
                                             <tr>
                                                 <td>
-                                                    gcis1
-                                                    <input type="hidden" name="smia_id[]" value="gcis1">
+                                                    {{ available_smia['SMIAsInfo']['SMIA_JID'] }}
+                                                    <input type="hidden" name="smia_id[]" value="{{ available_smia['SMIAsInfo']['SMIA_JID'] }}">
                                                 </td>
                                                 <td>
-                                                    TransportRobot1
-                                                    <input type="hidden" name="asset_id[]" value="TransportRobot1">
+                                                    {{ available_smia['SMIAsInfo']['AssetID'] }}
+                                                    <input type="hidden" name="asset_id[]" value="{{ available_smia['SMIAsInfo']['AssetID'] }}">
                                                 </td>
                                                 <td>
-                                                    <input name="checkbox[]" value="gcis1" type="checkbox" class="request-checkbox">
+                                                    <input name="checkbox[]" value="{{ available_smia['SMIAsInfo']['SMIA_JID'] }}" type="checkbox" class="request-checkbox">
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>
-                                                    gcis2
-                                                    <input type="hidden" name="smia_id[]" value="gcis2">
-                                                </td>
-                                                <td>
-                                                    TransportRobot2
-                                                    <input type="hidden" name="asset_id[]" value="TransportRobot2">
-                                                </td>
-                                                <td>
-                                                    <input name="checkbox[]" value="gcis2" type="checkbox" class="request-checkbox">
-                                                </td>
-                                            </tr>
+                                            {% endfor  %}
+<!--                                            <tr>-->
+<!--                                                <td>-->
+<!--                                                    gcis1-->
+<!--                                                    <input type="hidden" name="smia_id[]" value="gcis1">-->
+<!--                                                </td>-->
+<!--                                                <td>-->
+<!--                                                    TransportRobot1-->
+<!--                                                    <input type="hidden" name="asset_id[]" value="TransportRobot1">-->
+<!--                                                </td>-->
+<!--                                                <td>-->
+<!--                                                    <input name="checkbox[]" value="gcis1" type="checkbox" class="request-checkbox">-->
+<!--                                                </td>-->
+<!--                                            </tr>-->
+<!--                                            <tr>-->
+<!--                                                <td>-->
+<!--                                                    gcis2-->
+<!--                                                    <input type="hidden" name="smia_id[]" value="gcis2">-->
+<!--                                                </td>-->
+<!--                                                <td>-->
+<!--                                                    TransportRobot2-->
+<!--                                                    <input type="hidden" name="asset_id[]" value="TransportRobot2">-->
+<!--                                                </td>-->
+<!--                                                <td>-->
+<!--                                                    <input name="checkbox[]" value="gcis2" type="checkbox" class="request-checkbox">-->
+<!--                                                </td>-->
+<!--                                            </tr>-->
                                         </tbody>
                                     </table>
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary request-button">Request</button>
                                 </form>
 
 <!--                                <div class="box-tools pull-right request-div">-->
 <!--                                    <button class="btn btn-sm btn-primary request-button">Request</button>-->
 <!--                                </div>-->
-
+                                {% endif %}
                             </div>
                             <!-- /.box-body -->
                         </div>
@@ -525,7 +616,7 @@
 
             const selectButtons = document.querySelectorAll('.select-button');
             selectButtons.forEach(button => {
-                button.addEventListener('click', function(event) {
+                button.addEventListener('click', async function(event) {
 
                     const parentRow = this.closest('tr');
                     const subtableClass = parentRow.getAttribute('data-capability-id');
@@ -534,13 +625,13 @@
 
                     let requestInfo = '';
                     let selectedSkill = null;
-                    let constraintName = null;
-                    let constraintValue = null;
+                    let constraintsInfo = null;
                     infoRows.forEach(row => {
                         const attrib = row.textContent.split(": ")[0];
-                        if (attrib === 'Constraint') {
-                            constraintName = row.textContent.split(": ")[1];
-                            constraintValue = getConstraintValue();
+                        if (attrib === 'Constraints') {
+                            const availableConstraintsList = row.querySelector('ul');
+                            const availableConstraintsRows = availableConstraintsList.querySelectorAll('li');
+                            constraintsInfo = getConstraintsValues(availableConstraintsRows);
                         } else if (attrib === 'Skills') {
                             const availableSkills = row.querySelector('ul');
                             const availableSkillsRows = availableSkills.querySelectorAll('li');
@@ -548,18 +639,60 @@
                         }
                     });
                     requestInfo += `Capability: ${subtableClass}\n`;
-                    if (constraintValue !== null) {
-                        requestInfo += `  - Constraint [${constraintName}] with value ${constraintValue}\n`;
+                    let requestJSON = {'Capability': subtableClass, 'Skill': selectedSkill};
+                    if (constraintsInfo !== null) {
+                        requestInfo += `  - Constraints: \n`;
+                        requestJSON['CapConstraints'] = {};
+                        for (constraint in constraintsInfo) {
+                            requestJSON['CapConstraints'][constraint] = constraintsInfo[constraint];
+                            requestInfo += `    + ${constraint}: ${constraintsInfo[constraint]} \n`;
+                        }
                     }
                     requestInfo += `Skill:${selectedSkill}`;
                     alert(`Quiere seleccionar esta capacidad:\n\n${requestInfo}\n`);
+
+                    // Send data as JSON using fetch to obtain available SMIAs for the selection
+                    try {
+                        const response = await fetch('/smia_operator/select', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(requestJSON)
+                        });
+
+                        const json = await response.json();
+
+                        if (json.status === 'success') {
+                            console.log('SMIAs successfulñy selected.');
+                        } else {
+                            alert(`Failed to obtain SMIAs selection due to reason: ${json.reason}.`);
+                        }
+                    } catch (error) {
+                        console.error('Error:', error);
+                        alert('Failed to obtain SMIAs selection. Error: .' + error);
+                    }
+                    location.reload();  // The web page is reloaded in order to obtain all new data
+
                 });
             });
 
-            function getConstraintValue() {
-                let constraintValue = prompt(`Please enter a value for the constraint in capability:`);
+            function getConstraintsValues(availableConstraintsRows) {
+                if (availableConstraintsRows.length === 0) {
+                    return null;
+                }
+                constraintsInfo = {};
+                availableConstraintsRows.forEach(constRow => {
+                    constName = constRow.textContent.trim();
+                    constraintsInfo[constName] = getSpecificConstraintValue(constName);
+                });
+                return constraintsInfo;
+            }
+
+            function getSpecificConstraintValue(constName) {
+                let constraintValue = prompt(`Please enter a value for the constraint ${constName}:`);
                 if (constraintValue === null) {
-                    return getConstraintValue();
+                    return getSpecificConstraintValue(constName);
                 }
                 return constraintValue;
             }

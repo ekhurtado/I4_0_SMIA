@@ -37,6 +37,9 @@ class OperatorGUIBehaviour(OneShotBehaviour):
         # The data to build operator HTML webpage is also initialized
         self.agent.loaded_statistics = {'AASmodels': 0, 'AvailableSMIAs': 0,
                                           'Capabilities': 0, 'Skills': 0}
+        self.agent.css_elems_info = {}
+        self.agent.skills_info = {}
+        self.agent.available_smia_selection = []
 
         _logger.info("SMIA SPADE web interface required resources initialized.")
 
@@ -51,6 +54,7 @@ class OperatorGUIBehaviour(OneShotBehaviour):
         self.agent.web.add_get('/smia_operator', self.operator_gui_controllers.hello_controller,
                                '/htmls/smia_operator.html')
         self.agent.web.add_get("/smia_operator/load", self.operator_gui_controllers.operator_load_controller, None)
+        self.agent.web.add_post("/smia_operator/select", self.operator_gui_controllers.operator_select_controller, None)
         self.agent.web.add_post('/smia_operator/submit', self.operator_gui_controllers.operator_request_controller,
                                 '/htmls/smia_operator_submit.html')
 
@@ -100,31 +104,134 @@ class GUIControllers:
                     smia_info_dict = await GUIFeatures.analyze_aas_model_store(self.myagent, aas_object_store)
                     self.myagent.loaded_smias[file.name] = smia_info_dict   # TODO pensar si almacenarlo por el JID de esos AASX
 
-                    # For each AASX, the JID of the associated SMIA need to be obtained
+                    # For each AASX, the JID and assetID of the associated SMIA need to be obtained
                     smia_jid = await GUIFeatures.get_smia_jid_from_aas_store(self.myagent, aas_object_store)
                     self.myagent.loaded_smias[file.name]['SMIA_JID'] = smia_jid
+
+                    asset_id = await GUIFeatures.get_asset_id_from_aas_store(aas_object_store)
+                    self.myagent.loaded_smias[file.name]['AssetID'] = asset_id
+
                     _logger.info("Analyzed SMIA AAS model of {}".format(file.name))
 
         # Now, the obtained information is analyzed in order to obtain data to display in SMIA Operator HTML
         self.myagent.loaded_statistics = {'AASmodels': len(self.myagent.loaded_smias), 'AvailableSMIAs': 0,
                                           'Capabilities': 0, 'Skills': 0}
         analyzed_elems = {'Capabilities': [], 'Skills': []}
+        css_elems_info = {}
         for file_name, info_dict in self.myagent.loaded_smias.items():
             if info_dict['SMIA_JID'] is not None:
                 self.myagent.loaded_statistics['AvailableSMIAs'] += 1
             for rel, aas_elems in info_dict.items():
-                if rel != 'SMIA_JID' and CapabilitySkillOntologyInfo.CSS_ONTOLOGY_PROP_ISREALIZEDBY_IRI == rel.iri:
-                    for capability, skills in aas_elems.items():
-                        if capability.id_short not in analyzed_elems['Capabilities']:
-                            analyzed_elems['Capabilities'].append(capability.id_short)
-                            self.myagent.loaded_statistics['Capabilities'] += 1
-                        for skill in skills:
-                            if skill.id_short not in analyzed_elems['Skills']:
-                                analyzed_elems['Skills'].append(skill.id_short)
-                                self.myagent.loaded_statistics['Skills'] += 1
+                if not isinstance(rel, str):
+                    if CapabilitySkillOntologyInfo.CSS_ONTOLOGY_PROP_ISREALIZEDBY_IRI == rel.iri:
+                        for capability, skills in aas_elems.items():
+                            cap_info = {'capName': capability.id_short, 'skills': [], 'capConstraints': set(),
+                                        'capDescription': '', 'capType': 'Unknown', 'AASmodel': set()}
+                            if (capability.description is not None) and ('en' in capability.description):
+                                cap_info['capDescription'] = capability.description.get('en')
+                            if capability.check_semantic_id_exist(
+                                    CapabilitySkillOntologyInfo.CSS_ONTOLOGY_AGENT_CAPABILITY_IRI):
+                                cap_info['capType'] = 'AgentCapability'
+                            elif capability.check_semantic_id_exist(
+                                    CapabilitySkillOntologyInfo.CSS_ONTOLOGY_ASSET_CAPABILITY_IRI):
+                                cap_info['capType'] = 'AssetCapability'
+
+                            for related_skill in skills:
+                                if related_skill.id_short not in analyzed_elems['Skills']:
+                                    analyzed_elems['Skills'].append(related_skill.id_short)
+                                    self.myagent.loaded_statistics['Skills'] += 1
+                                cap_info['skills'].append(related_skill.id_short)
+
+                                if isinstance(related_skill, basyx.aas.model.Operation):
+                                    # In this case the Skill parameters are the inoutput variables of the AAS elem
+                                    param_set = set()
+                                    for param in related_skill.input_variable:
+                                        param_set.add(param.id_short)
+                                    if related_skill not in self.myagent.skills_info:
+                                        self.myagent.skills_info[related_skill] = param_set
+                                    else:
+                                        self.myagent.skills_info[related_skill].update(param_set)
+
+                            if capability.id_short not in analyzed_elems['Capabilities']:
+                                analyzed_elems['Capabilities'].append(capability.id_short)
+                                self.myagent.loaded_statistics['Capabilities'] += 1
+
+                                css_elems_info[capability.id_short] = cap_info
+                            else:
+                                for related_skill in cap_info['skills']:
+                                    if related_skill not in css_elems_info[capability.id_short]['skills']:
+                                        css_elems_info[capability.id_short]['skills'].append(related_skill)
+
+                            css_elems_info[capability.id_short]['AASmodel'].add(file_name)
+                    if CapabilitySkillOntologyInfo.CSS_ONTOLOGY_PROP_ISRESTRICTEDBY_IRI == rel.iri:
+                        for capability, constraints in aas_elems.items():
+                            const_info = set()
+                            for const in constraints:
+                                const_info.add(const.id_short)
+                            if capability.id_short not in css_elems_info:
+                                css_elems_info[capability.id_short] = {'capConstraints': const_info}
+                            else:
+                                css_elems_info[capability.id_short]['capConstraints'].update(const_info)
+                    if CapabilitySkillOntologyInfo.CSS_ONTOLOGY_PROP_HASPARAMETER_IRI == rel.iri:
+                        for skill, skill_param in aas_elems.items():
+                            if skill not in css_elems_info['skillData']:
+                                param_set = set()
+                                param_set.add(skill_param)
+                                self.myagent.skills_info[skill] = param_set
+                            else:
+                                self.myagent.skills_info[skill].add(skill_param)
+
+        # Once all data is analyzed, it is saved in the agent dictionary
+        self.myagent.css_elems_info = css_elems_info
 
         return {"status": "success", "reason": "success reason"}
         # return {"status": "error", "reason": "error reason"}
+
+    async def operator_select_controller(self, request):
+
+        data = await request.json()
+        available_smia_selection = []
+        for cap_name, cap_info in self.myagent.css_elems_info.items():
+            if cap_name == data['Capability']:
+                # At this point, the restrictions (if any) are valid
+                for aas_model in cap_info['AASmodel']:
+                    available_smia = {'SMIAsInfo': {
+                        'SMIA_JID' : await self.get_smia_attrib_by_file_name(aas_model,'SMIA_JID'),
+                        'AssetID' : await self.get_smia_attrib_by_file_name(aas_model,'AssetID')}
+                    }
+                    available_smia.update(data)
+
+                    # The skill parameters are also added (if any)
+                    for skill_elem, skill_params in self.myagent.skills_info.items():
+                        if skill_elem.id_short == data['Skill'] and len(skill_params) > 0:
+                            available_smia['skillParameters'] = skill_params
+
+                    if 'CapConstraints' not in data:
+                        _logger.info("The selected capability does not have constraints, so the SMIA can perform it.")
+                        available_smia_selection.append(available_smia)
+                    else:
+                        # Constraints need to be validated.
+                        _logger.info("The constraints need to be validated for this SMIA: {}.".format(aas_model))
+                        for constr_name, constr_value in data['CapConstraints'].items():
+                            # Constraint AAS elem is obtained
+                            aas_constr_elem = await self.get_aas_elem_of_model_by_id_short(aas_model, constr_name)
+                            try:
+                                # The ExtendedCapabilityConstraint class is used to automatically check the constraint
+                                if not aas_constr_elem.check_constraint(float(constr_value)):
+                                    _logger.info("The constraint {} with value {} is invalid".format(constr_name, constr_value))
+                                    break
+                            except Exception as e:
+                                err_msg = ("An error occurred checking the constraint {} with value {}. Reason: {}"
+                                           .format(constr_name, constr_value, e))
+                                _logger.warning(err_msg)
+                                return {"status": "error", "reason": err_msg}
+                        else:
+                            # The loop ran without breaking, so the constraints are valid
+                            _logger.info("All constraints are valid")
+                            available_smia_selection.append(available_smia)
+
+        self.myagent.available_smia_selection = available_smia_selection
+        return {"status": "success", "reason": "success reason"}
 
     async def operator_request_controller(self, request):
 
@@ -135,9 +242,14 @@ class GUIControllers:
         asset_id_list = data.getall('asset_id[]', [])
         selected = data.getall('checkbox[]', [])
         capability = data.get('capability', None)   # Default if missing
-        constraint_name = data.get('constraint_name', None)
-        constraint_value = data.get('constraint_value', None)
+        constraints = data.get('constraints', None)
         skill = data.get('skill', None)
+        skill_params = data.get('skillParams', None)
+
+        if skill_params is not None:
+            for param in set(eval(skill_params)):
+                param_value = data.get(param, None)
+                print("Param {} with value {}".format(param, param_value))
 
         # Group data by row index
         processed_data = []
@@ -148,6 +260,7 @@ class GUIControllers:
                     "assetID": asset_id_list[idx],
                 })
         print("Requested SMIAs: {}".format(processed_data))
+        print("Requested data: {}".format({'Cap': capability, 'Skill': skill, 'Constraints': constraints}))
 
         # TODO
 
@@ -161,6 +274,28 @@ class GUIControllers:
         # return web.json_response({'status': 'OK'})
         return {'status': 'OK'}
 
+    async def get_smia_attrib_by_file_name(self, file_name, smia_attrib):
+        for smia_file, smia_info in self.myagent.loaded_smias.items():
+            if smia_file == file_name:
+                if smia_attrib in smia_info:
+                    return smia_info[smia_attrib]
+                else:
+                    return None
+        return None
+
+    async def get_aas_elem_of_model_by_id_short(self, file_name, id_short):
+        for smia_file, smia_info in self.myagent.loaded_smias.items():
+            if smia_file != file_name:
+                continue
+            for rel, aas_elems in smia_info.items():
+                if not isinstance(rel, str):
+                    for elem_domain, elems_range in aas_elems.items():
+                        if elem_domain.id_short == id_short:
+                            return elem_domain
+                        for elem in elems_range:
+                            if elem.id_short == id_short:
+                                return elem
+        return None
 
 class GUIFeatures:
     """This class contains the methods related to SPADE web interface customization."""
@@ -347,8 +482,30 @@ class GUIFeatures:
                 AASModelInfo.SEMANTICID_SOFTWARE_NAMEPLATE_INSTANCE_NAME)
             if aas_smia_instance_name is not None:
                 await agent_object.aas_model.set_aas_model_object_store(operator_aas_model_store)
-                return aas_smia_instance_name
+                return aas_smia_instance_name.value
         _logger.warning("The SoftwareNameplate submodel is defined within the AAS model, but the instance name is not. "
                         "This SMIA cannot be loaded into the SMIA operator.")
         await agent_object.aas_model.set_aas_model_object_store(operator_aas_model_store)
+        return None
+
+    @staticmethod
+    async def get_asset_id_from_aas_store(aas_model_store):
+        """
+        This method gets the SMIA JID value from the AAS model store. The SMIA approach establishes that this information need to be added within the '' standardized submodel.
+
+        Args:
+            agent_object (smia.agents.smia_agent.SMIAAgent): SMIA SPADE agent object.
+            aas_model_store (basyx.aas.model.DictObjectStore): Python object with the AAS model.
+
+        Returns:
+            JID: SMIA JID value.
+        """
+        # First, the AAS model store is analyzed to found an AAS with the globalAssetID defined
+        for aas_elem in aas_model_store:
+            if isinstance(aas_elem, basyx.aas.model.AssetAdministrationShell):
+                if aas_elem.asset_information is not None:
+                    if aas_elem.asset_information.global_asset_id is not None:
+                        return aas_elem.asset_information.global_asset_id
+
+        _logger.warning("Asset ID not found for model store {}".format(aas_model_store))
         return None

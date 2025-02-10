@@ -110,6 +110,7 @@ async def main():
     gui_agent.web.add_get("/smia_template", GeneralGUIFeatures.hello_controller,
                           "/htmls/templates/smia_spade_template_example.html")
     await gui_agent.general_features.add_new_menu_entry("SMIA template", "/smia_template", "fa fa-terminal")
+    gui_agent.loaded_statistics = 0
 
     gui_agent.web.add_get("/smia_operator", GeneralGUIFeatures.hello_controller, "/htmls/smia_operator.html")
     gui_agent.web.add_post("/smia_operator/submit", gui_agent.general_features.operator_request_controller, "/htmls/smia_operator_submit.html")

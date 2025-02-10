@@ -1,3 +1,4 @@
+import asyncio
 import json
 import os
 import time
@@ -166,20 +167,23 @@ class GeneralGUIFeatures:
     async def operator_load_controller(self, request):
         print(request)
 
+        await asyncio.sleep(2)
+        self.myagent.loaded_statistics = 2  # Simulate that some SMIA have been loaded
+
         # PRUEBA PARA DESCUBRIR AGENTES
         # Conectar al servidor XMPP
-        async with self.myagent.client.connected():
-            # Crear un objeto de servicio de descubrimiento
-            disco_client = self.myagent.client.summon(aioxmpp.DiscoClient)
-
-            # Obtener los elementos (agentes) registrados en el servidor
-            result = await disco_client.query_items(
-                JID.fromstr(self.myagent.jid.domain)  # Dominio del servidor
-            )
-
-            # Extraer los JIDs de los agentes
-            agents = [str(item.jid) for item in result.items]
-            print(agents)
+        # async with self.myagent.client.connected():
+        #     # Crear un objeto de servicio de descubrimiento
+        #     disco_client = self.myagent.client.summon(aioxmpp.DiscoClient)
+        #
+        #     # Obtener los elementos (agentes) registrados en el servidor
+        #     result = await disco_client.query_items(
+        #         JID.fromstr(self.myagent.jid.domain)  # Dominio del servidor
+        #     )
+        #
+        #     # Extraer los JIDs de los agentes
+        #     agents = [str(item.jid) for item in result.items]
+        #     print(agents)
         # --- fin de la prueba
 
 
