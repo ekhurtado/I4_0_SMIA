@@ -20,7 +20,8 @@ from smia.aas_model.aas_model_utils import AASModelInfo
 
 from smia.behaviours.init_aas_model_behaviour import InitAASModelBehaviour
 
-from smia.css_ontology.css_ontology_utils import CapabilitySkillOntologyInfo, CapabilitySkillOntologyUtils
+from smia.css_ontology.css_ontology_utils import CapabilitySkillOntologyInfo, CapabilitySkillOntologyUtils, \
+    CapabilitySkillACLInfo
 
 from smia import SMIAGeneralInfo
 from spade.behaviour import OneShotBehaviour
@@ -117,7 +118,7 @@ class OperatorRequestBehaviour(OneShotBehaviour):
                     "smiaID": smia_id,
                     "assetID": self.asset_id_list[idx],
                 })
-                self.selected_smia_ids.append(smia_id)
+                self.selected_smia_ids.append(smia_id + '@' + str(self.myagent.jid.domain))
 
     async def run(self) -> None:
         # The ACL message template is created
@@ -140,6 +141,11 @@ class OperatorRequestBehaviour(OneShotBehaviour):
                 skill_params_dict[param] = param_value
             msg_body_json['serviceData']['serviceParams']['skillParameterValues'] = skill_params_dict
 
+        if self.constraints is not None:
+            _logger.assetinfo("CONSTRAINTS: {}" .format(self.constraints))
+            msg_body_json['serviceData']['serviceParams'][
+                CapabilitySkillACLInfo.REQUIRED_CAPABILITY_CONSTRAINTS] = eval(self.constraints)
+
         # The JSON for the message body is added to message object
         msg.body = json.dumps(msg_body_json)
         _logger.aclinfo(msg)  # TODO BORRAR
@@ -148,17 +154,19 @@ class OperatorRequestBehaviour(OneShotBehaviour):
             _logger.info("There are multiple SMIAs to be requested: negotiation is required")
 
             # The negotiation request is made by performative CallForProposal (CFP)
+            msg.thread = self.thread + '-neg'
             msg.metadata = SMIAInteractionInfo.NEG_STANDARD_ACL_TEMPLATE_CFP.metadata
             # The negotiation request ACL message is prepared
             msg_body_json['serviceData']['serviceParams']['neg_requester_jid'] = str(self.myagent.jid)
-            msg_body_json['serviceData']['serviceParams']['targets'] = ','.join(self.selected_smia_ids)
+            # The targets are added with
+            msg_body_json['serviceData']['serviceParams']['targets'] = (','.join(self.selected_smia_ids))
             # The updated JSON for the message body is added to message object
             msg.body = json.dumps(msg_body_json)
             _logger.aclinfo(msg)  # TODO BORRAR
 
             for smia_id in self.selected_smia_ids:
                 # For
-                msg.to = smia_id + '@' + str(self.myagent.jid.domain)
+                msg.to = smia_id
                 _logger.aclinfo(msg)  # TODO BORRAR
                 _logger.aclinfo(msg.body)  # TODO BORRAR
                 _logger.aclinfo("Sending {} capability request to {}...".format(self.capability, smia_id))
@@ -172,7 +180,7 @@ class OperatorRequestBehaviour(OneShotBehaviour):
         else:
             print("There is only one SMIA. Requesting [{}] capability...".format(self.capability))
             smia_id = self.selected_smia_ids[0]
-            msg.to = smia_id + '@' + str(self.myagent.jid.domain)
+            msg.to = smia_id
             _logger.aclinfo(msg)  # TODO BORRAR
             _logger.aclinfo(msg.body)  # TODO BORRAR
             _logger.aclinfo("Sending {} capability request to {}...".format(self.capability, smia_id))
