@@ -1,191 +1,24 @@
 import asyncio
-import json
 import logging
 import ntpath
 import os
 import random
 import string
-from collections import OrderedDict
 
 import basyx
 from aiohttp import web
 from basyx.aas import model
 from basyx.aas.adapter import aasx
-from smia.utilities.fipa_acl_info import FIPAACLInfo, ServiceTypes
-
-from smia.utilities.smia_info import SMIAInteractionInfo
-from spade.message import Message
-
-from smia.aas_model.aas_model_utils import AASModelInfo
-
-from smia.behaviours.init_aas_model_behaviour import InitAASModelBehaviour
-
-from smia.css_ontology.css_ontology_utils import CapabilitySkillOntologyInfo, CapabilitySkillOntologyUtils, \
-    CapabilitySkillACLInfo
 
 from smia import SMIAGeneralInfo
-from spade.behaviour import OneShotBehaviour
+from smia.aas_model.aas_model_utils import AASModelInfo
+from smia.behaviours.init_aas_model_behaviour import InitAASModelBehaviour
+from smia.css_ontology.css_ontology_utils import CapabilitySkillOntologyInfo, CapabilitySkillOntologyUtils
 
 _logger = logging.getLogger(__name__)
 
 
-class OperatorGUIBehaviour(OneShotBehaviour):
-    """The behavior for the Operator only needs to add the web interface to the SMIA SPADE agent and the GUI related
-    resources (HTML web pages and drivers)."""
 
-    async def run(self) -> None:
-
-        # First, the dictionary is initialized to add the menu entries that are required in runtime. The name of the
-        # SMIA SPADE agent is also initialized to be used in the added HTMLs templates
-        self.agent.web_menu_entries = OrderedDict()
-        # self.agent.agent_name = str(self.agent.jid).split('@')[0]  # tambien se puede lograr mediante agent.jid.localpart
-        self.agent.build_avatar_url = GUIFeatures.build_avatar_url
-
-        # The data to build operator HTML webpage is also initialized
-        self.agent.loaded_statistics = {'AASmodels': 0, 'AvailableSMIAs': 0,
-                                          'Capabilities': 0, 'Skills': 0}
-        self.agent.css_elems_info = {}
-        self.agent.skills_info = {}
-        self.agent.available_smia_selection = []
-
-        _logger.info("SMIA SPADE web interface required resources initialized.")
-
-        # The SMIA icon is added as the avatar of the GUI
-        await GUIFeatures.add_custom_favicon(self.agent)
-        _logger.info("Added SMIA Favicon to the web interface.")
-
-        # The controllers class is also created offering the agent object
-        self.operator_gui_controllers = GUIControllers(self.agent)
-
-        # Then, the required HTML webpages are added to the SMIA SPADE web module
-        self.agent.web.add_get('/smia_operator', self.operator_gui_controllers.hello_controller,
-                               '/htmls/smia_operator.html')
-        self.agent.web.add_get("/smia_operator/load", self.operator_gui_controllers.operator_load_controller, None)
-        self.agent.web.add_post("/smia_operator/select", self.operator_gui_controllers.operator_select_controller, None)
-        self.agent.web.add_post('/smia_operator/submit', self.operator_gui_controllers.operator_request_controller,
-                                '/htmls/smia_operator_submit.html')
-
-        # The new webpages need also to be added in the manu of the web interface
-        # await GUIFeatures.add_new_menu_entry(self.agent,'System view', '/system_view', 'fa fa-eye')
-        self.agent.web.add_menu_entry("SMIA operator", "/smia_operator", "fa fa-user-cog")
-
-        _logger.info("Added new web pages to the web interface.")
-
-        # TODO se ha añadido el Sen ACL del GUIAgent para realizar la prueba, hay que desarrollar los HTMLs para el
-        #  operario y añadirlos
-
-        # Once all the configuration is done, the web interface is enabled in the SMIA SPADE agent
-        self.agent.web.start(hostname="0.0.0.0", port="10000")
-        _logger.info("Started SMIA SPADE web interface.")
-
-class OperatorRequestBehaviour(OneShotBehaviour):
-    """
-    This behaviour handles the CSS-related requests through FIPA-ACL messages.
-    """
-
-    def __init__(self, agent_object, req_data):
-        """
-        The constructor method is rewritten to add the object of the agent.
-
-        Args:
-            agent_object (spade.Agent): the SPADE agent object of the SMIA agent.
-            req_data (dict): all the information about the CSS-related request
-        """
-
-        # The constructor of the inherited class is executed.
-        super().__init__()
-
-        # The SPADE agent object is stored as a variable of the behaviour class
-        self.myagent = agent_object
-        self.request_data = req_data
-
-        self.thread = req_data['thread']
-        self.smia_id_list = req_data['formData'].getall('smia_id[]', [])
-        self.asset_id_list = req_data['formData'].getall('asset_id[]', [])
-        self.selected = req_data['formData'].getall('checkbox[]', [])
-        self.capability = req_data['formData'].get('capability', None)  # Default if missing
-        self.constraints = req_data['formData'].get('constraints', None)
-        self.skill = req_data['formData'].get('skill', None)
-        self.skill_params = req_data['formData'].get('skillParams', None)
-        self.form_data = req_data['formData']
-
-        # Group data by row index
-        self.processed_data = []
-        self.selected_smia_ids = []
-        for idx, smia_id in enumerate(self.smia_id_list):
-            if smia_id in self.selected:
-                self.processed_data.append({
-                    "smiaID": smia_id,
-                    "assetID": self.asset_id_list[idx],
-                })
-                self.selected_smia_ids.append(smia_id + '@' + str(self.myagent.jid.domain))
-
-    async def run(self) -> None:
-        # The ACL message template is created
-        msg = Message(thread=self.thread)
-        msg.metadata = SMIAInteractionInfo.CAP_STANDARD_ACL_TEMPLATE_REQUEST.metadata
-        msg_body_json = {'serviceID': 'capabilityRequest',
-                         'serviceType': ServiceTypes.ASSET_RELATED_SERVICE,
-                         'serviceData': {'serviceCategory': 'service-request',
-                                         'serviceParams': {
-                                             'capabilityName': self.capability, 'skillName': self.skill
-                                         }}
-                         }
-        if self.skill_params is not None:
-            skill_params_dict = {}
-            for param in set(eval(self.skill_params)):
-                param_value = self.form_data.get(param, None)
-                if param_value is None:
-                    _logger.warning("The value of the {} parameter is missing, it is possible that the capability "
-                                    "cannot be executed.".format(param))
-                skill_params_dict[param] = param_value
-            msg_body_json['serviceData']['serviceParams']['skillParameterValues'] = skill_params_dict
-
-        if self.constraints is not None:
-            _logger.assetinfo("CONSTRAINTS: {}" .format(self.constraints))
-            msg_body_json['serviceData']['serviceParams'][
-                CapabilitySkillACLInfo.REQUIRED_CAPABILITY_CONSTRAINTS] = eval(self.constraints)
-
-        # The JSON for the message body is added to message object
-        msg.body = json.dumps(msg_body_json)
-        _logger.aclinfo(msg)  # TODO BORRAR
-
-        if len(self.processed_data) > 1:
-            _logger.info("There are multiple SMIAs to be requested: negotiation is required")
-
-            # The negotiation request is made by performative CallForProposal (CFP)
-            msg.thread = self.thread + '-neg'
-            msg.metadata = SMIAInteractionInfo.NEG_STANDARD_ACL_TEMPLATE_CFP.metadata
-            # The negotiation request ACL message is prepared
-            msg_body_json['serviceData']['serviceParams']['neg_requester_jid'] = str(self.myagent.jid)
-            # The targets are added with
-            msg_body_json['serviceData']['serviceParams']['targets'] = (','.join(self.selected_smia_ids))
-            # The updated JSON for the message body is added to message object
-            msg.body = json.dumps(msg_body_json)
-            _logger.aclinfo(msg)  # TODO BORRAR
-
-            for smia_id in self.selected_smia_ids:
-                # For
-                msg.to = smia_id
-                _logger.aclinfo(msg)  # TODO BORRAR
-                _logger.aclinfo(msg.body)  # TODO BORRAR
-                _logger.aclinfo("Sending {} capability request to {}...".format(self.capability, smia_id))
-                await self.send(msg)
-                _logger.aclinfo("Message sent!")
-
-            if self.capability is not 'Negotiation':  # TODO CUIDADO SI SE CAMBIA EL NOMBRE DE NEGOTIATION
-
-                print("Para ejecutar esta capacidad antes hay que negociar")  # TODO BORRAR
-
-        else:
-            print("There is only one SMIA. Requesting [{}] capability...".format(self.capability))
-            smia_id = self.selected_smia_ids[0]
-            msg.to = smia_id
-            _logger.aclinfo(msg)  # TODO BORRAR
-            _logger.aclinfo(msg.body)  # TODO BORRAR
-            _logger.aclinfo("Sending {} capability request to {}...".format(self.capability, smia_id))
-            await self.send(msg)
-            _logger.aclinfo("Message sent!")
 
 class GUIControllers:
     """This class contains all the controller to be added to SMIA in order to manage the operator actions."""
@@ -348,6 +181,8 @@ class GUIControllers:
         return {"status": "success", "reason": "success reason"}
 
     async def operator_request_controller(self, request):
+
+        from operator_gui_behaviours import OperatorRequestBehaviour    # local import to avoid circular import errors
 
         data = await request.post()
 

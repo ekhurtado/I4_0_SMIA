@@ -1,8 +1,8 @@
 # Self-configurable Manufacturing Industrial Agent: SMIA 
 
 [![Python versions](https://img.shields.io/badge/python-3.10%20to%203.12-blue?logo=python&logoColor=white)](https://test.pypi.org/project/smia/) [![Docker badge](https://img.shields.io/docker/pulls/ekhurtado/smia.svg)](https://hub.docker.com/r/ekhurtado/smia/) ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/ekhurtado/I4_0_SMIA?sort=semver) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/e87506fff1bb4a438c20e11bb7295f51)](https://app.codacy.com/gh/ekhurtado/I4_0_SMIA/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade) [![Documentation Status](https://readthedocs.org/projects/i4-0-smia/badge/?version=latest)](https://i4-0-smia.readthedocs.io/en/latest/)
-# TODO Use it when SMIA is published in PyPI
 
+[//]: # (# TODO Use it when SMIA is published in PyPI)
 [//]: # ([![Python versions]&#40;https://img.shields.io/pypi/pyversions/smia.svg&#41;]&#40;https://pypi.python.org/pypi/smia&#41; [![Docker badge]&#40;https://img.shields.io/docker/pulls/ekhurtado/aas-manager.svg&#41;]&#40;https://hub.docker.com/r/ekhurtado/aas-manager/&#41; ![GitHub release &#40;latest SemVer&#41;]&#40;https://img.shields.io/github/v/release/ekhurtado/I4_0_SMIA?sort=semver&#41; [![Codacy Badge]&#40;https://app.codacy.com/project/badge/Grade/e87506fff1bb4a438c20e11bb7295f51&#41;]&#40;https://app.codacy.com/gh/ekhurtado/I4_0_SMIA/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade&#41; [![Documentation Status]&#40;https://readthedocs.org/projects/i4-0-smia/badge/?version=latest&#41;]&#40;https://i4-0-smia.readthedocs.io/en/latest/&#41;)
 
 
