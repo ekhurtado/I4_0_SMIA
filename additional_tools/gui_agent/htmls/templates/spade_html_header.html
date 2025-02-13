@@ -3,14 +3,57 @@
     <span class="logo-lg"><b>SPADE</b></span>
 </a>
 <nav class="navbar navbar-static-top" role="navigation">
+     <style>
+        /* Use a media query to add a breakpoint at 800px: */
+        @media (max-width: 800px) {
+          .nav-item-responsive {
+              padding-top: 10px;
+              padding-bottom: 10px;
+              line-height: 20px;
+              width: min-content;
+          }
+        }
+     </style>
 
     <!-- New from SPADE template: it is added the toggle button to expand or collapse the sidebar-->
-    <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-        <span class="sr-only">Toggle navigation</span>
-    </a>
+    <!--  Feature from Admin LTE:  https://adminlte.io/themes/AdminLTE/documentation/index.html#components-->
+    <ul class="nav navbar-nav navbar-left">
+        <li class="nav-item-responsive">
+            <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
+        </li>
+        <!-- The main SMIA links are also added-->
+        <li>
+            <a style="width: min-content;" href="https://github.com/ekhurtado/I4_0_SMIA/" target="_blank">
+                <i class="fab fa-github"></i>
+                <span class="sr-only">SMIA official GitHub</span>
+            </a>
+        </li>
+        <li>
+            <a style="width: min-content;" href="https://i4-0-smia.readthedocs.io/en/latest/" target="_blank">
+                <i class="fas fa-book"></i>
+                <span class="sr-only">SMIA official ReadTheDocs</span>
+            </a>
+        </li>
+        <li>
+            <a style="width: min-content;" href="https://hub.docker.com/r/ekhurtado/smia/" target="_blank">
+                <i class="fab fa-docker"></i>
+                <span class="sr-only">SMIA official DockerHub</span>
+            </a>
+        </li>
+        <li>
+            <a style="width: min-content;" href="https://test.pypi.org/project/smia/" target="_blank">
+                <i class="fab fa-python"></i>
+                <span class="sr-only">SMIA official PyPI</span>
+            </a>
+        </li>
+    </ul>
 
     <div class="navbar-custom-menu">
+
         <ul class="nav navbar-nav">
+
             <!-- Messages: style can be found in dropdown.less-->
             <li class="dropdown messages-menu">
                         <!-- Menu toggle button -->
