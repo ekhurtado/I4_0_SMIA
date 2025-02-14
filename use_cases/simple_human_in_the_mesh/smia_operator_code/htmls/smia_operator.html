@@ -361,56 +361,6 @@
                                         </tr>
                                         {% endfor %}
 
-<!--                                        <tr class="expandable" data-capability-id="capability1">-->
-<!--                                            <td>Efficient Transport</td>-->
-<!--                                            <td>AssetCapability</td>-->
-<!--                                            <td>Efficient transport up to a given weight.</td>-->
-<!--                                            <td>-->
-<!--                                                <div class="options-container">-->
-<!--                                                    <button class="btn btn-sm btn-primary select-button">Select</button>-->
-<!--                                                    <span class="glyphicon glyphicon-chevron-down expand-icon"></span>-->
-<!--                                                </div>-->
-<!--                                            </td>-->
-<!--                                        </tr>-->
-<!--                                        <tr class="subtable capability1">-->
-<!--                                            <td colspan="4">-->
-<!--                                                <div class="capability-info">-->
-<!--                                                    <ul>-->
-<!--                                                        <li><i>Constraint:</i> Weight</li>-->
-<!--                                                        <li><i>Skills: </i>-->
-<!--                                                            <ul>-->
-<!--                                                                <li>EfficientMovement</li>-->
-<!--                                                            </ul>-->
-<!--                                                        </li>-->
-<!--                                                    </ul>-->
-<!--                                                </div>-->
-<!--                                            </td>-->
-<!--                                        </tr>-->
-<!--                                        <tr class="expandable" data-capability-id="capability2">-->
-<!--                                            <td>Negotiation</td>-->
-<!--                                            <td>AgentCapability</td>-->
-<!--                                            <td>Efficient negotiation.</td>-->
-<!--                                            <td>-->
-<!--                                                <div class="options-container">-->
-<!--                                                    <button class="btn btn-sm btn-primary select-button">Select</button>-->
-<!--                                                    <span class="glyphicon glyphicon-chevron-down expand-icon"></span>-->
-<!--                                                </div>-->
-<!--                                            </td>-->
-<!--                                        </tr>-->
-<!--                                        <tr class="subtable capability2">-->
-<!--                                            <td colspan="4">-->
-<!--                                                <div class="capability-info">-->
-<!--                                                    <ul>-->
-<!--                                                        <li><i>Skills: </i>-->
-<!--                                                            <ul>-->
-<!--                                                                <li>NegotiationByRAM</li>-->
-<!--                                                                <li>NegotiationByBattery</li>-->
-<!--                                                            </ul>-->
-<!--                                                        </li>-->
-<!--                                                    </ul>-->
-<!--                                                </div>-->
-<!--                                            </td>-->
-<!--                                        </tr>-->
                                     </tbody>
                                 </table>
                             </div>
@@ -495,40 +445,17 @@
                                                 </td>
                                             </tr>
                                             {% endfor  %}
-<!--                                            <tr>-->
-<!--                                                <td>-->
-<!--                                                    gcis1-->
-<!--                                                    <input type="hidden" name="smia_id[]" value="gcis1">-->
-<!--                                                </td>-->
-<!--                                                <td>-->
-<!--                                                    TransportRobot1-->
-<!--                                                    <input type="hidden" name="asset_id[]" value="TransportRobot1">-->
-<!--                                                </td>-->
-<!--                                                <td>-->
-<!--                                                    <input name="checkbox[]" value="gcis1" type="checkbox" class="request-checkbox">-->
-<!--                                                </td>-->
-<!--                                            </tr>-->
-<!--                                            <tr>-->
-<!--                                                <td>-->
-<!--                                                    gcis2-->
-<!--                                                    <input type="hidden" name="smia_id[]" value="gcis2">-->
-<!--                                                </td>-->
-<!--                                                <td>-->
-<!--                                                    TransportRobot2-->
-<!--                                                    <input type="hidden" name="asset_id[]" value="TransportRobot2">-->
-<!--                                                </td>-->
-<!--                                                <td>-->
-<!--                                                    <input name="checkbox[]" value="gcis2" type="checkbox" class="request-checkbox">-->
-<!--                                                </td>-->
-<!--                                            </tr>-->
+
                                         </tbody>
                                     </table>
-                                    <button type="submit" class="btn btn-primary request-button">Request</button>
+
+                                    <div class="request-div">
+                                        <button type="submit" class="btn btn-primary request-button">Request</button>
+                                        <img src="static/requesting.gif" alt="Requesting..." class="request-gif hidden">
+                                    </div>
+<!--                                    <button type="submit" class="btn btn-primary request-button">Request</button>-->
                                 </form>
 
-<!--                                <div class="box-tools pull-right request-div">-->
-<!--                                    <button class="btn btn-sm btn-primary request-button">Request</button>-->
-<!--                                </div>-->
                                 {% endif %}
                             </div>
                             <!-- /.box-body -->
@@ -724,7 +651,11 @@
             let checkboxes = document.querySelectorAll('.request-checkbox');
             for (let checkbox of checkboxes) {
                 if (checkbox.checked) {
-                    return true; // Allow submission
+                    // The request GIF is shown
+                    $('.request-gif').removeClass('hidden');
+
+                    // Now the submission is allowed
+                    return true;
                 }
             }
             alert("Please select at least one SMIA.");

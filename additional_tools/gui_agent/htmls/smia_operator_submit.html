@@ -27,7 +27,7 @@
         .href-button {
             margin-top: 10px;
             background-color: #3C8DBC;
-            color: white;
+            color: white !important;
             font-weight: bold;
             border: none;
             border-radius: 5px;
@@ -41,10 +41,72 @@
             background-color: #2d688a;
         }
 
+        .content-div {
+            border-bottom: 1px solid #f4f4f4;
+            margin-bottom: 5px;
+        }
+
+        /* Summary Panel */
+        .summary-table {
+            width: 60%;
+            margin: auto;
+            border-collapse: separate;
+            border-spacing: 0 8px; /* Adds vertical spacing between rows */
+            table-layout: fixed; /* Ensures the specified column widths are respected */
+        }
+
+        .summary-table th,
+        .summary-table td {
+            padding: 12px 15px;
+        }
+
+        .summary-table th {
+            background-color: #337ab7;
+            color: #fff;
+            font-weight: 600;
+            text-align: right;
+            border-top-left-radius: 4px;
+            border-bottom-left-radius: 4px;
+            width: 30%;
+        }
+
+        .summary-table td {
+            background-color: #f9f9f9;
+            color: #333;
+            text-align: left;
+            border-top-right-radius: 4px;
+            border-bottom-right-radius: 4px;
+            width: 70%;
+        }
+
+        .summary-table tr:hover td {
+            background-color: #e6f7ff;
+        }
+
+        /* Progress Bar */
+        .progress {
+            width: 50%;
+            border-radius: 5px;
+            margin: 20px auto;
+        }
+
+        /* Timeline panel */
+        .timeline-item {
+            background: #f9f9f9 !important;
+        }
+
+        .timeline li:last-child  {
+            margin-bottom: 50px;
+        }
+
+        .timeline-header {
+            font-weight: 600;
+            color: #0073b7 !important;
+        }
 
     </style>
 </head>
-<body class="sidebar-mini skin-blue" style="height: auto; min-height: 100%;">
+<body class="sidebar-mini skin-blue" style="height: auto; min-height: 100%;" onload="simulateProgress()">
     <div class="wrapper" style="height: auto; min-height: 100%;">
         <header class="main-header">
             {% include 'htmls/templates/spade_html_header.html' %}
@@ -68,7 +130,7 @@
                     <div class="col-md-8 col-md-offset-2">
                         <div class="box box-primary">
                             <div class="box-header with-border">
-                                <h3 class="box-title">SMIA request information</h3>
+                                <h3 class="box-title">SMIA CSS-related request information</h3>
 
                                 <div class="box-tools pull-right">
                                     <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
@@ -79,17 +141,48 @@
                             <!-- /.box-header -->
                             <div class="box-body">
 
-                                <div>
-                                    <h1>Logrado de LLMs -> para mostrar el summary de la solicitud CSS</h1>
-                                    <div>
-                                        TODO: Añadir codigo de LLMs
-                                    </div>
+                                <div class="content-div">
+                                    <h3>Request process summary</h3>
+                                    <table class="table summary-table">
+                                      <tbody>
+                                        <tr>
+                                          <th>Status:</th>
+                                          <td>Completed</td>
+                                        </tr>
+                                        <tr>
+                                          <th>Start Time:</th>
+                                          <td>2025-02-14 12:00:00</td>
+                                        </tr>
+                                        <tr>
+                                          <th>End Time:</th>
+                                          <td>2025-02-14 12:05:00</td>
+                                        </tr>
+                                        <tr>
+                                          <th>Duration:</th>
+                                          <td>5 minutes</td>
+                                        </tr>
+                                        <tr>
+                                          <th>SMIAs interactions:</th>
+                                          <td>Success</td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
 
-                                    <h1>Logrado de Admin LTE: timeline -> para mostrar el "log" de ejecución del SMIA operator</h1>
+                                    <div class="progress">
+                                      <div id="progressBar" class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar"
+                                           aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 90%;">
+                                        90%
+                                      </div>
+                                    </div>
+                                </div>
+
+                                <div class="content-div">
+                                    <h3>Request process timeline</h3>
+<!--                                        The timeline is a feature of AdminLTE 2-->
                                     <ul class="timeline">
                                         <!-- timeline time label -->
                                         <li class="time-label">
-                                            <span class="bg-red">
+                                            <span class="bg-blue">
                                                 CSS-related request
                                             </span>
                                         </li>
@@ -98,12 +191,23 @@
                                         <!-- timeline item -->
                                         <li>
                                             <!-- timeline icon -->
-                                            <i class="fa fa-envelope bg-orange"></i>
+                                            <i class="fa fa-project-diagram bg-orange"></i>
                                             <div class="timeline-item">
-                                                <h3 class="timeline-header"><a href="#">Obtained available SMIAs</a> ...</h3>
+                                                <h3 class="timeline-header">Analyzing operator selection ...</h3>
                                                 <div class="timeline-body">
-                                                    ...
-                                                    Content goes here
+                                                    The selection made is:
+                                                    <ul>
+                                                        <li>Capability: cap1</li>
+                                                        <li>Capability constraints: weight</li>
+                                                        <li>Skill: skill1</li>
+                                                        <li>
+                                                            The SMIA(s) selected:
+                                                            <ul>
+                                                                <li>transportrobot1</li>
+                                                                <li>transportrobot2</li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
                                                 </div>
                                             </div>
                                         </li>
@@ -111,12 +215,11 @@
                                         <!-- timeline item -->
                                         <li>
                                             <!-- timeline icon -->
-                                            <i class="fa fa-envelope bg-blue"></i>
+                                            <i class="fa fa-comment bg-blue"></i>
                                             <div class="timeline-item">
-                                                <h3 class="timeline-header"><a href="#">Negotiation request</a> ...</h3>
+                                                <h3 class="timeline-header">Requested negotiation betweeen selected SMIAs ...</h3>
                                                 <div class="timeline-body">
-                                                    ...
-                                                    Content goes here
+                                                    The SMIAs [transportrobot1, transportrobot2] has been requeste to negotiate between them to obtain the best option.
                                                 </div>
                                             </div>
                                         </li>
@@ -124,12 +227,11 @@
                                         <!-- timeline item -->
                                         <li>
                                             <!-- timeline icon -->
-                                            <i class="fa fa-envelope bg-green"></i>
+                                            <i class="fa fa-comments bg-green"></i>
                                             <div class="timeline-item">
-                                                <h3 class="timeline-header"><a href="#">Obtained negotiation winner</a> ...</h3>
+                                                <h3 class="timeline-header">Obtained negotiation winner ...</h3>
                                                 <div class="timeline-body">
-                                                    ...
-                                                    The winner is SMIA with ID transportrobot01.
+                                                    The winner of the negotiation is SMIA with ID transportrobot01.
                                                 </div>
                                             </div>
                                         </li>
@@ -137,12 +239,11 @@
                                         <!-- timeline item -->
                                         <li>
                                             <!-- timeline icon -->
-                                            <i class="fa fa-envelope bg-blue"></i>
+                                            <i class="fa fa-comment bg-blue"></i>
                                             <div class="timeline-item">
-                                                <h3 class="timeline-header"><a href="#">CSS execution request to the winner</a> ...</h3>
+                                                <h3 class="timeline-header">Requested CSS execution to the winner ...</h3>
                                                 <div class="timeline-body">
-                                                    ...
-                                                    Content goes here
+                                                    The SMIA with ID transportrobot01 has been requested to execute the capability cap1.
                                                 </div>
                                             </div>
                                         </li>
@@ -150,28 +251,33 @@
                                         <!-- timeline item -->
                                         <li>
                                             <!-- timeline icon -->
-                                            <i class="fa fa-envelope bg-green"></i>
+                                            <i class="fa fa-comments bg-green"></i>
                                             <div class="timeline-item">
-                                                <h3 class="timeline-header"><a href="#">Obtained CSS execution result</a> ...</h3>
+                                                <h3 class="timeline-header">Obtained CSS execution result ...</h3>
                                                 <div class="timeline-body">
                                                     ...
                                                     Pongamos que devuelve failure
                                                     <div class="alert alert-warning alert-dismissible">
-                                                        <h4><i class="icon fa fa-warning"></i> Failure!</h4>
-                                                        Warning alert preview. The request has not been correctly executed.
+                                                        <h4><i class="icon fa fa-warning"></i> SMIA was requested but the CSS-related execution failed!</h4>
+                                                        Reason: The request has not been correctly executed.
                                                     </div>
                                                     Pongamos que devuelve bien
                                                     <div class="alert alert-success alert-dismissible">
-                                                        <h4><i class="icon fa fa-check"></i> Response!</h4>
-                                                        Success alert preview. The request has been correctly executed.
+                                                        <h4><i class="icon fa fa-check"></i> SMIA successfully  executed the CSS-related request!</h4>
+                                                        Response: success "OK"
                                                     </div>
                                                 </div>
                                             </div>
                                         </li>
                                         <!-- END timeline item -->
-
+                                        <li>
+                                          <i class="fa fa-clock-o bg-gray"></i>
+                                        </li>
                                     </ul>
                                 </div>
+
+
+
 
                                 <div class="negotiation-info">
                                     <h4>If there is a required negotiation, the information about it need to be added here:</h4>
@@ -212,6 +318,24 @@
     </div>
     <!-- Include SPADE scripts -->
     {% include 'htmls/templates/spade_html_scripts.html' %}
+
+    <script>
+        function simulateProgress() {
+            let progressBar = document.getElementById("progressBar");
+            let progress = progressBar.getAttribute("aria-valuenow");
+
+            let interval = setInterval(function () {
+                if (progress >= 100) {
+                    clearInterval(interval); // Stop when reaching 100%
+                } else {
+                    progress++;
+                    progressBar.style.width = progress + "%";
+                    progressBar.setAttribute("aria-valuenow", progress);
+                    progressBar.textContent = progress + "%";
+                }
+            }, 200); // Update every 200ms
+        }
+    </script>
 
 </body>
 </html>
