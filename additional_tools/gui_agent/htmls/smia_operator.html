@@ -162,7 +162,9 @@
         }
 
         .request-div {
+            display: flex;
             margin-top: 10px;
+            gap: 10px;
         }
 
         .request-button {
@@ -283,7 +285,7 @@
 
                                 <div class="smia-loader-footer">
                                     <span class="hidden process-text"><em>Loading SMIAs...</em></span>
-<!--                                    <div id="loading"></div>-->
+<!--                                    The GIF has been created with https://icons8.com/preloaders/ -->
                                     <img src="static/loading_line.gif" alt="Processing..." class="process-gif hidden">
                                     <button type="button" id="loader-button" class="btn btn-primary load-button">Load</button>
                                 </div>
@@ -440,7 +442,10 @@
                                             </tr>
                                         </tbody>
                                     </table>
-                                    <button type="submit" class="btn btn-primary request-button">Request</button>
+                                    <div class="request-div">
+                                        <button type="submit" class="btn btn-primary request-button">Request</button>
+                                        <img src="static/requesting.gif" alt="Requesting..." class="request-gif hidden">
+                                    </div>
                                 </form>
 
 <!--                                <div class="box-tools pull-right request-div">-->
@@ -602,7 +607,11 @@
             let checkboxes = document.querySelectorAll('.request-checkbox');
             for (let checkbox of checkboxes) {
                 if (checkbox.checked) {
-                    return true; // Allow submission
+                    // The request GIF is shown
+                    $('.request-gif').removeClass('hidden');
+
+                    // Now the submission is allowed
+                    return true;
                 }
             }
             alert("Please select at least one SMIA.");
