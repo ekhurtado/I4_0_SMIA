@@ -185,8 +185,9 @@ class GUIControllers:
         from operator_gui_behaviours import OperatorRequestBehaviour    # local import to avoid circular import errors
 
         data = await request.post()
-        self.myagent.request_exec_info = {'StartTime': GeneralUtils.get_current_date_time(), 'Status': 'Started',
-                                          'Interactions': 0}
+        self.myagent.request_exec_info = {'StartTime': GeneralUtils.get_current_date_time(), 'EndTime': '-',
+                                          'Duration': '-', 'Status': 'Started', 'Interactions': 0,
+                                          'InteractionsDict': []}
 
         # Extract arrays for each field
         smia_id_list = data.getall('smia_id[]', [])

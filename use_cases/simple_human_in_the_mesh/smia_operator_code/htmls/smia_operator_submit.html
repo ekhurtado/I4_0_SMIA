@@ -104,6 +104,11 @@
             color: #0073b7 !important;
         }
 
+        .timeline-body ul li span,
+        .timeline-body span{
+            font-weight: bold;
+        }
+
         .div-footer {
             display: flex;
             float: right;
@@ -162,11 +167,13 @@
                                         </tr>
                                         <tr>
                                           <th>End Time:</th>
-                                          <td>2025-02-14 12:05:00</td>
+                                          <td>{{ agent.request_exec_info.EndTime }}</td>
+<!--                                          <td>2025-02-14 12:05:00</td>-->
                                         </tr>
                                         <tr>
-                                          <th>Duration:</th>
-                                          <td>5 minutes</td>
+                                          <th>Duration (s):</th>
+                                          <td>{{ agent.request_exec_info.Duration }}</td>
+<!--                                          <td>5 minutes</td>-->
                                         </tr>
                                         <tr>
                                           <th>SMIAs interactions:</th>
@@ -195,92 +202,163 @@
                                             </span>
                                         </li>
                                         <!-- /.timeline-label -->
-
+                                        {% for interaction_info in agent.request_exec_info['InteractionsDict'] %}
                                         <!-- timeline item -->
                                         <li>
+                                        {% if interaction_info['type'] == 'analysis' %}
                                             <!-- timeline icon -->
                                             <i class="fa fa-project-diagram bg-orange"></i>
                                             <div class="timeline-item">
-                                                <h3 class="timeline-header">Analyzing operator selection ...</h3>
+                                                <h3 class="timeline-header">{{ interaction_info['title'] }}</h3>
                                                 <div class="timeline-body">
                                                     The selection made is:
                                                     <ul>
-                                                        <li>Capability: cap1</li>
-                                                        <li>Capability constraints: weight</li>
-                                                        <li>Skill: skill1</li>
+                                                        <li><span>Capability:</span> {{ interaction_info['capability'] }}</li>
+                                                        {% if interaction_info['constraints'] is not none %}
+                                                        <li><span>Capability</span> constraints: {{ interaction_info['constraints'] }}</li>
+                                                        {% endif %}
+                                                        <li><span>Skill:</span> {{ interaction_info['skill'] }}</li>
                                                         <li>
                                                             The SMIA(s) selected:
                                                             <ul>
-                                                                <li>transportrobot1</li>
-                                                                <li>transportrobot2</li>
+                                                                {% for id in interaction_info['smia_ids'] %}
+                                                                <li>{{ id }}</li>
+    <!--                                                            <li>transportrobot2</li>-->
+                                                                {% endfor %}
                                                             </ul>
                                                         </li>
                                                     </ul>
                                                 </div>
                                             </div>
-                                        </li>
-                                        <!-- END timeline item -->
-                                        <!-- timeline item -->
-                                        <li>
+                                        {% elif interaction_info['type'] == 'acl_send' %}
                                             <!-- timeline icon -->
                                             <i class="fa fa-comment bg-blue"></i>
                                             <div class="timeline-item">
-                                                <h3 class="timeline-header">Requested negotiation betweeen selected SMIAs ...</h3>
+                                                <h3 class="timeline-header">{{ interaction_info['title'] }}</h3>
                                                 <div class="timeline-body">
-                                                    The SMIAs [transportrobot1, transportrobot2] has been requeste to negotiate between them to obtain the best option.
+                                                    {{ interaction_info['message'] }}
                                                 </div>
                                             </div>
-                                        </li>
-                                        <!-- END timeline item -->
-                                        <!-- timeline item -->
-                                        <li>
+                                        {% elif interaction_info['type'] == 'acl_recv' %}
                                             <!-- timeline icon -->
                                             <i class="fa fa-comments bg-green"></i>
                                             <div class="timeline-item">
-                                                <h3 class="timeline-header">Obtained negotiation winner ...</h3>
+                                                <h3 class="timeline-header">{{ interaction_info['title'] }}</h3>
                                                 <div class="timeline-body">
-                                                    The winner of the negotiation is SMIA with ID transportrobot01.
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <!-- END timeline item -->
-                                        <!-- timeline item -->
-                                        <li>
-                                            <!-- timeline icon -->
-                                            <i class="fa fa-comment bg-blue"></i>
-                                            <div class="timeline-item">
-                                                <h3 class="timeline-header">Requested CSS execution to the winner ...</h3>
-                                                <div class="timeline-body">
-                                                    The SMIA with ID transportrobot01 has been requested to execute the capability cap1.
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <!-- END timeline item -->
-                                        <!-- timeline item -->
-                                        <li>
-                                            <!-- timeline icon -->
-                                            <i class="fa fa-comments bg-green"></i>
-                                            <div class="timeline-item">
-                                                <h3 class="timeline-header">Obtained CSS execution result ...</h3>
-                                                <div class="timeline-body">
-                                                    ...
-                                                    Pongamos que devuelve failure
+                                                    {% if interaction_info['response_type'] == 'failure' %}
                                                     <div class="alert alert-warning alert-dismissible">
-                                                        <h4><i class="icon fa fa-warning"></i> SMIA was requested but the CSS-related execution failed!</h4>
-                                                        Reason: The request has not been correctly executed.
+                                                        <h4><i class="icon fa fa-warning"></i>{{ interaction_info['response_title'] }}</h4>
+                                                        <span>Reason:</span> {{ interaction_info['response_msg'] }}
                                                     </div>
-                                                    Pongamos que devuelve bien
+                                                    {% elif interaction_info['response_type'] == 'success' %}
                                                     <div class="alert alert-success alert-dismissible">
-                                                        <h4><i class="icon fa fa-check"></i> SMIA successfully  executed the CSS-related request!</h4>
-                                                        Response: success "OK"
+                                                        <h4><i class="icon fa fa-check"></i>{{ interaction_info['response_title'] }}</h4>
+                                                        <span>Response:</span> {{ interaction_info['response_msg'] }}
                                                     </div>
+                                                    {% endif %}
                                                 </div>
                                             </div>
+                                        {% elif interaction_info['type'] == 'exception' %}
+                                            <!-- timeline icon -->
+                                            <i class="fa fa-warning bg-red"></i>
+                                            <div class="timeline-item">
+                                                <h3 class="timeline-header">{{ interaction_info['title'] }}</h3>
+                                                <div class="timeline-body">
+                                                    <span>Reason:</span> {{ interaction_info['message'] }}
+                                                </div>
+                                            </div>
+                                        {% endif %}
                                         </li>
                                         <!-- END timeline item -->
-                                        <li>
-                                          <i class="fa fa-clock-o bg-gray"></i>
-                                        </li>
+                                        {% endfor %}
+
+
+<!--                                        &lt;!&ndash; timeline item &ndash;&gt;-->
+<!--                                        <li>-->
+<!--                                            &lt;!&ndash; timeline icon &ndash;&gt;-->
+<!--&lt;!&ndash;                                            <i class="fa fa-exclamation bg-red"></i>&ndash;&gt;-->
+<!--                                            <i class="fa fa-warning bg-red"></i>-->
+<!--                                            <div class="timeline-item">-->
+<!--                                                <h3 class="timeline-header">Analyzing operator selection ...</h3>-->
+<!--                                                <div class="timeline-body">-->
+<!--                                                    The selection made is:-->
+<!--                                                    <ul>-->
+<!--                                                        <li>Capability: cap1</li>-->
+<!--                                                        <li>Capability constraints: weight</li>-->
+<!--                                                        <li>Skill: skill1</li>-->
+<!--                                                        <li>-->
+<!--                                                            The SMIA(s) selected:-->
+<!--                                                            <ul>-->
+<!--                                                                <li>transportrobot1</li>-->
+<!--                                                                <li>transportrobot2</li>-->
+<!--                                                            </ul>-->
+<!--                                                        </li>-->
+<!--                                                    </ul>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </li>-->
+<!--                                        &lt;!&ndash; END timeline item &ndash;&gt;-->
+<!--                                        &lt;!&ndash; timeline item &ndash;&gt;-->
+<!--                                        <li>-->
+<!--                                            &lt;!&ndash; timeline icon &ndash;&gt;-->
+<!--                                            <i class="fa fa-comment bg-blue"></i>-->
+<!--                                            <div class="timeline-item">-->
+<!--                                                <h3 class="timeline-header">Requested negotiation betweeen selected SMIAs ...</h3>-->
+<!--                                                <div class="timeline-body">-->
+<!--                                                    The SMIAs [transportrobot1, transportrobot2] has been requeste to negotiate between them to obtain the best option.-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </li>-->
+<!--                                        &lt;!&ndash; END timeline item &ndash;&gt;-->
+<!--                                        &lt;!&ndash; timeline item &ndash;&gt;-->
+<!--                                        <li>-->
+<!--                                            &lt;!&ndash; timeline icon &ndash;&gt;-->
+<!--                                            <i class="fa fa-comments bg-green"></i>-->
+<!--                                            <div class="timeline-item">-->
+<!--                                                <h3 class="timeline-header">Obtained negotiation winner ...</h3>-->
+<!--                                                <div class="timeline-body">-->
+<!--                                                    The winner of the negotiation is SMIA with ID transportrobot01.-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </li>-->
+<!--                                        &lt;!&ndash; END timeline item &ndash;&gt;-->
+<!--                                        &lt;!&ndash; timeline item &ndash;&gt;-->
+<!--                                        <li>-->
+<!--                                            &lt;!&ndash; timeline icon &ndash;&gt;-->
+<!--                                            <i class="fa fa-comment bg-blue"></i>-->
+<!--                                            <div class="timeline-item">-->
+<!--                                                <h3 class="timeline-header">Requested CSS execution to the winner ...</h3>-->
+<!--                                                <div class="timeline-body">-->
+<!--                                                    The SMIA with ID transportrobot01 has been requested to execute the capability cap1.-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </li>-->
+<!--                                        &lt;!&ndash; END timeline item &ndash;&gt;-->
+<!--                                        &lt;!&ndash; timeline item &ndash;&gt;-->
+<!--                                        <li>-->
+<!--                                            &lt;!&ndash; timeline icon &ndash;&gt;-->
+<!--                                            <i class="fa fa-comments bg-green"></i>-->
+<!--                                            <div class="timeline-item">-->
+<!--                                                <h3 class="timeline-header">Obtained CSS execution result ...</h3>-->
+<!--                                                <div class="timeline-body">-->
+<!--                                                    ...-->
+<!--                                                    Pongamos que devuelve failure-->
+<!--                                                    <div class="alert alert-warning alert-dismissible">-->
+<!--                                                        <h4><i class="icon fa fa-warning"></i> SMIA was requested but the CSS-related execution failed!</h4>-->
+<!--                                                        Reason: The request has not been correctly executed.-->
+<!--                                                    </div>-->
+<!--                                                    Pongamos que devuelve bien-->
+<!--                                                    <div class="alert alert-success alert-dismissible">-->
+<!--                                                        <h4><i class="icon fa fa-check"></i> SMIA successfully  executed the CSS-related request!</h4>-->
+<!--                                                        Response: success "OK"-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </li>-->
+<!--                                        &lt;!&ndash; END timeline item &ndash;&gt;-->
+<!--                                        <li>-->
+<!--                                          <i class="fa fa-clock-o bg-gray"></i>-->
+<!--                                        </li>-->
                                     </ul>
                                 </div>
 

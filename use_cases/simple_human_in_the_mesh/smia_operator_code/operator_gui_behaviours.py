@@ -2,12 +2,14 @@ import asyncio
 import json
 import logging
 from collections import OrderedDict
+from datetime import datetime
 
 from spade.behaviour import OneShotBehaviour, CyclicBehaviour
 from spade.message import Message
 
+from smia import GeneralUtils
 from smia.css_ontology.css_ontology_utils import CapabilitySkillACLInfo
-from smia.utilities.fipa_acl_info import ServiceTypes
+from smia.utilities.fipa_acl_info import ServiceTypes, FIPAACLInfo
 from smia.utilities.smia_info import SMIAInteractionInfo
 from operator_gui_logic import GUIFeatures, GUIControllers
 
@@ -31,7 +33,6 @@ class OperatorGUIBehaviour(OneShotBehaviour):
         self.agent.css_elems_info = {}
         self.agent.skills_info = {}
         self.agent.available_smia_selection = []
-        self.agent.css_request_info = {}
         self.agent.request_exec_info = {}
 
         _logger.info("SMIA SPADE web interface required resources initialized.")
@@ -79,6 +80,7 @@ class OperatorReceiveBehaviour(CyclicBehaviour):
         msg = await self.receive(timeout=10)  # wait for a message for 10 seconds
         if msg:
             _logger.aclinfo("FIPA-ACL Message received from {} with content: {}".format(msg.sender, msg.body))
+            _logger.aclinfo("FIPA-ACL Performative: {}".format(msg.get_metadata('performative')))
             self.agent.received_msgs.append(msg)
             if msg.thread in self.agent.waiting_behavs:
                 _logger.info("There is a behaviour waiting for this message.")
@@ -144,82 +146,145 @@ class OperatorRequestBehaviour(OneShotBehaviour):
                 self.selected_smia_ids.append(smia_id + '@' + str(self.myagent.jid.domain))
 
     async def run(self) -> None:
-        # The ACL message template is created
-        msg = Message(thread=self.thread)
-        msg.metadata = SMIAInteractionInfo.CAP_STANDARD_ACL_TEMPLATE_REQUEST.metadata
-        msg_body_json = {'serviceID': 'capabilityRequest',
-                         'serviceType': ServiceTypes.ASSET_RELATED_SERVICE,
-                         'serviceData': {'serviceCategory': 'service-request',
-                                         'serviceParams': {
-                                             'capabilityName': self.capability, 'skillName': self.skill
-                                         }}
-                         }
-        if self.skill_params is not None:
-            skill_params_dict = {}
-            for param in set(eval(self.skill_params)):
-                param_value = self.form_data.get(param, None)
-                if param_value is None:
-                    _logger.warning("The value of the {} parameter is missing, it is possible that the capability "
-                                    "cannot be executed.".format(param))
-                skill_params_dict[param] = param_value
-            msg_body_json['serviceData']['serviceParams']['skillParameterValues'] = skill_params_dict
 
-        if self.constraints is not None:
-            msg_body_json['serviceData']['serviceParams'][
-                CapabilitySkillACLInfo.REQUIRED_CAPABILITY_CONSTRAINTS] = eval(self.constraints)
+        try:
+            # The ACL message template is created
+            msg = Message(thread=self.thread)
+            msg.metadata = SMIAInteractionInfo.CAP_STANDARD_ACL_TEMPLATE_REQUEST.metadata
+            msg_body_json = {'serviceID': 'capabilityRequest',
+                             'serviceType': ServiceTypes.ASSET_RELATED_SERVICE,
+                             'serviceData': {'serviceCategory': 'service-request',
+                                             'serviceParams': {
+                                                 'capabilityName': self.capability, 'skillName': self.skill
+                                             }}
+                             }
+            if self.skill_params is not None:
+                skill_params_dict = {}
+                for param in set(eval(self.skill_params)):
+                    param_value = self.form_data.get(param, None)
+                    if param_value is None:
+                        _logger.warning("The value of the {} parameter is missing, it is possible that the capability "
+                                        "cannot be executed.".format(param))
+                    skill_params_dict[param] = param_value
+                msg_body_json['serviceData']['serviceParams']['skillParameterValues'] = skill_params_dict
 
-        # The JSON for the message body is added to message object
-        msg.body = json.dumps(msg_body_json)
-        smia_id = self.selected_smia_ids[0]
+            if self.constraints is not None:
+                msg_body_json['serviceData']['serviceParams'][
+                    CapabilitySkillACLInfo.REQUIRED_CAPABILITY_CONSTRAINTS] = eval(self.constraints)
 
-        if len(self.processed_data) > 1:
-            _logger.info("There are multiple SMIAs to be requested: negotiation is required")
+            # The information of the CSS-related request is added in the agent dictionary for the HTML result page
+            self.myagent.request_exec_info['InteractionsDict'].append(
+                {'type': 'analysis', 'title': 'Analyzing operator selection ...', 'capability': self.capability,
+                 'skill': self.skill, 'constraints': self.constraints, 'smia_ids': self.selected_smia_ids})
 
-            # The negotiation request is made by performative CallForProposal (CFP)
-            general_thread = self.thread
-            self.thread = msg.thread + '-neg'   # It needs to be updated in order to receive later the associated response msg
-            msg.thread = self.thread
-            msg.metadata = SMIAInteractionInfo.NEG_STANDARD_ACL_TEMPLATE_CFP.metadata
-            # The negotiation request ACL message is prepared
-            msg_body_json['serviceData']['serviceParams']['neg_requester_jid'] = str(self.myagent.jid)
-            # The targets are added with
-            msg_body_json['serviceData']['serviceParams']['targets'] = (','.join(self.selected_smia_ids))
-            # The updated JSON for the message body is added to message object
+            # The JSON for the message body is added to message object
             msg.body = json.dumps(msg_body_json)
+            smia_id = self.selected_smia_ids[0]
 
-            for smia_id in self.selected_smia_ids:
-                # The CFP message is sent to each SMIA participant of the negotiation
+            if len(self.processed_data) > 1:
+                _logger.info("There are multiple SMIAs to be requested: negotiation is required")
+
+                # The negotiation request is made by performative CallForProposal (CFP)
+                general_thread = self.thread
+                self.thread = msg.thread + '-neg'   # It needs to be updated in order to receive later the associated response msg
+                msg.thread = self.thread
+                msg.metadata = SMIAInteractionInfo.NEG_STANDARD_ACL_TEMPLATE_CFP.metadata
+                # The negotiation request ACL message is prepared
+                msg_body_json['serviceData']['serviceParams']['neg_requester_jid'] = str(self.myagent.jid)
+                # The targets are added with
+                msg_body_json['serviceData']['serviceParams']['targets'] = (','.join(self.selected_smia_ids))
+                # The updated JSON for the message body is added to message object
+                msg.body = json.dumps(msg_body_json)
+
+                for smia_id in self.selected_smia_ids:
+                    # The CFP message is sent to each SMIA participant of the negotiation
+                    msg.to = smia_id
+                    _logger.aclinfo("Sending {} capability request to {}...".format(self.capability, smia_id))
+                    await self.send(msg)
+                    _logger.aclinfo("Message sent!")
+
+                    self.myagent.request_exec_info['Interactions'] += 1
+
+                # The information about the negotiation request is added in the dictionary for the HTML result page
+                self.myagent.request_exec_info['InteractionsDict'].append(
+                    {'type': 'acl_send', 'title': 'Requesting negotiation betweeen selected SMIAs ...',
+                     'message': 'As several SMIAs have been selected, all of them {} have been asked to negotiate with '
+                                'each other in order to obtain the best option.'.format(self.selected_smia_ids)})
+
+                # The behaviour need to wait to the response message of negotiation winner
+                self.myagent.waiting_behavs[self.thread] = self.__class__.__name__
+                _logger.info('The behaviour will wait for the winner of the negotiation...')
+                await self.receive_msg_event.wait()
+
+                # The request for negotiation has been answered
+                self.thread = general_thread
+
+                # The SMIA id to request the capability is updated to create correctly the next ACL message
+                smia_id = eval(json.loads(self.receive_msg.body)['serviceData']['serviceParams'])['winner']
+
+                # The information about the negotiation response is added in the dictionary for the HTML result page
+                response_info = {'type': 'acl_recv', 'title': 'Obtaining negotiation winner ...'}
+                if self.receive_msg.get_metadata('performative') == FIPAACLInfo.FIPA_ACL_PERFORMATIVE_FAILURE:
+                    response_info.update({'response_type': 'failure', 'response_title':
+                        'The negotiation process has not been completed.', 'response_msg':
+                        str(json.loads(self.receive_msg.body)['serviceData']['serviceParams'])})
+                else:
+                    response_info.update({'response_type': 'success', 'response_title':
+                        'The negotiation process has been completed.', 'response_msg':
+                        'The SMIA winner of the negotiation is: {}.'.format(smia_id)})
+                self.myagent.request_exec_info['InteractionsDict'].append(response_info)
+
+            if ((self.capability != 'Negotiation') or
+                    (self.capability == 'Negotiation' and len(self.processed_data) == 1)):  # TODO CUIDADO SI SE CAMBIA EL NOMBRE DE NEGOTIATION
+                # If the capacity is not Negotiation and there are several SMIA, a request for negotiation had to be made
+                # and the winner has been received, so the capacity will have to be requested from the winner. If there is
+                # only one SMIA, the capacity will be requested directly.
+
+                _logger.info("Requesting [{}] capability...".format(self.capability))
+
+                # The information about the CSS-related request is added in the dictionary for the HTML result page
+                self.myagent.request_exec_info['InteractionsDict'].append(
+                    {'type': 'acl_send', 'title': 'Requesting CSS-related capability execution ...',
+                     'message': 'The SMIA with ID [{}] has been requested to execute the capability [{}].'.format(
+                         smia_id, self.capability)})
+
                 msg.to = smia_id
                 _logger.aclinfo("Sending {} capability request to {}...".format(self.capability, smia_id))
                 await self.send(msg)
                 _logger.aclinfo("Message sent!")
+                self.myagent.request_exec_info['Interactions'] += 1
 
-            # The behaviour need to wait to the response message of negotiation winner
-            self.myagent.waiting_behavs[self.thread] = self.__class__.__name__
-            _logger.info('The behaviour will wait for the winner of the negotiation...')
-            await self.receive_msg_event.wait()
-            self.thread = general_thread
+                # The behaviour need to wait to the response message
+                self.myagent.waiting_behavs[self.thread] =  self.__class__.__name__
+                _logger.info('The behaviour will wait for the response of the CSS-related request...')
+                await self.receive_msg_event.wait()
 
-            # The SMIA id to request the capability is updated to create correctly the next ACL message
-            smia_id = eval(json.loads(self.receive_msg.body)['serviceData']['serviceParams'])['winner']
+                # The information about the CSS-related response is added in the agent dictionary for HTML result page
+                response_info = {'type': 'acl_recv', 'title': 'Obtaining negotiation winner ...',
+                                 'response_msg': str(json.loads(self.receive_msg.body)['serviceData']['serviceParams'])}
+                if self.receive_msg.get_metadata('performative') == FIPAACLInfo.FIPA_ACL_PERFORMATIVE_FAILURE:
+                    response_info.update({'response_type': 'failure', 'response_title':
+                        'The CSS-related execution has not been completed.'})
+                else:
+                    response_info.update({'response_type': 'success', 'response_title':
+                        'The CSS-related execution has not been completed.'})
 
-        if ((self.capability != 'Negotiation') or
-                (self.capability == 'Negotiation' and len(self.processed_data) == 1)):  # TODO CUIDADO SI SE CAMBIA EL NOMBRE DE NEGOTIATION
-            # If the capacity is not Negotiation and there are several SMIA, a request for negotiation had to be made
-            # and the winner has been received, so the capacity will have to be requested from the winner. If there is
-            # only one SMIA, the capacity will be requested directly.
+                self.myagent.request_exec_info['InteractionsDict'].append(response_info)
+                # self.myagent.request_exec_info['InteractionsDict'].append(
+                #     {'type': 'acl_recv', 'title': 'Obtaining CSS-related capability execution result...',
+                #      'response_type': 'failure',    # TODO A CAMBIAR
+                #      'response_title': 'TODO A CAMBIAR',
+                #      'response_msg': 'The TODO A CAMBIAR'})
 
-            _logger.info("Requesting [{}] capability...".format(self.capability))
-            msg.to = smia_id
-            _logger.aclinfo("Sending {} capability request to {}...".format(self.capability, smia_id))
-            await self.send(msg)
-            _logger.aclinfo("Message sent!")
+            # As the CSS-related request has finished, the time information is added in the agent dictionary
+            end_time = GeneralUtils.get_current_date_time()
+            duration = (datetime.fromisoformat(str(end_time)) -
+                        datetime.fromisoformat(str(self.myagent.request_exec_info['StartTime']))).total_seconds()
+            self.myagent.request_exec_info.update({'EndTime': end_time, 'Duration': duration})
 
-            # The behaviour need to wait to the response message
-            self.myagent.waiting_behavs[self.thread] =  self.__class__.__name__
-            _logger.info('The behaviour will wait for the response of the CSS-related request...')
-            await self.receive_msg_event.wait()
-
-        self.agent.css_request_info = {'Result': self.receive_msg.body, 'SMIA_list': self.selected_smia_ids,
-                                       'Capability': self.capability, 'Skill': self.skill,
-                                       'CapConstraints': self.constraints}
+        except Exception as e:
+            _logger.error("An exception occurred during an CSS-related request!")
+            _logger.error(e)
+            # The information about the error is added in the dictionary for the HTML result page
+            self.myagent.request_exec_info['InteractionsDict'].append(
+                {'type': 'exception', 'title': 'An error ocurred during the CSS-related request.', 'message': str(e)})
