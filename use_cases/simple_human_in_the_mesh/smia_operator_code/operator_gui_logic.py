@@ -10,7 +10,7 @@ from aiohttp import web
 from basyx.aas import model
 from basyx.aas.adapter import aasx
 
-from smia import SMIAGeneralInfo
+from smia import SMIAGeneralInfo, GeneralUtils
 from smia.aas_model.aas_model_utils import AASModelInfo
 from smia.behaviours.init_aas_model_behaviour import InitAASModelBehaviour
 from smia.css_ontology.css_ontology_utils import CapabilitySkillOntologyInfo, CapabilitySkillOntologyUtils
@@ -185,6 +185,8 @@ class GUIControllers:
         from operator_gui_behaviours import OperatorRequestBehaviour    # local import to avoid circular import errors
 
         data = await request.post()
+        self.myagent.request_exec_info = {'StartTime': GeneralUtils.get_current_date_time(), 'Status': 'Started',
+                                          'Interactions': 0}
 
         # Extract arrays for each field
         smia_id_list = data.getall('smia_id[]', [])

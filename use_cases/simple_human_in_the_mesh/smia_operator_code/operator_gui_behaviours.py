@@ -25,13 +25,14 @@ class OperatorGUIBehaviour(OneShotBehaviour):
         # self.agent.agent_name = str(self.agent.jid).split('@')[0]  # tambien se puede lograr mediante agent.jid.localpart
         self.agent.build_avatar_url = GUIFeatures.build_avatar_url
 
-        # The data to build operator HTML webpage is also initialized
+        # The dictionaries to build operator HTML webpage are also initialized
         self.agent.loaded_statistics = {'AASmodels': 0, 'AvailableSMIAs': 0,
                                           'Capabilities': 0, 'Skills': 0}
         self.agent.css_elems_info = {}
         self.agent.skills_info = {}
         self.agent.available_smia_selection = []
         self.agent.css_request_info = {}
+        self.agent.request_exec_info = {}
 
         _logger.info("SMIA SPADE web interface required resources initialized.")
 

@@ -3,6 +3,7 @@ import calendar
 import logging
 import os
 import time
+from datetime import datetime
 
 from spade.message import Message
 from spade.template import Template
@@ -160,6 +161,16 @@ class GeneralUtils:
             int: current timestamp in milliseconds
         """
         return calendar.timegm(time.gmtime())
+
+    @staticmethod
+    def get_current_date_time():
+        """
+        This method returns the current DateTime of the SMIA. The DateTime is obtained from the UNIX timestamp.
+
+        Returns:
+            str: current DateTime.
+        """
+        return datetime.fromtimestamp(GeneralUtils.get_current_timestamp())
 
 
 class CLIUtils:

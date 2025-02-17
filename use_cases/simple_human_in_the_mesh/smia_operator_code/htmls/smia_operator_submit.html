@@ -152,11 +152,13 @@
                                       <tbody>
                                         <tr>
                                           <th>Status:</th>
-                                          <td>Completed</td>
+                                          <td>{{ agent.request_exec_info.Status }}</td>
+<!--                                          <td>Completed</td>-->
                                         </tr>
                                         <tr>
                                           <th>Start Time:</th>
-                                          <td>2025-02-14 12:00:00</td>
+                                          <td>{{ agent.request_exec_info.StartTime }}</td>
+<!--                                          <td>2025-02-14 12:00:00</td>-->
                                         </tr>
                                         <tr>
                                           <th>End Time:</th>
@@ -168,7 +170,8 @@
                                         </tr>
                                         <tr>
                                           <th>SMIAs interactions:</th>
-                                          <td>Success</td>
+                                          <td>{{ agent.request_exec_info.Interactions }}</td>
+<!--                                          <td>Success</td>-->
                                         </tr>
                                       </tbody>
                                     </table>
