@@ -186,7 +186,8 @@ class HandleNegotiationBehaviour(CyclicBehaviour):
             _logger.assetinfo("Obtaining the negotiation value for [{}] through an asset service...".format(self.thread))
             current_neg_value = await asset_connection_class.execute_asset_service(
                 interaction_metadata=aas_skill_interface_elem)
-            _logger.assetinfo("Negotiation value for [{}] through an obtained.".format(self.thread))
+            _logger.assetinfo("Negotiation value for [{}] through an asset service obtained: {}.".format(
+                self.thread, current_neg_value))
             if not isinstance(current_neg_value, float):
                 try:
                     svc_execution_result = float(current_neg_value)

@@ -475,7 +475,7 @@
             <div class="pull-right hidden-xs">
                 <b>Version</b> 0.2.1
             </div>
-            <strong>Copyright © {% now 'local', '%Y' %} <a href="https://github.com/ekhurtado/I4_0_SMIA">SMIA</a>.</strong>
+            <strong>Copyright © {% now 'local', '%Y' %} <a href="https://github.com/ekhurtado/I4_0_SMIA" target="_blank">SMIA</a>.</strong>
         </footer>
 
     </div>
@@ -620,7 +620,7 @@
 
             function getSpecificConstraintValue(constName) {
                 let constraintValue = prompt(`Please enter a value for the constraint ${constName}:`);
-                if (constraintValue === null) {
+                if ((constraintValue === null) || (constraintValue.trim() === '')) {
                     return getSpecificConstraintValue(constName);
                 }
                 return constraintValue;
@@ -633,15 +633,24 @@
                         skillDict.push(skillRow.textContent.trim());
                     });
 
+                    // Build a numbered display of options
+                    let optionDisplay = skillDict.map((option, index) => (index + 1) + "- " + option).join("\n");
+
                     let userChoice;
                     do {
-                        userChoice = prompt("Please enter one of the options:\n\n  " + skillDict.join("\n  ") +
-                            "\n\nClick cancel button to use a random skill.");
+                        userChoice = prompt("Please enter one of the options (number or text):\n\n" + optionDisplay +
+                            "\n\nClick cancel to use a random skill.");
                         if (userChoice === null) return availableSkillsRows[0].textContent; // If user cancels prompt
 
-                    } while (!skillDict.includes(userChoice.trim()));  // Keep asking if input is invalid
-                    return userChoice
-
+                        // Check if the input is a valid number
+                        let numericChoice = parseInt(userChoice, 10);
+                        if (!isNaN(numericChoice) && numericChoice >= 1 && numericChoice <= skillDict.length) {
+                            return skillDict[numericChoice - 1];
+                        } else if (skillDict.includes(userChoice)) {
+                            return userChoice;
+                        }
+                        // Loop again if the choice is invalid.
+                    } while (true);  // Keep asking if input is invalid
                 } else {
                     return availableSkillsRows[0].textContent;
                 }

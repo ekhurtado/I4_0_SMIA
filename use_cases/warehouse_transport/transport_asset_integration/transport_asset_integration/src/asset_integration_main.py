@@ -25,7 +25,9 @@ def get_all_robot_properties():
 @app.route('/robotproperties/<string:property_name>', methods=['GET', 'POST'])
 def get_robot_property(property_name):
     if request.method == 'GET':
+        print("Robot property [{}] requested".format(property_name))
         if not check_request_parameter(property_name, 'property'):
+            print("Property {} does not exist.".format(property_name))
             return jsonify({"status": "error", "message": "Property not found"}), 404
 
         print("Since the request data is valid, the service will be processed")
@@ -44,7 +46,9 @@ def get_robot_property(property_name):
 
 @app.route('/robotactions/<string:action_name>', methods=['GET'])
 def execute_robot_action(action_name):
+    print("Robot action [{}] requested".format(action_name))
     if not check_request_parameter(action_name, 'action'):
+        print("Action {} does not exist.".format(action_name))
         return jsonify({"status": "error", "message": "Action not found"}), 404
 
     # If all required parameters are present, the action can be executed

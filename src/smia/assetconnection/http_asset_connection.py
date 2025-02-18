@@ -116,7 +116,8 @@ class HTTPAssetConnection(AssetConnection):
         http_response = await self.send_http_request()
         if http_response:
             if http_response.status != 200:
-                _logger.warning("The HTTP request has not been answered correctly.")
+                _logger.warning("The HTTP request has not been answered correctly. "
+                                "Response: {}".format(await http_response.text()))
             return await self.get_response_content(interaction_metadata, await http_response.text())
         return None
 

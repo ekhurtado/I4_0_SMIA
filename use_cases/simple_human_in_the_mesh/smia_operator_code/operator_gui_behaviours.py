@@ -1,4 +1,5 @@
 import asyncio
+import copy
 import json
 import logging
 from collections import OrderedDict
@@ -150,7 +151,6 @@ class OperatorRequestBehaviour(OneShotBehaviour):
         try:
             # The ACL message template is created
             msg = Message(thread=self.thread)
-            msg.metadata = SMIAInteractionInfo.CAP_STANDARD_ACL_TEMPLATE_REQUEST.metadata
             msg_body_json = {'serviceID': 'capabilityRequest',
                              'serviceType': ServiceTypes.ASSET_RELATED_SERVICE,
                              'serviceData': {'serviceCategory': 'service-request',
@@ -189,19 +189,21 @@ class OperatorRequestBehaviour(OneShotBehaviour):
                 self.thread = msg.thread + '-neg'   # It needs to be updated in order to receive later the associated response msg
                 msg.thread = self.thread
                 msg.metadata = SMIAInteractionInfo.NEG_STANDARD_ACL_TEMPLATE_CFP.metadata
-                # The negotiation request ACL message is prepared
-                msg_body_json['serviceData']['serviceParams']['neg_requester_jid'] = str(self.myagent.jid)
-                # The targets are added with
-                msg_body_json['serviceData']['serviceParams']['targets'] = (','.join(self.selected_smia_ids))
+                # The negotiation request ACL message is prepared (with skill for using RAM that every SMIA has)
+                neg_body_json = copy.deepcopy(msg_body_json)
+                neg_body_json['serviceData']['serviceParams'].update(
+                    {'neg_requester_jid': str(self.myagent.jid), 'targets': (','.join(self.selected_smia_ids)),
+                     'capabilityName': 'Negotiation', 'skillName': 'NegotiationBasedOnRAM'})
+
                 # The updated JSON for the message body is added to message object
-                msg.body = json.dumps(msg_body_json)
+                msg.body = json.dumps(neg_body_json)
 
                 for smia_id in self.selected_smia_ids:
                     # The CFP message is sent to each SMIA participant of the negotiation
                     msg.to = smia_id
                     _logger.aclinfo("Sending {} capability request to {}...".format(self.capability, smia_id))
                     await self.send(msg)
-                    _logger.aclinfo("Message sent!")
+                    _logger.aclinfo("Message sent to {}!".format(msg.to))
 
                     self.myagent.request_exec_info['Interactions'] += 1
 
@@ -240,8 +242,17 @@ class OperatorRequestBehaviour(OneShotBehaviour):
                 # and the winner has been received, so the capacity will have to be requested from the winner. If there is
                 # only one SMIA, the capacity will be requested directly.
 
-                _logger.info("Requesting [{}] capability...".format(self.capability))
+                if self.capability == 'Negotiation':
+                    # In this particular case, the negotiation request is made via the performative CallForProposal
+                    msg.metadata = SMIAInteractionInfo.NEG_STANDARD_ACL_TEMPLATE_CFP.metadata
+                    msg_body_json['serviceData']['serviceParams'].update({'neg_requester_jid': str(self.myagent.jid),
+                                                                          'targets': smia_id})
+                else:
+                    msg.metadata = SMIAInteractionInfo.CAP_STANDARD_ACL_TEMPLATE_REQUEST.metadata
 
+                msg.body = json.dumps(msg_body_json)
+
+                _logger.info("Requesting [{}] capability...".format(self.capability))
                 # The information about the CSS-related request is added in the dictionary for the HTML result page
                 self.myagent.request_exec_info['InteractionsDict'].append(
                     {'type': 'acl_send', 'title': 'Requesting CSS-related capability execution ...',
@@ -251,7 +262,7 @@ class OperatorRequestBehaviour(OneShotBehaviour):
                 msg.to = smia_id
                 _logger.aclinfo("Sending {} capability request to {}...".format(self.capability, smia_id))
                 await self.send(msg)
-                _logger.aclinfo("Message sent!")
+                _logger.aclinfo("Message sent to {}!".format(msg.to))
                 self.myagent.request_exec_info['Interactions'] += 1
 
                 # The behaviour need to wait to the response message
