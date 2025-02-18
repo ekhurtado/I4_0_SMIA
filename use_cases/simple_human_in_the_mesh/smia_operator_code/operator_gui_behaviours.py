@@ -80,8 +80,8 @@ class OperatorReceiveBehaviour(CyclicBehaviour):
     async def run(self) -> None:
         msg = await self.receive(timeout=10)  # wait for a message for 10 seconds
         if msg:
-            _logger.aclinfo("FIPA-ACL Message received from {} with content: {}".format(msg.sender, msg.body))
-            _logger.aclinfo("FIPA-ACL Performative: {}".format(msg.get_metadata('performative')))
+            _logger.aclinfo("FIPA-ACL Message received from {} with performative {} and content: {}".format(
+                msg.sender, msg.get_metadata('performative'), msg.body))
             self.agent.received_msgs.append(msg)
             if msg.thread in self.agent.waiting_behavs:
                 _logger.info("There is a behaviour waiting for this message.")
@@ -96,6 +96,9 @@ class OperatorReceiveBehaviour(CyclicBehaviour):
                     # Once the exact behaviour has been found, its execution is unlocked and the ACL message is offered
                     behaviour.receive_msg = msg
                     behaviour.receive_msg_event.set()
+                    # The Event object is unset so that it can be used again.
+                    behaviour.receive_msg_event.clear()
+
                     # The behaviour is also remove from the global dictionary
                     self.agent.waiting_behavs.pop(thread)
                     break
@@ -185,9 +188,9 @@ class OperatorRequestBehaviour(OneShotBehaviour):
                 _logger.info("There are multiple SMIAs to be requested: negotiation is required")
 
                 # The negotiation request is made by performative CallForProposal (CFP)
-                general_thread = self.thread
+                general_thread = str(self.thread)
                 self.thread = msg.thread + '-neg'   # It needs to be updated in order to receive later the associated response msg
-                msg.thread = self.thread
+                # msg.thread = self.thread
                 msg.metadata = SMIAInteractionInfo.NEG_STANDARD_ACL_TEMPLATE_CFP.metadata
                 # The negotiation request ACL message is prepared (with skill for using RAM that every SMIA has)
                 neg_body_json = copy.deepcopy(msg_body_json)
@@ -201,8 +204,11 @@ class OperatorRequestBehaviour(OneShotBehaviour):
                 for smia_id in self.selected_smia_ids:
                     # The CFP message is sent to each SMIA participant of the negotiation
                     msg.to = smia_id
-                    _logger.aclinfo("Sending {} capability request to {}...".format(self.capability, smia_id))
-                    await self.send(msg)
+                    _logger.aclinfo("Sending Negotiation request to {}...".format(smia_id))
+                    neg_msg = OperatorRequestBehaviour.create_acl_msg(
+                        smia_id, self.thread, SMIAInteractionInfo.NEG_STANDARD_ACL_TEMPLATE_CFP.metadata, neg_body_json)
+                    await self.send(neg_msg)
+                    # await self.send(msg)
                     _logger.aclinfo("Message sent to {}!".format(msg.to))
 
                     self.myagent.request_exec_info['Interactions'] += 1
@@ -219,7 +225,7 @@ class OperatorRequestBehaviour(OneShotBehaviour):
                 await self.receive_msg_event.wait()
 
                 # The request for negotiation has been answered
-                self.thread = general_thread
+                self.thread = msg.thread
 
                 # The SMIA id to request the capability is updated to create correctly the next ACL message
                 smia_id = eval(json.loads(self.receive_msg.body)['serviceData']['serviceParams'])['winner']
@@ -244,22 +250,23 @@ class OperatorRequestBehaviour(OneShotBehaviour):
 
                 if self.capability == 'Negotiation':
                     # In this particular case, the negotiation request is made via the performative CallForProposal
-                    msg.metadata = SMIAInteractionInfo.NEG_STANDARD_ACL_TEMPLATE_CFP.metadata
+                    msg_metadata = SMIAInteractionInfo.NEG_STANDARD_ACL_TEMPLATE_CFP.metadata
                     msg_body_json['serviceData']['serviceParams'].update({'neg_requester_jid': str(self.myagent.jid),
                                                                           'targets': smia_id})
                 else:
-                    msg.metadata = SMIAInteractionInfo.CAP_STANDARD_ACL_TEMPLATE_REQUEST.metadata
+                    msg_metadata = SMIAInteractionInfo.CAP_STANDARD_ACL_TEMPLATE_REQUEST.metadata
 
-                msg.body = json.dumps(msg_body_json)
+                # msg.body = json.dumps(msg_body_json)
+                msg = OperatorRequestBehaviour.create_acl_msg(smia_id, self.thread, msg_metadata, msg_body_json)
 
-                _logger.info("Requesting [{}] capability...".format(self.capability))
+                _logger.info("The selected capability to be executed is [{}].".format(self.capability))
                 # The information about the CSS-related request is added in the dictionary for the HTML result page
                 self.myagent.request_exec_info['InteractionsDict'].append(
                     {'type': 'acl_send', 'title': 'Requesting CSS-related capability execution ...',
                      'message': 'The SMIA with ID [{}] has been requested to execute the capability [{}].'.format(
                          smia_id, self.capability)})
 
-                msg.to = smia_id
+                # msg.to = smia_id
                 _logger.aclinfo("Sending {} capability request to {}...".format(self.capability, smia_id))
                 await self.send(msg)
                 _logger.aclinfo("Message sent to {}!".format(msg.to))
@@ -271,21 +278,16 @@ class OperatorRequestBehaviour(OneShotBehaviour):
                 await self.receive_msg_event.wait()
 
                 # The information about the CSS-related response is added in the agent dictionary for HTML result page
-                response_info = {'type': 'acl_recv', 'title': 'Obtaining negotiation winner ...',
+                response_info = {'type': 'acl_recv', 'title': 'Obtaining CSS-related capability execution result ...',
                                  'response_msg': str(json.loads(self.receive_msg.body)['serviceData']['serviceParams'])}
                 if self.receive_msg.get_metadata('performative') == FIPAACLInfo.FIPA_ACL_PERFORMATIVE_FAILURE:
                     response_info.update({'response_type': 'failure', 'response_title':
                         'The CSS-related execution has not been completed.'})
                 else:
                     response_info.update({'response_type': 'success', 'response_title':
-                        'The CSS-related execution has not been completed.'})
+                        'The CSS-related execution has been completed.'})
 
                 self.myagent.request_exec_info['InteractionsDict'].append(response_info)
-                # self.myagent.request_exec_info['InteractionsDict'].append(
-                #     {'type': 'acl_recv', 'title': 'Obtaining CSS-related capability execution result...',
-                #      'response_type': 'failure',    # TODO A CAMBIAR
-                #      'response_title': 'TODO A CAMBIAR',
-                #      'response_msg': 'The TODO A CAMBIAR'})
 
             # As the CSS-related request has finished, the time information is added in the agent dictionary
             end_time = GeneralUtils.get_current_date_time()
@@ -299,3 +301,23 @@ class OperatorRequestBehaviour(OneShotBehaviour):
             # The information about the error is added in the dictionary for the HTML result page
             self.myagent.request_exec_info['InteractionsDict'].append(
                 {'type': 'exception', 'title': 'An error ocurred during the CSS-related request.', 'message': str(e)})
+
+
+    @staticmethod
+    def create_acl_msg(receiver_jid, thread, metadata, body_json):
+        """
+        This method creates an FIPA-ACL SPADE message.
+
+        Args:
+            receiver_jid (str): the JID of the SMIA agent receiver.
+            thread (str): thread of the message.
+            metadata: metadata of the message.
+            body_json (dict): the body of the message in JSON format.
+
+        Returns:
+            spade.message.Message: the SPADE message object.
+        """
+        msg = Message(to=receiver_jid, thread=thread)
+        msg.metadata = metadata
+        msg.body = json.dumps(body_json)
+        return msg
