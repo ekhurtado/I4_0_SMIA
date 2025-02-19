@@ -192,11 +192,16 @@ class OperatorRequestBehaviour(OneShotBehaviour):
                 self.thread = msg.thread + '-neg'   # It needs to be updated in order to receive later the associated response msg
                 # msg.thread = self.thread
                 msg.metadata = SMIAInteractionInfo.NEG_STANDARD_ACL_TEMPLATE_CFP.metadata
-                # The negotiation request ACL message is prepared (with skill for using RAM that every SMIA has)
+                # The negotiation request ACL message is prepared
                 neg_body_json = copy.deepcopy(msg_body_json)
-                neg_body_json['serviceData']['serviceParams'].update(
-                    {'neg_requester_jid': str(self.myagent.jid), 'targets': (','.join(self.selected_smia_ids)),
-                     'capabilityName': 'Negotiation', 'skillName': 'NegotiationBasedOnRAM'})
+                neg_body_json['serviceData']['serviceParams'].update({'neg_requester_jid': str(self.myagent.jid),
+                                                                      'targets': (','.join(self.selected_smia_ids))})
+                     # 'capabilityName': 'Negotiation', 'skillName': 'NegotiationBasedOnRAM'})
+
+                if self.capability != 'Negotiation':
+                    # If the capability requested is not Negotiation, the skill will be using RAM that every SMIA has
+                    neg_body_json['serviceData']['serviceParams'].update({'capabilityName': 'Negotiation',
+                                                                          'skillName': 'NegotiationBasedOnRAM'})
 
                 # The updated JSON for the message body is added to message object
                 msg.body = json.dumps(neg_body_json)
