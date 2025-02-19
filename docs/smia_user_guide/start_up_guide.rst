@@ -147,9 +147,69 @@ In this case, we link the ``aas`` folder located on the same desktop where the c
 Running with Docker Compose
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-En el caso de no querer que preocuparse por la infraestructura, es posible utilizar la herramienta `Docker Compose <https://docs.docker.com/compose/>`_, añadiendo todo lo necesario en un único archivo y ejecutando SMIA mediante un único comando.
+In all the previous methods it is necessary to have the XMPP server accessible, as it is required because SMIA integrates the SPADE development platform, based on this protocol. In the case of not wanting to worry about the infrastructure, there are possibilities of generating a shared environment in which both SMIA and the necessary infrastructure can be deployed. The most efficient options for self-contained deployments are always related to containerized virtualization.
 
-.. TODO FALTA POR EXPLICAR COMO ARRANCAR CON DOCKER COMPOSE (añadiendo xmpp server)
+Docker containerization technology offers us a tool that we can use for this need: `Docker Compose <https://docs.docker.com/compose/>`_. It allows to define in a single file different Docker containers, running all of them in a shared environment and accessible through a single command.
 
+As for the minimum infrastructure for SMIA, only an XMPP server is needed. There are several options, so in this example the `Ejabberd <https://www.ejabberd.im/>`_ server will be presented. The file that is required to be developed for Docker Compose is named ``docker-compose.yml``. Therefore, as shown below, both the SMIA Docker container and the Ejabberd XMPP server container have been added.
 
-.. TODO FALTA POR REPASAR
+.. code:: yaml
+
+    services:
+
+      smia:
+        image: ekhurtado/smia:alpine-latest
+        container_name: smia
+        environment:
+          - AAS_MODEL_NAME=<path_to_AASX_package>
+          - AGENT_ID=<agent-id>@ejabberd
+          - AGENT_PSSWD=<agent-password>
+        depends_on:
+          xmpp-server:
+            condition: service_healthy
+        volumes:
+          - ./aas:/smia_archive/config/aas
+
+      xmpp-server:
+        image: ghcr.io/processone/ejabberd
+        container_name: ejabberd
+        environment:
+          - ERLANG_NODE_ARG=admin@ejabberd
+          - ERLANG_COOKIE=dummycookie123
+          - CTL_ON_CREATE=! register admin localhost asd
+        ports:
+          - "5222:5222"
+          - "5269:5269"
+          - "5280:5280"
+          - "5443:5443"
+        volumes:
+          - ./xmpp_server/ejabberd.yml:/opt/ejabberd/conf/ejabberd.yml
+        healthcheck:
+          test: netstat -nl | grep -q 5222
+          start_period: 5s
+          interval: 5s
+          timeout: 5s
+          retries: 10
+
+.. dropdown:: Explanation of ``docker-compose.yml``
+    :octicon:`file-code;1em;sd-text-primary`
+
+    The explanation of the ``docker-compose.yml`` file is shown in order of element appearance:
+
+        - ``image``: where the Docker image is set. For SMIA the alpine image has been added.
+        - ``depends_on``: here it is set that SMIA should not start until the XMPP server container has been successfully started.
+        - ``volumes``: links the host folder to the SMIA container folder, because this is the way SMIA is made accessible for its associated AAS model.
+        - ``xmpp-server``: the definition provided by the official Ejabberd page for deployment via Docker container has been added.
+
+Una vez definido y almacenado este archivo, se puede desplegar tanto SMIA con el servidor XMPP mediante un único comando ejecutado en el mismo directorio que el archivo ``docker-compose.yml``.
+
+.. code:: bash
+
+    docker-compose up
+
+To stop the execution you can execute ``Ctrl+C`` and to delete the environment and the containers inside it you can execute the following command:
+
+.. code:: bash
+
+    docker-compose down
+

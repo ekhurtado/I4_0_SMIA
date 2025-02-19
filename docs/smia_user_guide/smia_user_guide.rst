@@ -12,6 +12,7 @@ These guides are a comprehensive resource for using the :term:`SMIA` software. F
     aas_development_guide
     smia_configuration_guide
     start_up_guide
+    extension_guide
 
 Installation of required resources
 ----------------------------------
@@ -42,14 +43,12 @@ SMIA can be start-up and run through several methods, so they are detailed one b
 
     The guide is available at :octicon:`repo;1em` :ref:`SMIA Start-up Guide`.
 
-.. TODO esto pasarlo a otra subguia dedicada explicitamente al arranque
+SMIA extension
+--------------
+
+SMIA can be extended to add custom code to the offered base, in order to add more autonomy and intelligence to the software. The extension mechanisms are detailed in the following guide.
+
+    The guide is available at :octicon:`repo;1em` :ref:`SMIA Extension Guide`.
 
 
-.. Configuration via Docker
-.. ~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. TODO FALTA POR HACER
-
-.. Configuration via Python package
-.. ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
