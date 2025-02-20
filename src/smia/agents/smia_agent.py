@@ -28,9 +28,6 @@ class SMIAAgent(Agent):
 
     acl_svc_requests = {}   #: Dictionary to save FIPA-ACL service requests
     acl_svc_responses = {}   #: Dictionary to save FIPA-ACL service responses
-    interaction_id_num = 0  #: Identifier for Intra AAS interaction, created by the SMIA
-    interaction_requests = {}  #: Dictionary to save Intra AAS interaction requests
-    interaction_responses = {}  #: Dictionary to save Intra AAS interaction responses
     negotiations_data = {}  #: Dictionary to save negotiations related information
     aas_model = None  #: Object with the extended AAS model
     css_ontology = None  #: Object with the Capability-Skill-Service ontology
@@ -69,12 +66,6 @@ class SMIAAgent(Agent):
         self.acl_messages_id = 0  # It is reset
         self.acl_svc_requests = {}
         self.acl_svc_responses = {}
-
-        # Objects to store the information related to AAS Manager-Core interactions are initialized
-        self.interaction_id_num = 0  # The interactionId number is reset
-        self.interaction_id = 'manager-' + str(self.interaction_id_num)  # The complete interactionId
-        self.interaction_requests = {}
-        self.interaction_responses = {}
 
         # Object to store the information related to negotiations is initialized
         self.negotiations_data = {}
@@ -127,24 +118,6 @@ class SMIAAgent(Agent):
     # ----------------------------------------------
     # Methods related to shared objects of the agent
     # ----------------------------------------------
-    async def get_interaction_id(self):
-        """
-        This method returns the identifier of the AAS Intra interactions of the SMIA.
-
-        Returns:
-            str: identifier of the interaction id.
-        """
-        async with self.lock:
-            return 'manager-' + str(self.interaction_id_num)
-
-    async def increase_interaction_id_num(self):
-        """
-        This method increases the interaction id number for the AAS Intra interactions between the SMIA and the
-        AAS Core.
-        """
-        async with self.lock:
-            self.interaction_id_num += 1
-
     async def save_new_acl_svc_request(self, thread, request_data):
         """
         This method adds a new ACL Service Request to the global acl service requests dictionary of the SMIA.
@@ -191,57 +164,6 @@ class SMIAAgent(Agent):
         async with self.lock:  # safe access to a shared object of the agent
             if thread in self.acl_svc_requests:
                 return self.acl_svc_requests[thread]
-            else:
-                return None
-
-    async def save_interaction_request(self, interaction_id, request_data):
-        """
-        This method adds a specific Intra AAS interaction Request to the global requests dictionary of the SMIA
-        for this type of interaction using a specific interaction id.
-
-        Args:
-            interaction_id (str): interaction identifier of the Intra AAS interaction request.
-            request_data (dict): all the information of the Intra AAS interaction Request in JSON format.
-        """
-        async with self.lock:  # safe access to a shared object of the agent
-            self.interaction_requests[interaction_id] = request_data
-
-    async def save_interaction_response(self, interaction_id, response_data):
-        """
-        This method adds a specific Intra AAS interaction response to the global responses dictionary of the SMIA
-        for this type of interaction.
-
-        Args:
-            interaction_id (str): identifier of the Intra AAS interaction response.
-            response_data (dict): all the information of the ACL Service response in JSON format.
-        """
-        async with self.lock:  # safe access to a shared object of the agent
-            self.interaction_responses[interaction_id] = response_data
-
-    async def remove_interaction_request(self, interaction_id):
-        """
-        This method removes an Intra AAS interaction Request from the global requests dictionary of the SMIA for
-        this type of interaction.
-
-        Args:
-            interaction_id (str): interaction identifier of the Intra AAS interaction Request.
-        """
-        async with self.lock:  # safe access to a shared object of the agent
-            self.interaction_requests.pop(interaction_id, None)
-
-    async def get_interaction_request(self, interaction_id):
-        """
-        This method gets the information of an Intra AAS Interaction Request from the global acl service requests
-        dictionary of the SMIA using the interaction identifier.
-        Args:
-            interaction_id (str): interaction identifier of the Intra AAS interaction Request.
-
-        Returns:
-            dict: all information of the Intra AAS Interaction Request in JSON format (null if the thread does not exist).
-        """
-        async with self.lock:  # safe access to a shared object of the agent
-            if interaction_id in self.interaction_requests:
-                return self.interaction_requests[interaction_id]
             else:
                 return None
 

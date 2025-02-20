@@ -67,180 +67,6 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
     # ------------------------------------------
     # Methods to handle of all types of services
     # ------------------------------------------
-    # TODO BORRAR METODO (unused)
-    # async def handle_request_old(self):
-    #     """
-    #     This method handle capability requests to the DT.
-    #     """
-    #     if self.svc_req_data[
-    #         'serviceID'] == 'capabilityRequest':  #  TODO CAMBIARLO POR LA ONTOLOGIA DEL MENSAJE ACL (ahi irá el 'CapabilityRequest')
-    #         # First, the capability to be performed will be obtained from the internal AAS model
-    #         # TODO, para este paso, se podrian almacenar las capacidades que se han verificado ya cuando se recibe el
-    #         #  Query-If (se supone que otro agente debería mandar en CallForProposal despues del Query-If, pero para
-    #         #  añadirle una validacion extra) Esto podria hacerse con el thread (el Query-If y CFP estarían en la misma
-    #         #  negociacion?). Otra opcion es siempre ejecutar aas_model.capability_checking_from_acl_request()
-    #
-    #         try:
-    #             # The capability checking should be also performed to ensure that the DT can perform it. In this case,
-    #             # the capability checking is performed in separate steps
-    #             # The data received is checked to ensure that it contains all the necessary information.
-    #             await self.check_received_capability_request_data()
-    #             received_cap_data = self.svc_req_data['serviceData']['serviceParams']
-    #
-    #             # TODO: CUIDADO a partir de ahora es el codigo antiguo (sin tener en cuenta la ontologia)
-    #             # First, the skill interface elem need to be obtained. The capability element will be used for this.
-    #             cap_name = received_cap_data[CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME]
-    #             capability_elem = await self.myagent.aas_model.get_capability_by_id_short(
-    #                 cap_type=received_cap_data[CapabilitySkillACLInfo.REQUIRED_CAPABILITY_TYPE],
-    #                 cap_id_short=cap_name)
-    #             skill_elem = await self.myagent.aas_model.get_skill_data_by_capability(capability_elem,
-    #                                                                                    'skillObject')
-    #
-    #             # The received skill information must be also checked
-    #             await self.check_received_skill_data(skill_elem)
-    #
-    #             # TODO PENSAR QUE HACER CON EL TEMA DEL SKILL INTERFACE (dejarlo como ahora u obligar a que la relación skill con su interfaz sea siempre directa)
-    #             # There are two situations: the 'skillaccesiblethrough' relationship of the skill points to a submodel
-    #             # element within AssetInterfacesSubmodel, so the skill interface element can be obtained directly.
-    #             skill_interface_elem = await self.myagent.aas_model.get_skill_data_by_capability(capability_elem,
-    #                                                                                              'skillInterface')
-    #             # In the second situation the 'skillaccesiblethrough' relationship of the skill points to a
-    #             # ConceptDescription. In this case there are different skill interfaces, depending on the values of
-    #             # skill parameters, which are defined in the ConceptDescription.
-    #             if isinstance(skill_interface_elem, basyx.aas.model.ConceptDescription):
-    #                 # To obtain the appropriate skill interface, first the received value that determines the skill
-    #                 # interface is located. The value need to be part of a skill parameter and the semanticID is its
-    #                 # valueId attribute
-    #                 skill_parameter_id_short = skill_elem.get_variable_value_id(skill_interface_elem.id)
-    #                 # Since the id_short of the parameter is the same key as the received value, the value can be got
-    #                 skill_parameter_value = received_cap_data[CapabilitySkillACLInfo.REQUIRED_SKILL_INFO][
-    #                     CapabilitySkillACLInfo.REQUIRED_SKILL_PARAMETERS][
-    #                     CapabilitySkillACLInfo.REQUIRED_SKILL_INPUT_PARAMETERS][skill_parameter_id_short]
-    #                 skill_parameter_value_semantic_id = await self.myagent.aas_model.get_concept_description_pair_value_id_by_value_name(
-    #                     skill_interface_elem.id, skill_parameter_value)
-    #                 skill_interface_elem = await self.myagent.aas_model.get_asset_interface_interaction_metadata_by_value_semantic_id(
-    #                     skill_parameter_value_semantic_id)
-    #
-    #             if not skill_interface_elem:
-    #                 raise CapabilityRequestExecutionError(cap_name, "The capability {} could not be executed because "
-    #                                                                 "its skill interface element was not found.".format(
-    #                     cap_name), self)
-    #
-    #             # SkillInterface will be an SME action inside the AssetInterfacesDescription submodel. The interface
-    #             # will be already configured from the agent Booting state, so it will be possible to execute the
-    #             # AssetConnection sending method passing the SkillInterface to it. The AssetConnection will collect the
-    #             # necessary information from the SkillInterface (from the SubmodelElement). The asset connection message
-    #             # sending method will wait for the response, as well as the CapabilityHandleBehaviour.
-    #             asset_connection_ref = skill_interface_elem.get_parent_ref_by_semantic_id(
-    #                 AssetInterfacesInfo.SEMANTICID_INTERFACE)
-    #             # Once the Asset Connection reference is obtained, the associated class can be used to
-    #             # connect with the asset
-    #             asset_connection_class = await self.myagent.get_asset_connection_class_by_ref(asset_connection_ref)
-    #             if not asset_connection_ref:
-    #                 raise CapabilityRequestExecutionError(cap_name, "The capability {} could not be executed because "
-    #                                                                 "the asset connection of its skill interface element was not found.".format(
-    #                     cap_name), self)
-    #
-    #             received_skill_input_parameters, received_skill_output_parameters, skill_params_exposures = \
-    #                 await self.get_asset_connection_input_data_by_skill(skill_elem)
-    #
-    #             _logger.assetinfo("The Asset connection of the Skill Interface has been obtained.")
-    #             _logger.assetinfo(
-    #                 "Executing skill of the capability through a request of an asset service...")
-    #             skill_execution_result = await asset_connection_class.execute_skill_by_asset_service(
-    #                 interaction_metadata=skill_interface_elem,
-    #                 skill_params_exposure_elem=skill_params_exposures,
-    #                 skill_input_params=received_skill_input_parameters,
-    #                 skill_output_params=received_skill_output_parameters)
-    #             if skill_execution_result:
-    #                 _logger.assetinfo("Skill of the capability successfully executed.")
-    #
-    #                 # In case there are output skill parameters, the result will be added to this parameters
-    #                 if received_skill_output_parameters:
-    #                     skill_execution_result = {received_skill_output_parameters: skill_execution_result}
-    #                 else:
-    #                     skill_execution_result = 'Success'
-    #
-    #                 # Se comprueba si la capacidad requerida tiene postcondiciones
-    #                 # constraints_values = received_cap_data[CapabilitySkillACLInfo.REQUIRED_CAPABILITY_CONSTRAINTS]
-    #                 # await self.myagent.aas_model.skill_feasibility_checking_post_conditions(capability_elem,
-    #                 #                                                                         constraints_values)
-    #
-    #             else:
-    #                 _logger.warning("Failed to execute the skill of the capability correctly.")
-    #
-    #             # When the skill has finished, the request is answered
-    #             await self.send_response_msg_to_sender(FIPAACLInfo.FIPA_ACL_PERFORMATIVE_INFORM,
-    #                                                    {'result': skill_execution_result})
-    #             _logger.info("Management of the capability {} finished.".format(capability_elem))
-    #         except (RequestDataError, CapabilityCheckingError, CapabilityRequestExecutionError,
-    #                 AssetConnectionError) as cap_request_error:  # TODO pensar si hay mas (p.e. AssetConnectionError)
-    #             if isinstance(cap_request_error, RequestDataError):
-    #                 if CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME in received_cap_data:
-    #                     cap_request_error = CapabilityRequestExecutionError(
-    #                         received_cap_data[CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME],
-    #                         cap_request_error.message, self)
-    #                 else:
-    #                     cap_request_error = CapabilityRequestExecutionError('', cap_request_error.message, self)
-    #             if isinstance(cap_request_error, CapabilityCheckingError):
-    #                 cap_request_error = CapabilityRequestExecutionError(cap_request_error.cap_name,
-    #                                                                     cap_request_error.reason, self)
-    #             if isinstance(cap_request_error, AssetConnectionError):
-    #                 cap_request_error = CapabilityRequestExecutionError(
-    #                     received_cap_data[CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME], f"The error "
-    #                                                                                         f"[{cap_request_error.error_type}] has appeared during the asset connection. "
-    #                                                                                         f"Reason: {cap_request_error.reason}.",
-    #                     self)
-    #
-    #             await cap_request_error.handle_capability_execution_error()
-    #             return  # killing a behaviour does not cancel its current run loop
-    #     else:
-    #         pass
-    #         # TODO pensar que situaciones habria
-
-    # TODO BORRAR METODO (unused)
-    # async def handle_query_if_old(self):
-    #     if self.svc_req_data['serviceID'] == 'capabilityChecking':
-    #         # The DT has been asked if it has a given capability.
-    #         # First, the information about the received capability is obtained
-    #         received_cap_data = self.svc_req_data['serviceData']['serviceParams']
-    #
-    #         # It will be checked if the DT can perform the received capability
-    #         try:
-    #             # First, the received data is checked
-    #             await self.check_received_capability_request_data()
-    #
-    #             # Then, the capability checking process can be executed
-    #             result = await self.myagent.aas_model.capability_checking_from_acl_request(received_cap_data)
-    #
-    #             # The information will be stored in the log
-    #             execution_info = {'capName': received_cap_data[CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME],
-    #                               # 'capType': str(cap_ontology_instance.is_a),  # TODO modificar el codigo para usar ontologia
-    #                               'result': str(result)}
-    #             smia_archive_utils.save_completed_svc_log_info(self.requested_timestamp,
-    #                                                            GeneralUtils.get_current_timestamp(),
-    #                                                            self.svc_req_data, execution_info,
-    #                                                            self.svc_req_data['serviceType'])
-    #         except (RequestDataError, CapabilityCheckingError) as cap_checking_error:
-    #             if isinstance(cap_checking_error, RequestDataError):
-    #                 if CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME in received_cap_data:
-    #                     cap_checking_error = CapabilityCheckingError(
-    #                         received_cap_data[CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME],
-    #                         cap_checking_error.message)
-    #                 else:
-    #                     cap_checking_error = CapabilityCheckingError('', cap_checking_error.message)
-    #
-    #             cap_checking_error.add_behav_class(self)
-    #             await cap_checking_error.handle_capability_checking_error()
-    #             return  # killing a behaviour does not cancel its current run loop
-    #
-    #         await self.send_response_msg_to_sender(FIPAACLInfo.FIPA_ACL_PERFORMATIVE_INFORM, {'result': result})
-    #         _logger.info("The Capability [{}] has been checked, with result: {}.".format(
-    #             received_cap_data[CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME], result))
-    #     else:
-    #         # TODO pensar otras categorias para capabilities
-    #         pass
-
     async def handle_request(self):
         """
         This method handle capability requests to the DT.
@@ -353,7 +179,7 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
         control) and Exposure and Discovery Services (to search for submodels or asset related services).
 
         """
-        _logger.info(await self.myagent.get_interaction_id() + str(self.svc_req_data))
+        _logger.info('CSS-related INFORM performative message: ' + str(self.svc_req_data))
 
 
     # Internal logic methods
@@ -366,7 +192,7 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
             performative (str): performative according to FIPA-ACL standard.
             service_params (dict): JSON with the serviceParams to be sent in the message.
         """
-        acl_msg = inter_aas_interactions_utils.create_inter_aas_response_msg(
+        acl_msg = inter_aas_interactions_utils.create_inter_smia_response_msg(
             receiver=self.svc_req_data['sender'],
             thread=self.svc_req_data['thread'],
             performative=performative,
@@ -641,42 +467,3 @@ class HandleCapabilityBehaviour(OneShotBehaviour):
 
         return skill_execution_result
 
-    # TODO BORRAR METODO (unused)
-    # async def get_asset_connection_input_data_by_skill(self, skill_elem):
-    #     """
-    #     This method gets all the input data required in the Asset Connection class by a given skill, in order to
-    #     execute the received capability request.
-    #
-    #     Args:
-    #         skill_elem (basyx.aas.model.SubmodelElement): skill Python object in form of a SubmodelElement.
-    #
-    #     Returns:
-    #         received_skill_input_parameters (dict): information of skill input parameters.
-    #         received_skill_output_parameters (dict): information of skill output parameters.
-    #         skill_params_exposure (basyx.aas.model.SubmodelElement): SubmodelElement within the asset interface submodel that exposes the parameters of the given skill.
-    #     """
-    #     # If the skill has parameters, they have to be obtained from the received data
-    #     received_skill_input_parameters = None
-    #     received_skill_output_parameters = None
-    #     skill_params_exposure = None
-    #     # TODO como de momento el skill elem es Operation (tiene los parametros dentro del elemento)
-    #     if len(skill_elem.input_variable) != 0 or len(skill_elem.output_variable) != 0:
-    #         # The exposure element within the skill interface need to be obtained from each skill parameter
-    #         skill_params_exposure = await self.myagent.aas_model.get_skill_parameters_exposure_interface_elem(
-    #             skill_elem)
-    #     # The received skill parameters is obtained from the received information
-    #     received_cap_data = self.svc_req_data['serviceData']['serviceParams']
-    #     received_skill_parameters = received_cap_data[CapabilitySkillACLInfo.REQUIRED_SKILL_INFO][
-    #         CapabilitySkillACLInfo.REQUIRED_SKILL_PARAMETERS]
-    #     if len(skill_elem.input_variable) != 0:
-    #         # The skill has input parameters, they have to be obtained
-    #         if CapabilitySkillACLInfo.REQUIRED_SKILL_INPUT_PARAMETERS in received_skill_parameters:
-    #             received_skill_input_parameters = received_skill_parameters[
-    #                 CapabilitySkillACLInfo.REQUIRED_SKILL_INPUT_PARAMETERS]
-    #     if len(skill_elem.output_variable) != 0:
-    #         # The skill has output parameters, they have to be obtained
-    #         if CapabilitySkillACLInfo.REQUIRED_SKILL_OUTPUT_PARAMETERS in received_skill_parameters:
-    #             received_skill_output_parameters = received_skill_parameters[
-    #                 CapabilitySkillACLInfo.REQUIRED_SKILL_OUTPUT_PARAMETERS]
-    #             # TODO analizar que pasaria si hay output parameters
-    #     return received_skill_input_parameters, received_skill_output_parameters, skill_params_exposure

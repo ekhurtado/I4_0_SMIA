@@ -74,7 +74,7 @@ class NegotiatingBehaviour(CyclicBehaviour):
                         await self.check_received_capability_request_data(cap_req_data)
                     except RequestDataError as cap_request_error:
                         # The data are not valid, so the requester must be informed.
-                        acl_msg = inter_aas_interactions_utils.create_inter_aas_response_msg(
+                        acl_msg = inter_aas_interactions_utils.create_inter_smia_response_msg(
                             receiver=GeneralUtils.get_sender_from_acl_msg(msg),
                             thread=msg.thread,
                             performative=FIPAACLInfo.FIPA_ACL_PERFORMATIVE_FAILURE,
@@ -150,6 +150,7 @@ class NegotiatingBehaviour(CyclicBehaviour):
                     if msg_json_body['serviceID'] == 'negotiationResult':
                         _logger.aclinfo("The agent has received the result of the negotiation with thread ["+
                                         msg.thread+"].")
+                        # TODO BORRAR (enfoque antiguo): pensar como gestionar las respuestas de
                         # As the result of a negotiation is a response to a previous request, a new
                         # HandleSvcResponseBehaviour to handle this service response will be added to the agent
                         svc_resp_data = inter_aas_interactions_utils.create_svc_json_data_from_acl_msg(msg)

@@ -177,7 +177,7 @@ class HandleSvcRequestBehaviour(OneShotBehaviour):
         control) and Exposure and Discovery Services (to search for submodels or asset related services).
 
         """
-        _logger.info(await self.myagent.get_interaction_id() + str(self.svc_req_data))
+        _logger.info('AAS Service request: ' + str(self.svc_req_data))
 
     async def handle_aas_infrastructure_svc_request(self):
         """
@@ -188,7 +188,7 @@ class HandleSvcRequestBehaviour(OneShotBehaviour):
         for AASs).
 
         """
-        _logger.info(await self.myagent.get_interaction_id() + str(self.svc_req_data))
+        _logger.info('AAS Infrastructure Service request: ' + str(self.svc_req_data))
 
     async def handle_submodel_service_request(self):
         """
@@ -252,7 +252,7 @@ class HandleSvcRequestBehaviour(OneShotBehaviour):
             performative (str): performative according to FIPA-ACL standard.
             service_params (dict): JSON with the serviceParams to be sent in the message.
         """
-        acl_msg = inter_aas_interactions_utils.create_inter_aas_response_msg(
+        acl_msg = inter_aas_interactions_utils.create_inter_smia_response_msg(
             receiver=self.svc_req_data['sender'],
             thread=self.svc_req_data['thread'],
             performative=performative,

@@ -78,31 +78,7 @@ class ACLHandlingBehaviour(CyclicBehaviour):
                         svc_req_handling_behav = HandleSvcRequestBehaviour(self.agent, svc_req_data)
                         self.myagent.add_behaviour(svc_req_handling_behav)
                     else:
-                        # TODO BORRAR (enfoque antiguo)
-                        # service_category = msg_json_body['serviceData']['serviceCategory']
-                        # if service_category == 'service-request':
-                        #     # The new service request is looked up in the agent's global ACL request dictionary.
-                        #     if await self.myagent.get_acl_svc_request(thread=msg.thread) is not None:
-                        #         _logger.error("A request has been made for an ACL service that already exists.")
-                        #     else:
-                        #         # The thread is the identifier of the conversation, so all the information will be
-                        #         # saved using it
-                        #         msg_json_body['performative'] = msg.get_metadata('performative')
-                        #         msg_json_body['ontology'] = msg.get_metadata('ontology')
-                        #
-                        #         msg_json_body['sender'] = GeneralUtils.get_sender_from_acl_msg(msg)
-                        #         await self.myagent.save_new_acl_svc_request(thread=msg.thread,
-                        #                                                     request_data=msg_json_body)
-                        #         _logger.aclinfo(
-                        #             "acl_svc_requests shared object updated by " + str(self.__class__.__name__)
-                        #             + " responsible for thread [" + msg.thread + "]. Action: request data added")
-                        #
-                        #         svc_req_data = inter_aas_interactions_utils.create_svc_json_data_from_acl_msg(msg)
-                        #
-                        #         # A new behaviour is added to the SPADE agent to handle this specific service request
-                        #         svc_req_handling_behav = HandleSvcRequestBehaviour(self.agent, svc_req_data)
-                        #         self.myagent.add_behaviour(svc_req_handling_behav)
-
+                        # TODO Parte del enfoque antiguo
                         service_category = msg_json_body['serviceData']['serviceCategory']
                         if service_category == 'service-response':
                             # TODO PENSAR COMO RECOGER LAS RESPUESTAS DE PETICIONES ANTERIORES. NO VENDRIAN CON

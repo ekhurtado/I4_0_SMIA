@@ -102,7 +102,7 @@ class HandleSvcResponseBehaviour(OneShotBehaviour):
         Services (for searching for AASs).
 
         """
-        _logger.info(str(self.myagent.get_interaction_id()) + str(self.svc_resp_data))
+        _logger.info('AAS Infrastructure Service response: ' + str(self.svc_resp_data))
 
     async def handle_aas_services_response(self):
         """
@@ -114,7 +114,7 @@ class HandleSvcResponseBehaviour(OneShotBehaviour):
         control) and Exposure and Discovery Services (to search for submodels or asset related services).
 
         """
-        _logger.info(await self.myagent.get_interaction_id() + str(self.svc_resp_data))
+        _logger.info('AAS Service response: ' + str(self.svc_resp_data))
 
     async def handle_submodel_service_response(self):
         """
@@ -125,4 +125,4 @@ class HandleSvcResponseBehaviour(OneShotBehaviour):
         # TODO, en este caso tendra que comprobar que submodelo esta asociado a la peticion de servicio. Si el submodelo
         #  es propio del SMIA, podra acceder directamente y, por tanto, este behaviour sera capaz de realizar el
         #  servicio completamente. Si es un submodelo del AAS Core, tendra que solicitarselo
-        _logger.info(await self.myagent.get_interaction_id() + str(self.svc_resp_data))
+        _logger.info('Submodel Service response: '  + str(self.svc_resp_data))

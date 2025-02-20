@@ -440,88 +440,6 @@ class ExtendedAASModel:
                         return constraint
         return None
 
-    # TODO BORRAR METODO (unused)
-    # async def check_skill_elem_by_capability(self, cap_type, cap_elem, skill_data):
-    #     """
-    #     This method checks if a skill SubmodelElement is defined associated to a Capability using given skill data.
-    #
-    #     Args:
-    #         cap_type (str): type of the capability (AgentCapabilities or AssetCapabilities).
-    #         cap_elem (basyx.aas.model.Capability): capability Python object.
-    #         skill_data (dict): data of the skill.
-    #
-    #     Returns:
-    #         bool: result of the check (True if the skill is in the global variable, linked to the capability)
-    #     """
-    #     # First, the skill id_short will be checked
-    #     if CapabilitySkillACLInfo.REQUIRED_SKILL_NAME not in skill_data:
-    #         _logger.warning(f"The received data is invalid due to missing the required field #{CapabilitySkillACLInfo.REQUIRED_SKILL_NAME}")
-    #         raise CapabilityCheckingError(cap_elem.id_short,
-    #                                       f"The received data is invalid due to missing the required field #{CapabilitySkillACLInfo.REQUIRED_SKILL_NAME}")
-    #     required_skill_name = skill_data[CapabilitySkillACLInfo.REQUIRED_SKILL_NAME]
-    #     skill_elem = (await self.get_capability_dict_by_type(cap_type))[cap_elem]['skillObject']
-    #     if skill_elem.id_short != required_skill_name:
-    #         _logger.warning("The given skill does not exist in this DT.")
-    #         raise CapabilityCheckingError(cap_elem.id_short, "The given skill does not exist in this DT.")
-    #
-    #     # Then, the skill SubmodelElement type will be checked
-    #     if CapabilitySkillACLInfo.REQUIRED_SKILL_ELEMENT_TYPE not in skill_data:
-    #         _logger.warning("The given data does not contain required skill SubmodelElement type.")
-    #         raise CapabilityCheckingError(cap_elem.id_short,
-    #                                       "The given data does not contain required skill SubmodelElement type.")
-    #     required_skill_sme_type = skill_data[CapabilitySkillACLInfo.REQUIRED_SKILL_ELEMENT_TYPE]
-    #     if skill_elem.__class__.__name__ != required_skill_sme_type:
-    #         _logger.warning("The given skill SubmodelElement type is not the same as the element exists in this DT.")
-    #         raise CapabilityCheckingError(cap_elem.id_short,
-    #                                       "The given skill SubmodelElement type is not the same as the element exists in this DT.")
-    #
-    #     # The skill parameters will be also checked
-    #     # TODO PROXIMO PASO: PENSAR COMO SE HARIA CON VARIOS PARAMETROS (una opcion es definir en el JSON 'inputs' como
-    #     #  listas y que haya que recorrer cada uno de los parametros, tanto de entrada como de salida. Habra que
-    #     #  comprobar que todos existen como elemento Python buscandolos por el id_short. En el caso de que alguno no
-    #     #  esté, el checking falla)
-    #     if CapabilitySkillACLInfo.REQUIRED_SKILL_PARAMETERS not in skill_data:
-    #         _logger.warning("The given data does not contain required skill parameters information.")
-    #         raise CapabilityCheckingError(cap_elem.id_short,
-    #                                       "The given data does not contain required skill parameters information.")
-    #     required_skill_parameters = skill_data[CapabilitySkillACLInfo.REQUIRED_SKILL_PARAMETERS]
-    #     if 'input' in required_skill_parameters:
-    #         if await self.check_element_exist_in_namespaceset_by_id_short(skill_elem.input_variable,
-    #                                                                       required_skill_parameters['input']) is False:
-    #             # if required_skill_parameters['input'] != skill_elem.input_variable.id_short:
-    #             _logger.warning("The given skill does not have the same input parameter as the element exists in this DT.")
-    #             raise CapabilityCheckingError(cap_elem.id_short,
-    #                                           "The given skill does not have the same input parameter as the element exists in this DT.")
-    #
-    #     if 'output' in required_skill_parameters:
-    #         if await self.check_element_exist_in_namespaceset_by_id_short(skill_elem.output_variable,
-    #                                                                       required_skill_parameters['output']) is False:
-    #             # if required_skill_parameters['output'] != skill_elem.output_variable.id_short:
-    #             _logger.warning(
-    #                 "The given skill does not have the same output parameter as the element exists in this DT.")
-    #             raise CapabilityCheckingError(cap_elem.id_short,
-    #                                           "The given skill does not have the same output parameter as the element exists in this DT.")
-    #
-    #     # When all checks have been passed, the given skill is valid
-    #     return True
-
-    # TODO BORRAR METODO (unused)
-    # async def get_skill_data_by_capability(self, required_cap_elem, required_data):
-    #     """
-    #     This method gets the Skill SubmodelElement of a given Capability element.
-    #     Args:
-    #         required_cap_elem (basyx.aas.model.Capability): capability Python object.
-    #         required_data (str): required data of the skill elem (Python object or SkillInterface element)
-    #
-    #     Returns:
-    #         basyx.aas.model.SubmodelElement: skill SME in form of Python object (None if the Capability does not exist).
-    #     """
-    #     for cap_info_dict in self.capabilities_skills_dict.values():
-    #         for cap_elem, cap_info in cap_info_dict.items():
-    #             if cap_elem == required_cap_elem:
-    #                 return cap_info[required_data]
-    #     return None
-
     async def get_skill_interface_by_skill_elem(self, skill_elem):
         """
         This method gets the interfaces associated to a skill.
@@ -592,45 +510,6 @@ class ExtendedAASModel:
             elif second_elem == skill_elem:
                 return first_elem
         return None
-
-    # TODO BORRAR METODO (unused)
-    # async def capability_checking_from_acl_request(self, required_capability_data):
-    #     """
-    #     This method checks if the DT has a capability required in an ACL message.
-    #
-    #     Args:
-    #         required_capability_data (dict): all the information about the required capability
-    #
-    #     Returns:
-    #         bool: result of the check (True if the DT can perform the capability)
-    #         reason: None if the result of the check is True (the reason of the Failure if it is False)
-    #     """
-    #     required_cap_name = required_capability_data[CapabilitySkillACLInfo.REQUIRED_CAPABILITY_NAME]
-    #     required_cap_type = required_capability_data[CapabilitySkillACLInfo.REQUIRED_CAPABILITY_TYPE]
-    #     # It will be checked if the type is among the available options
-    #     if required_cap_type not in CapabilitySkillOntologyUtils.CAPABILITY_TYPE_POSSIBLE_VALUES:
-    #         _logger.warning("The required capability does not have a valid type.")
-    #         raise CapabilityCheckingError(required_cap_name, "The received capability does not have a valid type.")
-    #
-    #     # It will be checked if the capability is among the defined in this DT
-    #     capability_elem = await self.get_capability_by_id_short(required_cap_type, required_cap_name)
-    #     if capability_elem is None:
-    #         _logger.warning("A capability has been requested that this DT does not have.")
-    #         raise CapabilityCheckingError(required_cap_name,
-    #                                       "A capability has been requested that this DT does not have.")
-    #
-    #     # TODO quedan por analizar las constraints
-    #     # TODO PROXIMO PASO: para analizar las constraint, simplemente se comprobará si el nombre de la constraint se
-    #     #  ha definido en la capacidad requerida (en este paso no se ejecuta la capacidad, por lo que las constraints no se analizan)
-    #     # It will be also checked the skill id_short
-    #     required_skill_data = required_capability_data[CapabilitySkillACLInfo.REQUIRED_SKILL_INFO]
-    #     if await self.check_skill_elem_by_capability(required_cap_type, capability_elem, required_skill_data) is False:
-    #         _logger.warning("A capability has been requested that its skill does not exist in this DT.")
-    #         raise CapabilityCheckingError(required_cap_name,
-    #                                       "A capability has been requested that its skill does not exist in this DT.")
-    #
-    #     # When all checks have been passed, the given skill is valid
-    #     return True
 
     async def skill_feasibility_checking_post_conditions(self, capability_elem, constraints_data):
         """

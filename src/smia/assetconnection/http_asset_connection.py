@@ -76,30 +76,6 @@ class HTTPAssetConnection(AssetConnection):
     async def connect_with_asset(self):
         pass
 
-    # TODO BORRAR METODO (unused)
-    # async def execute_skill_by_asset_service(self, interaction_metadata, skill_params_exposure_elem=None,
-    #                                          skill_input_params= None, skill_output_params=None):
-    #
-    #     if not interaction_metadata:
-    #         raise AssetConnectionError("The skill cannot be executed by asset service because the given "
-    #                                    "InteractionMetadata object is None", "invalid method parameter",
-    #                                    "InteractionMetadata object is None")
-    #
-    #     await self.extract_general_interaction_metadata(interaction_metadata)
-    #
-    #     # Then, the data of the skill is added in the required field. To do that, the 'SkillParameterExposedThrough'
-    #     # relationship should be obtained, which indicates where the parameter data should be added
-    #     if skill_input_params:
-    #         await self.add_asset_service_data(skill_params_exposure_elem, skill_input_params)
-    #
-    #     # At this point, the HTTP request is performed
-    #     http_response = await self.send_http_request()
-    #     if http_response:
-    #         if http_response.status != 200:
-    #             _logger.warning("The HTTP request has not been answered correctly.")
-    #         return await self.get_response_content(interaction_metadata, await http_response.text())
-    #     return None
-
     async def execute_asset_service(self, interaction_metadata, service_input_data = None):
         if interaction_metadata is None:
             raise AssetConnectionError("The skill cannot be executed by asset service because the given "

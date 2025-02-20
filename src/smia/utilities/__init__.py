@@ -3,4 +3,4 @@ This package includes all general utilities to be used by any kind of class. The
 Archive, Submodel and ConfigMap.
 """
 
-__all__ = ['aas_model_extension_utils', 'configmap_utils', 'general_utils', 'smia_archive_utils', 'submodels_utils']  # TODO Ttest to export only a part of the source code in the pypi package
+__all__ = ['aas_model_extension_utils', 'configmap_utils', 'general_utils', 'smia_archive_utils']  # TODO Ttest to export only a part of the source code in the pypi package
