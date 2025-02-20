@@ -33,7 +33,7 @@ class AssetConnection(metaclass=abc.ABCMeta):
     @abc.abstractmethod
     async def configure_connection_by_aas_model(self, interface_aas_elem):
         """
-        This method configures de Asset Connection using the interface element defined in the AAS model.
+        This method configures the Asset Connection using the interface element defined in the AAS model.
 
         Args:
             interface_aas_elem (basyx.aas.model.SubmodelElement): element of the AAS model with the asset interface information.
@@ -42,10 +42,16 @@ class AssetConnection(metaclass=abc.ABCMeta):
 
     @abc.abstractmethod
     async def check_asset_connection(self):
+        """
+        This method checks the Asset Connection.
+        """
         pass
 
     @abc.abstractmethod
     async def connect_with_asset(self):
+        """
+        This method performs the connection process to the Asset Connection.
+        """
         pass
 
     @abc.abstractmethod
@@ -66,6 +72,9 @@ class AssetConnection(metaclass=abc.ABCMeta):
 
     @abc.abstractmethod
     async def receive_msg_from_asset(self):
+        """
+        This method receives a message from the asset through the Asset Connection.
+        """
         pass
 
     # ------------------------------------------------------------
@@ -73,6 +82,13 @@ class AssetConnection(metaclass=abc.ABCMeta):
     # ------------------------------------------------------------
     @classmethod
     async def check_interface_element(cls, interface_elem):
+        """
+        This method checks the given interface AAS element from the 'AssetInterfacesDescription' submodel. In case of
+        identifying any error it raises an 'AssetConnectionError' exception.
+
+        Args:
+            interface_elem(basyx.aas.model.SubmodelElementCollection): SubmodelElement of AAS interface SubmodelElement.
+        """
         # First, it is checked that the Interface element offered is within the Submodel 'AssetInterfacesDescription'.
         parent_submodel = interface_elem.get_parent_submodel()
         if not parent_submodel.check_semantic_id_exist(AssetInterfacesInfo.SEMANTICID_INTERFACES_SUBMODEL):
@@ -303,18 +319,51 @@ class AssetConnection(metaclass=abc.ABCMeta):
 
     @classmethod
     def extract_from_json(cls, data, query):
+        """
+        This method extracts the required information from a JSON object. It uses the 'jsonpath-ng' Python package to
+        perform the extraction.
+
+        Args:
+            data (dict): JSON object with the given data.
+            query (str): query to extract information from the content. In this case, it has to be a JSONPath expression.
+
+        Returns:
+            object: extracted information (result of the query in the given data).
+        """
         jsonpath_expr = parse(query)
         extracted_data = [match.value for match in jsonpath_expr.find(json.loads(data))]
         return extracted_data[0] if len(extracted_data) == 1 else extracted_data
 
     @classmethod
     def extract_from_xml(cls, data, query):
+        """
+        This method extracts the required information from an XML object. It uses the 'lxml' Python package to
+        perform the extraction.
+
+        Args:
+            data (str): XML object with the given data in string format.
+            query (str): query to extract information from the content. In this case, it has to be a XPath expression.
+
+        Returns:
+            object: extracted information (result of the query in the given data).
+        """
         root = etree.fromstring(data)
         extracted_data = root.xpath(query)
         return extracted_data[0] if len(extracted_data) == 1 else extracted_data
 
     @classmethod
     def extract_from_string(cls, data, query):
+        """
+        This method extracts the required information from a string object. It uses the 're' Python package to
+        perform the extraction.
+
+        Args:
+            data (str): string object with the given data.
+            query (str): query to extract information from the content. In this case, it has to be a Regex expression.
+
+        Returns:
+            object: extracted information (result of the query in the given data).
+        """
         regex_pattern = re.compile(query)
         extracted_data = regex_pattern.findall(data)
         return extracted_data[0] if len(extracted_data)==1 else extracted_data

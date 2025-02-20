@@ -71,6 +71,46 @@ Once the values for these two parameters are achieved, it is possible to add a n
         if __name__ == '__main__':
             main()
 
+Creating new AssetConnection class
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In the above example it is assumed that the new AssetConnection class has already been developed. Since the new class instance to be added must inherit from the ``AssetConnection`` class and implement all its abstract methods, the following source code is shown in order to clear the necessary methods to be implemented. The source code is explained below.
+
+.. dropdown:: Source code example for new AssetConnections
+    :octicon:`code;1em;sd-text-primary`
+
+    .. code:: python
+
+        from smia.assetconnection.asset_connection import AssetConnection
+
+        class NewAssetConnection(AssetConnection):
+
+            def __init__(self):
+                # If the constructor will be overridden remember to add 'super().__init__()'.
+                pass
+
+            async def configure_connection_by_aas_model(self, interface_aas_elem):
+                pass
+
+            async def check_asset_connection(self):
+                pass
+
+            async def connect_with_asset(self):
+                pass
+
+            async def execute_asset_service(self, interaction_metadata, service_input_data=None):
+                pass
+
+            async def receive_msg_from_asset(self):
+                pass
+
+    - ``__init__()``: The constructor of the new class can be added. For instance, the type of ``ArchitectureStyle`` (see :py:mod:`API documentation <smia.assetconnection.asset_connection.AssetConnection.ArchitectureStyle>`) can be determined to be used at runtime.
+    - ``configure_connection_by_aas_model()``: within this method you can add the necessary code to correctly configure the asset connection from the data in the AAS model (see :py:mod:`API documentation <smia.assetconnection.asset_connection.AssetConnection.configure_connection_by_aas_model>`).
+    - ``check_asset_connection()``: within this method you can add the necessary code to check the asset connection with the asset (see :py:mod:`API documentation <smia.assetconnection.asset_connection.AssetConnection.check_asset_connection>`).
+    - ``connect_with_asset()``: within this method you can add the necessary code to correctly connect with the asset through this asset connection (see :py:mod:`API documentation <smia.assetconnection.asset_connection.AssetConnection.connect_with_asset>`).
+    - ``execute_asset_service()``: within this method you can add the necessary code to correctly execute an asset service through this the asset connection from the data in the AAS model and the optional data of a CSS-related request such as the values of input parameters (see :py:mod:`API documentation <smia.assetconnection.asset_connection.AssetConnection.execute_asset_service>`).
+    - ``receive_msg_from_asset()``: within this method you can add the necessary code to correctly obtain a message from the asset through this asset connection (see :py:mod:`API documentation <smia.assetconnection.asset_connection.AssetConnection.receive_msg_from_asset>`).
+
 Adding new agent capabilities
 -----------------------------
 

@@ -11,11 +11,9 @@ Submodules
    smia.utilities.configmap_utils
    smia.utilities.fipa_acl_info
    smia.utilities.general_utils
-   smia.utilities.kafka_info
    smia.utilities.smia_archive_utils
    smia.utilities.smia_general_info
    smia.utilities.smia_info
-   smia.utilities.submodels_utils
 
 Module contents
 ---------------
