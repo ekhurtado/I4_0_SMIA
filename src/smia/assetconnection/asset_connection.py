@@ -48,23 +48,24 @@ class AssetConnection(metaclass=abc.ABCMeta):
     async def connect_with_asset(self):
         pass
 
-    @abc.abstractmethod
-    async def execute_skill_by_asset_service(self, interaction_metadata, skill_params_exposure_elems, skill_input_params= None, skill_output_params=None):
-        """
-        This method sends a message to the asset and returns the response. The connection of the interface of the asset
-        is already configured in 'configure_connection_by_aas_model' method, but the interaction metadata is provided
-        in form of a Python object of AAS model (SubmodelElement).
-
-        Args:
-            interaction_metadata (basyx.aas.model.SubmodelElement): element of the AAS model with all metadata for the interaction with the asset.
-            skill_params_exposure_elems (list(basyx.aas.model.SubmodelElement)): submodel elements that exposes all skill parameters.
-            skill_input_params (dict): skill input parameters in form of JSON object (None if the skill does not have inputs).
-            skill_output_params (dict): skill output parameters in form of JSON object (None if the skill does not have outputs).
-
-        Returns:
-            object: response information defined in the interaction metadata.
-        """
-        pass
+    # TODO BORRAR METODO (unused)
+    # @abc.abstractmethod
+    # async def execute_skill_by_asset_service(self, interaction_metadata, skill_params_exposure_elems, skill_input_params= None, skill_output_params=None):
+    #     """
+    #     This method sends a message to the asset and returns the response. The connection of the interface of the asset
+    #     is already configured in 'configure_connection_by_aas_model' method, but the interaction metadata is provided
+    #     in form of a Python object of AAS model (SubmodelElement).
+    #
+    #     Args:
+    #         interaction_metadata (basyx.aas.model.SubmodelElement): element of the AAS model with all metadata for the interaction with the asset.
+    #         skill_params_exposure_elems (list(basyx.aas.model.SubmodelElement)): submodel elements that exposes all skill parameters.
+    #         skill_input_params (dict): skill input parameters in form of JSON object (None if the skill does not have inputs).
+    #         skill_output_params (dict): skill output parameters in form of JSON object (None if the skill does not have outputs).
+    #
+    #     Returns:
+    #         object: response information defined in the interaction metadata.
+    #     """
+    #     pass
     # TODO HACER AHORA: Hay que modificarlo ya que ahora solo se tendra que pasar el interaction_metadata e inputData
     #  (esto serán los inputParams que ya habran sido validados con la ontologia y recogidos sus valores). El metodo
     #  devolvera el resultado del asset service (si se quiere extraer algo en especifico se utiliza dataQuery). Con ese

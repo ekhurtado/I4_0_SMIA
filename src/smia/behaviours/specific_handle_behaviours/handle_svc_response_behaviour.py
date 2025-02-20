@@ -12,6 +12,9 @@ class HandleSvcResponseBehaviour(OneShotBehaviour):
     OneShotBehaviour because it handles an individual service response and then kills itself.
     """
 
+    # TODO PENSAR SI ELIMINAR ESTA CLASE Y AGRUPAR TANTO Requests como Responses en 'HandleSvcBehaviour', ya que para
+    #  CSS solo hay CapabilityBehaviour. Dentro de esta se podria analizar la performativa (como ya se hace), para ver
+    #  si es una peticion o una respuesta
     def __init__(self, agent_object, svc_resp_interaction_type, svc_resp_data):
         """
         The constructor method is rewritten to add the object of the agent

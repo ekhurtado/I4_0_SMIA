@@ -23,14 +23,16 @@ class HandleSvcRequestBehaviour(OneShotBehaviour):
     and then kills itself.
     """
 
-    def __init__(self, agent_object, svc_req_interaction_type, svc_req_data):
+    # TODO PENSAR SI AGRUPAR EN ESTA CLASE TANTO Requests como Responses ('HandleSvcBehaviour'), ya que para CSS solo
+    #  hay CapabilityBehaviour. Dentro de esta se podria analizar la performativa (como ya se hace), para ver si es una
+    #  peticion o una respuesta
+
+    def __init__(self, agent_object, svc_req_data):
         """
         The constructor method is rewritten to add the object of the agent.
 
         Args:
             agent_object (spade.Agent): the SPADE agent object of the SMIA agent.
-            svc_req_interaction_type (str): the type of the service request interaction (:term:`Inter AAS Interaction`
-            or :term:`Intra AAS Interaction`)
             svc_req_data (dict): all the information about the service request
         """
 
@@ -39,7 +41,6 @@ class HandleSvcRequestBehaviour(OneShotBehaviour):
 
         # The SPADE agent object is stored as a variable of the behaviour class
         self.myagent = agent_object
-        self.svc_req_interaction_type = svc_req_interaction_type
         self.svc_req_data = svc_req_data
 
         self.requested_timestamp = GeneralUtils.get_current_timestamp()
@@ -206,17 +207,20 @@ class HandleSvcRequestBehaviour(OneShotBehaviour):
             ref_object = None
             if 'ModelReference' in self.svc_req_data['serviceData']['serviceParams']:
                 ref_object = await AASModelUtils.create_aas_reference_object(
-                    'ModelReference', self.svc_req_data['serviceData']['serviceParams']['ModelReference']['keys'])
+                    'ModelReference',
+                    keys_dict=self.svc_req_data['serviceData']['serviceParams']['ModelReference']['keys'])
             elif 'ExternalReference' in self.svc_req_data['serviceData']['serviceParams']:
                 ref_object = await AASModelUtils.create_aas_reference_object(
-                    'ExternalReference', self.svc_req_data['serviceData']['serviceParams']['ExternalReference'])
+                    'ExternalReference',
+                    external_ref=self.svc_req_data['serviceData']['serviceParams']['ExternalReference'])
 
             # When the appropriate Reference object is created, the requested SubmodelElement can be obtained
             requested_sme = await self.myagent.aas_model.get_object_by_reference(ref_object)
 
             # When the AAS object has been obtained, the request is answered
-            sme_info = str(
-                requested_sme)  # TODO de momento simplemente lo devolvemos en string (para mas adelante pensar si desarrollar un metodo que devuelva toda la informacion)
+            # TODO de momento simplemente lo devolvemos en string (para mas adelante pensar si desarrollar un metodo que
+            #  devuelva toda la informacion)
+            sme_info = str(requested_sme)
             await self.send_response_msg_to_sender(FIPAACLInfo.FIPA_ACL_PERFORMATIVE_INFORM,
                                                    {'requested_object': sme_info})
             _logger.info("Management of the service with thread {} finished.".format(self.svc_req_data['thread']))
