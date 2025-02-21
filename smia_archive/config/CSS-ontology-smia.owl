@@ -11,7 +11,7 @@
     <owl:Ontology rdf:about="http://www.w3id.org/upv-ehu/gcis/css-smia">
         <owl:versionIRI rdf:resource="http://www.w3id.org/upv-ehu/gcis/css-smia/1.0"/>
         <owl:imports rdf:resource="http://www.lesfleursdunormal.fr/static/_downloads/owlready_ontology.owl"/>
-        <owlready_ontology:python_module>css_ontology.capability_skill_module</owlready_ontology:python_module>
+        <owlready_ontology:python_module>smia.css_ontology.capability_skill_module</owlready_ontology:python_module>
         <rdfs:comment>An ontology for the Capability, Skill and Service reference model defined by Plattform Industrie 4.0. See https://www.plattform-i40.de/IP/Redaktion/DE/Downloads/Publikation/CapabilitiesSkillsServices.html for a description of the abstract reference model.</rdfs:comment>
         <rdfs:isDefinedBy>https://www.plattform-i40.de/IP/Redaktion/DE/Downloads/Publikation/CapabilitiesSkillsServices.html</rdfs:isDefinedBy>
     </owl:Ontology>
@@ -59,6 +59,14 @@
     
 
 
+    <!-- http://www.w3.org/2002/07/owl#implementationType -->
+
+    <rdfs:Datatype rdf:about="http://www.w3.org/2002/07/owl#implementationType">
+        <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </rdfs:Datatype>
+    
+
+
     <!-- http://www.w3.org/2002/07/owl#lifecycle -->
 
     <rdfs:Datatype rdf:about="http://www.w3.org/2002/07/owl#lifecycle">
@@ -76,6 +84,36 @@
                                     <rdf:Description>
                                         <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
                                         <rdf:first>REQUIREMENT</rdf:first>
+                                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </owl:oneOf>
+            </rdfs:Datatype>
+        </owl:equivalentClass>
+    </rdfs:Datatype>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#parameterType -->
+
+    <rdfs:Datatype rdf:about="http://www.w3.org/2002/07/owl#parameterType">
+        <owl:equivalentClass>
+            <rdfs:Datatype>
+                <owl:oneOf>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                        <rdf:first>INOUTPUT</rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                <rdf:first>INPUT</rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                        <rdf:first>OUTPUT</rdf:first>
                                         <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
                                     </rdf:Description>
                                 </rdf:rest>
@@ -381,6 +419,15 @@
     
 
 
+    <!-- http://www.w3id.org/upv-ehu/gcis/css-smia#hasImplementationType -->
+
+    <owl:DatatypeProperty rdf:about="http://www.w3id.org/upv-ehu/gcis/css-smia#hasImplementationType">
+        <rdfs:domain rdf:resource="http://www.w3id.org/hsu-aut/css#Skill"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2002/07/owl#implementationType"/>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- http://www.w3id.org/upv-ehu/gcis/css-smia#hasLifecycle -->
 
     <owl:DatatypeProperty rdf:about="http://www.w3id.org/upv-ehu/gcis/css-smia#hasLifecycle">
@@ -391,11 +438,11 @@
     
 
 
-    <!-- http://www.w3id.org/upv-ehu/gcis/css-smia#pruebaABorrar -->
+    <!-- http://www.w3id.org/upv-ehu/gcis/css-smia#hasType -->
 
-    <owl:DatatypeProperty rdf:about="http://www.w3id.org/upv-ehu/gcis/css-smia#pruebaABorrar">
-        <rdfs:domain rdf:resource="http://www.w3id.org/hsu-aut/css#StateMachine"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <owl:DatatypeProperty rdf:about="http://www.w3id.org/upv-ehu/gcis/css-smia#hasType">
+        <rdfs:domain rdf:resource="http://www.w3id.org/hsu-aut/css#SkillParameter"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2002/07/owl#parameterType"/>
     </owl:DatatypeProperty>
     
 
@@ -703,15 +750,6 @@ Notes:
 
     <owl:Class rdf:about="http://www.w3id.org/upv-ehu/gcis/css-smia#AssetCapability">
         <rdfs:subClassOf rdf:resource="http://www.w3id.org/hsu-aut/css#Capability"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.w3id.org/upv-ehu/gcis/css-smia#AssetServiceNeeded -->
-
-    <owl:Class rdf:about="http://www.w3id.org/upv-ehu/gcis/css-smia#AssetServiceNeeded">
-        <rdfs:subClassOf rdf:resource="http://www.w3id.org/hsu-aut/css#SkillParameter"/>
-        <rdfs:comment>Data unit to configure, control and monitor the execution of a skill. In this case, for the correct execution of the skill, it is necessary to request a previous asset service.</rdfs:comment>
     </owl:Class>
     
 
