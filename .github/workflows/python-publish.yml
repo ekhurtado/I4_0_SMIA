@@ -1,0 +1,108 @@
+# This workflow will upload a Python Package to PyPI when a release is created
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python#publishing-to-package-registries
+# For more information on PyPI docs: https://packaging.python.org/en/latest/guides/publishing-package-distribution-releases-using-github-actions-ci-cd-workflows/
+
+name: Publish Python Package to PyPI and TestPyPI
+
+on:
+  push:
+      branches:
+        - main  # Publish when pushing to main
+  release:
+      types: [published]  # Publish when creating a release
+
+permissions:
+  contents: read
+
+# We will have to define two jobs to publish to PyPI and TestPyPI respectively, and an additional job to build the distribution packages.
+jobs:
+  release-build:
+    name: Build distribution
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        name: Set up Python
+        with:
+          python-version: "3.x"
+      # This will download your repository into the CI runner and then install and activate the newest available Python 3 release.    
+      
+      - name: Build release distributions
+        run: |
+          # NOTE: put your own distribution build steps here.
+          python -m pip install build
+          python -m build
+
+      - name: Upload distributions
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-dists
+          path: dist/
+
+  # The job for PyPI is defined
+  pypi-publish:
+    name: Publish Python distribution to PyPI
+    runs-on: ubuntu-latest
+    if: github.event.action == 'published'  # pypi job only runs when a new release of the GitHub repository is published.
+    needs:
+      - release-build
+    permissions:
+      # IMPORTANT: this permission is mandatory for trusted publishing
+      id-token: write
+
+    # Dedicated environments with protections for publishing are strongly recommended.
+    # For more information, see: https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment#deployment-protection-rules
+    environment:
+      name: pypi
+      url: https://pypi.org/p/smia
+      #
+      # ALTERNATIVE: if your GitHub Release name is the PyPI project version string
+      # ALTERNATIVE: exactly, uncomment the following line instead:
+      # url: https://pypi.org/project/YOURPROJECT/${{ github.event.release.name }}
+
+    steps:
+      - name: Retrieve release distributions
+        uses: actions/download-artifact@v4
+        with:
+          name: release-dists
+          path: dist/
+
+      - name: Publish release distributions to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: dist/
+
+
+  # The job for TestPyPI is defined
+  testpypi-publish:
+    name: Publish Python distribution to TestPyPI
+    runs-on: ubuntu-latest
+    if: |  # testpypi job only runs when the commit of the push contains some specific keys.
+      github.event_name == 'push' && (
+        contains(github.event.head_commit.message, 'feat:') ||
+        contains(github.event.head_commit.message, 'fix:') ||
+        contains(github.event.head_commit.message, 'chore:'))
+    needs:
+      - release-build
+    permissions:
+      id-token: write
+
+    environment:
+      name: testpypi
+      url: https://test.pypi.org/p/smia
+
+    steps:
+      - name: Retrieve release distributions
+        uses: actions/download-artifact@v4
+        with:
+          name: release-dists
+          path: dist/
+
+      - name: Publish release distributions to TestPyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: dist/
+          repository-url: https://test.pypi.org/legacy/    # This is necessary as, by default, the action publishes to PyPI.
+          skip-existing: true  # This allows existing versions to be overwritten in TestPyPI.
