@@ -82,6 +82,7 @@ def load_aas_model(file_path):
     SMIAGeneralInfo.CM_AAS_MODEL_FILENAME = aas_model_file_name
 
     # The file will be copied into the SMIA archive
+    _logger.warning('Probando versiones subidas TestPyPI con GitHub Actions')   # TODO BORRAR
     try:
         smia_archive_utils.copy_file_into_archive(file_path, SMIAGeneralInfo.CONFIGURATION_AAS_FOLDER_PATH)
     except Exception as e:
