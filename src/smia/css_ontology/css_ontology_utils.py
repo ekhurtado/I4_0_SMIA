@@ -38,6 +38,8 @@ class CapabilitySkillOntologyUtils:
                         else:
                             # If the ontology file is not inside the AASX and is not defined in the initialization
                             # properties file, an OWL file will be looked for inside the SMIA Archive.
+                            _logger.info("The ontology OWL file is not found within the AASX package, so it will be "
+                                         "searched for within the SMIA Archive.")
                             ontology_file_path = smia_archive_utils.get_file_by_extension(
                                 SMIAGeneralInfo.CONFIGURATION_FOLDER_PATH, '.owl')
                             if ontology_file_path is None:

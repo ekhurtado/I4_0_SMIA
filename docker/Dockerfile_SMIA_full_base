@@ -4,8 +4,11 @@ FROM python:3.12
 RUN pip install --upgrade pip
 
 # The required SMIA Python package is installed.
-RUN pip install -i https://test.pypi.org/simple/ smia==0.2.1.10 --extra-index-url https://pypi.org/simple
+RUN pip install -i https://test.pypi.org/simple/ smia==0.2.1.12 --extra-index-url https://pypi.org/simple
 #RUN pip install smia
+
+# The valid OWL ontology file is added in case the user does not add it within the AASX package
+COPY CSS-ontology-smia.owl /smia_archive/config/
 
 WORKDIR /
 

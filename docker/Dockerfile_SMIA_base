@@ -10,9 +10,12 @@ RUN pip install --upgrade pip
 #    + '--extra-index-url' option is for pip to look for missing dependencies in PyPI (and not in TestPyPI).
 # To keep the image lightweight, the compilation tools are removed after installing the Python dependencies
 RUN apk add --no-cache gcc python3-dev musl-dev linux-headers \
-    && pip install -i https://test.pypi.org/simple/ smia==0.2.1.10 --extra-index-url https://pypi.org/simple \
+    && pip install -i https://test.pypi.org/simple/ smia==0.2.1.12 --extra-index-url https://pypi.org/simple \
 #    && pip install smia \
     && apk del gcc python3-dev musl-dev linux-headers
+
+# The valid OWL ontology file is added in case the user does not add it within the AASX package
+COPY CSS-ontology-smia.owl /smia_archive/config/
 
 WORKDIR /
 
