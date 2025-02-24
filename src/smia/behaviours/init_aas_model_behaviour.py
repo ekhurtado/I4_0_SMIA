@@ -18,7 +18,7 @@ from smia.css_ontology.css_ontology_utils import CapabilitySkillOntologyUtils, C
     CSSModelAASModelInfo
 from smia.utilities.smia_info import AssetInterfacesInfo
 from smia.logic.exceptions import AASModelReadingError, AASModelOntologyError, \
-    OntologyReadingError
+    OntologyReadingError, OntologyInstanceCreationError
 
 _logger = logging.getLogger(__name__)
 
@@ -174,7 +174,7 @@ class InitAASModelBehaviour(OneShotBehaviour):
             #  id_short puede repetirse (el id_short es único dentro del submodelo)
             await self.add_ontology_required_information(sme_elem, created_instance)
 
-        except (AASModelReadingError, AASModelOntologyError, OntologyReadingError) as e:
+        except (AASModelReadingError, AASModelOntologyError, OntologyReadingError, OntologyInstanceCreationError) as e:
             if isinstance(e, AASModelReadingError) or isinstance(e, AASModelOntologyError):
                 _logger.warning("Check the AAS Model {}. Reason of the fail: {}.".format(e.sme_class, e.reason))
             else:

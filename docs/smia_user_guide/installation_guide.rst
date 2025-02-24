@@ -54,19 +54,19 @@ The same has to be done with the IDTA submodel templates, in order to add them t
 .. dropdown:: Links to all JSON objects to be added as plugins
        :octicon:`link;1em;sd-text-primary`
 
-       .. button-link:: https://raw.githubusercontent.com/ekhurtado/I4_0_SMIA/capabilityskill_tests/additional_tools/aasx_package_explorer_resources/SMIA-css-semantic-ids-sm.add-options.json
+       .. button-link:: https://raw.githubusercontent.com/ekhurtado/I4_0_SMIA/main/additional_tools/aasx_package_explorer_resources/SMIA-css-semantic-ids-sm.add-options.json
             :color: primary
             :outline:
 
             :octicon:`mark-github;1em` JSON object of the CSS ontology submodel template
 
-       .. button-link:: https://raw.githubusercontent.com/ekhurtado/I4_0_SMIA/capabilityskill_tests/additional_tools/aasx_package_explorer_resources/SMIA-css-semantic-ids-sm.add-options.json
+       .. button-link:: https://raw.githubusercontent.com/ekhurtado/I4_0_SMIA/main/additional_tools/aasx_package_explorer_resources/SMIA-css-semantic-ids-sm.add-options.json
             :color: primary
             :outline:
 
             :octicon:`mark-github;1em` JSON object of the Asset Interfaces Description IDTA submodel template
 
-       .. button-link:: https://raw.githubusercontent.com/ekhurtado/I4_0_SMIA/capabilityskill_tests/additional_tools/aasx_package_explorer_resources/SMIA-css-semantic-ids-sm.add-options.json
+       .. button-link:: https://raw.githubusercontent.com/ekhurtado/I4_0_SMIA/main/additional_tools/aasx_package_explorer_resources/SMIA-css-semantic-ids-sm.add-options.json
             :color: primary
             :outline:
 

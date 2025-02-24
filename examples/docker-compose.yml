@@ -1,0 +1,35 @@
+services:
+
+  smia:
+    image: ekhurtado/smia:latest-alpine
+    container_name: smia
+    environment:
+      - AAS_MODEL_NAME=<path_to_AASX_package>
+      - AGENT_ID=<agent-id>@ejabberd
+      - AGENT_PSSWD=<agent-password>
+    depends_on:
+      xmpp-server:
+        condition: service_healthy
+    volumes:
+      - ./aas:/smia_archive/config/aas
+
+  xmpp-server:
+    image: ghcr.io/processone/ejabberd
+    container_name: ejabberd
+    environment:
+      - ERLANG_NODE_ARG=admin@ejabberd
+      - ERLANG_COOKIE=dummycookie123
+      - CTL_ON_CREATE=! register admin localhost asd
+    ports:
+      - "5222:5222"
+      - "5269:5269"
+      - "5280:5280"
+      - "5443:5443"
+    volumes:
+      - ./xmpp_server/ejabberd.yml:/opt/ejabberd/conf/ejabberd.yml
+    healthcheck:
+      test: netstat -nl | grep -q 5222
+      start_period: 5s
+      interval: 5s
+      timeout: 5s
+      retries: 10

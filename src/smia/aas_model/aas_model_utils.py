@@ -81,10 +81,10 @@ class AASModelUtils:
             raise CriticalError(
                 "Configuration of SMIA is required and it is not defined within the Software Nameplate submodel.")
         for config_path_elem in soft_nameplate_config_paths:
-            if config_path_elem.get_sm_element_by_semantic_id(
-                    AASModelInfo.SEMANTIC_ID_SOFTWARE_NAMEPLATE_CONFIG_TYPE).value == 'initial configuration':
-                return config_path_elem.get_sm_element_by_semantic_id(
-                    AASModelInfo.SEMANTIC_ID_SOFTWARE_NAMEPLATE_CONFIG_URI).value
+            sm_elem = config_path_elem.get_sm_element_by_semantic_id(
+                AASModelInfo.SEMANTIC_ID_SOFTWARE_NAMEPLATE_CONFIG_TYPE)
+            if (sm_elem is not None) and (sm_elem.value == 'initial configuration'):
+                return sm_elem.value
         return None
 
     @staticmethod

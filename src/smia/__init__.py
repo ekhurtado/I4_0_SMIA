@@ -90,12 +90,15 @@ def load_aas_model(file_path):
     _logger.info("AAS model {} copied to the SMIA Archive.".format(SMIAGeneralInfo.CM_AAS_MODEL_FILENAME))
 
     # When the AAS model is inside the SMIA archive, it will be checked if it is valid
-    config_file_path = AASModelUtils.get_configuration_file_path_from_standard_submodel()
-    init_config_file_name = ntpath.split(config_file_path)[1] or ntpath.basename(ntpath.split(config_file_path)[0])
-    config_file_bytes = AASModelUtils.get_file_bytes_from_aasx_by_path(config_file_path)
-    if config_file_bytes is None:
-        _logger.error("The AAS model is invalid: the initialization configuration file has not been specified inside "
-                      "the AASX package.")
-    with open(SMIAGeneralInfo.CONFIGURATION_FOLDER_PATH + '/' + init_config_file_name, "wb") as binary_file:
-        binary_file.write(config_file_bytes)  # Write bytes to file
-    SMIAGeneralInfo.CM_GENERAL_PROPERTIES_FILENAME = init_config_file_name
+    try:
+        config_file_path = AASModelUtils.get_configuration_file_path_from_standard_submodel()
+        init_config_file_name = ntpath.split(config_file_path)[1] or ntpath.basename(ntpath.split(config_file_path)[0])
+        config_file_bytes = AASModelUtils.get_file_bytes_from_aasx_by_path(config_file_path)
+        with open(SMIAGeneralInfo.CONFIGURATION_FOLDER_PATH + '/' + init_config_file_name, "wb") as binary_file:
+            binary_file.write(config_file_bytes)  # Write bytes to file
+        SMIAGeneralInfo.CM_GENERAL_PROPERTIES_FILENAME = init_config_file_name
+    except Exception as e:
+        _logger.warning("The AAS model does not contain the initialization configuration file. Make sure that it is "
+                        "not necessary.")
+
+        # _logger.error(e)
