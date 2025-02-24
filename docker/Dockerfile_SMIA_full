@@ -1,4 +1,4 @@
-FROM ekhurtado/smia:full-base-latest
+FROM ekhurtado/smia:latest-full-base
 
 CMD ["python3", "-m", "smia.launchers.smia_docker_starter"]
 #CMD ["python3", "-m", "smia.launchers.smia_cli_starter", "--model", "/SMIA_TransportRobot_with_OWL.aasx"]

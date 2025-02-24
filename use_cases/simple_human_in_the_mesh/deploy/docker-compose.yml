@@ -3,7 +3,7 @@
 services:
 
   smia-robot-1:
-    image: ekhurtado/smia:alpine-latest
+    image: ekhurtado/smia:latest-alpine
     container_name: smia-robot-1
     environment:
       - AAS_MODEL_NAME=SMIA_TransportRobot_article_1.aasx
@@ -16,7 +16,7 @@ services:
       - ./aas:/smia_archive/config/aas
 
   smia-robot-2:
-    image: ekhurtado/smia:alpine-latest
+    image: ekhurtado/smia:latest-alpine
     container_name: smia-robot-2
     environment:
       - AAS_MODEL_NAME=SMIA_TransportRobot_article_2.aasx
@@ -29,7 +29,7 @@ services:
       - ./aas:/smia_archive/config/aas
 
   smia-operator:
-    image: ekhurtado/smia-use-cases:operator-latest
+    image: ekhurtado/smia-use-cases:latest-operator
 #    image: ekhurtado/i4-0-smia-tools:gui-agent
     container_name: smia-operator
     environment:

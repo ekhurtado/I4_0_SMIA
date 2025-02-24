@@ -6,21 +6,21 @@ services:
     build:
       context: .
       dockerfile: Dockerfile_SMIA_base
-    image: ekhurtado/smia:alpine-base-latest
+    image: ekhurtado/smia:latest-alpine-base
     container_name: smia-alpine-base
 
   smia-full-base:
     build:
       context: .
       dockerfile: Dockerfile_SMIA_full_base
-    image: ekhurtado/smia:full-base-latest
+    image: ekhurtado/smia:latest-full-base
     container_name: smia-full-base
 
   smia-alpine:
     build:
       context: .
       dockerfile: Dockerfile_SMIA
-    image: ekhurtado/smia:alpine-latest
+    image: ekhurtado/smia:latest-alpine
     container_name: smia-alpine
     depends_on:
       - smia-alpine-base
@@ -29,7 +29,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile_SMIA_full
-    image: ekhurtado/smia:full-latest
+    image: ekhurtado/smia:latest-full
     container_name: smia-full
     depends_on:
       - smia-full-base

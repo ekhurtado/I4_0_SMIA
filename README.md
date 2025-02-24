@@ -81,7 +81,7 @@ python3 -m smia.launchers.smia_cli_starter --model "<path to AASX package>"
 The SMIA approach is also available as Docker image in DockerHub. To run SMIA software the AAS model should be passed as environmental variable:
 
 ```bash
-docker run -e model=<path to AASX package> ehu-gcis/smia:alpine-latest
+docker run -e model=<path to AASX package> gcis-upv-ehu/smia:latest-alpine
 ```
 [//]: # (TODO actualizar con el nombre cuando se publique)
 

@@ -128,7 +128,7 @@ In this case, we link the ``aas`` folder located on the same desktop where the c
 
 .. code:: bash
 
-    docker run -v ./aas:/smia_archive/config/aas -e model=<path to AASX package> ekhurtado/smia:alpine-latest
+    docker run -v ./aas:/smia_archive/config/aas -e model=<path to AASX package> ekhurtado/smia:latest-alpine
 
 .. tip::
 
@@ -158,7 +158,7 @@ As for the minimum infrastructure for SMIA, only an XMPP server is needed. There
     services:
 
       smia:
-        image: ekhurtado/smia:alpine-latest
+        image: ekhurtado/smia:latest-alpine
         container_name: smia
         environment:
           - AAS_MODEL_NAME=<path_to_AASX_package>
