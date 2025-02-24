@@ -370,7 +370,7 @@ class InitAASModelBehaviour(OneShotBehaviour):
 
         for analyzed_dict in [self.analyzed_capabilities, self.analyzed_capability_constraints, self.analyzed_skills,
                      self.analyzed_skill_interfaces, self.analyzed_skill_params, self.analyzed_asset_connections]:
-            if set(analyzed_dict).issubset(self.errors_found):
+            if len(analyzed_dict) > 0 and set(analyzed_dict).issubset(self.errors_found):
                 _logger.error("All elements of an ontology class have been detected as errors, so check the AAS model "
                               "or the OWL ontology file.")
 
