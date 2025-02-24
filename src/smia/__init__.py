@@ -14,6 +14,7 @@ import ntpath
 import spade
 
 from .aas_model.aas_model_utils import AASModelUtils
+from .logic.exceptions import CriticalError
 from .utilities.aas_model_extension_utils import AASModelExtensionUtils
 from .utilities import configmap_utils, smia_archive_utils
 from .utilities.general_utils import GeneralUtils
@@ -81,7 +82,11 @@ def load_aas_model(file_path):
     SMIAGeneralInfo.CM_AAS_MODEL_FILENAME = aas_model_file_name
 
     # The file will be copied into the SMIA archive
-    smia_archive_utils.copy_file_into_archive(file_path, SMIAGeneralInfo.CONFIGURATION_AAS_FOLDER_PATH)
+    try:
+        smia_archive_utils.copy_file_into_archive(file_path, SMIAGeneralInfo.CONFIGURATION_AAS_FOLDER_PATH)
+    except Exception as e:
+        raise CriticalError('It is not possible to copy the specified AAS model into the SMIA Archive, so the SMIA '
+                      'cannot be started. Reason: {}'.format(e))
     _logger.info("AAS model {} copied to the SMIA Archive.".format(SMIAGeneralInfo.CM_AAS_MODEL_FILENAME))
 
     # When the AAS model is inside the SMIA archive, it will be checked if it is valid

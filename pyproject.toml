@@ -8,7 +8,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "smia"   # cambiar cuando funcione
-version = '0.2.1.9'  # cambiar cuando funcione a 0.2.2
+version = '0.2.1.10'  # cambiar cuando funcione a 0.2.2
 authors = [{ name="Ekaitz Hurtado", email="ekaitz.hurtado@ehu.eus" },]
 description = "Self-configurable Manufacturing Industrial Agent (SMIA)."
 readme = 'README_pypi.md'

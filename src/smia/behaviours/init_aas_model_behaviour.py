@@ -164,6 +164,9 @@ class InitAASModelBehaviour(OneShotBehaviour):
         """
         try:
             ontology_class = await self.myagent.css_ontology.get_ontology_class_by_iri(ontology_iri)
+            if ontology_class is None:
+                raise OntologyReadingError('The ontology class with IRI {} does not exist in the given OWL ontology. '
+                                           'Check the ontology file.')
             # The class is used as constructor to build the instance of the CSS ontology
             created_instance = await self.myagent.css_ontology.create_ontology_object_instance(ontology_class,
                                                                                                sme_elem.id_short)
@@ -294,6 +297,10 @@ class InitAASModelBehaviour(OneShotBehaviour):
             if isinstance(skill, model.Operation):
                 variable = None
                 try:
+                    if rel_ontology_class is None:
+                        raise OntologyReadingError('The class for the relationship with IRI {} does not exist in the '
+                                                   'given ontology. Check the OWL ontology file.'.format(
+                            CapabilitySkillOntologyInfo.CSS_ONTOLOGY_PROP_HASPARAMETER_IRI))
                     if skill.check_semantic_id_exist(CapabilitySkillOntologyInfo.CSS_ONTOLOGY_SKILL_IRI):
                         operation_variables = skill.get_operation_variables_by_semantic_id(
                             CapabilitySkillOntologyInfo.CSS_ONTOLOGY_SKILL_PARAMETER_IRI)
@@ -309,86 +316,6 @@ class InitAASModelBehaviour(OneShotBehaviour):
                     else:
                         self.errors_found.append("{} ({},{})".format('hasParameter', 'Operation', 'OperationVariable'))
 
-
-    # async def get_and_save_capabilities_skills_information(self):
-    #     """
-    #     This method saves all the information related to Capabilities and Skills defined in the AAS model into the
-    #     agent global variables.
-    #     """
-    #     _logger.info("Reading the AAS model to get all capabilities of the asset and the industrial agent...")
-    #     rels_cap_skill_list = await self.myagent.aas_model.get_submodel_elements_by_semantic_id(
-    #         CapabilitySkillOntologyUtils.SEMANTICID_REL_CAPABILITY_SKILL, basyx.aas.model.RelationshipElement)
-    #     for rel_cap_skill in rels_cap_skill_list:
-    #         await self.add_step_progress_bar()
-    #
-    #         # First, the elements of capability and skill are determined (no matter in which order of the
-    #         # relationship they are listed).
-    #         capability_elem, skill_elem = await self.myagent.aas_model.get_cap_skill_elem_from_relationship(
-    #             rel_cap_skill)
-    #
-    #         if capability_elem is None or skill_elem is None:
-    #             continue
-    #
-    #         if capability_elem.check_cap_skill_ontology_semantics_and_qualifiers() is False:
-    #             continue
-    #
-    #         # The capability_type is obtained using the semanticID
-    #         capability_type = capability_elem.get_capability_type_in_ontology()
-    #         _logger.info(
-    #             "Analyzing {} [{}] and its associated skill [{}]...".format(capability_type, capability_elem.id_short,
-    #                                                                         skill_elem.id_short))
-    #
-    #         # If the capability has constraints, they will be obtained
-    #         capability_constraints = await self.myagent.aas_model.get_capability_associated_constraints(capability_elem)
-    #         if capability_constraints:
-    #             # TODO PROXIMO PASO: si se ha definido algun constraint, se comprobará que tiene un Qualifier valido
-    #             #  (FeasibilityCheckingCondition con Pre-,Post-condition o invariant). Despues, comprobará si ese
-    #             #  constraint (siendo una propiedad) tiene un valueId o no. Si lo tiene, este será la referencia al
-    #             #  ConceptDescription que define el valor de ese constraint. Este ConceptDescription, puede tener un
-    #             #  valueList con los posibles valores de ese constraint. (Un ejemplo es el de NegotiationCriteria. La
-    #             #  capacidad de negociar viene limitada por los criterios por los que puede negociar, y estos se
-    #             #  definen en el ConceptDescription añadido en el valueId de la propiedad del constraint). Por lo tanto,
-    #             #  si el valueId del constraint no está vacío, hay que analizar el ConceptDescription y añadir los
-    #             #  posibles valores en la información del constraint
-    #             str_contraints = "\t\tThe capability associated constraints are: "
-    #             for constraint in capability_constraints:
-    #                 str_contraints += constraint.id_short + ', '
-    #             # _logger.info(str_contraints)
-    #         # else:
-    #         #     _logger.info("\t\tThe capability does not have associated constraints.")
-    #         # TODO properties have not been taken into account for the time being for the capacities, add in the future
-    #
-    #         # Once the information about the capability has been obtained, the associated skill will be analyzed
-    #         if skill_elem.check_cap_skill_ontology_semantics_and_qualifiers() is False:
-    #             continue
-    #
-    #         # TODO PROXIMO PASO: falta analizar los inputs y outputs parameters del skill. Si es una operación, los
-    #         #  tiene integrados, pero si no, se deben localizar usando el semanticID 'HasParameter'. En los parametros,
-    #         #  también habra que comprobar si tienen un valueId, es decir, un ConceptDescription asociado con los
-    #         #  posibles valores que puede coger esa variable. En ese caso (p.e. el input de negociacion es el criterio
-    #         #  y solo puede ser bateria, o localizacion o memoria RAM), se deberá añadir la información de los posibles
-    #         #  valores junto al SkillParameters: analizar el ConceptDescription y ver si el valueList está o no vacio,
-    #         #  si no lo está, recoger esos valores y alamacenarlos en una lista, la cual será la lista para posibles
-    #         #  valores de ese parametro.
-    #
-    #         # The necessary Skill interface to implement the skill must be obtained
-    #         skill_interface_elem = await self.myagent.aas_model.get_skill_interface_by_skill_elem(skill_elem)
-    #         # TODO PROXIMO PASO: habra que analizar que el SkillInterface propuesto tenga un semanticID del Submodelo
-    #         #  AssetInterfacesDescription (https://admin-shell.io/idta/AssetInterfacesDescription/1/0/Interface)
-    #         if skill_interface_elem is None and capability_type != CapabilitySkillOntologyUtils.AGENT_CAPABILITY_TYPE:
-    #             _logger.error("The interface of the skill {} does not exist.".format(skill_elem))
-    #             continue
-    #
-    #         # At this point of the execution, all checks ensure that the necessary information is available
-    #         # All the information will be saved in the global variables of the agent
-    #         cap_skill_info = {capability_elem: {
-    #             'skillObject': skill_elem,
-    #             'skillInterface': skill_interface_elem,
-    #         }}
-    #         if capability_constraints:
-    #             cap_skill_info[capability_elem]['capabilityConstraints'] = capability_constraints
-    #         await self.myagent.aas_model.save_capability_skill_information(capability_type, cap_skill_info)
-    #         _logger.info("{} information saved in the global variables.".format(capability_elem))
 
     async def get_and_configure_asset_connections(self):
         """
@@ -440,6 +367,12 @@ class InitAASModelBehaviour(OneShotBehaviour):
                       self.analyzed_capabilities, self.analyzed_capability_constraints, self.analyzed_skills,
                       self.analyzed_skill_interfaces, self.analyzed_skill_params, self.analyzed_asset_connections,
                       self.errors_found))
+
+        for analyzed_dict in [self.analyzed_capabilities, self.analyzed_capability_constraints, self.analyzed_skills,
+                     self.analyzed_skill_interfaces, self.analyzed_skill_params, self.analyzed_asset_connections]:
+            if set(analyzed_dict).issubset(self.errors_found):
+                _logger.error("All elements of an ontology class have been detected as errors, so check the AAS model "
+                              "or the OWL ontology file.")
 
     async def create_progress_bar_object(self):
         """

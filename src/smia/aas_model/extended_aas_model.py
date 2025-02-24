@@ -4,7 +4,7 @@ import basyx.aas.model.submodel
 from basyx.aas.util import traversal
 from smia.aas_model.aas_model_utils import AASModelInfo
 
-from smia.logic.exceptions import CapabilityCheckingError, AASModelReadingError
+from smia.logic.exceptions import CapabilityCheckingError, AASModelReadingError, OntologyReadingError
 from smia.css_ontology.css_ontology_utils import CapabilitySkillOntologyUtils, CapabilitySkillACLInfo, \
     CapabilitySkillOntologyInfo
 from smia.utilities.smia_info import AssetInterfacesInfo
@@ -370,6 +370,9 @@ class ExtendedAASModel:
             return first_rel_elem, second_rel_elem
         if None not in (first_rel_elem, second_rel_elem):
             # If both are required, both have to be checked
+            if (first_elem_class is None) or (second_elem_class is None):
+                raise OntologyReadingError('The classes of the relation {} do not exist. Check the OWL ontology '
+                                           'file.'.format(rel_element.id_short))
             if isinstance(first_rel_elem, first_elem_class) and isinstance(second_rel_elem, second_elem_class):
                 return first_rel_elem, second_rel_elem
             elif isinstance(first_rel_elem, second_elem_class) and isinstance(second_rel_elem, first_elem_class):

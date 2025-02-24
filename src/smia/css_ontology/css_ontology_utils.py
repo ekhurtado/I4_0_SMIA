@@ -3,8 +3,9 @@ import logging
 from basyx.aas.adapter import aasx
 from owlready2 import OneOf
 
+from smia import SMIAGeneralInfo
 from smia.logic.exceptions import OntologyReadingError, CriticalError
-from smia.utilities import configmap_utils
+from smia.utilities import configmap_utils, smia_archive_utils
 
 _logger = logging.getLogger(__name__)
 
@@ -35,7 +36,16 @@ class CapabilitySkillOntologyUtils:
                                 ontology_file_bytes = ontology_zip_file.read()
                                 return configmap_utils.create_ontology_file(ontology_file_bytes)
                         else:
-                            raise CriticalError("Failed to read ontology file inside the AASX package (FileNotFound).")
+                            # If the ontology file is not inside the AASX and is not defined in the initialization
+                            # properties file, an OWL file will be looked for inside the SMIA Archive.
+                            ontology_file_path = smia_archive_utils.get_file_by_extension(
+                                SMIAGeneralInfo.CONFIGURATION_FOLDER_PATH, '.owl')
+                            if ontology_file_path is None:
+                                raise CriticalError("Failed to read ontology file inside the AASX package (FileNotFound)"
+                                                    " and inside the SMIA Archive.")
+                            else:
+                                return ontology_file_path
+
                 except ValueError as e:
                     raise CriticalError("Failed to read AAS model: invalid file.")
             else:

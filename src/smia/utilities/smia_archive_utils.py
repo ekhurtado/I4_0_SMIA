@@ -236,6 +236,27 @@ def save_completed_svc_log_info(started_timestamp, finished_timestamp, acl_info,
 
     _logger.info("Saved new completed service information in the log.")
 
+def get_file_by_extension(folder_path, file_extension):
+    """
+    This method obtains the path of a file inside a given folder with a given extension.
+
+    Args:
+        folder_path (str): path to the folder to be searched.
+        file_extension (str): extension of the file (without dot '.').
+
+    Returns:
+        str: path of the file to search (None if it does not exist).
+    """
+    if not os.path.exists(folder_path):
+        _logger.warning('The folder path to be searched does not exist')
+        return None
+    dir_files = os.listdir(folder_path)
+    for file in dir_files:
+        file_name, file_ext = os.path.splitext(file)
+        if file_extension == file_ext:
+            return  folder_path + '/' + file
+    _logger.warning('A file with extension {} was not found inside the {} folder.'.format(file_extension, folder_path))
+    return None
 
 def save_svc_error_log_info(occurrence_timestamp, acl_info, reason, svc_type):
     """

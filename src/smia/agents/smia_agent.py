@@ -35,8 +35,9 @@ class SMIAAgent(Agent):
     agent_services = None   #: Class with the all services of the Agent
     lock = None  #: Asyncio Lock object for secure access to shared SMIA objects
 
-    def __init__(self, jid: str = None, password: str = None, verify_security: bool = False):
+    # def __init__(self, jid: str = None, password: str = None, verify_security: bool = False):
     # def __init__(self, jid: str = None, password: str = None, port: int = 5222, verify_security: bool = False):     # For v4.0.0 and more
+    def __init__(self, jid: str = None, password: str = None, *args, **kwargs):    # Generic constructor
 
         # The AAS_ID will be set in the associated ConfigMap, within the general-information of the AAS
         if jid is None:
@@ -50,7 +51,7 @@ class SMIAAgent(Agent):
         if password is None:
             password = configmap_utils.get_dt_general_property('password')
 
-        super().__init__(jid, password, verify_security)
+        super().__init__(jid, password, *args, **kwargs)
         # super().__init__(jid, password, port, verify_security)      # For v4.0.0 and more
 
         # The banner of the program is printed
