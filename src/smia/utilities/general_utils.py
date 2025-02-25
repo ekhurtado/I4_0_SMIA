@@ -9,6 +9,7 @@ from spade.message import Message
 from spade.template import Template
 
 from smia.logic.exceptions import CriticalError
+from smia.utilities import properties_file_utils
 from smia.utilities.smia_general_info import SMIAGeneralInfo
 
 class GeneralUtils:
@@ -83,7 +84,7 @@ class GeneralUtils:
     @staticmethod
     def print_smia_banner():
         # The banner for the SMIA is set as string, avoiding installing 'art' library (which has been used to create it)
-        banner_str = ("---------------------------------------------\n" +
+        banner_str = ("----------------------------------------------\n" +
                       "  ______    ____    ____   _____        _\n" +
                       ".' ____ \  |_   \  /   _| |_   _|      / \      \n" +
                       "| (___ \_|   |   \/   |     | |       / _ \     \n" +
@@ -91,10 +92,27 @@ class GeneralUtils:
                       "| \____) |  _| |_\/_| |_   _| |_   _/ /   \ \_  \n" +
                       " \______.' |_____||_____| |_____| |____| |____| \n" +
                       # "                                                \n" +
-                      "---------------------------------------------\n" +
-                      "                                      v0.2.1 \n" +
-                      "---------------------------------------------\n")
+                      "----------------------------------------------\n" +
+                      "                                       v0.2.1 \n" +
+                      "----------------------------------------------\n")
         print(banner_str)
+
+    @staticmethod
+    def update_aas_model(new_aas_model_file):
+        """
+        This method updates the AAS model file defined for the SMIA. It updates the global variable for the AAS model
+        file name and the value within the properties file of the SMIA Archive.
+
+        Args:
+            new_aas_model_file (str): name of the file of the new AAS model to update SMIA.
+        """
+        # The global variable is updated
+        SMIAGeneralInfo.CM_AAS_MODEL_FILENAME = new_aas_model_file
+
+        # The properties file is updated
+        file_name, file_ext = os.path.splitext(new_aas_model_file)
+        properties_file_utils.set_aas_general_property('model.file', new_aas_model_file)
+        properties_file_utils.set_aas_general_property('model.serialization', file_ext)
 
     @staticmethod
     def create_acl_template(performative, ontology):
@@ -209,7 +227,7 @@ class CLIUtils:
         # The libraries are imported locally to avoid circular import error
         from smia.aas_model.aas_model_utils import AASModelUtils
         from smia.utilities import smia_archive_utils
-        from smia.utilities import configmap_utils
+        from smia.utilities import properties_file_utils
         import ntpath
 
         if (init_config is None) and (aas_model is None):
@@ -224,20 +242,22 @@ class CLIUtils:
             if aas_model is None:
                 # If the configuration file is specified, but not the AAS model, the AAS must be defined in the file
                 # and obtained from there.
-                aas_model_folder_path = configmap_utils.get_aas_general_property('model.folder')
-                aas_model_file_name = configmap_utils.get_aas_general_property('model.file')
+                aas_model_folder_path = properties_file_utils.get_aas_general_property('model.folder')
+                aas_model_file_name = properties_file_utils.get_aas_general_property('model.file')
                 if (aas_model_file_name is None) or (aas_model_folder_path is None):
                     raise CriticalError("The CLI information is invalid: the AAS model has not been specified either "
                                         "in the CLI or in the configuration properties file.")
 
                 smia_archive_utils.copy_file_into_archive(aas_model_folder_path + '/' + aas_model_file_name,
                                                           SMIAGeneralInfo.CONFIGURATION_FOLDER_PATH)
-                SMIAGeneralInfo.CM_AAS_MODEL_FILENAME = aas_model_file_name
+                GeneralUtils.update_aas_model(aas_model_file_name)
+                # SMIAGeneralInfo.CM_AAS_MODEL_FILENAME = aas_model_file_name
 
         elif aas_model is not None:
             # If the AAS model file is defined, its variable is updated
             aas_model_file_name = ntpath.split(aas_model)[1] or ntpath.basename(ntpath.split(aas_model)[0])
-            SMIAGeneralInfo.CM_AAS_MODEL_FILENAME = aas_model_file_name
+            GeneralUtils.update_aas_model(aas_model_file_name)
+            # SMIAGeneralInfo.CM_AAS_MODEL_FILENAME = aas_model_file_name
 
             if init_config is None:
                 # If the configuration properties file is not defined, it is obtained from inside the AASX package

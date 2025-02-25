@@ -5,7 +5,7 @@ from owlready2 import OneOf
 
 from smia import SMIAGeneralInfo
 from smia.logic.exceptions import OntologyReadingError, CriticalError
-from smia.utilities import configmap_utils, smia_archive_utils
+from smia.utilities import properties_file_utils, smia_archive_utils
 
 _logger = logging.getLogger(__name__)
 
@@ -23,18 +23,21 @@ class CapabilitySkillOntologyUtils:
         Returns:
             str: file path to the ontology file.
         """
-        if configmap_utils.get_ontology_general_property("inside-aasx").lower() in ('yes', 'true', 't', '1'):
-            aas_model_serialization_format = configmap_utils.get_aas_general_property('model.serialization')
-            if aas_model_serialization_format == 'AASX':
+        ontology_property = properties_file_utils.get_ontology_general_property("inside-aasx")
+        if (ontology_property == '#') or (ontology_property.lower() in ('yes', 'true', 't', '1')):
+            # The ontology file will be checked if the ontology file is inside the AASX package if the initialization
+            # properties file is not added ('inside-aasx' property is '#') or is added and set as such.
+            aas_model_serialization_format = properties_file_utils.get_aas_general_property('model.serialization')
+            if aas_model_serialization_format == '.aasx':
                 try:
-                    with aasx.AASXReader(configmap_utils.get_aas_model_filepath()) as aasx_reader:
+                    with aasx.AASXReader(properties_file_utils.get_aas_model_filepath()) as aasx_reader:
                         for part_name, content_type in aasx_reader.reader.list_parts():
                             # All parts of the AASX package are analyzed
                             # if '.owl' in part_name:
                             if any(ext in part_name for ext in ['.owl', '.rdf', '.owx']):
                                 ontology_zip_file = aasx_reader.reader.open_part(part_name)
                                 ontology_file_bytes = ontology_zip_file.read()
-                                return configmap_utils.create_ontology_file(ontology_file_bytes)
+                                return properties_file_utils.create_ontology_file(ontology_file_bytes)
                         else:
                             # If the ontology file is not inside the AASX and is not defined in the initialization
                             # properties file, an OWL file will be looked for inside the SMIA Archive.
@@ -57,9 +60,9 @@ class CapabilitySkillOntologyUtils:
                                 "AASX, but the serialization format of the AAS model is not AASX.")
                 # It will try with the file path defined in the properties file, if it does not exist, it will crash
                 # during the loading of the ontology
-                return configmap_utils.get_defined_ontology_filepath()
+                return properties_file_utils.get_defined_ontology_filepath()
         else:
-            return configmap_utils.get_defined_ontology_filepath()
+            return properties_file_utils.get_defined_ontology_filepath()
 
     @staticmethod
     def get_possible_values_of_datatype(datatype):

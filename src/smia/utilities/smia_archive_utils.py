@@ -6,6 +6,7 @@ import shutil
 import time
 from shutil import SameFileError
 
+from smia.utilities import properties_file_utils
 from smia.utilities.fipa_acl_info import ServiceTypes
 from smia.utilities.smia_general_info import SMIAGeneralInfo
 from smia.utilities.general_utils import GeneralUtils
@@ -23,6 +24,9 @@ def initialize_smia_archive():
 
     # Create the status file
     create_status_file()
+
+    # Create the properties file
+    create_properties_file()
 
     # Create log file
     create_log_files()
@@ -74,6 +78,14 @@ def create_status_file():
     status_file = safe_open_file(SMIAGeneralInfo.STATUS_FOLDER_PATH + '/' + SMIAGeneralInfo.SMIA_STATUS_FILE_NAME)
     json.dump(initial_status_info, status_file)
     status_file.close()
+
+def create_properties_file():
+    """
+    This method creates the properties file of the SMIA adding default values for each attribute. If the file exists
+    because the SMIA has been restarted without terminating the Pod where it is running, the file will be
+    rewritten.
+    """
+    properties_file_utils.create_empty_file()
 
 
 def create_interaction_files():

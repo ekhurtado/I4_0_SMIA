@@ -7,7 +7,7 @@ from basyx.aas.adapter import aasx
 from basyx.aas.util import traversal
 
 from smia.logic.exceptions import CriticalError, AASModelReadingError
-from smia.utilities import configmap_utils
+from smia.utilities import properties_file_utils
 from smia.utilities.smia_general_info import SMIAGeneralInfo
 
 _logger = logging.getLogger(__name__)
@@ -25,7 +25,7 @@ class AASModelUtils:
             basyx.aas.model.DictObjectStore:  object with all Python elements of the AAS model.
         """
         object_store = None
-        aas_model_file_path = configmap_utils.get_aas_model_filepath()
+        aas_model_file_path = properties_file_utils.get_aas_model_filepath()
         aas_model_file_name, aas_model_file_extension = path.splitext(SMIAGeneralInfo.CM_AAS_MODEL_FILENAME)
         try:
             # The AAS model is read depending on the serialization format (extension of the AAS model file)
@@ -55,7 +55,7 @@ class AASModelUtils:
     @staticmethod
     def get_file_bytes_from_aasx_by_path(file_path):
 
-        with aasx.AASXReader(configmap_utils.get_aas_model_filepath()) as aasx_reader:
+        with aasx.AASXReader(properties_file_utils.get_aas_model_filepath()) as aasx_reader:
             for part_name, content_type in aasx_reader.reader.list_parts():
                 if part_name == file_path:
                     return aasx_reader.reader.open_part(part_name).read()
@@ -84,7 +84,8 @@ class AASModelUtils:
             sm_elem = config_path_elem.get_sm_element_by_semantic_id(
                 AASModelInfo.SEMANTIC_ID_SOFTWARE_NAMEPLATE_CONFIG_TYPE)
             if (sm_elem is not None) and (sm_elem.value == 'initial configuration'):
-                return sm_elem.value
+                return config_path_elem.get_sm_element_by_semantic_id(
+                    AASModelInfo.SEMANTIC_ID_SOFTWARE_NAMEPLATE_CONFIG_URI).value
         return None
 
     @staticmethod

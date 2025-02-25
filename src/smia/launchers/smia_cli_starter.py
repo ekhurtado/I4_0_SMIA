@@ -14,7 +14,7 @@ from smia.agents.smia_agent import SMIAAgent
 from smia.agents.smia_app_agent import SMIAAppAgent
 from smia.agents.smia_resource_agent import SMIAResourceAgent
 from smia.utilities import smia_archive_utils
-from smia.utilities import configmap_utils
+from smia.utilities import properties_file_utils
 from smia.utilities.general_utils import CLIUtils
 
 # XMPP_SERVER = 'worker4'
@@ -31,11 +31,11 @@ def main():
     CLIUtils.check_and_save_cli_information(init_config, aas_model)
 
     # The AAS_ID will be set in the associated ConfigMap, within the general-information of the AAS
-    aas_id = configmap_utils.get_dt_general_property('agentID')
-    passwd = configmap_utils.get_dt_general_property('password')
+    aas_id = properties_file_utils.get_dt_general_property('agentID')
+    passwd = properties_file_utils.get_dt_general_property('password')
 
     # The XMPP server of the MAS will also be set in the associated ConfiMap
-    xmpp_server = configmap_utils.get_dt_general_property('xmpp-server')
+    xmpp_server = properties_file_utils.get_dt_general_property('xmpp-server')
 
     # Build the agent jid and password
     agent_jid = aas_id + '@' + xmpp_server

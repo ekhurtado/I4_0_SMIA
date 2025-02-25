@@ -11,7 +11,7 @@ from smia.logic.agent_services import AgentServices
 from smia.logic.exceptions import AASModelReadingError
 from smia.states.state_running import StateRunning
 from smia.states.state_stopping import StateStopping
-from smia.utilities import configmap_utils
+from smia.utilities import properties_file_utils
 from smia.utilities.general_utils import SMIAGeneralInfo
 from smia.behaviours.aas_fsm_behaviour import AASFSMBehaviour
 from smia.states.state_booting import StateBooting
@@ -41,15 +41,15 @@ class SMIAAgent(Agent):
 
         # The AAS_ID will be set in the associated ConfigMap, within the general-information of the AAS
         if jid is None:
-            jid = configmap_utils.get_dt_general_property('agentID')
+            jid = properties_file_utils.get_dt_general_property('agentID')
         if '@' not in jid:
             # The XMPP server of the MAS will also be set in the associated ConfiMap
-            xmpp_server = configmap_utils.get_dt_general_property('xmpp-server')
+            xmpp_server = properties_file_utils.get_dt_general_property('xmpp-server')
 
             # Build the agent jid and password
             jid = jid + '@' + xmpp_server
         if password is None:
-            password = configmap_utils.get_dt_general_property('password')
+            password = properties_file_utils.get_dt_general_property('password')
 
         super().__init__(jid, password, *args, **kwargs)
         # super().__init__(jid, password, port, verify_security)      # For v4.0.0 and more

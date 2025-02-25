@@ -16,7 +16,7 @@ import spade
 from .aas_model.aas_model_utils import AASModelUtils
 from .logic.exceptions import CriticalError
 from .utilities.aas_model_extension_utils import AASModelExtensionUtils
-from .utilities import configmap_utils, smia_archive_utils
+from .utilities import properties_file_utils, smia_archive_utils
 from .utilities.general_utils import GeneralUtils
 from .utilities.smia_general_info import SMIAGeneralInfo
 
@@ -52,7 +52,7 @@ def run(agent_object):
         await spade.wait_until_finished(agent_object)
 
         # In the general properties file you can select the web interface (provided by SPADE).
-        web_ui = configmap_utils.get_dt_general_property('web-ui')
+        web_ui = properties_file_utils.get_dt_general_property('web-ui')
         if web_ui.lower() in ('yes', 'true', 't', '1'):
             # bool(string) cannot be used as it is true as long as the string is not empty.
             agent_object.web.start(hostname="0.0.0.0", port="10002")
@@ -79,7 +79,8 @@ def load_aas_model(file_path):
 
     # The variable with the AAS model file name is updated
     aas_model_file_name = ntpath.split(file_path)[1] or ntpath.basename(ntpath.split(file_path)[0])
-    SMIAGeneralInfo.CM_AAS_MODEL_FILENAME = aas_model_file_name
+    # SMIAGeneralInfo.CM_AAS_MODEL_FILENAME = aas_model_file_name
+    GeneralUtils.update_aas_model(aas_model_file_name)
 
     # The file will be copied into the SMIA archive
     try:
@@ -94,9 +95,10 @@ def load_aas_model(file_path):
         config_file_path = AASModelUtils.get_configuration_file_path_from_standard_submodel()
         init_config_file_name = ntpath.split(config_file_path)[1] or ntpath.basename(ntpath.split(config_file_path)[0])
         config_file_bytes = AASModelUtils.get_file_bytes_from_aasx_by_path(config_file_path)
-        with open(SMIAGeneralInfo.CONFIGURATION_FOLDER_PATH + '/' + init_config_file_name, "wb") as binary_file:
-            binary_file.write(config_file_bytes)  # Write bytes to file
-        SMIAGeneralInfo.CM_GENERAL_PROPERTIES_FILENAME = init_config_file_name
+        properties_file_utils.update_properties_file_by_bytes(config_file_bytes)
+        # with open(SMIAGeneralInfo.CONFIGURATION_FOLDER_PATH + '/' + init_config_file_name, "wb") as binary_file:
+        #     binary_file.write(config_file_bytes)  # Write bytes to file
+        # SMIAGeneralInfo.CM_GENERAL_PROPERTIES_FILENAME = init_config_file_name
     except Exception as e:
         _logger.warning("The AAS model does not contain the initialization configuration file. Make sure that it is "
                         "not necessary.")
