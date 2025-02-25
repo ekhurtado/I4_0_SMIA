@@ -1,0 +1,3173 @@
+{
+  "$type": "Options",
+  "Records": [
+    {
+      "$type": "Record",
+      "FormTag": "TBD",
+      "FormTitle": "Nameplate for Software in Manufacturing (IDTA) V1.0",
+      "FormSubmodel": {
+        "$type": "FormSubmodel",
+        "FormTitle": "Submodel",
+        "FormInfo": "",
+        "FormEditIdShort": false,
+        "FormEditDescription": false,
+        "PresetIdShort": "SoftwareNameplate",
+        "PresetCategory": "CONSTANT",
+        "KeySemanticId": {
+          "type": "Submodel",
+          "value": "https://admin-shell.io/idta/SoftwareNameplate/1/0"
+        },
+        "SubmodelElements": [
+          {
+            "$type": "FormSubmodelElementCollection",
+            "FormTitle": "SoftwareNameplateType",
+            "FormInfo": "",
+            "FormEditIdShort": false,
+            "FormEditDescription": false,
+            "PresetIdShort": "SoftwareNameplateType",
+            "PresetCategory": "",
+            "KeySemanticId": {
+              "type": "GlobalReference",
+              "value": "https://admin-shell.io/idta/SoftwareNameplate/1/0/SoftwareNameplate/SoftwareNameplateType"
+            },
+            "Multiplicity": "ZeroToOne",
+            "IsReadOnly": false,
+            "value": [
+              {
+                "$type": "FormProperty",
+                "FormTitle": "URIOfTheProduct",
+                "FormInfo": "unique global identification of the product using an universal resource identifier (URI)",
+                "FormEditIdShort": false,
+                "FormEditDescription": false,
+                "PresetIdShort": "URIOfTheProduct",
+                "PresetCategory": "",
+                "KeySemanticId": {
+                  "type": "GlobalReference",
+                  "value": "0173-1#02-AAY811#001"
+                },
+                "Multiplicity": "One",
+                "IsReadOnly": false,
+                "allowedValueTypes": [
+                  "xs:string"
+                ],
+                "presetValue": " "
+              },
+              {
+                "$type": "FormMultiLangProp",
+                "FormTitle": "ManufacturerName",
+                "FormInfo": "legally valid designation of the natural or judicial person which is directly responsible for the design, production, packaging and labeling of a product in respect to its being brought into circulation",
+                "FormEditIdShort": false,
+                "FormEditDescription": false,
+                "PresetIdShort": "ManufacturerName",
+                "PresetCategory": "",
+                "KeySemanticId": {
+                  "type": "GlobalReference",
+                  "value": "0173-1#02-AAO677#002"
+                },
+                "Multiplicity": "One",
+                "IsReadOnly": false
+              },
+              {
+                "$type": "FormMultiLangProp",
+                "FormTitle": "ManufacturerProductDesignation",
+                "FormInfo": "Short description of the product (short text) ",
+                "FormEditIdShort": false,
+                "FormEditDescription": false,
+                "PresetIdShort": "ManufacturerProductDesignation",
+                "PresetCategory": "",
+                "KeySemanticId": {
+                  "type": "GlobalReference",
+                  "value": "0173-1#02-AAW338#001"
+                },
+                "Multiplicity": "One",
+                "IsReadOnly": false
+              },
+              {
+                "$type": "FormMultiLangProp",
+                "FormTitle": "ManufacturerProductDescription",
+                "FormInfo": "A description of the software product, provided by the manufacturer",
+                "FormEditIdShort": false,
+                "FormEditDescription": false,
+                "PresetIdShort": "ManufacturerProductDescription",
+                "PresetCategory": "",
+                "KeySemanticId": {
+                  "type": "GlobalReference",
+                  "value": "https://admin-shell.io/idta/SoftwareNameplate/1/0/SoftwareNameplate/SoftwareNameplateType/ManufacturerProductDescription"
+                },
+                "Multiplicity": "ZeroToOne",
+                "IsReadOnly": false
+              },
+              {
+                "$type": "FormMultiLangProp",
+                "FormTitle": "ManufacturerProductFamily",
+                "FormInfo": "2nd level of a 3 level manufacturer specific product hierarchy",
+                "FormEditIdShort": false,
+                "FormEditDescription": false,
+                "PresetIdShort": "ManufacturerProductFamily",
+                "PresetCategory": "",
+                "KeySemanticId": {
+                  "type": "GlobalReference",
+                  "value": "0173-1#02-AAU731#001"
+                },
+                "Multiplicity": "ZeroToOne",
+                "IsReadOnly": false
+              },
+              {
+                "$type": "FormMultiLangProp",
+                "FormTitle": "ManufacturerProductType",
+                "FormInfo": "Characteristic to differentiate between different products of a product family or special variants",
+                "FormEditIdShort": false,
+                "FormEditDescription": false,
+                "PresetIdShort": "ManufacturerProductType",
+                "PresetCategory": "",
+                "KeySemanticId": {
+                  "type": "GlobalReference",
+                  "value": "0173-1#02-AAO057#002"
+                },
+                "Multiplicity": "ZeroToOne",
+                "IsReadOnly": false
+              },
+              {
+                "$type": "FormProperty",
+                "FormTitle": "SoftwareType",
+                "FormInfo": "type of the software",
+                "FormEditIdShort": false,
+                "FormEditDescription": false,
+                "PresetIdShort": "SoftwareType",
+                "PresetCategory": "",
+                "KeySemanticId": {
+                  "type": "GlobalReference",
+                  "value": "https://admin-shell.io/idta/SoftwareNameplate/1/0/SoftwareNameplate/SoftwareNameplateType/SoftwareType"
+                },
+                "Multiplicity": "ZeroToOne",
+                "IsReadOnly": false,
+                "allowedValueTypes": [
+                  "xs:string"
+                ],
+                "presetValue": " "
+              },
+              {
+                "$type": "FormProperty",
+                "FormTitle": "Version",
+                "FormInfo": "The complete version information consisting of Major Version, Minor Version, Revision and Build Number",
+                "FormEditIdShort": false,
+                "FormEditDescription": false,
+                "PresetIdShort": "Version",
+                "PresetCategory": "",
+                "KeySemanticId": {
+                  "type": "GlobalReference",
+                  "value": "https://admin-shell.io/idta/SoftwareNameplate/1/0/SoftwareNameplate/SoftwareNameplateType/Version"
+                },
+                "Multiplicity": "One",
+                "IsReadOnly": false,
+                "allowedValueTypes": [
+                  "xs:string"
+                ],
+                "presetValue": " "
+              },
+              {
+                "$type": "FormMultiLangProp",
+                "FormTitle": "VersionName",
+                "FormInfo": "The name this particular version is given.\r\nthe name this particular version is given",
+                "FormEditIdShort": false,
+                "FormEditDescription": false,
+                "PresetIdShort": "VersionName",
+                "PresetCategory": "",
+                "KeySemanticId": {
+                  "type": "GlobalReference",
+                  "value": "https://admin-shell.io/idta/SoftwareNameplate/1/0/SoftwareNameplate/SoftwareNameplateType/VersionName"
+                },
+                "Multiplicity": "ZeroToOne",
+                "IsReadOnly": false
+              },
+              {
+                "$type": "FormMultiLangProp",
+                "FormTitle": "VersionInfo",
+                "FormInfo": "Provides a textual description of most relevant characteristics of the version of the software\r\nProvides a textual description of most relevant characteristics of the version of the software",
+                "FormEditIdShort": false,
+                "FormEditDescription": false,
+                "PresetIdShort": "VersionInfo",
+                "PresetCategory": "",
+                "KeySemanticId": {
+                  "type": "GlobalReference",
+                  "value": "https://admin-shell.io/idta/SoftwareNameplate/1/0/SoftwareNameplate/SoftwareNameplateType/VersionInfo"
+                },
+                "Multiplicity": "ZeroToOne",
+                "IsReadOnly": false
+              },
+              {
+                "$type": "FormProperty",
+                "FormTitle": "ReleaseDate",
+                "FormInfo": "The moment in time, when this particular build of software was released.",
+                "FormEditIdShort": false,
+                "FormEditDescription": false,
+                "PresetIdShort": "ReleaseDate",
+                "PresetCategory": "",
+                "KeySemanticId": {
+                  "type": "GlobalReference",
+                  "value": "https://admin-shell.io/idta/SoftwareNameplate/1/0/SoftwareNameplate/SoftwareNameplateType/ReleaseDate"
+                },
+                "Multiplicity": "One",
+                "IsReadOnly": false,
+                "allowedValueTypes": [
+                  "xs:date"
+                ],
+                "presetValue": "1000-01-01"
+              },
+              {
+                "$type": "FormMultiLangProp",
+                "FormTitle": "ReleaseNotes",
+                "FormInfo": "contains information about this release\r\nProvides a textual description of most relevant characteristics of the version of the software",
+                "FormEditIdShort": false,
+                "FormEditDescription": false,
+                "PresetIdShort": "ReleaseNotes",
+                "PresetCategory": "",
+                "KeySemanticId": {
+                  "type": "GlobalReference",
+                  "value": "https://admin-shell.io/idta/SoftwareNameplate/1/0/SoftwareNameplate/SoftwareNameplateType/ReleaseNotes"
+                },
+                "Multiplicity": "ZeroToOne",
+                "IsReadOnly": false
+              },
+              {
+                "$type": "FormProperty",
+                "FormTitle": "ReleaseInformation",
+                "FormInfo": "EMPTY",
+                "FormEditIdShort": false,
+                "FormEditDescription": false,
+                "PresetIdShort": "ReleaseInformation",
+                "PresetCategory": "",
+                "KeySemanticId": {
+                  "type": "GlobalReference",
+                  "value": "https://admin-shell.io/idta/SoftwareNameplate/1/0/SoftwareNameplate/SoftwareNameplateType/ReleaseInformation"
+                },
+                "Multiplicity": "ZeroToOne",
+                "IsReadOnly": false,
+                "allowedValueTypes": [
+                  "xs:string"
+                ],
+                "presetValue": " "
+              },
+              {
+                "$type": "FormProperty",
+                "FormTitle": "BuildDate",
+                "FormInfo": "The moment in time, when this particular build of software was created.",
+                "FormEditIdShort": false,
+                "FormEditDescription": false,
+                "PresetIdShort": "BuildDate",
+                "PresetCategory": "",
+                "KeySemanticId": {
+                  "type": "GlobalReference",
+                  "value": "https://admin-shell.io/idta/SoftwareNameplate/1/0/SoftwareNameplate/SoftwareNameplateType/BuildDate"
+                },
+                "Multiplicity": "One",
+                "IsReadOnly": false,
+                "allowedValueTypes": [
+                  "xs:date"
+                ],
+                "presetValue": "1000-01-01"
+              },
+              {
+                "$type": "FormProperty",
+                "FormTitle": "InstallationURI",
+                "FormInfo": "Indicates the resource, where the software is being provided by the manufacturer.\r\nIndicates the resource, where the software is being provided by the manufacturer.",
+                "FormEditIdShort": false,
+                "FormEditDescription": false,
+                "PresetIdShort": "InstallationURI",
+                "PresetCategory": "",
+                "KeySemanticId": {
+                  "type": "GlobalReference",
+                  "value": "https://admin-shell.io/idta/SoftwareNameplate/1/0/SoftwareNameplate/SoftwareNameplateType/InstallationURI"
+                },
+                "Multiplicity": "ZeroToOne",
+                "IsReadOnly": false,
+                "allowedValueTypes": [
+                  "xs:anyURI"
+                ],
+                "presetValue": " "
+              },
+              {
+                "$type": "FormProperty",
+                "FormTitle": "InstallationFile",
+                "FormInfo": "EMPTY",
+                "FormEditIdShort": false,
+                "FormEditDescription": false,
+                "PresetIdShort": "InstallationFile",
+                "PresetCategory": "",
+                "KeySemanticId": {
+                  "type": "GlobalReference",
+                  "value": "https://admin-shell.io/idta/SoftwareNameplate/1/0/SoftwareNameplate/SoftwareNameplateType/InstallationFile"
+                },
+                "Multiplicity": "ZeroToOne",
+                "IsReadOnly": false,
+                "allowedValueTypes": [
+                  "xs:string"
+                ],
+                "presetValue": " "
+              },
+              {
+                "$type": "FormProperty",
+                "FormTitle": "InstallerType",
+                "FormInfo": "Indicates the type of installation package.\r\nIndicates the type of installation package.",
+                "FormEditIdShort": false,
+                "FormEditDescription": false,
+                "PresetIdShort": "InstallerType",
+                "PresetCategory": "",
+                "KeySemanticId": {
+                  "type": "GlobalReference",
+                  "value": "https://admin-shell.io/idta/SoftwareNameplate/1/0/SoftwareNameplate/SoftwareNameplateType/InstallerType"
+                },
+                "Multiplicity": "ZeroToOne",
+                "IsReadOnly": false,
+                "allowedValueTypes": [
+                  "xs:string"
+                ],
+                "presetValue": " "
+              },
+              {
+                "$type": "FormProperty",
+                "FormTitle": "InstallationChecksum",
+                "FormInfo": "provides the checksum for the software available at InstallationURI\r\nprovides the checksum for the software available at InstallationURI",
+                "FormEditIdShort": false,
+                "FormEditDescription": false,
+                "PresetIdShort": "InstallationChecksum",
+                "PresetCategory": "",
+                "KeySemanticId": {
+                  "type": "GlobalReference",
+                  "value": "https://admin-shell.io/idta/SoftwareNameplate/1/0/SoftwareNameplate/SoftwareNameplateType/InstallationChecksum"
+                },
+                "Multiplicity": "ZeroToOne",
+                "IsReadOnly": false,
+                "allowedValueTypes": [
+                  "xs:string"
+                ],
+                "presetValue": " "
+              }
+            ]
+          },
+          {
+            "$type": "FormSubmodelElementCollection",
+            "FormTitle": "SoftwareNameplateInstance",
+            "FormInfo": "",
+            "FormEditIdShort": false,
+            "FormEditDescription": false,
+            "PresetIdShort": "SoftwareNameplateInstance",
+            "PresetCategory": "",
+            "KeySemanticId": {
+              "type": "GlobalReference",
+              "value": "https://admin-shell.io/idta/SoftwareNameplate/1/0/SoftwareNameplate/SoftwareNameplateInstance"
+            },
+            "Multiplicity": "ZeroToOne",
+            "IsReadOnly": false,
+            "value": [
+              {
+                "$type": "FormProperty",
+                "FormTitle": "SerialNumber",
+                "FormInfo": "unique combination of numbers and letters used to identify the device once it has been manufactured",
+                "FormEditIdShort": false,
+                "FormEditDescription": false,
+                "PresetIdShort": "SerialNumber",
+                "PresetCategory": "",
+                "KeySemanticId": {
+                  "type": "GlobalReference",
+                  "value": "0173-1#02-AAM556#002"
+                },
+                "Multiplicity": "ZeroToOne",
+                "IsReadOnly": false,
+                "allowedValueTypes": [
+                  "xs:string"
+                ],
+                "presetValue": " "
+              },
+              {
+                "$type": "FormProperty",
+                "FormTitle": "InventoryTag",
+                "FormInfo": "Specifies an information used for inventory of the software.\r\ncontains inventory information of the user",
+                "FormEditIdShort": false,
+                "FormEditDescription": false,
+                "PresetIdShort": "InventoryTag",
+                "PresetCategory": "",
+                "KeySemanticId": {
+                  "type": "GlobalReference",
+                  "value": "https://admin-shell.io/idta/SoftwareNameplate/1/0/SoftwareNameplate/SoftwareNameplateInstance/InventoryTag"
+                },
+                "Multiplicity": "ZeroToOne",
+                "IsReadOnly": false,
+                "allowedValueTypes": [
+                  "xs:string"
+                ],
+                "presetValue": " "
+              },
+              {
+                "$type": "FormProperty",
+                "FormTitle": "InstanceName",
+                "FormInfo": "The name of the software instance.\r\nDer Name der konkreten Instanz",
+                "FormEditIdShort": false,
+                "FormEditDescription": false,
+                "PresetIdShort": "InstanceName",
+                "PresetCategory": "",
+                "KeySemanticId": {
+                  "type": "GlobalReference",
+                  "value": "https://admin-shell.io/idta/SoftwareNameplate/1/0/SoftwareNameplate/SoftwareNameplateInstance/InstanceName"
+                },
+                "Multiplicity": "ZeroToOne",
+                "IsReadOnly": false,
+                "allowedValueTypes": [
+                  "xs:string"
+                ],
+                "presetValue": " "
+              },
+              {
+                "$type": "FormProperty",
+                "FormTitle": "InstalledVersion",
+                "FormInfo": "The version information of the installed instance, consisting of Major Version, Minor Version, Revision and Build Number\r\nindicates the actual version of the instance",
+                "FormEditIdShort": false,
+                "FormEditDescription": false,
+                "PresetIdShort": "InstalledVersion",
+                "PresetCategory": "",
+                "KeySemanticId": {
+                  "type": "GlobalReference",
+                  "value": "https://admin-shell.io/idta/SoftwareNameplate/1/0/SoftwareNameplate/SoftwareNameplateInstance/InstalledVersion"
+                },
+                "Multiplicity": "ZeroToOne",
+                "IsReadOnly": false,
+                "allowedValueTypes": [
+                  "xs:string"
+                ],
+                "presetValue": " "
+              },
+              {
+                "$type": "FormProperty",
+                "FormTitle": "InstallationDate",
+                "FormInfo": "Date of Installation\r\ncontaines the time of installation of this instance",
+                "FormEditIdShort": false,
+                "FormEditDescription": false,
+                "PresetIdShort": "InstallationDate",
+                "PresetCategory": "",
+                "KeySemanticId": {
+                  "type": "GlobalReference",
+                  "value": "https://admin-shell.io/idta/SoftwareNameplate/1/0/SoftwareNameplate/SoftwareNameplateInstance/InstallationDate"
+                },
+                "Multiplicity": "One",
+                "IsReadOnly": false,
+                "allowedValueTypes": [
+                  "xs:date"
+                ],
+                "presetValue": "1000-01-01"
+              },
+              {
+                "$type": "FormProperty",
+                "FormTitle": "InstallationPath",
+                "FormInfo": "Indicates the path to the installed instance of the software.\r\nIndicates the path to the installed instance of the software.",
+                "FormEditIdShort": false,
+                "FormEditDescription": false,
+                "PresetIdShort": "InstallationPath",
+                "PresetCategory": "",
+                "KeySemanticId": {
+                  "type": "GlobalReference",
+                  "value": "https://admin-shell.io/idta/SoftwareNameplate/1/0/SoftwareNameplate/SoftwareNameplateInstance/InstallationPath"
+                },
+                "Multiplicity": "ZeroToOne",
+                "IsReadOnly": false,
+                "allowedValueTypes": [
+                  "xs:anyURI"
+                ],
+                "presetValue": " "
+              },
+              {
+                "$type": "FormProperty",
+                "FormTitle": "InstallationSource",
+                "FormInfo": "Indicates the path to the installation files used in this instance of the software.",
+                "FormEditIdShort": false,
+                "FormEditDescription": false,
+                "PresetIdShort": "InstallationSource",
+                "PresetCategory": "",
+                "KeySemanticId": {
+                  "type": "GlobalReference",
+                  "value": "https://admin-shell.io/idta/SoftwareNameplate/1/0/SoftwareNameplate/SoftwareNameplateInstance/InstallationSource"
+                },
+                "Multiplicity": "ZeroToOne",
+                "IsReadOnly": false,
+                "allowedValueTypes": [
+                  "xs:anyURI"
+                ],
+                "presetValue": " "
+              },
+              {
+                "$type": "FormProperty",
+                "FormTitle": "InstalledOnArchitecture",
+                "FormInfo": "Indicates the processor architecture this instance is installed on.",
+                "FormEditIdShort": false,
+                "FormEditDescription": false,
+                "PresetIdShort": "InstalledOnArchitecture",
+                "PresetCategory": "",
+                "KeySemanticId": {
+                  "type": "GlobalReference",
+                  "value": "https://admin-shell.io/idta/SoftwareNameplate/1/0/SoftwareNameplate/SoftwareNameplateInstance/InstalledOnArchitecture"
+                },
+                "Multiplicity": "ZeroToOne",
+                "IsReadOnly": false,
+                "allowedValueTypes": [
+                  "xs:string"
+                ],
+                "presetValue": " "
+              },
+              {
+                "$type": "FormProperty",
+                "FormTitle": "InstalledOnOS",
+                "FormInfo": "Indicates the operating system this instance is installed on.",
+                "FormEditIdShort": false,
+                "FormEditDescription": false,
+                "PresetIdShort": "InstalledOnOS",
+                "PresetCategory": "",
+                "KeySemanticId": {
+                  "type": "GlobalReference",
+                  "value": "https://admin-shell.io/idta/SoftwareNameplate/1/0/SoftwareNameplate/SoftwareNameplateInstance/InstalledOnOS"
+                },
+                "Multiplicity": "ZeroToOne",
+                "IsReadOnly": false,
+                "allowedValueTypes": [
+                  "xs:string"
+                ],
+                "presetValue": " "
+              },
+              {
+                "$type": "FormProperty",
+                "FormTitle": "InstalledOnHost",
+                "FormInfo": "Indicates the host system in case of a virtual environment.",
+                "FormEditIdShort": false,
+                "FormEditDescription": false,
+                "PresetIdShort": "InstalledOnHost",
+                "PresetCategory": "",
+                "KeySemanticId": {
+                  "type": "GlobalReference",
+                  "value": "https://admin-shell.io/idta/SoftwareNameplate/1/0/SoftwareNameplate/SoftwareNameplateInstance/InstalledOnHost"
+                },
+                "Multiplicity": "ZeroToOne",
+                "IsReadOnly": false,
+                "allowedValueTypes": [
+                  "xs:string"
+                ],
+                "presetValue": " "
+              },
+              {
+                "$type": "FormSubmodelElementCollection",
+                "FormTitle": "InstalledModules",
+                "FormInfo": "",
+                "FormEditIdShort": false,
+                "FormEditDescription": false,
+                "PresetIdShort": "InstalledModules",
+                "PresetCategory": "",
+                "KeySemanticId": {
+                  "type": "GlobalReference",
+                  "value": "https://admin-shell.io/idta/SoftwareNameplate/1/0/SoftwareNameplate/SoftwareNameplateInstance/InstalledModules"
+                },
+                "Multiplicity": "ZeroToOne",
+                "IsReadOnly": false,
+                "value": [
+                  {
+                    "$type": "FormProperty",
+                    "FormTitle": "InstalledModule",
+                    "FormInfo": "The name of a particular module installed.",
+                    "FormEditIdShort": false,
+                    "FormEditDescription": false,
+                    "PresetIdShort": "InstalledModule{0:00}",
+                    "PresetCategory": "",
+                    "KeySemanticId": {
+                      "type": "GlobalReference",
+                      "value": "https://admin-shell.io/idta/SoftwareNameplate/1/0/SoftwareNameplate/SoftwareNameplateInstance/InstalledModule"
+                    },
+                    "Multiplicity": "OneToMany",
+                    "IsReadOnly": false,
+                    "allowedValueTypes": [
+                      "xs:string"
+                    ],
+                    "presetValue": " "
+                  }
+                ]
+              },
+              {
+                "$type": "FormSubmodelElementCollection",
+                "FormTitle": "ConfigurationPaths",
+                "FormInfo": "",
+                "FormEditIdShort": false,
+                "FormEditDescription": false,
+                "PresetIdShort": "ConfigurationPaths",
+                "PresetCategory": "",
+                "KeySemanticId": {
+                  "type": "GlobalReference",
+                  "value": "https://admin-shell.io/idta/SoftwareNameplate/1/0/SoftwareNameplate/SoftwareNameplateInstance/ConfigurationPaths"
+                },
+                "Multiplicity": "ZeroToOne",
+                "IsReadOnly": false,
+                "value": [
+                  {
+                    "$type": "FormSubmodelElementCollection",
+                    "FormTitle": "ConfigurationPath",
+                    "FormInfo": "",
+                    "FormEditIdShort": false,
+                    "FormEditDescription": false,
+                    "PresetIdShort": "ConfigurationPath{0:00}",
+                    "PresetCategory": "",
+                    "KeySemanticId": {
+                      "type": "GlobalReference",
+                      "value": "https://admin-shell.io/idta/SoftwareNameplate/1/0/SoftwareNameplate/SoftwareNameplateInstance/ConfigurationPath"
+                    },
+                    "Multiplicity": "OneToMany",
+                    "IsReadOnly": false,
+                    "value": [
+                      {
+                        "$type": "FormProperty",
+                        "FormTitle": "ConfigurationURI",
+                        "FormInfo": "",
+                        "FormEditIdShort": false,
+                        "FormEditDescription": false,
+                        "PresetIdShort": "ConfigurationURI",
+                        "PresetCategory": "",
+                        "KeySemanticId": {
+                          "type": "GlobalReference",
+                          "value": "https://admin-shell.io/idta/SoftwareNameplate/1/0/SoftwareNameplate/SoftwareNameplateInstance/ConfigurationPath"
+                        },
+                        "Multiplicity": "One",
+                        "IsReadOnly": false,
+                        "allowedValueTypes": [
+                          "xs:anyURI"
+                        ],
+                        "presetValue": " "
+                      },
+                      {
+                        "$type": "FormProperty",
+                        "FormTitle": "ConfigurationType",
+                        "FormInfo": "Indicates the type of configuration (e.g. general configuration, user configuration)",
+                        "FormEditIdShort": false,
+                        "FormEditDescription": false,
+                        "PresetIdShort": "ConfigurationType",
+                        "PresetCategory": "",
+                        "KeySemanticId": {
+                          "type": "GlobalReference",
+                          "value": "https://admin-shell.io/idta/SoftwareNameplate/1/0/SoftwareNameplate/SoftwareNameplateInstance/ConfigurationType"
+                        },
+                        "Multiplicity": "ZeroToOne",
+                        "IsReadOnly": false,
+                        "allowedValueTypes": [
+                          "xs:string"
+                        ],
+                        "presetValue": " "
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "$type": "FormProperty",
+                "FormTitle": "SLAInformation",
+                "FormInfo": "Indicates the actual service level agreements.",
+                "FormEditIdShort": false,
+                "FormEditDescription": false,
+                "PresetIdShort": "SLAInformation",
+                "PresetCategory": "",
+                "KeySemanticId": {
+                  "type": "GlobalReference",
+                  "value": "https://admin-shell.io/idta/SoftwareNameplate/1/0/SoftwareNameplate/SoftwareNameplateInstance/SLAInformation"
+                },
+                "Multiplicity": "ZeroToOne",
+                "IsReadOnly": false,
+                "allowedValueTypes": [
+                  "xs:string"
+                ],
+                "presetValue": " "
+              },
+              {
+                "$type": "FormSubmodelElementCollection",
+                "FormTitle": "Contact",
+                "FormInfo": "The SMC “ContactInformation” contains information on how to contact the manufacturer or an authorised service provider, e.g. when a maintenance service is required\r\nThe SMC “ContactInformation” contains information on how to contact the manufacturer or an authorised service provider, e.g. when a maintenance service is required",
+                "FormEditIdShort": false,
+                "FormEditDescription": false,
+                "PresetIdShort": "Contact{0:00}",
+                "PresetCategory": "",
+                "KeySemanticId": {
+                  "type": "GlobalReference",
+                  "value": "https://admin-shell.io/zvei/nameplate/1/0/ContactInformations/ContactInformation"
+                },
+                "Multiplicity": "ZeroToMany",
+                "IsReadOnly": false,
+                "value": [
+                  {
+                    "$type": "FormProperty",
+                    "FormTitle": "RoleOfContactPerson",
+                    "FormInfo": "enumeration: 0173-1#07-AAS927#001 (administrativ contact), 0173-1#07-AAS928#001 (commercial contact), 0173-1#07-AAS929#001 (other contact), 0173-1#07-AAS930#001 (hazardous goods contact), 0173-1#07-AAS931#001 (technical contact). Note: the above mentioned ECLASS enumeration should be declared as “open” for further addition. ECLASS enumeration IRDI is preferable. If no IRDI available, custom input as String may also be accepted.",
+                    "FormEditIdShort": false,
+                    "FormEditDescription": false,
+                    "PresetIdShort": "RoleOfContactPerson",
+                    "PresetCategory": "",
+                    "KeySemanticId": {
+                      "type": "GlobalReference",
+                      "value": "0173-1#02-AAO204#003"
+                    },
+                    "Multiplicity": "ZeroToOne",
+                    "IsReadOnly": false,
+                    "allowedValueTypes": [
+                      "xs:string"
+                    ],
+                    "presetValue": " "
+                  },
+                  {
+                    "$type": "FormMultiLangProp",
+                    "FormTitle": "NationalCode",
+                    "FormInfo": " Note: country codes defined accord. to ISO 3166-1. Recommendation: property declaration as MLP is required by its semantic definition. As the property value is language independent, users are recommended to provide maximal 1 string in any language of the user’s choice.",
+                    "FormEditIdShort": false,
+                    "FormEditDescription": false,
+                    "PresetIdShort": "NationalCode",
+                    "PresetCategory": "",
+                    "KeySemanticId": {
+                      "type": "GlobalReference",
+                      "value": "0173-1#02-AAO134#002"
+                    },
+                    "Multiplicity": "ZeroToOne",
+                    "IsReadOnly": false
+                  },
+                  {
+                    "$type": "FormProperty",
+                    "FormTitle": "Language",
+                    "FormInfo": "Note: language codes defined accord. to ISO 639-1. Note: as per ECLASS definition, Expression and representation of thoughts, information, feelings, ideas through characters.",
+                    "FormEditIdShort": false,
+                    "FormEditDescription": false,
+                    "PresetIdShort": "Language{0:00}",
+                    "PresetCategory": "",
+                    "KeySemanticId": {
+                      "type": "GlobalReference",
+                      "value": "https://admin-shell.io/zvei/nameplate/1/0/ContactInformations/ContactInformation/Language"
+                    },
+                    "Multiplicity": "ZeroToMany",
+                    "IsReadOnly": false,
+                    "allowedValueTypes": [
+                      "xs:string"
+                    ],
+                    "presetValue": " "
+                  },
+                  {
+                    "$type": "FormProperty",
+                    "FormTitle": "TimeZone",
+                    "FormInfo": "Note: notation accord. to ISO 8601 Note: for time in UTC the zone designator “Z” is to be used",
+                    "FormEditIdShort": false,
+                    "FormEditDescription": false,
+                    "PresetIdShort": "TimeZone",
+                    "PresetCategory": "",
+                    "KeySemanticId": {
+                      "type": "GlobalReference",
+                      "value": "https://admin-shell.io/zvei/nameplate/1/0/ContactInformations/ContactInformation/TimeZone"
+                    },
+                    "Multiplicity": "ZeroToOne",
+                    "IsReadOnly": false,
+                    "allowedValueTypes": [
+                      "xs:string"
+                    ],
+                    "presetValue": " "
+                  },
+                  {
+                    "$type": "FormMultiLangProp",
+                    "FormTitle": "CityTown",
+                    "FormInfo": "",
+                    "FormEditIdShort": false,
+                    "FormEditDescription": false,
+                    "PresetIdShort": "CityTown",
+                    "PresetCategory": "",
+                    "KeySemanticId": {
+                      "type": "GlobalReference",
+                      "value": "0173-1#02-AAO132#002"
+                    },
+                    "Multiplicity": "ZeroToOne",
+                    "IsReadOnly": false
+                  },
+                  {
+                    "$type": "FormMultiLangProp",
+                    "FormTitle": "Company",
+                    "FormInfo": "",
+                    "FormEditIdShort": false,
+                    "FormEditDescription": false,
+                    "PresetIdShort": "Company",
+                    "PresetCategory": "",
+                    "KeySemanticId": {
+                      "type": "GlobalReference",
+                      "value": "0173-1#02-AAW001#001"
+                    },
+                    "Multiplicity": "ZeroToOne",
+                    "IsReadOnly": false
+                  },
+                  {
+                    "$type": "FormMultiLangProp",
+                    "FormTitle": "Department",
+                    "FormInfo": "",
+                    "FormEditIdShort": false,
+                    "FormEditDescription": false,
+                    "PresetIdShort": "Department",
+                    "PresetCategory": "",
+                    "KeySemanticId": {
+                      "type": "GlobalReference",
+                      "value": "0173-1#02-AAO127#003"
+                    },
+                    "Multiplicity": "ZeroToOne",
+                    "IsReadOnly": false
+                  },
+                  {
+                    "$type": "FormSubmodelElementCollection",
+                    "FormTitle": "Phone",
+                    "FormInfo": "",
+                    "FormEditIdShort": false,
+                    "FormEditDescription": false,
+                    "PresetIdShort": "Phone",
+                    "PresetCategory": "",
+                    "KeySemanticId": {
+                      "type": "GlobalReference",
+                      "value": "https://admin-shell.io/zvei/nameplate/1/0/ContactInformations/ContactInformation/Phone"
+                    },
+                    "Multiplicity": "ZeroToOne",
+                    "IsReadOnly": false,
+                    "value": [
+                      {
+                        "$type": "FormMultiLangProp",
+                        "FormTitle": "TelephoneNumber",
+                        "FormInfo": "Recommendation: property declaration as MLP is required by its semantic definition. As the property value is language independent, users are recommended to provide maximal 1 string in any language of the user’s choice.",
+                        "FormEditIdShort": false,
+                        "FormEditDescription": false,
+                        "PresetIdShort": "TelephoneNumber",
+                        "PresetCategory": "",
+                        "KeySemanticId": {
+                          "type": "GlobalReference",
+                          "value": "0173-1#02-AAO136#002"
+                        },
+                        "Multiplicity": "One",
+                        "IsReadOnly": false
+                      },
+                      {
+                        "$type": "FormProperty",
+                        "FormTitle": "TypeOfTelephone",
+                        "FormInfo": " enumeration: 0173-1#07-AAS754#001 (office), 0173-1#07-AAS755#001 (office mobile), 0173-1#07-AAS756#001 (secretary), 0173-1#07-AAS757#001 (substitute), 0173-1#07-AAS758#001 (home), 0173-1#07-AAS759#001 (private mobile)",
+                        "FormEditIdShort": false,
+                        "FormEditDescription": false,
+                        "PresetIdShort": "TypeOfTelephone",
+                        "PresetCategory": "",
+                        "KeySemanticId": {
+                          "type": "GlobalReference",
+                          "value": "0173-1#02-AAO137#003"
+                        },
+                        "Multiplicity": "ZeroToOne",
+                        "IsReadOnly": false,
+                        "allowedValueTypes": [
+                          "xs:string"
+                        ],
+                        "presetValue": " "
+                      },
+                      {
+                        "$type": "FormMultiLangProp",
+                        "FormTitle": "AvailableTime",
+                        "FormInfo": "",
+                        "FormEditIdShort": false,
+                        "FormEditDescription": false,
+                        "PresetIdShort": "AvailableTime",
+                        "PresetCategory": "",
+                        "KeySemanticId": {
+                          "type": "GlobalReference",
+                          "value": "https://admin-shell.io/zvei/nameplate/1/0/ContactInformations/ContactInformation/AvailableTime/"
+                        },
+                        "Multiplicity": "ZeroToOne",
+                        "IsReadOnly": false
+                      }
+                    ]
+                  },
+                  {
+                    "$type": "FormSubmodelElementCollection",
+                    "FormTitle": "Fax",
+                    "FormInfo": "",
+                    "FormEditIdShort": false,
+                    "FormEditDescription": false,
+                    "PresetIdShort": "Fax",
+                    "PresetCategory": "",
+                    "KeySemanticId": {
+                      "type": "GlobalReference",
+                      "value": "0173-1#02-AAQ834#005"
+                    },
+                    "Multiplicity": "ZeroToOne",
+                    "IsReadOnly": false,
+                    "value": [
+                      {
+                        "$type": "FormMultiLangProp",
+                        "FormTitle": "FaxNumber",
+                        "FormInfo": "Recommendation: property declaration as MLP is required by its semantic definition. As the property value is language independent, users are recommended to provide maximal 1 string in any language of the user’s choice.",
+                        "FormEditIdShort": false,
+                        "FormEditDescription": false,
+                        "PresetIdShort": "FaxNumber",
+                        "PresetCategory": "",
+                        "KeySemanticId": {
+                          "type": "GlobalReference",
+                          "value": "0173-1#02-AAO195#002"
+                        },
+                        "Multiplicity": "One",
+                        "IsReadOnly": false
+                      },
+                      {
+                        "$type": "FormProperty",
+                        "FormTitle": "TypeOfFaxNumber",
+                        "FormInfo": "enumeration: 0173-1#07-AAS754#001 (office), 0173-1#07-AAS756#001 (secretary), 0173-1#07-AAS758#001 (home)",
+                        "FormEditIdShort": false,
+                        "FormEditDescription": false,
+                        "PresetIdShort": "TypeOfFaxNumber",
+                        "PresetCategory": "",
+                        "KeySemanticId": {
+                          "type": "GlobalReference",
+                          "value": "0173-1#02-AAO196#003"
+                        },
+                        "Multiplicity": "ZeroToOne",
+                        "IsReadOnly": false,
+                        "allowedValueTypes": [
+                          "xs:string"
+                        ],
+                        "presetValue": " "
+                      }
+                    ]
+                  },
+                  {
+                    "$type": "FormSubmodelElementCollection",
+                    "FormTitle": "Email",
+                    "FormInfo": "",
+                    "FormEditIdShort": false,
+                    "FormEditDescription": false,
+                    "PresetIdShort": "Email",
+                    "PresetCategory": "",
+                    "KeySemanticId": {
+                      "type": "GlobalReference",
+                      "value": "0173-1#02-AAQ836#005"
+                    },
+                    "Multiplicity": "ZeroToOne",
+                    "IsReadOnly": false,
+                    "value": [
+                      {
+                        "$type": "FormProperty",
+                        "FormTitle": "EmailAddress",
+                        "FormInfo": "",
+                        "FormEditIdShort": false,
+                        "FormEditDescription": false,
+                        "PresetIdShort": "EmailAddress",
+                        "PresetCategory": "",
+                        "KeySemanticId": {
+                          "type": "GlobalReference",
+                          "value": "0173-1#02-AAO198#002"
+                        },
+                        "Multiplicity": "One",
+                        "IsReadOnly": false,
+                        "allowedValueTypes": [
+                          "xs:string"
+                        ],
+                        "presetValue": " "
+                      },
+                      {
+                        "$type": "FormMultiLangProp",
+                        "FormTitle": "PublicKey",
+                        "FormInfo": "Recommendation: property declaration as MLP is required by its semantic definition. As the property value is language independent, users are recommended to provide maximal 1 string in any language of the user’s choice.",
+                        "FormEditIdShort": false,
+                        "FormEditDescription": false,
+                        "PresetIdShort": "PublicKey",
+                        "PresetCategory": "",
+                        "KeySemanticId": {
+                          "type": "GlobalReference",
+                          "value": "0173-1#02-AAO200#002"
+                        },
+                        "Multiplicity": "ZeroToOne",
+                        "IsReadOnly": false
+                      },
+                      {
+                        "$type": "FormProperty",
+                        "FormTitle": "TypeOfEmailAddress",
+                        "FormInfo": "enumeration: 0173-1#07-AAS754#001 (office), 0173-1#07-AAS756#001 (secretary), 0173-1#07-AAS757#001 (substitute), 0173-1#07-AAS758#001 (home)",
+                        "FormEditIdShort": false,
+                        "FormEditDescription": false,
+                        "PresetIdShort": "TypeOfEmailAddress",
+                        "PresetCategory": "",
+                        "KeySemanticId": {
+                          "type": "GlobalReference",
+                          "value": "0173-1#02-AAO199#003"
+                        },
+                        "Multiplicity": "ZeroToOne",
+                        "IsReadOnly": false,
+                        "allowedValueTypes": [
+                          "xs:string"
+                        ],
+                        "presetValue": " "
+                      },
+                      {
+                        "$type": "FormMultiLangProp",
+                        "FormTitle": "TypeOfPublicKey",
+                        "FormInfo": "",
+                        "FormEditIdShort": false,
+                        "FormEditDescription": false,
+                        "PresetIdShort": "TypeOfPublicKey",
+                        "PresetCategory": "",
+                        "KeySemanticId": {
+                          "type": "GlobalReference",
+                          "value": "0173-1#02-AAO201#002"
+                        },
+                        "Multiplicity": "ZeroToOne",
+                        "IsReadOnly": false
+                      }
+                    ]
+                  },
+                  {
+                    "$type": "FormSubmodelElementCollection",
+                    "FormTitle": "IPCommunication__00__",
+                    "FormInfo": "",
+                    "FormEditIdShort": false,
+                    "FormEditDescription": false,
+                    "PresetIdShort": "IPCommunication__00__{0:00}",
+                    "PresetCategory": "",
+                    "KeySemanticId": {
+                      "type": "GlobalReference",
+                      "value": "https://admin-shell.io/zvei/nameplate/1/0/ContactInformations/"
+                    },
+                    "Multiplicity": "ZeroToMany",
+                    "IsReadOnly": false,
+                    "value": [
+                      {
+                        "$type": "FormProperty",
+                        "FormTitle": "AddressOfAdditionalLink",
+                        "FormInfo": "",
+                        "FormEditIdShort": false,
+                        "FormEditDescription": false,
+                        "PresetIdShort": "AddressOfAdditionalLink",
+                        "PresetCategory": "",
+                        "KeySemanticId": {
+                          "type": "GlobalReference",
+                          "value": "0173-1#02-AAQ326#002"
+                        },
+                        "Multiplicity": "One",
+                        "IsReadOnly": false,
+                        "allowedValueTypes": [
+                          "xs:string"
+                        ],
+                        "presetValue": " "
+                      },
+                      {
+                        "$type": "FormProperty",
+                        "FormTitle": "TypeOfCommunication",
+                        "FormInfo": "",
+                        "FormEditIdShort": false,
+                        "FormEditDescription": false,
+                        "PresetIdShort": "TypeOfCommunication",
+                        "PresetCategory": "",
+                        "KeySemanticId": {
+                          "type": "GlobalReference",
+                          "value": "https://admin-shell.io/zvei/nameplate/1/0/ ContactInformations/ContactInformation/IPCommunication/TypeOfCommunication"
+                        },
+                        "Multiplicity": "ZeroToOne",
+                        "IsReadOnly": false,
+                        "allowedValueTypes": [
+                          "xs:string"
+                        ],
+                        "presetValue": " "
+                      },
+                      {
+                        "$type": "FormMultiLangProp",
+                        "FormTitle": "AvailableTime",
+                        "FormInfo": "",
+                        "FormEditIdShort": false,
+                        "FormEditDescription": false,
+                        "PresetIdShort": "AvailableTime",
+                        "PresetCategory": "",
+                        "KeySemanticId": {
+                          "type": "GlobalReference",
+                          "value": "https://admin-shell.io/zvei/nameplate/1/0/ContactInformations/ContactInformation/AvailableTime/"
+                        },
+                        "Multiplicity": "ZeroToOne",
+                        "IsReadOnly": false
+                      }
+                    ]
+                  },
+                  {
+                    "$type": "FormMultiLangProp",
+                    "FormTitle": "Street",
+                    "FormInfo": "",
+                    "FormEditIdShort": false,
+                    "FormEditDescription": false,
+                    "PresetIdShort": "Street",
+                    "PresetCategory": "",
+                    "KeySemanticId": {
+                      "type": "GlobalReference",
+                      "value": "0173-1#02-AAO128#002"
+                    },
+                    "Multiplicity": "ZeroToOne",
+                    "IsReadOnly": false
+                  },
+                  {
+                    "$type": "FormMultiLangProp",
+                    "FormTitle": "Zipcode",
+                    "FormInfo": "Recommendation: property declaration as MLP is required by its semantic definition. As the property value is language independent, users are recommended to provide maximal 1 string in any language of the user’s choice.",
+                    "FormEditIdShort": false,
+                    "FormEditDescription": false,
+                    "PresetIdShort": "Zipcode",
+                    "PresetCategory": "",
+                    "KeySemanticId": {
+                      "type": "GlobalReference",
+                      "value": "0173-1#02-AAO129#002"
+                    },
+                    "Multiplicity": "ZeroToOne",
+                    "IsReadOnly": false
+                  },
+                  {
+                    "$type": "FormMultiLangProp",
+                    "FormTitle": "POBox",
+                    "FormInfo": "",
+                    "FormEditIdShort": false,
+                    "FormEditDescription": false,
+                    "PresetIdShort": "POBox",
+                    "PresetCategory": "",
+                    "KeySemanticId": {
+                      "type": "GlobalReference",
+                      "value": "0173-1#02-AAO130#002"
+                    },
+                    "Multiplicity": "ZeroToOne",
+                    "IsReadOnly": false
+                  },
+                  {
+                    "$type": "FormMultiLangProp",
+                    "FormTitle": "ZipCodeOfPOBox",
+                    "FormInfo": "Recommendation: property declaration as MLP is required by its semantic definition. As the property value is language independent, users are recommended to provide maximal 1 string in any language of the user’s choice.",
+                    "FormEditIdShort": false,
+                    "FormEditDescription": false,
+                    "PresetIdShort": "ZipCodeOfPOBox",
+                    "PresetCategory": "",
+                    "KeySemanticId": {
+                      "type": "GlobalReference",
+                      "value": "0173-1#02-AAO131#002"
+                    },
+                    "Multiplicity": "ZeroToOne",
+                    "IsReadOnly": false
+                  },
+                  {
+                    "$type": "FormMultiLangProp",
+                    "FormTitle": "StateCounty",
+                    "FormInfo": "",
+                    "FormEditIdShort": false,
+                    "FormEditDescription": false,
+                    "PresetIdShort": "StateCounty",
+                    "PresetCategory": "",
+                    "KeySemanticId": {
+                      "type": "GlobalReference",
+                      "value": "0173-1#02-AAO133#002"
+                    },
+                    "Multiplicity": "ZeroToOne",
+                    "IsReadOnly": false
+                  },
+                  {
+                    "$type": "FormMultiLangProp",
+                    "FormTitle": "NameOfContact",
+                    "FormInfo": "",
+                    "FormEditIdShort": false,
+                    "FormEditDescription": false,
+                    "PresetIdShort": "NameOfContact",
+                    "PresetCategory": "",
+                    "KeySemanticId": {
+                      "type": "GlobalReference",
+                      "value": "0173-1#02-AAO205#002"
+                    },
+                    "Multiplicity": "ZeroToOne",
+                    "IsReadOnly": false
+                  },
+                  {
+                    "$type": "FormMultiLangProp",
+                    "FormTitle": "FirstName",
+                    "FormInfo": "",
+                    "FormEditIdShort": false,
+                    "FormEditDescription": false,
+                    "PresetIdShort": "FirstName",
+                    "PresetCategory": "",
+                    "KeySemanticId": {
+                      "type": "GlobalReference",
+                      "value": "0173-1#02-AAO206#002"
+                    },
+                    "Multiplicity": "ZeroToOne",
+                    "IsReadOnly": false
+                  },
+                  {
+                    "$type": "FormMultiLangProp",
+                    "FormTitle": "MiddleNames",
+                    "FormInfo": "",
+                    "FormEditIdShort": false,
+                    "FormEditDescription": false,
+                    "PresetIdShort": "MiddleNames",
+                    "PresetCategory": "",
+                    "KeySemanticId": {
+                      "type": "GlobalReference",
+                      "value": "0173-1#02-AAO207#002"
+                    },
+                    "Multiplicity": "ZeroToOne",
+                    "IsReadOnly": false
+                  },
+                  {
+                    "$type": "FormMultiLangProp",
+                    "FormTitle": "Title",
+                    "FormInfo": "",
+                    "FormEditIdShort": false,
+                    "FormEditDescription": false,
+                    "PresetIdShort": "Title",
+                    "PresetCategory": "",
+                    "KeySemanticId": {
+                      "type": "GlobalReference",
+                      "value": "0173-1#02-AAO208#003"
+                    },
+                    "Multiplicity": "ZeroToOne",
+                    "IsReadOnly": false
+                  },
+                  {
+                    "$type": "FormMultiLangProp",
+                    "FormTitle": "AcademicTitle",
+                    "FormInfo": "",
+                    "FormEditIdShort": false,
+                    "FormEditDescription": false,
+                    "PresetIdShort": "AcademicTitle",
+                    "PresetCategory": "",
+                    "KeySemanticId": {
+                      "type": "GlobalReference",
+                      "value": "0173-1#02-AAO209#003"
+                    },
+                    "Multiplicity": "ZeroToOne",
+                    "IsReadOnly": false
+                  },
+                  {
+                    "$type": "FormMultiLangProp",
+                    "FormTitle": "FurtherDetailsOfContact",
+                    "FormInfo": "",
+                    "FormEditIdShort": false,
+                    "FormEditDescription": false,
+                    "PresetIdShort": "FurtherDetailsOfContact",
+                    "PresetCategory": "",
+                    "KeySemanticId": {
+                      "type": "GlobalReference",
+                      "value": "0173-1#02-AAO210#002"
+                    },
+                    "Multiplicity": "ZeroToOne",
+                    "IsReadOnly": false
+                  },
+                  {
+                    "$type": "FormProperty",
+                    "FormTitle": "AddressOfAdditionalLink",
+                    "FormInfo": "",
+                    "FormEditIdShort": false,
+                    "FormEditDescription": false,
+                    "PresetIdShort": "AddressOfAdditionalLink",
+                    "PresetCategory": "",
+                    "KeySemanticId": {
+                      "type": "GlobalReference",
+                      "value": "0173-1#02-AAQ326#002"
+                    },
+                    "Multiplicity": "ZeroToOne",
+                    "IsReadOnly": false,
+                    "allowedValueTypes": [
+                      "xs:string"
+                    ],
+                    "presetValue": " "
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "ConceptDescriptions": [
+        {
+          "$type": "AasCore.Aas3_0.ConceptDescription, AasCore.Aas3_0",
+          "IdShort": "SoftwareNameplate_Type",
+          "Description": [
+            {
+              "$type": "AasCore.Aas3_0.LangStringTextType, AasCore.Aas3_0",
+              "Language": "en",
+              "Text": "This collection contains the type related information "
+            }
+          ],
+          "Id": "https://admin-shell.io/idta/SoftwareNameplate/1/0/SoftwareNameplate/SoftwareNameplateType",
+          "EmbeddedDataSpecifications": [
+            {
+              "$type": "AasCore.Aas3_0.EmbeddedDataSpecification, AasCore.Aas3_0",
+              "DataSpecification": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0"
+                  }
+                ]
+              },
+              "DataSpecificationContent": {
+                "$type": "AasCore.Aas3_0.DataSpecificationIec61360, AasCore.Aas3_0",
+                "PreferredName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "SoftwareNameplate_Type"
+                  }
+                ],
+                "ShortName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringShortNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "Type"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "$type": "AasCore.Aas3_0.ConceptDescription, AasCore.Aas3_0",
+          "IdShort": "URIOfTheProduct",
+          "Id": "0173-1#02-AAY811#001",
+          "EmbeddedDataSpecifications": [
+            {
+              "$type": "AasCore.Aas3_0.EmbeddedDataSpecification, AasCore.Aas3_0",
+              "DataSpecification": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "http://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0"
+                  }
+                ]
+              },
+              "DataSpecificationContent": {
+                "$type": "AasCore.Aas3_0.DataSpecificationIec61360, AasCore.Aas3_0",
+                "PreferredName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "URIOfTheProduct"
+                  }
+                ],
+                "ShortName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringShortNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "ProductURI"
+                  }
+                ],
+                "Definition": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "unique global identification of the product using an universal resource identifier (URI)"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "$type": "AasCore.Aas3_0.ConceptDescription, AasCore.Aas3_0",
+          "IdShort": "ManufacturerName",
+          "Id": "0173-1#02-AAO677#002",
+          "EmbeddedDataSpecifications": [
+            {
+              "$type": "AasCore.Aas3_0.EmbeddedDataSpecification, AasCore.Aas3_0",
+              "DataSpecification": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "http://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0"
+                  }
+                ]
+              },
+              "DataSpecificationContent": {
+                "$type": "AasCore.Aas3_0.DataSpecificationIec61360, AasCore.Aas3_0",
+                "PreferredName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "ManufacturerName"
+                  }
+                ],
+                "ShortName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringShortNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "ManufacturerName"
+                  }
+                ],
+                "Definition": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "legally valid designation of the natural or judicial person which is directly responsible for the design, production, packaging and labeling of a product in respect to its being brought into circulation"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "$type": "AasCore.Aas3_0.ConceptDescription, AasCore.Aas3_0",
+          "IdShort": "ManufacturerProductDesignation",
+          "Id": "0173-1#02-AAW338#001",
+          "EmbeddedDataSpecifications": [
+            {
+              "$type": "AasCore.Aas3_0.EmbeddedDataSpecification, AasCore.Aas3_0",
+              "DataSpecification": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "http://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0"
+                  }
+                ]
+              },
+              "DataSpecificationContent": {
+                "$type": "AasCore.Aas3_0.DataSpecificationIec61360, AasCore.Aas3_0",
+                "PreferredName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "ManufacturerProductDesignation"
+                  }
+                ],
+                "ShortName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringShortNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "Designation"
+                  }
+                ],
+                "Definition": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "Short description of the product (short text) "
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "$type": "AasCore.Aas3_0.ConceptDescription, AasCore.Aas3_0",
+          "IdShort": "ManufacturerProductDescription",
+          "Description": [
+            {
+              "$type": "AasCore.Aas3_0.LangStringTextType, AasCore.Aas3_0",
+              "Language": "en",
+              "Text": "EMPTY"
+            }
+          ],
+          "Administration": {
+            "$type": "AasCore.Aas3_0.AdministrativeInformation, AasCore.Aas3_0",
+            "Version": "1",
+            "Revision": "0"
+          },
+          "Id": "https://admin-shell.io/idta/SoftwareNameplate/1/0/SoftwareNameplate/SoftwareNameplateType/ManufacturerProductDescription",
+          "EmbeddedDataSpecifications": [
+            {
+              "$type": "AasCore.Aas3_0.EmbeddedDataSpecification, AasCore.Aas3_0",
+              "DataSpecification": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "http://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0"
+                  }
+                ]
+              },
+              "DataSpecificationContent": {
+                "$type": "AasCore.Aas3_0.DataSpecificationIec61360, AasCore.Aas3_0",
+                "PreferredName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "ManufacturerProductDescription"
+                  }
+                ],
+                "ShortName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringShortNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "Description"
+                  }
+                ],
+                "Definition": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "A description of the software product, provided by the manufacturer"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "$type": "AasCore.Aas3_0.ConceptDescription, AasCore.Aas3_0",
+          "IdShort": "ManufacturerProductFamily",
+          "Id": "0173-1#02-AAU731#001",
+          "EmbeddedDataSpecifications": [
+            {
+              "$type": "AasCore.Aas3_0.EmbeddedDataSpecification, AasCore.Aas3_0",
+              "DataSpecification": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "http://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0"
+                  }
+                ]
+              },
+              "DataSpecificationContent": {
+                "$type": "AasCore.Aas3_0.DataSpecificationIec61360, AasCore.Aas3_0",
+                "PreferredName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "ManufacturerProductFamily"
+                  }
+                ],
+                "ShortName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringShortNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "ProductFamily"
+                  }
+                ],
+                "Definition": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "2nd level of a 3 level manufacturer specific product hierarchy"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "$type": "AasCore.Aas3_0.ConceptDescription, AasCore.Aas3_0",
+          "IdShort": "ManufacturerProductType",
+          "Id": "0173-1#02-AAO057#002",
+          "EmbeddedDataSpecifications": [
+            {
+              "$type": "AasCore.Aas3_0.EmbeddedDataSpecification, AasCore.Aas3_0",
+              "DataSpecification": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "http://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0"
+                  }
+                ]
+              },
+              "DataSpecificationContent": {
+                "$type": "AasCore.Aas3_0.DataSpecificationIec61360, AasCore.Aas3_0",
+                "PreferredName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "ManufacturerProductType"
+                  }
+                ],
+                "ShortName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringShortNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "ProductType"
+                  }
+                ],
+                "Definition": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "Characteristic to differentiate between different products of a product family or special variants"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "$type": "AasCore.Aas3_0.ConceptDescription, AasCore.Aas3_0",
+          "IdShort": "SoftwareType",
+          "Administration": {
+            "$type": "AasCore.Aas3_0.AdministrativeInformation, AasCore.Aas3_0",
+            "Version": "1",
+            "Revision": "0"
+          },
+          "Id": "https://admin-shell.io/idta/SoftwareNameplate/1/0/SoftwareNameplate/SoftwareNameplateType/SoftwareType",
+          "EmbeddedDataSpecifications": [
+            {
+              "$type": "AasCore.Aas3_0.EmbeddedDataSpecification, AasCore.Aas3_0",
+              "DataSpecification": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "http://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0"
+                  }
+                ]
+              },
+              "DataSpecificationContent": {
+                "$type": "AasCore.Aas3_0.DataSpecificationIec61360, AasCore.Aas3_0",
+                "PreferredName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "type of the software"
+                  },
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "de",
+                    "Text": "Softwaretyp"
+                  }
+                ],
+                "ShortName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringShortNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "SoftwareType"
+                  }
+                ],
+                "Definition": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "type of the software"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "$type": "AasCore.Aas3_0.ConceptDescription, AasCore.Aas3_0",
+          "IdShort": "Version",
+          "Administration": {
+            "$type": "AasCore.Aas3_0.AdministrativeInformation, AasCore.Aas3_0",
+            "Version": "1",
+            "Revision": "0"
+          },
+          "Id": "https://admin-shell.io/idta/SoftwareNameplate/1/0/SoftwareNameplate/SoftwareNameplateType/Version",
+          "EmbeddedDataSpecifications": [
+            {
+              "$type": "AasCore.Aas3_0.EmbeddedDataSpecification, AasCore.Aas3_0",
+              "DataSpecification": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "http://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0"
+                  }
+                ]
+              },
+              "DataSpecificationContent": {
+                "$type": "AasCore.Aas3_0.DataSpecificationIec61360, AasCore.Aas3_0",
+                "PreferredName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "Version"
+                  },
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "de",
+                    "Text": "Version"
+                  }
+                ],
+                "ShortName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringShortNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "Version"
+                  },
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringShortNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "de",
+                    "Text": "Version"
+                  }
+                ],
+                "Definition": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "The complete version information consisting of Major Version, Minor Version, Revision and Build Number"
+                  },
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "de",
+                    "Text": "Die vollständige Versionsnummer, bestehend aus Major Version, Minor Version, Revision und Build Number"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "$type": "AasCore.Aas3_0.ConceptDescription, AasCore.Aas3_0",
+          "IdShort": "VersionName",
+          "Description": [
+            {
+              "$type": "AasCore.Aas3_0.LangStringTextType, AasCore.Aas3_0",
+              "Language": "en",
+              "Text": "The name this particular version is given."
+            },
+            {
+              "$type": "AasCore.Aas3_0.LangStringTextType, AasCore.Aas3_0",
+              "Language": "de",
+              "Text": "Der Name dieser Version."
+            }
+          ],
+          "Administration": {
+            "$type": "AasCore.Aas3_0.AdministrativeInformation, AasCore.Aas3_0",
+            "Version": "1",
+            "Revision": "0"
+          },
+          "Id": "https://admin-shell.io/idta/SoftwareNameplate/1/0/SoftwareNameplate/SoftwareNameplateType/VersionName",
+          "EmbeddedDataSpecifications": [
+            {
+              "$type": "AasCore.Aas3_0.EmbeddedDataSpecification, AasCore.Aas3_0",
+              "DataSpecification": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "http://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0"
+                  }
+                ]
+              },
+              "DataSpecificationContent": {
+                "$type": "AasCore.Aas3_0.DataSpecificationIec61360, AasCore.Aas3_0",
+                "PreferredName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "version name"
+                  },
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "de",
+                    "Text": "Versionsname"
+                  }
+                ],
+                "ShortName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringShortNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "VersionName"
+                  }
+                ],
+                "Definition": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "The name this particular version is given."
+                  },
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "de",
+                    "Text": "Versionsname"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "$type": "AasCore.Aas3_0.ConceptDescription, AasCore.Aas3_0",
+          "IdShort": "VersionInfo",
+          "Description": [
+            {
+              "$type": "AasCore.Aas3_0.LangStringTextType, AasCore.Aas3_0",
+              "Language": "en",
+              "Text": "Version Information"
+            },
+            {
+              "$type": "AasCore.Aas3_0.LangStringTextType, AasCore.Aas3_0",
+              "Language": "de",
+              "Text": "Versionsinformation"
+            }
+          ],
+          "Administration": {
+            "$type": "AasCore.Aas3_0.AdministrativeInformation, AasCore.Aas3_0",
+            "Version": "1",
+            "Revision": "0"
+          },
+          "Id": "https://admin-shell.io/idta/SoftwareNameplate/1/0/SoftwareNameplate/SoftwareNameplateType/VersionInfo",
+          "EmbeddedDataSpecifications": [
+            {
+              "$type": "AasCore.Aas3_0.EmbeddedDataSpecification, AasCore.Aas3_0",
+              "DataSpecification": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "http://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0"
+                  }
+                ]
+              },
+              "DataSpecificationContent": {
+                "$type": "AasCore.Aas3_0.DataSpecificationIec61360, AasCore.Aas3_0",
+                "PreferredName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "Version Information"
+                  },
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "de",
+                    "Text": "Versionsinformation"
+                  }
+                ],
+                "ShortName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringShortNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "VersionInfo"
+                  }
+                ],
+                "Definition": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "Provides a textual description of most relevant characteristics of the version of the software"
+                  },
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "de",
+                    "Text": "Versionsinformation"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "$type": "AasCore.Aas3_0.ConceptDescription, AasCore.Aas3_0",
+          "IdShort": "ReleaseDate",
+          "Administration": {
+            "$type": "AasCore.Aas3_0.AdministrativeInformation, AasCore.Aas3_0",
+            "Version": "1",
+            "Revision": "0"
+          },
+          "Id": "https://admin-shell.io/idta/SoftwareNameplate/1/0/SoftwareNameplate/SoftwareNameplateType/ReleaseDate",
+          "EmbeddedDataSpecifications": [
+            {
+              "$type": "AasCore.Aas3_0.EmbeddedDataSpecification, AasCore.Aas3_0",
+              "DataSpecification": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "http://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0"
+                  }
+                ]
+              },
+              "DataSpecificationContent": {
+                "$type": "AasCore.Aas3_0.DataSpecificationIec61360, AasCore.Aas3_0",
+                "PreferredName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "ReleaseDate"
+                  },
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "de",
+                    "Text": "ReleaseDate"
+                  }
+                ],
+                "ShortName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringShortNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "ReleaseDate"
+                  }
+                ],
+                "Definition": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "The moment in time, when this particular build of software was released."
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "$type": "AasCore.Aas3_0.ConceptDescription, AasCore.Aas3_0",
+          "IdShort": "ReleaseNotes",
+          "Description": [
+            {
+              "$type": "AasCore.Aas3_0.LangStringTextType, AasCore.Aas3_0",
+              "Language": "en",
+              "Text": "contains information about this release"
+            },
+            {
+              "$type": "AasCore.Aas3_0.LangStringTextType, AasCore.Aas3_0",
+              "Language": "de",
+              "Text": "enthält Informationen zum aktuellen Release"
+            }
+          ],
+          "Administration": {
+            "$type": "AasCore.Aas3_0.AdministrativeInformation, AasCore.Aas3_0",
+            "Version": "1",
+            "Revision": "0"
+          },
+          "Id": "https://admin-shell.io/idta/SoftwareNameplate/1/0/SoftwareNameplate/SoftwareNameplateType/ReleaseNotes",
+          "EmbeddedDataSpecifications": [
+            {
+              "$type": "AasCore.Aas3_0.EmbeddedDataSpecification, AasCore.Aas3_0",
+              "DataSpecification": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "http://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0"
+                  }
+                ]
+              },
+              "DataSpecificationContent": {
+                "$type": "AasCore.Aas3_0.DataSpecificationIec61360, AasCore.Aas3_0",
+                "PreferredName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "Release Notes"
+                  },
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "de",
+                    "Text": "Ausgabestandsinformationen"
+                  }
+                ],
+                "ShortName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringShortNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "ReleaseNotes"
+                  }
+                ],
+                "Definition": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "contains information about this release"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "$type": "AasCore.Aas3_0.ConceptDescription, AasCore.Aas3_0",
+          "IdShort": "BuildDate",
+          "Administration": {
+            "$type": "AasCore.Aas3_0.AdministrativeInformation, AasCore.Aas3_0",
+            "Version": "1",
+            "Revision": "0"
+          },
+          "Id": "https://admin-shell.io/idta/SoftwareNameplate/1/0/SoftwareNameplate/SoftwareNameplateType/BuildDate",
+          "EmbeddedDataSpecifications": [
+            {
+              "$type": "AasCore.Aas3_0.EmbeddedDataSpecification, AasCore.Aas3_0",
+              "DataSpecification": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "http://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0"
+                  }
+                ]
+              },
+              "DataSpecificationContent": {
+                "$type": "AasCore.Aas3_0.DataSpecificationIec61360, AasCore.Aas3_0",
+                "PreferredName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "BuildDate"
+                  },
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "de",
+                    "Text": "BuildDate"
+                  }
+                ],
+                "ShortName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringShortNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "BuildDate"
+                  }
+                ],
+                "Definition": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "The moment in time, when this particular build of software was created."
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "$type": "AasCore.Aas3_0.ConceptDescription, AasCore.Aas3_0",
+          "IdShort": "InstallationURI",
+          "Administration": {
+            "$type": "AasCore.Aas3_0.AdministrativeInformation, AasCore.Aas3_0",
+            "Version": "1",
+            "Revision": "0"
+          },
+          "Id": "https://admin-shell.io/idta/SoftwareNameplate/1/0/SoftwareNameplate/SoftwareNameplateType/InstallationURI",
+          "EmbeddedDataSpecifications": [
+            {
+              "$type": "AasCore.Aas3_0.EmbeddedDataSpecification, AasCore.Aas3_0",
+              "DataSpecification": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "http://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0"
+                  }
+                ]
+              },
+              "DataSpecificationContent": {
+                "$type": "AasCore.Aas3_0.DataSpecificationIec61360, AasCore.Aas3_0",
+                "PreferredName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "InstallationURI"
+                  },
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "de",
+                    "Text": "Installation-URI"
+                  }
+                ],
+                "ShortName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringShortNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "installationURI"
+                  }
+                ],
+                "Definition": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "Indicates the resource, where the software is being provided by the manufacturer."
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "$type": "AasCore.Aas3_0.ConceptDescription, AasCore.Aas3_0",
+          "IdShort": "InstallationFile",
+          "Administration": {
+            "$type": "AasCore.Aas3_0.AdministrativeInformation, AasCore.Aas3_0",
+            "Version": "1",
+            "Revision": "0"
+          },
+          "Id": "https://admin-shell.io/idta/SoftwareNameplate/1/0/SoftwareNameplate/SoftwareNameplateType/InstallationFile",
+          "EmbeddedDataSpecifications": [
+            {
+              "$type": "AasCore.Aas3_0.EmbeddedDataSpecification, AasCore.Aas3_0",
+              "DataSpecification": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0"
+                  }
+                ]
+              },
+              "DataSpecificationContent": {
+                "$type": "AasCore.Aas3_0.DataSpecificationIec61360, AasCore.Aas3_0",
+                "PreferredName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "InstallationFile"
+                  }
+                ],
+                "ShortName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringShortNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "InstallationFile"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "$type": "AasCore.Aas3_0.ConceptDescription, AasCore.Aas3_0",
+          "IdShort": "InstallerType",
+          "Description": [
+            {
+              "$type": "AasCore.Aas3_0.LangStringTextType, AasCore.Aas3_0",
+              "Language": "en",
+              "Text": "indicates the type of installer software"
+            },
+            {
+              "$type": "AasCore.Aas3_0.LangStringTextType, AasCore.Aas3_0",
+              "Language": "de",
+              "Text": "gibt den Typ der Installationssoftware an"
+            }
+          ],
+          "Administration": {
+            "$type": "AasCore.Aas3_0.AdministrativeInformation, AasCore.Aas3_0",
+            "Version": "1",
+            "Revision": "0"
+          },
+          "Id": "https://admin-shell.io/idta/SoftwareNameplate/1/0/SoftwareNameplate/SoftwareNameplateType/InstallerType",
+          "EmbeddedDataSpecifications": [
+            {
+              "$type": "AasCore.Aas3_0.EmbeddedDataSpecification, AasCore.Aas3_0",
+              "DataSpecification": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "http://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0"
+                  }
+                ]
+              },
+              "DataSpecificationContent": {
+                "$type": "AasCore.Aas3_0.DataSpecificationIec61360, AasCore.Aas3_0",
+                "PreferredName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "Installer Type"
+                  },
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "de",
+                    "Text": "Installationstyp"
+                  }
+                ],
+                "ShortName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringShortNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "InstallerType"
+                  }
+                ],
+                "Definition": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "Indicates the type of installation package."
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "$type": "AasCore.Aas3_0.ConceptDescription, AasCore.Aas3_0",
+          "IdShort": "InstallationChecksum",
+          "Administration": {
+            "$type": "AasCore.Aas3_0.AdministrativeInformation, AasCore.Aas3_0",
+            "Version": "1",
+            "Revision": "0"
+          },
+          "Id": "https://admin-shell.io/idta/SoftwareNameplate/1/0/SoftwareNameplate/SoftwareNameplateType/InstallationChecksum",
+          "EmbeddedDataSpecifications": [
+            {
+              "$type": "AasCore.Aas3_0.EmbeddedDataSpecification, AasCore.Aas3_0",
+              "DataSpecification": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "http://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0"
+                  }
+                ]
+              },
+              "DataSpecificationContent": {
+                "$type": "AasCore.Aas3_0.DataSpecificationIec61360, AasCore.Aas3_0",
+                "PreferredName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "Installation Checksum"
+                  },
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "de",
+                    "Text": "Prüfsumme der Installation"
+                  }
+                ],
+                "ShortName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringShortNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "Checksum"
+                  }
+                ],
+                "Definition": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "provides the checksum for the software available at InstallationURI"
+                  },
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "de",
+                    "Text": "beinhaltet die Prüfsumme für die Software, die über InstallationURI angegeben ist"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "$type": "AasCore.Aas3_0.ConceptDescription, AasCore.Aas3_0",
+          "IdShort": "SoftwareNameplate_Instance",
+          "Description": [
+            {
+              "$type": "AasCore.Aas3_0.LangStringTextType, AasCore.Aas3_0",
+              "Language": "en",
+              "Text": "This collection contains the type related information "
+            }
+          ],
+          "Id": "https://admin-shell.io/idta/SoftwareNameplate/1/0/SoftwareNameplate/SoftwareNameplateInstance",
+          "EmbeddedDataSpecifications": [
+            {
+              "$type": "AasCore.Aas3_0.EmbeddedDataSpecification, AasCore.Aas3_0",
+              "DataSpecification": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0"
+                  }
+                ]
+              },
+              "DataSpecificationContent": {
+                "$type": "AasCore.Aas3_0.DataSpecificationIec61360, AasCore.Aas3_0",
+                "PreferredName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "SoftwareNameplate_Instance"
+                  }
+                ],
+                "ShortName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringShortNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "Instance"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "$type": "AasCore.Aas3_0.ConceptDescription, AasCore.Aas3_0",
+          "IdShort": "SerialNumber",
+          "Id": "0173-1#02-AAM556#002",
+          "EmbeddedDataSpecifications": [
+            {
+              "$type": "AasCore.Aas3_0.EmbeddedDataSpecification, AasCore.Aas3_0",
+              "DataSpecification": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "http://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0"
+                  }
+                ]
+              },
+              "DataSpecificationContent": {
+                "$type": "AasCore.Aas3_0.DataSpecificationIec61360, AasCore.Aas3_0",
+                "PreferredName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "serial number"
+                  },
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "de",
+                    "Text": "Seriennummer"
+                  }
+                ],
+                "ShortName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringShortNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "SerialNumber"
+                  }
+                ],
+                "Definition": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "unique combination of numbers and letters used to identify the device once it has been manufactured"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "$type": "AasCore.Aas3_0.ConceptDescription, AasCore.Aas3_0",
+          "IdShort": "InventoryTag",
+          "Administration": {
+            "$type": "AasCore.Aas3_0.AdministrativeInformation, AasCore.Aas3_0",
+            "Version": "1",
+            "Revision": "0"
+          },
+          "Id": "https://admin-shell.io/idta/SoftwareNameplate/1/0/SoftwareNameplate/SoftwareNameplateInstance/InventoryTag",
+          "EmbeddedDataSpecifications": [
+            {
+              "$type": "AasCore.Aas3_0.EmbeddedDataSpecification, AasCore.Aas3_0",
+              "DataSpecification": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "http://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0"
+                  }
+                ]
+              },
+              "DataSpecificationContent": {
+                "$type": "AasCore.Aas3_0.DataSpecificationIec61360, AasCore.Aas3_0",
+                "PreferredName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "Inventory Tag"
+                  },
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "de",
+                    "Text": "Inventarkennzeichen"
+                  }
+                ],
+                "ShortName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringShortNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "InventoryTag"
+                  }
+                ],
+                "Definition": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "Specifies an information used for inventory of the software."
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "$type": "AasCore.Aas3_0.ConceptDescription, AasCore.Aas3_0",
+          "IdShort": "instanceName",
+          "Administration": {
+            "$type": "AasCore.Aas3_0.AdministrativeInformation, AasCore.Aas3_0",
+            "Version": "1",
+            "Revision": "0"
+          },
+          "Id": "https://admin-shell.io/idta/SoftwareNameplate/1/0/SoftwareNameplate/SoftwareNameplateInstance/InstanceName",
+          "EmbeddedDataSpecifications": [
+            {
+              "$type": "AasCore.Aas3_0.EmbeddedDataSpecification, AasCore.Aas3_0",
+              "DataSpecification": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "http://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0"
+                  }
+                ]
+              },
+              "DataSpecificationContent": {
+                "$type": "AasCore.Aas3_0.DataSpecificationIec61360, AasCore.Aas3_0",
+                "PreferredName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "instance name"
+                  },
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "de",
+                    "Text": "Instanzname"
+                  }
+                ],
+                "ShortName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringShortNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "instancename"
+                  }
+                ],
+                "Definition": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "The name of the software instance."
+                  },
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "de",
+                    "Text": "Instanzname"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "$type": "AasCore.Aas3_0.ConceptDescription, AasCore.Aas3_0",
+          "IdShort": "InstalledVersion",
+          "Id": "https://admin-shell.io/idta/SoftwareNameplate/1/0/SoftwareNameplate/SoftwareNameplateInstance/InstalledVersion",
+          "EmbeddedDataSpecifications": [
+            {
+              "$type": "AasCore.Aas3_0.EmbeddedDataSpecification, AasCore.Aas3_0",
+              "DataSpecification": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "http://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0"
+                  }
+                ]
+              },
+              "DataSpecificationContent": {
+                "$type": "AasCore.Aas3_0.DataSpecificationIec61360, AasCore.Aas3_0",
+                "PreferredName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "installed version"
+                  },
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "de",
+                    "Text": "installierte Version"
+                  }
+                ],
+                "ShortName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringShortNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "Version"
+                  }
+                ],
+                "Definition": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "The version information of the installed instance, consisting of Major Version, Minor Version, Revision and Build Number"
+                  },
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "de",
+                    "Text": "Die vollständige Versionsnummer der installierten Instanz, bestehend aus Major Version, Minor Version, Revision und Build Number"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "$type": "AasCore.Aas3_0.ConceptDescription, AasCore.Aas3_0",
+          "IdShort": "InstallationDate",
+          "Id": "https://admin-shell.io/idta/SoftwareNameplate/1/0/SoftwareNameplate/SoftwareNameplateInstance/InstallationDate",
+          "EmbeddedDataSpecifications": [
+            {
+              "$type": "AasCore.Aas3_0.EmbeddedDataSpecification, AasCore.Aas3_0",
+              "DataSpecification": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "http://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0"
+                  }
+                ]
+              },
+              "DataSpecificationContent": {
+                "$type": "AasCore.Aas3_0.DataSpecificationIec61360, AasCore.Aas3_0",
+                "PreferredName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "Installation Date"
+                  },
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "de",
+                    "Text": "Tag der Installation"
+                  }
+                ],
+                "ShortName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringShortNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "InstallDate"
+                  }
+                ],
+                "Definition": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "Date of Installation"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "$type": "AasCore.Aas3_0.ConceptDescription, AasCore.Aas3_0",
+          "IdShort": "InstallationPath",
+          "Description": [
+            {
+              "$type": "AasCore.Aas3_0.LangStringTextType, AasCore.Aas3_0",
+              "Language": "en",
+              "Text": "Indicates the path to the installed instance of the software."
+            }
+          ],
+          "Id": "https://admin-shell.io/idta/SoftwareNameplate/1/0/SoftwareNameplate/SoftwareNameplateInstance/InstallationPath",
+          "EmbeddedDataSpecifications": [
+            {
+              "$type": "AasCore.Aas3_0.EmbeddedDataSpecification, AasCore.Aas3_0",
+              "DataSpecification": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "http://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0"
+                  }
+                ]
+              },
+              "DataSpecificationContent": {
+                "$type": "AasCore.Aas3_0.DataSpecificationIec61360, AasCore.Aas3_0",
+                "PreferredName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "Installation Path"
+                  },
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "de",
+                    "Text": "Installationspfad"
+                  }
+                ],
+                "ShortName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringShortNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "InstallPath"
+                  }
+                ],
+                "Definition": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "Indicates the path to the installed instance of the software."
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "$type": "AasCore.Aas3_0.ConceptDescription, AasCore.Aas3_0",
+          "IdShort": "InstallationSource",
+          "Id": "https://admin-shell.io/idta/SoftwareNameplate/1/0/SoftwareNameplate/SoftwareNameplateInstance/InstallationSource",
+          "EmbeddedDataSpecifications": [
+            {
+              "$type": "AasCore.Aas3_0.EmbeddedDataSpecification, AasCore.Aas3_0",
+              "DataSpecification": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "http://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0"
+                  }
+                ]
+              },
+              "DataSpecificationContent": {
+                "$type": "AasCore.Aas3_0.DataSpecificationIec61360, AasCore.Aas3_0",
+                "PreferredName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "Installation Source"
+                  },
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "de",
+                    "Text": "Installationsquelle"
+                  }
+                ],
+                "ShortName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringShortNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "InsSource"
+                  }
+                ],
+                "Definition": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "Indicates the path to the installation files used in this instance of the software."
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "$type": "AasCore.Aas3_0.ConceptDescription, AasCore.Aas3_0",
+          "IdShort": "InstalledOnArchitecture",
+          "Id": "https://admin-shell.io/idta/SoftwareNameplate/1/0/SoftwareNameplate/SoftwareNameplateInstance/InstalledOnArchitecture",
+          "EmbeddedDataSpecifications": [
+            {
+              "$type": "AasCore.Aas3_0.EmbeddedDataSpecification, AasCore.Aas3_0",
+              "DataSpecification": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "http://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0"
+                  }
+                ]
+              },
+              "DataSpecificationContent": {
+                "$type": "AasCore.Aas3_0.DataSpecificationIec61360, AasCore.Aas3_0",
+                "PreferredName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "InstalledOnArchitecture"
+                  },
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "de",
+                    "Text": "Installiert auf Architektur"
+                  }
+                ],
+                "ShortName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringShortNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "InsOnArch"
+                  }
+                ],
+                "Definition": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "Indicates the processor architecture this instance is installed on."
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "$type": "AasCore.Aas3_0.ConceptDescription, AasCore.Aas3_0",
+          "IdShort": "InstalledOnOS",
+          "Administration": {
+            "$type": "AasCore.Aas3_0.AdministrativeInformation, AasCore.Aas3_0",
+            "Version": "1",
+            "Revision": "0"
+          },
+          "Id": "https://admin-shell.io/idta/SoftwareNameplate/1/0/SoftwareNameplate/SoftwareNameplateInstance/InstalledOnOS",
+          "EmbeddedDataSpecifications": [
+            {
+              "$type": "AasCore.Aas3_0.EmbeddedDataSpecification, AasCore.Aas3_0",
+              "DataSpecification": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "http://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0"
+                  }
+                ]
+              },
+              "DataSpecificationContent": {
+                "$type": "AasCore.Aas3_0.DataSpecificationIec61360, AasCore.Aas3_0",
+                "PreferredName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "de",
+                    "Text": "InstalledOnOS"
+                  },
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "InstalledOnOS"
+                  }
+                ],
+                "ShortName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringShortNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "InstalledOnOS"
+                  }
+                ],
+                "Definition": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "Indicates the operating system this instance is installed on."
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "$type": "AasCore.Aas3_0.ConceptDescription, AasCore.Aas3_0",
+          "IdShort": "InstalledOnHost",
+          "Description": [
+            {
+              "$type": "AasCore.Aas3_0.LangStringTextType, AasCore.Aas3_0",
+              "Language": "en",
+              "Text": "Indicates the host system in case of a virtual environment."
+            },
+            {
+              "$type": "AasCore.Aas3_0.LangStringTextType, AasCore.Aas3_0",
+              "Language": "de",
+              "Text": "Gibt den Host an, falls es sich um eine virtuelle Umgebung handelt"
+            }
+          ],
+          "Id": "https://admin-shell.io/idta/SoftwareNameplate/1/0/SoftwareNameplate/SoftwareNameplateInstance/InstalledOnHost",
+          "EmbeddedDataSpecifications": [
+            {
+              "$type": "AasCore.Aas3_0.EmbeddedDataSpecification, AasCore.Aas3_0",
+              "DataSpecification": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "http://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0"
+                  }
+                ]
+              },
+              "DataSpecificationContent": {
+                "$type": "AasCore.Aas3_0.DataSpecificationIec61360, AasCore.Aas3_0",
+                "PreferredName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "Installed on Host"
+                  },
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "de",
+                    "Text": "installiert auf Host"
+                  }
+                ],
+                "ShortName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringShortNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "InsOnHost"
+                  }
+                ],
+                "Definition": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "Indicates the host system in case of a virtual environment."
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "$type": "AasCore.Aas3_0.ConceptDescription, AasCore.Aas3_0",
+          "IdShort": "InstalledModules",
+          "Description": [
+            {
+              "$type": "AasCore.Aas3_0.LangStringTextType, AasCore.Aas3_0",
+              "Language": "en",
+              "Text": "Indicates which modules of a software have been installed."
+            },
+            {
+              "$type": "AasCore.Aas3_0.LangStringTextType, AasCore.Aas3_0",
+              "Language": "de",
+              "Text": "gibt an, welche Module der Software installiert wurden."
+            }
+          ],
+          "Administration": {
+            "$type": "AasCore.Aas3_0.AdministrativeInformation, AasCore.Aas3_0",
+            "Version": "1",
+            "Revision": "0"
+          },
+          "Id": "https://admin-shell.io/idta/SoftwareNameplate/1/0/SoftwareNameplate/SoftwareNameplateInstance/InstalledModules",
+          "EmbeddedDataSpecifications": [
+            {
+              "$type": "AasCore.Aas3_0.EmbeddedDataSpecification, AasCore.Aas3_0",
+              "DataSpecification": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0"
+                  }
+                ]
+              },
+              "DataSpecificationContent": {
+                "$type": "AasCore.Aas3_0.DataSpecificationIec61360, AasCore.Aas3_0",
+                "PreferredName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "InstalledModules"
+                  }
+                ],
+                "ShortName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringShortNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "InsModules"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "$type": "AasCore.Aas3_0.ConceptDescription, AasCore.Aas3_0",
+          "IdShort": "InstalledModule",
+          "Description": [
+            {
+              "$type": "AasCore.Aas3_0.LangStringTextType, AasCore.Aas3_0",
+              "Language": "en",
+              "Text": "Name of module"
+            },
+            {
+              "$type": "AasCore.Aas3_0.LangStringTextType, AasCore.Aas3_0",
+              "Language": "de",
+              "Text": "Name des Moduls"
+            }
+          ],
+          "Administration": {
+            "$type": "AasCore.Aas3_0.AdministrativeInformation, AasCore.Aas3_0",
+            "Version": "1",
+            "Revision": "0"
+          },
+          "Id": "https://admin-shell.io/idta/SoftwareNameplate/1/0/SoftwareNameplate/SoftwareNameplateInstance/InstalledModule",
+          "EmbeddedDataSpecifications": [
+            {
+              "$type": "AasCore.Aas3_0.EmbeddedDataSpecification, AasCore.Aas3_0",
+              "DataSpecification": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "http://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0"
+                  }
+                ]
+              },
+              "DataSpecificationContent": {
+                "$type": "AasCore.Aas3_0.DataSpecificationIec61360, AasCore.Aas3_0",
+                "PreferredName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "Installed Module"
+                  },
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "de",
+                    "Text": "Installiertes Modul"
+                  }
+                ],
+                "ShortName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringShortNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "InsModule"
+                  }
+                ],
+                "Definition": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "The name of a particular module installed."
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "$type": "AasCore.Aas3_0.ConceptDescription, AasCore.Aas3_0",
+          "IdShort": "ConfigurationPaths",
+          "Description": [
+            {
+              "$type": "AasCore.Aas3_0.LangStringTextType, AasCore.Aas3_0",
+              "Language": "en",
+              "Text": "collection of configuration path entries"
+            }
+          ],
+          "Administration": {
+            "$type": "AasCore.Aas3_0.AdministrativeInformation, AasCore.Aas3_0",
+            "Version": "1",
+            "Revision": "0"
+          },
+          "Id": "https://admin-shell.io/idta/SoftwareNameplate/1/0/SoftwareNameplate/SoftwareNameplateInstance/ConfigurationPaths",
+          "EmbeddedDataSpecifications": [
+            {
+              "$type": "AasCore.Aas3_0.EmbeddedDataSpecification, AasCore.Aas3_0",
+              "DataSpecification": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0"
+                  }
+                ]
+              },
+              "DataSpecificationContent": {
+                "$type": "AasCore.Aas3_0.DataSpecificationIec61360, AasCore.Aas3_0",
+                "PreferredName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "ConfigurationPaths"
+                  }
+                ],
+                "ShortName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringShortNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "ConfigPaths"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "$type": "AasCore.Aas3_0.ConceptDescription, AasCore.Aas3_0",
+          "IdShort": "ConfigurationPath",
+          "Description": [
+            {
+              "$type": "AasCore.Aas3_0.LangStringTextType, AasCore.Aas3_0",
+              "Language": "en",
+              "Text": "Indicates the path to the configuration."
+            }
+          ],
+          "Administration": {
+            "$type": "AasCore.Aas3_0.AdministrativeInformation, AasCore.Aas3_0",
+            "Version": "1",
+            "Revision": "0"
+          },
+          "Id": "https://admin-shell.io/idta/SoftwareNameplate/1/0/SoftwareNameplate/SoftwareNameplateInstance/ConfigurationPath",
+          "EmbeddedDataSpecifications": [
+            {
+              "$type": "AasCore.Aas3_0.EmbeddedDataSpecification, AasCore.Aas3_0",
+              "DataSpecification": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0"
+                  }
+                ]
+              },
+              "DataSpecificationContent": {
+                "$type": "AasCore.Aas3_0.DataSpecificationIec61360, AasCore.Aas3_0",
+                "PreferredName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "ConfigurationPath"
+                  }
+                ],
+                "ShortName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringShortNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "Configpath"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "$type": "AasCore.Aas3_0.ConceptDescription, AasCore.Aas3_0",
+          "IdShort": "ConfigurationType",
+          "Id": "https://admin-shell.io/idta/SoftwareNameplate/1/0/SoftwareNameplate/SoftwareNameplateInstance/ConfigurationType",
+          "EmbeddedDataSpecifications": [
+            {
+              "$type": "AasCore.Aas3_0.EmbeddedDataSpecification, AasCore.Aas3_0",
+              "DataSpecification": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "http://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0"
+                  }
+                ]
+              },
+              "DataSpecificationContent": {
+                "$type": "AasCore.Aas3_0.DataSpecificationIec61360, AasCore.Aas3_0",
+                "PreferredName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "Type of Configuration"
+                  },
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "de",
+                    "Text": "Typ der Konfiguration"
+                  }
+                ],
+                "ShortName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringShortNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "ConfigType"
+                  }
+                ],
+                "Definition": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "Indicates the type of configuration (e.g. general configuration, user configuration)"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "$type": "AasCore.Aas3_0.ConceptDescription, AasCore.Aas3_0",
+          "IdShort": "SLAInformation",
+          "Description": [
+            {
+              "$type": "AasCore.Aas3_0.LangStringTextType, AasCore.Aas3_0",
+              "Language": "en",
+              "Text": "Service Level Agreement Information"
+            }
+          ],
+          "Id": "https://admin-shell.io/idta/SoftwareNameplate/1/0/SoftwareNameplate/SoftwareNameplateInstance/SLAInformation",
+          "EmbeddedDataSpecifications": [
+            {
+              "$type": "AasCore.Aas3_0.EmbeddedDataSpecification, AasCore.Aas3_0",
+              "DataSpecification": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "http://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0"
+                  }
+                ]
+              },
+              "DataSpecificationContent": {
+                "$type": "AasCore.Aas3_0.DataSpecificationIec61360, AasCore.Aas3_0",
+                "PreferredName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "SLA Information"
+                  },
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "de",
+                    "Text": "Information für SLA"
+                  }
+                ],
+                "ShortName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringShortNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "SLAInformation"
+                  }
+                ],
+                "Definition": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "Indicates the actual service level agreements."
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "$type": "AasCore.Aas3_0.ConceptDescription, AasCore.Aas3_0",
+          "IdShort": "ContactInformation",
+          "Id": "https://admin-shell.io/zvei/nameplate/1/0/ContactInformations/ContactInformation",
+          "EmbeddedDataSpecifications": [
+            {
+              "$type": "AasCore.Aas3_0.EmbeddedDataSpecification, AasCore.Aas3_0",
+              "DataSpecification": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "http://admin-shell.io/DataSpecificationTemplates/DataSpecificationIEC61360/3/0"
+                  }
+                ]
+              },
+              "DataSpecificationContent": {
+                "$type": "AasCore.Aas3_0.DataSpecificationIec61360, AasCore.Aas3_0",
+                "PreferredName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringPreferredNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "ContactInformation"
+                  }
+                ],
+                "ShortName": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringShortNameTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "ContactInfo"
+                  }
+                ],
+                "Definition": [
+                  {
+                    "$type": "AasCore.Aas3_0.LangStringDefinitionTypeIec61360, AasCore.Aas3_0",
+                    "Language": "en",
+                    "Text": "The SMC “ContactInformation” contains information on how to contact the manufacturer or an authorised service provider, e.g. when a maintenance service is required"
+                  }
+                ]
+              }
+            }
+          ],
+          "IsCaseOf": [
+            {
+              "type": "ModelReference",
+              "keys": [
+                {
+                  "type": "Submodel",
+                  "value": "0173-1#02-AAQ837#005"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

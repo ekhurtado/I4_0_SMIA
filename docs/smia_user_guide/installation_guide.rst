@@ -58,19 +58,19 @@ The same has to be done with the IDTA submodel templates, in order to add them t
             :color: primary
             :outline:
 
-            :octicon:`mark-github;1em` JSON object of the CSS ontology submodel template
+            :octicon:`mark-github;1em` JSON file of the plugin for the CSS ontology submodel template
 
-       .. button-link:: https://raw.githubusercontent.com/ekhurtado/I4_0_SMIA/main/additional_tools/aasx_package_explorer_resources/SMIA-css-semantic-ids-sm.add-options.json
+       .. button-link:: https://raw.githubusercontent.com/ekhurtado/I4_0_SMIA/main/additional_tools/aasx_package_explorer_resources/IDTA 02017-1-0_Template_Asset Interfaces Description.add-options.json
             :color: primary
             :outline:
 
-            :octicon:`mark-github;1em` JSON object of the Asset Interfaces Description IDTA submodel template
+            :octicon:`mark-github;1em` JSON file of the plugin for the Asset Interfaces Description IDTA submodel template
 
-       .. button-link:: https://raw.githubusercontent.com/ekhurtado/I4_0_SMIA/main/additional_tools/aasx_package_explorer_resources/SMIA-css-semantic-ids-sm.add-options.json
+       .. button-link:: https://raw.githubusercontent.com/ekhurtado/I4_0_SMIA/main/additional_tools/aasx_package_explorer_resources/IDTA 02007-1-0_Template_Software Nameplate.add-options.json
             :color: primary
             :outline:
 
-            :octicon:`mark-github;1em` JSON object of the Nameplate for Software in Manufacturing IDTA submodel template
+            :octicon:`mark-github;1em` JSON file of the plugin for the Nameplate for Software in Manufacturing IDTA submodel template
 
 .. TODO REPASAR LOS LINKS
 
