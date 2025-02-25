@@ -41,11 +41,9 @@ In the case of the SMIA approach, a submodel has been developed with all necessa
 
 To do so, first the JSON object with the submodel template definition will be collected, available in the `GitHub as additional tool link <https://raw.githubusercontent.com/ekhurtado/I4_0_SMIA/capabilityskill_tests/additional_tools/aasx_package_explorer_resources/SMIA-css-semantic-ids-sm.add-options.json>`_.
 
-.. TODO CUIDADO, CUANDO SE PASE ESTE BRANCH AL MAIN ACTUALIZAR LOS LINKS AL GITHUB
-
 When the JSON object is obtained, it is necessary to copy it to the following path, relative to where the AASX Package Explorer has been installed:
 
-    *<path to AASX Package Installation>/plugins/AasxPluginGenericForms/*
+    *<path to AASX Package Explorer installation>/AasxPackageExplorer/plugins/AasxPluginGenericForms/*
 
 Once the file is copied there, the next time the program is initialized, the submodel can be easily created from the options: ``Workspace > Create ... > New Submodel from plugin``, or by pressing ``Ctrl + Shift + M``.
 
@@ -60,31 +58,32 @@ The same has to be done with the IDTA submodel templates, in order to add them t
 
             :octicon:`mark-github;1em` JSON file of the plugin for the CSS ontology submodel template
 
-       .. button-link:: https://raw.githubusercontent.com/ekhurtado/I4_0_SMIA/main/additional_tools/aasx_package_explorer_resources/IDTA 02017-1-0_Template_Asset Interfaces Description.add-options.json
+       .. button-link:: https://raw.githubusercontent.com/ekhurtado/I4_0_SMIA/main/additional_tools/aasx_package_explorer_resources/IDTA-02017-1-0_Template_Asset_Interfaces_Description.add-options.json
             :color: primary
             :outline:
 
             :octicon:`mark-github;1em` JSON file of the plugin for the Asset Interfaces Description IDTA submodel template
 
-       .. button-link:: https://raw.githubusercontent.com/ekhurtado/I4_0_SMIA/main/additional_tools/aasx_package_explorer_resources/IDTA 02007-1-0_Template_Software Nameplate.add-options.json
+       .. button-link:: https://raw.githubusercontent.com/ekhurtado/I4_0_SMIA/main/additional_tools/aasx_package_explorer_resources/IDTA-02007-1-0_Template_Software_Nameplate.add-options.json
             :color: primary
             :outline:
 
             :octicon:`mark-github;1em` JSON file of the plugin for the Nameplate for Software in Manufacturing IDTA submodel template
-
-.. TODO REPASAR LOS LINKS
 
 Adding the qualifier templates
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Another useful feature is to add presets to Qualifier elements, in order to use them easily without the need to add information from the user. To do this, in this case another JSON file will be added to an existing program configuration file. The JSON objects with the qualifier presets for SMIA are available as `GitHub additional tool <https://raw.githubusercontent.com/ekhurtado/I4_0_SMIA/capabilityskill_tests/additional_tools/aasx_package_explorer_resources/SMIA-css-qualifier-presets.json>`_.
 
-In this case, the content of the JSON file should be copied and pasted to the end of the ``qualifier-presets.json`` configuration file available in the same installation folder as the program executable.
+In this case, the content of the JSON file should be copied and pasted to the end of the ``qualifier-presets.json`` configuration file available in the same installation folder as the program executable (*AasxPackageExplorer*).
 
 .. warning::
 
     Be careful, the JSON must be valid, so consider that this configuration file is a JSON Array, and that is why the JSON content starts with ','.
 
+.. tip::
+
+    All of these resources are offered as a `SMIA additional tool <https://github.com/ekhurtado/I4_0_SMIA/tree/main/additional_tools/aasx_package_explorer_resources>`_.
 
 Python
 ------

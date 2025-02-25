@@ -83,6 +83,9 @@ class GeneralUtils:
 
     @staticmethod
     def print_smia_banner():
+        """
+        This method prints the SMIA banner as a string. The banner has been created with Python 'art' library.
+        """
         # The banner for the SMIA is set as string, avoiding installing 'art' library (which has been used to create it)
         banner_str = ("----------------------------------------------\n" +
                       "  ______    ____    ____   _____        _\n" +

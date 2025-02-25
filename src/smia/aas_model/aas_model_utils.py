@@ -54,7 +54,15 @@ class AASModelUtils:
     # -------------------------------
     @staticmethod
     def get_file_bytes_from_aasx_by_path(file_path):
+        """
+        This method gets the bytes of a file appended inside an AASX package by a given internal path.
 
+        Args:
+            file_path (str): the internal path of the file within the AASX package.
+
+        Returns:
+            obj: the content of the file in the form of bytes.
+        """
         with aasx.AASXReader(properties_file_utils.get_aas_model_filepath()) as aasx_reader:
             for part_name, content_type in aasx_reader.reader.list_parts():
                 if part_name == file_path:

@@ -12,6 +12,9 @@ _logger = logging.getLogger(__name__)
 # General methods
 # ---------------
 def create_empty_file():
+    """
+    This method creates a properties configuration file for SMIA with default values ('#').
+    """
 
     config_prop = configparser.RawConfigParser()
     config_prop['DT'] = {'dt.version': '#', 'dt.agentID': '#', 'dt.password': '#', 'dt.xmpp-server': '#',
