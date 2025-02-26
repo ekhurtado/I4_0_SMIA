@@ -157,7 +157,7 @@ class AASModelUtils:
 
         Args:
             reference_type (str): type of the reference to be created (ModelReference or ExternalReference).
-            keys_dict (dict): if ModelReference is selected, the required keys information in form of a JSON object.
+            keys_dict (list): if ModelReference is selected, the required keys information in form of a JSON array.
             external_ref (str): if ExternalReference is selected, the required globally unique identifier.
 
         Returns:

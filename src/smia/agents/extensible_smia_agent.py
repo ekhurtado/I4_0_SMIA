@@ -59,6 +59,7 @@ class ExtensibleSMIAAgent(SMIAAgent):
                             "provided.")
         else:
             asyncio.run(self.agent_services.save_agent_service(service_id, service_method))
+            _logger.info("Added a new agent service to SMIA: {}".format(service_id))
 
     def add_new_asset_connection(self, aas_interface_id_short, asset_connection_class):
         """
@@ -104,4 +105,5 @@ class ExtensibleSMIAAgent(SMIAAgent):
                 return
 
         asyncio.run(check_and_save_asset_connection())
+        _logger.info("Added a new asset connection to SMIA: {}".format(aas_interface_id_short))
 
