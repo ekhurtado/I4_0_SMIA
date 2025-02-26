@@ -186,4 +186,39 @@ Once the desired Python methods for new agent services are developed, it is poss
         if __name__ == '__main__':
             main()
 
+Starting-up an extended SMIA
+----------------------------
 
+As in the case of extending SMIA a new launcher is generated, it must have all the necessary resources accessible (e.g. the CSS ontology file either in the SMIA Archive or within the AASX package of the asset's AAS model). Among the different SMIA deployment methods the Docker container-based ones offer all the necessary self-contained infrastructure.
+
+However, in the case of extending SMIA it is necessary to generate a new Docker image from the SMIA base. As the simplest method of deployment is through Docker Compose, this section will detail how to generate the Docker container for the extended SMIA and how to deploy it with Docker Compose.
+
+Generation of the extended SMIA Docker image
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Taking advantage of the fact that the SMIA DockerHub repository offers a Docker image to be used as the basis for solutions based on the SMIA approach, this image will be collected and the generated source code files will be added.
+
+Let's say that a Python file has been generated with the launcher named ``extended_smia_launcher.py`` and the internal logic of the extended code has been stored in ``extended_logic.py``. Using the following Dockerfile the base SMIA image (the latest release of the *alpine* type) is collected, the developed files and the necessary execution command are added.
+
+.. code:: Dockerfile
+
+    FROM ekhurtado/smia:latest-alpine-base
+
+    COPY extended_logic.py /
+    COPY extended_smia_launcher.py /
+
+    CMD ["python3", "-u", "/extended_smia_launcher.py"]
+
+.. note::
+
+    Within the examples in the SMIA GitHub repository, there is a `folder <https://github.com/ekhurtado/I4_0_SMIA/tree/main/examples/smia_extended>`_ with all the files to generate the extended SMIA Docker image.
+
+Starting-up the extended SMIA Docker image
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Once the file has been developed and stored with the name ``Dockerfile`` together with the source code files, it is possible to generate the new Docker image by executing the following command in the same directory as the files:
+.. code:: bash
+
+    docker build -t <your DockerHub user>/<your repository>:<your tag for extended SMIA> .
+
+With the Docker image created, it is possible to upload it to DockerHub (``> docker push <image tag>``) or deploy it via Docker Compose following the process detailed in the :octicon:`repo;1em` :ref:`SMIA Start-up Guide <SMIA run Docker Compose>`.

@@ -1,6 +1,5 @@
 import asyncio
 import logging
-import types
 
 import basyx.aas.model
 from spade.behaviour import CyclicBehaviour, OneShotBehaviour, TimeoutBehaviour, PeriodicBehaviour, FSMBehaviour

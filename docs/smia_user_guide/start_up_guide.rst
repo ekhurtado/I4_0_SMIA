@@ -147,6 +147,8 @@ In this case, we link the ``aas`` folder located on the same desktop where the c
 Running with Docker Compose
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+.. _SMIA run Docker Compose:
+
 In all the previous methods it is necessary to have the XMPP server accessible, as it is required because SMIA integrates the SPADE development platform, based on this protocol. In the case of not wanting to worry about the infrastructure, there are possibilities of generating a shared environment in which both SMIA and the necessary infrastructure can be deployed. The most efficient options for self-contained deployments are always related to containerized virtualization.
 
 Docker containerization technology offers us a tool that we can use for this need: `Docker Compose <https://docs.docker.com/compose/>`_. It allows to define in a single file different Docker containers, running all of them in a shared environment and accessible through a single command.
