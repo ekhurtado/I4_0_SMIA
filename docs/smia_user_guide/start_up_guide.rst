@@ -213,7 +213,7 @@ As for the minimum infrastructure for SMIA, only an XMPP server is needed. There
 
     Within the examples in the SMIA GitHub repository, there is a `folder <https://github.com/ekhurtado/I4_0_SMIA/tree/main/examples/docker_compose_deployment>`_ with all the files for SMIA deployment via Docker Compose.
 
-Una vez definido y almacenado este archivo, se puede desplegar tanto SMIA con el servidor XMPP mediante un único comando ejecutado en el mismo directorio que el archivo ``docker-compose.yml``.
+Once this file is defined and stored, both SMIA and the XMPP server can be deployed using a single command executed in the same directory as the ``docker-compose.yml`` file.
 
 .. code:: bash
 
