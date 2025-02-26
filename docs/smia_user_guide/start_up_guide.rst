@@ -199,7 +199,19 @@ As for the minimum infrastructure for SMIA, only an XMPP server is needed. There
         - ``image``: where the Docker image is set. For SMIA the alpine image has been added.
         - ``depends_on``: here it is set that SMIA should not start until the XMPP server container has been successfully started.
         - ``volumes``: links the host folder to the SMIA container folder, because this is the way SMIA is made accessible for its associated AAS model.
+            - Therefore, remember to copy the required AAS models into the *./aas* folder in the same location as this file.
         - ``xmpp-server``: the definition provided by the official Ejabberd page for deployment via Docker container has been added.
+            - The official Ejabberd page recommends to provide the configuration file through a ``volume``, so the ``ejabberd.yml`` file is required. This file is accessible in the following link (remember to create the file with the exact name and to copy it into the *./xmpp_server* folder in the same location as the Docker Compose file):
+
+            .. button-link:: https://raw.githubusercontent.com/ekhurtado/I4_0_SMIA/main/examples/docker_compose_deployment/xmpp_server/ejabberd.yml
+                :color: primary
+                :outline:
+
+                :octicon:`mark-github;1em` Link to *ejabberd.yml* within the SMIA GitHub repository.
+
+.. note::
+
+    Within the examples in the SMIA GitHub repository, there is a `folder <https://github.com/ekhurtado/I4_0_SMIA/tree/main/examples/docker_compose_deployment>`_ with all the files for SMIA deployment via Docker Compose.
 
 Una vez definido y almacenado este archivo, se puede desplegar tanto SMIA con el servidor XMPP mediante un único comando ejecutado en el mismo directorio que el archivo ``docker-compose.yml``.
 
