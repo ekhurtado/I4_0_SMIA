@@ -2,6 +2,48 @@
 
 (Release Notes)=
 
+## v0.2.2
+
+This release of Self-Configurable Manufacturing Industrial Agent (SMIA) comes with an upgrade of the solution. Similar to the other releases, it is available with the  source code in a ZIP file. Content of ``SMIA.source.code.zip`` file:
+
+> SMIA: All Python files structured in Python modules.
+> - It includes the launcher files to run the software in the ``launchers`` module: _smia_cli_starter.py_, _smia_starter.py_ and _smia_docker_starter.py_.
+
+### Features
+
+- SMIA now is available as pip package in PyPI and TestPyPI 
+  - In the previous version the package was generated and uploaded manually 
+  - In this version it is automatically created with GitHub Actions and uploaded to both PyPI and TestPyPI. 
+- The first use case for SMIA with the new approach (from ``v0.2.0``) has been started its development 
+  - An SMIA operator has been developed taking advantage of the SMIA extension methods. 
+    - The related resources (code for the new capability, HTMLs for the operator dashboard) have been developed. 
+  - Some SMIAs for transport robot assets have been deployed. 
+  - The required AASs for the different types of assets (operator and transport robot) have been developed.  
+  - First tests with transport requests and negotiations in case of multiple robot options have been performed. 
+- The SMIA ReadTheDocs documentation project has been improved 
+  - New guides developed such as SMIA Extension  
+- A new SMIA launcher for SMIA deployments based on Docker containers (``smia_docker_starter.py``)
+
+### Major Changes 
+
+- The SMIA ReadTheDocs documentation project file have been improved 
+  - Improved guides such as start-up SMIA 
+  - The glossary has been considerably improved by adding multiple terms useful for understanding the SMIA approach 
+- Removed all old code related to the AAS Manager-Core approach (prior to ``v0.2.0``) 
+  - Removed unused objects like interaction_id, all related methods only used in the old approach... 
+- The README for PyPI has been improved:  
+  - Added some examples  
+  - Added explanations of the modules  
+  - Added explanations of the extension methods  
+
+### Fixed errors
+
+- Added OWL ontology file for the CSS model in Docker SMIA images in case the user does not add it in AASX (AAS model associated to SMIA).  
+- Fixed problem with displaying AAS model analysis results with no parsed CSS model elements. 
+- Fixed bugs with tests with invalid AAS models. 
+- Fixed bugs with invalid ontology tests. 
+- Fixed an error when SubmodelService with ExternalReference is requested. 
+
 ## v0.2.1
 
 This release of I4.0 Self-Configurable Manufacturing Industrial Agent comes with an upgrade of the new approach added in version 0.2.0 of the solution. Similar to the other releases, it is available with the  source code in a ZIP file. Content of ``SMIA.source.code.zip`` file:
