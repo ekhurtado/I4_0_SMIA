@@ -22,7 +22,7 @@ _logger = logging.getLogger(__name__)
 
 class SMIAAgent(Agent):
     """
-    This is the top level in the hierarchy of SPADE Agents. It extends the own class Agent of SPADE. The SMIA
+    This is the top level in the hierarchy of SPADE Agents. It extends the own class Agent of SPADE. The :term:`SMIA`
     Agent will be the generic and from which all other types of SMIAs will start.
     """
 
@@ -61,7 +61,7 @@ class SMIAAgent(Agent):
 
     def initialize_smia_attributes(self):
         """
-        This method initializes all the attributes of the SMIA
+        This method initializes all the attributes of the SMIA.
         """
         # Objects to store the information related to ACL services are initialized
         self.acl_messages_id = 0  # It is reset
@@ -91,8 +91,8 @@ class SMIAAgent(Agent):
 
     async def setup(self):
         """
-        This method performs the common setup of all types of Managers. It defines the Finite State Machine (FSM) of
-        the general SMIA Agent.
+        This method performs the common setup of all types of :term:`SMIAs <SMIA>`. It defines the Finite State Machine
+        (FSM) of the general SMIA Agent.
         """
         _logger.info(f"Setting up {self.jid} SMIA...")
 
@@ -121,7 +121,8 @@ class SMIAAgent(Agent):
     # ----------------------------------------------
     async def save_new_acl_svc_request(self, thread, request_data):
         """
-        This method adds a new ACL Service Request to the global acl service requests dictionary of the SMIA.
+        This method adds a new :term:`ACL <FIPA-ACL>` Service Request to the global acl service requests dictionary of
+        the SMIA.
 
         Args:
             thread (str): thread of the ACL Service Request.
@@ -132,8 +133,8 @@ class SMIAAgent(Agent):
 
     async def save_acl_svc_response(self, thread, response_data):
         """
-        This method adds a specific Inter AAS interaction response to the global responses dictionary of the SMIA
-        for this type of interaction.
+        This method adds a specific :term:`Inter SMIA interaction` response to the global responses dictionary of the
+        SMIA for this type of interaction.
 
         Args:
             thread (str): thread of the ACL Service response.

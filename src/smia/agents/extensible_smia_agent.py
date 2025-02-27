@@ -14,7 +14,7 @@ _logger = logging.getLogger(__name__)
 
 class ExtensibleSMIAAgent(SMIAAgent):
     """
-    This agent offers some extension mechanisms to add own code to the base SMIA agent.
+    This agent offers some extension mechanisms to add own code to the base :term:`SMIA` agent.
     """
 
     def __init__(self, *args, **kwargs):
@@ -30,9 +30,9 @@ class ExtensibleSMIAAgent(SMIAAgent):
 
     def add_new_agent_capability(self, behaviour_class):
         """
-        This method adds a new agent capability to SMIA to increase its intelligence and autonomy. The new capability is
-         added as a SPADE behavior instance. If it is not a valid behavior (within the types offered by SPADE),
-         it cannot be added.
+        This method adds a new :term:`agent capability <Capability>` to SMIA to increase its intelligence and autonomy.
+        The new capability is added as a SPADE behavior instance. If it is not a valid behavior (within the types
+        offered by :term`SPADE`), it cannot be added.
 
         Args:
             behaviour_class: SPADE behaviour class instance.
