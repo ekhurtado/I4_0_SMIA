@@ -103,7 +103,7 @@ The PyPI SMIA package contains all the source code and the necessary dependencie
 
     Make sure that the XMPP server set for SMIA is accessible from where the command is executed.
 
-.. button-link:: https://test.pypi.org/project/smia/
+.. button-link:: https://pypi.org/project/smia/
     :color: primary
     :outline:
 

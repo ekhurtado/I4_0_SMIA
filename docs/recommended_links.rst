@@ -16,7 +16,7 @@ These links refer to all the own resources of the SMIA approach.
 
             :octicon:`package;1em` Official SMIA GitHub repository.
 
-.. button-link:: https://test.pypi.org/project/smia/
+.. button-link:: https://pypi.org/project/smia/
             :color: primary
             :outline:
 

@@ -66,7 +66,7 @@ pip install smia
 ```
 
 > [!NOTE]
-> The PyPI project is available at <https://test.pypi.org/project/smia/>.
+> The PyPI project is available at <https://pypi.org/project/smia/>.
 
 The PyPI SMIA package contains all the source code and there are determined the necessary dependencies, so they can be automatically installed by pip, so it can run SMIA directly by:
 

@@ -22,13 +22,13 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..',
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'I4.0 SMIA'
+project = 'SMIA'
 copyright = str(datetime.datetime.now().year) + ', Ekaitz Hurtado'
 author = 'Ekaitz Hurtado'
 # version = smia.__version__   # The short X.Y version.
-version = '0.2.2'   # The short X.Y version.
+version = '0.2.3'   # The short X.Y version.
 # release = smia.__version__   # The full version, including alpha/beta/rc tags.
-release = '0.2.2'  # The full version, including alpha/beta/rc tags.
+release = '0.2.3'  # The full version, including alpha/beta/rc tags.
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
