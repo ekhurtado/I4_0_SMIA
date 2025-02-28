@@ -217,6 +217,7 @@ Starting-up the extended SMIA Docker image
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Once the file has been developed and stored with the name ``Dockerfile`` together with the source code files, it is possible to generate the new Docker image by executing the following command in the same directory as the files:
+
 .. code:: bash
 
     docker build -t <your DockerHub user>/<your repository>:<your tag for extended SMIA> .
