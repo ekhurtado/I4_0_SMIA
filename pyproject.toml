@@ -8,7 +8,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "smia"   # cambiar cuando funcione
-version = '0.2.2.2'  # cambiar cuando funcione a 0.2.3
+version = '0.2.2.3'  # cambiar cuando funcione a 0.2.3
 authors = [{ name="Ekaitz Hurtado", email="ekaitz.hurtado@ehu.eus" },]
 description = "Self-configurable Manufacturing Industrial Agent (SMIA)."
 readme = 'README_pypi.md'
@@ -37,10 +37,10 @@ dependencies = [
 
 [project.urls]
 Homepage = "https://github.com/ekhurtado/SMIA"
-Documentation = "https://i4-0-smia.readthedocs.io/en/latest/"
+Documentation = "https://smia.readthedocs.io/en/latest/"
 Repository = "https://github.com/ekhurtado/SMIA"
 Issues = "https://github.com/ekhurtado/SMIA/issues"
-Changelog = "https://i4-0-smia.readthedocs.io/en/latest/release_notes.html"
+Changelog = "https://smia.readthedocs.io/en/latest/release_notes.html"
 
 #[tool.setuptools.dynamic]
 #dependencies = {file = "docker/requirements.txt"}  # This is a beta feature

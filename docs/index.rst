@@ -3,8 +3,8 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to I4.0 SMIA's documentation!
-=======================================
+Welcome to SMIA's documentation!
+================================
 
 .. toctree::
    :maxdepth: 2

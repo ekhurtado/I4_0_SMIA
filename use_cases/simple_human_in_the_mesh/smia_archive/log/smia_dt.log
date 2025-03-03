@@ -675,3 +675,10 @@ ValueError: '/htmls/static' does not exist
 2025-02-08 13:36:48,375 [smia.behaviours.acl_handling_behaviour] [INFO]          - No message received within 10 seconds on SMIA (ACLHandlingBehaviour) line:138
 2025-02-08 13:36:51,747 [SPADE] [WARNING] Keyboard interrupt received. Stopping SPADE... line:116
 2025-02-08 13:36:51,750 [gcis1] [INFO] client shutting down (on request) line:975
+2025-03-03 17:44:25,365 [__main__] [INFO] Initializing SMIA software... line:16
+2025-03-03 17:44:25,365 [smia.utilities.general_utils] [ERROR] The environment variable 'AAS_MODEL_NAME' for the AAS model is not set, so SMIA cannot start. Please add the information and restart the container. line:302
+2025-03-03 17:44:25,374 [smia.utilities.smia_archive_utils] [INFO] SMIA Archive initialized. line:34
+2025-03-03 17:44:25,375 [smia] [ERROR] The file path to the AAS model is None, so it cannot be loaded. line:77
+2025-03-03 17:44:25,383 [smia.agents.extensible_smia_agent] [INFO] Added a new agent capability to SMIA: OneShotBehaviour/OperatorGUIBehaviour line:43
+2025-03-03 17:44:25,432 [aioxmpp.node] [WARNING] connection failed: [Errno 11001] getaddrinfo failed line:251
+2025-03-03 17:44:25,433 [SPADE] [ERROR] Exception in the event loop: failed to connect to XMPP domain '#': multiple errors: [Errno 11001] getaddrinfo failed line:118

@@ -18,7 +18,7 @@ The Self-configurable Manufacturing Industrial Agent (SMIA) is a proposal for th
 - containerized solution
 
 > [!TIP]
-> For more details on Self-configurable Manufacturing Industrial Agent see the [:blue_book: **full documentation**](https://i4-0-smia.readthedocs.io/en/latest/).
+> For more details on Self-configurable Manufacturing Industrial Agent see the [:blue_book: **full documentation**](https://smia.readthedocs.io/en/latest/).
 
 ## Project structure
 
