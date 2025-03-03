@@ -39,7 +39,7 @@ AASX Package Explorer allows adding custom submodel templates in the form of plu
 
 In the case of the SMIA approach, a submodel has been developed with all necessary semantic identifiers to easily import all ConceptDescriptions with semantic identifiers related to the Capability-Skill-Service ontology used at runtime.
 
-To do so, first the JSON object with the submodel template definition will be collected, available in the `GitHub as additional tool link <https://raw.githubusercontent.com/ekhurtado/I4_0_SMIA/capabilityskill_tests/additional_tools/aasx_package_explorer_resources/SMIA-css-semantic-ids-sm.add-options.json>`_.
+To do so, first the JSON object with the submodel template definition will be collected, available in the `GitHub as additional tool link <https://raw.githubusercontent.com/ekhurtado/SMIA/capabilityskill_tests/additional_tools/aasx_package_explorer_resources/SMIA-css-semantic-ids-sm.add-options.json>`_.
 
 When the JSON object is obtained, it is necessary to copy it to the following path, relative to where the AASX Package Explorer has been installed:
 
@@ -52,19 +52,19 @@ The same has to be done with the IDTA submodel templates, in order to add them t
 .. dropdown:: Links to all JSON objects to be added as plugins
        :octicon:`link;1em;sd-text-primary`
 
-       .. button-link:: https://raw.githubusercontent.com/ekhurtado/I4_0_SMIA/main/additional_tools/aasx_package_explorer_resources/SMIA-css-semantic-ids-sm.add-options.json
+       .. button-link:: https://raw.githubusercontent.com/ekhurtado/SMIA/main/additional_tools/aasx_package_explorer_resources/SMIA-css-semantic-ids-sm.add-options.json
             :color: primary
             :outline:
 
             :octicon:`mark-github;1em` JSON file of the plugin for the CSS ontology submodel template
 
-       .. button-link:: https://raw.githubusercontent.com/ekhurtado/I4_0_SMIA/main/additional_tools/aasx_package_explorer_resources/IDTA-02017-1-0_Template_Asset_Interfaces_Description.add-options.json
+       .. button-link:: https://raw.githubusercontent.com/ekhurtado/SMIA/main/additional_tools/aasx_package_explorer_resources/IDTA-02017-1-0_Template_Asset_Interfaces_Description.add-options.json
             :color: primary
             :outline:
 
             :octicon:`mark-github;1em` JSON file of the plugin for the Asset Interfaces Description IDTA submodel template
 
-       .. button-link:: https://raw.githubusercontent.com/ekhurtado/I4_0_SMIA/main/additional_tools/aasx_package_explorer_resources/IDTA-02007-1-0_Template_Software_Nameplate.add-options.json
+       .. button-link:: https://raw.githubusercontent.com/ekhurtado/SMIA/main/additional_tools/aasx_package_explorer_resources/IDTA-02007-1-0_Template_Software_Nameplate.add-options.json
             :color: primary
             :outline:
 
@@ -73,7 +73,7 @@ The same has to be done with the IDTA submodel templates, in order to add them t
 Adding the qualifier templates
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Another useful feature is to add presets to Qualifier elements, in order to use them easily without the need to add information from the user. To do this, in this case another JSON file will be added to an existing program configuration file. The JSON objects with the qualifier presets for SMIA are available as `GitHub additional tool <https://raw.githubusercontent.com/ekhurtado/I4_0_SMIA/capabilityskill_tests/additional_tools/aasx_package_explorer_resources/SMIA-css-qualifier-presets.json>`_.
+Another useful feature is to add presets to Qualifier elements, in order to use them easily without the need to add information from the user. To do this, in this case another JSON file will be added to an existing program configuration file. The JSON objects with the qualifier presets for SMIA are available as `GitHub additional tool <https://raw.githubusercontent.com/ekhurtado/SMIA/capabilityskill_tests/additional_tools/aasx_package_explorer_resources/SMIA-css-qualifier-presets.json>`_.
 
 In this case, the content of the JSON file should be copied and pasted to the end of the ``qualifier-presets.json`` configuration file available in the same installation folder as the program executable (*AasxPackageExplorer*).
 
@@ -83,7 +83,7 @@ In this case, the content of the JSON file should be copied and pasted to the en
 
 .. tip::
 
-    All of these resources are offered as a `SMIA additional tool <https://github.com/ekhurtado/I4_0_SMIA/tree/main/additional_tools/aasx_package_explorer_resources>`_.
+    All of these resources are offered as a `SMIA additional tool <https://github.com/ekhurtado/SMIA/tree/main/additional_tools/aasx_package_explorer_resources>`_.
 
 Python
 ------
@@ -142,4 +142,4 @@ The alternative is to download the entire source code from the official SMIA Git
 
 .. code:: bash
 
-    git clone https://github.com/ekhurtado/I4_0_SMIA.git
+    git clone https://github.com/ekhurtado/SMIA.git

@@ -10,7 +10,7 @@ SMIA own links
 
 These links refer to all the own resources of the SMIA approach.
 
-.. button-link:: https://github.com/ekhurtado/I4_0_SMIA
+.. button-link:: https://github.com/ekhurtado/SMIA
             :color: primary
             :outline:
 
@@ -46,6 +46,6 @@ These links refer to external resources (articles, standards...) that have been 
     - `Information Model for Capabilities, Skills & Services; working Group "Semantic and Interaction of I4.0 Components" of Plattform; 2022 <https://www.plattform-i40.de/IP/Redaktion/EN/Downloads/Publikation/CapabilitiesSkillsServices.html>`_: presents the information model on capabilities, skills and services (CSS model). It creates an understanding of how these three elements can be optimally used for new production concepts and as a basis for future standardization activities.
     - `A reference model for common understanding of capabilities and skills in manufacturing; A. Köcher et al.; 2023 <https://www.degruyter.com/document/doi/10.1515/auto-2022-0117/html?lang=en>`_: based on these papers, this scientific paper presents the definitive CSS model.
 
--  `Additional links <https://github.com/ekhurtado/I4_0_SMIA>`__: The articles that will be published with this PhD thesis, and other related articles or links (videos, data...) are still to be added.
+-  `Additional links <https://github.com/ekhurtado/SMIA>`__: The articles that will be published with this PhD thesis, and other related articles or links (videos, data...) are still to be added.
 
 .. *: Test for link to glossary term :term:`AAS`

@@ -95,8 +95,8 @@ html_theme = 'furo'
 html_favicon = "_static/images/SMIA_favicon.ico"
 
 html_theme_options = {
-    "light_logo": "images/I4_0_SMIA_logo_positive.png",
-    "dark_logo": "images/I4_0_SMIA_logo_negative.png",
+    "light_logo": "images/SMIA_logo_positive.png",
+    "dark_logo": "images/SMIA_logo_negative.png",
     "light_css_variables": {
         "color-brand-primary": "#34A1E8",
         "color-brand-content": "#2980B9",

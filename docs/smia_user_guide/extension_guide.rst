@@ -211,7 +211,7 @@ Let's say that a Python file has been generated with the launcher named ``extend
 
 .. note::
 
-    Within the examples in the SMIA GitHub repository, there is a `folder <https://github.com/ekhurtado/I4_0_SMIA/tree/main/examples/smia_extended>`_ with all the files to generate the extended SMIA Docker image.
+    Within the examples in the SMIA GitHub repository, there is a `folder <https://github.com/ekhurtado/SMIA/tree/main/examples/smia_extended>`_ with all the files to generate the extended SMIA Docker image.
 
 Starting-up the extended SMIA Docker image
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

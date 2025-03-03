@@ -8,7 +8,7 @@ The aim of this guide is to assist in the start-up of SMIA through the different
 Running with the source code
 ----------------------------
 
-As an open source project, the source code of SMIA can be downloaded and executed using the command line interface (CLI). The source code is located inside the ``src`` folder in the :octicon:`mark-github;1em` `offical GitHub repository <https://github.com/ekhurtado/I4_0_SMIA>`_, and there are two launchers to easily run the software by executing commands.
+As an open source project, the source code of SMIA can be downloaded and executed using the command line interface (CLI). The source code is located inside the ``src`` folder in the :octicon:`mark-github;1em` `offical GitHub repository <https://github.com/ekhurtado/SMIA>`_, and there are two launchers to easily run the software by executing commands.
 
 When the folder where the launchers are located is accessed, it is possible to run SMIA using a unique command. There are two possibilities.
 
@@ -78,7 +78,7 @@ Once modified and the appropriate AAS model is added, it is possible to run SMIA
 
     python3 smia_starter.py
 
-.. button-link:: https://github.com/ekhurtado/I4_0_SMIA
+.. button-link:: https://github.com/ekhurtado/SMIA
     :color: primary
     :outline:
 
@@ -205,7 +205,7 @@ As for the minimum infrastructure for SMIA, only an XMPP server is needed. There
         - ``xmpp-server``: the definition provided by the official Ejabberd page for deployment via Docker container has been added.
             - The official Ejabberd page recommends to provide the configuration file through a ``volume``, so the ``ejabberd.yml`` file is required. This file is accessible in the following link (remember to create the file with the exact name and to copy it into the *./xmpp_server* folder in the same location as the Docker Compose file):
 
-            .. button-link:: https://raw.githubusercontent.com/ekhurtado/I4_0_SMIA/main/examples/docker_compose_deployment/xmpp_server/ejabberd.yml
+            .. button-link:: https://raw.githubusercontent.com/ekhurtado/SMIA/main/examples/docker_compose_deployment/xmpp_server/ejabberd.yml
                 :color: primary
                 :outline:
 
@@ -213,7 +213,7 @@ As for the minimum infrastructure for SMIA, only an XMPP server is needed. There
 
 .. note::
 
-    Within the examples in the SMIA GitHub repository, there is a `folder <https://github.com/ekhurtado/I4_0_SMIA/tree/main/examples/docker_compose_deployment>`_ with all the files for SMIA deployment via Docker Compose.
+    Within the examples in the SMIA GitHub repository, there is a `folder <https://github.com/ekhurtado/SMIA/tree/main/examples/docker_compose_deployment>`_ with all the files for SMIA deployment via Docker Compose.
 
 Once this file is defined and stored, both SMIA and the XMPP server can be deployed using a single command executed in the same directory as the ``docker-compose.yml`` file.
 

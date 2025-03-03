@@ -47,7 +47,7 @@ Additional tools
 
 There are some additional tools offered within the SMIA approach. All of these tools are available in the GitHub repository.
 
-    .. button-link:: https://github.com/ekhurtado/I4_0_SMIA/tree/main/additional_tools/aas_ontology_reader/
+    .. button-link:: https://github.com/ekhurtado/SMIA/tree/main/additional_tools/aas_ontology_reader/
             :color: primary
             :outline:
 
@@ -55,7 +55,7 @@ There are some additional tools offered within the SMIA approach. All of these t
 
     This tool contains the source code of a reader capable of analyzing an AAS model based on a given OWL ontology.
 
-    .. button-link:: https://github.com/ekhurtado/I4_0_SMIA/tree/main/additional_tools/aasx_package_explorer_resources/
+    .. button-link:: https://github.com/ekhurtado/SMIA/tree/main/additional_tools/aasx_package_explorer_resources/
             :color: primary
             :outline:
 
@@ -63,7 +63,7 @@ There are some additional tools offered within the SMIA approach. All of these t
 
     This tool contains the JSON files to extend the AASX Package Explorer software with the Capability-Skill-Service (CSS) model.
 
-    .. button-link:: https://github.com/ekhurtado/I4_0_SMIA/tree/main/additional_tools/capability_skill_ontology/
+    .. button-link:: https://github.com/ekhurtado/SMIA/tree/main/additional_tools/capability_skill_ontology/
             :color: primary
             :outline:
 
@@ -71,7 +71,7 @@ There are some additional tools offered within the SMIA approach. All of these t
 
     This tool contains the ontology for the Capability-Skill-Service (CSS) model in an OWL file. It also provides some ExtendedClasses implemented in Python.
 
-    .. button-link:: https://github.com/ekhurtado/I4_0_SMIA/tree/main/additional_tools/gui_agent/
+    .. button-link:: https://github.com/ekhurtado/SMIA/tree/main/additional_tools/gui_agent/
             :color: primary
             :outline:
 
