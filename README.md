@@ -29,8 +29,11 @@ The repository of the SMIA project is structured as follows:
   - [aasx_package_explorer_resources](https://github.com/ekhurtado/I4_0_SMIA/tree/main/additional_tools/aasx_package_explorer_resources): this tool contains the JSON files to extend the AASX Package Explorer software with the Capability-Skill-Service (CSS) model.
   - [capability_skill_ontology](https://github.com/ekhurtado/I4_0_SMIA/tree/main/additional_tools/capability_skill_ontology): this tool contains the ontology for the Capability-Skill-Service (CSS) model in an OWL file. It also provides some ExtendedClasses implemented in Python.
   - [gui_agent](https://github.com/ekhurtado/I4_0_SMIA/tree/main/additional_tools/gui_agent): this tool provides a SPADE agent with an easy-to-use graphical interface. This agent provides several useful functionalities for SMIA usage and execution.
-- [deploy](https://github.com/ekhurtado/I4_0_SMIA/tree/main/deploy): all the necessary resources for the deployment of the solution. As the execution platform is Kubernetes, these files are in YAML format.
-- [src](https://github.com/ekhurtado/I4_0_SMIA/tree/main/src): the entire source code of the I4.0 SMIA.
+- [examples](https://github.com/ekhurtado/I4_0_SMIA/tree/main/examples): some examples to facilitate the use of the solution.
+  - [examples](https://github.com/ekhurtado/I4_0_SMIA/tree/main/examples/docker_compose_deployment): required files to easily deploy SMIA using the Docker Compose tool.
+  - [examples](https://github.com/ekhurtado/I4_0_SMIA/tree/main/examples/smia_extended): an example of files related to a SMIA extension case.
+  - [examples](https://github.com/ekhurtado/I4_0_SMIA/tree/main/examples/tutorials): all the resources shown in the SMIA tutorials.
+- [src](https://github.com/ekhurtado/I4_0_SMIA/tree/main/src): the entire source code of the SMIA software.
   - [smia](https://github.com/ekhurtado/I4_0_SMIA/tree/main/src/smia): the main Python package for the entire source code of the SMIA.
 
 ## Usage
