@@ -63,11 +63,11 @@ There are some additional resources offered within the SMIA approach. All of the
 
     This tool contains the JSON files to extend the AASX Package Explorer software with the Capability-Skill-Service (CSS) model.
 
-    .. button-link:: https://github.com/ekhurtado/SMIA/tree/main/additional_resources/capability_skill_ontology/
+    .. button-link:: https://github.com/ekhurtado/SMIA/tree/main/additional_resources/css_smia_ontology/
             :color: primary
             :outline:
 
-            :octicon:`mark-github;1em` CSS ontology model
+            :octicon:`mark-github;1em` CSS-SMIA ontology model
 
     This tool contains the ontology for the Capability-Skill-Service (CSS) model in an OWL file. It also provides some ExtendedClasses implemented in Python.
 
