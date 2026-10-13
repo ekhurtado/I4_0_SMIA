@@ -155,7 +155,7 @@ const SMIA_Builder = {
         core: {
             smiakb: false,
             ism: false,
-            aasServer: { type: 'basyx', ip: '127.0.0.1' }
+            aasServer: { type: 'basyx', ip: '127.0.0.1', basyxVariant: 'go' }
         },
 
         plan: { hasPlan: false, file: null, path: '' },
@@ -339,6 +339,13 @@ const SMIA_Builder = {
                     <div id="aas-external-inputs" style="display:none; margin-top:1.5rem; padding: 1rem; background: var(--color-background-secondary); border-radius: 6px; border: 1px solid var(--color-border);">
                         <label>AAS Server IP</label>
                         <input type="text" id="aas-ip" class="smia-input" placeholder="e.g., 10.0.0.5">
+                    </div>
+                    <div id="basyx-variant-selector" style="margin-top:1rem; padding: 0.7rem 1rem; background: var(--color-background-secondary); border-radius: 6px; border: 1px solid var(--color-border); display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+                        <span style="color: var(--color-foreground-secondary);">BaSyx version:</span>
+                        <div class="segmented-selector">
+                            <div class="segmented-option selected" data-basyx-variant="go">Go</div>
+                            <div class="segmented-option" data-basyx-variant="java">Java</div>
+                        </div>
                     </div>
                 </div>
 
@@ -563,6 +570,17 @@ const SMIA_Builder = {
                 this.state.core.aasServer.type = type;
                 document.getElementById('aas-external-inputs').style.display =
                     (type === 'external') ? 'block' : 'none';
+                document.getElementById('basyx-variant-selector').style.display =
+                    (type === 'basyx') ? 'block' : 'none';
+            });
+        });
+
+        // ── Step 2: BaSyx version selection (Go/Java) ──
+        document.querySelectorAll('[data-basyx-variant]').forEach(card => {
+            card.addEventListener('click', (e) => {
+                document.querySelectorAll('[data-basyx-variant]').forEach(c => c.classList.remove('selected'));
+                e.currentTarget.classList.add('selected');
+                this.state.core.aasServer.basyxVariant = e.currentTarget.dataset.basyxVariant;
             });
         });
 
@@ -920,13 +938,16 @@ const SMIA_Builder = {
         // Core Services card
         const aasLabels = { basyx: 'Deploy Basyx', external: 'Use Existing', none: 'None (File Mode)' };
         const aasBadgeClr = { basyx: 'blue', external: 'orange', none: 'gray' };
+        const aasLabel = s.core.aasServer.type === 'basyx'
+            ? `Deploy Basyx (${(s.core.aasServer.basyxVariant || 'go') === 'go' ? 'Go' : 'Java'})`
+            : aasLabels[s.core.aasServer.type];
         const coreRows =
             this._row('SMIA-I KB',
                 s.core.smiakb ? this._badge('Enabled', 'green') : this._badge('Disabled', 'gray')) +
             this._row('SMIA ISM',
                 s.core.ism ? this._badge('Enabled', 'green') : this._badge('Disabled', 'gray')) +
             this._row('AAS Server',
-                this._badge(aasLabels[s.core.aasServer.type], aasBadgeClr[s.core.aasServer.type])) +
+                this._badge(aasLabel, aasBadgeClr[s.core.aasServer.type])) +
             (s.core.aasServer.type === 'external'
                 ? this._row('AAS IP', `<code class="summary-val">${s.core.aasServer.ip || '—'}</code>`) : '');
 
@@ -1081,12 +1102,20 @@ const SMIA_Builder = {
                     if (operatorAasx) aasFolder.file('SMIA_operator.aasx', operatorAasx);
                 }
 
-                // Add BaSyx configuration files when deploying BaSyx
+                // Add BaSyx configuration files when deploying BaSyx (Java or Go variant)
                 if (s.core.aasServer.type === 'basyx') {
                     const basyxFolder = zip.folder('basyx');
-                    basyxFolder.file('aas-env.properties', this._buildBasyxAasEnvProperties());
-                    basyxFolder.file('aas-registry.yml', this._buildBasyxAasRegistryYml());
-                    basyxFolder.file('sm-registry.yml', this._buildBasyxSmRegistryYml());
+                    if ((s.core.aasServer.basyxVariant || 'go') === 'go') {
+                        const rsaKey = (typeof BASYX_GO_RSA_KEY !== 'undefined' && BASYX_GO_RSA_KEY)
+                            ? BASYX_GO_RSA_KEY
+                            : '';
+                        if (rsaKey) basyxFolder.file('rsa-key.pem', rsaKey);
+                        basyxFolder.file('basyx-infra.yml', this._buildBasyxGoInfraYml());
+                    } else {
+                        basyxFolder.file('aas-env.properties', this._buildBasyxAasEnvProperties());
+                        basyxFolder.file('aas-registry.yml', this._buildBasyxAasRegistryYml());
+                        basyxFolder.file('sm-registry.yml', this._buildBasyxSmRegistryYml());
+                    }
                 }
 
                 // README
@@ -2022,17 +2051,77 @@ echo "============================================================"
     // ============================================================
 
     /**
-     * Returns the infrastructure docker-compose YAML content.
-     * Reads from the global constant INFRA_DOCKER_COMPOSE_YAML
+     * Returns the BaSyx Java variant docker-compose YAML content.
+     * Reads from the global constant INFRA_BASYX_JAVA_YAML
      * (defined in infra-docker-compose-data.js, loaded via <script> tag).
      * @returns {string|null}
      */
-    _getInfraYaml: function () {
-        if (typeof INFRA_DOCKER_COMPOSE_YAML !== 'undefined' && INFRA_DOCKER_COMPOSE_YAML) {
-            return INFRA_DOCKER_COMPOSE_YAML;
+    _getBasyxJavaYaml: function () {
+        if (typeof INFRA_BASYX_JAVA_YAML !== 'undefined' && INFRA_BASYX_JAVA_YAML) {
+            return INFRA_BASYX_JAVA_YAML;
         }
-        console.warn('[SMIA Builder] INFRA_DOCKER_COMPOSE_YAML not found. Ensure infra-docker-compose-data.js is loaded.');
+        console.warn('[SMIA Builder] INFRA_BASYX_JAVA_YAML not found. Ensure infra-docker-compose-data.js is loaded.');
         return null;
+    },
+
+    /**
+     * Returns the BaSyx Go variant docker-compose YAML content.
+     * Reads from the global constant INFRA_BASYX_GO_YAML
+     * (defined in infra-docker-compose-data.js, loaded via <script> tag).
+     * @returns {string|null}
+     */
+    _getBasyxGoYaml: function () {
+        if (typeof INFRA_BASYX_GO_YAML !== 'undefined' && INFRA_BASYX_GO_YAML) {
+            return INFRA_BASYX_GO_YAML;
+        }
+        console.warn('[SMIA Builder] INFRA_BASYX_GO_YAML not found. Ensure infra-docker-compose-data.js is loaded.');
+        return null;
+    },
+
+    /**
+     * Returns the Ejabberd XMPP server docker-compose YAML content.
+     * Reads from the global constant INFRA_XMPP_YAML
+     * (defined in infra-docker-compose-data.js, loaded via <script> tag).
+     * @returns {string|null}
+     */
+    _getXmppYaml: function () {
+        if (typeof INFRA_XMPP_YAML !== 'undefined' && INFRA_XMPP_YAML) {
+            return INFRA_XMPP_YAML;
+        }
+        console.warn('[SMIA Builder] INFRA_XMPP_YAML not found. Ensure infra-docker-compose-data.js is loaded.');
+        return null;
+    },
+
+    /**
+     * Returns the SMIA infrastructure docker-compose YAML content
+     * (smia-ism service + smia-i-kb template).
+     * Reads from the global constant INFRA_SMIA_YAML
+     * (defined in infra-docker-compose-data.js, loaded via <script> tag).
+     * @returns {string|null}
+     */
+    _getSmiaYaml: function () {
+        if (typeof INFRA_SMIA_YAML !== 'undefined' && INFRA_SMIA_YAML) {
+            return INFRA_SMIA_YAML;
+        }
+        console.warn('[SMIA Builder] INFRA_SMIA_YAML not found. Ensure infra-docker-compose-data.js is loaded.');
+        return null;
+    },
+
+    /**
+     * Builds the smia-i-kb service block, parametrizing the BaSyx endpoint
+     * and dependency according to the selected BaSyx variant.
+     * @param {string} basyxVariant - 'go' | 'java'
+     * @param {string} aasType - 'basyx' | 'external' | 'none'
+     * @returns {string|null}
+     */
+    _buildSmiaIKbBlock: function (basyxVariant, aasType) {
+        const smiaYaml = this._getSmiaYaml() || '';
+        const template = this._extractServiceBlock(smiaYaml, 'smia-i-kb');
+        if (!template) return null;
+        const isGo = aasType === 'basyx' && (basyxVariant || 'go') === 'go';
+        const envUrl = isGo ? 'http://aas-environment:8082' : 'http://aas-env:8081';
+        const envService = isGo ? 'aas-environment' : 'aas-env';
+        return template.split('__AAS_ENV_URL__').join(envUrl).split('__AAS_ENV_SERVICE__').join(envService);
     },
 
     /**
@@ -2107,8 +2196,8 @@ echo "============================================================"
 
     /**
      * Builds the full docker-compose.yml content.
-     * Fetches service definitions from infrastructure-docker-compose.yml at runtime,
-     * so changes to the YAML file are automatically reflected without JS edits.
+     * Combines the per-domain service definitions from infra-docker-compose-data.js
+     * (BaSyx Java/Go, XMPP, SMIA) according to the selected configuration.
      * Dynamic services (smia-X assets, smia-pe) are generated programmatically.
      * When XMPP strategy is 'existing', injects extra_hosts into every service.
      * Async because the Operator service definition is fetched from GitHub.
@@ -2117,14 +2206,14 @@ echo "============================================================"
         const s = this.state;
         const I = (n) => '  '.repeat(n);  // indentation helper
         const xmppDomain = s.xmpp.strategy === 'new' ? 'ejabberd' : (s.xmpp.domain || 'localhost');
-        const infraYaml = this._getInfraYaml();
+        const basyxVariant = s.core.aasServer.basyxVariant || 'go';
 
         // Collect all service blocks
         const services = [];
 
-        // ── XMPP Server (Deploy new) — from infrastructure-docker-compose.yml ──
-        if (s.xmpp.strategy === 'new' && infraYaml) {
-            const block = this._extractServiceBlock(infraYaml, 'xmpp-server');
+        // ── XMPP Server (Deploy new) ──
+        if (s.xmpp.strategy === 'new') {
+            const block = this._extractServiceBlock(this._getXmppYaml() || '', 'xmpp-server');
             if (block) {
                 services.push(
                     `  # ----------------------------------------\n` +
@@ -2135,28 +2224,37 @@ echo "============================================================"
             }
         }
 
-        // ── BaSyx AAS Infrastructure (Deploy Basyx) — from infrastructure-docker-compose.yml ──
-        if (s.core.aasServer.type === 'basyx' && infraYaml) {
+        // ── BaSyx AAS Infrastructure (Deploy Basyx) — Java or Go variant ──
+        if (s.core.aasServer.type === 'basyx') {
             services.push(
                 `  # ----------------------------------------\n` +
-                `  # AAS Infrastructure services (from BaSyx)\n` +
+                `  # AAS Infrastructure services (from BaSyx ${basyxVariant === 'go' ? 'Go' : 'Java'})\n` +
                 `  # ----------------------------------------`
             );
-            for (const svc of ['aas-env', 'aas-registry', 'sm-registry', 'mongo', 'aas-web-ui']) {
-                const block = this._extractServiceBlock(infraYaml, svc);
-                if (block) services.push(block);
+            if (basyxVariant === 'go') {
+                const goYaml = this._getBasyxGoYaml() || '';
+                for (const svc of ['aas-environment', 'db', 'basyx_configuration', 'aas-ui']) {
+                    const block = this._extractServiceBlock(goYaml, svc);
+                    if (block) services.push(block);
+                }
+            } else {
+                const javaYaml = this._getBasyxJavaYaml() || '';
+                for (const svc of ['aas-env', 'aas-registry', 'sm-registry', 'mongo', 'aas-web-ui']) {
+                    const block = this._extractServiceBlock(javaYaml, svc);
+                    if (block) services.push(block);
+                }
             }
         }
 
-        // ── SMIA-I KB — from infrastructure-docker-compose.yml ──
-        if (s.core.smiakb && infraYaml) {
-            const block = this._extractServiceBlock(infraYaml, 'smia-i-kb');
+        // ── SMIA-I KB — BaSyx endpoint parametrized per variant ──
+        if (s.core.smiakb) {
+            const block = this._buildSmiaIKbBlock(basyxVariant, s.core.aasServer.type);
             if (block) services.push(block);
         }
 
-        // ── SMIA ISM — from infrastructure-docker-compose.yml ──
-        if (s.core.ism && infraYaml) {
-            const block = this._extractServiceBlock(infraYaml, 'smia-ism');
+        // ── SMIA ISM ──
+        if (s.core.ism) {
+            const block = this._extractServiceBlock(this._getSmiaYaml() || '', 'smia-ism');
             if (block) services.push(block);
         }
 
@@ -2398,6 +2496,40 @@ echo "============================================================"
     },
 
     /**
+     * Builds the basyx-infra.yml file for the BaSyx Go variant.
+     * Points all repositories/registries to the unified aas-environment (port 8082).
+     * The aas-ui service mounts it from ./basyx/basyx-infra.yml.
+     */
+    _buildBasyxGoInfraYml: function () {
+        return [
+            '# BaSyx Go infrastructure endpoints',
+            '# Generated by SMIA Environment Builder',
+            'infrastructures:',
+            '  default: infra1',
+            '  infra1:',
+            '    name: Minimal BaSyx',
+            '    components:',
+            '      aasDiscovery:',
+            '        baseUrl: http://localhost:8082/lookup/shells',
+            '      aasRegistry:',
+            '        baseUrl: http://localhost:8082/shell-descriptors',
+            '        hasDiscoveryIntegration: true',
+            '      submodelRegistry:',
+            '        baseUrl: http://localhost:8082/submodel-descriptors',
+            '      aasRepository:',
+            '        baseUrl: http://localhost:8082/shells',
+            '        hasRegistryIntegration: true',
+            '      submodelRepository:',
+            '        baseUrl: http://localhost:8082/submodels',
+            '        hasRegistryIntegration: true',
+            '      conceptDescriptionRepository:',
+            '        baseUrl: http://localhost:8082/concept-descriptions',
+            '    security:',
+            '      type: none',
+        ].join('\n');
+    },
+
+    /**
      * Builds README.md for container (Docker Compose / K8s) mode.
      */
     _buildContainerReadme: function (s) {
@@ -2415,7 +2547,7 @@ echo "============================================================"
             md += `| XMPP Domain | \`${s.xmpp.domain}\` |\n`;
             md += `| XMPP IP | \`${s.xmpp.ip}\` |\n`;
         }
-        md += `| AAS Server | ${s.core.aasServer.type === 'basyx' ? 'BaSyx' : s.core.aasServer.type === 'external' ? 'External' : 'None'} |\n`;
+        md += `| AAS Server | ${s.core.aasServer.type === 'basyx' ? `BaSyx (${(s.core.aasServer.basyxVariant || 'go') === 'go' ? 'Go' : 'Java'})` : s.core.aasServer.type === 'external' ? 'External' : 'None'} |\n`;
         md += `| SMIA-I KB | ${s.core.smiakb ? 'Enabled' : 'Disabled'} |\n`;
         md += `| SMIA ISM | ${s.core.ism ? 'Enabled' : 'Disabled'} |\n`;
         if (s.plan.hasPlan) md += `| Manufacturing Plan | Included |\n`;
@@ -2457,7 +2589,11 @@ echo "============================================================"
         md += `README.md\n`;
         md += `aas/                     ← AAS model files\n`;
         if (s.envType === 'docker' && s.xmpp.strategy === 'new') md += `xmpp_server/\n  ejabberd.yml           ← Ejabberd configuration\n`;
-        if (s.envType === 'docker' && s.core.aasServer.type === 'basyx') md += `basyx/                   ← BaSyx configuration files\n`;
+        if (s.envType === 'docker' && s.core.aasServer.type === 'basyx') {
+            md += (s.core.aasServer.basyxVariant || 'go') === 'go'
+                ? `basyx/                   ← BaSyx Go configuration files\n  rsa-key.pem\n  basyx-infra.yml\n`
+                : `basyx/                   ← BaSyx configuration files\n  aas-env.properties\n  aas-registry.yml\n  sm-registry.yml\n`;
+        }
         md += `\`\`\`\n`;
 
         md += `\n## Resources\n\n`;

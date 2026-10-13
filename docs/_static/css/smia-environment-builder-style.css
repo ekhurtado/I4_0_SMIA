@@ -906,3 +906,44 @@
     gap: 1rem;
     margin-top: 0.5rem;
 }
+
+/* ============================================================
+   SEGMENTED SELECTOR (compact second-level choice, e.g. BaSyx Go/Java)
+   ============================================================ */
+.segmented-selector {
+    display: inline-flex;
+    gap: 0.25rem;
+    background: var(--color-background-primary);
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    padding: 0.2rem;
+}
+
+.segmented-option {
+    cursor: pointer;
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 0.28rem 0.9rem;
+    border-radius: 999px;
+    color: var(--color-foreground-secondary);
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.segmented-option small {
+    font-weight: 400;
+    opacity: 0.75;
+}
+
+.segmented-option:hover {
+    color: var(--color-foreground-primary);
+}
+
+.segmented-option.selected {
+    background: var(--color-brand-primary);
+    color: #fff;
+}
+
+.segmented-option.selected small {
+    opacity: 0.85;
+}
