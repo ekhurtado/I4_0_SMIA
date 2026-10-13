@@ -177,7 +177,17 @@ class BPMNPerformerBehaviour(CyclicBehaviour):
             # the execution through the GUI)
             if self.myagent.bpmn_execution_status:
                 # The BPMN element is performed and, when finished, the next one is obtained
-                await self.execute_bpmn_element(current_elem)
+                result = await self.execute_bpmn_element(current_elem)
+                _logger.aclinfo('----------------------------RESULTADDDDDDOO: {}'.format(result))
+                if result is not None and 'reason' in result:
+                    # A FAILURE ACL response was received: execution is paused
+                    _logger.warning("BPMN workflow aborted due to a received FAILURE ACL message on element "
+                                  "[{}].".format(getattr(current_elem, 'bpmn_name', current_elem)))
+                    self.myagent.bpmn_execution_status = False
+                    continue
+                elif getattr(current_elem, 'error_exec_elem', False):
+                    # If the execution has completed and an error occurred earlier, it is updated
+                    setattr(current_elem, 'error_exec_elem', False)
                 current_elem = SMIABPMNUtils.get_next_bpmn_element(self.process_parser, current_elem)
             else:
                 _logger.warning("BPMN execution is stopped via the GUI.")
@@ -211,6 +221,8 @@ class BPMNPerformerBehaviour(CyclicBehaviour):
 
             result = await self.execute_acl_rp_css_protocol(current_bpmn_elem)
             _logger.info("SMIACL request result: {}".format(result))
+            return result
+        return None
 
     async def execute_additional_tasks_of_bpmn_element(self, bpmn_element):
         """

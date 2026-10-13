@@ -72,8 +72,6 @@ class ReceiveACLBehaviour(CyclicBehaviour):
 
                                 _logger.error('SMIA PE cannot continue due to a received FAILURE ACL message. '
                                                     'Reason: {}'.format(msg_parsed_body['reason']))
-                                _logger.warning("BPMNPerformerBehaviour will remain blocked due to the receipt of an "
-                                                "ACL failure message.... ")
 
                                 # Mark failure in GUI visualization (to_graphviz will render it in yellow)
                                 if hasattr(self.myagent, 'bpmn_process_parser'):
@@ -85,6 +83,12 @@ class ReceiveACLBehaviour(CyclicBehaviour):
                                                 break
                                     except Exception as e:
                                         _logger.warning("Could not mark BPMN element as failed for GUI: {}".format(e))
+
+                                # Unlock the BPMNPerformerBehaviour so the workflow does not remain blocked
+                                behaviour.acl_messages_responses[thread] = msg
+                                behaviour.acl_request_event.set()
+                                _logger.info("BPMNPerformerBehaviour unlocked with FAILURE response for thread "
+                                             "[{}].".format(thread))
 
                             if (msg.get_metadata(FIPAACLInfo.FIPA_ACL_PERFORMATIVE_ATTRIB) ==
                                     FIPAACLInfo.FIPA_ACL_PERFORMATIVE_INFORM):
