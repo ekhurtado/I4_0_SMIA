@@ -74,6 +74,18 @@ class ReceiveACLBehaviour(CyclicBehaviour):
                                                     'Reason: {}'.format(msg_parsed_body['reason']))
                                 _logger.warning("BPMNPerformerBehaviour will remain blocked due to the receipt of an "
                                                 "ACL failure message.... ")
+
+                                # Mark failure in GUI visualization (to_graphviz will render it in yellow)
+                                if hasattr(self.myagent, 'bpmn_process_parser'):
+                                    try:
+                                        task_specs = self.myagent.bpmn_process_parser.get_spec().task_specs
+                                        for elem in task_specs.values():
+                                            if getattr(elem, 'current_exec_elem', False):
+                                                elem.error_exec_elem = True
+                                                break
+                                    except Exception as e:
+                                        _logger.warning("Could not mark BPMN element as failed for GUI: {}".format(e))
+
                             if (msg.get_metadata(FIPAACLInfo.FIPA_ACL_PERFORMATIVE_ATTRIB) ==
                                     FIPAACLInfo.FIPA_ACL_PERFORMATIVE_INFORM):
                                 # In this case the content is valid

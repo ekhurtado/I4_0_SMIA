@@ -186,7 +186,9 @@ class GUIFeatures:
 
                             agent_object.bpmn_workflow_elements.append(current_elem)
 
-                        if hasattr(current_elem, 'current_exec_elem') and current_elem.current_exec_elem:
+                        if getattr(current_elem, 'error_exec_elem', False):
+                            additional_graph_options += ', style=filled, fillcolor=gold'
+                        elif hasattr(current_elem, 'current_exec_elem') and current_elem.current_exec_elem:
                             additional_graph_options += ', style=filled, fillcolor=green'
 
                         additional_graph += '{} [{}]; '.format(origin, additional_graph_options)
