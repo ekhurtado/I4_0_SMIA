@@ -40,6 +40,20 @@ sse_clients: Set[asyncio.Queue] = set()
 # Histórico acotado para prevenir Memory Leaks (máximo 100 eventos)
 request_history = deque(maxlen=100)
 
+RESERVED_ASSET_IDS = {"register", "status", "charge", "recover", "action"}
+
+
+def _init_asset(asset_id: str, asset_type: str):
+    """Inicializa las estructuras en memoria para un activo (usado al arrancar y al registrar)."""
+    ASSET_CATALOG[asset_id] = asset_type
+    assets_state[asset_id] = {
+        "type": asset_type,
+        "status": "idle",
+        "battery": 100.0,
+        "current_task": None
+    }
+    asset_locks[asset_id] = asyncio.Lock()
+
 
 def append_to_history(asset_id: str, req_type: str, details: str):
     """Registra una petición de forma thread-safe en el entorno asíncrono."""
@@ -82,8 +96,11 @@ async def battery_manager_loop():
         await asyncio.sleep(0.5)
         state_mutated = False
 
-        for asset_id, state in assets_state.items():
+        for asset_id, state in list(assets_state.items()):
             if state["status"] == "charging":
+                # El activo puede haberse registrado justo tras copiar la lista
+                if asset_id not in asset_locks:
+                    continue
                 async with asset_locks[asset_id]:
                     if state["battery"] < 100:
                         state["battery"] = min(100.0, state["battery"] + 2.5)
@@ -102,13 +119,7 @@ async def battery_manager_loop():
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     for asset_id in ASSET_IDS:
-        assets_state[asset_id] = {
-            "type": ASSET_CATALOG[asset_id],
-            "status": "idle",
-            "battery": 100.0,
-            "current_task": None
-        }
-        asset_locks[asset_id] = asyncio.Lock()
+        _init_asset(asset_id, ASSET_CATALOG[asset_id])
 
     # Evento génesis
     append_to_history("SYSTEM", "INIT", "Simulación inicializada")
@@ -137,6 +148,12 @@ class ActionRequest(BaseModel):
 
 class ChargeRequest(BaseModel):
     enable: bool = Field(..., description="Activar/Desactivar recarga o descanso")
+
+
+class AssetRegisterRequest(BaseModel):
+    asset_id: str = Field(..., min_length=1, max_length=64, pattern=r"^[A-Za-z0-9_./-]+$",
+                          description="Identificador único del activo (se admiten subrutas tipo AssetID/IR3)")
+    type: str = Field(..., description="Tipo de activo: robot, mobile o human")
 
 
 # ---------------------------------------------------------
@@ -179,6 +196,33 @@ async def sse_stream(request: Request):
 # ---------------------------------------------------------
 # APIs de Control de Activos
 # ---------------------------------------------------------
+@app.post("/api/v1/assets/register", status_code=status.HTTP_201_CREATED)
+async def register_asset(payload: AssetRegisterRequest):
+    asset_id = payload.asset_id.strip()
+    asset_type = payload.type.strip().lower()
+
+    if not asset_id:
+        raise HTTPException(status_code=400, detail="asset_id cannot be empty")
+    if asset_id.startswith("/") or asset_id.endswith("/") or "//" in asset_id:
+        raise HTTPException(status_code=400, detail="asset_id cannot start/end with '/' or contain '//'")
+    if asset_type not in ASSET_TASKS:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Invalid asset type '{payload.type}'. Allowed: {list(ASSET_TASKS.keys())}"
+        )
+    if asset_id.lower() in RESERVED_ASSET_IDS:
+        raise HTTPException(status_code=400, detail=f"asset_id '{asset_id}' is reserved")
+    if asset_id in assets_state:
+        raise HTTPException(status_code=409, detail=f"Asset '{asset_id}' already registered")
+
+    # Sin await entre la comprobación y la inserción: atómico en asyncio
+    _init_asset(asset_id, asset_type)
+    append_to_history(asset_id, "REGISTER", f"Nuevo activo registrado de tipo {asset_type.upper()}")
+    await notify_clients()
+
+    return {"status": "registered", "asset": asset_id, "type": asset_type}
+
+
 @app.get("/api/v1/asset/{asset_id:path}/status")
 async def get_status(asset_id: str):
     if asset_id not in assets_state:

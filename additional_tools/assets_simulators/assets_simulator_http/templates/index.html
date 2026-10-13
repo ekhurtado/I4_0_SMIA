@@ -1013,6 +1013,33 @@
                 <p class="text-zinc-500 dark:text-zinc-400 text-sm mt-1 md:mt-2 font-medium">Catálogo completo de activos clasificados por tipo.</p>
             </div>
         </header>
+        <div class="bg-white dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 p-5 md:p-6 mb-8 md:mb-10">
+            <h3 class="text-xs font-extrabold tracking-widest text-zinc-500 dark:text-zinc-400 uppercase mb-4">Registrar nuevo activo</h3>
+            <div class="flex flex-col lg:flex-row gap-2 lg:items-stretch">
+                <input type="text" id="register-asset-id" placeholder="ID del activo (ej. ROBOT_C)" maxlength="64"
+                       class="flex-1 bg-zinc-50 dark:bg-black/30 border border-zinc-200 dark:border-zinc-800 text-xs md:text-sm rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent p-2.5 font-mono placeholder:font-sans placeholder:font-medium" />
+                <div id="register-asset-type" role="radiogroup" aria-label="Tipo de activo"
+                     class="flex gap-1 p-1 bg-zinc-100 dark:bg-black/30 border border-zinc-200 dark:border-zinc-800 rounded-full shrink-0">
+                    <button type="button" data-register-type="robot" onclick="setRegisterAssetType('robot')" role="radio" aria-checked="true"
+                            class="flex-1 inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-full text-[11px] md:text-xs font-bold transition-all whitespace-nowrap cursor-pointer outline-none bg-asset-light dark:bg-asset-dark text-zinc-900 dark:text-blue-50 shadow-sm">
+                        <i data-lucide="bot" class="w-3.5 h-3.5"></i> Production
+                    </button>
+                    <button type="button" data-register-type="mobile" onclick="setRegisterAssetType('mobile')" role="radio" aria-checked="false"
+                            class="flex-1 inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-full text-[11px] md:text-xs font-bold transition-all whitespace-nowrap cursor-pointer outline-none text-zinc-500 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200">
+                        <i data-lucide="truck" class="w-3.5 h-3.5"></i> Mobile
+                    </button>
+                    <button type="button" data-register-type="human" onclick="setRegisterAssetType('human')" role="radio" aria-checked="false"
+                            class="flex-1 inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-full text-[11px] md:text-xs font-bold transition-all whitespace-nowrap cursor-pointer outline-none text-zinc-500 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200">
+                        <i data-lucide="hard-hat" class="w-3.5 h-3.5"></i> Human
+                    </button>
+                </div>
+                <button onclick="registerAsset()"
+                        class="bg-black/90 dark:bg-white text-white dark:text-black hover:bg-black dark:hover:bg-zinc-200 font-bold rounded-lg text-xs md:text-sm px-4 py-2.5 transition-colors flex items-center justify-center">
+                    <i data-lucide="plus" class="w-4 h-4 mr-1.5"></i> Registrar
+                </button>
+            </div>
+            <p id="register-asset-feedback" class="hidden text-xs mt-3 font-medium"></p>
+        </div>
         <div id="dashboard-container">
             <!-- Secciones inyectadas al inicializar la App -->
         </div>
@@ -1158,6 +1185,42 @@
 
     // Humano:
     { "status": "success", "recovering": true }</pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 p-5 md:p-7 overflow-hidden transition-all hover:shadow-md">
+                <div class="flex flex-col md:flex-row md:items-center mb-4 gap-3">
+                    <span class="bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400 font-mono text-xs font-extrabold px-2.5 py-1 rounded w-max tracking-widest uppercase">POST</span>
+                    <code class="text-sm font-mono font-bold text-zinc-800 dark:text-zinc-200 break-all">/api/v1/assets/register</code>
+                </div>
+                <p class="text-zinc-500 dark:text-zinc-400 text-sm mb-6 leading-relaxed">Registra un nuevo activo en caliente sin reiniciar el servidor. El activo queda disponible de inmediato para telemetría, acciones y recarga, y aparece automáticamente en la interfaz vía SSE.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="text-xs font-extrabold tracking-widest text-zinc-900 dark:text-zinc-100 uppercase mb-3 border-b border-zinc-200 dark:border-zinc-800 pb-2">
+                            Body Request (JSON)</h4>
+                        <ul class="text-sm text-zinc-600 dark:text-zinc-400 space-y-2">
+                            <li><code
+                                    class="text-xs font-mono text-zinc-900 dark:text-zinc-300 font-bold bg-zinc-100 dark:bg-zinc-800 px-1 py-0.5 rounded">asset_id</code>
+                                <span class="italic text-xs">(string)</span> - ID único (letras, números, <span class="font-mono text-xs">_ . - /</span>, máx. 64). Se admiten subrutas (ej. <span class="font-mono text-xs">AssetID/IR3</span>).
+                            </li>
+                            <li><code
+                                    class="text-xs font-mono text-zinc-900 dark:text-zinc-300 font-bold bg-zinc-100 dark:bg-zinc-800 px-1 py-0.5 rounded">type</code>
+                                <span class="italic text-xs">(string)</span> - <span class="font-mono text-xs">robot</span>, <span class="font-mono text-xs">mobile</span> o <span class="font-mono text-xs">human</span>.
+                            </li>
+                        </ul>
+                        <div class="mt-4">
+                            <h4 class="text-[10px] font-extrabold tracking-widest text-zinc-500 uppercase mb-2">Ejemplo
+                                cURL</h4>
+                            <pre class="bg-zinc-50 dark:bg-[#0d1117] border border-zinc-200 dark:border-zinc-800 rounded-lg p-3 text-[10px] font-mono text-zinc-700 dark:text-zinc-300 overflow-x-auto whitespace-pre-wrap word-break">curl -X POST http://localhost:5000/api/v1/assets/register -H "Content-Type: application/json" -d '{"asset_id": "ROBOT_C", "type": "robot"}'</pre>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="text-xs font-extrabold tracking-widest text-zinc-900 dark:text-zinc-100 uppercase mb-3 border-b border-zinc-200 dark:border-zinc-800 pb-2">
+                            Respuesta (201 Created)</h4>
+                        <pre class="bg-zinc-50 dark:bg-[#0d1117] border border-zinc-200 dark:border-zinc-800 rounded-lg p-3 text-[11px] font-mono text-zinc-700 dark:text-zinc-300 overflow-x-auto">
+    { "status": "registered", "asset": "ROBOT_C", "type": "robot" }</pre>
                     </div>
                 </div>
             </div>
@@ -1560,6 +1623,7 @@
                 return 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400';
             case 'CHARGE':
             case 'RECOVER':
+            case 'REGISTER':
                 return 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-400';
             case 'STATUS':
                 return 'bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-400';
@@ -1837,6 +1901,59 @@
         }
     }
 
+    function showRegisterFeedback(message, isError) {
+        const el = document.getElementById('register-asset-feedback');
+        if (!el) return;
+        el.classList.remove('hidden');
+        el.innerText = message;
+        el.className = isError
+            ? 'text-xs mt-3 font-medium text-red-600 dark:text-red-400'
+            : 'text-xs mt-3 font-medium text-emerald-600 dark:text-emerald-400';
+    }
+
+    let registerAssetType = 'robot';
+
+    function setRegisterAssetType(type) {
+        registerAssetType = type;
+        document.querySelectorAll('#register-asset-type [data-register-type]').forEach(btn => {
+            const isActive = btn.getAttribute('data-register-type') === type;
+            btn.setAttribute('aria-checked', isActive ? 'true' : 'false');
+            btn.className = 'flex-1 inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-full text-[11px] md:text-xs font-bold transition-all whitespace-nowrap cursor-pointer outline-none ' + (isActive
+                ? 'bg-asset-light dark:bg-asset-dark text-zinc-900 dark:text-blue-50 shadow-sm'
+                : 'text-zinc-500 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200');
+        });
+    }
+
+    async function registerAsset() {
+        const idInput = document.getElementById('register-asset-id');
+        const assetId = (idInput.value || '').trim();
+        const assetType = registerAssetType;
+
+        if (!assetId) {
+            showRegisterFeedback('Indica un identificador para el activo.', true);
+            return;
+        }
+
+        try {
+            const response = await fetch('/api/v1/assets/register', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({asset_id: assetId, type: assetType})
+            });
+            if (!response.ok) {
+                const data = await response.json().catch(() => ({}));
+                const detail = Array.isArray(data.detail) ? data.detail.map(d => d.msg).join('; ') : (data.detail || 'No se pudo registrar el activo');
+                showRegisterFeedback(`Error: ${detail}`, true);
+                return;
+            }
+            idInput.value = '';
+            showRegisterFeedback(`Activo '${assetId}' registrado correctamente.`, false);
+        } catch (err) {
+            console.error(err);
+            showRegisterFeedback('Error de conexión con el servidor.', true);
+        }
+    }
+
     function initNetwork() {
         try {
             const isIsolatedEnv = window.location.protocol.startsWith("blob") || window.location.origin === "null";
@@ -1909,6 +2026,9 @@
 
         // Restaurar selección del panel desde localStorage
         loadPanelSelection();
+
+        // Estado inicial del selector segmentado de registro
+        setRegisterAssetType(registerAssetType);
 
         lucide.createIcons();
         initNetwork();
