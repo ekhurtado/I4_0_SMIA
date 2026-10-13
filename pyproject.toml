@@ -8,7 +8,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "smia"
-version = '1.0.2.3'     # Upgrade to 1.0.3 when it is ready
+version = '1.0.2.4'     # Upgrade to 1.0.3 when it is ready
 authors = [{ name="Ekaitz Hurtado", email="ekaitz.hurtado@ehu.eus" },]
 description = "Self-configurable Manufacturing Industrial Agents (SMIA)."
 readme = 'README_pypi.md'
