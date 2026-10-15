@@ -1,0 +1,45 @@
+FROM python:3.12
+# CI usage (wheel built locally, no TestPyPI race):
+#   python -m build --wheel --outdir docker/dist
+#   docker build -f docker/Dockerfile_SMIA_full_base_template -t smia:test-full-base ./docker
+# Fallback usage (version from an index, no wheel needed but requires docker/dist/ to exist):
+#   mkdir -p docker/dist
+#   docker build -f docker/Dockerfile_SMIA_full_base_template -t smia:test-full-base \
+#     --build-arg SMIA_VERSION=1.0.2.8 \
+#     --build-arg PIP_INDEX_URL=https://test.pypi.org/simple/ \
+#     --build-arg PIP_EXTRA_INDEX_URL=https://pypi.org/simple ./docker
+
+ARG SMIA_VERSION=""
+ARG PIP_INDEX_URL="https://test.pypi.org/simple/"
+ARG PIP_EXTRA_INDEX_URL="https://pypi.org/simple"
+
+RUN pip install --upgrade pip
+
+# The wheel built locally by the CI workflow is copied when present (docker/dist/).
+# The fallback to SMIA_VERSION needs docker/dist/ to exist (even empty): mkdir -p docker/dist.
+COPY dist /tmp/dist/
+
+# The required SMIA Python package is installed from the local wheel when present,
+# otherwise from the given index when SMIA_VERSION is set (e.g. TestPyPI in CI),
+# falling back to latest PyPI otherwise.
+RUN if ls /tmp/dist/*.whl >/dev/null 2>&1; then \
+      pip install /tmp/dist/*.whl; \
+    elif [ -n "$SMIA_VERSION" ]; then \
+      if [ -n "$PIP_EXTRA_INDEX_URL" ]; then \
+        pip install --index-url "$PIP_INDEX_URL" --extra-index-url "$PIP_EXTRA_INDEX_URL" "smia==$SMIA_VERSION"; \
+      else \
+        pip install --index-url "$PIP_INDEX_URL" "smia==$SMIA_VERSION"; \
+      fi; \
+    else \
+      pip install smia; \
+    fi \
+    && rm -rf /tmp/dist
+
+# The valid OWL ontology file is added in case the user does not add it within the AASX package
+COPY CSS-ontology-smia.owl /smia_archive/config/
+
+WORKDIR /
+
+CMD ["python3", "-m", "smia.launchers.smia_docker_starter"]
+
+#EXPOSE 5222
