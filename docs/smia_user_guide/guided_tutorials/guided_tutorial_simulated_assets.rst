@@ -230,6 +230,11 @@ To safely and easily set up a valid deployment environment, we will use the tool
 1. Open :octicon:`repo;1em` :ref:`SMIA Environment Builder` and click ``Start configuration``.
 2. In *Step 1*, select the ``Docker Compose`` environment next to ``Deploy new`` XMPP server.
 3. In *Step 2*, select all SMIA infrastructure services (``SMIA-I KB`` and ``SMIA ISM``) and, for AAS Server, leave it set to ``Deploy Basyx``.
+
+.. note::
+
+    Both versions of Eclipse Basyx (Go/Java) are fully operational. The ``Go`` version is recommended due to its lower consumption of system computing resources.
+
 4. In *Step 3*, we will add all the simulated assets.
 
     4.1 First, we will enable the *Manufacturing Plan asset* and click on ``Upload AASX file`` to select its CSS-enriched AAS model from the GitHub resources: ``SimulatedAssetsHTTP_Plan_1.aasx``. We will also add its information, such as the agent JID (``simulated_assets_plan_001``). Since the XMPP server ejabberd has already been selected, you do not need to specify a password (the tool generates one by default).
