@@ -39,6 +39,7 @@ def main():
     # from the initialization properties file
     smia_jid = os.environ.get('AGENT_ID')
     smia_psswd = os.environ.get('AGENT_PASSWD')
+    _logger.warning("SPECIFIED PASSWORD: [{}]".format(smia_psswd))
 
     # Create the agent object
     smia_agent = SMIAAgent(smia_jid, smia_psswd)
