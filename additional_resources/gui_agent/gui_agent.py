@@ -50,7 +50,7 @@ async def main():
     # DATOS PARA PRUEBAS CON ANONYM.IM
     if 'KUBERNETES_PORT' not in os.environ:
         agent_jid = os.environ.get('AGENT_ID')
-        passwd = os.environ.get('AGENT_PASSWD')
+        passwd = os.environ.get('AGENT_PSSWD')
 
         if agent_jid is None:
             # agent_jid = "gui_agent@anonym.im"
