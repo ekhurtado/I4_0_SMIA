@@ -477,7 +477,7 @@ The code for the ``SMIA Operator`` agent can be obtained from the `GitHub reposi
             # The jid and password can also be set as environmental variables. In case they are not set, the values are obtained
             # from the initialization properties file
             # smia_jid = os.environ.get('AGENT_ID')
-            # smia_psswd = os.environ.get('AGENT_PASSWD')
+            # smia_psswd = os.environ.get('AGENT_PSSWD')
 
             # Create the agent object
             smia_extensible_agent = ExtensibleSMIAAgent('gcis2@xmpp.jp', 'gcis1234')
