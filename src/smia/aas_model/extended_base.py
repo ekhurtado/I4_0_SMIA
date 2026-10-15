@@ -1,3 +1,5 @@
+import fnmatch
+
 import basyx
 from basyx.aas.model import Qualifier, HasSemantics, Namespace, Qualifiable
 
@@ -11,12 +13,32 @@ class ExtendedQualifier(Qualifier):
 class ExtendedHasSemantics(HasSemantics):
     """This class contains methods to be added to HasSemantics class of Basyx Python SDK model."""
 
-    def check_semantic_id_exist(self, semantic_id_reference):
+    # Wildcards supported in semanticID references: patterns where a segment may change (e.g. version of a submodel)
+    _SEMANTIC_ID_WILDCARDS = ('*', '?')
+
+    @staticmethod
+    def _match_semantic_id_value(semantic_id_value, semantic_id_reference):
         """
-        This method checks if a specific semanticID exists in an AAS meta-model element.
+        This method compares a semanticID value with a given reference, which can include wildcards.
 
         Args:
-            semantic_id_reference (str): semantic identifier.
+            semantic_id_value (str): semanticID value of the AAS element.
+            semantic_id_reference (str): semantic identifier to match (wildcards can be used).
+
+        Returns:
+            bool: result of the match.
+        """
+        if any(wildcard in semantic_id_reference for wildcard in ExtendedHasSemantics._SEMANTIC_ID_WILDCARDS):
+            return fnmatch.fnmatchcase(semantic_id_value, semantic_id_reference)
+        return semantic_id_value == semantic_id_reference
+
+    def check_semantic_id_exist(self, semantic_id_reference):
+        """
+        This method checks if a specific semanticID exists in an AAS meta-model element. The given semanticID
+        reference can include wildcards.
+
+        Args:
+            semantic_id_reference (str): semantic identifier (wildcards can be used).
 
         Returns:
             bool: result of the check (only True if the semanticID exists).
@@ -24,16 +46,17 @@ class ExtendedHasSemantics(HasSemantics):
         if self.semantic_id is None:
             return False
         for reference in self.semantic_id.key:
-            if reference.value == semantic_id_reference:
+            if ExtendedHasSemantics._match_semantic_id_value(reference.value, semantic_id_reference):
                 return True
         return False
 
     def check_suppl_semantic_id_exist(self, suppl_semantic_id_ref):
         """
-        This method checks if a specific supplemental semanticID exists in an AAS meta-model element.
+        This method checks if a specific supplemental semanticID exists in an AAS meta-model element. The given
+        supplemental semanticID reference can include wildcards.
 
         Args:
-            suppl_semantic_id_ref (str): supplemental semantic identifier.
+            suppl_semantic_id_ref (str): supplemental semantic identifier (wildcards can be used).
 
         Returns:
             bool: result of the check (only True if the semanticID exists).
@@ -42,9 +65,9 @@ class ExtendedHasSemantics(HasSemantics):
             return False
         for suppl_semantic_id in self.supplemental_semantic_id:
             for reference in suppl_semantic_id.key:
-                if reference.value == suppl_semantic_id_ref:
+                if ExtendedHasSemantics._match_semantic_id_value(reference.value, suppl_semantic_id_ref):
                     return True
-            return False
+        return False
 
 
 class ExtendedNamespace(Namespace):

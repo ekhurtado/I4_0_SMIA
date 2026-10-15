@@ -310,19 +310,20 @@ class ExtendedAASModel:
 
     async def get_submodel_by_semantic_id(self, sm_semantic_id):
         """
-        This method gets the Submodel object using its semantic identifier.
+        This method gets the Submodel object using its semantic identifier. The semantic identifier can include
+        wildcards.
 
         Args:
-            sm_semantic_id (str): semantic identifier of the Submodel.
+            sm_semantic_id (str): semantic identifier of the Submodel (wildcards can be used).
 
         Returns:
             basyx.aas.model.Submodel: Submodel in form of a Python object.
         """
         for aas_object in self.aas_model_object_store:
-            if isinstance(aas_object, basyx.aas.model.Submodel) and aas_object.semantic_id is not None:
-                for reference in aas_object.semantic_id.key:
-                    if reference.value == sm_semantic_id:
-                        return aas_object
+            if (isinstance(aas_object, basyx.aas.model.Submodel)
+                    and aas_object.check_semantic_id_exist(sm_semantic_id)):
+                return aas_object
+        return None
 
     async def get_submodel_by_template_id(self, template_id):
         """
