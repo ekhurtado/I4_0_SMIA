@@ -99,7 +99,7 @@ New to SMIA? This section will guide you through getting started with the softwa
 
     .. tip::
 
-        If you need to extend SMIA with increased autonomy (or add your own code), you can can refer to the :octicon:`repo;1em` :ref:`SMIA Extension Guide`.
+        If you need to extend SMIA with increased autonomy (or add your own code), you can refer to the :octicon:`repo;1em` :ref:`SMIA Extension Guide`.
 
 .. dropdown:: 3. Seamless deployment: Environment Builder
     :octicon:`rocket;1em;sd-text-primary`
@@ -142,7 +142,7 @@ Documentation project structure
 
 The SMIA project documentation repository is structured as follows:
 
-    :octicon:`repo;1em` :ref:`SMIA User Guide`: these guides helps with the usage of SMIA software and related tools.
+    :octicon:`repo;1em` :ref:`SMIA User Guide`: these guides help with the usage of SMIA software and related tools.
 
     :octicon:`repo-pull;1em` :ref:`SMIA Use Cases`: these pages detail all the use cases developed within the SMIA approach.
 
