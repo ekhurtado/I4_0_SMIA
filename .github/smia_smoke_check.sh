@@ -33,7 +33,9 @@ echo "Creating network $NET ..."
 docker network create "$NET" >/dev/null
 
 echo "Starting ephemeral ejabberd ($EJABBERD_C) ..."
-docker run -d --name "$EJABBERD_C" --network "$NET" \
+# --hostname/--network-alias ejabberd: the SMIA JID domain (smiatest@ejabberd)
+# must resolve to this container, as with container_name: ejabberd in the example compose.
+docker run -d --name "$EJABBERD_C" --hostname ejabberd --network "$NET" --network-alias ejabberd \
   -v "$REPO_ROOT/examples/docker_compose_deployment/xmpp_server/ejabberd.yml:/opt/ejabberd/conf/ejabberd.yml:ro" \
   -e ERLANG_NODE_ARG=admin@ejabberd \
   -e ERLANG_COOKIE=dummycookie123 \
@@ -51,8 +53,47 @@ for i in $(seq 1 15); do
   fi
 done
 
-# Best-effort user registration (SPADE also does in-band registration if allowed).
-docker exec "$EJABBERD_C" ejabberdctl register smiatest ejabberd smiatest1234 >/dev/null 2>&1 || true
+echo "Waiting for ejabberd node readiness (ejabberdctl status, max ~60s) ..."
+READY=false
+for i in $(seq 1 30); do
+  if docker exec "$EJABBERD_C" ejabberdctl status >/dev/null 2>&1; then
+    echo "ejabberd node is ready."
+    READY=true
+    break
+  fi
+  sleep 2
+done
+if [ "$READY" != "true" ]; then
+  echo "::error::ejabberd node never became ready. Dumping logs:"
+  docker logs "$EJABBERD_C" 2>&1 | tail -n 100 || true
+  docker rm -f "$EJABBERD_C" >/dev/null 2>&1 || true
+  docker network rm "$NET" >/dev/null 2>&1 || true
+  exit 1
+fi
+
+# Register the test user and verify it (no silent swallowing: SMIA must not
+# depend on in-band registration alone).
+if docker exec "$EJABBERD_C" ejabberdctl register smiatest ejabberd smiatest1234 >/dev/null 2>&1; then
+  echo "Test user smiatest@ejabberd registered."
+elif docker exec "$EJABBERD_C" ejabberdctl check_account smiatest ejabberd >/dev/null 2>&1; then
+  echo "Test user smiatest@ejabberd already exists."
+else
+  echo "::error::Could not register nor verify test user smiatest@ejabberd. Dumping logs:"
+  docker logs "$EJABBERD_C" 2>&1 | tail -n 100 || true
+  docker rm -f "$EJABBERD_C" >/dev/null 2>&1 || true
+  docker network rm "$NET" >/dev/null 2>&1 || true
+  exit 1
+fi
+
+echo "Checking DNS: ejabberd must resolve from the SMIA side ..."
+if ! docker run --rm --network "$NET" alpine getent hosts ejabberd; then
+  echo "::error::Hostname 'ejabberd' does not resolve inside network $NET."
+  docker rm -f "$EJABBERD_C" >/dev/null 2>&1 || true
+  docker network rm "$NET" >/dev/null 2>&1 || true
+  exit 1
+fi
+
+sleep 3
 
 echo "Starting SMIA container ($SMIA_C) from image $SMIA_IMAGE ..."
 docker run -d --name "$SMIA_C" --network "$NET" \

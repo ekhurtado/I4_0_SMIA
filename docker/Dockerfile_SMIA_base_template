@@ -1,15 +1,13 @@
 FROM python:3.12-alpine
-# CI usage (wheel built locally, no TestPyPI race):
-#   python -m build --wheel --outdir docker/dist
-#   docker build -f docker/Dockerfile_SMIA_base_template -t smia:test-alpine-base ./docker
-# Fallback usage (version from an index, no wheel needed but requires docker/dist/ to exist):
+# CI usage (TestPyPI hit: version already indexed, no wheel needed):
 #   mkdir -p docker/dist
 #   docker build -f docker/Dockerfile_SMIA_base_template -t smia:test-alpine-base \
-#     --build-arg SMIA_VERSION=1.0.2.8 \
+#     --build-arg SMIA_VERSION=1.0.2.8 --build-arg PREFER_TESTPYPI=true \
 #     --build-arg PIP_INDEX_URL=https://test.pypi.org/simple/ \
 #     --build-arg PIP_EXTRA_INDEX_URL=https://pypi.org/simple ./docker
 
 ARG SMIA_VERSION=""
+ARG PREFER_TESTPYPI="true"
 ARG PIP_INDEX_URL="https://test.pypi.org/simple/"
 ARG PIP_EXTRA_INDEX_URL="https://pypi.org/simple"
 
@@ -20,12 +18,18 @@ RUN pip install --upgrade pip
 COPY dist /tmp/dist/
 
 # The required Python SMIA package is installed. As it is an alpine image, some compilation tools are required. Besides,
-# when no local wheel is present and SMIA_VERSION is set the package is installed from the given index (e.g. TestPyPI),
-# but dependencies must be allowed to be looked up in PyPI as well.
+# when PREFER_TESTPYPI is true and SMIA_VERSION is set the package is installed from the given index (e.g. TestPyPI),
+# otherwise the locally built wheel is used when present; dependencies must be allowed to be looked up in PyPI as well.
 #    + '--extra-index-url' option is for pip to look for missing dependencies in PyPI (and not in TestPyPI).
 # To keep the image lightweight, the compilation tools are removed after installing the Python dependencies
 RUN apk add --no-cache gcc python3-dev musl-dev linux-headers \
-    && if ls /tmp/dist/*.whl >/dev/null 2>&1; then \
+    && if [ "$PREFER_TESTPYPI" = "true" ] && [ -n "$SMIA_VERSION" ]; then \
+         if [ -n "$PIP_EXTRA_INDEX_URL" ]; then \
+           pip install --index-url "$PIP_INDEX_URL" --extra-index-url "$PIP_EXTRA_INDEX_URL" "smia==$SMIA_VERSION"; \
+         else \
+           pip install --index-url "$PIP_INDEX_URL" "smia==$SMIA_VERSION"; \
+         fi; \
+       elif ls /tmp/dist/*.whl >/dev/null 2>&1; then \
          pip install /tmp/dist/*.whl; \
        elif [ -n "$SMIA_VERSION" ]; then \
          if [ -n "$PIP_EXTRA_INDEX_URL" ]; then \
