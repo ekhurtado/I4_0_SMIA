@@ -2,7 +2,7 @@
 
 (Release Notes)=
 
-## 1.0.2
+## v1.0.2
 
 This release of Self-configurable Manufacturing Industrial Agents (SMIA) includes improvements to agent's source code, such as a new asset communication protocol (OPC UA) or a new AAS service, and improvements to SMIA ecosystem (SMIA PE, SMIA Operator and the Camunda Modeler plugin). A new step-by-step tutorial with simulated assets and a new extended agent for health supervision is also added to the documentation platform.
 
@@ -54,7 +54,7 @@ This release of Self-configurable Manufacturing Industrial Agents (SMIA) include
   - This compatibility issue has been verified through testing with different versions of ``basyx-python-sdk``.
 - Fixed minor errors in communication guide and simulated assets tutorial guide.
 
-## 0.3.5
+## v0.3.5
 
 This release of Self-configurable Manufacturing Industrial Agents (SMIA) includes some improvements to additional tools of the SMIA ecocystem, as well as fixes for some bugs and errors throughout the project.
 
