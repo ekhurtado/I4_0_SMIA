@@ -1,5 +1,9 @@
 .idea
 
+# Python related files
+__pycache__/
+*.py[cod]
+
 # PyPI related files
 dist/
 *.egg-info/
