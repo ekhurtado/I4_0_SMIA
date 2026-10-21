@@ -2,6 +2,62 @@
 
 (Release Notes)=
 
+## v1.0.3
+
+This release of Self-configurable Manufacturing Industrial Agents (SMIA) includes improvements to agent's source code, such as significant enhancements of the MQTT and HTTP asset connections, new methods for the extended classes of the Basyx Python SDK and compatibility with different versions of AAS submodels, and improvements to SMIA ecosystem (SMIA PE, the HTTP-based assets simulator and the SMIA Environment Builder tool). The step-by-step tutorial on simulated assets has also been updated, and a new GitHub workflow for smoke testing of SMIA has been added to the repository.
+
+> SMIA: All Python files structured in Python modules.
+> - It includes the launcher files to run the software in the ``launchers`` module: _smia_cli_starter.py_, _smia_starter.py_ and _smia_docker_starter.py_.
+
+### Features
+
+- Significantly improved the HTTP asset connection class (``HTTPAssetConnection``):
+  - The variables in each response have been changed from global (class variables) to local, to avoid shared state and eliminate race conditions.
+  - The response is now read only once within each session.
+  - More efficient handling of input data in parameters and the request body (depending on the AAS definition and the type of request).
+- Significantly improved the MQTT asset connection (``MQTTAssetConnection``):
+  - Added ``subscribe`` and ``unsubscribe`` interaction types.
+  - Added a persistent coroutine-safe session with on-demand reconnect.
+  - Added fan-out subscribe with retained cache (when ``retain`` is set in the AAS AID submodel).
+  - Added refcounted unsubscribe, so that unsubscribing one interaction does not affect other subscriptions.
+- Added new methods for the extended classes of the Basyx Python SDK's ``SubmodelElements``:
+  - Added the ``get_sm_element_by_semantic_id`` method to the ``Submodel`` and ``SubmodelElementList`` extended classes.
+  - Improved the ``get_sm_element_by_semantic_id`` method for the ``SubmodelElementCollection`` extended class (now it uses ``check_semantic_id_exist``).
+- Added compatibility with different versions of the ``AssetInterfacesDescription`` submodel (each version has its own ``semanticID``).
+  - Implemented by using wildcards during the comparison when searching for AAS elements by ``semanticID``.
+- Improved the assets simulator for HTTP-based assets:
+  - It now allows registering new assets via the ``/assets/register`` API and via the web interface, by specifying the asset ID and type (using a toggle select).
+- Improved SMIA PE extended agent:
+  - Now, if a CSS execution error occurs, the task is displayed in yellow in the Graphviz view of the web interface.
+  - Now, BPMN execution is not blocked indefinitely when a CSS execution error occurs: it is possible to resume the flow and re-execute the same task. If the attempt is successful, the BPMN continues.
+- Added a new GitHub workflow for smoke testing of SMIA (SMIA operational check):
+  - Added the workflow definition (``.github/workflows/smia-operation-test.yml``), the smoke check script (``.github/smia_smoke_check.sh``) and Dockerfile templates (``docker/Dockerfile_SMIA_base_template`` and ``docker/Dockerfile_SMIA_full_base_template``).
+  - The workflow has been tested and validated (both failure and success cases).
+
+### Major Changes
+
+- Improved the SMIA Environment Builder tool within the ReadTheDocs documentation platform:
+  - Added both versions of the Basyx AAS Server (Go and Java): users can now select the version, and the appropriate deployment environment is generated for each case.
+  - All production assets now include the proper environment variable to self-register themselves (instances and CSS information) when SMIA-I KB and SMIA ISM are selected as infrastructure components.
+- Updated the step-by-step tutorial on simulated assets:
+  - Updated the CSS-enriched AAS models (AASX files) of simulated assets with the common ``NegotiationBasedOnAssetData`` skill, to leverage the ability of SMIA PE and SMIA Operator to specify the negotiation criterion to assign assets.
+  - Added the ``CSS_AAS_model_base.aasx`` file to GitHub resources, as a valid template for generating the CSS-enriched AAS models of simulated assets.
+  - Updated the guide on the documentation platform: removed the instruction to make changes in Docker Compose (the SMIA Environment Builder does them automatically), and the name of the negotiation skill (``NegotiationBasedOnAssetData``) has been corrected.
+  - Added information on selecting the Basyx version during the second phase of deployment to the tutorial guide of the ReadTheDocs documentation platform.
+- Updated ``.gitignore``: added pycache folders and files
+  - All Python cache folders have also been removed from the GitHub repository to keep the source code clean.
+
+### Fixed errors
+
+- Fixed a bug in SMIA (and extended agents) when retrieving the password for the XMPP server via an environment variable.
+  - Previously, ``AGENT_PASSWD`` was used instead of ``AGENT_PSSWD``, so the password value could not be obtained; now the correct environment variable is used.
+  - The same bug has also been fixed in the SMIA ReadTheDocs documentation platform.
+- Fixed the Basyx AAS Server configuration error with new versions: the Mongo configuration must be updated because it now uses Spring Boot 4.
+  - This has been fixed in the SMIA Environment Builder tool.
+  - Fixed a versioning issue in the Basyx infrastructure (Go version) when generating environments with SMIA Environment Builder. The `aasenvironment` and `basyxconfiguration` components require the same version (`latest` has been replaced with a fixed version to ensure proper operation).
+- Fixed minor errors in the ``getting_started`` and ``glossary`` pages of the documentation platform.
+- Fixed the section titles of the release notes in the documentation platform: the latest versions did not have the ``v`` prefix. Now all section titles are correctly formatted.
+
 ## v1.0.2
 
 This release of Self-configurable Manufacturing Industrial Agents (SMIA) includes improvements to agent's source code, such as a new asset communication protocol (OPC UA) or a new AAS service, and improvements to SMIA ecosystem (SMIA PE, SMIA Operator and the Camunda Modeler plugin). A new step-by-step tutorial with simulated assets and a new extended agent for health supervision is also added to the documentation platform.
