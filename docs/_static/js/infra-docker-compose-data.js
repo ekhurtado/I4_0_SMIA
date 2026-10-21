@@ -109,7 +109,7 @@ const INFRA_BASYX_GO_YAML = `# ----------------------------------------
 # AAS Infrastructure services (BaSyx Go)
 # ----------------------------------------
 aas-environment:
-  image: eclipsebasyx/aasenvironment-go:latest
+  image: eclipsebasyx/aasenvironment-go:1.1.2
   container_name: aas-environment
   pull_policy: always
   ports:
@@ -214,7 +214,8 @@ db:
 
 basyx_configuration:
   container_name: basyx_configuration
-  image: eclipsebasyx/basyxconfigurationservice-go:latest
+  image: eclipsebasyx/basyxconfigurationservice-go:1.1.2
+  pull_policy: always
   environment:
     - POSTGRES_HOST=db
     - POSTGRES_PORT=5432
